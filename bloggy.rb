@@ -20,6 +20,11 @@ end
 class Post < ActiveRecord::Base
 end
 
+#Set all content_type's to json
+before do
+  content_type 'text/json'
+end
+
 #GET /index.html
 get '/' do
   redirect '/index.html'
@@ -28,18 +33,41 @@ end
 #GET /posts Returns all posts as json
 get '/posts' do
 
-  content_type 'text/json'
-  
   posts = Post.find :all
   posts.to_json
 
 end
 
+#GET /post/1 Returns that post as json
+get '/post/:id' do
+  Post.find(params[:id]).to_json
+end
+
+#PUT /post/1 Update that post with json
+put '/post/:id' do
+  
+  post = Post.find(params[:id])
+
+  if post and params[:data]
+   
+    data = ActiveSupport::JSON.decode(params[:data])
+    post.title = data["title"] 
+    post.body = data["body"]
+
+    if post.save
+      { :status => 'OK', :title => post.title }.to_json
+    else
+      throw :halt, [500, 'no worky']
+    end
+
+  else
+    throw :halt, [500, 'data please']
+  end
+
+end
+
 #POST /post body with data field set to JSON: { "title": "test", "body": "body test" }
 post '/post' do
-
-  content_type 'text/json'
-
   if params[:data]
    
     data = ActiveSupport::JSON.decode(params[:data])
@@ -56,3 +84,10 @@ post '/post' do
   end
 end
 
+#DELETE
+delete '/post/:id' do
+  post = Post.find(params[:id])
+  if post.destroy
+      { :status => 'OK', :title => post.title }.to_json
+  end
+end
