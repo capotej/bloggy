@@ -20,7 +20,7 @@
        url: "posts", 
        method: "get",
        onComplete: function(posts){
-	   show_posts(posts, 'after');
+	   show_posts(posts);
        }
    }); 
 
@@ -34,6 +34,8 @@ document.addEvent('domready', function(){
  </head>
 
  <body>
+   
+   <h1>Bloggy demo app</h1>
    <ul id="posts">
    
    </ul>
