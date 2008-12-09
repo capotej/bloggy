@@ -49,7 +49,7 @@ post '/post' do
     post = Post.new({:title => data["title"], :body => data["body"]})
     
     if post.save
-      { :status => 'OK' }.to_json
+      { :status => 'OK', :title => post.title }.to_json
     else
       throw :halt, [500, 'no worky']
     end

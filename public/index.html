@@ -5,28 +5,50 @@
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
  <title>Bloggy test</title>
 
- <script type="text/javascript" src="/moo.js"></script>
- <script type="text/javascript">
 
+ <script type="text/javascript" src="/moo.js"></script>
+ 
+
+ <script type="text/javascript">
+   
    var show_posts = function(posts){
        posts.each(function(item, index){
-	   li = new Element('li', { 'html': item.title });
-	   $("posts").appendChild(li);
+	   add_post(item.title);
        });
    };
 
 
-   var jsonRequest = new Request.JSON({
-       url: "posts", 
-       method: "get",
-       onComplete: function(posts){
-	   show_posts(posts);
-       }
-   }); 
+var add_post = function(title){
+    li = new Element('li', { 'html': title });
+    $("posts").appendChild(li);
+}
+
+var do_post = new Request.JSON({
+    url: "post", 
+    method: "post",
+    onComplete: function(data){
+	add_post(data.title);
+    }
+}); 
+
+var get_posts = new Request.JSON({
+    url: "posts", 
+    method: "get",
+    onComplete: function(posts){
+	show_posts(posts);	
+    }
+}); 
+
+
+var submit = function(){
+    var title = $("title").get('value');
+    var body = $("body").get('value');
+    do_post.post({data: JSON.encode({title: title, body: body})});
+}
 
 document.addEvent('domready', function(){
-    jsonRequest.send();
-    
+    get_posts.send();
+    $('submit').addEvent('click', submit);
 });
 
  </script>
@@ -37,10 +59,13 @@ document.addEvent('domready', function(){
    
    <h1>Bloggy demo app</h1>
    <ul id="posts">
-   
    </ul>
- 
    
+   <div class="create">
+     Title: <input type="text" id="title"><br/>
+     Body: <textarea id="body" rows="5" cols="30"></textarea><br/>
+     <input type="button" value="submit" id="submit">
+   </div>
 
 
 

@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-2008-12-09 05:26:02.559 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.3.2.1 - (599110): instance c013800d-011e-1a35-87db-000000a51788
+2008-12-09 06:20:35.931 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.3.2.1 - (599110): instance c013800d-011e-1a67-7a81-0000007bdac0
 on database directory /home/capotej/bloggy2/db/posts  
 
 Database Class Loader started - derby.database.classpath=''
