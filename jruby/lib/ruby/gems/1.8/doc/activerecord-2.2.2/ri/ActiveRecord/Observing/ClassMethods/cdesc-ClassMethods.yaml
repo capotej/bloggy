@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: inherited
+- !ruby/object:RI::MethodSummary 
+  name: instantiate_observers
+- !ruby/object:RI::MethodSummary 
+  name: observers
+- !ruby/object:RI::MethodSummary 
+  name: observers=
+class_methods: []
+
+full_name: ActiveRecord::Observing::ClassMethods
+constants: []
+
+superclass: 
+name: ClassMethods

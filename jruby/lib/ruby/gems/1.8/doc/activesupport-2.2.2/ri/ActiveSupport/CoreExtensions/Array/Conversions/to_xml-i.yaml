@@ -1,0 +1,61 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: xml if block_given?
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a string that represents this array in XML by sending <tt>to_xml</tt>
+    to each element. Active Record collections delegate their representation in XML
+    to this method.
+- !ruby/struct:SM::Flow::P 
+  body: All elements are expected to respond to <tt>to_xml</tt>, if any of them does
+    not an exception is raised.
+- !ruby/struct:SM::Flow::P 
+  body: 'The root node reflects the class name of the first element in plural if all
+    elements belong to the same type and that''s not Hash:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  customer.projects.to_xml\n\n  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n\
+    \  &lt;projects type=&quot;array&quot;&gt;\n    &lt;project&gt;\n      &lt;amount \
+    type=&quot;decimal&quot;&gt;20000.0&lt;/amount&gt;\n      &lt;customer-id type=&quot;integer&quot;&gt;1567&lt;/customer-id&gt;\n\
+    \      &lt;deal-date type=&quot;date&quot;&gt;2008-04-09&lt;/deal-date&gt;\n   \
+    \   ...\n    &lt;/project&gt;\n    &lt;project&gt;\n      &lt;amount type=&quot;decimal&quot;&gt;57230.0&lt;/amount&gt;\n\
+    \      &lt;customer-id type=&quot;integer&quot;&gt;1567&lt;/customer-id&gt;\n  \
+    \    &lt;deal-date type=&quot;date&quot;&gt;2008-04-15&lt;/deal-date&gt;\n     \
+    \ ...\n    &lt;/project&gt;\n  &lt;/projects&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Otherwise the root element is &quot;records&quot;:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  [{:foo =&gt; 1, :bar =&gt; 2}, {:baz =&gt; 3}].to_xml\n\n  &lt;?xml version=&quot;1.0&quot; \
+    encoding=&quot;UTF-8&quot;?&gt;\n  &lt;records type=&quot;array&quot;&gt;\n   \
+    \ &lt;record&gt;\n      &lt;bar type=&quot;integer&quot;&gt;2&lt;/bar&gt;\n    \
+    \  &lt;foo type=&quot;integer&quot;&gt;1&lt;/foo&gt;\n    &lt;/record&gt;\n    \
+    &lt;record&gt;\n      &lt;baz type=&quot;integer&quot;&gt;3&lt;/baz&gt;\n    &lt;/record&gt;\n\
+    \  &lt;/records&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'If the collection is empty the root element is &quot;nil-classes&quot; by
+    default:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  [].to_xml\n\n  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n\
+    \  &lt;nil-classes type=&quot;array&quot;/&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'To ensure a meaningful root element use the <tt>:root</tt> option:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  customer_with_no_projects.projects.to_xml(:root =&gt; &quot;projects&quot;)\n\
+    \n  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n  &lt;projects \
+    type=&quot;array&quot;/&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: By default root children have as node name the one of the root singularized.
+    You can change it with the <tt>:children</tt> option.
+- !ruby/struct:SM::Flow::P 
+  body: 'The <tt>options</tt> hash is passed downwards:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Message.all.to_xml(:skip_types =&gt; true)\n\n  &lt;?xml version=&quot;1.0&quot; \
+    encoding=&quot;UTF-8&quot;?&gt;\n  &lt;messages&gt;\n    &lt;message&gt;\n    \
+    \  &lt;created-at&gt;2008-03-07T09:58:18+01:00&lt;/created-at&gt;\n      &lt;id&gt;1&lt;/id&gt;\n\
+    \      &lt;name&gt;1&lt;/name&gt;\n      &lt;updated-at&gt;2008-03-07T09:58:18+01:00&lt;/updated-at&gt;\n\
+    \      &lt;user-id&gt;1&lt;/user-id&gt;\n    &lt;/message&gt;\n  &lt;/messages&gt;\n"
+full_name: ActiveSupport::CoreExtensions::Array::Conversions#to_xml
+params: (options = {}) {|xml if block_given?| ...}
+name: to_xml
+is_singleton: false
+aliases: []
+

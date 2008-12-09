@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Raised when a problem with the encoding was found.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveSupport::Multibyte::EncodingError
+constants: []
+
+superclass: StandardError
+name: EncodingError

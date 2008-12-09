@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Clears the cache which maps classes
+full_name: ActiveRecord::ConnectionAdapters::ConnectionPool#clear_reloadable_connections!
+params: ()
+name: clear_reloadable_connections!
+is_singleton: false
+aliases: []
+

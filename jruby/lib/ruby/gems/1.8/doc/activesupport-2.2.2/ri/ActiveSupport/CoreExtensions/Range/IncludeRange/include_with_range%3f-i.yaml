@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Extends the default Range#include? to support range comparisons.
+- !ruby/struct:SM::Flow::VERB 
+  body: " (1..5).include?(1..5) # =&gt; true\n (1..5).include?(2..3) # =&gt; true\n\
+    \ (1..5).include?(2..6) # =&gt; false\n"
+- !ruby/struct:SM::Flow::P 
+  body: The native Range#include? behavior is untouched.
+- !ruby/struct:SM::Flow::VERB 
+  body: " (&quot;a&quot;..&quot;f&quot;).include?(&quot;c&quot;) # =&gt; true\n (5..9).include?(11) \
+    # =&gt; false\n"
+full_name: ActiveSupport::CoreExtensions::Range::IncludeRange#include_with_range?
+params: (value)
+name: include_with_range?
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+full_name: ActiveRecord::Calculations::ClassMethods#construct_count_options_from_args
+params: (*args)
+name: construct_count_options_from_args
+is_singleton: false
+aliases: []
+

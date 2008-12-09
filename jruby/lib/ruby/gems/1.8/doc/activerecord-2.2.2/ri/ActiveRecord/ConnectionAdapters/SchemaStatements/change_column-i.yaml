@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Changes the column's definition according to the new options. See TableDefinition#column
+    for details of the options you can use.
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 5
+- !ruby/struct:SM::Flow::VERB 
+  body: " change_column(:suppliers, :name, :string, :limit =&gt; 80)\n change_column(:accounts, \
+    :description, :text)\n"
+full_name: ActiveRecord::ConnectionAdapters::SchemaStatements#change_column
+params: (table_name, column_name, type, options = {})
+name: change_column
+is_singleton: false
+aliases: []
+

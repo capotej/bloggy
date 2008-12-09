@@ -1,0 +1,37 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Rack::Auth::Digest::MD5 implements the MD5 algorithm version of HTTP Digest
+    Authentication, as per RFC 2617.
+- !ruby/struct:SM::Flow::P 
+  body: Initialize with the [Rack] application that you want protecting, and a block
+    that looks up a plaintext password for a given username.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>opaque</tt> needs to be set to a constant base64/hexadecimal string.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: opaque
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: W
+  name: passwords_hashed
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: passwords_hashed?
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Rack::Auth::Digest::MD5
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''auth''.freeze'
+  name: QOP
+superclass: AbstractHandler
+name: MD5

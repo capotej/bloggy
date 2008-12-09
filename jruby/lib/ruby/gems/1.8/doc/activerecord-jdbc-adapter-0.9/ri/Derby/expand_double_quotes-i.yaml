@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::Derby#expand_double_quotes"
+params: (name)
+name: expand_double_quotes
+is_singleton: false
+aliases: []
+

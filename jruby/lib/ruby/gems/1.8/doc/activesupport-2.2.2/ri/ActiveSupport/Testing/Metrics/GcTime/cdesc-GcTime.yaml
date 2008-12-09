@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: format
+- !ruby/object:RI::MethodSummary 
+  name: measure
+- !ruby/object:RI::MethodSummary 
+  name: measure
+class_methods: []
+
+full_name: ActiveSupport::Testing::Metrics::GcTime
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: RubyProf::GC_TIME if RubyProf.const_defined?(:GC_TIME)
+  name: Mode
+superclass: Base
+name: GcTime

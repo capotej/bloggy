@@ -1,0 +1,18 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: ExampleGroupMethods
+name: SharedExampleGroup
+constants: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: each_ancestor_example_group_class
+full_name: Spec::Example::SharedExampleGroup
+superclass: Module
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new

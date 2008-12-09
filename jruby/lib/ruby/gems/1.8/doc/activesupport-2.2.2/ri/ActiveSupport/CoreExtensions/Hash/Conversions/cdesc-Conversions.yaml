@@ -1,0 +1,41 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Hash::Conversions
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{           "Symbol"     => "symbol",           "Fixnum"     => "integer",           "Bignum"     =>
+    "integer",           "BigDecimal" => "decimal",           "Float"      => "float",           "Date"       =>
+    "date",           "DateTime"   => "datetime",           "Time"       => "datetime",           "TrueClass"  =>
+    "boolean",           "FalseClass" => "boolean"'
+  name: XML_TYPE_NAMES
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{           "symbol"   => Proc.new { |symbol| symbol.to_s },           "date"     =>
+    Proc.new { |date| date.to_s(:db) },           "datetime" => Proc.new { |time|
+    time.xmlschema },           "binary"   => Proc.new { |binary| ActiveSupport::Base64.encode64(binary)
+    },           "yaml"     => Proc.new { |yaml| yaml.to_yaml }'
+  name: XML_FORMATTING
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{             "symbol"       => Proc.new  { |symbol|  symbol.to_sym },             "date"         =>
+    Proc.new  { |date|    ::Date.parse(date) },             "datetime"     => Proc.new  {
+    |time|    ::Time.parse(time).utc rescue ::DateTime.parse(time).utc },             "integer"      =>
+    Proc.new  { |integer| integer.to_i },             "float"        => Proc.new  {
+    |float|   float.to_f },             "decimal"      => Proc.new  { |number|  BigDecimal(number)
+    },             "boolean"      => Proc.new  { |boolean| %w(1 true).include?(boolean.strip)
+    },             "string"       => Proc.new  { |string|  string.to_s },             "yaml"         =>
+    Proc.new  { |yaml|    YAML::load(yaml) rescue yaml },             "base64Binary"
+    => Proc.new  { |bin|     ActiveSupport::Base64.decode64(bin) },             "file"         =>
+    Proc.new do |file, entity|               f = StringIO.new(ActiveSupport::Base64.decode64(file))'
+  name: XML_PARSING
+superclass: 
+name: Conversions

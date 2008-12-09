@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: When both <tt>option</tt> and <tt>value</tt> arguments are provided, set the
+    option specified. With a single Hash argument, set all options specified in Hash.
+    Options are available via the Application#options object.
+- !ruby/struct:SM::Flow::P 
+  body: 'Setting individual options:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  set :port, 80\n  set :env, :production\n  set :views, '/path/to/views'\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Setting multiple options:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  set :port  =&gt; 80,\n      :env   =&gt; :production,\n      :views =&gt; \
+    '/path/to/views'\n"
+full_name: Sinatra::Application#set
+params: (option, value=self)
+name: set
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: set_option
+- !ruby/object:RI::AliasName 
+  name: set_options

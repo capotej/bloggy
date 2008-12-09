@@ -1,0 +1,16 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: TimezoneDefinition
+comment: 
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: TZInfo::Definitions::America::Argentina::San_Juan
+constants: []
+
+superclass: 
+name: San_Juan

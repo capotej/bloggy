@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (Test::Unit::TestCase::STARTED, name)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Doubly unfortunate: mocha does the same so we have to hax their hax.'
+full_name: ActiveSupport::Testing#run_with_callbacks_and_mocha
+params: (result) {|Test::Unit::TestCase::STARTED, name| ...}
+name: run_with_callbacks_and_mocha
+is_singleton: false
+aliases: []
+

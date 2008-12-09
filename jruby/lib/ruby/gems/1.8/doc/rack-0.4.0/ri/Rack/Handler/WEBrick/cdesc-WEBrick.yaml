@@ -1,0 +1,19 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: service
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: run
+full_name: Rack::Handler::WEBrick
+constants: []
+
+superclass: WEBrick::HTTPServlet::AbstractServlet
+name: WEBrick

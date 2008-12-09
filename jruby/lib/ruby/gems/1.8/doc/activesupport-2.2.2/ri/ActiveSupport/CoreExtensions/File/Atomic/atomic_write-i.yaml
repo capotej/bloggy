@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: temp_file
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Write to a file atomically. Useful for situations where you don't want other
+    processes or threads to see half-written files.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  File.atomic_write(&quot;important.file&quot;) do |file|\n    file.write(&quot;hello&quot;)\n\
+    \  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: If your temp directory is not on the same filesystem as the file you're trying
+    to write, you can provide a different temporary directory.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  File.atomic_write(&quot;/data/something.important&quot;, &quot;/data/tmp&quot;) \
+    do |f|\n    file.write(&quot;hello&quot;)\n  end\n"
+full_name: ActiveSupport::CoreExtensions::File::Atomic#atomic_write
+params: (file_name, temp_dir = Dir.tmpdir) {|temp_file| ...}
+name: atomic_write
+is_singleton: false
+aliases: []
+

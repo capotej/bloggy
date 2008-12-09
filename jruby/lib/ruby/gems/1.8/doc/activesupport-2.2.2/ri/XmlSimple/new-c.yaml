@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates and initializes a new XmlSimple object.
+- !ruby/object:SM::Flow::LIST 
+  type: :NOTE
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: Default values for options.
+    label: 'defaults:'
+full_name: XmlSimple::new
+params: (defaults = nil)
+name: new
+is_singleton: true
+aliases: []
+

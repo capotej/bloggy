@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: ""
+comment: 
+full_name: Kernel#silence_warnings
+params: () {|| ...}
+name: silence_warnings
+is_singleton: false
+aliases: []
+

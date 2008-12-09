@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Renames a table.
+- !ruby/struct:SM::Flow::H 
+  text: Example
+  level: 5
+- !ruby/struct:SM::Flow::VERB 
+  body: " rename_table('octopuses', 'octopi')\n"
+full_name: ActiveRecord::ConnectionAdapters::SchemaStatements#rename_table
+params: (table_name, new_name)
+name: rename_table
+is_singleton: false
+aliases: []
+

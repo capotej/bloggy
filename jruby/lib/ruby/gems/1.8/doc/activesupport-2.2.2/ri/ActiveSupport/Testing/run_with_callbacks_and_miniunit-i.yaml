@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveSupport::Testing#run_with_callbacks_and_miniunit
+params: (runner)
+name: run_with_callbacks_and_miniunit
+is_singleton: false
+aliases: []
+

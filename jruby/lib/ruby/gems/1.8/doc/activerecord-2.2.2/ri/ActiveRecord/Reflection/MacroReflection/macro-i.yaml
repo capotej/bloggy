@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the macro type. For example, <tt>composed_of :balance, :class_name
+    =&gt; 'Money'</tt> will return <tt>:composed_of</tt> or for <tt>has_many :clients</tt>
+    will return <tt>:has_many</tt>.
+full_name: ActiveRecord::Reflection::MacroReflection#macro
+params: ()
+name: macro
+is_singleton: false
+aliases: []
+

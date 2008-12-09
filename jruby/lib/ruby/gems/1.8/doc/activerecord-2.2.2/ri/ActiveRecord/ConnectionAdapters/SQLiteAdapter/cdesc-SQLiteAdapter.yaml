@@ -1,0 +1,45 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The SQLite adapter works with both the 2.x and 3.x series of SQLite with the
+    sqlite-ruby drivers (available both as gems and from http://rubyforge.org/projects/sqlite-ruby/).
+- !ruby/struct:SM::Flow::P 
+  body: 'Options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:database</tt> - Path to the database file.
+    label: '*'
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: catch_schema_changes
+- !ruby/object:RI::MethodSummary 
+  name: change_column_null
+- !ruby/object:RI::MethodSummary 
+  name: default_primary_key_type
+- !ruby/object:RI::MethodSummary 
+  name: disconnect!
+- !ruby/object:RI::MethodSummary 
+  name: empty_insert_statement
+- !ruby/object:RI::MethodSummary 
+  name: rename_table
+- !ruby/object:RI::MethodSummary 
+  name: requires_reloading?
+- !ruby/object:RI::MethodSummary 
+  name: select_rows
+- !ruby/object:RI::MethodSummary 
+  name: sqlite_version
+- !ruby/object:RI::MethodSummary 
+  name: table_structure
+class_methods: []
+
+full_name: ActiveRecord::ConnectionAdapters::SQLiteAdapter
+constants: []
+
+superclass: AbstractAdapter
+name: SQLiteAdapter

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Check-in a database connection back into the pool, indicating that you no
+    longer need this connection.
+- !ruby/struct:SM::Flow::P 
+  body: '<tt>conn</tt>: an AbstractAdapter object, which was obtained by earlier by
+    calling <tt>checkout</tt> on this pool.'
+full_name: ActiveRecord::ConnectionAdapters::ConnectionPool#checkin
+params: (conn)
+name: checkin
+is_singleton: false
+aliases: []
+

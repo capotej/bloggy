@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: like Hash#values_at
+full_name: Rack::Request#values_at
+params: (*keys)
+name: values_at
+is_singleton: false
+aliases: []
+

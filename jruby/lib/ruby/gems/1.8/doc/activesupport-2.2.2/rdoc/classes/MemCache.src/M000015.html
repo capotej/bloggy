@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>stats (MemCache)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/vendor/memcache-client-1.5.1/memcache.rb, line 467</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stats</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">MemCacheError</span>, <span class="ruby-value str">&quot;No active servers&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">active?</span>
+    <span class="ruby-identifier">server_stats</span> = {}
+
+    <span class="ruby-ivar">@servers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">server</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">sock</span> = <span class="ruby-identifier">server</span>.<span class="ruby-identifier">socket</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">MemCacheError</span>, <span class="ruby-value str">&quot;No connection to server&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sock</span>.<span class="ruby-identifier">nil?</span>
+
+      <span class="ruby-identifier">value</span> = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-identifier">sock</span>.<span class="ruby-identifier">write</span> <span class="ruby-value str">&quot;stats\r\n&quot;</span>
+        <span class="ruby-identifier">stats</span> = {}
+        <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">sock</span>.<span class="ruby-identifier">gets</span> <span class="ruby-keyword kw">do</span>
+          <span class="ruby-identifier">raise_on_error_response!</span> <span class="ruby-identifier">line</span>
+          <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;END\r\n&quot;</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\ASTAT ([\w]+) ([\w\.\:]+)/</span> <span class="ruby-keyword kw">then</span>
+            <span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span> = <span class="ruby-identifier">$1</span>, <span class="ruby-identifier">$2</span>
+            <span class="ruby-identifier">stats</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">name</span>
+                          <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'version'</span>
+                            <span class="ruby-identifier">value</span>
+                          <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'rusage_user'</span>, <span class="ruby-value str">'rusage_system'</span> <span class="ruby-keyword kw">then</span>
+                            <span class="ruby-identifier">seconds</span>, <span class="ruby-identifier">microseconds</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/:/</span>, <span class="ruby-value">2</span>)
+                            <span class="ruby-identifier">microseconds</span> <span class="ruby-operator">||=</span> <span class="ruby-value">0</span>
+                            <span class="ruby-constant">Float</span>(<span class="ruby-identifier">seconds</span>) <span class="ruby-operator">+</span> (<span class="ruby-constant">Float</span>(<span class="ruby-identifier">microseconds</span>) <span class="ruby-operator">/</span> <span class="ruby-value">1_000_000</span>)
+                          <span class="ruby-keyword kw">else</span>
+                            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\A\d+\Z/</span> <span class="ruby-keyword kw">then</span>
+                              <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_i</span>
+                            <span class="ruby-keyword kw">else</span>
+                              <span class="ruby-identifier">value</span>
+                            <span class="ruby-keyword kw">end</span>
+                          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">server_stats</span>[<span class="ruby-node">&quot;#{server.host}:#{server.port}&quot;</span>] = <span class="ruby-identifier">stats</span>
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">SocketError</span>, <span class="ruby-constant">SystemCallError</span>, <span class="ruby-constant">IOError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
+        <span class="ruby-identifier">server</span>.<span class="ruby-identifier">close</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">MemCacheError</span>, <span class="ruby-identifier">err</span>.<span class="ruby-identifier">message</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">server_stats</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

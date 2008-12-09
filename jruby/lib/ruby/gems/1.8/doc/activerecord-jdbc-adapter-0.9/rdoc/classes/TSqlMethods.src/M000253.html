@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>add_limit_offset! (TSqlMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/jdbc_adapter/tsql_helper.rb, line 26</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_limit_offset!</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">options</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:limit</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:offset</span>]
+      <span class="ruby-identifier">total_rows</span> = <span class="ruby-identifier">select_all</span>(<span class="ruby-node">&quot;SELECT count(*) as TotalRows from (#{sql.gsub(/\bSELECT(\s+DISTINCT)?\b/i, &quot;SELECT\\1 TOP 1000000000&quot;)}) tally&quot;</span>)[<span class="ruby-value">0</span>][<span class="ruby-value str">&quot;TotalRows&quot;</span>].<span class="ruby-identifier">to_i</span>
+      <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:limit</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:offset</span>]) <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">total_rows</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:limit</span>] = (<span class="ruby-identifier">total_rows</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:offset</span>] <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span>) <span class="ruby-operator">?</span> (<span class="ruby-identifier">total_rows</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:offset</span>]) <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">sql</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/^\s*SELECT(\s+DISTINCT)?/i</span>, <span class="ruby-node">&quot;SELECT * FROM (SELECT TOP #{options[:limit]} * FROM (SELECT\\1 TOP #{options[:limit] + options[:offset]} &quot;</span>)
+      <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;) AS tmp1&quot;</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:order</span>]
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:order</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:order</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">','</span>).<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">field</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">parts</span> = <span class="ruby-identifier">field</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot; &quot;</span>)
+          <span class="ruby-identifier">tc</span> = <span class="ruby-identifier">parts</span>[<span class="ruby-value">0</span>]
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sql</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\.\[/</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">tc</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\./</span> <span class="ruby-comment cmt"># if column quoting used in query</span>
+            <span class="ruby-identifier">tc</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/\./</span>, <span class="ruby-value str">'\\.\\['</span>)
+            <span class="ruby-identifier">tc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'\\]'</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sql</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{tc} AS (t\d_r\d\d?)/</span>
+              <span class="ruby-identifier">parts</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">$1</span>
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">parts</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\w+\.(\w+)/</span>
+            <span class="ruby-identifier">parts</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">$1</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">parts</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+        <span class="ruby-keyword kw">end</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">', '</span>)
+        <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; ORDER BY #{change_order_direction(options[:order])}) AS tmp2 ORDER BY #{options[:order]}&quot;</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; ) AS tmp2&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">sql</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp re">/^\s*SELECT (@@|COUNT\()/i</span>
+      <span class="ruby-identifier">sql</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/^\s*SELECT(\s+DISTINCT)?/i</span>) <span class="ruby-keyword kw">do</span>
+        <span class="ruby-node">&quot;SELECT#{$1} TOP #{options[:limit]}&quot;</span>
+      <span class="ruby-keyword kw">end</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:limit</span>].<span class="ruby-identifier">nil?</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

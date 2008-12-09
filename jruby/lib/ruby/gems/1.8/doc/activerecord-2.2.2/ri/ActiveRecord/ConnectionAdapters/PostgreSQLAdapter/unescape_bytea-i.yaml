@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Unescapes bytea output from a database to the binary string it represents.
+    NOTE: This is NOT an inverse of escape_bytea! This is only to be used'
+- !ruby/struct:SM::Flow::VERB 
+  body: "      on escaped binary output from database drive.\n"
+full_name: ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#unescape_bytea
+params: (value)
+name: unescape_bytea
+is_singleton: false
+aliases: []
+

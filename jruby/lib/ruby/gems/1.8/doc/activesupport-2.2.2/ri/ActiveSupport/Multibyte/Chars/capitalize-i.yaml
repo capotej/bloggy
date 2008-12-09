@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converts the first character to uppercase and the remainder to lowercase.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " '\xc3\xbcber'.mb_chars.capitalize.to_s #=&gt; &quot;\xc3\x9cber&quot;\n"
+full_name: ActiveSupport::Multibyte::Chars#capitalize
+params: ()
+name: capitalize
+is_singleton: false
+aliases: []
+

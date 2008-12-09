@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Iterates over a collection, passing the current element <b>and</b> the <tt>memo</tt>
+    to the block. Handy for building up hashes or reducing collections down to one
+    object. Examples:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  %w(foo bar).each_with_object({}) { |str, hsh| hsh[str] = str.upcase } #=&gt; \
+    {'foo' =&gt; 'FOO', 'bar' =&gt; 'BAR'}\n"
+- !ruby/struct:SM::Flow::P 
+  body: <b>Note</b> that you can't use immutable objects like numbers, true or false
+    as the memo. You would think the following returns 120, but since the memo is
+    never changed, it does not.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  (1..5).each_with_object(1) { |value, memo| memo *= value } # =&gt; 1\n"
+full_name: Enumerable#each_with_object
+params: (memo, &block)
+name: each_with_object
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Raised when unknown attributes are supplied via mass assignment.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveRecord::UnknownAttributeError
+constants: []
+
+superclass: NoMethodError
+name: UnknownAttributeError

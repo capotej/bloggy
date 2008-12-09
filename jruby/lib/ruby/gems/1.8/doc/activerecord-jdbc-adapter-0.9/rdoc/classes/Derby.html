@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ::Derby</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">::Derby</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/jdbc_adapter/jdbc_derby_rb.html">
+                lib/jdbc_adapter/jdbc_derby.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000114">adapter_selector</a>&nbsp;&nbsp;
+      <a href="#M000131">add_column</a>&nbsp;&nbsp;
+      <a href="#M000120">add_column_options!</a>&nbsp;&nbsp;
+      <a href="#M000125">add_quotes</a>&nbsp;&nbsp;
+      <a href="#M000130">auto_increment_stmt</a>&nbsp;&nbsp;
+      <a href="#M000134">change_column</a>&nbsp;&nbsp;
+      <a href="#M000121">classes_for_table_name</a>&nbsp;&nbsp;
+      <a href="#M000113">column_selector</a>&nbsp;&nbsp;
+      <a href="#M000132">create_column</a>&nbsp;&nbsp;
+      <a href="#M000127">expand_double_quotes</a>&nbsp;&nbsp;
+      <a href="#M000117">extended</a>&nbsp;&nbsp;
+      <a href="#M000118">included</a>&nbsp;&nbsp;
+      <a href="#M000119">modify_types</a>&nbsp;&nbsp;
+      <a href="#M000115">monkey_rails</a>&nbsp;&nbsp;
+      <a href="#M000135">primary_keys</a>&nbsp;&nbsp;
+      <a href="#M000138">quoted_false</a>&nbsp;&nbsp;
+      <a href="#M000137">quoted_true</a>&nbsp;&nbsp;
+      <a href="#M000136">recreate_database</a>&nbsp;&nbsp;
+      <a href="#M000128">reinstate_auto_increment</a>&nbsp;&nbsp;
+      <a href="#M000129">reinstate_auto_increment</a>&nbsp;&nbsp;
+      <a href="#M000133">remove_column</a>&nbsp;&nbsp;
+      <a href="#M000124">rename_table</a>&nbsp;&nbsp;
+      <a href="#M000123">reset_pk_sequence!</a>&nbsp;&nbsp;
+      <a href="#M000122">reset_sequence!</a>&nbsp;&nbsp;
+      <a href="#M000116">select_limited_ids_list</a>&nbsp;&nbsp;
+      <a href="#M000126">strip_quotes</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="JdbcSpec/MissingFunctionalityHelper.html">JdbcSpec::MissingFunctionalityHelper</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="Derby/Column.html" class="link">::Derby::Column</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COLUMN_INFO_STMT</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;SELECT C.COLUMNNAME, C.REFERENCEID, C.COLUMNNUMBER FROM SYS.SYSCOLUMNS C, SYS.SYSTABLES T WHERE T.TABLEID = '%s' AND T.TABLEID = C.REFERENCEID ORDER BY C.COLUMNNUMBER&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COLUMN_TYPE_STMT</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;SELECT COLUMNDATATYPE, COLUMNDEFAULT FROM SYS.SYSCOLUMNS WHERE REFERENCEID = '%s' AND COLUMNNAME = '%s'&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AUTO_INC_STMT</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;SELECT AUTOINCREMENTSTART, AUTOINCREMENTINC, COLUMNNAME, REFERENCEID, COLUMNDEFAULT FROM SYS.SYSCOLUMNS WHERE REFERENCEID = '%s' AND COLUMNNAME = '%s'&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AUTO_INC_STMT2</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;SELECT AUTOINCREMENTSTART, AUTOINCREMENTINC, COLUMNNAME, REFERENCEID, COLUMNDEFAULT FROM SYS.SYSCOLUMNS WHERE REFERENCEID = (SELECT T.TABLEID FROM SYS.SYSTABLES T WHERE T.TABLENAME = '%s') AND COLUMNNAME = '%s'&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SIZEABLE</td>
+          <td>=</td>
+          <td class="context-item-value">%w(VARCHAR CLOB BLOB)</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000114" class="method-detail">
+        <a name="M000114"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000114.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000114.html');return false;">
+          <span class="method-name">adapter_selector</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000113" class="method-detail">
+        <a name="M000113"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000113.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000113.html');return false;">
+          <span class="method-name">column_selector</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000117" class="method-detail">
+        <a name="M000117"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000117.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000117.html');return false;">
+          <span class="method-name">extended</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000118" class="method-detail">
+        <a name="M000118"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000118.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000118.html');return false;">
+          <span class="method-name">included</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000115" class="method-detail">
+        <a name="M000115"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000115.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000115.html');return false;">
+          <span class="method-name">monkey_rails</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000131" class="method-detail">
+        <a name="M000131"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000131.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000131.html');return false;">
+          <span class="method-name">add_column</span><span class="method-args">(table_name, column_name, type, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000120" class="method-detail">
+        <a name="M000120"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000120.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000120.html');return false;">
+          <span class="method-name">add_column_options!</span><span class="method-args">(sql, options)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Override default &#8212; fix case where <a
+href="ActiveRecord.html">ActiveRecord</a> passes :default =&gt; nil, :null
+=&gt; true
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000125" class="method-detail">
+        <a name="M000125"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000125.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000125.html');return false;">
+          <span class="method-name">add_quotes</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000130" class="method-detail">
+        <a name="M000130"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000130.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000130.html');return false;">
+          <span class="method-name">auto_increment_stmt</span><span class="method-args">(tname, cname)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000134" class="method-detail">
+        <a name="M000134"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000134.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000134.html');return false;">
+          <span class="method-name">change_column</span><span class="method-args">(table_name, column_name, type, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Notes about changing in <a href="Derby.html">Derby</a>:
+</p>
+<pre>
+   http://db.apache.org/derby/docs/10.2/ref/rrefsqlj81859.html#rrefsqlj81859__rrefsqlj37860)
+</pre>
+<p>
+We support changing columns using the strategy outlined in:
+</p>
+<pre>
+   https://issues.apache.org/jira/browse/DERBY-1515
+</pre>
+<p>
+This feature has not made it into a formal release and is not in Java 6. We
+will need to conditionally support this somehow (supposed to arrive for
+10.3.0.0)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000121" class="method-detail">
+        <a name="M000121"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000121.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000121.html');return false;">
+          <span class="method-name">classes_for_table_name</span><span class="method-args">(table)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000132" class="method-detail">
+        <a name="M000132"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000132.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000132.html');return false;">
+          <span class="method-name">create_column</span><span class="method-args">(name, refid, colno)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+I don&#8216;t think this method is ever called ??? (stepheneb)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000127" class="method-detail">
+        <a name="M000127"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000127.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000127.html');return false;">
+          <span class="method-name">expand_double_quotes</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000119" class="method-detail">
+        <a name="M000119"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000119.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000119.html');return false;">
+          <span class="method-name">modify_types</span><span class="method-args">(tp)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000135" class="method-detail">
+        <a name="M000135"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000135.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000135.html');return false;">
+          <span class="method-name">primary_keys</span><span class="method-args">(table_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000138" class="method-detail">
+        <a name="M000138"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000138.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000138.html');return false;">
+          <span class="method-name">quoted_false</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000137" class="method-detail">
+        <a name="M000137"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000137.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000137.html');return false;">
+          <span class="method-name">quoted_true</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000136" class="method-detail">
+        <a name="M000136"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000136.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000136.html');return false;">
+          <span class="method-name">recreate_database</span><span class="method-args">(db_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000128" class="method-detail">
+        <a name="M000128"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000128.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000128.html');return false;">
+          <span class="method-name">reinstate_auto_increment</span><span class="method-args">(name, refid, coldef)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000129" class="method-detail">
+        <a name="M000129"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000129.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000129.html');return false;">
+          <span class="method-name">reinstate_auto_increment</span><span class="method-args">(name, refid, coldef)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000133" class="method-detail">
+        <a name="M000133"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000133.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000133.html');return false;">
+          <span class="method-name">remove_column</span><span class="method-args">(table_name, column_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Support for removing columns added via derby bug issue: <a
+href="https://issues.apache.org/jira/browse/DERBY-1489">issues.apache.org/jira/browse/DERBY-1489</a>
+</p>
+<p>
+This feature has not made it into a formal release and is not in Java 6. If
+the normal strategy fails we fall back on a strategy by creating a new
+table without the new column and there after moving the data to the new
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000124" class="method-detail">
+        <a name="M000124"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000124.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000124.html');return false;">
+          <span class="method-name">rename_table</span><span class="method-args">(name, new_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000123" class="method-detail">
+        <a name="M000123"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000123.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000123.html');return false;">
+          <span class="method-name">reset_pk_sequence!</span><span class="method-args">(table, pk = nil, sequence = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000122" class="method-detail">
+        <a name="M000122"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000122.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000122.html');return false;">
+          <span class="method-name">reset_sequence!</span><span class="method-args">(table, column, sequence = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Set the sequence to the max value of the table&#8216;s column.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000116" class="method-detail">
+        <a name="M000116"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000116.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000116.html');return false;">
+          <span class="method-name">select_limited_ids_list</span><span class="method-args">(options, join_dependency)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000126" class="method-detail">
+        <a name="M000126"></a>
+
+        <div class="method-heading">
+          <a href="Derby.src/M000126.html" target="Code" class="method-signature"
+            onclick="popupCode('Derby.src/M000126.html');return false;">
+          <span class="method-name">strip_quotes</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

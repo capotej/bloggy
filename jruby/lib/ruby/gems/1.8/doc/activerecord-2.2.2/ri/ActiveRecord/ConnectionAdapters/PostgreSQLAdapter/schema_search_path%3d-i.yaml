@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Sets the schema search path to a string of comma-separated schema names.
+    Names beginning with $ have to be quoted (e.g. $user =&gt; ''$user''). See: http://www.postgresql.org/docs/current/static/ddl-schemas.html'
+- !ruby/struct:SM::Flow::P 
+  body: This should be not be called manually but set in database.yml.
+full_name: ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#schema_search_path=
+params: (schema_csv)
+name: schema_search_path=
+is_singleton: false
+aliases: []
+

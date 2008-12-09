@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Takes the exact same configuration as Mongrel::Configurator (and actually
+    calls that) but sets up the additional HUP handler to call reload!.
+full_name: Mongrel::Rails::RailsConfigurator#setup_rails_signals
+params: (options={})
+name: setup_rails_signals
+is_singleton: false
+aliases: []
+

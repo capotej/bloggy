@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Flush the cache from all memcache servers.
+full_name: MemCache#flush_all
+params: ()
+name: flush_all
+is_singleton: false
+aliases: []
+

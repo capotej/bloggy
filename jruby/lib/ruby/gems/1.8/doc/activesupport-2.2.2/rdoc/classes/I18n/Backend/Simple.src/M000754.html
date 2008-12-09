@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>interpolate (I18n::Backend::Simple)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/vendor/i18n-0.0.1/i18n/backend/simple.rb, line 145</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">interpolate</span>(<span class="ruby-identifier">locale</span>, <span class="ruby-identifier">string</span>, <span class="ruby-identifier">values</span> = {})
+          <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">string</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:force_encoding</span>)
+            <span class="ruby-identifier">original_encoding</span> = <span class="ruby-identifier">string</span>.<span class="ruby-identifier">encoding</span>
+            <span class="ruby-identifier">string</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">BINARY</span>)
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">result</span> = <span class="ruby-identifier">string</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-constant">MATCH</span>) <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">escaped</span>, <span class="ruby-identifier">pattern</span>, <span class="ruby-identifier">key</span> = <span class="ruby-identifier">$1</span>, <span class="ruby-identifier">$2</span>, <span class="ruby-identifier">$2</span>.<span class="ruby-identifier">to_sym</span>
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">escaped</span>
+              <span class="ruby-identifier">pattern</span>
+            <span class="ruby-keyword kw">elsif</span> <span class="ruby-constant">INTERPOLATION_RESERVED_KEYS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">pattern</span>)
+              <span class="ruby-identifier">raise</span> <span class="ruby-constant">ReservedInterpolationKey</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pattern</span>, <span class="ruby-identifier">string</span>)
+            <span class="ruby-keyword kw">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">values</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">key</span>)
+              <span class="ruby-identifier">raise</span> <span class="ruby-constant">MissingInterpolationArgument</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pattern</span>, <span class="ruby-identifier">string</span>)
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">values</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">to_s</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">result</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-identifier">original_encoding</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">original_encoding</span>
+          <span class="ruby-identifier">result</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

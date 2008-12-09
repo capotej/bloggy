@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the human name of the column name.
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 5
+- !ruby/struct:SM::Flow::VERB 
+  body: " Column.new('sales_stage', ...).human_name # =&gt; 'Sales stage'\n"
+full_name: ActiveRecord::ConnectionAdapters::Column#human_name
+params: ()
+name: human_name
+is_singleton: false
+aliases: []
+

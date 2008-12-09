@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Doesn't handle time zones.
+full_name: ActiveRecord::ConnectionAdapters::Column::fast_string_to_time
+params: (string)
+name: fast_string_to_time
+is_singleton: true
+aliases: []
+

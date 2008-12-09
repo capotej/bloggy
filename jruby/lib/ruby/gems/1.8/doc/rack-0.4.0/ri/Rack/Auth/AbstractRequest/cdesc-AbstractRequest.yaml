@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: params
+- !ruby/object:RI::MethodSummary 
+  name: parts
+- !ruby/object:RI::MethodSummary 
+  name: provided?
+- !ruby/object:RI::MethodSummary 
+  name: scheme
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Rack::Auth::AbstractRequest
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '[''HTTP_AUTHORIZATION'', ''X-HTTP_AUTHORIZATION'', ''X_HTTP_AUTHORIZATION'']'
+  name: AUTHORIZATION_KEYS
+superclass: Object
+name: AbstractRequest

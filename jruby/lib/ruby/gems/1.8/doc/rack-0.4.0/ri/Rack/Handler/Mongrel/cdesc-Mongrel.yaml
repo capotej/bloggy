@@ -1,0 +1,19 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: process
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: run
+full_name: Rack::Handler::Mongrel
+constants: []
+
+superclass: "::Mongrel::HttpHandler"
+name: Mongrel

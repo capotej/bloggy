@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Invoke the block in the context of each request before invoking matching event
+    handlers.
+full_name: Sinatra::Application#before
+params: (&b)
+name: before
+is_singleton: false
+aliases: []
+

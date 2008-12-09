@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Assumes self represents an offset from UTC in seconds (as returned from Time#utc_offset)
+    and turns this into an +HH:MM formatted string. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  -21_600.to_utc_offset_s   # =&gt; &quot;-06:00&quot;\n"
+full_name: ActiveSupport::CoreExtensions::Numeric::Conversions#to_utc_offset_s
+params: (colon=true)
+name: to_utc_offset_s
+is_singleton: false
+aliases: []
+

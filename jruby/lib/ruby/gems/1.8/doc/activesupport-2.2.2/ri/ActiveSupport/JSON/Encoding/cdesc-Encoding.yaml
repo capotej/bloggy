@@ -1,0 +1,18 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveSupport::JSON::Encoding
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{         "\010" =>  ''\b'',         "\f"   =>  ''\f'',         "\n"   =>  ''\n'',         "\r"   =>  ''\r'',         "\t"   =>  ''\t'',         ''"''    =>  ''\"'',         ''\\''   =>  ''\\\\'',         ''>''    =>  ''\u003E'',         ''<''    =>  ''\u003C'',         ''&''    =>  ''\u0026'''
+  name: ESCAPED_CHARS
+superclass: 
+name: Encoding

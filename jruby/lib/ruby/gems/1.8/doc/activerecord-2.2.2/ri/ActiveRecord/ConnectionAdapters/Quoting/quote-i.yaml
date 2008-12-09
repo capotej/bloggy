@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Quotes the column value to help prevent {SQL injection attacks}[http://en.wikipedia.org/wiki/SQL_injection].
+full_name: ActiveRecord::ConnectionAdapters::Quoting#quote
+params: (value, column = nil)
+name: quote
+is_singleton: false
+aliases: []
+

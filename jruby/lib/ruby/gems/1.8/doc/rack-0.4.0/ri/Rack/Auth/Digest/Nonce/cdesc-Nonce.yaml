@@ -1,0 +1,42 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Rack::Auth::Digest::Nonce is the default nonce generator for the Rack::Auth::Digest::MD5
+    authentication handler.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>private_key</tt> needs to set to a constant string.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>time_limit</tt> can be optionally set to an integer (number of seconds),
+    to limit the validity of the generated nonces.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: private_key
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: time_limit
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: digest
+- !ruby/object:RI::MethodSummary 
+  name: fresh?
+- !ruby/object:RI::MethodSummary 
+  name: stale?
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+- !ruby/object:RI::MethodSummary 
+  name: valid?
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: parse
+full_name: Rack::Auth::Digest::Nonce
+constants: []
+
+superclass: Object
+name: Nonce

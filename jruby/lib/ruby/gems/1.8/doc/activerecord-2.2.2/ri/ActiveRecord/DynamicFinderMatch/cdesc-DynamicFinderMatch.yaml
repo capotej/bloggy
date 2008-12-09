@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: attribute_names
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: finder
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: instantiator
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: bang?
+- !ruby/object:RI::MethodSummary 
+  name: finder?
+- !ruby/object:RI::MethodSummary 
+  name: instantiator?
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: match
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: ActiveRecord::DynamicFinderMatch
+constants: []
+
+superclass: Object
+name: DynamicFinderMatch

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Performs a raw incr for <tt>cache_key</tt> from <tt>server</tt>. Returns nil
+    if not found.
+full_name: MemCache#cache_incr
+params: (server, cache_key, amount)
+name: cache_incr
+is_singleton: false
+aliases: []
+

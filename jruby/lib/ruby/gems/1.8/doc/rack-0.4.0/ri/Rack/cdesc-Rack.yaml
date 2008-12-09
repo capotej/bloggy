@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Rack main module, serving as a namespace for all core Rack modules and
+    classes.
+- !ruby/struct:SM::Flow::P 
+  body: All modules meant for use in your application are <tt>autoload</tt>ed here,
+    so it should be enough just to <tt>require rack.rb</tt> in your code.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: call
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: release
+- !ruby/object:RI::MethodSummary 
+  name: version
+full_name: Rack
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The Rack protocol version number implemented.
+  value: '[0,1]'
+  name: VERSION
+superclass: 
+name: Rack

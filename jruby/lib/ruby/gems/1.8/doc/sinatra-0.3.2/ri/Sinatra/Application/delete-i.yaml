@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Define an event handler for DELETE requests.
+- !ruby/struct:SM::Flow::P 
+  body: 'NOTE: DELETE events are triggered when the HTTP request method is DELETE
+    and also when the request method is POST and the body includes a &quot;_method&quot;
+    parameter set to &quot;DELETE&quot;.'
+full_name: Sinatra::Application#delete
+params: (path, options={}, &b)
+name: delete
+is_singleton: false
+aliases: []
+

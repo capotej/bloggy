@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Executes an SQL statement, returning a PGresult object on success or raising
+    a PGError exception otherwise.
+full_name: ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#execute
+params: (sql, name = nil)
+name: execute
+is_singleton: false
+aliases: []
+

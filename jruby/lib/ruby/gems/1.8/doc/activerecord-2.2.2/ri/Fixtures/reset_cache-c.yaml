@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Fixtures::reset_cache
+params: (connection = nil)
+name: reset_cache
+is_singleton: true
+aliases: []
+

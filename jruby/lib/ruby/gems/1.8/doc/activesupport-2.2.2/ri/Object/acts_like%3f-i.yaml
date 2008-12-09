@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A duck-type assistant method. For example, Active Support extends Date to
+    define an acts_like_date? method, and extends Time to define acts_like_time?.
+    As a result, we can do &quot;x.acts_like?(:time)&quot; and &quot;x.acts_like?(:date)&quot;
+    to do duck-type-safe comparisons, since classes that we want to act like Time
+    simply need to define an acts_like_time? method.
+full_name: Object#acts_like?
+params: (duck)
+name: acts_like?
+is_singleton: false
+aliases: []
+

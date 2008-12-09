@@ -1,0 +1,28 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Checks whether a record exists in the database that matches conditions given.
+    These conditions can either be a single integer representing a primary key id
+    to be found, or a condition to be matched like using ActiveRecord#find.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>id_or_conditions</tt> parameter can be an Integer or a String if you
+    want to search the primary key column of the table for a matching id, or if you're
+    looking to match against a condition you can use an Array or a Hash.
+- !ruby/struct:SM::Flow::P 
+  body: 'Possible gotcha: You can''t pass in a condition as a string e.g. &quot;name
+    = ''Jamie''&quot;, this would be sanitized and then queried against the primary
+    key column as &quot;id = ''name = \''Jamie&quot;'
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person.exists?(5)\n  Person.exists?('5')\n  Person.exists?(:name =&gt; \
+    &quot;David&quot;)\n  Person.exists?(['name LIKE ?', &quot;%#{query}%&quot;])\n"
+full_name: ActiveRecord::Base::exists?
+params: (id_or_conditions)
+name: exists?
+is_singleton: true
+aliases: []
+

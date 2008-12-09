@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Does this adapter support migrations? Backend specific, as the abstract adapter
+    always returns <tt>false</tt>.
+full_name: ActiveRecord::ConnectionAdapters::AbstractAdapter#supports_migrations?
+params: ()
+name: supports_migrations?
+is_singleton: false
+aliases: []
+

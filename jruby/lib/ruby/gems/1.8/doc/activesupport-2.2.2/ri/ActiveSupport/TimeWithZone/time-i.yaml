@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a Time or DateTime instance that represents the time in <tt>time_zone</tt>.
+full_name: ActiveSupport::TimeWithZone#time
+params: ()
+name: time
+is_singleton: false
+aliases: []
+

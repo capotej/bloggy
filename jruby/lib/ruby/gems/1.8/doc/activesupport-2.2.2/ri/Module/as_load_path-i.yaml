@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns String#underscore applied to the module name minus trailing classes.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ActiveRecord.as_load_path               # =&gt; &quot;active_record&quot;\n\
+    \  ActiveRecord::Associations.as_load_path # =&gt; &quot;active_record/associations&quot;\n\
+    \  ActiveRecord::Base.as_load_path         # =&gt; &quot;active_record&quot; (Base \
+    is a class)\n"
+- !ruby/struct:SM::Flow::P 
+  body: The Kernel module gives an empty string by definition.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Kernel.as_load_path # =&gt; &quot;&quot;\n  Math.as_load_path   # =&gt; \
+    &quot;math&quot;\n"
+full_name: Module#as_load_path
+params: ()
+name: as_load_path
+is_singleton: false
+aliases: []
+

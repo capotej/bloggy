@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>decompose_codepoints (ActiveSupport::Multibyte::Chars)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/multibyte/chars.rb, line 530</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">decompose_codepoints</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">codepoints</span>)
+          <span class="ruby-identifier">codepoints</span>.<span class="ruby-identifier">inject</span>([]) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">decomposed</span>, <span class="ruby-identifier">cp</span><span class="ruby-operator">|</span>
+            <span class="ruby-comment cmt"># if it's a hangul syllable starter character</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-constant">HANGUL_SBASE</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">cp</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">cp</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">HANGUL_SLAST</span>
+              <span class="ruby-identifier">sindex</span> = <span class="ruby-identifier">cp</span> <span class="ruby-operator">-</span> <span class="ruby-constant">HANGUL_SBASE</span>
+              <span class="ruby-identifier">ncp</span> = [] <span class="ruby-comment cmt"># new codepoints</span>
+              <span class="ruby-identifier">ncp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">HANGUL_LBASE</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">sindex</span> <span class="ruby-operator">/</span> <span class="ruby-constant">HANGUL_NCOUNT</span>
+              <span class="ruby-identifier">ncp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">HANGUL_VBASE</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">sindex</span> <span class="ruby-operator">%</span> <span class="ruby-constant">HANGUL_NCOUNT</span>) <span class="ruby-operator">/</span> <span class="ruby-constant">HANGUL_TCOUNT</span>
+              <span class="ruby-identifier">tindex</span> = <span class="ruby-identifier">sindex</span> <span class="ruby-operator">%</span> <span class="ruby-constant">HANGUL_TCOUNT</span>
+              <span class="ruby-identifier">ncp</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-constant">HANGUL_TBASE</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">tindex</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">tindex</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+              <span class="ruby-identifier">decomposed</span>.<span class="ruby-identifier">concat</span> <span class="ruby-identifier">ncp</span>
+            <span class="ruby-comment cmt"># if the codepoint is decomposable in with the current decomposition type</span>
+            <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">ncp</span> = <span class="ruby-constant">UCD</span>.<span class="ruby-identifier">codepoints</span>[<span class="ruby-identifier">cp</span>].<span class="ruby-identifier">decomp_mapping</span>) <span class="ruby-keyword kw">and</span> (<span class="ruby-operator">!</span><span class="ruby-constant">UCD</span>.<span class="ruby-identifier">codepoints</span>[<span class="ruby-identifier">cp</span>].<span class="ruby-identifier">decomp_type</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:compatability</span>)
+              <span class="ruby-identifier">decomposed</span>.<span class="ruby-identifier">concat</span> <span class="ruby-identifier">decompose_codepoints</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">ncp</span>.<span class="ruby-identifier">dup</span>)
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">decomposed</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">cp</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

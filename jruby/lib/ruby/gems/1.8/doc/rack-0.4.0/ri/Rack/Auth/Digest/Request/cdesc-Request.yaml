@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: correct_uri?
+- !ruby/object:RI::MethodSummary 
+  name: digest?
+- !ruby/object:RI::MethodSummary 
+  name: method
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RI::MethodSummary 
+  name: nonce
+- !ruby/object:RI::MethodSummary 
+  name: params
+class_methods: []
+
+full_name: Rack::Auth::Digest::Request
+constants: []
+
+superclass: Auth::AbstractRequest
+name: Request

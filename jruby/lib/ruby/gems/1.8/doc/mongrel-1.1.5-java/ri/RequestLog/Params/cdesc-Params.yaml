@@ -1,0 +1,21 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Mongrel::HttpHandlerPlugin
+- !ruby/object:RI::IncludedModule 
+  name: Mongrel::HttpHandlerPlugin
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: process
+- !ruby/object:RI::MethodSummary 
+  name: process
+class_methods: []
+
+full_name: RequestLog::Params
+constants: []
+
+superclass: GemPlugin::Plugin"/handlers"
+name: Params

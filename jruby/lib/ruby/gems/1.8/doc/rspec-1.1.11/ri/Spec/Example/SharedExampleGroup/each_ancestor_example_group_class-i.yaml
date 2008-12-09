@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+params: (superclass_last=false) {|self| ...}
+is_singleton: false
+block_params: self
+name: each_ancestor_example_group_class
+comment: 
+full_name: Spec::Example::SharedExampleGroup#each_ancestor_example_group_class
+visibility: public
+aliases: []
+

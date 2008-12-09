@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return the Rack environment used for a request to <tt>uri</tt>.
+full_name: Rack::MockRequest::env_for
+params: (uri="", opts={})
+name: env_for
+is_singleton: true
+aliases: []
+

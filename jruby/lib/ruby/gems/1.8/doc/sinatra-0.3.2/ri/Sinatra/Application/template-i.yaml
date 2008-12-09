@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Define a named template. The template may be referenced from event handlers
+    by passing the name as a Symbol to rendering methods. The block is executed each
+    time the template is rendered and the resulting object is passed to the template
+    handler.
+- !ruby/struct:SM::Flow::P 
+  body: 'The following example defines a HAML template named hello and invokes it
+    from an event handler:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  template :hello do\n    &quot;h1 Hello World!&quot;\n  end\n\n  get '/' \
+    do\n    haml :hello\n  end\n"
+full_name: Sinatra::Application#template
+params: (name, &b)
+name: template
+is_singleton: false
+aliases: []
+

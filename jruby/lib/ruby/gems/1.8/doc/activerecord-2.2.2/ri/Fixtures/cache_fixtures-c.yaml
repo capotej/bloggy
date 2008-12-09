@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Fixtures::cache_fixtures
+params: (connection, fixtures_map)
+name: cache_fixtures
+is_singleton: true
+aliases: []
+

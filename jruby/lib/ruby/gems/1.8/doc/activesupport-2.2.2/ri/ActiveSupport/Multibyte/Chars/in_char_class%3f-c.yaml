@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Detect whether the codepoint is in a certain character class. Returns <tt>true</tt>
+    when it''s in the specified character class and <tt>false</tt> otherwise. Valid
+    character classes are: <tt>:cr</tt>, <tt>:lf</tt>, <tt>:l</tt>, <tt>:v</tt>, <tt>:lv</tt>,
+    <tt>:lvt</tt> and <tt>:t</tt>.'
+- !ruby/struct:SM::Flow::P 
+  body: Primarily used by the grapheme cluster support.
+full_name: ActiveSupport::Multibyte::Chars::in_char_class?
+params: (codepoint, classes)
+name: in_char_class?
+is_singleton: true
+aliases: []
+

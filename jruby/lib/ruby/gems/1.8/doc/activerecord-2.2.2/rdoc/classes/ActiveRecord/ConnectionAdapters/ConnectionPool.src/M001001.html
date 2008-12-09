@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>checkout (ActiveRecord::ConnectionAdapters::ConnectionPool)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/abstract/connection_pool.rb, line 181</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">checkout</span>
+        <span class="ruby-comment cmt"># Checkout an available connection</span>
+        <span class="ruby-ivar">@connection_mutex</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword kw">do</span>
+          <span class="ruby-identifier">loop</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">conn</span> = <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@checked_out</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-ivar">@connections</span>.<span class="ruby-identifier">size</span>
+                     <span class="ruby-identifier">checkout_existing_connection</span>
+                   <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@connections</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-ivar">@size</span>
+                     <span class="ruby-identifier">checkout_new_connection</span>
+                   <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">conn</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">conn</span>
+            <span class="ruby-comment cmt"># No connections available; wait for one</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@queue</span>.<span class="ruby-identifier">wait</span>(<span class="ruby-ivar">@timeout</span>)
+              <span class="ruby-keyword kw">next</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-comment cmt"># try looting dead threads</span>
+              <span class="ruby-identifier">clear_stale_cached_connections!</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@size</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@checked_out</span>.<span class="ruby-identifier">size</span>
+                <span class="ruby-identifier">raise</span> <span class="ruby-constant">ConnectionTimeoutError</span>, <span class="ruby-node">&quot;could not obtain a database connection#{&quot; within #{@timeout} seconds&quot; if @timeout}.  The max pool size is currently #{@size}; consider increasing it.&quot;</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

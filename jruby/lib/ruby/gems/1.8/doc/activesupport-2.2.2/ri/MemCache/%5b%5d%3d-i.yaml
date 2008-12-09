@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Shortcut to save a value in the cache. This method does not set an expiration
+    on the entry. Use set to specify an explicit expiry.
+full_name: MemCache#[]=
+params: (key, value)
+name: '[]='
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,18 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: type_cast
+- !ruby/object:RI::MethodSummary 
+  name: type_cast_code
+class_methods: []
+
+full_name: "::Oracle::Column"
+constants: []
+
+superclass: 
+name: Column

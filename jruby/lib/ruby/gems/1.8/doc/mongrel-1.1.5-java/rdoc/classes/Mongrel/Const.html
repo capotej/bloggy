@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Mongrel::Const</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Mongrel::Const</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/mongrel/const_rb.html">
+                lib/mongrel/const.rb
+                </a>
+        <br />
+                <a href="../../files/lib/mongrel/const_rb.html">
+                lib/mongrel/const.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Frequently used constants when constructing requests or responses. Many
+times the constant just refers to a string with the same contents. Using
+these constants gave about a 3% to 10% performance improvement over using
+the strings directly. Symbols did not really improve things much compared
+to constants.
+</p>
+<p>
+While <a href="../Mongrel.html">Mongrel</a> does try to emulate the CGI/1.2
+protocol, it does not use the REMOTE_IDENT, REMOTE_USER, or REMOTE_HOST
+parameters since those are either a security problem or too taxing on
+performance.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DATE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Date&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PATH_INFO</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;PATH_INFO&quot;.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+This is the part of the path after the SCRIPT_NAME. <a
+href="URIClassifier.html">URIClassifier</a> will determine this.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SCRIPT_NAME</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;SCRIPT_NAME&quot;.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+This is the initial part that your handler is identified as by <a
+href="URIClassifier.html">URIClassifier</a>.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REQUEST_URI</td>
+          <td>=</td>
+          <td class="context-item-value">'REQUEST_URI'.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The original URI requested by the client. Passed to <a
+href="URIClassifier.html">URIClassifier</a> to build PATH_INFO and
+SCRIPT_NAME.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REQUEST_PATH</td>
+          <td>=</td>
+          <td class="context-item-value">'REQUEST_PATH'.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MONGREL_VERSION</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;1.1.5&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MONGREL_TMP_BASE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;mongrel&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ERROR_404_RESPONSE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HTTP/1.1 404 Not Found\r\nConnection: close\r\nServer: Mongrel #{MONGREL_VERSION}\r\n\r\nNOT FOUND&quot;.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The standard empty 404 response for bad requests. Use Error4040Handler for
+custom stuff.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CONTENT_LENGTH</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;CONTENT_LENGTH&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ERROR_503_RESPONSE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HTTP/1.1 503 Service Unavailable\r\n\r\nBUSY&quot;.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+A common header for indicating the server is too busy. Not used yet.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CHUNK_SIZE</td>
+          <td>=</td>
+          <td class="context-item-value">(16 * 1024)</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The basic max request size we&#8216;ll try to read.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAX_HEADER</td>
+          <td>=</td>
+          <td class="context-item-value">1024 * (80 + 32)</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+This is the maximum header that is allowed before a client is booted. The
+parser detects this, but we&#8216;d also like to do this as well.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAX_BODY</td>
+          <td>=</td>
+          <td class="context-item-value">MAX_HEADER</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Maximum request body size before it is moved out of memory and into a
+tempfile for reading.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STATUS_FORMAT</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HTTP/1.1 %d %s\r\nConnection: close\r\n&quot;.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+A frozen format for this is about 15% faster
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CONTENT_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Content-Type&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LAST_MODIFIED</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Last-Modified&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ETAG</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;ETag&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SLASH</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;/&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REQUEST_METHOD</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;REQUEST_METHOD&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GET</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;GET&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HEAD</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HEAD&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ETAG_FORMAT</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;\&quot;%x-%x-%x\&quot;&quot;.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+ETag is based on the apache standard of hex mtime-size-inode (inode is 0 on
+win32)
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HEADER_FORMAT</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;%s: %s\r\n&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LINE_END</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;\r\n&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REMOTE_ADDR</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;REMOTE_ADDR&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTTP_X_FORWARDED_FOR</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HTTP_X_FORWARDED_FOR&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTTP_IF_MODIFIED_SINCE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HTTP_IF_MODIFIED_SINCE&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTTP_IF_NONE_MATCH</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HTTP_IF_NONE_MATCH&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REDIRECT</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HTTP/1.1 302 Found\r\nLocation: %s\r\nConnection: close\r\n\r\n&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HOST</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HOST&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DATE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Date&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PATH_INFO</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;PATH_INFO&quot;.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+This is the part of the path after the SCRIPT_NAME. <a
+href="URIClassifier.html">URIClassifier</a> will determine this.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SCRIPT_NAME</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;SCRIPT_NAME&quot;.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+This is the initial part that your handler is identified as by <a
+href="URIClassifier.html">URIClassifier</a>.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REQUEST_URI</td>
+          <td>=</td>
+          <td class="context-item-value">'REQUEST_URI'.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The original URI requested by the client. Passed to <a
+href="URIClassifier.html">URIClassifier</a> to build PATH_INFO and
+SCRIPT_NAME.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REQUEST_PATH</td>
+          <td>=</td>
+          <td class="context-item-value">'REQUEST_PATH'.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MONGREL_VERSION</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;1.1.5&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MONGREL_TMP_BASE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;mongrel&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ERROR_404_RESPONSE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HTTP/1.1 404 Not Found\r\nConnection: close\r\nServer: Mongrel #{MONGREL_VERSION}\r\n\r\nNOT FOUND&quot;.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The standard empty 404 response for bad requests. Use Error4040Handler for
+custom stuff.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CONTENT_LENGTH</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;CONTENT_LENGTH&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ERROR_503_RESPONSE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HTTP/1.1 503 Service Unavailable\r\n\r\nBUSY&quot;.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+A common header for indicating the server is too busy. Not used yet.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CHUNK_SIZE</td>
+          <td>=</td>
+          <td class="context-item-value">(16 * 1024)</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The basic max request size we&#8216;ll try to read.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAX_HEADER</td>
+          <td>=</td>
+          <td class="context-item-value">1024 * (80 + 32)</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+This is the maximum header that is allowed before a client is booted. The
+parser detects this, but we&#8216;d also like to do this as well.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAX_BODY</td>
+          <td>=</td>
+          <td class="context-item-value">MAX_HEADER</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Maximum request body size before it is moved out of memory and into a
+tempfile for reading.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STATUS_FORMAT</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HTTP/1.1 %d %s\r\nConnection: close\r\n&quot;.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+A frozen format for this is about 15% faster
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CONTENT_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Content-Type&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LAST_MODIFIED</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Last-Modified&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ETAG</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;ETag&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SLASH</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;/&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REQUEST_METHOD</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;REQUEST_METHOD&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GET</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;GET&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HEAD</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HEAD&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ETAG_FORMAT</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;\&quot;%x-%x-%x\&quot;&quot;.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+ETag is based on the apache standard of hex mtime-size-inode (inode is 0 on
+win32)
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HEADER_FORMAT</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;%s: %s\r\n&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LINE_END</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;\r\n&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REMOTE_ADDR</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;REMOTE_ADDR&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTTP_X_FORWARDED_FOR</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HTTP_X_FORWARDED_FOR&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTTP_IF_MODIFIED_SINCE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HTTP_IF_MODIFIED_SINCE&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTTP_IF_NONE_MATCH</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HTTP_IF_NONE_MATCH&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REDIRECT</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HTTP/1.1 302 Found\r\nLocation: %s\r\nConnection: close\r\n\r\n&quot;.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HOST</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;HOST&quot;.freeze</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

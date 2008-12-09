@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Loads a YAML translations file. The data must have locales as toplevel keys.
+full_name: I18n::Backend::Simple#load_yml
+params: (filename)
+name: load_yml
+is_singleton: false
+aliases: []
+

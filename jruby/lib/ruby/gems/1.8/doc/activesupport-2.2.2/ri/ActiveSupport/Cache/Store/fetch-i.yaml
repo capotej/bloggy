@@ -1,0 +1,42 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: ""
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Fetches data from the cache, using the given key. If there is data in the
+    cache with the given key, then that data is returned.
+- !ruby/struct:SM::Flow::P 
+  body: If there is no such data in the cache (a cache miss occurred), then then nil
+    will be returned. However, if a block has been passed, then that block will be
+    run in the event of a cache miss. The return value of the block will be written
+    to the cache under the given cache key, and that return value will be returned.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  cache.write(&quot;today&quot;, &quot;Monday&quot;)\n  cache.fetch(&quot;today&quot;) \
+    \ # =&gt; &quot;Monday&quot;\n\n  cache.fetch(&quot;city&quot;)   # =&gt; nil\n\
+    \  cache.fetch(&quot;city&quot;) do\n    &quot;Duckburgh&quot;\n  end\n  cache.fetch(&quot;city&quot;) \
+    \  # =&gt; &quot;Duckburgh&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'You may also specify additional options via the <tt>options</tt> argument.
+    Setting <tt>:force =&gt; true</tt> will force a cache miss:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  cache.write(&quot;today&quot;, &quot;Monday&quot;)\n  cache.fetch(&quot;today&quot;, \
+    :force =&gt; true)  # =&gt; nil\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Other options will be handled by the specific cache store implementation.
+    Internally, #fetch calls #read, and calls #write on a cache miss. <tt>options</tt>
+    will be passed to the #read and #write calls.'
+- !ruby/struct:SM::Flow::P 
+  body: 'For example, MemCacheStore''s #write method supports the +:expires_in+ option,
+    which tells the memcached server to automatically expire the cache item after
+    a certain period. We can use this option with #fetch too:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  cache = ActiveSupport::Cache::MemCacheStore.new\n  cache.fetch(&quot;foo&quot;, \
+    :force =&gt; true, :expires_in =&gt; 5.seconds) do\n    &quot;bar&quot;\n  end\n\
+    \  cache.fetch(&quot;foo&quot;)  # =&gt; &quot;bar&quot;\n  sleep(6)\n  cache.fetch(&quot;foo&quot;) \
+    \ # =&gt; nil\n"
+full_name: ActiveSupport::Cache::Store#fetch
+params: (key, options = {}) {|| ...}
+name: fetch
+is_singleton: false
+aliases: []
+

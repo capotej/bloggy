@@ -1,0 +1,30 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Daemonizes the current Ruby script turning all the listeners into an actual
+    &quot;server&quot; or detached process. You must call this <b>before</b> frameworks
+    that open files as otherwise the files will be closed by this function.
+- !ruby/struct:SM::Flow::P 
+  body: Does not work for Win32 systems (the call is silently ignored).
+- !ruby/struct:SM::Flow::P 
+  body: 'Requires the following options or defaults:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":cwd =&gt; Directory to change to."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":log_file =&gt; Where to write STDOUT and STDERR."
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: It is safe to call this on win32 as it will only require the daemons gem/library
+    if NOT win32.
+full_name: Mongrel::Configurator#daemonize
+params: (options={})
+name: daemonize
+is_singleton: false
+aliases: []
+

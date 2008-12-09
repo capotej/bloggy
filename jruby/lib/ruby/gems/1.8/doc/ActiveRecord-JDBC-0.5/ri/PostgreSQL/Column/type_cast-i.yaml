@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::PostgreSQL::Column#type_cast"
+params: (value)
+name: type_cast
+is_singleton: false
+aliases: []
+

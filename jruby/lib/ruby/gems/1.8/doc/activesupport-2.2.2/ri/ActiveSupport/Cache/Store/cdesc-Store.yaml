@@ -1,0 +1,45 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An abstract cache store class. There are multiple cache store implementations,
+    each having its own additional features. See the classes under the ActiveSupport::Cache
+    module, e.g. ActiveSupport::Cache::MemCacheStore. MemCacheStore is currently the
+    most popular cache store for large production websites.
+- !ruby/struct:SM::Flow::P 
+  body: ActiveSupport::Cache::Store is meant for caching strings. Some cache store
+    implementations, like MemoryStore, are able to cache arbitrary Ruby objects, but
+    don't count on every cache store to be able to do that.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  cache = ActiveSupport::Cache::MemoryStore.new\n\n  cache.read(&quot;city&quot;) \
+    \  # =&gt; nil\n  cache.write(&quot;city&quot;, &quot;Duckburgh&quot;)\n  cache.read(&quot;city&quot;) \
+    \  # =&gt; &quot;Duckburgh&quot;\n"
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: decrement
+- !ruby/object:RI::MethodSummary 
+  name: delete
+- !ruby/object:RI::MethodSummary 
+  name: delete_matched
+- !ruby/object:RI::MethodSummary 
+  name: exist?
+- !ruby/object:RI::MethodSummary 
+  name: fetch
+- !ruby/object:RI::MethodSummary 
+  name: increment
+- !ruby/object:RI::MethodSummary 
+  name: read
+- !ruby/object:RI::MethodSummary 
+  name: silence!
+- !ruby/object:RI::MethodSummary 
+  name: write
+class_methods: []
+
+full_name: ActiveSupport::Cache::Store
+constants: []
+
+superclass: Object
+name: Store

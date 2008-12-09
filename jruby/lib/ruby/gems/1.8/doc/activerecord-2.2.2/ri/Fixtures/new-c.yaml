@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Fixtures::new
+params: (connection, table_name, class_name, fixture_path, file_filter = DEFAULT_FILTER_RE)
+name: new
+is_singleton: true
+aliases: []
+

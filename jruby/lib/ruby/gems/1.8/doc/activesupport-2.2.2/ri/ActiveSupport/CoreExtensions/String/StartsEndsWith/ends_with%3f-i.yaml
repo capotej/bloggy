@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Does the string end with the specified <tt>suffix</tt>?
+full_name: ActiveSupport::CoreExtensions::String::StartsEndsWith#ends_with?
+params: (suffix)
+name: ends_with?
+is_singleton: false
+aliases: []
+

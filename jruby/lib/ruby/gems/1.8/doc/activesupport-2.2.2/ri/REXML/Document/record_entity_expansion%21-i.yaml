@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: REXML::Document#record_entity_expansion!
+params: ()
+name: record_entity_expansion!
+is_singleton: false
+aliases: []
+

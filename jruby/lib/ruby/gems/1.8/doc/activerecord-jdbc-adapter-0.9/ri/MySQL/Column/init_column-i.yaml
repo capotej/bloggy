@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::MySQL::Column#init_column"
+params: (name, default, *args)
+name: init_column
+is_singleton: false
+aliases: []
+

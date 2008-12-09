@@ -1,0 +1,92 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A Command pattern implementation used to create the set of command available
+    to the user from Mongrel. The script uses objects which implement this interface
+    to do the user's bidding.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: done_validating
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: done_validating
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: original_args
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: original_args
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: valid
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: valid
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: configure
+- !ruby/object:RI::MethodSummary 
+  name: configure
+- !ruby/object:RI::MethodSummary 
+  name: failure
+- !ruby/object:RI::MethodSummary 
+  name: failure
+- !ruby/object:RI::MethodSummary 
+  name: help
+- !ruby/object:RI::MethodSummary 
+  name: help
+- !ruby/object:RI::MethodSummary 
+  name: options
+- !ruby/object:RI::MethodSummary 
+  name: options
+- !ruby/object:RI::MethodSummary 
+  name: run
+- !ruby/object:RI::MethodSummary 
+  name: run
+- !ruby/object:RI::MethodSummary 
+  name: valid?
+- !ruby/object:RI::MethodSummary 
+  name: valid?
+- !ruby/object:RI::MethodSummary 
+  name: valid_dir?
+- !ruby/object:RI::MethodSummary 
+  name: valid_dir?
+- !ruby/object:RI::MethodSummary 
+  name: valid_exists?
+- !ruby/object:RI::MethodSummary 
+  name: valid_exists?
+- !ruby/object:RI::MethodSummary 
+  name: valid_file?
+- !ruby/object:RI::MethodSummary 
+  name: valid_file?
+- !ruby/object:RI::MethodSummary 
+  name: valid_group?
+- !ruby/object:RI::MethodSummary 
+  name: valid_group?
+- !ruby/object:RI::MethodSummary 
+  name: valid_user?
+- !ruby/object:RI::MethodSummary 
+  name: valid_user?
+- !ruby/object:RI::MethodSummary 
+  name: validate
+- !ruby/object:RI::MethodSummary 
+  name: validate
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Mongrel::Command::Base
+constants: []
+
+superclass: 
+name: Base

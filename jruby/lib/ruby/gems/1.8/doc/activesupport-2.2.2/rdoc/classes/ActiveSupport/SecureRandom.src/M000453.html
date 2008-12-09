@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>random_bytes (ActiveSupport::SecureRandom)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/secure_random.rb, line 64</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">random_bytes</span>(<span class="ruby-identifier">n</span>=<span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-identifier">n</span> <span class="ruby-operator">||=</span> <span class="ruby-value">16</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">Random</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">Random</span>.<span class="ruby-identifier">random_bytes</span>(<span class="ruby-identifier">n</span>)
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword kw">defined?</span>(<span class="ruby-ivar">@has_urandom</span>) <span class="ruby-operator">||</span> <span class="ruby-ivar">@has_urandom</span>
+          <span class="ruby-identifier">flags</span> = <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">RDONLY</span>
+          <span class="ruby-identifier">flags</span> <span class="ruby-operator">|=</span> <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">NONBLOCK</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">NONBLOCK</span>
+          <span class="ruby-identifier">flags</span> <span class="ruby-operator">|=</span> <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">NOCTTY</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">NOCTTY</span>
+          <span class="ruby-identifier">flags</span> <span class="ruby-operator">|=</span> <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">NOFOLLOW</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">NOFOLLOW</span>
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-value str">&quot;/dev/urandom&quot;</span>, <span class="ruby-identifier">flags</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+              <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">stat</span>.<span class="ruby-identifier">chardev?</span>
+                <span class="ruby-identifier">raise</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ENOENT</span>
+              <span class="ruby-keyword kw">end</span>
+              <span class="ruby-ivar">@has_urandom</span> = <span class="ruby-keyword kw">true</span>
+              <span class="ruby-identifier">ret</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">readpartial</span>(<span class="ruby-identifier">n</span>)
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ret</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">n</span>
+                <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-value str">&quot;Unexpected partial read from random device&quot;</span>
+              <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ret</span>
+            }
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ENOENT</span>
+            <span class="ruby-ivar">@has_urandom</span> = <span class="ruby-keyword kw">false</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword kw">defined?</span>(<span class="ruby-ivar">@has_win32</span>)
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-identifier">require</span> <span class="ruby-value str">'Win32API'</span>
+
+            <span class="ruby-identifier">crypt_acquire_context</span> = <span class="ruby-constant">Win32API</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;advapi32&quot;</span>, <span class="ruby-value str">&quot;CryptAcquireContext&quot;</span>, <span class="ruby-value str">'PPPII'</span>, <span class="ruby-value str">'L'</span>)
+            <span class="ruby-ivar">@crypt_gen_random</span> = <span class="ruby-constant">Win32API</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;advapi32&quot;</span>, <span class="ruby-value str">&quot;CryptGenRandom&quot;</span>, <span class="ruby-value str">'LIP'</span>, <span class="ruby-value str">'L'</span>)
+
+            <span class="ruby-identifier">hProvStr</span> = <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">*</span> <span class="ruby-value">4</span>
+            <span class="ruby-identifier">prov_rsa_full</span> = <span class="ruby-value">1</span>
+            <span class="ruby-identifier">crypt_verifycontext</span> = <span class="ruby-value">0x</span><span class="ruby-constant">F0000000</span>
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">crypt_acquire_context</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">hProvStr</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">prov_rsa_full</span>, <span class="ruby-identifier">crypt_verifycontext</span>) <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+              <span class="ruby-identifier">raise</span> <span class="ruby-constant">SystemCallError</span>, <span class="ruby-node">&quot;CryptAcquireContext failed: #{lastWin32ErrorMessage}&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-ivar">@hProv</span>, = <span class="ruby-identifier">hProvStr</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>)
+
+            <span class="ruby-ivar">@has_win32</span> = <span class="ruby-keyword kw">true</span>
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span>
+            <span class="ruby-ivar">@has_win32</span> = <span class="ruby-keyword kw">false</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@has_win32</span>
+          <span class="ruby-identifier">bytes</span> = <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">n</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@crypt_gen_random</span>.<span class="ruby-identifier">call</span>(<span class="ruby-ivar">@hProv</span>, <span class="ruby-identifier">bytes</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">bytes</span>) <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">SystemCallError</span>, <span class="ruby-node">&quot;CryptGenRandom failed: #{lastWin32ErrorMessage}&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">bytes</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-value str">&quot;No random device&quot;</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

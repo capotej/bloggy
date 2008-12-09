@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>simplified_type (::PostgreSQL::Column)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/jdbc_adapter/jdbc_postgre.rb, line 33</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">simplified_type</span>(<span class="ruby-identifier">field_type</span>)
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">:integer</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">field_type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^serial/i</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">:string</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">field_type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\[\]$/i</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">field_type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^interval/i</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">:string</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">field_type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^(?:point|lseg|box|&quot;?path&quot;?|polygon|circle)/i</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">:datetime</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">field_type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^timestamp/i</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">:float</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">field_type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^real|^money/i</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">:binary</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">field_type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^bytea/i</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">:boolean</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">field_type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^bool/i</span>
+        <span class="ruby-keyword kw">super</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

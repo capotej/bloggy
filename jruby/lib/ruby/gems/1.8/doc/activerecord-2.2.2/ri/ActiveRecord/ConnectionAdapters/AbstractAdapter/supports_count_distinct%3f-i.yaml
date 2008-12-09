@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Does this adapter support using DISTINCT within COUNT? This is <tt>true</tt>
+    for all adapters except sqlite.
+full_name: ActiveRecord::ConnectionAdapters::AbstractAdapter#supports_count_distinct?
+params: ()
+name: supports_count_distinct?
+is_singleton: false
+aliases: []
+

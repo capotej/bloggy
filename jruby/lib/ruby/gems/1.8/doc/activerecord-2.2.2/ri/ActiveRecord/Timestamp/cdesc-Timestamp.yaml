@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Active Record automatically timestamps create and update operations if the
+    table has fields named created_at/created_on or updated_at/updated_on.
+- !ruby/struct:SM::Flow::P 
+  body: Timestamping can be turned off by setting
+- !ruby/struct:SM::Flow::VERB 
+  body: "  <tt>ActiveRecord::Base.record_timestamps = false</tt>\n"
+- !ruby/struct:SM::Flow::P 
+  body: Timestamps are in the local timezone by default but you can use UTC by setting
+- !ruby/struct:SM::Flow::VERB 
+  body: "  <tt>ActiveRecord::Base.default_timezone = :utc</tt>\n"
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveRecord::Timestamp
+constants: []
+
+superclass: 
+name: Timestamp

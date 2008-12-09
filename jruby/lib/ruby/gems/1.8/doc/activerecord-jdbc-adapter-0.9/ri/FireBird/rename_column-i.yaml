@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::FireBird#rename_column"
+params: (table_name, column_name, new_column_name)
+name: rename_column
+is_singleton: false
+aliases: []
+

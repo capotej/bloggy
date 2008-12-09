@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Defines the primary key field -- can be overridden in subclasses. Overwriting
+    will negate any effect of the primary_key_prefix_type setting, though.
+full_name: ActiveRecord::Base::primary_key
+params: ()
+name: primary_key
+is_singleton: true
+aliases: []
+

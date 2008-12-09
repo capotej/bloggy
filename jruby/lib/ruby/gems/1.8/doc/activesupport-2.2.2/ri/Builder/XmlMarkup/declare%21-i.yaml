@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Insert an XML declaration into the XML markup.
+- !ruby/struct:SM::Flow::P 
+  body: 'For example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  xml.declare! :ELEMENT, :blah, &quot;yada&quot;\n      # =&gt; &lt;!ELEMENT \
+    blah &quot;yada&quot;&gt;\n"
+full_name: Builder::XmlMarkup#declare!
+params: (inst, *args, &block)
+name: declare!
+is_singleton: false
+aliases: []
+

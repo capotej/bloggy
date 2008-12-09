@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the filename for the data file for this version
+full_name: ActiveSupport::Multibyte::UnicodeDatabase::filename
+params: ()
+name: filename
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converts a data structure into an XML document.
+- !ruby/object:SM::Flow::LIST 
+  type: :NOTE
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: Reference to data structure to be converted into XML.
+    label: 'ref:'
+  - !ruby/struct:SM::Flow::LI 
+    body: Options to be used.
+    label: 'options:'
+full_name: XmlSimple#xml_out
+params: (ref, options = nil)
+name: xml_out
+is_singleton: false
+aliases: []
+

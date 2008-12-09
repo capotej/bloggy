@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: '''a''.ord == ''a''[0] for Ruby 1.9 forward compatibility.'
+full_name: ActiveSupport::CoreExtensions::String::Conversions#ord
+params: ()
+name: ord
+is_singleton: false
+aliases: []
+

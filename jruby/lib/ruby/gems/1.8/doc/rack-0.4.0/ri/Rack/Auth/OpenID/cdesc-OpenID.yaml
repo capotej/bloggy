@@ -1,0 +1,69 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Rack::Auth::OpenID provides a simple method for permitting openid based logins.
+    It requires the ruby-openid library from janrain to operate, as well as a rack
+    method of session management.
+- !ruby/struct:SM::Flow::P 
+  body: The ruby-openid home page is at http://openidenabled.com/ruby-openid/.
+- !ruby/struct:SM::Flow::P 
+  body: The OpenID specifications can be found at http://openid.net/specs/openid-authentication-1_1.html
+    and http://openid.net/specs/openid-authentication-2_0.html. Documentation for
+    published OpenID extensions and related topics can be found at http://openid.net/developers/specs/.
+- !ruby/struct:SM::Flow::P 
+  body: It is recommended to read through the OpenID spec, as well as ruby-openid's
+    documentation, to understand what exactly goes on. However a setup as simple as
+    the presented examples is enough to provide functionality.
+- !ruby/struct:SM::Flow::P 
+  body: This library strongly intends to utilize the OpenID 2.0 features of the ruby-openid
+    library, while maintaining OpenID 1.0 compatiblity.
+- !ruby/struct:SM::Flow::P 
+  body: All responses from this rack application will be 303 redirects unless an error
+    occurs, with the exception of an authentication request requiring an HTML form
+    submission.
+- !ruby/struct:SM::Flow::P 
+  body: 'NOTE: Extensions are not currently supported by this implimentation of the
+    OpenID rack application due to the complexity of the current ruby-openid extension
+    handling.'
+- !ruby/struct:SM::Flow::P 
+  body: 'NOTE: Due to the amount of data that this library stores in the session,
+    Rack::Session::Cookie may fault.'
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: extensions
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: options
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: add_extension
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: check
+- !ruby/object:RI::MethodSummary 
+  name: extension_namespaces
+- !ruby/object:RI::MethodSummary 
+  name: finish
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Rack::Auth::OpenID
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Required for ruby-openid
+  value: "::OpenID::Store::Memory.new"
+  name: OIDStore
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''<html><head><title>%s</title></head><body>%s</body></html>'''
+  name: HTML
+superclass: AbstractHandler
+name: OpenID

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>servers= (MemCache)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/vendor/memcache-client-1.5.1/memcache.rb, line 183</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">servers=</span>(<span class="ruby-identifier">servers</span>)
+    <span class="ruby-comment cmt"># Create the server objects.</span>
+    <span class="ruby-ivar">@servers</span> = <span class="ruby-identifier">servers</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">server</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">server</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>
+        <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>, <span class="ruby-identifier">weight</span> = <span class="ruby-identifier">server</span>.<span class="ruby-identifier">split</span> <span class="ruby-value str">':'</span>, <span class="ruby-value">3</span>
+        <span class="ruby-identifier">port</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">DEFAULT_PORT</span>
+        <span class="ruby-identifier">weight</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">DEFAULT_WEIGHT</span>
+        <span class="ruby-constant">Server</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>, <span class="ruby-identifier">weight</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Server</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">server</span>.<span class="ruby-identifier">memcache</span>.<span class="ruby-identifier">multithread</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@multithread</span> <span class="ruby-keyword kw">then</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;can't mix threaded and non-threaded servers&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">server</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;cannot convert #{server.class} into MemCache::Server&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Create an array of server buckets for weight selection of servers.</span>
+    <span class="ruby-ivar">@buckets</span> = []
+    <span class="ruby-ivar">@servers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">server</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">server</span>.<span class="ruby-identifier">weight</span>.<span class="ruby-identifier">times</span> { <span class="ruby-ivar">@buckets</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">server</span>) }
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

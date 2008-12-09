@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::Column::fallback_string_to_time
+params: (string)
+name: fallback_string_to_time
+is_singleton: true
+aliases: []
+

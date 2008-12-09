@@ -1,0 +1,38 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets <tt>Time.zone</tt> to a TimeZone object for the current request/thread.
+- !ruby/struct:SM::Flow::P 
+  body: 'This method accepts any of the following:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: A Rails TimeZone object.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: An identifier for a Rails TimeZone object (e.g., &quot;Eastern Time (US
+      &amp; Canada)&quot;, <tt>-5.hours</tt>).
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: A TZInfo::Timezone object.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: An identifier for a TZInfo::Timezone object (e.g., &quot;America/New_York&quot;).
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: 'Here''s an example of how you might set <tt>Time.zone</tt> on a per request
+    basis -- <tt>current_user.time_zone</tt> just needs to return a string identifying
+    the user''s preferred TimeZone:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class ApplicationController &lt; ActionController::Base\n    before_filter \
+    :set_time_zone\n\n    def set_time_zone\n      Time.zone = current_user.time_zone\n\
+    \    end\n  end\n"
+full_name: ActiveSupport::CoreExtensions::Time::Zones::ClassMethods#zone=
+params: (time_zone)
+name: zone=
+is_singleton: false
+aliases: []
+

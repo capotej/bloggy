@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Transform the modelname into a more humane format, using I18n. Defaults to
+    the basic humanize method. Default scope of the translation is activerecord.models
+    Specify <tt>options</tt> with additional translating options.
+full_name: ActiveRecord::Base::human_name
+params: (options = {})
+name: human_name
+is_singleton: true
+aliases: []
+

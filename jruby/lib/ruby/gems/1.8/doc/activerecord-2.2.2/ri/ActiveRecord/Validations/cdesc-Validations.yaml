@@ -1,0 +1,64 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Please do have a look at ActiveRecord::Validations::ClassMethods for a higher
+    level of validations.
+- !ruby/struct:SM::Flow::P 
+  body: Active Records implement validation by overwriting Base#validate (or the variations,
+    <tt>validate_on_create</tt> and <tt>validate_on_update</tt>). Each of these methods
+    can inspect the state of the object, which usually means ensuring that a number
+    of attributes have a certain value (such as not empty, within a given range, matching
+    a certain regular expression).
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Person &lt; ActiveRecord::Base\n    protected\n      def validate\n\
+    \        errors.add_on_empty %w( first_name last_name )\n        errors.add(&quot;phone_number&quot;, \
+    &quot;has invalid format&quot;) unless phone_number =~ /[0-9]*/\n      end\n\n\
+    \      def validate_on_create # is only run the first time a new object is saved\n\
+    \        unless valid_discount?(membership_discount)\n          errors.add(&quot;membership_discount&quot;, \
+    &quot;has expired&quot;)\n        end\n      end\n\n      def validate_on_update\n\
+    \        errors.add_to_base(&quot;No changes have occurred&quot;) if unchanged_attributes?\n\
+    \      end\n  end\n\n  person = Person.new(&quot;first_name&quot; =&gt; &quot;David&quot;, \
+    &quot;phone_number&quot; =&gt; &quot;what?&quot;)\n  person.save              \
+    \           # =&gt; false (and doesn't do the save)\n  person.errors.empty?    \
+    \            # =&gt; false\n  person.errors.count                 # =&gt; 2\n  \
+    person.errors.on &quot;last_name&quot;        # =&gt; &quot;can't be empty&quot;\n\
+    \  person.errors.on &quot;phone_number&quot;     # =&gt; &quot;has invalid format&quot;\n\
+    \  person.errors.each_full { |msg| puts msg }\n                                \
+    \      # =&gt; &quot;Last name can't be empty\\n&quot; +\n                     \
+    \                 #    &quot;Phone number has invalid format&quot;\n\n  person.attributes \
+    = { &quot;last_name&quot; =&gt; &quot;Heinemeier&quot;, &quot;phone_number&quot; \
+    =&gt; &quot;555-555&quot; }\n  person.save # =&gt; true (and person is now saved \
+    in the database)\n"
+- !ruby/struct:SM::Flow::P 
+  body: An Errors object is automatically created for every Active Record.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: errors
+- !ruby/object:RI::MethodSummary 
+  name: save_with_validation
+- !ruby/object:RI::MethodSummary 
+  name: save_with_validation!
+- !ruby/object:RI::MethodSummary 
+  name: valid?
+- !ruby/object:RI::MethodSummary 
+  name: validate
+- !ruby/object:RI::MethodSummary 
+  name: validate_on_create
+- !ruby/object:RI::MethodSummary 
+  name: validate_on_update
+class_methods: []
+
+full_name: ActiveRecord::Validations
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '%w( validate validate_on_create validate_on_update )'
+  name: VALIDATIONS
+superclass: 
+name: Validations

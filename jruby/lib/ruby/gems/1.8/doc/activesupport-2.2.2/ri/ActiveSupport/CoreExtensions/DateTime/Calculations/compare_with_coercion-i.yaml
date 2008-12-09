@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Layers additional behavior on DateTime#&lt;=&gt; so that Time and ActiveSupport::TimeWithZone
+    instances can be compared with a DateTime
+full_name: ActiveSupport::CoreExtensions::DateTime::Calculations#compare_with_coercion
+params: (other)
+name: compare_with_coercion
+is_singleton: false
+aliases: []
+

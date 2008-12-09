@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Overwrite this method for validation checks used only on updates.
+full_name: ActiveRecord::Validations#validate_on_update
+params: (
+name: validate_on_update
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: <tt>:db</tt> format outputs time in UTC; all others output time in local.
+    Uses TimeWithZone's <tt>strftime</tt>, so <tt>%Z</tt> and <tt>%z</tt> work correctly.
+full_name: ActiveSupport::TimeWithZone#to_s
+params: (format = :default)
+name: to_s
+is_singleton: false
+aliases: []
+

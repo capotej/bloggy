@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: override to filter out system tables that otherwise end up in db/schema.rb
+    during migrations. JdbcConnection#tables now takes an optional block filter so
+    we can screen out rows corresponding to system tables. HSQLDB names its system
+    tables SYSTEM.*, but H2 seems to name them without any kind of convention
+full_name: "::HSQLDB#tables"
+params: ()
+name: tables
+is_singleton: false
+aliases: []
+

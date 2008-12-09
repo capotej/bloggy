@@ -1,0 +1,11 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Sinatra#application
+params: ()
+name: application
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: build_application

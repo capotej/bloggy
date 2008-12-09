@@ -1,0 +1,28 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Appends <tt>LIMIT</tt> and <tt>OFFSET</tt> options to an SQL statement, or
+    some SQL fragment that has the same semantics as LIMIT and OFFSET.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>options</tt> must be a Hash which contains a +:limit+ option (required)
+    and an +:offset+ option (optional).
+- !ruby/struct:SM::Flow::P 
+  body: This method <b>modifies</b> the <tt>sql</tt> parameter.
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 5
+- !ruby/struct:SM::Flow::VERB 
+  body: " add_limit_offset!('SELECT * FROM suppliers', {:limit =&gt; 10, :offset =&gt; \
+    50})\n"
+- !ruby/struct:SM::Flow::P 
+  body: generates
+- !ruby/struct:SM::Flow::VERB 
+  body: " SELECT * FROM suppliers LIMIT 10 OFFSET 50\n"
+full_name: ActiveRecord::ConnectionAdapters::DatabaseStatements#add_limit_offset!
+params: (sql, options)
+name: add_limit_offset!
+is_singleton: false
+aliases: []
+

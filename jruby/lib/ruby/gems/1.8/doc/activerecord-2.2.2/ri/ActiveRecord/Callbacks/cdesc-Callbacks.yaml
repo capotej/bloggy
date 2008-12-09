@@ -1,0 +1,234 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Callbacks are hooks into the lifecycle of an Active Record object that allow
+    you to trigger logic before or after an alteration of the object state. This can
+    be used to make sure that associated and dependent objects are deleted when <tt>destroy</tt>
+    is called (by overwriting <tt>before_destroy</tt>) or to massage attributes before
+    they''re validated (by overwriting <tt>before_validation</tt>). As an example
+    of the callbacks initiated, consider the <tt>Base#save</tt> call for a new record:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: (-) <tt>save</tt>
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: (-) <tt>valid</tt>
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: (1) <tt>before_validation</tt>
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: (2) <tt>before_validation_on_create</tt>
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: (-) <tt>validate</tt>
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: (-) <tt>validate_on_create</tt>
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: (3) <tt>after_validation</tt>
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: (4) <tt>after_validation_on_create</tt>
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: (5) <tt>before_save</tt>
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: (6) <tt>before_create</tt>
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: (-) <tt>create</tt>
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: (7) <tt>after_create</tt>
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: (8) <tt>after_save</tt>
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: That's a total of eight callbacks, which gives you immense power to react
+    and prepare for each state in the Active Record lifecycle. The sequence for calling
+    <tt>Base#save</tt> an existing record is similar, except that each <tt>_on_create</tt>
+    callback is replaced by the corresponding <tt>_on_update</tt> callback.
+- !ruby/struct:SM::Flow::P 
+  body: 'Examples:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class CreditCard &lt; ActiveRecord::Base\n    # Strip everything but digits, \
+    so the user can specify &quot;555 234 34&quot; or\n    # &quot;5552-3434&quot; \
+    or both will mean &quot;55523434&quot;\n    def before_validation_on_create\n\
+    \      self.number = number.gsub(/[^0-9]/, &quot;&quot;) if attribute_present?(&quot;number&quot;)\n\
+    \    end\n  end\n\n  class Subscription &lt; ActiveRecord::Base\n    before_create \
+    :record_signup\n\n    private\n      def record_signup\n        self.signed_up_on \
+    = Date.today\n      end\n  end\n\n  class Firm &lt; ActiveRecord::Base\n    # \
+    Destroys the associated clients and people when the firm is destroyed\n    before_destroy \
+    { |record| Person.destroy_all &quot;firm_id = #{record.id}&quot;   }\n    before_destroy \
+    { |record| Client.destroy_all &quot;client_of = #{record.id}&quot; }\n  end\n"
+- !ruby/struct:SM::Flow::H 
+  text: Inheritable callback queues
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: 'Besides the overwritable callback methods, it''s also possible to register
+    callbacks through the use of the callback macros. Their main advantage is that
+    the macros add behavior into a callback queue that is kept intact down through
+    an inheritance hierarchy. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Topic &lt; ActiveRecord::Base\n    before_destroy :destroy_author\n\
+    \  end\n\n  class Reply &lt; Topic\n    before_destroy :destroy_readers\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Now, when <tt>Topic#destroy</tt> is run only <tt>destroy_author</tt> is called.
+    When <tt>Reply#destroy</tt> is run, both <tt>destroy_author</tt> and <tt>destroy_readers</tt>
+    are called. Contrast this to the situation where we''ve implemented the save behavior
+    through overwriteable methods:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Topic &lt; ActiveRecord::Base\n    def before_destroy() destroy_author \
+    end\n  end\n\n  class Reply &lt; Topic\n    def before_destroy() destroy_readers \
+    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: In that case, <tt>Reply#destroy</tt> would only run <tt>destroy_readers</tt>
+    and <em>not</em> <tt>destroy_author</tt>. So, use the callback macros when you
+    want to ensure that a certain callback is called for the entire hierarchy, and
+    use the regular overwriteable methods when you want to leave it up to each descendent
+    to decide whether they want to call <tt>super</tt> and trigger the inherited callbacks.
+- !ruby/struct:SM::Flow::P 
+  body: '*IMPORTANT:* In order for inheritance to work for the callback queues, you
+    must specify the callbacks before specifying the associations. Otherwise, you
+    might trigger the loading of a child before the parent has registered the callbacks
+    and they won''t be inherited.'
+- !ruby/struct:SM::Flow::H 
+  text: Types of callbacks
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: 'There are four types of callbacks accepted by the callback macros: Method
+    references (symbol), callback objects, inline methods (using a proc), and inline
+    eval methods (using a string). Method references and callback objects are the
+    recommended approaches, inline methods using a proc are sometimes appropriate
+    (such as for creating mix-ins), and inline eval methods are deprecated.'
+- !ruby/struct:SM::Flow::P 
+  body: 'The method reference callbacks work by specifying a protected or private
+    method available in the object, like this:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Topic &lt; ActiveRecord::Base\n    before_destroy :delete_parents\n\
+    \n    private\n      def delete_parents\n        self.class.delete_all &quot;parent_id \
+    = #{id}&quot;\n      end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'The callback objects have methods named after the callback called with the
+    record as the only parameter, such as:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class BankAccount &lt; ActiveRecord::Base\n    before_save      EncryptionWrapper.new(&quot;credit_card_number&quot;)\n\
+    \    after_save       EncryptionWrapper.new(&quot;credit_card_number&quot;)\n  \
+    \  after_initialize EncryptionWrapper.new(&quot;credit_card_number&quot;)\n  end\n\
+    \n  class EncryptionWrapper\n    def initialize(attribute)\n      @attribute = \
+    attribute\n    end\n\n    def before_save(record)\n      record.credit_card_number \
+    = encrypt(record.credit_card_number)\n    end\n\n    def after_save(record)\n\
+    \      record.credit_card_number = decrypt(record.credit_card_number)\n    end\n\
+    \n    alias_method :after_find, :after_save\n\n    private\n      def encrypt(value)\n\
+    \        # Secrecy is committed\n      end\n\n      def decrypt(value)\n       \
+    \ # Secrecy is unveiled\n      end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: So you specify the object you want messaged on a given callback. When that
+    callback is triggered, the object has a method by the name of the callback messaged.
+- !ruby/struct:SM::Flow::P 
+  body: 'The callback macros usually accept a symbol for the method they''re supposed
+    to run, but you can also pass a &quot;method string&quot;, which will then be
+    evaluated within the binding of the callback. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Topic &lt; ActiveRecord::Base\n    before_destroy 'self.class.delete_all \
+    &quot;parent_id = #{id}&quot;'\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Notice that single quotes ('') are used so the <tt>#{id}</tt> part isn''t
+    evaluated until the callback is triggered. Also note that these inline callbacks
+    can be stacked just like the regular ones:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Topic &lt; ActiveRecord::Base\n    before_destroy 'self.class.delete_all \
+    &quot;parent_id = #{id}&quot;',\n                   'puts &quot;Evaluated after \
+    parents are destroyed&quot;'\n  end\n"
+- !ruby/struct:SM::Flow::H 
+  text: The <tt>after_find</tt> and <tt>after_initialize</tt> exceptions
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: Because <tt>after_find</tt> and <tt>after_initialize</tt> are called for each
+    object found and instantiated by a finder, such as <tt>Base.find(:all)</tt>, we've
+    had to implement a simple performance constraint (50% more speed on a simple test
+    case). Unlike all the other callbacks, <tt>after_find</tt> and <tt>after_initialize</tt>
+    will only be run if an explicit implementation is defined (<tt>def after_find</tt>).
+    In that case, all of the callback types will be called.
+- !ruby/struct:SM::Flow::H 
+  text: <tt>before_validation*</tt> returning statements
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: If the returning value of a <tt>before_validation</tt> callback can be evaluated
+    to <tt>false</tt>, the process will be aborted and <tt>Base#save</tt> will return
+    <tt>false</tt>. If Base#save! is called it will raise a ActiveRecord::RecordInvalid
+    exception. Nothing will be appended to the errors object.
+- !ruby/struct:SM::Flow::H 
+  text: Canceling callbacks
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: If a <tt>before_*</tt> callback returns <tt>false</tt>, all the later callbacks
+    and the associated action are cancelled. If an <tt>after_*</tt> callback returns
+    <tt>false</tt>, all the later callbacks are cancelled. Callbacks are generally
+    run in the order they are defined, with the exception of callbacks defined as
+    methods on the model, which are called last.
+- !ruby/struct:SM::Flow::H 
+  text: Transactions
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: The entire callback chain of a <tt>save</tt>, <tt>save!</tt>, or <tt>destroy</tt>
+    call runs within a transaction. That includes <tt>after_*</tt> hooks. If everything
+    goes fine a COMMIT is executed once the chain has been completed.
+- !ruby/struct:SM::Flow::P 
+  body: If a <tt>before_*</tt> callback cancels the action a ROLLBACK is issued. You
+    can also trigger a ROLLBACK raising an exception in any of the callbacks, including
+    <tt>after_*</tt> hooks. Note, however, that in that case the client needs to be
+    aware of it because an ordinary <tt>save</tt> will raise such exception instead
+    of quietly returning <tt>false</tt>.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: after_create
+- !ruby/object:RI::MethodSummary 
+  name: after_destroy
+- !ruby/object:RI::MethodSummary 
+  name: after_save
+- !ruby/object:RI::MethodSummary 
+  name: after_update
+- !ruby/object:RI::MethodSummary 
+  name: after_validation
+- !ruby/object:RI::MethodSummary 
+  name: after_validation_on_create
+- !ruby/object:RI::MethodSummary 
+  name: after_validation_on_update
+- !ruby/object:RI::MethodSummary 
+  name: before_create
+- !ruby/object:RI::MethodSummary 
+  name: before_destroy
+- !ruby/object:RI::MethodSummary 
+  name: before_save
+- !ruby/object:RI::MethodSummary 
+  name: before_update
+- !ruby/object:RI::MethodSummary 
+  name: before_validation
+- !ruby/object:RI::MethodSummary 
+  name: before_validation_on_create
+- !ruby/object:RI::MethodSummary 
+  name: before_validation_on_update
+class_methods: []
+
+full_name: ActiveRecord::Callbacks
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '%w(       after_find after_initialize before_save after_save before_create
+    after_create before_update after_update before_validation       after_validation
+    before_validation_on_create after_validation_on_create before_validation_on_update       after_validation_on_update
+    before_destroy after_destroy     )'
+  name: CALLBACKS
+superclass: 
+name: Callbacks

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveSupport::Cache::SynchronizedMemoryStore#decrement
+params: (key, amount = 1)
+name: decrement
+is_singleton: false
+aliases: []
+

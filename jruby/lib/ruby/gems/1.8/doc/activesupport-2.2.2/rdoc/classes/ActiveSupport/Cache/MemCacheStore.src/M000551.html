@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>write (ActiveSupport::Cache::MemCacheStore)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/cache/mem_cache_store.rb, line 58</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span> = <span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-keyword kw">super</span>
+        <span class="ruby-identifier">method</span> = <span class="ruby-identifier">options</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:unless_exist</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">:add</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">:set</span>
+        <span class="ruby-comment cmt"># memcache-client will break the connection if you send it an integer</span>
+        <span class="ruby-comment cmt"># in raw mode, so we convert it to a string to be sure it continues working.</span>
+        <span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">raw?</span>(<span class="ruby-identifier">options</span>)
+        <span class="ruby-identifier">response</span> = <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">expires_in</span>(<span class="ruby-identifier">options</span>), <span class="ruby-identifier">raw?</span>(<span class="ruby-identifier">options</span>))
+        <span class="ruby-identifier">response</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Response</span><span class="ruby-operator">::</span><span class="ruby-constant">STORED</span>
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">MemCache</span><span class="ruby-operator">::</span><span class="ruby-constant">MemCacheError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span>(<span class="ruby-node">&quot;MemCacheError (#{e}): #{e.message}&quot;</span>)
+        <span class="ruby-keyword kw">false</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

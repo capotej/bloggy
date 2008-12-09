@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: locking_column
+- !ruby/object:RI::MethodSummary 
+  name: locking_enabled?
+- !ruby/object:RI::MethodSummary 
+  name: quoted_locking_column
+- !ruby/object:RI::MethodSummary 
+  name: reset_locking_column
+- !ruby/object:RI::MethodSummary 
+  name: set_locking_column
+- !ruby/object:RI::MethodSummary 
+  name: update_counters_with_lock
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: extended
+full_name: ActiveRecord::Locking::Optimistic::ClassMethods
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''lock_version'''
+  name: DEFAULT_LOCKING_COLUMN
+superclass: 
+name: ClassMethods

@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Allows you to make aliases for attributes, which includes getter, setter,
+    and query methods.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Content &lt; ActiveRecord::Base\n    # has a title attribute\n  end\n\
+    \n  class Email &lt; Content\n    alias_attribute :subject, :title\n  end\n\n\
+    \  e = Email.find(1)\n  e.title    # =&gt; &quot;Superstars&quot;\n  e.subject \
+    \ # =&gt; &quot;Superstars&quot;\n  e.subject? # =&gt; true\n  e.subject = &quot;Megastars&quot;\n\
+    \  e.title    # =&gt; &quot;Megastars&quot;\n"
+full_name: ActiveSupport::CoreExtensions::Module#alias_attribute
+params: (new_name, old_name)
+name: alias_attribute
+is_singleton: false
+aliases: []
+

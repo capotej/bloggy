@@ -1,0 +1,102 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Translates, pluralizes and interpolates a given key using a given locale,
+    scope, and default, as well as interpolation values.
+- !ruby/struct:SM::Flow::P 
+  body: <b>LOOKUP</b>
+- !ruby/struct:SM::Flow::P 
+  body: 'Translation data is organized as a nested hash using the upper-level keys
+    as namespaces. <em>E.g.</em>, ActionView ships with the translation: <tt>:date
+    =&gt; {:formats =&gt; {:short =&gt; &quot;%b %d&quot;}}</tt>.'
+- !ruby/struct:SM::Flow::P 
+  body: Translations can be looked up at any level of this hash using the key argument
+    and the scope option. <em>E.g.</em>, in this example <tt>I18n.t :date</tt> returns
+    the whole translations hash <tt>{:formats =&gt; {:short =&gt; &quot;%b %d&quot;}}</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: 'Key can be either a single key or a dot-separated key (both Strings and Symbols
+    work). <em>E.g.</em>, the short format can be looked up using both:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  I18n.t 'date.formats.short'\n  I18n.t :'date.formats.short'\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Scope can be either a single key, a dot-separated key or an array of keys
+    or dot-separated keys. Keys and scopes can be combined freely. So these examples
+    will all look up the same short date format:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  I18n.t 'date.formats.short'\n  I18n.t 'formats.short', :scope =&gt; 'date'\n\
+    \  I18n.t 'short', :scope =&gt; 'date.formats'\n  I18n.t 'short', :scope =&gt; \
+    %w(date formats)\n"
+- !ruby/struct:SM::Flow::P 
+  body: <b>INTERPOLATION</b>
+- !ruby/struct:SM::Flow::P 
+  body: 'Translations can contain interpolation variables which will be replaced by
+    values passed to #translate as part of the options hash, with the keys matching
+    the interpolation variable names.'
+- !ruby/struct:SM::Flow::P 
+  body: '<em>E.g.</em>, with a translation <tt>:foo =&gt; &quot;foo {{bar}}&quot;</tt>
+    the option value for the key <tt>bar</tt> will be interpolated into the translation:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  I18n.t :foo, :bar =&gt; 'baz' # =&gt; 'foo baz'\n"
+- !ruby/struct:SM::Flow::P 
+  body: <b>PLURALIZATION</b>
+- !ruby/struct:SM::Flow::P 
+  body: Translation data can contain pluralized translations. Pluralized translations
+    are arrays of singluar/plural versions of translations like <tt>['Foo', 'Foos']</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: Note that <tt>I18n::Backend::Simple</tt> only supports an algorithm for English
+    pluralization rules. Other algorithms can be supported by custom backends.
+- !ruby/struct:SM::Flow::P 
+  body: 'This returns the singular version of a pluralized translation:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  I18n.t :foo, :count =&gt; 1 # =&gt; 'Foo'\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'These both return the plural version of a pluralized translation:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  I18n.t :foo, :count =&gt; 0 # =&gt; 'Foos'\n  I18n.t :foo, :count =&gt; \
+    2 # =&gt; 'Foos'\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'The <tt>:count</tt> option can be used both for pluralization and interpolation.
+    <em>E.g.</em>, with the translation <tt>:foo =&gt; [''{{count}} foo'', ''{{count}}
+    foos'']</tt>, count will be interpolated to the pluralized translation:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  I18n.t :foo, :count =&gt; 1 # =&gt; '1 foo'\n"
+- !ruby/struct:SM::Flow::P 
+  body: <b>DEFAULTS</b>
+- !ruby/struct:SM::Flow::P 
+  body: 'This returns the translation for <tt>:foo</tt> or <tt>default</tt> if no
+    translation was found:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  I18n.t :foo, :default =&gt; 'default'\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'This returns the translation for <tt>:foo</tt> or the translation for <tt>:bar</tt>
+    if no translation for <tt>:foo</tt> was found:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  I18n.t :foo, :default =&gt; :bar\n"
+- !ruby/struct:SM::Flow::P 
+  body: Returns the translation for <tt>:foo</tt> or the translation for <tt>:bar</tt>
+    or <tt>default</tt> if no translations for <tt>:foo</tt> and <tt>:bar</tt> were
+    found.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  I18n.t :foo, :default =&gt; [:bar, 'default']\n"
+- !ruby/struct:SM::Flow::P 
+  body: <b>BULK LOOKUP</b>
+- !ruby/struct:SM::Flow::P 
+  body: This returns an array with the translations for <tt>:foo</tt> and <tt>:bar</tt>.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  I18n.t [:foo, :bar]\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Can be used with dot-separated nested keys:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  I18n.t [:'baz.foo', :'baz.bar']\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Which is the same as using a scope option:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  I18n.t [:foo, :bar], :scope =&gt; :baz\n"
+full_name: I18n::translate
+params: (key, options = {})
+name: translate
+is_singleton: true
+aliases: []
+

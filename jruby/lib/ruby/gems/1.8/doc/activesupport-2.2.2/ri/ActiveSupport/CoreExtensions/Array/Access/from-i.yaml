@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the tail of the array from <tt>position</tt>.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  %w( a b c d ).from(0)  # =&gt; %w( a b c d )\n  %w( a b c d ).from(2)  \
+    # =&gt; %w( c d )\n  %w( a b c d ).from(10) # =&gt; nil\n  %w().from(0)       \
+    \    # =&gt; nil\n"
+full_name: ActiveSupport::CoreExtensions::Array::Access#from
+params: (position)
+name: from
+is_singleton: false
+aliases: []
+

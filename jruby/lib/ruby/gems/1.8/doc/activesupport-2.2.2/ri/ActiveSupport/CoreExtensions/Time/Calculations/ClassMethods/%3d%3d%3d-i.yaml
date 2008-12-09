@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Overriding case equality method so that it returns true for ActiveSupport::TimeWithZone
+    instances
+full_name: ActiveSupport::CoreExtensions::Time::Calculations::ClassMethods#===
+params: (other)
+name: ===
+is_singleton: false
+aliases: []
+

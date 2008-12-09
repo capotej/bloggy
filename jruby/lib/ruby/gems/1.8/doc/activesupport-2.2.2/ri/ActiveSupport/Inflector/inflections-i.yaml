@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: Inflections.instance
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Yields a singleton instance of Inflector::Inflections so you can specify additional
+    inflector rules.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ActiveSupport::Inflector.inflections do |inflect|\n    inflect.uncountable \
+    &quot;rails&quot;\n  end\n"
+full_name: ActiveSupport::Inflector#inflections
+params: () {|Inflections.instance| ...}
+name: inflections
+is_singleton: false
+aliases: []
+

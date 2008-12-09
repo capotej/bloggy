@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>cache_get_multi (MemCache)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/vendor/memcache-client-1.5.1/memcache.rb, line 609</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cache_get_multi</span>(<span class="ruby-identifier">server</span>, <span class="ruby-identifier">cache_keys</span>)
+    <span class="ruby-identifier">values</span> = {}
+    <span class="ruby-identifier">socket</span> = <span class="ruby-identifier">server</span>.<span class="ruby-identifier">socket</span>
+    <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">write</span> <span class="ruby-node">&quot;get #{cache_keys}\r\n&quot;</span>
+
+    <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">keyline</span> = <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">gets</span> <span class="ruby-keyword kw">do</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">values</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">keyline</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;END\r\n&quot;</span>
+      <span class="ruby-identifier">raise_on_error_response!</span> <span class="ruby-identifier">keyline</span>
+
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">keyline</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\AVALUE (.+) (.+) (.+)/</span> <span class="ruby-keyword kw">then</span>
+        <span class="ruby-identifier">server</span>.<span class="ruby-identifier">close</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">MemCacheError</span>, <span class="ruby-node">&quot;unexpected response #{keyline.inspect}&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">key</span>, <span class="ruby-identifier">data_length</span> = <span class="ruby-identifier">$1</span>, <span class="ruby-identifier">$3</span>
+      <span class="ruby-identifier">values</span>[<span class="ruby-identifier">$1</span>] = <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">read</span> <span class="ruby-identifier">data_length</span>.<span class="ruby-identifier">to_i</span>
+      <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">read</span>(<span class="ruby-value">2</span>) <span class="ruby-comment cmt"># &quot;\r\n&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">server</span>.<span class="ruby-identifier">close</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">MemCacheError</span>, <span class="ruby-node">&quot;lost connection to #{server.host}:#{server.port}&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

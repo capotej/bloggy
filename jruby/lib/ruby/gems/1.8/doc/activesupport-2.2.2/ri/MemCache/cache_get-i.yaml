@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Fetches the raw data for <tt>cache_key</tt> from <tt>server</tt>. Returns
+    nil on cache miss.
+full_name: MemCache#cache_get
+params: (server, cache_key)
+name: cache_get
+is_singleton: false
+aliases: []
+

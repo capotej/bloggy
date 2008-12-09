@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::Base::connection_pool
+params: ()
+name: connection_pool
+is_singleton: true
+aliases: []
+

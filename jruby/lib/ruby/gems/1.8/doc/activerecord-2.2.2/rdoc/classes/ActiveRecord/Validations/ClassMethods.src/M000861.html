@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>validates_uniqueness_of (ActiveRecord::Validations::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/validations.rb, line 704</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validates_uniqueness_of</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">attr_names</span>)
+        <span class="ruby-identifier">configuration</span> = { <span class="ruby-identifier">:case_sensitive</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span> }
+        <span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">attr_names</span>.<span class="ruby-identifier">extract_options!</span>)
+
+        <span class="ruby-identifier">validates_each</span>(<span class="ruby-identifier">attr_names</span>,<span class="ruby-identifier">configuration</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">record</span>, <span class="ruby-identifier">attr_name</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+          <span class="ruby-comment cmt"># The check for an existing value should be run from a class that</span>
+          <span class="ruby-comment cmt"># isn't abstract. This means working down from the current class</span>
+          <span class="ruby-comment cmt"># (self), to the first non-abstract class. Since classes don't know</span>
+          <span class="ruby-comment cmt"># their subclasses, we have to build the hierarchy between self and</span>
+          <span class="ruby-comment cmt"># the record's class.</span>
+          <span class="ruby-identifier">class_hierarchy</span> = [<span class="ruby-identifier">record</span>.<span class="ruby-identifier">class</span>]
+          <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">class_hierarchy</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword kw">self</span>
+            <span class="ruby-identifier">class_hierarchy</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">class_hierarchy</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">superclass</span>)
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-comment cmt"># Now we can work our way down the tree to the first non-abstract</span>
+          <span class="ruby-comment cmt"># class (which has a database table to query from).</span>
+          <span class="ruby-identifier">finder_class</span> = <span class="ruby-identifier">class_hierarchy</span>.<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">klass</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">klass</span>.<span class="ruby-identifier">abstract_class?</span> }
+
+          <span class="ruby-identifier">is_text_column</span> = <span class="ruby-identifier">finder_class</span>.<span class="ruby-identifier">columns_hash</span>[<span class="ruby-identifier">attr_name</span>.<span class="ruby-identifier">to_s</span>].<span class="ruby-identifier">text?</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span>
+            <span class="ruby-identifier">comparison_operator</span> = <span class="ruby-value str">&quot;IS ?&quot;</span>
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">is_text_column</span>
+            <span class="ruby-identifier">comparison_operator</span> = <span class="ruby-node">&quot;#{connection.case_sensitive_equality_operator} ?&quot;</span>
+            <span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">comparison_operator</span> = <span class="ruby-value str">&quot;= ?&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">sql_attribute</span> = <span class="ruby-node">&quot;#{record.class.quoted_table_name}.#{connection.quote_column_name(attr_name)}&quot;</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">configuration</span>[<span class="ruby-identifier">:case_sensitive</span>] <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">is_text_column</span>)
+            <span class="ruby-identifier">condition_sql</span> = <span class="ruby-node">&quot;#{sql_attribute} #{comparison_operator}&quot;</span>
+            <span class="ruby-identifier">condition_params</span> = [<span class="ruby-identifier">value</span>]
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">condition_sql</span> = <span class="ruby-node">&quot;LOWER(#{sql_attribute}) #{comparison_operator}&quot;</span>
+            <span class="ruby-identifier">condition_params</span> = [<span class="ruby-identifier">value</span>.<span class="ruby-identifier">mb_chars</span>.<span class="ruby-identifier">downcase</span>]
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">scope</span> = <span class="ruby-identifier">configuration</span>[<span class="ruby-identifier">:scope</span>]
+            <span class="ruby-constant">Array</span>(<span class="ruby-identifier">scope</span>).<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">scope_item</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">scope_value</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">scope_item</span>)
+              <span class="ruby-identifier">condition_sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; AND #{record.class.quoted_table_name}.#{scope_item} #{attribute_condition(scope_value)}&quot;</span>
+              <span class="ruby-identifier">condition_params</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">scope_value</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">new_record?</span>
+            <span class="ruby-identifier">condition_sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; AND #{record.class.quoted_table_name}.#{record.class.primary_key} &lt;&gt; ?&quot;</span>
+            <span class="ruby-identifier">condition_params</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:id</span>)
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">finder_class</span>.<span class="ruby-identifier">with_exclusive_scope</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">finder_class</span>.<span class="ruby-identifier">exists?</span>([<span class="ruby-identifier">condition_sql</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">condition_params</span>])
+              <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">attr_name</span>, <span class="ruby-identifier">:taken</span>, <span class="ruby-identifier">:default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">configuration</span>[<span class="ruby-identifier">:message</span>], <span class="ruby-identifier">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">value</span>)
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

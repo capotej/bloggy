@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Writes the PID file if we're not on Windows.
+full_name: Mongrel::Configurator#write_pid_file
+params: ()
+name: write_pid_file
+is_singleton: false
+aliases: []
+

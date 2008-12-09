@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>postgresql_version (ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/postgresql_adapter.rb, line 915</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">postgresql_version</span>
+          <span class="ruby-ivar">@postgresql_version</span> <span class="ruby-operator">||=</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:server_version</span>)
+              <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">server_version</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-comment cmt"># Mimic PGconn.server_version behavior</span>
+              <span class="ruby-keyword kw">begin</span>
+                <span class="ruby-identifier">query</span>(<span class="ruby-value str">'SELECT version()'</span>)[<span class="ruby-value">0</span>][<span class="ruby-value">0</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/PostgreSQL (\d+)\.(\d+)\.(\d+)/</span>
+                (<span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">*</span> <span class="ruby-value">10000</span>) <span class="ruby-operator">+</span> (<span class="ruby-identifier">$2</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">*</span> <span class="ruby-value">100</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">$3</span>.<span class="ruby-identifier">to_i</span>
+              <span class="ruby-keyword kw">rescue</span>
+                <span class="ruby-value">0</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

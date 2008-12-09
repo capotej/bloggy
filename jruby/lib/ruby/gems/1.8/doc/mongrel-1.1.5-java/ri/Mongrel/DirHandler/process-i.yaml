@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Process the request to either serve a file or a directory listing if allowed
+    (based on the listing_allowed parameter to the constructor).
+full_name: Mongrel::DirHandler#process
+params: (request, response)
+name: process
+is_singleton: false
+aliases: []
+

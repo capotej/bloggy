@@ -1,0 +1,1092 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActiveRecord::Validations::ClassMethods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActiveRecord::Validations::ClassMethods</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/active_record/validations_rb.html">
+                lib/active_record/validations.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Active Record classes can implement validations in several ways. The
+highest level, easiest to read, and recommended approach is to use the
+declarative <tt>validates_..._of</tt> class methods (and <tt><a
+href="ClassMethods.html#M000865">validates_associated</a></tt>) documented
+below. These are sufficient for most model validations.
+</p>
+<p>
+Slightly lower level is <tt><a
+href="ClassMethods.html#M000855">validates_each</a></tt>. It provides some
+of the same options as the purely declarative validation methods, but like
+all the lower-level approaches it requires manually adding to the errors
+collection when the record is invalid.
+</p>
+<p>
+At a yet lower level, a model can use the class methods <tt>validate</tt>,
+<tt>validate_on_create</tt> and <tt>validate_on_update</tt> to add
+validation methods or blocks. These are ActiveSupport::Callbacks and follow
+the same rules of inheritance and chaining.
+</p>
+<p>
+The lowest level style is to define the instance methods <tt>validate</tt>,
+<tt>validate_on_create</tt> and <tt>validate_on_update</tt> as documented
+in <a href="../Validations.html">ActiveRecord::Validations</a>.
+</p>
+<h2><tt>validate</tt>, <tt>validate_on_create</tt> and <tt>validate_on_update</tt> Class Methods</h2>
+<p>
+Calls to these methods add a validation method or block to the class.
+Again, this approach is recommended only when the higher-level methods
+documented below (<tt>validates_..._of</tt> and <tt><a
+href="ClassMethods.html#M000865">validates_associated</a></tt>) are
+insufficient to handle the required validation.
+</p>
+<p>
+This can be done with a symbol pointing to a method:
+</p>
+<pre>
+  class Comment &lt; ActiveRecord::Base
+    validate :must_be_friends
+
+    def must_be_friends
+      errors.add_to_base(&quot;Must be friends to leave a comment&quot;) unless commenter.friend_of?(commentee)
+    end
+  end
+</pre>
+<p>
+Or with a block which is passed the current record to be validated:
+</p>
+<pre>
+  class Comment &lt; ActiveRecord::Base
+    validate do |comment|
+      comment.must_be_friends
+    end
+
+    def must_be_friends
+      errors.add_to_base(&quot;Must be friends to leave a comment&quot;) unless commenter.friend_of?(commentee)
+    end
+  end
+</pre>
+<p>
+This usage applies to <tt>validate_on_create</tt> and
+<tt>validate_on_update</tt> as well.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000867">create!</a>&nbsp;&nbsp;
+      <a href="#M000857">validates_acceptance_of</a>&nbsp;&nbsp;
+      <a href="#M000865">validates_associated</a>&nbsp;&nbsp;
+      <a href="#M000856">validates_confirmation_of</a>&nbsp;&nbsp;
+      <a href="#M000855">validates_each</a>&nbsp;&nbsp;
+      <a href="#M000864">validates_exclusion_of</a>&nbsp;&nbsp;
+      <a href="#M000862">validates_format_of</a>&nbsp;&nbsp;
+      <a href="#M000863">validates_inclusion_of</a>&nbsp;&nbsp;
+      <a href="#M000859">validates_length_of</a>&nbsp;&nbsp;
+      <a href="#M000866">validates_numericality_of</a>&nbsp;&nbsp;
+      <a href="#M000858">validates_presence_of</a>&nbsp;&nbsp;
+      <a href="#M000860">validates_size_of</a>&nbsp;&nbsp;
+      <a href="#M000861">validates_uniqueness_of</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEFAULT_VALIDATION_OPTIONS</td>
+          <td>=</td>
+          <td class="context-item-value">{         :on =&gt; :save,         :allow_nil =&gt; false,         :allow_blank =&gt; false,         :message =&gt; nil</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ALL_RANGE_OPTIONS</td>
+          <td>=</td>
+          <td class="context-item-value">[ :is, :within, :in, :minimum, :maximum ].freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ALL_NUMERICALITY_CHECKS</td>
+          <td>=</td>
+          <td class="context-item-value">{ :greater_than =&gt; '&gt;', :greater_than_or_equal_to =&gt; '&gt;=',                                   :equal_to =&gt; '==', :less_than =&gt; '&lt;', :less_than_or_equal_to =&gt; '&lt;=',                                   :odd =&gt; 'odd?', :even =&gt; 'even?' }.freeze</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000867" class="method-detail">
+        <a name="M000867"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000867.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000867.html');return false;">
+          <span class="method-name">create!</span><span class="method-args">(attributes = nil) {|object| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates an object just like <a href="../Base.html#M001169">Base.create</a>
+but calls save! instead of save so an exception is raised if the record is
+invalid.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000857" class="method-detail">
+        <a name="M000857"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000857.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000857.html');return false;">
+          <span class="method-name">validates_acceptance_of</span><span class="method-args">(*attr_names)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Encapsulates the pattern of wanting to validate the acceptance of a terms
+of service check box (or similar agreement). Example:
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_acceptance_of :terms_of_service
+    validates_acceptance_of :eula, :message =&gt; &quot;must be abided&quot;
+  end
+</pre>
+<p>
+If the database column does not exist, the <tt>terms_of_service</tt>
+attribute is entirely virtual. This check is performed only if
+<tt>terms_of_service</tt> is not <tt>nil</tt> and by default on save.
+</p>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:message</tt> - A custom error message (default is: &quot;must be
+accepted&quot;).
+
+</li>
+<li><tt>:on</tt> - Specifies when this validation is active (default is
+<tt>:save</tt>, other options <tt>:create</tt>, <tt>:update</tt>).
+
+</li>
+<li><tt>:allow_nil</tt> - Skip validation if attribute is <tt>nil</tt> (default
+is true).
+
+</li>
+<li><tt>:accept</tt> - Specifies value that is considered accepted. The default
+value is a string &quot;1&quot;, which makes it easy to relate to an HTML
+checkbox. This should be set to <tt>true</tt> if you are validating a
+database column, since the attribute is typecast from &quot;1&quot; to
+<tt>true</tt> before validation.
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000865" class="method-detail">
+        <a name="M000865"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000865.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000865.html');return false;">
+          <span class="method-name">validates_associated</span><span class="method-args">(*attr_names)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Validates whether the associated object or objects are all valid
+themselves. Works with any kind of association.
+</p>
+<pre>
+  class Book &lt; ActiveRecord::Base
+    has_many :pages
+    belongs_to :library
+
+    validates_associated :pages, :library
+  end
+</pre>
+<p>
+Warning: If, after the above definition, you then wrote:
+</p>
+<pre>
+  class Page &lt; ActiveRecord::Base
+    belongs_to :book
+
+    validates_associated :book
+  end
+</pre>
+<p>
+this would specify a circular dependency and cause infinite recursion.
+</p>
+<p>
+NOTE: This validation will not fail if the association hasn&#8216;t been
+assigned. If you want to ensure that the association is both present and
+guaranteed to be valid, you also need to use <tt><a
+href="ClassMethods.html#M000858">validates_presence_of</a></tt>.
+</p>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:message</tt> - A custom error message (default is: &quot;is
+invalid&quot;)
+
+</li>
+<li><tt>:on</tt> - Specifies when this validation is active (default is
+<tt>:save</tt>, other options <tt>:create</tt>, <tt>:update</tt>).
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000856" class="method-detail">
+        <a name="M000856"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000856.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000856.html');return false;">
+          <span class="method-name">validates_confirmation_of</span><span class="method-args">(*attr_names)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Encapsulates the pattern of wanting to validate a password or email address
+field with a confirmation. Example:
+</p>
+<pre>
+  Model:
+    class Person &lt; ActiveRecord::Base
+      validates_confirmation_of :user_name, :password
+      validates_confirmation_of :email_address, :message =&gt; &quot;should match confirmation&quot;
+    end
+
+  View:
+    &lt;%= password_field &quot;person&quot;, &quot;password&quot; %&gt;
+    &lt;%= password_field &quot;person&quot;, &quot;password_confirmation&quot; %&gt;
+</pre>
+<p>
+The added <tt>password_confirmation</tt> attribute is virtual; it exists
+only as an in-memory attribute for validating the password. To achieve
+this, the validation adds accessors to the model for the confirmation
+attribute. NOTE: This check is performed only if
+<tt>password_confirmation</tt> is not <tt>nil</tt>, and by default only on
+save. To require confirmation, make sure to add a presence check for the
+confirmation attribute:
+</p>
+<pre>
+  validates_presence_of :password_confirmation, :if =&gt; :password_changed?
+</pre>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:message</tt> - A custom error message (default is: &quot;doesn&#8216;t
+match confirmation&quot;).
+
+</li>
+<li><tt>:on</tt> - Specifies when this validation is active (default is
+<tt>:save</tt>, other options <tt>:create</tt>, <tt>:update</tt>).
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000855" class="method-detail">
+        <a name="M000855"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000855.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000855.html');return false;">
+          <span class="method-name">validates_each</span><span class="method-args">(*attrs) {|record, attr, value| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Validates each attribute against a block.
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_each :first_name, :last_name do |record, attr, value|
+      record.errors.add attr, 'starts with z.' if value[0] == ?z
+    end
+  end
+</pre>
+<p>
+Options:
+</p>
+<ul>
+<li><tt>:on</tt> - Specifies when this validation is active (default is
+<tt>:save</tt>, other options <tt>:create</tt>, <tt>:update</tt>).
+
+</li>
+<li><tt>:allow_nil</tt> - Skip validation if attribute is <tt>nil</tt>.
+
+</li>
+<li><tt>:allow_blank</tt> - Skip validation if attribute is blank.
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000864" class="method-detail">
+        <a name="M000864"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000864.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000864.html');return false;">
+          <span class="method-name">validates_exclusion_of</span><span class="method-args">(*attr_names)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Validates that the value of the specified attribute is not in a particular
+enumerable object.
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_exclusion_of :username, :in =&gt; %w( admin superuser ), :message =&gt; &quot;You don't belong here&quot;
+    validates_exclusion_of :age, :in =&gt; 30..60, :message =&gt; &quot;This site is only for under 30 and over 60&quot;
+    validates_exclusion_of :format, :in =&gt; %w( mov avi ), :message =&gt; &quot;extension {{value}} is not allowed&quot;
+  end
+</pre>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:in</tt> - An enumerable object of items that the value shouldn&#8216;t
+be part of.
+
+</li>
+<li><tt>:message</tt> - Specifies a custom error message (default is: &quot;is
+reserved&quot;).
+
+</li>
+<li><tt>:allow_nil</tt> - If set to true, skips this validation if the
+attribute is <tt>nil</tt> (default is <tt>false</tt>).
+
+</li>
+<li><tt>:allow_blank</tt> - If set to true, skips this validation if the
+attribute is blank (default is <tt>false</tt>).
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000862" class="method-detail">
+        <a name="M000862"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000862.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000862.html');return false;">
+          <span class="method-name">validates_format_of</span><span class="method-args">(*attr_names)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Validates whether the value of the specified attribute is of the correct
+form by matching it against the regular expression provided.
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_format_of :email, :with =&gt; /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on =&gt; :create
+  end
+</pre>
+<p>
+Note: use <tt>\A</tt> and <tt>\Z</tt> to match the start and end of the
+string, <tt>^</tt> and <tt>$</tt> match the start/end of a line.
+</p>
+<p>
+A regular expression must be provided or else an exception will be raised.
+</p>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:message</tt> - A custom error message (default is: &quot;is
+invalid&quot;).
+
+</li>
+<li><tt>:allow_nil</tt> - If set to true, skips this validation if the
+attribute is <tt>nil</tt> (default is <tt>false</tt>).
+
+</li>
+<li><tt>:allow_blank</tt> - If set to true, skips this validation if the
+attribute is blank (default is <tt>false</tt>).
+
+</li>
+<li><tt>:with</tt> - The regular expression used to validate the format with
+(note: must be supplied!).
+
+</li>
+<li><tt>:on</tt> - Specifies when this validation is active (default is
+<tt>:save</tt>, other options <tt>:create</tt>, <tt>:update</tt>).
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000863" class="method-detail">
+        <a name="M000863"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000863.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000863.html');return false;">
+          <span class="method-name">validates_inclusion_of</span><span class="method-args">(*attr_names)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Validates whether the value of the specified attribute is available in a
+particular enumerable object.
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_inclusion_of :gender, :in =&gt; %w( m f ), :message =&gt; &quot;woah! what are you then!??!!&quot;
+    validates_inclusion_of :age, :in =&gt; 0..99
+    validates_inclusion_of :format, :in =&gt; %w( jpg gif png ), :message =&gt; &quot;extension {{value}} is not included in the list&quot;
+  end
+</pre>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:in</tt> - An enumerable object of available items.
+
+</li>
+<li><tt>:message</tt> - Specifies a custom error message (default is: &quot;is
+not included in the list&quot;).
+
+</li>
+<li><tt>:allow_nil</tt> - If set to true, skips this validation if the
+attribute is <tt>nil</tt> (default is <tt>false</tt>).
+
+</li>
+<li><tt>:allow_blank</tt> - If set to true, skips this validation if the
+attribute is blank (default is <tt>false</tt>).
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000859" class="method-detail">
+        <a name="M000859"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000859.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000859.html');return false;">
+          <span class="method-name">validates_length_of</span><span class="method-args">(*attrs)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Validates that the specified attribute matches the length restrictions
+supplied. Only one option can be used at a time:
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_length_of :first_name, :maximum=&gt;30
+    validates_length_of :last_name, :maximum=&gt;30, :message=&gt;&quot;less than {{count}} if you don't mind&quot;
+    validates_length_of :fax, :in =&gt; 7..32, :allow_nil =&gt; true
+    validates_length_of :phone, :in =&gt; 7..32, :allow_blank =&gt; true
+    validates_length_of :user_name, :within =&gt; 6..20, :too_long =&gt; &quot;pick a shorter name&quot;, :too_short =&gt; &quot;pick a longer name&quot;
+    validates_length_of :fav_bra_size, :minimum =&gt; 1, :too_short =&gt; &quot;please enter at least {{count}} character&quot;
+    validates_length_of :smurf_leader, :is =&gt; 4, :message =&gt; &quot;papa is spelled with {{count}} characters... don't play me.&quot;
+    validates_length_of :essay, :minimum =&gt; 100, :too_short =&gt; &quot;Your essay must be at least {{count}} words.&quot;), :tokenizer =&gt; lambda {|str| str.scan(/\w+/) }
+  end
+</pre>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:minimum</tt> - The minimum size of the attribute.
+
+</li>
+<li><tt>:maximum</tt> - The maximum size of the attribute.
+
+</li>
+<li><tt>:is</tt> - The exact size of the attribute.
+
+</li>
+<li><tt>:within</tt> - A range specifying the minimum and maximum size of the
+attribute.
+
+</li>
+<li><tt>:in</tt> - A synonym(or alias) for <tt>:within</tt>.
+
+</li>
+<li><tt>:allow_nil</tt> - Attribute may be <tt>nil</tt>; skip validation.
+
+</li>
+<li><tt>:allow_blank</tt> - Attribute may be blank; skip validation.
+
+</li>
+<li><tt>:too_long</tt> - The error message if the attribute goes over the
+maximum (default is: &quot;is too long (maximum is {{count}}
+characters)&quot;).
+
+</li>
+<li><tt>:too_short</tt> - The error message if the attribute goes under the
+minimum (default is: &quot;is too short (min is {{count}}
+characters)&quot;).
+
+</li>
+<li><tt>:wrong_length</tt> - The error message if using the <tt>:is</tt> method
+and the attribute is the wrong size (default is: &quot;is the wrong length
+(should be {{count}} characters)&quot;).
+
+</li>
+<li><tt>:message</tt> - The error message to use for a <tt>:minimum</tt>,
+<tt>:maximum</tt>, or <tt>:is</tt> violation. An alias of the appropriate
+<tt>too_long</tt>/<tt>too_short</tt>/<tt>wrong_length</tt> message.
+
+</li>
+<li><tt>:on</tt> - Specifies when this validation is active (default is
+<tt>:save</tt>, other options <tt>:create</tt>, <tt>:update</tt>).
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+<li><tt>:tokenizer</tt> - Specifies how to split up the attribute string. (e.g.
+<tt>:tokenizer =&gt; lambda {|str| str.scan(/\w+/)}</tt> to count words as
+in above example.) Defaults to <tt>lambda{ |value| value.split(//) }</tt>
+which counts individual characters.
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000866" class="method-detail">
+        <a name="M000866"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000866.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000866.html');return false;">
+          <span class="method-name">validates_numericality_of</span><span class="method-args">(*attr_names)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Validates whether the value of the specified attribute is numeric by trying
+to convert it to a float with Kernel.Float (if <tt>only_integer</tt> is
+false) or applying it to the regular expression <tt>/\A[+\-]?\d+\Z/</tt>
+(if <tt>only_integer</tt> is set to true).
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_numericality_of :value, :on =&gt; :create
+  end
+</pre>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:message</tt> - A custom error message (default is: &quot;is not a
+number&quot;).
+
+</li>
+<li><tt>:on</tt> - Specifies when this validation is active (default is
+<tt>:save</tt>, other options <tt>:create</tt>, <tt>:update</tt>).
+
+</li>
+<li><tt>:only_integer</tt> - Specifies whether the value has to be an integer,
+e.g. an integral value (default is <tt>false</tt>).
+
+</li>
+<li><tt>:allow_nil</tt> - Skip validation if attribute is <tt>nil</tt> (default
+is <tt>false</tt>). Notice that for fixnum and float columns empty strings
+are converted to <tt>nil</tt>.
+
+</li>
+<li><tt>:greater_than</tt> - Specifies the value must be greater than the
+supplied value.
+
+</li>
+<li><tt>:greater_than_or_equal_to</tt> - Specifies the value must be greater
+than or equal the supplied value.
+
+</li>
+<li><tt>:equal_to</tt> - Specifies the value must be equal to the supplied
+value.
+
+</li>
+<li><tt>:less_than</tt> - Specifies the value must be less than the supplied
+value.
+
+</li>
+<li><tt>:less_than_or_equal_to</tt> - Specifies the value must be less than or
+equal the supplied value.
+
+</li>
+<li><tt>:odd</tt> - Specifies the value must be an odd number.
+
+</li>
+<li><tt>:even</tt> - Specifies the value must be an even number.
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000858" class="method-detail">
+        <a name="M000858"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000858.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000858.html');return false;">
+          <span class="method-name">validates_presence_of</span><span class="method-args">(*attr_names)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Validates that the specified attributes are not blank (as defined by
+Object#blank?). Happens by default on save. Example:
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_presence_of :first_name
+  end
+</pre>
+<p>
+The first_name attribute must be in the object and it cannot be blank.
+</p>
+<p>
+If you want to validate the presence of a boolean field (where the real
+values are true and false), you will want to use <a
+href="ClassMethods.html#M000863">validates_inclusion_of</a> :field_name,
+:in =&gt; [true, false] This is due to the way Object#blank? handles
+boolean values. false.blank? # =&gt; true
+</p>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>message</tt> - A custom error message (default is: &quot;can&#8216;t be
+blank&quot;).
+
+</li>
+<li><tt>on</tt> - Specifies when this validation is active (default is
+<tt>:save</tt>, other options <tt>:create</tt>, <tt>:update</tt>).
+
+</li>
+<li><tt>if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. :if =&gt; :allow_validation, or :if =&gt;
+Proc.new { |user| user.signup_step &gt; 2 }). The method, proc or string
+should return or evaluate to a true or false value.
+
+</li>
+<li><tt>unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. :unless =&gt; :skip_validation, or
+:unless =&gt; Proc.new { |user| user.signup_step &lt;= 2 }). The method,
+proc or string should return or evaluate to a true or false value.
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000860" class="method-detail">
+        <a name="M000860"></a>
+
+        <div class="method-heading">
+          <span class="method-name">validates_size_of</span><span class="method-args">(*attrs)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="ClassMethods.html#M000859">validates_length_of</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000861" class="method-detail">
+        <a name="M000861"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000861.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000861.html');return false;">
+          <span class="method-name">validates_uniqueness_of</span><span class="method-args">(*attr_names)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Validates whether the value of the specified attributes are unique across
+the system. Useful for making sure that only one user can be named
+&quot;davidhh&quot;.
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_uniqueness_of :user_name, :scope =&gt; :account_id
+  end
+</pre>
+<p>
+It can also validate whether the value of the specified attributes are
+unique based on multiple scope parameters. For example, making sure that a
+teacher can only be on the schedule once per semester for a particular
+class.
+</p>
+<pre>
+  class TeacherSchedule &lt; ActiveRecord::Base
+    validates_uniqueness_of :teacher_id, :scope =&gt; [:semester_id, :class_id]
+  end
+</pre>
+<p>
+When the record is created, a check is performed to make sure that no
+record exists in the database with the given value for the specified
+attribute (that maps to a column). When the record is updated, the same
+check is made but disregarding the record itself.
+</p>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:message</tt> - Specifies a custom error message (default is: &quot;has
+already been taken&quot;).
+
+</li>
+<li><tt>:scope</tt> - One or more columns by which to limit the scope of the
+uniqueness constraint.
+
+</li>
+<li><tt>:case_sensitive</tt> - Looks for an exact match. Ignored by non-text
+columns (<tt>true</tt> by default).
+
+</li>
+<li><tt>:allow_nil</tt> - If set to true, skips this validation if the
+attribute is <tt>nil</tt> (default is <tt>false</tt>).
+
+</li>
+<li><tt>:allow_blank</tt> - If set to true, skips this validation if the
+attribute is blank (default is <tt>false</tt>).
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+<h3>Concurrency and integrity</h3>
+<p>
+Using this validation method in conjunction with <a
+href="../Base.html#M001228">ActiveRecord::Base#save</a> does not guarantee
+the absence of duplicate record insertions, because uniqueness checks on
+the application level are inherently prone to race conditions. For example,
+suppose that two users try to post a Comment at the same time, and a
+Comment&#8216;s title must be unique. At the database-level, the actions
+performed by these users could be interleaved in the following manner:
+</p>
+<pre>
+              User 1                 |               User 2
+ ------------------------------------+--------------------------------------
+ # User 1 checks whether there's     |
+ # already a comment with the title  |
+ # 'My Post'. This is not the case.  |
+ SELECT * FROM comments              |
+ WHERE title = 'My Post'             |
+                                     |
+                                     | # User 2 does the same thing and also
+                                     | # infers that his title is unique.
+                                     | SELECT * FROM comments
+                                     | WHERE title = 'My Post'
+                                     |
+ # User 1 inserts his comment.       |
+ INSERT INTO comments                |
+ (title, content) VALUES             |
+ ('My Post', 'hi!')                  |
+                                     |
+                                     | # User 2 does the same thing.
+                                     | INSERT INTO comments
+                                     | (title, content) VALUES
+                                     | ('My Post', 'hello!')
+                                     |
+                                     | # ^^^^^^
+                                     | # Boom! We now have a duplicate
+                                     | # title!
+</pre>
+<p>
+This could even happen if you use transactions with the
+&#8216;serializable&#8217; isolation level. There are several ways to get
+around this problem:
+</p>
+<ul>
+<li>By locking the database table before validating, and unlocking it after
+saving. However, table locking is very expensive, and thus not recommended.
+
+</li>
+<li>By locking a lock file before validating, and unlocking it after saving.
+This does not work if you&#8216;ve scaled your Rails application across
+multiple web servers (because they cannot share lock files, or cannot do
+that efficiently), and thus not recommended.
+
+</li>
+<li>Creating a unique index on the field, by using
+ActiveRecord::ConnectionAdapters::SchemaStatements#add_index. In the rare
+case that a race condition occurs, the database will guarantee the
+field&#8216;s uniqueness.
+
+<p>
+When the database catches such a duplicate insertion, <a
+href="../Base.html#M001228">ActiveRecord::Base#save</a> will raise an <a
+href="../StatementInvalid.html">ActiveRecord::StatementInvalid</a>
+exception. You can either choose to let this error propagate (which will
+result in the default Rails exception page being shown), or you can catch
+it and restart the transaction (e.g. by telling the user that the title
+already exists, and asking him to re-enter the title). This technique is
+also known as optimistic concurrency control: <a
+href="http://en.wikipedia.org/wiki/Optimistic_concurrency_control">en.wikipedia.org/wiki/Optimistic_concurrency_control</a>
+</p>
+<p>
+Active Record currently provides no way to distinguish unique index
+constraint errors from other types of database errors, so you will have to
+parse the (database-specific) exception message to detect such a case.
+</p>
+</li>
+</ul>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

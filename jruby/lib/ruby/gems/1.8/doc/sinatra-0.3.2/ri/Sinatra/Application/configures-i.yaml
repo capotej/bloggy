@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: self if envs.empty? || envs.include?(options.env)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Yield to the block for configuration if the current environment matches any
+    included in the <tt>envs</tt> list. Always yield to the block when no environment
+    is specified.
+- !ruby/struct:SM::Flow::P 
+  body: 'NOTE: configuration blocks are not executed during reloads.'
+full_name: Sinatra::Application#configures
+params: (*envs, &b) {|self if envs.empty? || envs.include?(options.env)| ...}
+name: configures
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: configure

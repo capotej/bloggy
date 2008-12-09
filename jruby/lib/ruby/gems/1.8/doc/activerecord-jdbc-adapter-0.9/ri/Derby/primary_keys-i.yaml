@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::Derby#primary_keys"
+params: (table_name)
+name: primary_keys
+is_singleton: false
+aliases: []
+

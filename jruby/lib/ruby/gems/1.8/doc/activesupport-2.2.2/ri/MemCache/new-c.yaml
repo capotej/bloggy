@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Accepts a list of <tt>servers</tt> and a list of <tt>opts</tt>. <tt>servers</tt>
+    may be omitted. See +servers=+ for acceptable server list arguments.
+- !ruby/struct:SM::Flow::P 
+  body: 'Valid options for <tt>opts</tt> are:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  [:namespace]   Prepends this value to all keys added or retrieved.\n  [:readonly] \
+    \   Raises an exception on cache writes when true.\n  [:multithread] Wraps cache \
+    access in a Mutex for thread safety.\n"
+- !ruby/struct:SM::Flow::P 
+  body: Other options are ignored.
+full_name: MemCache::new
+params: (*args)
+name: new
+is_singleton: true
+aliases: []
+

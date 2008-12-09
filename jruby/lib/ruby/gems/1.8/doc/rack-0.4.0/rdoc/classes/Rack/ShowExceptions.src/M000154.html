@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>pretty (Rack::ShowExceptions)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/showexceptions.rb, line 28</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pretty</span>(<span class="ruby-identifier">env</span>, <span class="ruby-identifier">exception</span>)
+      <span class="ruby-identifier">req</span> = <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">env</span>)
+      <span class="ruby-identifier">path</span> = (<span class="ruby-identifier">req</span>.<span class="ruby-identifier">script_name</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">req</span>.<span class="ruby-identifier">path_info</span>).<span class="ruby-identifier">squeeze</span>(<span class="ruby-value str">&quot;/&quot;</span>)
+
+      <span class="ruby-identifier">frames</span> = <span class="ruby-identifier">exception</span>.<span class="ruby-identifier">backtrace</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">frame</span> = <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/(.*?):(\d+)(:in `(.*)')?/</span>
+          <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">filename</span> = <span class="ruby-identifier">$1</span>
+          <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">lineno</span> = <span class="ruby-identifier">$2</span>.<span class="ruby-identifier">to_i</span>
+          <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">function</span> = <span class="ruby-identifier">$4</span>
+
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-identifier">lineno</span> = <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">lineno</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>
+            <span class="ruby-identifier">lines</span> = <span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">readlines</span>(<span class="ruby-identifier">frame</span>.<span class="ruby-identifier">filename</span>)
+            <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">pre_context_lineno</span> = [<span class="ruby-identifier">lineno</span><span class="ruby-operator">-</span><span class="ruby-constant">CONTEXT</span>, <span class="ruby-value">0</span>].<span class="ruby-identifier">max</span>
+            <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">pre_context</span> = <span class="ruby-identifier">lines</span>[<span class="ruby-identifier">frame</span>.<span class="ruby-identifier">pre_context_lineno</span><span class="ruby-operator">...</span><span class="ruby-identifier">lineno</span>]
+            <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">context_line</span> = <span class="ruby-identifier">lines</span>[<span class="ruby-identifier">lineno</span>].<span class="ruby-identifier">chomp</span>
+            <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">post_context_lineno</span> = [<span class="ruby-identifier">lineno</span><span class="ruby-operator">+</span><span class="ruby-constant">CONTEXT</span>, <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">size</span>].<span class="ruby-identifier">min</span>
+            <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">post_context</span> = <span class="ruby-identifier">lines</span>[<span class="ruby-identifier">lineno</span><span class="ruby-operator">+</span><span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">frame</span>.<span class="ruby-identifier">post_context_lineno</span>]
+          <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">frame</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">end</span>
+      }.<span class="ruby-identifier">compact</span>
+
+      <span class="ruby-identifier">env</span>[<span class="ruby-value str">&quot;rack.errors&quot;</span>].<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{exception.class}: #{exception.message}&quot;</span>
+      <span class="ruby-identifier">env</span>[<span class="ruby-value str">&quot;rack.errors&quot;</span>].<span class="ruby-identifier">puts</span> <span class="ruby-identifier">exception</span>.<span class="ruby-identifier">backtrace</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">l</span><span class="ruby-operator">|</span> <span class="ruby-value str">&quot;\t&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">l</span> }
+      <span class="ruby-identifier">env</span>[<span class="ruby-value str">&quot;rack.errors&quot;</span>].<span class="ruby-identifier">flush</span>
+
+      [<span class="ruby-ivar">@template</span>.<span class="ruby-identifier">result</span>(<span class="ruby-identifier">binding</span>)]
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Does PostgreSQL support standard conforming strings?
+full_name: ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#supports_standard_conforming_strings?
+params: ()
+name: supports_standard_conforming_strings?
+is_singleton: false
+aliases: []
+

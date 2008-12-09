@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: <tt>cache_attributes</tt> allows you to declare which converted attribute
+    values should be cached. Usually caching only pays off for attributes with expensive
+    conversion methods, like time related columns (e.g. <tt>created_at</tt>, <tt>updated_at</tt>).
+full_name: ActiveRecord::AttributeMethods::ClassMethods#cache_attributes
+params: (*attribute_names)
+name: cache_attributes
+is_singleton: false
+aliases: []
+

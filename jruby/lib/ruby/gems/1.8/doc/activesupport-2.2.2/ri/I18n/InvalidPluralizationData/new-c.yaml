@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: I18n::InvalidPluralizationData::new
+params: (entry, count)
+name: new
+is_singleton: true
+aliases: []
+

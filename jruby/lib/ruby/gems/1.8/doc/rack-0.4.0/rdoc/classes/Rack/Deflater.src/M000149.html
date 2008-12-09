@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>call (Rack::Deflater)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/deflater.rb, line 11</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+    <span class="ruby-identifier">status</span>, <span class="ruby-identifier">headers</span>, <span class="ruby-identifier">body</span> = <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+
+    <span class="ruby-identifier">request</span> = <span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">env</span>)
+
+    <span class="ruby-identifier">encoding</span> = <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">select_best_encoding</span>(<span class="ruby-node">%w(gzip deflate identity)</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">accept_encoding</span>)
+
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">encoding</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;gzip&quot;</span>
+      <span class="ruby-identifier">mtime</span> = <span class="ruby-identifier">headers</span>[<span class="ruby-value str">&quot;Last-Modified&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+      [<span class="ruby-identifier">status</span>, <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value str">&quot;Content-Encoding&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;gzip&quot;</span>), <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">gzip</span>(<span class="ruby-identifier">body</span>, <span class="ruby-identifier">mtime</span>)]
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;deflate&quot;</span>
+      [<span class="ruby-identifier">status</span>, <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value str">&quot;Content-Encoding&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;deflate&quot;</span>), <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">deflate</span>(<span class="ruby-identifier">body</span>)]
+    <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;identity&quot;</span>
+      [<span class="ruby-identifier">status</span>, <span class="ruby-identifier">headers</span>, <span class="ruby-identifier">body</span>]
+    <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-identifier">message</span> = <span class="ruby-node">&quot;An acceptable encoding for the requested resource #{request.fullpath} could not be found.&quot;</span>
+      [<span class="ruby-value">406</span>, {<span class="ruby-value str">&quot;Content-Type&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;text/plain&quot;</span>}, <span class="ruby-identifier">message</span>]
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

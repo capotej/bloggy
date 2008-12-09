@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Acts the same as <tt>strftime</tt>, but returns a localized version of the
+    formatted date string. Takes a key from the date/time formats translations as
+    a format argument (<em>e.g.</em>, <tt>:short</tt> in <tt>:'date.formats'</tt>).
+full_name: I18n::Backend::Simple#localize
+params: (locale, object, format = :default)
+name: localize
+is_singleton: false
+aliases: []
+

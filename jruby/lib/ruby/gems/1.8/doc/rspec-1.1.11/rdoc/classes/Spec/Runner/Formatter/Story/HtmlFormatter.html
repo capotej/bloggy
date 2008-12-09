@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Spec::Runner::Formatter::Story::HtmlFormatter</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Spec::Runner::Formatter::Story::HtmlFormatter</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../../files/lib/spec/runner/formatter/story/html_formatter_rb.html">
+                lib/spec/runner/formatter/story/html_formatter.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                BaseTextFormatter
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000273">collected_steps</a>&nbsp;&nbsp;
+      <a href="#M000279">found_scenario</a>&nbsp;&nbsp;
+      <a href="#M000271">new</a>&nbsp;&nbsp;
+      <a href="#M000287">print_step</a>&nbsp;&nbsp;
+      <a href="#M000274">run_ended</a>&nbsp;&nbsp;
+      <a href="#M000272">run_started</a>&nbsp;&nbsp;
+      <a href="#M000278">scenario_ended</a>&nbsp;&nbsp;
+      <a href="#M000282">scenario_failed</a>&nbsp;&nbsp;
+      <a href="#M000281">scenario_pending</a>&nbsp;&nbsp;
+      <a href="#M000277">scenario_started</a>&nbsp;&nbsp;
+      <a href="#M000280">scenario_succeeded</a>&nbsp;&nbsp;
+      <a href="#M000286">step_failed</a>&nbsp;&nbsp;
+      <a href="#M000285">step_pending</a>&nbsp;&nbsp;
+      <a href="#M000284">step_succeeded</a>&nbsp;&nbsp;
+      <a href="#M000283">step_upcoming</a>&nbsp;&nbsp;
+      <a href="#M000276">story_ended</a>&nbsp;&nbsp;
+      <a href="#M000275">story_started</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">ERB::Util</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000271" class="method-detail">
+        <a name="M000271"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000271.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000271.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(options, where)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000273" class="method-detail">
+        <a name="M000273"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000273.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000273.html');return false;">
+          <span class="method-name">collected_steps</span><span class="method-args">(steps)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000279" class="method-detail">
+        <a name="M000279"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000279.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000279.html');return false;">
+          <span class="method-name">found_scenario</span><span class="method-args">(type, description)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000287" class="method-detail">
+        <a name="M000287"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000287.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000287.html');return false;">
+          <span class="method-name">print_step</span><span class="method-args">(klass, type, description, *args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000274" class="method-detail">
+        <a name="M000274"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000274.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000274.html');return false;">
+          <span class="method-name">run_ended</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000272" class="method-detail">
+        <a name="M000272"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000272.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000272.html');return false;">
+          <span class="method-name">run_started</span><span class="method-args">(count)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000278" class="method-detail">
+        <a name="M000278"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000278.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000278.html');return false;">
+          <span class="method-name">scenario_ended</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000282" class="method-detail">
+        <a name="M000282"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000282.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000282.html');return false;">
+          <span class="method-name">scenario_failed</span><span class="method-args">(story_title, scenario_name, err)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000281" class="method-detail">
+        <a name="M000281"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000281.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000281.html');return false;">
+          <span class="method-name">scenario_pending</span><span class="method-args">(story_title, scenario_name, reason)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000277" class="method-detail">
+        <a name="M000277"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000277.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000277.html');return false;">
+          <span class="method-name">scenario_started</span><span class="method-args">(story_title, scenario_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000280" class="method-detail">
+        <a name="M000280"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000280.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000280.html');return false;">
+          <span class="method-name">scenario_succeeded</span><span class="method-args">(story_title, scenario_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000286" class="method-detail">
+        <a name="M000286"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000286.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000286.html');return false;">
+          <span class="method-name">step_failed</span><span class="method-args">(type, description, *args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000285" class="method-detail">
+        <a name="M000285"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000285.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000285.html');return false;">
+          <span class="method-name">step_pending</span><span class="method-args">(type, description, *args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000284" class="method-detail">
+        <a name="M000284"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000284.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000284.html');return false;">
+          <span class="method-name">step_succeeded</span><span class="method-args">(type, description, *args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000283" class="method-detail">
+        <a name="M000283"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000283.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000283.html');return false;">
+          <span class="method-name">step_upcoming</span><span class="method-args">(type, description, *args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000276" class="method-detail">
+        <a name="M000276"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000276.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000276.html');return false;">
+          <span class="method-name">story_ended</span><span class="method-args">(title, narrative)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000275" class="method-detail">
+        <a name="M000275"></a>
+
+        <div class="method-heading">
+          <a href="HtmlFormatter.src/M000275.html" target="Code" class="method-signature"
+            onclick="popupCode('HtmlFormatter.src/M000275.html');return false;">
+          <span class="method-name">story_started</span><span class="method-args">(title, narrative)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

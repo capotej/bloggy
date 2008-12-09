@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>require_library_or_gem (Kernel)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/core_ext/kernel/requires.rb, line 4</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">require_library_or_gem</span>(<span class="ruby-identifier">library_name</span>)
+    <span class="ruby-identifier">silence_warnings</span> <span class="ruby-keyword kw">do</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-identifier">require</span> <span class="ruby-identifier">library_name</span>
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">cannot_require</span>
+        <span class="ruby-comment cmt"># 1. Requiring the module is unsuccessful, maybe it's a gem and nobody required rubygems yet. Try.</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-identifier">require</span> <span class="ruby-value str">'rubygems'</span>
+        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">rubygems_not_installed</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-identifier">cannot_require</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-comment cmt"># 2. Rubygems is installed and loaded. Try to load the library again</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-identifier">require</span> <span class="ruby-identifier">library_name</span>
+        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">gem_not_installed</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-identifier">cannot_require</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

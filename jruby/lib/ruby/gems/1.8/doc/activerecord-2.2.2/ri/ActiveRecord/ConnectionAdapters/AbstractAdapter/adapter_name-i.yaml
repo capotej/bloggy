@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the human-readable name of the adapter. Use mixed case - one can always
+    use downcase if needed.
+full_name: ActiveRecord::ConnectionAdapters::AbstractAdapter#adapter_name
+params: ()
+name: adapter_name
+is_singleton: false
+aliases: []
+

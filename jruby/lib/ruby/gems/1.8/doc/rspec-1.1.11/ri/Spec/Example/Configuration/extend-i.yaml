@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+params: (*args)
+is_singleton: false
+block_params: 
+name: extend
+comment: 
+full_name: Spec::Example::Configuration#extend
+visibility: public
+aliases: []
+

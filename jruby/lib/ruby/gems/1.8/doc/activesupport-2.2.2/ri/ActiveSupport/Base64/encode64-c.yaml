@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Encodes a string to its base 64 representation. Each 60 characters of output
+    is separated by a newline character.
+- !ruby/struct:SM::Flow::VERB 
+  body: " ActiveSupport::Base64.encode64(&quot;Original unencoded string&quot;)\n\
+    \ # =&gt; &quot;T3JpZ2luYWwgdW5lbmNvZGVkIHN0cmluZw==\\n&quot;\n"
+full_name: ActiveSupport::Base64::encode64
+params: (data)
+name: encode64
+is_singleton: true
+aliases: []
+

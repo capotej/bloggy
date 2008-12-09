@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Decodes a base 64 encoded string to its original representation.
+- !ruby/struct:SM::Flow::VERB 
+  body: " ActiveSupport::Base64.decode64(&quot;T3JpZ2luYWwgdW5lbmNvZGVkIHN0cmluZw==&quot;)\n\
+    \ # =&gt; &quot;Original unencoded string&quot;\n"
+full_name: ActiveSupport::Base64::decode64
+params: (data)
+name: decode64
+is_singleton: true
+aliases: []
+

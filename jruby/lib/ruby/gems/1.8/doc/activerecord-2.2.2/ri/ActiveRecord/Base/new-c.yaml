@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: self if block_given?
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: New objects can be instantiated as either empty (pass no construction parameter)
+    or pre-set with attributes but not yet saved (pass a hash with key names matching
+    the associated table column names). In both instances, valid attribute keys are
+    determined by the column names of the associated table -- hence you can't have
+    attributes that aren't part of the table columns.
+full_name: ActiveRecord::Base::new
+params: (attributes = nil) {|self if block_given?| ...}
+name: new
+is_singleton: true
+aliases: []
+

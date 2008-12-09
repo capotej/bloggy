@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>active? (ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/postgresql_adapter.rb, line 214</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">active?</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:status</span>)
+          <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-constant">PGconn</span><span class="ruby-operator">::</span><span class="ruby-constant">CONNECTION_OK</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-comment cmt"># We're asking the driver, not ActiveRecord, so use @connection.query instead of #query</span>
+          <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">query</span> <span class="ruby-value str">'SELECT 1'</span>
+          <span class="ruby-keyword kw">true</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-comment cmt"># postgres-pr raises a NoMethodError when querying if no connection is available.</span>
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">PGError</span>, <span class="ruby-constant">NoMethodError</span>
+        <span class="ruby-keyword kw">false</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

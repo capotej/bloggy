@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Fixtures)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/fixtures.rb, line 546</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">connection</span>, <span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">class_name</span>, <span class="ruby-identifier">fixture_path</span>, <span class="ruby-identifier">file_filter</span> = <span class="ruby-constant">DEFAULT_FILTER_RE</span>)
+    <span class="ruby-ivar">@connection</span>, <span class="ruby-ivar">@table_name</span>, <span class="ruby-ivar">@fixture_path</span>, <span class="ruby-ivar">@file_filter</span> = <span class="ruby-identifier">connection</span>, <span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">fixture_path</span>, <span class="ruby-identifier">file_filter</span>
+    <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">table_name</span> <span class="ruby-comment cmt"># preserve fixture base name</span>
+    <span class="ruby-ivar">@class_name</span> = <span class="ruby-identifier">class_name</span> <span class="ruby-operator">||</span>
+                  (<span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">pluralize_table_names</span> <span class="ruby-value">? </span><span class="ruby-ivar">@table_name</span>.<span class="ruby-identifier">singularize</span>.<span class="ruby-identifier">camelize</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@table_name</span>.<span class="ruby-identifier">camelize</span>)
+    <span class="ruby-ivar">@table_name</span> = <span class="ruby-node">&quot;#{ActiveRecord::Base.table_name_prefix}#{@table_name}#{ActiveRecord::Base.table_name_suffix}&quot;</span>
+    <span class="ruby-ivar">@table_name</span> = <span class="ruby-identifier">class_name</span>.<span class="ruby-identifier">table_name</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">class_name</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:table_name</span>)
+    <span class="ruby-ivar">@connection</span> = <span class="ruby-identifier">class_name</span>.<span class="ruby-identifier">connection</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">class_name</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:connection</span>)
+    <span class="ruby-identifier">read_fixture_files</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

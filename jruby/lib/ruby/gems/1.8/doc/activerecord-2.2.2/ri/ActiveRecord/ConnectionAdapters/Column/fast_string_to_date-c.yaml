@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::Column::fast_string_to_date
+params: (string)
+name: fast_string_to_date
+is_singleton: true
+aliases: []
+

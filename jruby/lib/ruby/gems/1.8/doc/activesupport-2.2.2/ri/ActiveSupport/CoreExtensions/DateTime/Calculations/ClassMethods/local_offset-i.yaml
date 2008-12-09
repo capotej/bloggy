@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: DateTimes aren't aware of DST rules, so use a consistent non-DST offset when
+    creating a DateTime with an offset in the local zone
+full_name: ActiveSupport::CoreExtensions::DateTime::Calculations::ClassMethods#local_offset
+params: ()
+name: local_offset
+is_singleton: false
+aliases: []
+

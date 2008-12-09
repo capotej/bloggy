@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Fetches <tt>cache_keys</tt> from <tt>server</tt> using a multi-get.
+full_name: MemCache#cache_get_multi
+params: (server, cache_keys)
+name: cache_get_multi
+is_singleton: false
+aliases: []
+

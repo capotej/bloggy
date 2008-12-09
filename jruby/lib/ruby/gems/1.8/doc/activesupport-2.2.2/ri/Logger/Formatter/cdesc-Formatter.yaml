@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: datetime_format
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: call
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Logger::Formatter
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"%s, [%s#%d] %5s -- %s: %s\n"'
+  name: Format
+superclass: Object
+name: Formatter

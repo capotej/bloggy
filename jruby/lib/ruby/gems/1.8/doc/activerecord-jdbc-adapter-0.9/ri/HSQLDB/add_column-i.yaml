@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::HSQLDB#add_column"
+params: (table_name, column_name, type, options = {})
+name: add_column
+is_singleton: false
+aliases: []
+

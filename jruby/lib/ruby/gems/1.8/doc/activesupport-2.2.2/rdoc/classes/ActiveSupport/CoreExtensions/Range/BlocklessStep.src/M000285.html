@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>step_with_blockless (ActiveSupport::CoreExtensions::Range::BlocklessStep)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/core_ext/range/blockless_step.rb, line 11</span>
+          <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">step_with_blockless</span>(<span class="ruby-identifier">value</span> = <span class="ruby-value">1</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+              <span class="ruby-identifier">step_without_blockless</span>(<span class="ruby-identifier">value</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">returning</span> [] <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">array</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">step_without_blockless</span>(<span class="ruby-identifier">value</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">step</span><span class="ruby-operator">|</span> <span class="ruby-identifier">array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">step</span> }
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

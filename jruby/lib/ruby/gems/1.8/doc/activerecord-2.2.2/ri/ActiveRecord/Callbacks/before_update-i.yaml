@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Is called <em>before</em> <tt>Base.save</tt> on existing objects that have
+    a record.
+full_name: ActiveRecord::Callbacks#before_update
+params: ()
+name: before_update
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Commits the transaction (and turns on auto-committing).
+full_name: ActiveRecord::ConnectionAdapters::DatabaseStatements#commit_db_transaction
+params: ()
+name: commit_db_transaction
+is_singleton: false
+aliases: []
+

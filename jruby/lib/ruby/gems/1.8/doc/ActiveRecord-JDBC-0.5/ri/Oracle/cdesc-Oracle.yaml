@@ -1,0 +1,25 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: _execute
+- !ruby/object:RI::MethodSummary 
+  name: indexes
+- !ruby/object:RI::MethodSummary 
+  name: modify_types
+- !ruby/object:RI::MethodSummary 
+  name: recreate_database
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: adapter_selector
+- !ruby/object:RI::MethodSummary 
+  name: column_selector
+full_name: "::Oracle"
+constants: []
+
+superclass: 
+name: Oracle

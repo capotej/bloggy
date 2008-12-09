@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Rack::URLMap)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/urlmap.rb, line 15</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">map</span>)
+      <span class="ruby-ivar">@mapping</span> = <span class="ruby-identifier">map</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">location</span>, <span class="ruby-identifier">app</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">location</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">%r{\Ahttps?://(.*?)(/.*)}</span>
+          <span class="ruby-identifier">host</span>, <span class="ruby-identifier">location</span> = <span class="ruby-identifier">$1</span>, <span class="ruby-identifier">$2</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">host</span> = <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">location</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value">?/</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;paths need to start with /&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">location</span> = <span class="ruby-identifier">location</span>.<span class="ruby-identifier">chomp</span>(<span class="ruby-value str">'/'</span>)
+
+        [<span class="ruby-identifier">host</span>, <span class="ruby-identifier">location</span>, <span class="ruby-identifier">app</span>]
+      }.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span>(<span class="ruby-identifier">h</span>, <span class="ruby-identifier">l</span>, <span class="ruby-identifier">a</span>)<span class="ruby-operator">|</span> <span class="ruby-operator">-</span><span class="ruby-identifier">l</span>.<span class="ruby-identifier">size</span> }  <span class="ruby-comment cmt"># Longest path first</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

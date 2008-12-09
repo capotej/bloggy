@@ -1,0 +1,31 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: cache_key
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: partial_path
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: plural
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: singular
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: ActiveSupport::ModelName
+constants: []
+
+superclass: String
+name: ModelName

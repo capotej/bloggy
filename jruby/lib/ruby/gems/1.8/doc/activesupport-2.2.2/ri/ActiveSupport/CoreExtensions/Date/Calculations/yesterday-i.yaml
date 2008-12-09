@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Convenience method which returns a new Date/DateTime representing the time
+    1 day ago
+full_name: ActiveSupport::CoreExtensions::Date::Calculations#yesterday
+params: ()
+name: yesterday
+is_singleton: false
+aliases: []
+

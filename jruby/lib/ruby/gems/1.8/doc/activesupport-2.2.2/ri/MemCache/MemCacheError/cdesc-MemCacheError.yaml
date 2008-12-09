@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Base MemCache exception class.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: MemCache::MemCacheError
+constants: []
+
+superclass: RuntimeError
+name: MemCacheError

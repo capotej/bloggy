@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a hash of attributes before typecasting and deserialization.
+full_name: ActiveRecord::Base#attributes_before_type_cast
+params: ()
+name: attributes_before_type_cast
+is_singleton: false
+aliases: []
+

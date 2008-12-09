@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Define a custom error handler for the exception class <tt>type</tt>. The
+    block is invoked when the specified exception type is raised from an error handler
+    and can manipulate the response as needed:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  error MyCustomError do\n    status 500\n    'So what happened was...' + \
+    request.env['sinatra.error'].message\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: The Sinatra::ServerError handler is used by default when an exception occurs
+    and no matching error handler is found.
+full_name: Sinatra::Application#error
+params: (type=ServerError, options = {}, &b)
+name: error
+is_singleton: false
+aliases: []
+

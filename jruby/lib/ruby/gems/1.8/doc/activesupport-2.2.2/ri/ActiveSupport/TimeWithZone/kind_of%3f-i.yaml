@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Alias for #is_a?'
+full_name: ActiveSupport::TimeWithZone#kind_of?
+params: (klass)
+name: kind_of?
+is_singleton: false
+aliases: []
+

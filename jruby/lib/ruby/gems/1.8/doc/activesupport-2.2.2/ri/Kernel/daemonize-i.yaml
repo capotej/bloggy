@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Turns the current script into a daemon process that detaches from the console.
+    It can be shut down with a TERM signal.
+full_name: Kernel#daemonize
+params: ()
+name: daemonize
+is_singleton: false
+aliases: []
+

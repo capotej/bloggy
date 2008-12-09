@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns <tt>true</tt> if contained string contains <em>other</em>. Returns
+    <tt>false</tt> otherwise.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  'Caf\xc3\xa9'.mb_chars.include?('\xc3\xa9') #=&gt; true\n"
+full_name: ActiveSupport::Multibyte::Chars#include?
+params: (other)
+name: include?
+is_singleton: false
+aliases: []
+

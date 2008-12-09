@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Rounds the float with the specified precision.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  x = 1.337\n  x.round    # =&gt; 1\n  x.round(1) # =&gt; 1.3\n  x.round(2) \
+    # =&gt; 1.34\n"
+full_name: ActiveSupport::CoreExtensions::Float::Rounding#round_with_precision
+params: (precision = nil)
+name: round_with_precision
+is_singleton: false
+aliases: []
+

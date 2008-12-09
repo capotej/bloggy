@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::Informix#create_table"
+params: (name, options = {})
+name: create_table
+is_singleton: false
+aliases: []
+

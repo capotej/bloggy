@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveSupport::Callbacks::CallbackChain::build
+params: (kind, *methods, &block)
+name: build
+is_singleton: true
+aliases: []
+

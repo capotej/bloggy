@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>classify (ActiveSupport::Inflector)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/inflector.rb, line 309</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">classify</span>(<span class="ruby-identifier">table_name</span>)
+      <span class="ruby-comment cmt"># strip out any leading schema name</span>
+      <span class="ruby-identifier">camelize</span>(<span class="ruby-identifier">singularize</span>(<span class="ruby-identifier">table_name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/.*\./</span>, <span class="ruby-value str">''</span>)))
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

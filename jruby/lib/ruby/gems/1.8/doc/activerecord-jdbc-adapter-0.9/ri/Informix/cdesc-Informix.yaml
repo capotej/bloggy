@@ -1,0 +1,43 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: add_limit_offset!
+- !ruby/object:RI::MethodSummary 
+  name: create_table
+- !ruby/object:RI::MethodSummary 
+  name: default_sequence_name
+- !ruby/object:RI::MethodSummary 
+  name: drop_table
+- !ruby/object:RI::MethodSummary 
+  name: modify_types
+- !ruby/object:RI::MethodSummary 
+  name: next_sequence_value
+- !ruby/object:RI::MethodSummary 
+  name: prefetch_primary_key?
+- !ruby/object:RI::MethodSummary 
+  name: quote
+- !ruby/object:RI::MethodSummary 
+  name: quote_string
+- !ruby/object:RI::MethodSummary 
+  name: remove_index
+- !ruby/object:RI::MethodSummary 
+  name: rename_table
+- !ruby/object:RI::MethodSummary 
+  name: supports_migrations?
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: adapter_selector
+- !ruby/object:RI::MethodSummary 
+  name: column_selector
+- !ruby/object:RI::MethodSummary 
+  name: extended
+full_name: "::Informix"
+constants: []
+
+superclass: 
+name: Informix

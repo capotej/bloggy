@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Provides access to the underlying database driver for this adapter. For example,
+    this method returns a Mysql object in case of MysqlAdapter, and a PGconn object
+    in case of PostgreSQLAdapter.
+- !ruby/struct:SM::Flow::P 
+  body: This is useful for when you need to call a proprietary method such as PostgreSQL's
+    lo_* methods.
+full_name: ActiveRecord::ConnectionAdapters::AbstractAdapter#raw_connection
+params: ()
+name: raw_connection
+is_singleton: false
+aliases: []
+

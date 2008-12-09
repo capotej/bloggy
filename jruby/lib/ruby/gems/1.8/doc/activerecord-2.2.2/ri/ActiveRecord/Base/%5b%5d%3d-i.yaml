@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Updates the attribute identified by <tt>attr_name</tt> with the specified
+    <tt>value</tt>. (Alias for the protected write_attribute method).
+full_name: ActiveRecord::Base#[]=
+params: (attr_name, value)
+name: '[]='
+is_singleton: false
+aliases: []
+

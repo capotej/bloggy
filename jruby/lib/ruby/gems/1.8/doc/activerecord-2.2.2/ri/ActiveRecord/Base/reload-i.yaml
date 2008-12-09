@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Reloads the attributes of this object from the database. The optional options
+    argument is passed to find when reloading so you may do e.g. record.reload(:lock
+    =&gt; true) to reload the same record with an exclusive row lock.
+full_name: ActiveRecord::Base#reload
+params: (options = nil)
+name: reload
+is_singleton: false
+aliases: []
+

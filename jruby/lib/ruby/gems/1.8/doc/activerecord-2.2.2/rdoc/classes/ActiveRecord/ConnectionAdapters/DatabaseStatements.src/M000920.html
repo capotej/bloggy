@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>transaction (ActiveRecord::ConnectionAdapters::DatabaseStatements)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/abstract/database_statements.rb, line 58</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">transaction</span>(<span class="ruby-identifier">start_db_transaction</span> = <span class="ruby-keyword kw">true</span>)
+        <span class="ruby-identifier">transaction_open</span> = <span class="ruby-keyword kw">false</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">start_db_transaction</span>
+              <span class="ruby-identifier">begin_db_transaction</span>
+              <span class="ruby-identifier">transaction_open</span> = <span class="ruby-keyword kw">true</span>
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">yield</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">database_transaction_rollback</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">transaction_open</span>
+            <span class="ruby-identifier">transaction_open</span> = <span class="ruby-keyword kw">false</span>
+            <span class="ruby-identifier">rollback_db_transaction</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">database_transaction_rollback</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Rollback</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">ensure</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">transaction_open</span>
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-identifier">commit_db_transaction</span>
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">database_transaction_rollback</span>
+            <span class="ruby-identifier">rollback_db_transaction</span>
+            <span class="ruby-identifier">raise</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

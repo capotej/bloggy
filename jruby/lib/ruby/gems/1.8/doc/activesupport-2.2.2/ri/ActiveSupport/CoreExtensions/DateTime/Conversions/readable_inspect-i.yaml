@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Overrides the default inspect method with a human readable one, e.g., &quot;Mon,
+    21 Feb 2005 14:30:00 +0000&quot;
+full_name: ActiveSupport::CoreExtensions::DateTime::Conversions#readable_inspect
+params: ()
+name: readable_inspect
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Merges the given locale, key and scope into a single array of keys. Splits
+    keys that contain dots into multiple keys. Makes sure all keys are Symbols.
+full_name: I18n::normalize_translation_keys
+params: (locale, key, scope)
+name: normalize_translation_keys
+is_singleton: true
+aliases: []
+

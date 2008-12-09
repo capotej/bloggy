@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::Derby#recreate_database"
+params: (db_name)
+name: recreate_database
+is_singleton: false
+aliases: []
+

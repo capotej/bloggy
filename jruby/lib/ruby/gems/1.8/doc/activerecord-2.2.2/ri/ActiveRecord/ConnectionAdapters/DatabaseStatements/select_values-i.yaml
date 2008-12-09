@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Returns an array of the values of the first column in a select:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  select_values(&quot;SELECT id FROM companies LIMIT 3&quot;) =&gt; [1,2,3]\n"
+full_name: ActiveRecord::ConnectionAdapters::DatabaseStatements#select_values
+params: (sql, name = nil)
+name: select_values
+is_singleton: false
+aliases: []
+

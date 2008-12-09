@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::ActiveRecordExtensions#sqlite3_connection"
+params: (config)
+name: sqlite3_connection
+is_singleton: false
+aliases: []
+

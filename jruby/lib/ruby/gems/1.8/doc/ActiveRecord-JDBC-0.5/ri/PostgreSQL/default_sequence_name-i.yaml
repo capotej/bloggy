@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::PostgreSQL#default_sequence_name"
+params: (table_name, pk = nil)
+name: default_sequence_name
+is_singleton: false
+aliases: []
+

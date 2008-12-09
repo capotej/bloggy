@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::Derby#select_limited_ids_list"
+params: (options, join_dependency)
+name: select_limited_ids_list
+is_singleton: false
+aliases: []
+

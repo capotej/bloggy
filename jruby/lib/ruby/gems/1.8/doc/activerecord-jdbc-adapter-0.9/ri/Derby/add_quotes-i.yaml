@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::Derby#add_quotes"
+params: (name)
+name: add_quotes
+is_singleton: false
+aliases: []
+

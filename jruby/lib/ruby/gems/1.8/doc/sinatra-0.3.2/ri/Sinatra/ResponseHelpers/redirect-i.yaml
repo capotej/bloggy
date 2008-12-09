@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Immediately halt response execution by redirecting to the resource specified.
+    The <tt>path</tt> argument may be an absolute URL or a path relative to the site
+    root. Additional arguments are passed to the halt.
+- !ruby/struct:SM::Flow::P 
+  body: 'With no integer status code, a ''302 Temporary Redirect'' response is sent.
+    To send a permanent redirect, pass an explicit status code of 301:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  redirect '/somewhere/else', 301\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'NOTE: No attempt is made to rewrite the path based on application context.
+    The ''Location'' response header is set verbatim to the value provided.'
+full_name: Sinatra::ResponseHelpers#redirect
+params: (path, *args)
+name: redirect
+is_singleton: false
+aliases: []
+

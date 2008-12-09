@@ -1,0 +1,24 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: each_with_object
+- !ruby/object:RI::MethodSummary 
+  name: group_by
+- !ruby/object:RI::MethodSummary 
+  name: index_by
+- !ruby/object:RI::MethodSummary 
+  name: many?
+- !ruby/object:RI::MethodSummary 
+  name: sum
+class_methods: []
+
+full_name: Enumerable
+constants: []
+
+superclass: 
+name: Enumerable

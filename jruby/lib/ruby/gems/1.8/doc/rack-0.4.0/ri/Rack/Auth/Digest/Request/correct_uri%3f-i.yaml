@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Rack::Auth::Digest::Request#correct_uri?
+params: ()
+name: correct_uri?
+is_singleton: false
+aliases: []
+

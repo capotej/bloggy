@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: ActiveRecord::Transactions::ClassMethods.transaction uses this exception to
+    distinguish a deliberate rollback from other exceptional situations. Normally,
+    raising an exception will cause the <tt>transaction</tt> method to rollback the
+    database transaction <b>and</b> pass on the exception. But if you raise an ActiveRecord::Rollback
+    exception, then the database transaction will be rolled back, without passing
+    on the exception.
+- !ruby/struct:SM::Flow::P 
+  body: 'For example, you could do this in your controller to rollback a transaction:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class BooksController &lt; ActionController::Base\n    def create\n    \
+    \  Book.transaction do\n        book = Book.new(params[:book])\n        book.save!\n\
+    \        if today_is_friday?\n          # The system must fail on Friday so that \
+    our support department\n          # won't be out of job. We silently rollback \
+    this transaction\n          # without telling the user.\n          raise ActiveRecord::Rollback, \
+    &quot;Call tech support!&quot;\n        end\n      end\n      # ActiveRecord::Rollback \
+    is the only exception that won't be passed on\n      # by ActiveRecord::Base.transaction, \
+    so this line will still be reached\n      # even on Friday.\n      redirect_to \
+    root_url\n    end\n  end\n"
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveRecord::Rollback
+constants: []
+
+superclass: ActiveRecordError
+name: Rollback

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converts an object into a string suitable for use as a URL query string, using
+    the given <tt>key</tt> as the param name.
+- !ruby/struct:SM::Flow::P 
+  body: 'Note: This method is defined as a default implementation for all Objects
+    for Hash#to_query to work.'
+full_name: Object#to_query
+params: (key)
+name: to_query
+is_singleton: false
+aliases: []
+

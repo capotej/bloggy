@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Encodes the value as base64 without the newline breaks. This makes the base64
+    encoding readily usable as URL parameters or memcache keys without further processing.
+- !ruby/struct:SM::Flow::VERB 
+  body: " ActiveSupport::Base64.encode64s(&quot;Original unencoded string&quot;)\n\
+    \ # =&gt; &quot;T3JpZ2luYWwgdW5lbmNvZGVkIHN0cmluZw==&quot;\n"
+full_name: ActiveSupport::CoreExtensions::Base64::Encoding#encode64s
+params: (value)
+name: encode64s
+is_singleton: false
+aliases: []
+

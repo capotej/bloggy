@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Calculates a new Time or Date that is as far in the future as this Duration
+    represents.
+full_name: ActiveSupport::Duration#since
+params: (time = ::Time.current)
+name: since
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: from_now

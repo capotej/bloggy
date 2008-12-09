@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the attributes which are cached. By default time related columns with
+    datatype <tt>:datetime, :timestamp, :time, :date</tt> are cached.
+full_name: ActiveRecord::AttributeMethods::ClassMethods#cached_attributes
+params: ()
+name: cached_attributes
+is_singleton: false
+aliases: []
+

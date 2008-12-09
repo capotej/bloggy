@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Calculates a sum from the elements. Examples:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " payments.sum { |p| p.price * p.tax_rate }\n payments.sum(&amp;:price)\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'The latter is a shortcut for:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " payments.inject { |sum, p| sum + p.price }\n"
+- !ruby/struct:SM::Flow::P 
+  body: It can also calculate the sum without the use of a block.
+- !ruby/struct:SM::Flow::VERB 
+  body: " [5, 15, 10].sum # =&gt; 30\n [&quot;foo&quot;, &quot;bar&quot;].sum # =&gt; \
+    &quot;foobar&quot;\n [[1, 2], [3, 1, 5]].sum =&gt; [1, 2, 3, 1, 5]\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'The default sum of an empty list is zero. You can override this default:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " [].sum(Payment.new(0)) { |i| i.amount } # =&gt; Payment.new(0)\n"
+full_name: Enumerable#sum
+params: (identity = 0, &block)
+name: sum
+is_singleton: false
+aliases: []
+

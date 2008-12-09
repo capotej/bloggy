@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns Time.zone.today when config.time_zone is set, otherwise just returns
+    Date.today.
+full_name: ActiveSupport::CoreExtensions::Date::Calculations::ClassMethods#current
+params: ()
+name: current
+is_singleton: false
+aliases: []
+

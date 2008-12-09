@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converts an array into a string suitable for use as a URL query string, using
+    the given <tt>key</tt> as the param name.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ['Rails', 'coding'].to_query('hobbies') # =&gt; &quot;hobbies%5B%5D=Rails&amp;hobbies%5B%5D=coding&quot;\n"
+full_name: ActiveSupport::CoreExtensions::Array::Conversions#to_query
+params: (key)
+name: to_query
+is_singleton: false
+aliases: []
+

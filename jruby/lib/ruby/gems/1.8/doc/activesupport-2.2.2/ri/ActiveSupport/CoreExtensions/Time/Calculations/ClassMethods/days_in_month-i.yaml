@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return the number of days in the given month. If no year is specified, it
+    will use the current year.
+full_name: ActiveSupport::CoreExtensions::Time::Calculations::ClassMethods#days_in_month
+params: (month, year = now.year)
+name: days_in_month
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Builder::XmlEvents#text!
+params: (text)
+name: text!
+is_singleton: false
+aliases: []
+

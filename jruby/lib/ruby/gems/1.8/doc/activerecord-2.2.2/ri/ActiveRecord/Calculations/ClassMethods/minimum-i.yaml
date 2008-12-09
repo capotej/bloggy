@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Calculates the minimum value on a given column. The value is returned with
+    the same data type of the column. See <tt>calculate</tt> for examples with options.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person.minimum('age')\n"
+full_name: ActiveRecord::Calculations::ClassMethods#minimum
+params: (column_name, options = {})
+name: minimum
+is_singleton: false
+aliases: []
+

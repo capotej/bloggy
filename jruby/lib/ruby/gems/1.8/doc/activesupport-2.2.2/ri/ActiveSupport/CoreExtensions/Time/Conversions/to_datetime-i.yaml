@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converts a Time instance to a Ruby DateTime instance, preserving UTC offset.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_time = Time.now    # =&gt; Mon Nov 12 23:04:21 -0500 2007\n  my_time.to_datetime \
+    \  # =&gt; Mon, 12 Nov 2007 23:04:21 -0500\n\n  your_time = Time.parse(&quot;1/13/2009 \
+    1:13:03 P.M.&quot;)  # =&gt; Tue Jan 13 13:13:03 -0500 2009\n  your_time.to_datetime \
+    \                            # =&gt; Tue, 13 Jan 2009 13:13:03 -0500\n"
+full_name: ActiveSupport::CoreExtensions::Time::Conversions#to_datetime
+params: ()
+name: to_datetime
+is_singleton: false
+aliases: []
+

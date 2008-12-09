@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Define an event handler for HEAD requests.
+full_name: Sinatra::Application#head
+params: (path, options={}, &b)
+name: head
+is_singleton: false
+aliases: []
+

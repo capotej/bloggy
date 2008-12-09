@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A model instance's primary key is always available as model.id whether you
+    name it the default 'id' or set it to something else.
+full_name: ActiveRecord::Base#id
+params: ()
+name: id
+is_singleton: false
+aliases: []
+

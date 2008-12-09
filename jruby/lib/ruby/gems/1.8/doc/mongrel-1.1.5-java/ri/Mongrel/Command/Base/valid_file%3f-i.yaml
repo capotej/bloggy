@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Validates that the file is a file and not a directory or something else.
+full_name: Mongrel::Command::Base#valid_file?
+params: (file, message)
+name: valid_file?
+is_singleton: false
+aliases: []
+

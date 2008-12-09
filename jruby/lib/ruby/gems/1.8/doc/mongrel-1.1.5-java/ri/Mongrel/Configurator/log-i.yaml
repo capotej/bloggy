@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Logs a simple message to STDERR (or the mongrel log if in daemon mode).
+full_name: Mongrel::Configurator#log
+params: (msg)
+name: log
+is_singleton: false
+aliases: []
+

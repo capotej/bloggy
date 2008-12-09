@@ -1,0 +1,36 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Since Ruby is very dynamic, methods added to the ancestors of BlankSlate <em>after
+    BlankSlate is defined</em> will show up in the list of available BlankSlate methods.
+    We handle this by defining a hook in the Object and Kernel classes that will hide
+    any method defined after BlankSlate has been loaded.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: breakpoint
+- !ruby/object:RI::MethodSummary 
+  name: daemonize
+- !ruby/object:RI::MethodSummary 
+  name: debugger
+- !ruby/object:RI::MethodSummary 
+  name: enable_warnings
+- !ruby/object:RI::MethodSummary 
+  name: require_library_or_gem
+- !ruby/object:RI::MethodSummary 
+  name: silence_stream
+- !ruby/object:RI::MethodSummary 
+  name: silence_warnings
+- !ruby/object:RI::MethodSummary 
+  name: suppress
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: method_added
+full_name: Kernel
+constants: []
+
+superclass: 
+name: Kernel

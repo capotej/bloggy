@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the connection currently associated with the class. This can also
+    be used to &quot;borrow&quot; the connection to do database work that isn't easily
+    done without going straight to SQL.
+full_name: ActiveRecord::Base#connection
+params: ()
+name: connection
+is_singleton: false
+aliases: []
+

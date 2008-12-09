@@ -1,0 +1,53 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: _execute
+- !ruby/object:RI::MethodSummary 
+  name: add_column
+- !ruby/object:RI::MethodSummary 
+  name: add_order_by_for_association_limiting!
+- !ruby/object:RI::MethodSummary 
+  name: columns
+- !ruby/object:RI::MethodSummary 
+  name: default_sequence_name
+- !ruby/object:RI::MethodSummary 
+  name: distinct
+- !ruby/object:RI::MethodSummary 
+  name: escape_bytea
+- !ruby/object:RI::MethodSummary 
+  name: last_insert_id
+- !ruby/object:RI::MethodSummary 
+  name: modify_types
+- !ruby/object:RI::MethodSummary 
+  name: pk_and_sequence_for
+- !ruby/object:RI::MethodSummary 
+  name: quote
+- !ruby/object:RI::MethodSummary 
+  name: quote_column_name
+- !ruby/object:RI::MethodSummary 
+  name: quoted_date
+- !ruby/object:RI::MethodSummary 
+  name: recreate_database
+- !ruby/object:RI::MethodSummary 
+  name: rename_table
+- !ruby/object:RI::MethodSummary 
+  name: reset_pk_sequence!
+- !ruby/object:RI::MethodSummary 
+  name: structure_dump
+- !ruby/object:RI::MethodSummary 
+  name: tables
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: adapter_selector
+- !ruby/object:RI::MethodSummary 
+  name: column_selector
+full_name: "::PostgreSQL"
+constants: []
+
+superclass: 
+name: PostgreSQL

@@ -1,0 +1,28 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: GemPlugins can have a 'resources' directory which is packaged with them and
+    can hold any data resources the plugin may need. The main problem is that it's
+    difficult to figure out where these resources are actually located on the file
+    system. The resource method tries to locate the real path for a given resource
+    path.
+- !ruby/struct:SM::Flow::P 
+  body: 'Let''s say you have a ''resources/stylesheets/default.css'' file in your
+    gem distribution, then finding where this file really is involves:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Manager.instance.resource(&quot;mygem&quot;, &quot;/stylesheets/default.css&quot;)\n"
+- !ruby/struct:SM::Flow::P 
+  body: You either get back the full path to the resource or you get a nil if it doesn't
+    exist.
+- !ruby/struct:SM::Flow::P 
+  body: If you request a path for a GemPlugin that hasn't been loaded yet then it
+    will throw an PluginNotLoaded exception. The gem may be present on your system
+    in this case, but you just haven't loaded it with Manager.instance.load properly.
+full_name: GemPlugin::Manager#resource
+params: (gem_name, path)
+name: resource
+is_singleton: false
+aliases: []
+

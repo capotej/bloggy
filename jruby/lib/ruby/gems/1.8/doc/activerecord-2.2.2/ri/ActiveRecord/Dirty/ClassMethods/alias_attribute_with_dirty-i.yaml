@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::Dirty::ClassMethods#alias_attribute_with_dirty
+params: (new_name, old_name)
+name: alias_attribute_with_dirty
+is_singleton: false
+aliases: []
+

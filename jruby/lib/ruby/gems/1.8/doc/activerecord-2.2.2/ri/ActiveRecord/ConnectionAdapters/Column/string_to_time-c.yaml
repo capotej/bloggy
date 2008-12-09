@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::Column::string_to_time
+params: (string)
+name: string_to_time
+is_singleton: true
+aliases: []
+

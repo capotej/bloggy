@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveSupport::Rescuable#handler_for_rescue
+params: (exception)
+name: handler_for_rescue
+is_singleton: false
+aliases: []
+

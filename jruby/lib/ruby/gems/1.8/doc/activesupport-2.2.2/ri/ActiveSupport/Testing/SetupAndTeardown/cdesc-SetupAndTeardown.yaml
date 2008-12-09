@@ -1,0 +1,20 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveSupport::Testing::SetupAndTeardown
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: For compatibility with Ruby &lt; 1.8.6
+  value: if defined?(Test::Unit::TestCase::PASSTHROUGH_EXCEPTIONS)
+  name: PASSTHROUGH_EXCEPTIONS
+superclass: 
+name: SetupAndTeardown

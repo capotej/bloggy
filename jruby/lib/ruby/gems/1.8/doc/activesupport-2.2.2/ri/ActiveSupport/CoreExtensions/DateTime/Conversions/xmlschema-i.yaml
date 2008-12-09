@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converts datetime to an appropriate format for use in XML
+full_name: ActiveSupport::CoreExtensions::DateTime::Conversions#xmlschema
+params: ()
+name: xmlschema
+is_singleton: false
+aliases: []
+

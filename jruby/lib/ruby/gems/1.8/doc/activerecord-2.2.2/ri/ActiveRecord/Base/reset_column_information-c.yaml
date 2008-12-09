@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Resets all the cached information about columns, which will cause them to
+    be reloaded on the next request.
+- !ruby/struct:SM::Flow::P 
+  body: 'The most common usage pattern for this method is probably in a migration,
+    when just after creating a table you want to populate it with some default values,
+    eg:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " class CreateJobLevels &lt; ActiveRecord::Migration\n   def self.up\n    \
+    \ create_table :job_levels do |t|\n       t.integer :id\n       t.string :name\n\
+    \n       t.timestamps\n     end\n\n     JobLevel.reset_column_information\n   \
+    \  %w{assistant executive manager director}.each do |type|\n       JobLevel.create(:name \
+    =&gt; type)\n     end\n   end\n\n   def self.down\n     drop_table :job_levels\n\
+    \   end\n end\n"
+full_name: ActiveRecord::Base::reset_column_information
+params: ()
+name: reset_column_information
+is_singleton: true
+aliases: []
+

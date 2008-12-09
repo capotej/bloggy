@@ -1,0 +1,68 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: add_limit!
+- !ruby/object:RI::MethodSummary 
+  name: add_limit_offset!
+- !ruby/object:RI::MethodSummary 
+  name: add_lock!
+- !ruby/object:RI::MethodSummary 
+  name: begin_db_transaction
+- !ruby/object:RI::MethodSummary 
+  name: case_sensitive_equality_operator
+- !ruby/object:RI::MethodSummary 
+  name: commit_db_transaction
+- !ruby/object:RI::MethodSummary 
+  name: default_sequence_name
+- !ruby/object:RI::MethodSummary 
+  name: delete
+- !ruby/object:RI::MethodSummary 
+  name: delete_sql
+- !ruby/object:RI::MethodSummary 
+  name: empty_insert_statement
+- !ruby/object:RI::MethodSummary 
+  name: execute
+- !ruby/object:RI::MethodSummary 
+  name: insert
+- !ruby/object:RI::MethodSummary 
+  name: insert_fixture
+- !ruby/object:RI::MethodSummary 
+  name: insert_sql
+- !ruby/object:RI::MethodSummary 
+  name: limited_update_conditions
+- !ruby/object:RI::MethodSummary 
+  name: reset_sequence!
+- !ruby/object:RI::MethodSummary 
+  name: rollback_db_transaction
+- !ruby/object:RI::MethodSummary 
+  name: sanitize_limit
+- !ruby/object:RI::MethodSummary 
+  name: select
+- !ruby/object:RI::MethodSummary 
+  name: select_all
+- !ruby/object:RI::MethodSummary 
+  name: select_one
+- !ruby/object:RI::MethodSummary 
+  name: select_rows
+- !ruby/object:RI::MethodSummary 
+  name: select_value
+- !ruby/object:RI::MethodSummary 
+  name: select_values
+- !ruby/object:RI::MethodSummary 
+  name: transaction
+- !ruby/object:RI::MethodSummary 
+  name: update
+- !ruby/object:RI::MethodSummary 
+  name: update_sql
+class_methods: []
+
+full_name: ActiveRecord::ConnectionAdapters::DatabaseStatements
+constants: []
+
+superclass: 
+name: DatabaseStatements

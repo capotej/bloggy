@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>g_unpack (ActiveSupport::Multibyte::Chars)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/multibyte/chars.rb, line 467</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">g_unpack</span>(<span class="ruby-identifier">string</span>)
+          <span class="ruby-identifier">codepoints</span> = <span class="ruby-identifier">u_unpack</span>(<span class="ruby-identifier">string</span>)
+          <span class="ruby-identifier">unpacked</span> = []
+          <span class="ruby-identifier">pos</span> = <span class="ruby-value">0</span>
+          <span class="ruby-identifier">marker</span> = <span class="ruby-value">0</span>
+          <span class="ruby-identifier">eoc</span> = <span class="ruby-identifier">codepoints</span>.<span class="ruby-identifier">length</span>
+          <span class="ruby-keyword kw">while</span>(<span class="ruby-identifier">pos</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">eoc</span>)
+            <span class="ruby-identifier">pos</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+            <span class="ruby-identifier">previous</span> = <span class="ruby-identifier">codepoints</span>[<span class="ruby-identifier">pos</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>]
+            <span class="ruby-identifier">current</span> = <span class="ruby-identifier">codepoints</span>[<span class="ruby-identifier">pos</span>]
+            <span class="ruby-keyword kw">if</span> (
+                <span class="ruby-comment cmt"># CR X LF</span>
+                <span class="ruby-identifier">one</span> = ( <span class="ruby-identifier">previous</span> <span class="ruby-operator">==</span> <span class="ruby-constant">UCD</span>.<span class="ruby-identifier">boundary</span>[<span class="ruby-identifier">:cr</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">current</span> <span class="ruby-operator">==</span> <span class="ruby-constant">UCD</span>.<span class="ruby-identifier">boundary</span>[<span class="ruby-identifier">:lf</span>] ) <span class="ruby-keyword kw">or</span>
+                <span class="ruby-comment cmt"># L X (L|V|LV|LVT)</span>
+                <span class="ruby-identifier">two</span> = ( <span class="ruby-constant">UCD</span>.<span class="ruby-identifier">boundary</span>[<span class="ruby-identifier">:l</span>] <span class="ruby-operator">===</span> <span class="ruby-identifier">previous</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">in_char_class?</span>(<span class="ruby-identifier">current</span>, [<span class="ruby-identifier">:l</span>,<span class="ruby-identifier">:v</span>,<span class="ruby-identifier">:lv</span>,<span class="ruby-identifier">:lvt</span>]) ) <span class="ruby-keyword kw">or</span>
+                <span class="ruby-comment cmt"># (LV|V) X (V|T)</span>
+                <span class="ruby-identifier">three</span> = ( <span class="ruby-identifier">in_char_class?</span>(<span class="ruby-identifier">previous</span>, [<span class="ruby-identifier">:lv</span>,<span class="ruby-identifier">:v</span>]) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">in_char_class?</span>(<span class="ruby-identifier">current</span>, [<span class="ruby-identifier">:v</span>,<span class="ruby-identifier">:t</span>]) ) <span class="ruby-keyword kw">or</span>
+                <span class="ruby-comment cmt"># (LVT|T) X (T)</span>
+                <span class="ruby-identifier">four</span> = ( <span class="ruby-identifier">in_char_class?</span>(<span class="ruby-identifier">previous</span>, [<span class="ruby-identifier">:lvt</span>,<span class="ruby-identifier">:t</span>]) <span class="ruby-keyword kw">and</span> <span class="ruby-constant">UCD</span>.<span class="ruby-identifier">boundary</span>[<span class="ruby-identifier">:t</span>] <span class="ruby-operator">===</span> <span class="ruby-identifier">current</span> ) <span class="ruby-keyword kw">or</span>
+                <span class="ruby-comment cmt"># X Extend</span>
+                <span class="ruby-identifier">five</span> = (<span class="ruby-constant">UCD</span>.<span class="ruby-identifier">boundary</span>[<span class="ruby-identifier">:extend</span>] <span class="ruby-operator">===</span> <span class="ruby-identifier">current</span>)
+              )
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">unpacked</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">codepoints</span>[<span class="ruby-identifier">marker</span><span class="ruby-operator">..</span><span class="ruby-identifier">pos</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>]
+              <span class="ruby-identifier">marker</span> = <span class="ruby-identifier">pos</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span> 
+          <span class="ruby-identifier">unpacked</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Returns the AggregateReflection object for the named <tt>aggregation</tt>
+    (use the symbol). Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Account.reflect_on_aggregation(:balance) # returns the balance AggregateReflection\n"
+full_name: ActiveRecord::Reflection::ClassMethods#reflect_on_aggregation
+params: (aggregation)
+name: reflect_on_aggregation
+is_singleton: false
+aliases: []
+

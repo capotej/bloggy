@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>create_database (ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/postgresql_adapter.rb, line 585</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_database</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">options</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">reverse_merge</span>(<span class="ruby-identifier">:encoding</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;utf8&quot;</span>)
+
+        <span class="ruby-identifier">option_string</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">symbolize_keys</span>.<span class="ruby-identifier">sum</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">key</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:owner</span>
+            <span class="ruby-node">&quot; OWNER = \&quot;#{value}\&quot;&quot;</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:template</span>
+            <span class="ruby-node">&quot; TEMPLATE = \&quot;#{value}\&quot;&quot;</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:encoding</span>
+            <span class="ruby-node">&quot; ENCODING = '#{value}'&quot;</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:tablespace</span>
+            <span class="ruby-node">&quot; TABLESPACE = \&quot;#{value}\&quot;&quot;</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:connection_limit</span>
+            <span class="ruby-node">&quot; CONNECTION LIMIT = #{value}&quot;</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-value str">&quot;&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;CREATE DATABASE #{quote_table_name(name)}#{option_string}&quot;</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

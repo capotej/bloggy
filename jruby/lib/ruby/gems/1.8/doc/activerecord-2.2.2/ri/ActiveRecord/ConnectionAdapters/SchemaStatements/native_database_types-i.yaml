@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a Hash of mappings from the abstract data types to the native database
+    types. See TableDefinition#column for details on the recognized abstract data
+    types.
+full_name: ActiveRecord::ConnectionAdapters::SchemaStatements#native_database_types
+params: ()
+name: native_database_types
+is_singleton: false
+aliases: []
+

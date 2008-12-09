@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveSupport::JSON::Variable#to_json
+params: (options=nil)
+name: to_json
+is_singleton: false
+aliases: []
+

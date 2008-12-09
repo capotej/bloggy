@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Module#append_features
+params: (mod)
+name: append_features
+is_singleton: false
+aliases: []
+

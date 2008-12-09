@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: REXML::Document::entity_expansion_limit=
+params: (val)
+name: entity_expansion_limit=
+is_singleton: true
+aliases: []
+

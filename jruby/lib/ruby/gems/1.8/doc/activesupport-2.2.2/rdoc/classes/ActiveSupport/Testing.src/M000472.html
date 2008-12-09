@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>run_with_callbacks_and_miniunit (ActiveSupport::Testing)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/testing/setup_and_teardown.rb, line 33</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run_with_callbacks_and_miniunit</span>(<span class="ruby-identifier">runner</span>)
+        <span class="ruby-identifier">result</span> = <span class="ruby-value str">'.'</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-identifier">run_callbacks</span> <span class="ruby-identifier">:setup</span>
+          <span class="ruby-identifier">result</span> = <span class="ruby-keyword kw">super</span>
+        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+          <span class="ruby-identifier">result</span> = <span class="ruby-identifier">runner</span>.<span class="ruby-identifier">puke</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">e</span>)
+        <span class="ruby-keyword kw">ensure</span>
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-identifier">teardown</span>
+            <span class="ruby-identifier">run_callbacks</span> <span class="ruby-identifier">:teardown</span>, <span class="ruby-identifier">:enumerator</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:reverse_each</span>
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+            <span class="ruby-identifier">result</span> = <span class="ruby-identifier">runner</span>.<span class="ruby-identifier">puke</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">e</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">result</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

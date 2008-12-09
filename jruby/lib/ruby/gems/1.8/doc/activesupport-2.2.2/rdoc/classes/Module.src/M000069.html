@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>synchronize (Module)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/core_ext/module/synchronization.rb, line 15</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">synchronize</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">methods</span>)
+    <span class="ruby-identifier">options</span> = <span class="ruby-identifier">methods</span>.<span class="ruby-identifier">extract_options!</span>
+    <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">with</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:with</span>]
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;Synchronization needs a mutex. Supply an options hash with a :with key as the last argument (e.g. synchronize :hello, :with =&gt; :@mutex).&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">methods</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">aliased_method</span>, <span class="ruby-identifier">punctuation</span> = <span class="ruby-identifier">method</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/([?!=])$/</span>, <span class="ruby-value str">''</span>), <span class="ruby-identifier">$1</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">method_defined?</span>(<span class="ruby-node">&quot;#{aliased_method}_without_synchronization#{punctuation}&quot;</span>)
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;#{method} is already synchronized. Double synchronization is not currently supported.&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">module_eval</span>(<span class="ruby-value str">&quot;def \#{aliased_method}_with_synchronization\#{punctuation}(*args, &amp;block)\n\#{with}.synchronize do\n\#{aliased_method}_without_synchronization\#{punctuation}(*args, &amp;block)\nend\nend\n&quot;</span>, <span class="ruby-keyword kw">__FILE__</span>, <span class="ruby-keyword kw">__LINE__</span>)
+
+      <span class="ruby-identifier">alias_method_chain</span> <span class="ruby-identifier">method</span>, <span class="ruby-identifier">:synchronization</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

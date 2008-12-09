@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Maps logical Rails types to MySQL-specific data types.
+full_name: ActiveRecord::ConnectionAdapters::MysqlAdapter#type_to_sql
+params: (type, limit = nil, precision = nil, scale = nil)
+name: type_to_sql
+is_singleton: false
+aliases: []
+

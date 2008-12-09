@@ -1,0 +1,54 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Provides a delegate class method to easily expose contained objects' methods
+    as your own. Pass one or more methods (specified as symbols or strings) and the
+    name of the target object as the final <tt>:to</tt> option (also a symbol or string).
+    At least one method and the <tt>:to</tt> option are required.
+- !ruby/struct:SM::Flow::P 
+  body: 'Delegation is particularly useful with Active Record associations:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Greeter &lt; ActiveRecord::Base\n    def hello()   &quot;hello&quot; \
+    \  end\n    def goodbye() &quot;goodbye&quot; end\n  end\n\n  class Foo &lt; ActiveRecord::Base\n\
+    \    belongs_to :greeter\n    delegate :hello, :to =&gt; :greeter\n  end\n\n  Foo.new.hello \
+    \  # =&gt; &quot;hello&quot;\n  Foo.new.goodbye # =&gt; NoMethodError: undefined \
+    method `goodbye' for #&lt;Foo:0x1af30c&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Multiple delegates to the same target are allowed:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Foo &lt; ActiveRecord::Base\n    belongs_to :greeter\n    delegate \
+    :hello, :goodbye, :to =&gt; :greeter\n  end\n\n  Foo.new.goodbye # =&gt; &quot;goodbye&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Methods can be delegated to instance variables, class variables, or constants
+    by providing them as a symbols:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Foo\n    CONSTANT_ARRAY = [0,1,2,3]\n    @@class_array  = [4,5,6,7]\n\
+    \n    def initialize\n      @instance_array = [8,9,10,11]\n    end\n    delegate \
+    :sum, :to =&gt; :CONSTANT_ARRAY\n    delegate :min, :to =&gt; :@@class_array\n\
+    \    delegate :max, :to =&gt; :@instance_array\n  end\n\n  Foo.new.sum # =&gt; \
+    6\n  Foo.new.min # =&gt; 4\n  Foo.new.max # =&gt; 11\n"
+- !ruby/struct:SM::Flow::P 
+  body: Delegates can optionally be prefixed using the <tt>:prefix</tt> option. If
+    the value is <tt>true</tt>, the delegate methods are prefixed with the name of
+    the object being delegated to.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person = Struct.new(:name, :address)\n\n  class Invoice &lt; Struct.new(:client)\n\
+    \    delegate :name, :address, :to =&gt; :client, :prefix =&gt; true\n  end\n\n\
+    \  john_doe = Person.new(&quot;John Doe&quot;, &quot;Vimmersvej 13&quot;)\n  invoice \
+    = Invoice.new(john_doe)\n  invoice.client_name    # =&gt; &quot;John Doe&quot;\n\
+    \  invoice.client_address # =&gt; &quot;Vimmersvej 13&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: It is also possible to supply a custom prefix.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Invoice &lt; Struct.new(:client)\n    delegate :name, :address, :to \
+    =&gt; :client, :prefix =&gt; :customer\n  end\n\n  invoice = Invoice.new(john_doe)\n\
+    \  invoice.customer_name    # =&gt; &quot;John Doe&quot;\n  invoice.customer_address \
+    # =&gt; &quot;Vimmersvej 13&quot;\n"
+full_name: Module#delegate
+params: (*methods)
+name: delegate
+is_singleton: false
+aliases: []
+

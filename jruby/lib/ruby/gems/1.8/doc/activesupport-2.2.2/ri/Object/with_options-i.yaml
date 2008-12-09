@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: ActiveSupport::OptionMerger.new(self, options)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An elegant way to factor duplication out of options passed to a series of
+    method calls. Each method called in the block, with the block variable as the
+    receiver, will have its options merged with the default <tt>options</tt> hash
+    provided. Each method called on the block variable must take an options hash as
+    its final argument.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  with_options :order =&gt; 'created_at', :class_name =&gt; 'Comment' do \
+    |post|\n    post.has_many :comments, :conditions =&gt; ['approved = ?', true], \
+    :dependent =&gt; :delete_all\n    post.has_many :unapproved_comments, :conditions \
+    =&gt; ['approved = ?', false]\n    post.has_many :all_comments\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Can also be used with an explicit receiver:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  map.with_options :controller =&gt; &quot;people&quot; do |people|\n    \
+    people.connect &quot;/people&quot;,     :action =&gt; &quot;index&quot;\n    people.connect \
+    &quot;/people/:id&quot;, :action =&gt; &quot;show&quot;\n  end\n"
+full_name: Object#with_options
+params: (options) {|ActiveSupport::OptionMerger.new(self, options)| ...}
+name: with_options
+is_singleton: false
+aliases: []
+

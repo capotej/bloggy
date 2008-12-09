@@ -1,0 +1,7 @@
+Manifest.txt
+Rakefile
+README.txt
+LICENSE.txt
+lib/derby-10.3.2.1.jar
+lib/jdbc
+lib/jdbc/derby.rb

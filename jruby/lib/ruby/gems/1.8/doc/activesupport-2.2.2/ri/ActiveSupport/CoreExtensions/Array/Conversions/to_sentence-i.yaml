@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Converts the array to a comma-separated sentence where the last element is
+    joined by the connector word. Options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:connector</tt> - The word used to join the last element in arrays
+      with two or more elements (default: &quot;and&quot;)'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:skip_last_comma</tt> - Set to true to return &quot;a, b and c&quot;
+      instead of &quot;a, b, and c&quot;.
+    label: '*'
+full_name: ActiveSupport::CoreExtensions::Array::Conversions#to_sentence
+params: (options = {})
+name: to_sentence
+is_singleton: false
+aliases: []
+

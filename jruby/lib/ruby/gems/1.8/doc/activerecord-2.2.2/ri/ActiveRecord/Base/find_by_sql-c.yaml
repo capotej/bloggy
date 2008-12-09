@@ -1,0 +1,38 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Executes a custom SQL query against your database and returns all the results.
+    The results will be returned as an array with columns requested encapsulated as
+    attributes of the model you call this method from. If you call <tt>Product.find_by_sql</tt>
+    then the results will be returned in a Product object with the attributes you
+    specified in the SQL query.
+- !ruby/struct:SM::Flow::P 
+  body: If you call a complicated SQL query which spans multiple tables the columns
+    specified by the SELECT will be attributes of the model, whether or not they are
+    columns of the corresponding table.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>sql</tt> parameter is a full SQL query as a string. It will be called
+    as is, there will be no database agnostic conversions performed. This should be
+    a last resort because using, for example, MySQL specific terms will lock you to
+    using that particular database engine or require you to change your call if you
+    switch engines.
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # A simple SQL query spanning multiple tables\n  Post.find_by_sql &quot;SELECT \
+    p.title, c.author FROM posts p, comments c WHERE p.id = c.post_id&quot;\n  &gt; \
+    [#&lt;Post:0x36bff9c @attributes={&quot;title&quot;=&gt;&quot;Ruby Meetup&quot;, \
+    &quot;first_name&quot;=&gt;&quot;Quentin&quot;}&gt;, ...]\n\n  # You can use the \
+    same string replacement techniques as you can with ActiveRecord#find\n  Post.find_by_sql \
+    [&quot;SELECT title FROM posts WHERE author = ? AND created &gt; ?&quot;, author_id, \
+    start_date]\n  &gt; [#&lt;Post:0x36bff9c @attributes={&quot;first_name&quot;=&gt;&quot;The \
+    Cheap Man Buys Twice&quot;}&gt;, ...]\n"
+full_name: ActiveRecord::Base::find_by_sql
+params: (sql)
+name: find_by_sql
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This will be called by Mongrel if HttpHandler.request_notify set to <b>true</b>.
+    You only get the parameters for the request, with the idea that you'd &quot;bound&quot;
+    the beginning of the request processing and the first call to process.
+full_name: Mongrel::HttpHandler#request_begins
+params: (params)
+name: request_begins
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Sinatra::Sass</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Sinatra::Sass</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/sinatra_rb.html">
+                lib/sinatra.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Generate valid CSS using <a href="Sass.html">Sass</a> (part of <a
+href="Haml.html">Haml</a>)
+</p>
+<p>
+<a href="Sass.html">Sass</a> templates can be in external files with
+<tt>.<a href="Sass.html#M000257">sass</a></tt> extension or can use <a
+href="../Sinatra.html">Sinatra</a>&#8216;s in_file_templates. In either
+case, the file can be rendered by passing the name of the template to the
+<tt><a href="Sass.html#M000257">sass</a></tt> method as a symbol.
+</p>
+<p>
+Unlike <a href="Haml.html">Haml</a>, <a href="Sass.html">Sass</a> does not
+support a layout file, so the <tt><a href="Sass.html#M000257">sass</a></tt>
+method will ignore both the default <tt>layout.sass</tt> file and any
+parameters passed in as <tt>:layout</tt> in the options hash.
+</p>
+<h3><a href="Sass.html">Sass</a> Template Files</h3>
+<p>
+<a href="Sass.html">Sass</a> templates can be stored in separate files with
+a <tt>.<a href="Sass.html#M000257">sass</a></tt> extension under the view
+path.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  get '/stylesheet.css' do
+    header 'Content-Type' =&gt; 'text/css; charset=utf-8'
+    sass :stylesheet
+  end
+</pre>
+<p>
+The &quot;views/stylesheet.sass&quot; file might contain the following:
+</p>
+<pre>
+ body
+   #admin
+     :background-color #CCC
+   #main
+     :background-color #000
+ #form
+   :border-color #AAA
+   :border-width 10px
+</pre>
+<p>
+And yields the following output:
+</p>
+<pre>
+  body #admin {
+    background-color: #CCC; }
+  body #main {
+    background-color: #000; }
+
+  #form {
+    border-color: #AAA;
+    border-width: 10px; }
+</pre>
+<p>
+NOTE: <a href="Haml.html">Haml</a> must be installed or a LoadError will be
+raised the first time an attempt is made to render a <a
+href="Sass.html">Sass</a> template.
+</p>
+<p>
+See <a
+href="http://haml.hamptoncatlin.com/docs/rdoc/classes/Sass.html">haml.hamptoncatlin.com/docs/rdoc/classes/Sass.html</a>
+for comprehensive documentation on <a href="Sass.html">Sass</a>.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000257">sass</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000257" class="method-detail">
+        <a name="M000257"></a>
+
+        <div class="method-heading">
+          <a href="#M000257" class="method-signature">
+          <span class="method-name">sass</span><span class="method-args">(content, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000257-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000257-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sinatra.rb, line 666</span>
+666:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sass</span>(<span class="ruby-identifier">content</span>, <span class="ruby-identifier">options</span> = {})
+667:       <span class="ruby-identifier">require</span> <span class="ruby-value str">'sass'</span>
+668: 
+669:       <span class="ruby-comment cmt"># Sass doesn't support a layout, so we override any possible layout here</span>
+670:       <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:layout</span>] = <span class="ruby-keyword kw">false</span>
+671: 
+672:       <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:sass</span>, <span class="ruby-identifier">content</span>, <span class="ruby-identifier">options</span>)
+673:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

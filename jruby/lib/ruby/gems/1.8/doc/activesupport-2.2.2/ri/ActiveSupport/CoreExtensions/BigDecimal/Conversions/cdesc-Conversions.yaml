@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: to_formatted_s
+- !ruby/object:RI::MethodSummary 
+  name: to_yaml
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::BigDecimal::Conversions
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''F''.freeze'
+  name: DEFAULT_STRING_FORMAT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''tag:yaml.org,2002:float''.freeze'
+  name: YAML_TAG
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{ ''Infinity'' => ''.Inf'', ''-Infinity'' => ''-.Inf'', ''NaN'' => ''.NaN''
+    }'
+  name: YAML_MAPPING
+superclass: 
+name: Conversions

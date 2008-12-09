@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: buf
+comment: 
+full_name: Sinatra::Streaming::FileStreamer#each
+params: () {|buf| ...}
+name: each
+is_singleton: false
+aliases: []
+

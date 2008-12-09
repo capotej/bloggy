@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+name: Spec
+constants: []
+
+comment: 
+attributes: []
+
+instance_methods: []
+
+full_name: Spec
+superclass: 
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: exit?
+- !ruby/object:RI::MethodSummary 
+  name: run
+- !ruby/object:RI::MethodSummary 
+  name: run?
+- !ruby/object:RI::MethodSummary 
+  name: spec_command?

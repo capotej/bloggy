@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (g)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Splits or iterates over the array in <tt>number</tt> of groups, padding any
+    remaining slots with <tt>fill_with</tt> unless it is <tt>false</tt>.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  %w(1 2 3 4 5 6 7 8 9 10).in_groups(3) {|group| p group}\n  [&quot;1&quot;, \
+    &quot;2&quot;, &quot;3&quot;, &quot;4&quot;]\n  [&quot;5&quot;, &quot;6&quot;, \
+    &quot;7&quot;, nil]\n  [&quot;8&quot;, &quot;9&quot;, &quot;10&quot;, nil]\n\n\
+    \  %w(1 2 3 4 5 6 7).in_groups(3, '&amp;nbsp;') {|group| p group}\n  [&quot;1&quot;, \
+    &quot;2&quot;, &quot;3&quot;]\n  [&quot;4&quot;, &quot;5&quot;, &quot;&amp;nbsp;&quot;]\n\
+    \  [&quot;6&quot;, &quot;7&quot;, &quot;&amp;nbsp;&quot;]\n\n  %w(1 2 3 4 5 6 7).in_groups(3, \
+    false) {|group| p group}\n  [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]\n  [&quot;4&quot;, \
+    &quot;5&quot;]\n  [&quot;6&quot;, &quot;7&quot;]\n"
+full_name: ActiveSupport::CoreExtensions::Array::Grouping#in_groups
+params: (number, fill_with = nil) {|g| ...}
+name: in_groups
+is_singleton: false
+aliases: []
+

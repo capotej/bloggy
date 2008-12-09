@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An assembled pipeline of Rack middleware that leads eventually to the Application#invoke
+    method. The pipeline is built upon first access. Defining new middleware with
+    Application#use or manipulating application options may cause the pipeline to
+    be rebuilt.
+full_name: Sinatra::Application#pipeline
+params: ()
+name: pipeline
+is_singleton: false
+aliases: []
+

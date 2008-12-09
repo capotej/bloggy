@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets a new default value for a column. See SchemaStatements#change_column_default
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 5
+- !ruby/struct:SM::Flow::VERB 
+  body: " t.change_default(:qualification, 'new')\n t.change_default(:authorized, \
+    1)\n"
+full_name: ActiveRecord::ConnectionAdapters::Table#change_default
+params: (column_name, default)
+name: change_default
+is_singleton: false
+aliases: []
+

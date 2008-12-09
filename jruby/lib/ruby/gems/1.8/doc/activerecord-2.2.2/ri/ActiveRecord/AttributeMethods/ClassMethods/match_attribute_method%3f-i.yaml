@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns MatchData if method_name is an attribute method.
+full_name: ActiveRecord::AttributeMethods::ClassMethods#match_attribute_method?
+params: (method_name)
+name: match_attribute_method?
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Executes an UPDATE query and returns the number of affected tuples.
+full_name: ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#update_sql
+params: (sql, name = nil)
+name: update_sql
+is_singleton: false
+aliases: []
+

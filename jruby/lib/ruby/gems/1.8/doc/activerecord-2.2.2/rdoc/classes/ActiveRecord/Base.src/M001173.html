@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>update_all (ActiveRecord::Base)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/base.rb, line 797</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_all</span>(<span class="ruby-identifier">updates</span>, <span class="ruby-identifier">conditions</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">sql</span>  = <span class="ruby-node">&quot;UPDATE #{quoted_table_name} SET #{sanitize_sql_for_assignment(updates)} &quot;</span>
+
+        <span class="ruby-identifier">scope</span> = <span class="ruby-identifier">scope</span>(<span class="ruby-identifier">:find</span>)
+
+        <span class="ruby-identifier">select_sql</span> = <span class="ruby-value str">&quot;&quot;</span>
+        <span class="ruby-identifier">add_conditions!</span>(<span class="ruby-identifier">select_sql</span>, <span class="ruby-identifier">conditions</span>, <span class="ruby-identifier">scope</span>)
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">:limit</span>) <span class="ruby-operator">||</span> (<span class="ruby-identifier">scope</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">scope</span>[<span class="ruby-identifier">:limit</span>])
+          <span class="ruby-comment cmt"># Only take order from scope if limit is also provided by scope, this</span>
+          <span class="ruby-comment cmt"># is useful for updating a has_many association with a limit.</span>
+          <span class="ruby-identifier">add_order!</span>(<span class="ruby-identifier">select_sql</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:order</span>], <span class="ruby-identifier">scope</span>)
+
+          <span class="ruby-identifier">add_limit!</span>(<span class="ruby-identifier">select_sql</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">scope</span>)
+          <span class="ruby-identifier">sql</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">limited_update_conditions</span>(<span class="ruby-identifier">select_sql</span>, <span class="ruby-identifier">quoted_table_name</span>, <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote_column_name</span>(<span class="ruby-identifier">primary_key</span>)))
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">add_order!</span>(<span class="ruby-identifier">select_sql</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:order</span>], <span class="ruby-keyword kw">nil</span>)
+          <span class="ruby-identifier">sql</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">select_sql</span>)
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-node">&quot;#{name} Update&quot;</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

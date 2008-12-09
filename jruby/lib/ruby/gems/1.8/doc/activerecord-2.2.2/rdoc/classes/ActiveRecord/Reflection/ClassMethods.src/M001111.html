@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>create_reflection (ActiveRecord::Reflection::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/reflection.rb, line 13</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_reflection</span>(<span class="ruby-identifier">macro</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">active_record</span>)
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">macro</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:has_many</span>, <span class="ruby-identifier">:belongs_to</span>, <span class="ruby-identifier">:has_one</span>, <span class="ruby-identifier">:has_and_belongs_to_many</span>
+            <span class="ruby-identifier">klass</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:through</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">ThroughReflection</span> <span class="ruby-operator">:</span> <span class="ruby-constant">AssociationReflection</span>
+            <span class="ruby-identifier">reflection</span> = <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">macro</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">active_record</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:composed_of</span>
+            <span class="ruby-identifier">reflection</span> = <span class="ruby-constant">AggregateReflection</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">macro</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">active_record</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">write_inheritable_hash</span> <span class="ruby-identifier">:reflections</span>, <span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">reflection</span>
+        <span class="ruby-identifier">reflection</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

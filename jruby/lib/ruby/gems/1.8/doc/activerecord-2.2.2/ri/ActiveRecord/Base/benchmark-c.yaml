@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: ""
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Log and benchmark multiple statements in a single block. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Project.benchmark(&quot;Creating project&quot;) do\n    project = Project.create(&quot;name&quot; \
+    =&gt; &quot;stuff&quot;)\n    project.create_manager(&quot;name&quot; =&gt; &quot;David&quot;)\n\
+    \    project.milestones &lt;&lt; Milestone.find(:all)\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: The benchmark is only recorded if the current level of the logger is less
+    than or equal to the <tt>log_level</tt>, which makes it easy to include benchmarking
+    statements in production software that will remain inexpensive because the benchmark
+    will only be conducted if the log level is low enough.
+- !ruby/struct:SM::Flow::P 
+  body: The logging of the multiple statements is turned off unless <tt>use_silence</tt>
+    is set to false.
+full_name: ActiveRecord::Base::benchmark
+params: (title, log_level = Logger::DEBUG, use_silence = true) {|| ...}
+name: benchmark
+is_singleton: true
+aliases: []
+

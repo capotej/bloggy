@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::SchemaStatements#options_include_default?
+params: (options)
+name: options_include_default?
+is_singleton: false
+aliases: []
+

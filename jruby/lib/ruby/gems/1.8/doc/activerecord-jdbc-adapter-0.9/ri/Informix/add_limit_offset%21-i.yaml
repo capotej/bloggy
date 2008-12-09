@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::Informix#add_limit_offset!"
+params: (sql, options)
+name: add_limit_offset!
+is_singleton: false
+aliases: []
+

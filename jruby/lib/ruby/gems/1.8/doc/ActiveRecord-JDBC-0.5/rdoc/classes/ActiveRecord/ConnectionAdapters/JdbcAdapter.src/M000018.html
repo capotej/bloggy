@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>native_sql_to_type (ActiveRecord::ConnectionAdapters::JdbcAdapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/jdbc_adapter.rb, line 420</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">native_sql_to_type</span>(<span class="ruby-identifier">tp</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-regexp re">/^(.*?)\(([0-9]+)\)/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">tp</span>
+          <span class="ruby-identifier">tname</span> = <span class="ruby-identifier">$1</span>
+          <span class="ruby-identifier">limit</span> = <span class="ruby-identifier">$2</span>.<span class="ruby-identifier">to_i</span>
+          <span class="ruby-identifier">ntype</span> = <span class="ruby-identifier">native_database_types</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ntype</span>[<span class="ruby-identifier">:primary_key</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">tp</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">:primary_key</span>,<span class="ruby-keyword kw">nil</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">ntype</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>,<span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:primary_key</span>
+                <span class="ruby-keyword kw">next</span>
+              <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">val</span>[<span class="ruby-identifier">:name</span>].<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">tname</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">val</span>[<span class="ruby-identifier">:limit</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">val</span>[<span class="ruby-identifier">:limit</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">limit</span>)
+                <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">name</span>,<span class="ruby-identifier">limit</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-regexp re">/^(.*?)/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">tp</span>
+          <span class="ruby-identifier">tname</span> = <span class="ruby-identifier">$1</span>
+          <span class="ruby-identifier">ntype</span> = <span class="ruby-identifier">native_database_types</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ntype</span>[<span class="ruby-identifier">:primary_key</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">tp</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">:primary_key</span>,<span class="ruby-keyword kw">nil</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">ntype</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>,<span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">val</span>[<span class="ruby-identifier">:name</span>].<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">tname</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">val</span>[<span class="ruby-identifier">:limit</span>].<span class="ruby-identifier">nil?</span>
+                <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">name</span>,<span class="ruby-keyword kw">nil</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">:string</span>,<span class="ruby-value">255</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>,<span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Ouputs <em>objs</em> to STDOUT as JSON strings in a pretty format, with indentation
+    and over many lines.
+full_name: '#jj'
+params: (*objs)
+name: jj
+is_singleton: false
+aliases: []
+

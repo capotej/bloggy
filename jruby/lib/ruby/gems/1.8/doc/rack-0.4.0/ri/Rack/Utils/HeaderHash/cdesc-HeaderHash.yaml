@@ -1,0 +1,25 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A case-normalizing Hash, adjusting on [] and []=.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: '[]'
+- !ruby/object:RI::MethodSummary 
+  name: '[]='
+- !ruby/object:RI::MethodSummary 
+  name: capitalize
+- !ruby/object:RI::MethodSummary 
+  name: to_hash
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Rack::Utils::HeaderHash
+constants: []
+
+superclass: Hash
+name: HeaderHash

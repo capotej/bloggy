@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: shortcut for request.params[key] = value
+full_name: Rack::Request#[]=
+params: (key, value)
+name: '[]='
+is_singleton: false
+aliases: []
+

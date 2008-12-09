@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Same as xml_in but doesn't try to smartly shoot itself in the foot.
+full_name: XmlSimple#xml_in_string
+params: (string, options = nil)
+name: xml_in_string
+is_singleton: false
+aliases: []
+

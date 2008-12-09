@@ -1,0 +1,25 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Calling this before you register your URIs to the given location will setup
+    a set of handlers that log open files, objects, and the parameters for each request.
+    This helps you track common problems found in Rails applications that are either
+    slow or become unresponsive after a little while.
+- !ruby/struct:SM::Flow::P 
+  body: 'You can pass an extra parameter <b>what</b> to indicate what you want to
+    debug. For example, if you just want to dump rails stuff then do:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  debug &quot;/&quot;, what = [:rails]\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'And it will only produce the log/mongrel_debug/rails.log file. Available
+    options are: :access, :files, :objects, :threads, :rails'
+- !ruby/struct:SM::Flow::P 
+  body: 'NOTE: Use [:files] to get accesses dumped to stderr like with WEBrick.'
+full_name: Mongrel::Configurator#debug
+params: (location, what = [:access, :files, :objects, :threads, :rails])
+name: debug
+is_singleton: false
+aliases: []
+

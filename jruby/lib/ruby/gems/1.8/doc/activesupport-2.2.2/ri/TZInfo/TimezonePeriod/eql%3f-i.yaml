@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns true if this TimezonePeriods is equal to p. This compares the start_transition,
+    end_transition and offset using eql?
+full_name: TZInfo::TimezonePeriod#eql?
+params: (p)
+name: eql?
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>advance (ActiveSupport::CoreExtensions::Time::Calculations)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/core_ext/time/calculations.rb, line 102</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">advance</span>(<span class="ruby-identifier">options</span>)
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:weeks</span>].<span class="ruby-identifier">nil?</span>
+            <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:weeks</span>], <span class="ruby-identifier">partial_weeks</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:weeks</span>].<span class="ruby-identifier">divmod</span>(<span class="ruby-value">1</span>)
+            <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:days</span>] = (<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:days</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>) <span class="ruby-operator">+</span> <span class="ruby-value">7</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">partial_weeks</span>
+          <span class="ruby-keyword kw">end</span>
+          
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:days</span>].<span class="ruby-identifier">nil?</span>
+            <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:days</span>], <span class="ruby-identifier">partial_days</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:days</span>].<span class="ruby-identifier">divmod</span>(<span class="ruby-value">1</span>)
+            <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:hours</span>] = (<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:hours</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>) <span class="ruby-operator">+</span> <span class="ruby-value">24</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">partial_days</span>
+          <span class="ruby-keyword kw">end</span>
+          
+          <span class="ruby-identifier">d</span> = <span class="ruby-identifier">to_date</span>.<span class="ruby-identifier">advance</span>(<span class="ruby-identifier">options</span>)
+          <span class="ruby-identifier">time_advanced_by_date</span> = <span class="ruby-identifier">change</span>(<span class="ruby-identifier">:year</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">year</span>, <span class="ruby-identifier">:month</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">month</span>, <span class="ruby-identifier">:day</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">day</span>)
+          <span class="ruby-identifier">seconds_to_advance</span> = (<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:seconds</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>) <span class="ruby-operator">+</span> (<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:minutes</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>) <span class="ruby-operator">*</span> <span class="ruby-value">60</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:hours</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>) <span class="ruby-operator">*</span> <span class="ruby-value">3600</span>
+          <span class="ruby-identifier">seconds_to_advance</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">time_advanced_by_date</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">time_advanced_by_date</span>.<span class="ruby-identifier">since</span>(<span class="ruby-identifier">seconds_to_advance</span>)
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

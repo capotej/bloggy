@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: '|| "")'
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The dumb thing is people can call header or this or both and in any order.
+    So, we just reuse header and then finalize the HttpResponse the right way. Status
+    is taken from the various options and converted to what Mongrel needs via the
+    CGIWrapper.status function.
+- !ruby/struct:SM::Flow::P 
+  body: We also prevent Rails from actually doing the final send by adding a second
+    parameter &quot;really_final&quot;. Only Mongrel calls this after Rails is done.
+    Since this will break other frameworks, it defaults to a different setting for
+    rails (false) and (true) for others.
+full_name: Mongrel::CGIWrapper#out
+params: (options = "text/html", really_final=@default_really_final) {||| "")| ...}
+name: out
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the class descending directly from Active Record in the inheritance
+    hierarchy.
+full_name: ActiveRecord::Base::class_of_active_record_descendant
+params: (klass)
+name: class_of_active_record_descendant
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Handles <tt>error</tt> from <tt>server</tt>.
+full_name: MemCache#handle_error
+params: (server, error)
+name: handle_error
+is_singleton: false
+aliases: []
+

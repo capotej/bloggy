@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Builder::check_for_name_collision
+params: (klass, method_name, defined_constant=nil)
+name: check_for_name_collision
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>method_added (Kernel)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/vendor/builder-2.1.2/blankslate.rb, line 65</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_added</span>(<span class="ruby-identifier">name</span>)
+      <span class="ruby-identifier">result</span> = <span class="ruby-identifier">blank_slate_method_added</span>(<span class="ruby-identifier">name</span>)
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">result</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Kernel</span>
+      <span class="ruby-constant">BlankSlate</span>.<span class="ruby-identifier">hide</span>(<span class="ruby-identifier">name</span>)
+      <span class="ruby-identifier">result</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

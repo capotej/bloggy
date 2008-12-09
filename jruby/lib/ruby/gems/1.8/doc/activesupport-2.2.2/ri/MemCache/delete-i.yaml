@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Removes <tt>key</tt> from the cache in <tt>expiry</tt> seconds.
+full_name: MemCache#delete
+params: (key, expiry = 0)
+name: delete
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::SQLiteAdapter#select_rows
+params: (sql, name = nil)
+name: select_rows
+is_singleton: false
+aliases: []
+

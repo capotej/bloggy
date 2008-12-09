@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Method for creating new ActiveSupport::TimeWithZone instance in time zone
+    of <tt>self</tt> from parsed string. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Time.zone = &quot;Hawaii&quot;                      # =&gt; &quot;Hawaii&quot;\n\
+    \  Time.zone.parse('1999-12-31 14:00:00')    # =&gt; Fri, 31 Dec 1999 14:00:00 \
+    HST -10:00\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'If upper components are missing from the string, they are supplied from TimeZone#now:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Time.zone.now                 # =&gt; Fri, 31 Dec 1999 14:00:00 HST -10:00\n\
+    \  Time.zone.parse('22:30:00')   # =&gt; Fri, 31 Dec 1999 22:30:00 HST -10:00\n"
+full_name: ActiveSupport::TimeZone#parse
+params: (str, now=now)
+name: parse
+is_singleton: false
+aliases: []
+

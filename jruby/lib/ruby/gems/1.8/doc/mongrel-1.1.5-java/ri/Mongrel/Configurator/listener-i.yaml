@@ -1,0 +1,42 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Starts a listener block. This is the only one that actually takes a block
+    and then you make Configurator.uri calls in order to setup your URIs and handlers.
+    If you write your Handlers as GemPlugins then you can use load_plugins and plugin
+    to load them.
+- !ruby/struct:SM::Flow::P 
+  body: 'It expects the following options (or defaults):'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":host =&gt; Host name to bind."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":port =&gt; Port to bind."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":num_processors =&gt; The maximum number of concurrent threads allowed."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":throttle =&gt; Time to pause (in hundredths of a second) between accepting \
+      clients."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":timeout =&gt; Time to wait (in seconds) before killing a stalled thread."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":user =&gt; User to change to, must have :group as well."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":group =&gt; Group to change to, must have :user as well."
+    label: '*'
+full_name: Mongrel::Configurator#listener
+params: (options={},&block)
+name: listener
+is_singleton: false
+aliases: []
+

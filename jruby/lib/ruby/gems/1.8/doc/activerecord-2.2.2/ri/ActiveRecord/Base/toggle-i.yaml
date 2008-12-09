@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Assigns to <tt>attribute</tt> the boolean opposite of <tt>attribute?</tt>.
+    So if the predicate returns <tt>true</tt> the attribute will become <tt>false</tt>.
+    This method toggles directly the underlying value without calling any setter.
+    Returns <tt>self</tt>.
+full_name: ActiveRecord::Base#toggle
+params: (attribute)
+name: toggle
+is_singleton: false
+aliases: []
+

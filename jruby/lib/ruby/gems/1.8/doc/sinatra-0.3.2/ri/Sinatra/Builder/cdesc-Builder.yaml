@@ -1,0 +1,71 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Generating conservative XML content using Builder templates.
+- !ruby/struct:SM::Flow::P 
+  body: Builder templates can be inline by passing a block to the builder method,
+    or in external files with +.builder+ extension by passing the name of the template
+    to the <tt>builder</tt> method as a Symbol.
+- !ruby/struct:SM::Flow::H 
+  text: Inline Rendering
+  level: 3
+- !ruby/struct:SM::Flow::P 
+  body: 'If the builder method is given a block, the block is called directly with
+    an <tt>XmlMarkup</tt> instance and the result is returned as String:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  get '/who.xml' do\n    builder do |xml|\n      xml.instruct!\n      xml.person \
+    do\n        xml.name &quot;Francis Albert Sinatra&quot;,\n          :aka =&gt; \
+    &quot;Frank Sinatra&quot;\n        xml.email 'frank@capitolrecords.com'\n     \
+    \ end\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Yields the following XML:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;?xml version='1.0' encoding='UTF-8'?&gt;\n  &lt;person&gt;\n    &lt;name \
+    aka='Frank Sinatra'&gt;Francis Albert Sinatra&lt;/name&gt;\n    &lt;email&gt;Frank \
+    Sinatra&lt;/email&gt;\n  &lt;/person&gt;\n"
+- !ruby/struct:SM::Flow::H 
+  text: Builder Template Files
+  level: 3
+- !ruby/struct:SM::Flow::P 
+  body: Builder templates can be stored in separate files with a +.builder+ extension
+    under the view path. An <tt>XmlMarkup</tt> object named <tt>xml</tt> is automatically
+    made available to template.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  get '/bio.xml' do\n    builder :bio\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'The &quot;views/bio.builder&quot; file might contain the following:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  xml.instruct! :xml, :version =&gt; '1.1'\n  xml.person do\n    xml.name \
+    &quot;Francis Albert Sinatra&quot;\n    xml.aka &quot;Frank Sinatra&quot;\n   \
+    \ xml.aka &quot;Ol' Blue Eyes&quot;\n    xml.aka &quot;The Chairman of the Board&quot;\n\
+    \    xml.born 'date' =&gt; '1915-12-12' do\n      xml.text! &quot;Hoboken, New \
+    Jersey, U.S.A.&quot;\n    end\n    xml.died 'age' =&gt; 82\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'And yields the following output:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;?xml version='1.1' encoding='UTF-8'?&gt;\n  &lt;person&gt;\n    &lt;name&gt;Francis \
+    Albert Sinatra&lt;/name&gt;\n    &lt;aka&gt;Frank Sinatra&lt;/aka&gt;\n    &lt;aka&gt;Ol&amp;apos; \
+    Blue Eyes&lt;/aka&gt;\n    &lt;aka&gt;The Chairman of the Board&lt;/aka&gt;\n\
+    \    &lt;born date='1915-12-12'&gt;Hoboken, New Jersey, U.S.A.&lt;/born&gt;\n  \
+    \  &lt;died age='82' /&gt;\n  &lt;/person&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'NOTE: Builder must be installed or a LoadError will be raised the first time
+    an attempt is made to render a builder template.'
+- !ruby/struct:SM::Flow::P 
+  body: See http://builder.rubyforge.org/ for comprehensive documentation on Builder.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: builder
+class_methods: []
+
+full_name: Sinatra::Builder
+constants: []
+
+superclass: 
+name: Builder

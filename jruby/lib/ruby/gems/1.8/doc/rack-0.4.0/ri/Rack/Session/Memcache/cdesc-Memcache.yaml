@@ -1,0 +1,43 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Rack::Session::Memcache provides simple cookie based session management. Session
+    data is stored in memcached. The corresponding session key is maintained in the
+    cookie. You may treat Session::Memcache as you would Session::Pool with the following
+    caveats.
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: Setting :expire_after to 0 would note to the Memcache server to hang onto
+      the session data until it would drop it according to it's own specifications.
+      However, the cookie sent to the client would expire immediately.
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: Note that memcache does drop data before it may be listed to expire. For a
+    full description of behaviour, please see memcache's documentation.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: mutex
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: pool
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Rack::Session::Memcache
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: Abstract::ID::DEFAULT_OPTIONS.merge({         :namespace => 'rack:session',         :memcache_server
+    => 'localhost:11211'
+  name: DEFAULT_OPTIONS
+superclass: Abstract::ID
+name: Memcache

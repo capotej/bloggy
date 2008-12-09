@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Raised on attempt to update record that is instantiated as read only.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveRecord::ReadOnlyRecord
+constants: []
+
+superclass: ActiveRecordError
+name: ReadOnlyRecord

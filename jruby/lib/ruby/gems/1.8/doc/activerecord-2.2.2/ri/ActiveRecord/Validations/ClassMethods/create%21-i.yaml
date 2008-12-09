@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (object)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates an object just like Base.create but calls save! instead of save so
+    an exception is raised if the record is invalid.
+full_name: ActiveRecord::Validations::ClassMethods#create!
+params: (attributes = nil, &block) {|object| ...}
+name: create!
+is_singleton: false
+aliases: []
+

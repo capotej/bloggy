@@ -1,0 +1,57 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a JSON string representing the model. Some configuration is available
+    through <tt>options</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: 'Without any <tt>options</tt>, the returned JSON string will include all the
+    model''s attributes. For example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  konata = User.find(1)\n  konata.to_json\n  # =&gt; {&quot;id&quot;: 1, \
+    &quot;name&quot;: &quot;Konata Izumi&quot;, &quot;age&quot;: 16,\n        &quot;created_at&quot;: \
+    &quot;2006/08/01&quot;, &quot;awesome&quot;: true}\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'The <tt>:only</tt> and <tt>:except</tt> options can be used to limit the
+    attributes included, and work similar to the <tt>attributes</tt> method. For example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  konata.to_json(:only =&gt; [ :id, :name ])\n  # =&gt; {&quot;id&quot;: \
+    1, &quot;name&quot;: &quot;Konata Izumi&quot;}\n\n  konata.to_json(:except =&gt; \
+    [ :id, :created_at, :age ])\n  # =&gt; {&quot;name&quot;: &quot;Konata Izumi&quot;, \
+    &quot;awesome&quot;: true}\n"
+- !ruby/struct:SM::Flow::P 
+  body: To include any methods on the model, use <tt>:methods</tt>.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  konata.to_json(:methods =&gt; :permalink)\n  # =&gt; {&quot;id&quot;: 1, \
+    &quot;name&quot;: &quot;Konata Izumi&quot;, &quot;age&quot;: 16,\n        &quot;created_at&quot;: \
+    &quot;2006/08/01&quot;, &quot;awesome&quot;: true,\n        &quot;permalink&quot;: \
+    &quot;1-konata-izumi&quot;}\n"
+- !ruby/struct:SM::Flow::P 
+  body: To include associations, use <tt>:include</tt>.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  konata.to_json(:include =&gt; :posts)\n  # =&gt; {&quot;id&quot;: 1, &quot;name&quot;: \
+    &quot;Konata Izumi&quot;, &quot;age&quot;: 16,\n        &quot;created_at&quot;: \
+    &quot;2006/08/01&quot;, &quot;awesome&quot;: true,\n        &quot;posts&quot;: \
+    [{&quot;id&quot;: 1, &quot;author_id&quot;: 1, &quot;title&quot;: &quot;Welcome \
+    to the weblog&quot;},\n                  {&quot;id&quot;: 2, author_id: 1, &quot;title&quot;: \
+    &quot;So I was thinking&quot;}]}\n"
+- !ruby/struct:SM::Flow::P 
+  body: '2nd level and higher order associations work as well:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  konata.to_json(:include =&gt; { :posts =&gt; {\n                       \
+    \          :include =&gt; { :comments =&gt; {\n                                \
+    \               :only =&gt; :body } },\n                                 :only \
+    =&gt; :title } })\n  # =&gt; {&quot;id&quot;: 1, &quot;name&quot;: &quot;Konata \
+    Izumi&quot;, &quot;age&quot;: 16,\n        &quot;created_at&quot;: &quot;2006/08/01&quot;, \
+    &quot;awesome&quot;: true,\n        &quot;posts&quot;: [{&quot;comments&quot;: \
+    [{&quot;body&quot;: &quot;1st post!&quot;}, {&quot;body&quot;: &quot;Second!&quot;}],\n\
+    \                   &quot;title&quot;: &quot;Welcome to the weblog&quot;},\n   \
+    \               {&quot;comments&quot;: [{&quot;body&quot;: &quot;Don't think too \
+    hard&quot;}],\n                   &quot;title&quot;: &quot;So I was thinking&quot;}]}\n"
+full_name: ActiveRecord::Serialization#to_json
+params: (options = {})
+name: to_json
+is_singleton: false
+aliases: []
+

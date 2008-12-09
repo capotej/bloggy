@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This emits the number without any scientific notation. This is better than
+    self.to_f.to_s since it doesn't lose precision.
+- !ruby/struct:SM::Flow::P 
+  body: Note that reconstituting YAML floats to native floats may lose precision.
+full_name: ActiveSupport::CoreExtensions::BigDecimal::Conversions#to_yaml
+params: (opts = {})
+name: to_yaml
+is_singleton: false
+aliases: []
+

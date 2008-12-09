@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Define an event handler for PUT requests.
+- !ruby/struct:SM::Flow::P 
+  body: 'NOTE: PUT events are triggered when the HTTP request method is PUT and also
+    when the request method is POST and the body includes a &quot;_method&quot; parameter
+    set to &quot;PUT&quot;.'
+full_name: Sinatra::Application#put
+params: (path, options={}, &b)
+name: put
+is_singleton: false
+aliases: []
+

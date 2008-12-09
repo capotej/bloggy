@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::AbstractAdapter#format_log_entry
+params: (message, dump = nil)
+name: format_log_entry
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,101 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Rack::Request provides a convenient interface to a Rack environment. It is
+    stateless, the environment <tt>env</tt> passed to the constructor will be directly
+    modified.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  req = Rack::Request.new(env)\n  req.post?\n  req.params[&quot;data&quot;]\n"
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The environment of the request.
+  rw: R
+  name: env
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: GET
+- !ruby/object:RI::MethodSummary 
+  name: POST
+- !ruby/object:RI::MethodSummary 
+  name: '[]'
+- !ruby/object:RI::MethodSummary 
+  name: '[]='
+- !ruby/object:RI::MethodSummary 
+  name: accept_encoding
+- !ruby/object:RI::MethodSummary 
+  name: body
+- !ruby/object:RI::MethodSummary 
+  name: content_charset
+- !ruby/object:RI::MethodSummary 
+  name: content_length
+- !ruby/object:RI::MethodSummary 
+  name: content_type
+- !ruby/object:RI::MethodSummary 
+  name: cookies
+- !ruby/object:RI::MethodSummary 
+  name: delete?
+- !ruby/object:RI::MethodSummary 
+  name: form_data?
+- !ruby/object:RI::MethodSummary 
+  name: fullpath
+- !ruby/object:RI::MethodSummary 
+  name: get?
+- !ruby/object:RI::MethodSummary 
+  name: head?
+- !ruby/object:RI::MethodSummary 
+  name: host
+- !ruby/object:RI::MethodSummary 
+  name: media_type
+- !ruby/object:RI::MethodSummary 
+  name: media_type_params
+- !ruby/object:RI::MethodSummary 
+  name: params
+- !ruby/object:RI::MethodSummary 
+  name: path_info
+- !ruby/object:RI::MethodSummary 
+  name: path_info=
+- !ruby/object:RI::MethodSummary 
+  name: port
+- !ruby/object:RI::MethodSummary 
+  name: post?
+- !ruby/object:RI::MethodSummary 
+  name: put?
+- !ruby/object:RI::MethodSummary 
+  name: query_string
+- !ruby/object:RI::MethodSummary 
+  name: referer
+- !ruby/object:RI::MethodSummary 
+  name: referrer
+- !ruby/object:RI::MethodSummary 
+  name: request_method
+- !ruby/object:RI::MethodSummary 
+  name: scheme
+- !ruby/object:RI::MethodSummary 
+  name: script_name
+- !ruby/object:RI::MethodSummary 
+  name: script_name=
+- !ruby/object:RI::MethodSummary 
+  name: url
+- !ruby/object:RI::MethodSummary 
+  name: values_at
+- !ruby/object:RI::MethodSummary 
+  name: xhr?
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Rack::Request
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The set of form-data media-types. Requests that do not indicate one of the
+      media types presents in this list will not be eligible for form-data / param
+      parsing.
+  value: '[       nil,       ''application/x-www-form-urlencoded'',       ''multipart/form-data'''
+  name: FORM_DATA_MEDIA_TYPES
+superclass: Object
+name: Request

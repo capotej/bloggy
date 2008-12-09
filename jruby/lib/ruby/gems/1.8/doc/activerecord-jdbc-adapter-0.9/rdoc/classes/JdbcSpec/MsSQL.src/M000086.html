@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>add_column (JdbcSpec::MsSQL)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/jdbc_adapter/jdbc_mssql.rb, line 170</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_column</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">add_column_sql</span> = <span class="ruby-node">&quot;ALTER TABLE #{table_name} ADD #{quote_column_name(column_name)} #{type_to_sql(type, options[:limit], options[:precision], options[:scale])}&quot;</span>
+        <span class="ruby-identifier">add_column_options!</span>(<span class="ruby-identifier">add_column_sql</span>, <span class="ruby-identifier">options</span>)
+        <span class="ruby-comment cmt"># TODO: Add support to mimic date columns, using constraints to mark them as such in the database</span>
+        <span class="ruby-comment cmt"># add_column_sql &lt;&lt; &quot; CONSTRAINT ck__#{table_name}__#{column_name}__date_only CHECK ( CONVERT(CHAR(12), #{quote_column_name(column_name)}, 14)='00:00:00:000' )&quot; if type == :date</span>
+        <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">add_column_sql</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

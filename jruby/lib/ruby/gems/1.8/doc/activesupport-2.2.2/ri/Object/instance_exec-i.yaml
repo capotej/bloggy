@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Evaluate the block with the given arguments within the context of this object,
+    so self is set to the method receiver.
+- !ruby/struct:SM::Flow::P 
+  body: From Mauricio's http://eigenclass.org/hiki/bounded+space+instance_exec
+full_name: Object#instance_exec
+params: (*args, &block)
+name: instance_exec
+is_singleton: false
+aliases: []
+

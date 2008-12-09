@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: ""
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets $VERBOSE to nil for the duration of the block and back to its original
+    value afterwards.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  silence_warnings do\n    value = noisy_call # no warning voiced\n  end\n\
+    \n  noisy_call # warning voiced\n"
+full_name: Kernel#silence_warnings
+params: () {|| ...}
+name: silence_warnings
+is_singleton: false
+aliases: []
+

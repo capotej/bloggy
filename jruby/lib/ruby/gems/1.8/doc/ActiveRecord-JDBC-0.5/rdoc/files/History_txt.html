@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: History.txt</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>History.txt</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>History.txt
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Tue Dec 09 02:14:31 UTC 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>0.5</h2>
+<ul>
+<li>Release coincides with JRuby 1.0.1 release
+
+</li>
+<li>It is no longer necessary to specify :driver and :url configuration
+parameters for the mysql, postgresql, oracle, derby, hsqldb, and h2
+adapters. The previous configuration is still valid and compatible, but for
+new applications, this makes it possible to use the exact same database.yml
+configuration as Rails applications running under native Ruby.
+
+</li>
+<li>JDBC drivers can now be dynamically loaded by Ruby code, without being on
+the classpath prior to launching JRuby. Simply use &quot;require
+&#8216;jdbc-driver.jar&#8217;&quot; in JRuby code to add it to the runtime
+classpath.
+
+</li>
+<li>Updates to HSQL, MS SQLServer, Postgres, Oracle and Derby adapters
+
+</li>
+</ul>
+<h2>0.4</h2>
+<ul>
+<li>Release coincides with JRuby 1.0 release
+
+</li>
+<li>Shoring up PostgreSQL (courtesy Dudley Flanders) and HSQL (courtesy Matthew
+Williams)
+
+</li>
+<li>Fix timestamps on Oracle to use DATE (as everything else)
+
+</li>
+<li>Derby fixes: Fix for open result set issue, better structure dump, quoting,
+column type changing
+
+</li>
+<li>Sybase type recognition fix (courtesy Dean Mao)
+
+</li>
+</ul>
+<h2>0.3.1</h2>
+<ul>
+<li>Derby critical fixes shortly after 0.3
+
+</li>
+</ul>
+<h2>0.3</h2>
+<ul>
+<li>Release coincides with JRuby 1.0.0RC1 release
+
+</li>
+<li>Improvements for Derby, Postgres, and Oracle, all of which are running &gt;
+95% of AR tests
+
+</li>
+</ul>
+<h2>0.2.4</h2>
+<ul>
+<li>Release coincides with JRuby 0.9.9 release
+
+</li>
+<li>JRuby 0.9.9 is required
+
+</li>
+<li>MySQL close to 100% working
+
+</li>
+<li>Derby improvements
+
+</li>
+<li>DECIMAL/NUMERIC/FLOAT/REAL bugs fixed with type recognition for Oracle,
+Postgres, etc.
+
+</li>
+<li>HSQLDB has regressed this release and may not be functioning; we&#8216;ll
+get it fixed for the next one
+
+</li>
+</ul>
+<h2>0.2.3</h2>
+<ul>
+<li>Release coincides (and compatible) with JRuby 0.9.8 release
+
+</li>
+<li>8 bugs fixed: see <a href="http://rubyurl.com/0Da">rubyurl.com/0Da</a>
+
+</li>
+<li>Improvements and compatibility fixes for Rails 1.2.x
+
+</li>
+</ul>
+<h2>0.2.1, 0.2.2</h2>
+<ul>
+<li>Early releases, added better support for multiple databases
+
+</li>
+</ul>
+<h2>0.0.1</h2>
+<ul>
+<li>Initial, very alpha release
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

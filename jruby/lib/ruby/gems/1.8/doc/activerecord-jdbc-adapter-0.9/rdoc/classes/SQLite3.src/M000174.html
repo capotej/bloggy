@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>indexes (::SQLite3)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/jdbc_adapter/jdbc_sqlite3.rb, line 176</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">indexes</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">name</span> = <span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-identifier">result</span> = <span class="ruby-identifier">select_rows</span>(<span class="ruby-node">&quot;SELECT name, sql FROM sqlite_master WHERE tbl_name = '#{table_name}' AND type = 'index'&quot;</span>, <span class="ruby-identifier">name</span>)
+
+      <span class="ruby-identifier">result</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">name</span> = <span class="ruby-identifier">row</span>[<span class="ruby-value">0</span>]
+        <span class="ruby-identifier">index_sql</span> = <span class="ruby-identifier">row</span>[<span class="ruby-value">1</span>]
+        <span class="ruby-identifier">unique</span> = (<span class="ruby-identifier">index_sql</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/unique/i</span>)
+        <span class="ruby-identifier">cols</span> = <span class="ruby-identifier">index_sql</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/\((.*)\)/</span>)[<span class="ruby-value">1</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/,/</span>,<span class="ruby-value str">' '</span>).<span class="ruby-identifier">split</span>
+        <span class="ruby-operator">::</span><span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">ConnectionAdapters</span><span class="ruby-operator">::</span><span class="ruby-constant">IndexDefinition</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">unique</span>, <span class="ruby-identifier">cols</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Performs setup for making a request with <tt>key</tt> from memcached. Returns
+    the server to fetch the key from and the complete key to use.
+full_name: MemCache#request_setup
+params: (key)
+name: request_setup
+is_singleton: false
+aliases: []
+

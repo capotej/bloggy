@@ -1,0 +1,151 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Active Record implements aggregation through a macro-like class method called
+    <tt>composed_of</tt> for representing attributes as value objects. It expresses
+    relationships like &quot;Account [is] composed of Money [among other things]&quot;
+    or &quot;Person [is] composed of [an] address&quot;. Each call to the macro adds
+    a description of how the value objects are created from the attributes of the
+    entity object (when the entity is initialized either as a new object or from finding
+    an existing object) and how it can be turned back into attributes (when the entity
+    is saved to the database). Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Customer &lt; ActiveRecord::Base\n    composed_of :balance, :class_name \
+    =&gt; &quot;Money&quot;, :mapping =&gt; %w(balance amount)\n    composed_of :address, \
+    :mapping =&gt; [ %w(address_street street), %w(address_city city) ]\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'The customer class now has the following methods to manipulate the value
+    objects:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>Customer#balance, Customer#balance=(money)</tt>
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>Customer#address, Customer#address=(address)</tt>
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: 'These methods will operate with value objects like the ones described below:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " class Money\n   include Comparable\n   attr_reader :amount, :currency\n\
+    \   EXCHANGE_RATES = { &quot;USD_TO_DKK&quot; =&gt; 6 }\n\n   def initialize(amount, \
+    currency = &quot;USD&quot;)\n     @amount, @currency = amount, currency\n   end\n\
+    \n   def exchange_to(other_currency)\n     exchanged_amount = (amount * EXCHANGE_RATES[&quot;#{currency}<em>TO</em>#{other_currency}&quot;]).floor\n\
+    \     Money.new(exchanged_amount, other_currency)\n   end\n\n   def ==(other_money)\n\
+    \     amount == other_money.amount &amp;&amp; currency == other_money.currency\n\
+    \   end\n\n   def &lt;=&gt;(other_money)\n     if currency == other_money.currency\n\
+    \       amount &lt;=&gt; amount\n     else\n       amount &lt;=&gt; other_money.exchange_to(currency).amount\n\
+    \     end\n   end\n end\n\n class Address\n   attr_reader :street, :city\n   def \
+    initialize(street, city)\n     @street, @city = street, city\n   end\n\n   def \
+    close_to?(other_address)\n     city == other_address.city\n   end\n\n   def ==(other_address)\n\
+    \     city == other_address.city &amp;&amp; street == other_address.street\n   \
+    end\n end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Now it''s possible to access attributes from the database through the value
+    objects instead. If you choose to name the composition the same as the attribute''s
+    name, it will be the only way to access that attribute. That''s the case with
+    our <tt>balance</tt> attribute. You interact with the value objects just like
+    you would any other attribute, though:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  customer.balance = Money.new(20)     # sets the Money value object and \
+    the attribute\n  customer.balance                     # =&gt; Money value object\n\
+    \  customer.balance.exchange_to(&quot;DKK&quot;)  # =&gt; Money.new(120, &quot;DKK&quot;)\n\
+    \  customer.balance &gt; Money.new(10)     # =&gt; true\n  customer.balance == \
+    Money.new(20)    # =&gt; true\n  customer.balance &lt; Money.new(5)      # =&gt; \
+    false\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Value objects can also be composed of multiple attributes, such as the case
+    of Address. The order of the mappings will determine the order of the parameters.
+    Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  customer.address_street = &quot;Hyancintvej&quot;\n  customer.address_city \
+    \  = &quot;Copenhagen&quot;\n  customer.address        # =&gt; Address.new(&quot;Hyancintvej&quot;, \
+    &quot;Copenhagen&quot;)\n  customer.address = Address.new(&quot;May Street&quot;, \
+    &quot;Chicago&quot;)\n  customer.address_street # =&gt; &quot;May Street&quot;\n\
+    \  customer.address_city   # =&gt; &quot;Chicago&quot;\n"
+- !ruby/struct:SM::Flow::H 
+  text: Writing value objects
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: Value objects are immutable and interchangeable objects that represent a given
+    value, such as a Money object representing $5. Two Money objects both representing
+    $5 should be equal (through methods such as <tt>==</tt> and <tt>&lt;=&gt;</tt>
+    from Comparable if ranking makes sense). This is unlike entity objects where equality
+    is determined by identity. An entity class such as Customer can easily have two
+    different objects that both have an address on Hyancintvej. Entity identity is
+    determined by object or relational unique identifiers (such as primary keys).
+    Normal ActiveRecord::Base classes are entity objects.
+- !ruby/struct:SM::Flow::P 
+  body: It's also important to treat the value objects as immutable. Don't allow the
+    Money object to have its amount changed after creation. Create a new Money object
+    with the new value instead. This is exemplified by the Money#exchange_to method
+    that returns a new value object instead of changing its own values. Active Record
+    won't persist value objects that have been changed through means other than the
+    writer method.
+- !ruby/struct:SM::Flow::P 
+  body: The immutable requirement is enforced by Active Record by freezing any object
+    assigned as a value object. Attempting to change it afterwards will result in
+    a ActiveSupport::FrozenObjectError.
+- !ruby/struct:SM::Flow::P 
+  body: Read more about value objects on http://c2.com/cgi/wiki?ValueObject and on
+    the dangers of not keeping value objects immutable on http://c2.com/cgi/wiki?ValueObjectsShouldBeImmutable
+- !ruby/struct:SM::Flow::H 
+  text: Custom constructors and converters
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: By default value objects are initialized by calling the <tt>new</tt> constructor
+    of the value class passing each of the mapped attributes, in the order specified
+    by the <tt>:mapping</tt> option, as arguments. If the value class doesn't support
+    this convention then <tt>composed_of</tt> allows a custom constructor to be specified.
+- !ruby/struct:SM::Flow::P 
+  body: When a new value is assigned to the value object the default assumption is
+    that the new value is an instance of the value class. Specifying a custom converter
+    allows the new value to be automatically converted to an instance of value class
+    if necessary.
+- !ruby/struct:SM::Flow::P 
+  body: 'For example, the NetworkResource model has <tt>network_address</tt> and <tt>cidr_range</tt>
+    attributes that should be aggregated using the NetAddr::CIDR value class (http://netaddr.rubyforge.org).
+    The constructor for the value class is called <tt>create</tt> and it expects a
+    CIDR address string as a parameter. New values can be assigned to the value object
+    using either another NetAddr::CIDR object, a string or an array. The <tt>:constructor</tt>
+    and <tt>:converter</tt> options can be used to meet these requirements:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class NetworkResource &lt; ActiveRecord::Base\n    composed_of :cidr,\n\
+    \                :class_name =&gt; 'NetAddr::CIDR',\n                :mapping =&gt; \
+    [ %w(network_address network), %w(cidr_range bits) ],\n                :allow_nil \
+    =&gt; true,\n                :constructor =&gt; Proc.new { |network_address, cidr_range| \
+    NetAddr::CIDR.create(&quot;#{network_address}/#{cidr_range}&quot;) },\n       \
+    \         :converter =&gt; Proc.new { |value| NetAddr::CIDR.create(value.is_a?(Array) \
+    ? value.join('/') : value) }\n  end\n\n  # This calls the :constructor\n  network_resource \
+    = NetworkResource.new(:network_address =&gt; '192.168.0.1', :cidr_range =&gt; \
+    24)\n\n  # These assignments will both use the :converter\n  network_resource.cidr \
+    = [ '192.168.2.1', 8 ]\n  network_resource.cidr = '192.168.0.1/24'\n\n  # This \
+    assignment won't use the :converter as the value is already an instance of the \
+    value class\n  network_resource.cidr = NetAddr::CIDR.create('192.168.2.1/8')\n\
+    \n  # Saving and then reloading will use the :constructor on reload\n  network_resource.save\n\
+    \  network_resource.reload\n"
+- !ruby/struct:SM::Flow::H 
+  text: Finding records by a value object
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: 'Once a <tt>composed_of</tt> relationship is specified for a model, records
+    can be loaded from the database by specifying an instance of the value object
+    in the conditions hash. The following example finds all customers with <tt>balance_amount</tt>
+    equal to 20 and <tt>balance_currency</tt> equal to &quot;USD&quot;:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Customer.find(:all, :conditions =&gt; {:balance =&gt; Money.new(20, &quot;USD&quot;)})\n"
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: composed_of
+class_methods: []
+
+full_name: ActiveRecord::Aggregations::ClassMethods
+constants: []
+
+superclass: 
+name: ClassMethods

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Alias for #reverse_merge!'
+full_name: ActiveSupport::CoreExtensions::Hash::ReverseMerge#reverse_update
+params: (other_hash)
+name: reverse_update
+is_singleton: false
+aliases: []
+

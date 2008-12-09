@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveSupport::Cache::SynchronizedMemoryStore#delete_matched
+params: (matcher, options = nil)
+name: delete_matched
+is_singleton: false
+aliases: []
+

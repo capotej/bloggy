@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>flush_all (MemCache)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/vendor/memcache-client-1.5.1/memcache.rb, line 403</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">flush_all</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">MemCacheError</span>, <span class="ruby-value str">'No active servers'</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">active?</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">MemCacheError</span>, <span class="ruby-value str">&quot;Update of readonly cache&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@readonly</span>
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-ivar">@mutex</span>.<span class="ruby-identifier">lock</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@multithread</span>
+      <span class="ruby-ivar">@servers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">server</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-identifier">sock</span> = <span class="ruby-identifier">server</span>.<span class="ruby-identifier">socket</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">MemCacheError</span>, <span class="ruby-value str">&quot;No connection to server&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sock</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">sock</span>.<span class="ruby-identifier">write</span> <span class="ruby-value str">&quot;flush_all\r\n&quot;</span>
+          <span class="ruby-identifier">result</span> = <span class="ruby-identifier">sock</span>.<span class="ruby-identifier">gets</span>
+          <span class="ruby-identifier">raise_on_error_response!</span> <span class="ruby-identifier">result</span>
+          <span class="ruby-identifier">result</span>
+        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">SocketError</span>, <span class="ruby-constant">SystemCallError</span>, <span class="ruby-constant">IOError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
+          <span class="ruby-identifier">server</span>.<span class="ruby-identifier">close</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">MemCacheError</span>, <span class="ruby-identifier">err</span>.<span class="ruby-identifier">message</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">ensure</span>
+      <span class="ruby-ivar">@mutex</span>.<span class="ruby-identifier">unlock</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@multithread</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

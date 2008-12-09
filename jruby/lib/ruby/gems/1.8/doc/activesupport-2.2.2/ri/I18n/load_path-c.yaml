@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Allow clients to register paths providing translation data sources. The backend
+    defines acceptable sources.
+- !ruby/struct:SM::Flow::P 
+  body: 'E.g. the provided SimpleBackend accepts a list of paths to translation files
+    which are either named *.rb and contain plain Ruby Hashes or are named *.yml and
+    contain YAML data. So for the SimpleBackend clients may register translation files
+    like this:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  I18n.load_path &lt;&lt; 'path/to/locale/en.yml'\n"
+full_name: I18n::load_path
+params: ()
+name: load_path
+is_singleton: true
+aliases: []
+

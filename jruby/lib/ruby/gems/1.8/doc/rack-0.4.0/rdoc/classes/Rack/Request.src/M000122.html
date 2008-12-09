@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>cookies (Rack::Request)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/request.rb, line 152</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cookies</span>
+      <span class="ruby-keyword kw">return</span> {}  <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;HTTP_COOKIE&quot;</span>]
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.request.cookie_string&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;HTTP_COOKIE&quot;</span>]
+        <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.request.cookie_hash&quot;</span>]
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.request.cookie_string&quot;</span>] = <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;HTTP_COOKIE&quot;</span>]
+        <span class="ruby-comment cmt"># According to RFC 2109:</span>
+        <span class="ruby-comment cmt">#   If multiple cookies satisfy the criteria above, they are ordered in</span>
+        <span class="ruby-comment cmt">#   the Cookie header such that those with more specific Path attributes</span>
+        <span class="ruby-comment cmt">#   precede those with less specific.  Ordering with respect to other</span>
+        <span class="ruby-comment cmt">#   attributes (e.g., Domain) is unspecified.</span>
+        <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.request.cookie_hash&quot;</span>] =
+          <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">parse_query</span>(<span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.request.cookie_string&quot;</span>], <span class="ruby-value str">';,'</span>).<span class="ruby-identifier">inject</span>({}) {<span class="ruby-operator">|</span><span class="ruby-identifier">h</span>,(<span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span>)<span class="ruby-operator">|</span>
+            <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-constant">Array</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">v</span> <span class="ruby-value">? </span><span class="ruby-identifier">v</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">v</span>
+            <span class="ruby-identifier">h</span>
+          }
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

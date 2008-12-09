@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>create (EditMenu)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/json/editor.rb, line 645</span>
+645:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
+646:         <span class="ruby-identifier">title</span> = <span class="ruby-constant">MenuItem</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'Edit'</span>)
+647:         <span class="ruby-identifier">title</span>.<span class="ruby-identifier">submenu</span> = <span class="ruby-identifier">menu</span>
+648:         <span class="ruby-identifier">add_item</span>(<span class="ruby-value str">'Copy'</span>, <span class="ruby-value">?c</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-identifier">:copy</span>))
+649:         <span class="ruby-identifier">add_item</span>(<span class="ruby-value str">'Paste'</span>, <span class="ruby-value">?v</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-identifier">:paste</span>))
+650:         <span class="ruby-identifier">add_separator</span>
+651:         <span class="ruby-identifier">add_item</span>(<span class="ruby-value str">'Find'</span>, <span class="ruby-value">?f</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-identifier">:find</span>))
+652:         <span class="ruby-identifier">add_item</span>(<span class="ruby-value str">'Find Again'</span>, <span class="ruby-value">?g</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-identifier">:find_again</span>))
+653:         <span class="ruby-identifier">add_separator</span>
+654:         <span class="ruby-identifier">add_item</span>(<span class="ruby-value str">'Sort'</span>, <span class="ruby-value">?S</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-identifier">:sort</span>))
+655:         <span class="ruby-identifier">title</span>
+656:       <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

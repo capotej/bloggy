@@ -1,0 +1,54 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Response::Helpers
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Rack::MockResponse provides useful helpers for testing your apps. Usually,
+    you don't create the MockResponse on your own, but use MockRequest.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Body
+  rw: R
+  name: body
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Errors
+  rw: RW
+  name: errors
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Headers
+  rw: R
+  name: headers
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Headers
+  rw: R
+  name: original_headers
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status
+  rw: R
+  name: status
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: =~
+- !ruby/object:RI::MethodSummary 
+  name: '[]'
+- !ruby/object:RI::MethodSummary 
+  name: match
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Rack::MockResponse
+constants: []
+
+superclass: Object
+name: MockResponse

@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Replaces special characters in a string so that it may be used as part of
+    a 'pretty' URL.
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Person\n    def to_param\n      &quot;#{id}-#{name.parameterize}&quot;\n\
+    \    end\n  end\n\n  @person = Person.find(1)\n  # =&gt; #&lt;Person id: 1, name: \
+    &quot;Donald E. Knuth&quot;&gt;\n\n  &lt;%= link_to(@person.name, person_path \
+    %&gt;\n  # =&gt; &lt;a href=&quot;/person/1-donald-e-knuth&quot;&gt;Donald E. \
+    Knuth&lt;/a&gt;\n"
+full_name: ActiveSupport::CoreExtensions::String::Inflections#parameterize
+params: ()
+name: parameterize
+is_singleton: false
+aliases: []
+

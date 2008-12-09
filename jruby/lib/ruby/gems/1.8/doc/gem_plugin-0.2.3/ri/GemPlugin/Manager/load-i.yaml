@@ -1,0 +1,39 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Responsible for going through the list of available gems and loading any plugins
+    requested. It keeps track of what it's loaded already and won't load them again.
+- !ruby/struct:SM::Flow::P 
+  body: It accepts one parameter which is a hash of gem depends that should include
+    or exclude a gem from being loaded. A gem must depend on gem_plugin to be considered,
+    but then each system has to add it's own INCLUDE to make sure that only plugins
+    related to it are loaded.
+- !ruby/struct:SM::Flow::P 
+  body: 'An example again comes from Mongrel. In order to load all Mongrel plugins:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " GemPlugin::Manager.instance.load &quot;mongrel&quot; =&gt; GemPlugin::INCLUDE\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Which will load all plugins that depend on mongrel AND gem_plugin. Now, one
+    extra thing we do is we delay loading Rails Mongrel plugins until after rails
+    is configured. Do do this the mongrel_rails script has:'
+- !ruby/struct:SM::Flow::P 
+  body: GemPlugin::Manager.instance.load &quot;mongrel&quot; =&gt; GemPlugin::INCLUDE,
+    &quot;rails&quot; =&gt; GemPlugin::EXCLUDE The only thing to remember is that
+    this is saying &quot;include a plugin if it depends on gem_plugin, mongrel, but
+    NOT rails&quot;. If a plugin also depends on other stuff then it's loaded just
+    fine. Only gem_plugin, mongrel, and rails are ever used to determine if it should
+    be included.
+- !ruby/struct:SM::Flow::P 
+  body: 'NOTE: Currently RubyGems will run autorequire on gems that get required AND
+    on their dependencies. This really messes with people running edge rails since
+    activerecord or other stuff gets loaded for just touching a gem plugin. To prevent
+    this load requires the full path to the &quot;init.rb&quot; file, which avoids
+    the RubyGems autorequire magic.'
+full_name: GemPlugin::Manager#load
+params: (needs = {})
+name: load
+is_singleton: false
+aliases: []
+

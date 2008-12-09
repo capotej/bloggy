@@ -1,0 +1,18 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: read
+- !ruby/object:RI::MethodSummary 
+  name: write
+class_methods: []
+
+full_name: ActiveSupport::Cache::CompressedMemCacheStore
+constants: []
+
+superclass: MemCacheStore
+name: CompressedMemCacheStore

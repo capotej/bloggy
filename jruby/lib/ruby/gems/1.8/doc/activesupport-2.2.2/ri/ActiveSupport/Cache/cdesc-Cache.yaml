@@ -1,0 +1,20 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: See ActiveSupport::Cache::Store for documentation.
+attributes: []
+
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: expand_cache_key
+- !ruby/object:RI::MethodSummary 
+  name: lookup_store
+full_name: ActiveSupport::Cache
+constants: []
+
+superclass: 
+name: Cache

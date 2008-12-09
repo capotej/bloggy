@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActiveSupport::CoreExtensions::Numeric::Time</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActiveSupport::CoreExtensions::Numeric::Time</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/active_support/core_ext/numeric/time_rb.html">
+                lib/active_support/core_ext/numeric/time.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Enables the use of time calculations and declarations, like 45.minutes +
+2.hours + 4.years.
+</p>
+<p>
+These methods use Time#advance for precise date calculations when using <a
+href="Time.html#M000376">from_now</a>, <a href="Time.html#M000373">ago</a>,
+etc. as well as adding or subtracting their results from a <a
+href="Time.html">Time</a> object. For example:
+</p>
+<pre>
+  # equivalent to Time.now.advance(:months =&gt; 1)
+  1.month.from_now
+
+  # equivalent to Time.now.advance(:years =&gt; 2)
+  2.years.from_now
+
+  # equivalent to Time.now.advance(:months =&gt; 4, :years =&gt; 5)
+  (4.months + 5.years).from_now
+</pre>
+<p>
+While these methods provide precise calculation when used as in the
+examples above, care should be taken to note that this is not true if the
+result of `months&#8217;, `years&#8217;, etc is converted before use:
+</p>
+<pre>
+  # equivalent to 30.days.to_i.from_now
+  1.month.to_i.from_now
+
+  # equivalent to 365.25.days.to_f.from_now
+  1.year.to_f.from_now
+</pre>
+<p>
+In such cases, Ruby&#8216;s core <a
+href="http://stdlib.rubyonrails.org/libdoc/date/rdoc/index.html">Date</a>
+and <a
+href="http://stdlib.rubyonrails.org/libdoc/time/rdoc/index.html">Time</a>
+should be used for precision date and time arithmetic
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000373">ago</a>&nbsp;&nbsp;
+      <a href="#M000368">day</a>&nbsp;&nbsp;
+      <a href="#M000367">days</a>&nbsp;&nbsp;
+      <a href="#M000372">fortnight</a>&nbsp;&nbsp;
+      <a href="#M000371">fortnights</a>&nbsp;&nbsp;
+      <a href="#M000376">from_now</a>&nbsp;&nbsp;
+      <a href="#M000366">hour</a>&nbsp;&nbsp;
+      <a href="#M000365">hours</a>&nbsp;&nbsp;
+      <a href="#M000364">minute</a>&nbsp;&nbsp;
+      <a href="#M000363">minutes</a>&nbsp;&nbsp;
+      <a href="#M000362">second</a>&nbsp;&nbsp;
+      <a href="#M000361">seconds</a>&nbsp;&nbsp;
+      <a href="#M000375">since</a>&nbsp;&nbsp;
+      <a href="#M000374">until</a>&nbsp;&nbsp;
+      <a href="#M000370">week</a>&nbsp;&nbsp;
+      <a href="#M000369">weeks</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000373" class="method-detail">
+        <a name="M000373"></a>
+
+        <div class="method-heading">
+          <a href="Time.src/M000373.html" target="Code" class="method-signature"
+            onclick="popupCode('Time.src/M000373.html');return false;">
+          <span class="method-name">ago</span><span class="method-args">(time = ::Time.now)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Reads best without arguments: 10.minutes.<a
+href="Time.html#M000373">ago</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000368" class="method-detail">
+        <a name="M000368"></a>
+
+        <div class="method-heading">
+          <span class="method-name">day</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Time.html#M000367">days</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000367" class="method-detail">
+        <a name="M000367"></a>
+
+        <div class="method-heading">
+          <a href="Time.src/M000367.html" target="Code" class="method-signature"
+            onclick="popupCode('Time.src/M000367.html');return false;">
+          <span class="method-name">days</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000372" class="method-detail">
+        <a name="M000372"></a>
+
+        <div class="method-heading">
+          <span class="method-name">fortnight</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Time.html#M000371">fortnights</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000371" class="method-detail">
+        <a name="M000371"></a>
+
+        <div class="method-heading">
+          <a href="Time.src/M000371.html" target="Code" class="method-signature"
+            onclick="popupCode('Time.src/M000371.html');return false;">
+          <span class="method-name">fortnights</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000376" class="method-detail">
+        <a name="M000376"></a>
+
+        <div class="method-heading">
+          <span class="method-name">from_now</span><span class="method-args">(time = ::Time.now)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Time.html#M000375">since</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000366" class="method-detail">
+        <a name="M000366"></a>
+
+        <div class="method-heading">
+          <span class="method-name">hour</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Time.html#M000365">hours</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000365" class="method-detail">
+        <a name="M000365"></a>
+
+        <div class="method-heading">
+          <a href="Time.src/M000365.html" target="Code" class="method-signature"
+            onclick="popupCode('Time.src/M000365.html');return false;">
+          <span class="method-name">hours</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000364" class="method-detail">
+        <a name="M000364"></a>
+
+        <div class="method-heading">
+          <span class="method-name">minute</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Time.html#M000363">minutes</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000363" class="method-detail">
+        <a name="M000363"></a>
+
+        <div class="method-heading">
+          <a href="Time.src/M000363.html" target="Code" class="method-signature"
+            onclick="popupCode('Time.src/M000363.html');return false;">
+          <span class="method-name">minutes</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000362" class="method-detail">
+        <a name="M000362"></a>
+
+        <div class="method-heading">
+          <span class="method-name">second</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Time.html#M000361">seconds</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000361" class="method-detail">
+        <a name="M000361"></a>
+
+        <div class="method-heading">
+          <a href="Time.src/M000361.html" target="Code" class="method-signature"
+            onclick="popupCode('Time.src/M000361.html');return false;">
+          <span class="method-name">seconds</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000375" class="method-detail">
+        <a name="M000375"></a>
+
+        <div class="method-heading">
+          <a href="Time.src/M000375.html" target="Code" class="method-signature"
+            onclick="popupCode('Time.src/M000375.html');return false;">
+          <span class="method-name">since</span><span class="method-args">(time = ::Time.now)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Reads best with argument: 10.minutes.<a
+href="Time.html#M000375">since</a>(time)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000374" class="method-detail">
+        <a name="M000374"></a>
+
+        <div class="method-heading">
+          <span class="method-name">until</span><span class="method-args">(time = ::Time.now)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Time.html#M000373">ago</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000370" class="method-detail">
+        <a name="M000370"></a>
+
+        <div class="method-heading">
+          <span class="method-name">week</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Time.html#M000369">weeks</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000369" class="method-detail">
+        <a name="M000369"></a>
+
+        <div class="method-heading">
+          <a href="Time.src/M000369.html" target="Code" class="method-signature"
+            onclick="popupCode('Time.src/M000369.html');return false;">
+          <span class="method-name">weeks</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

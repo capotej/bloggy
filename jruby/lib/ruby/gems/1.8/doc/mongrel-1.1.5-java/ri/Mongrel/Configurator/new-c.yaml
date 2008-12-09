@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: You pass in initial defaults and then a block to continue configuring.
+full_name: Mongrel::Configurator::new
+params: (defaults={}, &block)
+name: new
+is_singleton: true
+aliases: []
+

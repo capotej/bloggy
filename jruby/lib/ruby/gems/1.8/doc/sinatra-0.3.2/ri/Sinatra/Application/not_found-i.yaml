@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Define a custom error handler for ''404 Not Found'' responses. This is a
+    shorthand for:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  error NotFound do\n    ..\n  end\n"
+full_name: Sinatra::Application#not_found
+params: (options={}, &b)
+name: not_found
+is_singleton: false
+aliases: []
+

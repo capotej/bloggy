@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Removes a specified key from the hash.
+full_name: HashWithIndifferentAccess#delete
+params: (key)
+name: delete
+is_singleton: false
+aliases: []
+

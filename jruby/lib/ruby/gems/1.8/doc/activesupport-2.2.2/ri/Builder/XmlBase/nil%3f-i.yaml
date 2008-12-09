@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'For some reason, nil? is sent to the XmlMarkup object. If nil? is not defined
+    and method_missing is invoked, some strange kind of recursion happens. Since nil?
+    won''t ever be an XML tag, it is pretty safe to define it here. (Note: this is
+    an example of cargo cult programming, cf. http://fishbowl.pastiche.org/2004/10/13/cargo_cult_programming).'
+full_name: Builder::XmlBase#nil?
+params: ()
+name: nil?
+is_singleton: false
+aliases: []
+

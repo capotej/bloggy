@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActiveSupport::Inflector</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActiveSupport::Inflector</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/active_support/inflector_rb.html">
+                lib/active_support/inflector.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+The <a href="Inflector.html">Inflector</a> transforms words from singular
+to plural, class names to table names, modularized class names to ones
+without, and class names to foreign keys. The default <a
+href="Inflector.html#M000105">inflections</a> for pluralization,
+singularization, and uncountable words are kept in inflections.rb.
+</p>
+<p>
+The Rails core team has stated patches for the <a
+href="Inflector.html#M000105">inflections</a> library will not be accepted
+in order to avoid breaking legacy applications which may be relying on
+errant <a href="Inflector.html#M000105">inflections</a>. If you discover an
+incorrect inflection and require it for your application, you&#8216;ll need
+to correct it yourself (explained below).
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000108">camelize</a>&nbsp;&nbsp;
+      <a href="#M000118">classify</a>&nbsp;&nbsp;
+      <a href="#M000120">constantize</a>&nbsp;&nbsp;
+      <a href="#M000111">dasherize</a>&nbsp;&nbsp;
+      <a href="#M000113">demodulize</a>&nbsp;&nbsp;
+      <a href="#M000119">foreign_key</a>&nbsp;&nbsp;
+      <a href="#M000112">humanize</a>&nbsp;&nbsp;
+      <a href="#M000105">inflections</a>&nbsp;&nbsp;
+      <a href="#M000121">ordinalize</a>&nbsp;&nbsp;
+      <a href="#M000114">parameterize</a>&nbsp;&nbsp;
+      <a href="#M000106">pluralize</a>&nbsp;&nbsp;
+      <a href="#M000107">singularize</a>&nbsp;&nbsp;
+      <a href="#M000117">tableize</a>&nbsp;&nbsp;
+      <a href="#M000109">titleize</a>&nbsp;&nbsp;
+      <a href="#M000116">transliterate</a>&nbsp;&nbsp;
+      <a href="#M000115">transliterate</a>&nbsp;&nbsp;
+      <a href="#M000110">underscore</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Inflector/Inflections.html" class="link">ActiveSupport::Inflector::Inflections</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000108" class="method-detail">
+        <a name="M000108"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000108.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000108.html');return false;">
+          <span class="method-name">camelize</span><span class="method-args">(lower_case_and_underscored_word, first_letter_in_uppercase = true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+By default, <tt><a href="Inflector.html#M000108">camelize</a></tt> converts
+strings to UpperCamelCase. If the argument to <tt><a
+href="Inflector.html#M000108">camelize</a></tt> is set to <tt>:lower</tt>
+then <tt><a href="Inflector.html#M000108">camelize</a></tt> produces
+lowerCamelCase.
+</p>
+<p>
+<tt><a href="Inflector.html#M000108">camelize</a></tt> will also convert
+&#8217;/&#8217; to &#8217;::&#8217; which is useful for converting paths to
+namespaces.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  &quot;active_record&quot;.camelize                # =&gt; &quot;ActiveRecord&quot;
+  &quot;active_record&quot;.camelize(:lower)        # =&gt; &quot;activeRecord&quot;
+  &quot;active_record/errors&quot;.camelize         # =&gt; &quot;ActiveRecord::Errors&quot;
+  &quot;active_record/errors&quot;.camelize(:lower) # =&gt; &quot;activeRecord::Errors&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000118" class="method-detail">
+        <a name="M000118"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000118.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000118.html');return false;">
+          <span class="method-name">classify</span><span class="method-args">(table_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a class name from a plural table name like Rails does for table
+names to models. Note that this returns a string and not a Class. (To
+convert to an actual class follow <tt><a
+href="Inflector.html#M000118">classify</a></tt> with <tt><a
+href="Inflector.html#M000120">constantize</a></tt>.)
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  &quot;egg_and_hams&quot;.classify # =&gt; &quot;EggAndHam&quot;
+  &quot;posts&quot;.classify        # =&gt; &quot;Post&quot;
+</pre>
+<p>
+Singular names are not handled correctly:
+</p>
+<pre>
+  &quot;business&quot;.classify     # =&gt; &quot;Busines&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000120" class="method-detail">
+        <a name="M000120"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000120.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000120.html');return false;">
+          <span class="method-name">constantize</span><span class="method-args">(camel_cased_word)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Tries to find a constant with the name specified in the argument string:
+</p>
+<pre>
+  &quot;Module&quot;.constantize     # =&gt; Module
+  &quot;Test::Unit&quot;.constantize # =&gt; Test::Unit
+</pre>
+<p>
+The name is assumed to be the one of a top-level constant, no matter
+whether it starts with &quot;::&quot; or not. No lexical context is taken
+into account:
+</p>
+<pre>
+  C = 'outside'
+  module M
+    C = 'inside'
+    C               # =&gt; 'inside'
+    &quot;C&quot;.constantize # =&gt; 'outside', same as ::C
+  end
+</pre>
+<p>
+NameError is raised when the name is not in CamelCase or the constant is
+unknown.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000111" class="method-detail">
+        <a name="M000111"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000111.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000111.html');return false;">
+          <span class="method-name">dasherize</span><span class="method-args">(underscored_word)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Replaces underscores with dashes in the string.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  &quot;puni_puni&quot; # =&gt; &quot;puni-puni&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000113" class="method-detail">
+        <a name="M000113"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000113.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000113.html');return false;">
+          <span class="method-name">demodulize</span><span class="method-args">(class_name_in_module)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Removes the module part from the expression in the string.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  &quot;ActiveRecord::CoreExtensions::String::Inflections&quot;.demodulize # =&gt; &quot;Inflections&quot;
+  &quot;Inflections&quot;.demodulize                                       # =&gt; &quot;Inflections&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000119" class="method-detail">
+        <a name="M000119"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000119.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000119.html');return false;">
+          <span class="method-name">foreign_key</span><span class="method-args">(class_name, separate_class_name_and_id_with_underscore = true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates a foreign key name from a class name.
+<tt>separate_class_name_and_id_with_underscore</tt> sets whether the method
+should put &#8216;_&#8217; between the name and &#8216;id&#8217;.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  &quot;Message&quot;.foreign_key        # =&gt; &quot;message_id&quot;
+  &quot;Message&quot;.foreign_key(false) # =&gt; &quot;messageid&quot;
+  &quot;Admin::Post&quot;.foreign_key    # =&gt; &quot;post_id&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000112" class="method-detail">
+        <a name="M000112"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000112.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000112.html');return false;">
+          <span class="method-name">humanize</span><span class="method-args">(lower_case_and_underscored_word)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Capitalizes the first word and turns underscores into spaces and strips a
+trailing &quot;_id&quot;, if any. Like <tt><a
+href="Inflector.html#M000109">titleize</a></tt>, this is meant for creating
+pretty output.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  &quot;employee_salary&quot; # =&gt; &quot;Employee salary&quot;
+  &quot;author_id&quot;       # =&gt; &quot;Author&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000105" class="method-detail">
+        <a name="M000105"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000105.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000105.html');return false;">
+          <span class="method-name">inflections</span><span class="method-args">() {|Inflections.instance| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Yields a singleton instance of <a
+href="Inflector/Inflections.html">Inflector::Inflections</a> so you can
+specify additional inflector rules.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  ActiveSupport::Inflector.inflections do |inflect|
+    inflect.uncountable &quot;rails&quot;
+  end
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000121" class="method-detail">
+        <a name="M000121"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000121.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000121.html');return false;">
+          <span class="method-name">ordinalize</span><span class="method-args">(number)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Turns a number into an ordinal string used to denote the position in an
+ordered sequence such as 1st, 2nd, 3rd, 4th.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  ordinalize(1)     # =&gt; &quot;1st&quot;
+  ordinalize(2)     # =&gt; &quot;2nd&quot;
+  ordinalize(1002)  # =&gt; &quot;1002nd&quot;
+  ordinalize(1003)  # =&gt; &quot;1003rd&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000114" class="method-detail">
+        <a name="M000114"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000114.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000114.html');return false;">
+          <span class="method-name">parameterize</span><span class="method-args">(string, sep = '-')</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Replaces special characters in a string so that it may be used as part of a
+&#8216;pretty&#8217; URL.
+</p>
+<h4>Examples</h4>
+<pre>
+  class Person
+    def to_param
+      &quot;#{id}-#{name.parameterize}&quot;
+    end
+  end
+
+  @person = Person.find(1)
+  # =&gt; #&lt;Person id: 1, name: &quot;Donald E. Knuth&quot;&gt;
+
+  &lt;%= link_to(@person.name, person_path %&gt;
+  # =&gt; &lt;a href=&quot;/person/1-donald-e-knuth&quot;&gt;Donald E. Knuth&lt;/a&gt;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000106" class="method-detail">
+        <a name="M000106"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000106.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000106.html');return false;">
+          <span class="method-name">pluralize</span><span class="method-args">(word)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the plural form of the word in the string.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  &quot;post&quot;.pluralize             # =&gt; &quot;posts&quot;
+  &quot;octopus&quot;.pluralize          # =&gt; &quot;octopi&quot;
+  &quot;sheep&quot;.pluralize            # =&gt; &quot;sheep&quot;
+  &quot;words&quot;.pluralize            # =&gt; &quot;words&quot;
+  &quot;CamelOctopus&quot;.pluralize     # =&gt; &quot;CamelOctopi&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000107" class="method-detail">
+        <a name="M000107"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000107.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000107.html');return false;">
+          <span class="method-name">singularize</span><span class="method-args">(word)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The reverse of <tt><a href="Inflector.html#M000106">pluralize</a></tt>,
+returns the singular form of a word in a string.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  &quot;posts&quot;.singularize            # =&gt; &quot;post&quot;
+  &quot;octopi&quot;.singularize           # =&gt; &quot;octopus&quot;
+  &quot;sheep&quot;.singluarize            # =&gt; &quot;sheep&quot;
+  &quot;word&quot;.singularize             # =&gt; &quot;word&quot;
+  &quot;CamelOctopi&quot;.singularize      # =&gt; &quot;CamelOctopus&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000117" class="method-detail">
+        <a name="M000117"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000117.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000117.html');return false;">
+          <span class="method-name">tableize</span><span class="method-args">(class_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create the name of a table like Rails does for models to table names. This
+method uses the <tt><a href="Inflector.html#M000106">pluralize</a></tt>
+method on the last word in the string.
+</p>
+<p>
+Examples
+</p>
+<pre>
+  &quot;RawScaledScorer&quot;.tableize # =&gt; &quot;raw_scaled_scorers&quot;
+  &quot;egg_and_ham&quot;.tableize     # =&gt; &quot;egg_and_hams&quot;
+  &quot;fancyCategory&quot;.tableize   # =&gt; &quot;fancy_categories&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000109" class="method-detail">
+        <a name="M000109"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000109.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000109.html');return false;">
+          <span class="method-name">titleize</span><span class="method-args">(word)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Capitalizes all the words and replaces some characters in the string to
+create a nicer looking title. <tt><a
+href="Inflector.html#M000109">titleize</a></tt> is meant for creating
+pretty output. It is not used in the Rails internals.
+</p>
+<p>
+<tt><a href="Inflector.html#M000109">titleize</a></tt> is also aliased as
+as <tt>titlecase</tt>.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  &quot;man from the boondocks&quot;.titleize # =&gt; &quot;Man From The Boondocks&quot;
+  &quot;x-men: the last stand&quot;.titleize  # =&gt; &quot;X Men: The Last Stand&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000116" class="method-detail">
+        <a name="M000116"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000116.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000116.html');return false;">
+          <span class="method-name">transliterate</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000115" class="method-detail">
+        <a name="M000115"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000115.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000115.html');return false;">
+          <span class="method-name">transliterate</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Replaces accented characters with their ascii equivalents.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000110" class="method-detail">
+        <a name="M000110"></a>
+
+        <div class="method-heading">
+          <a href="Inflector.src/M000110.html" target="Code" class="method-signature"
+            onclick="popupCode('Inflector.src/M000110.html');return false;">
+          <span class="method-name">underscore</span><span class="method-args">(camel_cased_word)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The reverse of <tt><a href="Inflector.html#M000108">camelize</a></tt>.
+Makes an underscored, lowercase form from the expression in the string.
+</p>
+<p>
+Changes &#8217;::&#8217; to &#8217;/&#8217; to convert namespaces to paths.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  &quot;ActiveRecord&quot;.underscore         # =&gt; &quot;active_record&quot;
+  &quot;ActiveRecord::Errors&quot;.underscore # =&gt; active_record/errors
+</pre>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

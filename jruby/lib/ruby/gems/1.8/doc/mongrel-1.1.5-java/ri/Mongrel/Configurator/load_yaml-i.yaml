@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Easy way to load a YAML file and apply default settings.
+full_name: Mongrel::Configurator#load_yaml
+params: (file, default={})
+name: load_yaml
+is_singleton: false
+aliases: []
+

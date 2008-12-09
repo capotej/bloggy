@@ -1,0 +1,1264 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: ActiveSupport::Multibyte::Chars</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">ActiveSupport::Multibyte::Chars</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/active_support/multibyte/chars_rb.html">
+                lib/active_support/multibyte/chars.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../../Object.html">
+                Object
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="Chars.html">Chars</a> enables you to work transparently with UTF-8
+encoding in the Ruby String class without having extensive knowledge about
+the encoding. A <a href="Chars.html">Chars</a> object accepts a string upon
+initialization and proxies String methods in an encoding safe manner. All
+the normal String methods are also implemented on the proxy.
+</p>
+<p>
+String methods are proxied through the <a href="Chars.html">Chars</a>
+object, and can be accessed through the <tt>mb_chars</tt> method. Methods
+which would normally return a String object now return a <a
+href="Chars.html">Chars</a> object so methods can be chained.
+</p>
+<pre>
+  &quot;The Perfect String  &quot;.mb_chars.downcase.strip.normalize #=&gt; &quot;the perfect string&quot;
+</pre>
+<p>
+<a href="Chars.html">Chars</a> objects are perfectly interchangeable with
+String objects as long as no explicit class checks are made. If certain
+methods do explicitly check the class, call <tt>to_s</tt> before you pass
+chars objects to them.
+</p>
+<pre>
+  bad.explicit_checking_method &quot;T&quot;.mb_chars.downcase.to_s
+</pre>
+<p>
+The default <a href="Chars.html">Chars</a> implementation assumes that the
+encoding of the string is UTF-8, if you want to handle different encodings
+you can write your own multibyte string handler and configure it through
+ActiveSupport::Multibyte.proxy_class.
+</p>
+<pre>
+  class CharsForUTF32
+    def size
+      @wrapped_string.size / 4
+    end
+
+    def self.accepts?(string)
+      string.length % 4 == 0
+    end
+  end
+
+  ActiveSupport::Multibyte.proxy_class = CharsForUTF32
+</pre>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000414">+</a>&nbsp;&nbsp;
+      <a href="#M000413">&lt;=&gt;</a>&nbsp;&nbsp;
+      <a href="#M000415">=~</a>&nbsp;&nbsp;
+      <a href="#M000431">[]</a>&nbsp;&nbsp;
+      <a href="#M000420">[]=</a>&nbsp;&nbsp;
+      <a href="#M000410">acts_like_string?</a>&nbsp;&nbsp;
+      <a href="#M000434">capitalize</a>&nbsp;&nbsp;
+      <a href="#M000423">center</a>&nbsp;&nbsp;
+      <a href="#M000437">compose</a>&nbsp;&nbsp;
+      <a href="#M000446">compose_codepoints</a>&nbsp;&nbsp;
+      <a href="#M000412">consumes?</a>&nbsp;&nbsp;
+      <a href="#M000436">decompose</a>&nbsp;&nbsp;
+      <a href="#M000445">decompose_codepoints</a>&nbsp;&nbsp;
+      <a href="#M000433">downcase</a>&nbsp;&nbsp;
+      <a href="#M000438">g_length</a>&nbsp;&nbsp;
+      <a href="#M000443">g_pack</a>&nbsp;&nbsp;
+      <a href="#M000442">g_unpack</a>&nbsp;&nbsp;
+      <a href="#M000441">in_char_class?</a>&nbsp;&nbsp;
+      <a href="#M000418">include?</a>&nbsp;&nbsp;
+      <a href="#M000419">index</a>&nbsp;&nbsp;
+      <a href="#M000417">insert</a>&nbsp;&nbsp;
+      <a href="#M000428">length</a>&nbsp;&nbsp;
+      <a href="#M000422">ljust</a>&nbsp;&nbsp;
+      <a href="#M000425">lstrip</a>&nbsp;&nbsp;
+      <a href="#M000408">method_missing</a>&nbsp;&nbsp;
+      <a href="#M000407">new</a>&nbsp;&nbsp;
+      <a href="#M000435">normalize</a>&nbsp;&nbsp;
+      <a href="#M000444">reorder_characters</a>&nbsp;&nbsp;
+      <a href="#M000409">respond_to?</a>&nbsp;&nbsp;
+      <a href="#M000429">reverse</a>&nbsp;&nbsp;
+      <a href="#M000421">rjust</a>&nbsp;&nbsp;
+      <a href="#M000424">rstrip</a>&nbsp;&nbsp;
+      <a href="#M000427">size</a>&nbsp;&nbsp;
+      <a href="#M000430">slice</a>&nbsp;&nbsp;
+      <a href="#M000416">split</a>&nbsp;&nbsp;
+      <a href="#M000426">strip</a>&nbsp;&nbsp;
+      <a href="#M000439">tidy_bytes</a>&nbsp;&nbsp;
+      <a href="#M000447">tidy_bytes</a>&nbsp;&nbsp;
+      <a href="#M000440">u_unpack</a>&nbsp;&nbsp;
+      <a href="#M000432">upcase</a>&nbsp;&nbsp;
+      <a href="#M000411">wants?</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">Comparable</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_SBASE</td>
+          <td>=</td>
+          <td class="context-item-value">0xAC00</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Hangul character boundaries and properties
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_LBASE</td>
+          <td>=</td>
+          <td class="context-item-value">0x1100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_VBASE</td>
+          <td>=</td>
+          <td class="context-item-value">0x1161</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_TBASE</td>
+          <td>=</td>
+          <td class="context-item-value">0x11A7</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_LCOUNT</td>
+          <td>=</td>
+          <td class="context-item-value">19</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_VCOUNT</td>
+          <td>=</td>
+          <td class="context-item-value">21</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_TCOUNT</td>
+          <td>=</td>
+          <td class="context-item-value">28</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_NCOUNT</td>
+          <td>=</td>
+          <td class="context-item-value">HANGUL_VCOUNT * HANGUL_TCOUNT</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_SCOUNT</td>
+          <td>=</td>
+          <td class="context-item-value">11172</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_SLAST</td>
+          <td>=</td>
+          <td class="context-item-value">HANGUL_SBASE + HANGUL_SCOUNT</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_JAMO_FIRST</td>
+          <td>=</td>
+          <td class="context-item-value">0x1100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_JAMO_LAST</td>
+          <td>=</td>
+          <td class="context-item-value">0x11FF</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UNICODE_WHITESPACE</td>
+          <td>=</td>
+          <td class="context-item-value">[         (0x0009..0x000D).to_a, # White_Space # Cc   [5] &lt;control-0009&gt;..&lt;control-000D&gt;         0x0020,                # White_Space # Zs       SPACE         0x0085,                # White_Space # Cc       &lt;control-0085&gt;         0x00A0,                # White_Space # Zs       NO-BREAK SPACE         0x1680,                # White_Space # Zs       OGHAM SPACE MARK         0x180E,                # White_Space # Zs       MONGOLIAN VOWEL SEPARATOR         (0x2000..0x200A).to_a, # White_Space # Zs  [11] EN QUAD..HAIR SPACE         0x2028,                # White_Space # Zl       LINE SEPARATOR         0x2029,                # White_Space # Zp       PARAGRAPH SEPARATOR         0x202F,                # White_Space # Zs       NARROW NO-BREAK SPACE         0x205F,                # White_Space # Zs       MEDIUM MATHEMATICAL SPACE         0x3000,                # White_Space # Zs       IDEOGRAPHIC SPACE       ].flatten.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+All the unicode whitespace
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UNICODE_LEADERS_AND_TRAILERS</td>
+          <td>=</td>
+          <td class="context-item-value">UNICODE_WHITESPACE + [65279]</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+BOM (byte order mark) can also be seen as whitespace, it&#8216;s a
+non-rendering character used to distinguish between little and big endian.
+This is not an issue in utf-8, so it must be ignored.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UNICODE_TRAILERS_PAT</td>
+          <td>=</td>
+          <td class="context-item-value">/(#{codepoints_to_pattern(UNICODE_LEADERS_AND_TRAILERS)})+\Z/</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UNICODE_LEADERS_PAT</td>
+          <td>=</td>
+          <td class="context-item-value">/\A(#{codepoints_to_pattern(UNICODE_LEADERS_AND_TRAILERS)})+/</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UTF8_PAT</td>
+          <td>=</td>
+          <td class="context-item-value">/\A(?:                      [\x00-\x7f]                                     |                      [\xc2-\xdf] [\x80-\xbf]                         |                      \xe0        [\xa0-\xbf] [\x80-\xbf]             |                      [\xe1-\xef] [\x80-\xbf] [\x80-\xbf]             |                      \xf0        [\x90-\xbf] [\x80-\xbf] [\x80-\xbf] |                      [\xf1-\xf3] [\x80-\xbf] [\x80-\xbf] [\x80-\xbf] |                      \xf4        [\x80-\x8f] [\x80-\xbf] [\x80-\xbf]                     )*\z/xn</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Borrowed from the Kconv library by Shinji KONO - (also as seen on the W3C
+site)
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="aliases-list">
+      <h3 class="section-bar">External Aliases</h3>
+
+      <div class="name-list">
+                        <table summary="aliases">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">wrapped_string</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">to_s</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">wrapped_string</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">to_str</td>
+        </tr>
+                        </table>
+      </div>
+    </div>
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">wrapped_string</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000446" class="method-detail">
+        <a name="M000446"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000446.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000446.html');return false;">
+          <span class="method-name">compose_codepoints</span><span class="method-args">(codepoints)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Compose decomposed characters to the composed form.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000412" class="method-detail">
+        <a name="M000412"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000412.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000412.html');return false;">
+          <span class="method-name">consumes?</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns <tt>true</tt> when the proxy class can handle the string. Returns
+<tt>false</tt> otherwise.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000445" class="method-detail">
+        <a name="M000445"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000445.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000445.html');return false;">
+          <span class="method-name">decompose_codepoints</span><span class="method-args">(type, codepoints)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Decompose composed characters to the decomposed form.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000443" class="method-detail">
+        <a name="M000443"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000443.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000443.html');return false;">
+          <span class="method-name">g_pack</span><span class="method-args">(unpacked)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Reverse operation of <a href="Chars.html#M000442">g_unpack</a>.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  Chars.g_pack(Chars.g_unpack('क्षि')) #=&gt; 'क्षि'
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000442" class="method-detail">
+        <a name="M000442"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000442.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000442.html');return false;">
+          <span class="method-name">g_unpack</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Unpack the string at grapheme boundaries. Returns a list of character
+lists.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  Chars.g_unpack('क्षि') #=&gt; [[2325, 2381], [2359], [2367]]
+  Chars.g_unpack('Café') #=&gt; [[67], [97], [102], [233]]
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000441" class="method-detail">
+        <a name="M000441"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000441.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000441.html');return false;">
+          <span class="method-name">in_char_class?</span><span class="method-args">(codepoint, classes)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Detect whether the codepoint is in a certain character class. Returns
+<tt>true</tt> when it&#8216;s in the specified character class and
+<tt>false</tt> otherwise. Valid character classes are: <tt>:cr</tt>,
+<tt>:lf</tt>, <tt>:l</tt>, <tt>:v</tt>, <tt>:lv</tt>, <tt>:lvt</tt> and
+<tt>:t</tt>.
+</p>
+<p>
+Primarily used by the grapheme cluster support.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000407" class="method-detail">
+        <a name="M000407"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000407.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000407.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates a <a href="Chars.html#M000407">new</a> <a
+href="Chars.html">Chars</a> instance by wrapping <em>string</em>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000444" class="method-detail">
+        <a name="M000444"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000444.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000444.html');return false;">
+          <span class="method-name">reorder_characters</span><span class="method-args">(codepoints)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Re-order codepoints so the string becomes canonical.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000447" class="method-detail">
+        <a name="M000447"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000447.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000447.html');return false;">
+          <span class="method-name">tidy_bytes</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Replaces all ISO-8859-1 or CP1252 characters by their UTF-8 equivalent
+resulting in a valid UTF-8 string.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000440" class="method-detail">
+        <a name="M000440"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000440.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000440.html');return false;">
+          <span class="method-name">u_unpack</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Unpack the string at codepoints boundaries. Raises an <a
+href="EncodingError.html">EncodingError</a> when the encoding of the string
+isn&#8216;t valid UTF-8.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  Chars.u_unpack('Café') #=&gt; [67, 97, 102, 233]
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000411" class="method-detail">
+        <a name="M000411"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000411.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000411.html');return false;">
+          <span class="method-name">wants?</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns <tt>true</tt> if the <a href="Chars.html">Chars</a> class can and
+should act as a proxy for the string <em>string</em>. Returns
+<tt>false</tt> otherwise.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000414" class="method-detail">
+        <a name="M000414"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000414.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000414.html');return false;">
+          <span class="method-name">+</span><span class="method-args">(other)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a <a href="Chars.html#M000407">new</a> <a
+href="Chars.html">Chars</a> object containing the <em>other</em> object
+concatenated to the string.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  ('Café'.mb_chars + ' périferôl').to_s #=&gt; &quot;Café périferôl&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000413" class="method-detail">
+        <a name="M000413"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000413.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000413.html');return false;">
+          <span class="method-name">&lt;=&gt;</span><span class="method-args">(other)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns <tt>-1</tt>, <tt>0</tt> or <tt>+1</tt> depending on whether the <a
+href="Chars.html">Chars</a> object is to be sorted before, equal or after
+the object on the right side of the operation. It accepts any object that
+implements <tt>to_s</tt>. See <tt>String#&lt;=&gt;</tt> for more details.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  'é'.mb_chars &lt;=&gt; 'ü'.mb_chars #=&gt; -1
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000415" class="method-detail">
+        <a name="M000415"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000415.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000415.html');return false;">
+          <span class="method-name">=~</span><span class="method-args">(other)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Like <tt>String#=~</tt> only it returns the character offset (in
+codepoints) instead of the byte offset.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  'Café périferôl'.mb_chars =~ /ô/ #=&gt; 12
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000431" class="method-detail">
+        <a name="M000431"></a>
+
+        <div class="method-heading">
+          <span class="method-name">[]</span><span class="method-args">(*args)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Chars.html#M000430">slice</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000420" class="method-detail">
+        <a name="M000420"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000420.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000420.html');return false;">
+          <span class="method-name">[]=</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Like <tt>String#[]=</tt>, except instead of byte offsets you specify
+character offsets.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  s = &quot;Müller&quot;
+  s.mb_chars[2] = &quot;e&quot; # Replace character with offset 2
+  s
+  #=&gt; &quot;Müeler&quot;
+
+  s = &quot;Müller&quot;
+  s.mb_chars[1, 2] = &quot;ö&quot; # Replace 2 characters at character offset 1
+  s
+  #=&gt; &quot;Möler&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000410" class="method-detail">
+        <a name="M000410"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000410.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000410.html');return false;">
+          <span class="method-name">acts_like_string?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Enable more predictable duck-typing on String-like classes. See
+Object#acts_like?.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000434" class="method-detail">
+        <a name="M000434"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000434.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000434.html');return false;">
+          <span class="method-name">capitalize</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Converts the first character to uppercase and the remainder to lowercase.
+</p>
+<p>
+Example:
+</p>
+<pre>
+ 'über'.mb_chars.capitalize.to_s #=&gt; &quot;Über&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000423" class="method-detail">
+        <a name="M000423"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000423.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000423.html');return false;">
+          <span class="method-name">center</span><span class="method-args">(integer, padstr=' ')</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Works just like <tt>String#center</tt>, only integer specifies characters
+instead of bytes.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  &quot;¾ cup&quot;.mb_chars.center(8).to_s
+  #=&gt; &quot; ¾ cup  &quot;
+
+  &quot;¾ cup&quot;.mb_chars.center(8, &quot; &quot;).to_s # Use non-breaking whitespace
+  #=&gt; &quot; ¾ cup  &quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000437" class="method-detail">
+        <a name="M000437"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000437.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000437.html');return false;">
+          <span class="method-name">compose</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Performs composition on all the characters.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  'é'.length #=&gt; 3
+  'é'.mb_chars.compose.to_s.length #=&gt; 2
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000436" class="method-detail">
+        <a name="M000436"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000436.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000436.html');return false;">
+          <span class="method-name">decompose</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Performs canonical decomposition on all the characters.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  'é'.length #=&gt; 2
+  'é'.mb_chars.decompose.to_s.length #=&gt; 3
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000433" class="method-detail">
+        <a name="M000433"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000433.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000433.html');return false;">
+          <span class="method-name">downcase</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Convert characters in the string to lowercase.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  'VĚDA A VÝZKUM'.mb_chars.downcase.to_s #=&gt; &quot;věda a výzkum&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000438" class="method-detail">
+        <a name="M000438"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000438.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000438.html');return false;">
+          <span class="method-name">g_length</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the number of grapheme clusters in the string.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  'क्षि'.mb_chars.length #=&gt; 4
+  'क्षि'.mb_chars.g_length #=&gt; 3
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000418" class="method-detail">
+        <a name="M000418"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000418.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000418.html');return false;">
+          <span class="method-name">include?</span><span class="method-args">(other)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns <tt>true</tt> if contained string contains <em>other</em>. Returns
+<tt>false</tt> otherwise.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  'Café'.mb_chars.include?('é') #=&gt; true
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000419" class="method-detail">
+        <a name="M000419"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000419.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000419.html');return false;">
+          <span class="method-name">index</span><span class="method-args">(needle, offset=0)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the position <em>needle</em> in the string, counting in codepoints.
+Returns <tt>nil</tt> if <em>needle</em> isn&#8216;t found.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  'Café périferôl'.mb_chars.index('ô') #=&gt; 12
+  'Café périferôl'.mb_chars.index(/\w/u) #=&gt; 0
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000417" class="method-detail">
+        <a name="M000417"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000417.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000417.html');return false;">
+          <span class="method-name">insert</span><span class="method-args">(offset, fragment)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Inserts the passed string at specified codepoint offsets.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  'Café'.mb_chars.insert(4, ' périferôl').to_s #=&gt; &quot;Café périferôl&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000428" class="method-detail">
+        <a name="M000428"></a>
+
+        <div class="method-heading">
+          <span class="method-name">length</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Chars.html#M000427">size</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000422" class="method-detail">
+        <a name="M000422"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000422.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000422.html');return false;">
+          <span class="method-name">ljust</span><span class="method-args">(integer, padstr=' ')</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Works just like <tt>String#ljust</tt>, only integer specifies characters
+instead of bytes.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  &quot;¾ cup&quot;.mb_chars.rjust(8).to_s
+  #=&gt; &quot;¾ cup   &quot;
+
+  &quot;¾ cup&quot;.mb_chars.rjust(8, &quot; &quot;).to_s # Use non-breaking whitespace
+  #=&gt; &quot;¾ cup   &quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000425" class="method-detail">
+        <a name="M000425"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000425.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000425.html');return false;">
+          <span class="method-name">lstrip</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Strips entire range of Unicode whitespace from the left of the string.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000408" class="method-detail">
+        <a name="M000408"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000408.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000408.html');return false;">
+          <span class="method-name">method_missing</span><span class="method-args">(method, *args, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Forward all undefined methods to the wrapped string.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000435" class="method-detail">
+        <a name="M000435"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000435.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000435.html');return false;">
+          <span class="method-name">normalize</span><span class="method-args">(form=ActiveSupport::Multibyte.default_normalization_form)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the KC normalization of the string by default. NFKC is considered
+the best normalization form for passing strings to databases and
+validations.
+</p>
+<ul>
+<li><tt>str</tt> - The string to perform normalization on.
+
+</li>
+<li><tt>form</tt> - The form you want to <a
+href="Chars.html#M000435">normalize</a> in. Should be one of the following:
+<tt>:c</tt>, <tt>:kc</tt>, <tt>:d</tt>, or <tt>:kd</tt>. Default is
+ActiveSupport::Multibyte.default_normalization_form
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000409" class="method-detail">
+        <a name="M000409"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000409.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000409.html');return false;">
+          <span class="method-name">respond_to?</span><span class="method-args">(method, include_private=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns <tt>true</tt> if <em>obj</em> responds to the given method. Private
+methods are included in the search only if the optional second parameter
+evaluates to <tt>true</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000429" class="method-detail">
+        <a name="M000429"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000429.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000429.html');return false;">
+          <span class="method-name">reverse</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Reverses all characters in the string.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  'Café'.mb_chars.reverse.to_s #=&gt; 'éfaC'
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000421" class="method-detail">
+        <a name="M000421"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000421.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000421.html');return false;">
+          <span class="method-name">rjust</span><span class="method-args">(integer, padstr=' ')</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Works just like <tt>String#rjust</tt>, only integer specifies characters
+instead of bytes.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  &quot;¾ cup&quot;.mb_chars.rjust(8).to_s
+  #=&gt; &quot;   ¾ cup&quot;
+
+  &quot;¾ cup&quot;.mb_chars.rjust(8, &quot; &quot;).to_s # Use non-breaking whitespace
+  #=&gt; &quot;   ¾ cup&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000424" class="method-detail">
+        <a name="M000424"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000424.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000424.html');return false;">
+          <span class="method-name">rstrip</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Strips entire range of Unicode whitespace from the right of the string.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000427" class="method-detail">
+        <a name="M000427"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000427.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000427.html');return false;">
+          <span class="method-name">size</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the number of codepoints in the string
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000430" class="method-detail">
+        <a name="M000430"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000430.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000430.html');return false;">
+          <span class="method-name">slice</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Implements Unicode-aware <a href="Chars.html#M000430">slice</a> with
+codepoints. Slicing on one point returns the codepoints for that character.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  'こんにちは'.mb_chars.slice(2..3).to_s #=&gt; &quot;にち&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000416" class="method-detail">
+        <a name="M000416"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000416.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000416.html');return false;">
+          <span class="method-name">split</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Works just like <tt>String#split</tt>, with the exception that the items in
+the resulting list are <a href="Chars.html">Chars</a> instances instead of
+String. This makes chaining methods easier.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  'Café périferôl'.mb_chars.split(/é/).map { |part| part.upcase.to_s } #=&gt; [&quot;CAF&quot;, &quot; P&quot;, &quot;RIFERÔL&quot;]
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000426" class="method-detail">
+        <a name="M000426"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000426.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000426.html');return false;">
+          <span class="method-name">strip</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Strips entire range of Unicode whitespace from the right and left of the
+string.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000439" class="method-detail">
+        <a name="M000439"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000439.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000439.html');return false;">
+          <span class="method-name">tidy_bytes</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Replaces all ISO-8859-1 or CP1252 characters by their UTF-8 equivalent
+resulting in a valid UTF-8 string.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000432" class="method-detail">
+        <a name="M000432"></a>
+
+        <div class="method-heading">
+          <a href="Chars.src/M000432.html" target="Code" class="method-signature"
+            onclick="popupCode('Chars.src/M000432.html');return false;">
+          <span class="method-name">upcase</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Convert characters in the string to uppercase.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  'Laurent, òu sont les tests?'.mb_chars.upcase.to_s #=&gt; &quot;LAURENT, ÒU SONT LES TESTS?&quot;
+</pre>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

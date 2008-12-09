@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Mongrel::HttpRequest#read_socket
+params: (len)
+name: read_socket
+is_singleton: false
+aliases: []
+

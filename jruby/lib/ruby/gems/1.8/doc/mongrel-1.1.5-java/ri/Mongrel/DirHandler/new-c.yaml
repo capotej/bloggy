@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: You give it the path to the directory root and and optional listing_allowed
+    and index_html
+full_name: Mongrel::DirHandler::new
+params: (path, listing_allowed=true, index_html="index.html")
+name: new
+is_singleton: true
+aliases: []
+

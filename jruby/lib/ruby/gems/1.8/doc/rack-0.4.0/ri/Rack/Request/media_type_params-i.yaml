@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'The media type parameters provided in CONTENT_TYPE as a Hash, or an empty
+    Hash if no CONTENT_TYPE or media-type parameters were provided. e.g., when the
+    CONTENT_TYPE is &quot;text/plain;charset=utf-8&quot;, this method responds with
+    the following Hash:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  { 'charset' =&gt; 'utf-8' }\n"
+full_name: Rack::Request#media_type_params
+params: ()
+name: media_type_params
+is_singleton: false
+aliases: []
+

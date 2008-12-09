@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Accepts an array, hash, or string of SQL conditions and sanitizes them into
+    a valid SQL fragment for a WHERE clause.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  [&quot;name='%s' and group_id='%s'&quot;, &quot;foo'bar&quot;, 4]  returns \
+    \ &quot;name='foo''bar' and group_id='4'&quot;\n  { :name =&gt; &quot;foo'bar&quot;, \
+    :group_id =&gt; 4 }  returns &quot;name='foo''bar' and group_id='4'&quot;\n  &quot;name='foo''bar' \
+    and group_id='4'&quot; returns &quot;name='foo''bar' and group_id='4'&quot;\n"
+full_name: ActiveRecord::Base::sanitize_sql_for_conditions
+params: (condition)
+name: sanitize_sql_for_conditions
+is_singleton: true
+aliases: []
+

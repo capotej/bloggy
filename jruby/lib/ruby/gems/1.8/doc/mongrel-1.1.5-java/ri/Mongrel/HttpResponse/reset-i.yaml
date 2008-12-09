@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Primarily used in exception handling to reset the response output in order
+    to write an alternative response. It will abort with an exception if you have
+    already sent the header or the body. This is pretty catastrophic actually.
+full_name: Mongrel::HttpResponse#reset
+params: ()
+name: reset
+is_singleton: false
+aliases: []
+

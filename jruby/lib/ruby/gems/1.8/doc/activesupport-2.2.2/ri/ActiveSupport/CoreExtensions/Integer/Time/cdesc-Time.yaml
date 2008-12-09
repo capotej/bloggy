@@ -1,0 +1,45 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Enables the use of time calculations and declarations, like 45.minutes + 2.hours
+    + 4.years.
+- !ruby/struct:SM::Flow::P 
+  body: 'These methods use Time#advance for precise date calculations when using from_now,
+    ago, etc. as well as adding or subtracting their results from a Time object. For
+    example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # equivalent to Time.now.advance(:months =&gt; 1)\n  1.month.from_now\n\
+    \n  # equivalent to Time.now.advance(:years =&gt; 2)\n  2.years.from_now\n\n  \
+    # equivalent to Time.now.advance(:months =&gt; 4, :years =&gt; 5)\n  (4.months \
+    + 5.years).from_now\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'While these methods provide precise calculation when used as in the examples
+    above, care should be taken to note that this is not true if the result of `months'',
+    `years'', etc is converted before use:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # equivalent to 30.days.to_i.from_now\n  1.month.to_i.from_now\n\n  # equivalent \
+    to 365.25.days.to_f.from_now\n  1.year.to_f.from_now\n"
+- !ruby/struct:SM::Flow::P 
+  body: In such cases, Ruby's core Date[http://stdlib.rubyonrails.org/libdoc/date/rdoc/index.html]
+    and Time[http://stdlib.rubyonrails.org/libdoc/time/rdoc/index.html] should be
+    used for precision date and time arithmetic
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: month
+- !ruby/object:RI::MethodSummary 
+  name: months
+- !ruby/object:RI::MethodSummary 
+  name: year
+- !ruby/object:RI::MethodSummary 
+  name: years
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Integer::Time
+constants: []
+
+superclass: 
+name: Time

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Lets you do redirects easily as described in Mongrel::RedirectHandler. You
+    use it inside the configurator like this:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  redirect(&quot;/test&quot;, &quot;/to/there&quot;) # simple\n  redirect(&quot;/to&quot;, \
+    /t/, 'w') # regexp\n  redirect(&quot;/hey&quot;, /(w+)/) {|match| ...}  # block\n"
+full_name: Mongrel::Configurator#redirect
+params: (from, pattern, replacement = nil, &block)
+name: redirect
+is_singleton: false
+aliases: []
+

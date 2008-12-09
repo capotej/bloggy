@@ -1,0 +1,136 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Application class represents the top-level working area of a Sinatra app.
+    It provides the DSL for defining various aspects of the application and implements
+    a Rack compatible interface for dispatching requests.
+- !ruby/struct:SM::Flow::P 
+  body: 'Many of the instance methods defined in this class (#get, #post, #put, #delete,
+    #layout, #before, #error, #not_found, etc.) are available at top-level scope.
+    When invoked from top-level, the messages are forwarded to the &quot;default application&quot;
+    (accessible at Sinatra::application).'
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Array of objects to clear during reload. The objects in this array must
+      respond to :clear.
+  rw: R
+  name: clearables
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hash of error handlers with error status codes as keys and handlers as values.
+  rw: R
+  name: errors
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hash of event handlers with request method keys and arrays of potential
+      handlers as values.
+  rw: R
+  name: events
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hash of filters with event name keys (:before) and arrays of handlers as
+      values.
+  rw: R
+  name: filters
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Object including open attribute methods for modifying Application configuration.
+  rw: R
+  name: options
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hash of template name mappings.
+  rw: R
+  name: templates
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: before
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: configure
+- !ruby/object:RI::MethodSummary 
+  name: configures
+- !ruby/object:RI::MethodSummary 
+  name: delete
+- !ruby/object:RI::MethodSummary 
+  name: development?
+- !ruby/object:RI::MethodSummary 
+  name: disable
+- !ruby/object:RI::MethodSummary 
+  name: dispatch
+- !ruby/object:RI::MethodSummary 
+  name: enable
+- !ruby/object:RI::MethodSummary 
+  name: error
+- !ruby/object:RI::MethodSummary 
+  name: event
+- !ruby/object:RI::MethodSummary 
+  name: filter
+- !ruby/object:RI::MethodSummary 
+  name: get
+- !ruby/object:RI::MethodSummary 
+  name: head
+- !ruby/object:RI::MethodSummary 
+  name: layout
+- !ruby/object:RI::MethodSummary 
+  name: lookup
+- !ruby/object:RI::MethodSummary 
+  name: mutex
+- !ruby/object:RI::MethodSummary 
+  name: not_found
+- !ruby/object:RI::MethodSummary 
+  name: pipeline
+- !ruby/object:RI::MethodSummary 
+  name: post
+- !ruby/object:RI::MethodSummary 
+  name: production?
+- !ruby/object:RI::MethodSummary 
+  name: put
+- !ruby/object:RI::MethodSummary 
+  name: reload!
+- !ruby/object:RI::MethodSummary 
+  name: reloading?
+- !ruby/object:RI::MethodSummary 
+  name: reloading?
+- !ruby/object:RI::MethodSummary 
+  name: run_safely
+- !ruby/object:RI::MethodSummary 
+  name: set
+- !ruby/object:RI::MethodSummary 
+  name: set_option
+- !ruby/object:RI::MethodSummary 
+  name: set_options
+- !ruby/object:RI::MethodSummary 
+  name: template
+- !ruby/object:RI::MethodSummary 
+  name: test?
+- !ruby/object:RI::MethodSummary 
+  name: use
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: default_options
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Sinatra::Application
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: List of methods available from top-level scope. When invoked from top-level
+      the method is forwarded to the default application (Sinatra::application).
+  value: '%w[       get put post delete head template layout before error not_found       configures
+    configure set set_options set_option enable disable use       development? test?
+    production?     ]'
+  name: FORWARD_METHODS
+superclass: Object
+name: Application

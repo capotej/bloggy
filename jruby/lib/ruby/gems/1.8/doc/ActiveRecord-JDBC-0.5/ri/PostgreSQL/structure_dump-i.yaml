@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::PostgreSQL#structure_dump"
+params: ()
+name: structure_dump
+is_singleton: false
+aliases: []
+

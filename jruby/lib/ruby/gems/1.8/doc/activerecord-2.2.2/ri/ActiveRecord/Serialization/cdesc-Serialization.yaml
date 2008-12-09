@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: from_json
+- !ruby/object:RI::MethodSummary 
+  name: from_xml
+- !ruby/object:RI::MethodSummary 
+  name: to_json
+- !ruby/object:RI::MethodSummary 
+  name: to_xml
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: included
+full_name: ActiveRecord::Serialization
+constants: []
+
+superclass: 
+name: Serialization

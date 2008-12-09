@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Rack::Builder#map
+params: (path, &block)
+name: map
+is_singleton: false
+aliases: []
+

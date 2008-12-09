@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'This nifty function works with the GemPlugin::Base to give you the syntax:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " class MyThing &lt; GemPlugin::Plugin &quot;/things&quot;\n   ...\n end\n"
+- !ruby/struct:SM::Flow::P 
+  body: What it does is temporarily sets the GemPlugin::Base.category, and then returns
+    GemPlugin::Base. Since the next immediate thing Ruby does is use this returned
+    class to create the new class, GemPlugin::Base.inherited gets called. GemPlugin::Base.inherited
+    then uses the set category, class name, and class to register the plugin in the
+    right way.
+full_name: GemPlugin::Plugin
+params: (c)
+name: Plugin
+is_singleton: true
+aliases: []
+

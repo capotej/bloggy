@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a working server on host:port (strange things happen if port isn't
+    a Number). Use HttpServer::run to start the server and HttpServer.acceptor.join
+    to join the thread that's processing incoming requests on the socket.
+- !ruby/struct:SM::Flow::P 
+  body: The num_processors optional argument is the maximum number of concurrent processors
+    to accept, anything over this is closed immediately to maintain server processing
+    performance. This may seem mean but it is the most efficient way to deal with
+    overload. Other schemes involve still parsing the client's request which defeats
+    the point of an overload handling system.
+- !ruby/struct:SM::Flow::P 
+  body: The throttle parameter is a sleep timeout (in hundredths of a second) that
+    is placed between socket.accept calls in order to give the server a cheap throttle
+    time. It defaults to 0 and actually if it is 0 then the sleep is not done at all.
+full_name: Mongrel::HttpServer::new
+params: (host, port, num_processors=950, throttle=0, timeout=60)
+name: new
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set the servers that the requests will be distributed between. Entries can
+    be either strings of the form &quot;hostname:port&quot; or &quot;hostname:port:weight&quot;
+    or MemCache::Server objects.
+full_name: MemCache#servers=
+params: (servers)
+name: servers=
+is_singleton: false
+aliases: []
+

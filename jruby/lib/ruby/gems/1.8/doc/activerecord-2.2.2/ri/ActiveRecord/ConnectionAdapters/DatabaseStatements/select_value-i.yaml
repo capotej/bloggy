@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a single value from a record
+full_name: ActiveRecord::ConnectionAdapters::DatabaseStatements#select_value
+params: (sql, name = nil)
+name: select_value
+is_singleton: false
+aliases: []
+

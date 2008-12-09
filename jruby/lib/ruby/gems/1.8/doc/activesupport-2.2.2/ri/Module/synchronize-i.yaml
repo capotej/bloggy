@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Synchronize access around a method, delegating synchronization to a particular
+    mutex. A mutex (either a Mutex, or any object that responds to #synchronize and
+    yields to a block) must be provided as a final :with option. The :with option
+    should be a symbol or string, and can represent a method, constant, or instance
+    or class variable. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class SharedCache\n    @@lock = Mutex.new\n    def expire\n      ...\n\
+    \    end\n    synchronize :expire, :with =&gt; :@@lock\n  end\n"
+full_name: Module#synchronize
+params: (*methods)
+name: synchronize
+is_singleton: false
+aliases: []
+

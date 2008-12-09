@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Mongrel::Gems::require
+params: (library, version = nil)
+name: require
+is_singleton: true
+aliases: []
+

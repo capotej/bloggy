@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Rack::Directory</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Rack::Directory</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/rack/directory_rb.html">
+                lib/rack/directory.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="Directory.html">Rack::Directory</a> serves entries below the
+<tt>root</tt> given, according to the path info of the <a
+href="../Rack.html">Rack</a> request. If a directory is found, the
+file&#8216;s contents will be presented in an html based index. If a file
+is found, the env will be passed to the specified <tt>app</tt>.
+</p>
+<p>
+If <tt>app</tt> is not specified, a <a href="File.html">Rack::File</a> of
+the same <tt>root</tt> will be used.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000212">_call</a>&nbsp;&nbsp;
+      <a href="#M000211">call</a>&nbsp;&nbsp;
+      <a href="#M000213">each</a>&nbsp;&nbsp;
+      <a href="#M000214">each_entry</a>&nbsp;&nbsp;
+      <a href="#M000210">new</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DIR_FILE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;&lt;tr&gt;&lt;td class='name'&gt;&lt;a href='%s'&gt;%s&lt;/a&gt;&lt;/td&gt;&lt;td class='size'&gt;%s&lt;/td&gt;&lt;td class='type'&gt;%s&lt;/td&gt;&lt;td class='mtime'&gt;%s&lt;/td&gt;&lt;/tr&gt;&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DIR_PAGE</td>
+          <td>=</td>
+          <td class="context-item-value">&lt;&lt;-PAGE &lt;html&gt;&lt;head&gt;   &lt;title&gt;%s&lt;/title&gt;   &lt;style type='text/css'&gt; table { width:100%%; } .name { text-align:left; } .size, .mtime { text-align:right; }   &lt;/style&gt; &lt;/head&gt;&lt;body&gt; &lt;h1&gt;%s&lt;/h1&gt; &lt;hr /&gt; &lt;table&gt;   &lt;tr&gt;     &lt;th class='name'&gt;Name&lt;/th&gt;     &lt;th class='size'&gt;Size&lt;/th&gt;     &lt;th class='type'&gt;Type&lt;/th&gt;     &lt;th class='mtime'&gt;Last Modified&lt;/th&gt;   &lt;/tr&gt; %s &lt;/table&gt; &lt;hr /&gt; &lt;/body&gt;&lt;/html&gt;     PAGE</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">F</td>
+          <td>=</td>
+          <td class="context-item-value">::File</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MIME_TYPES</td>
+          <td>=</td>
+          <td class="context-item-value">{       &quot;ai&quot;    =&gt; &quot;application/postscript&quot;,       &quot;asc&quot;   =&gt; &quot;text/plain&quot;,       &quot;avi&quot;   =&gt; &quot;video/x-msvideo&quot;,       &quot;bin&quot;   =&gt; &quot;application/octet-stream&quot;,       &quot;bmp&quot;   =&gt; &quot;image/bmp&quot;,       &quot;class&quot; =&gt; &quot;application/octet-stream&quot;,       &quot;cer&quot;   =&gt; &quot;application/pkix-cert&quot;,       &quot;crl&quot;   =&gt; &quot;application/pkix-crl&quot;,       &quot;crt&quot;   =&gt; &quot;application/x-x509-ca-cert&quot;,      #&quot;crl&quot;   =&gt; &quot;application/x-pkcs7-crl&quot;,       &quot;css&quot;   =&gt; &quot;text/css&quot;,       &quot;dms&quot;   =&gt; &quot;application/octet-stream&quot;,       &quot;doc&quot;   =&gt; &quot;application/msword&quot;,       &quot;dvi&quot;   =&gt; &quot;application/x-dvi&quot;,       &quot;eps&quot;   =&gt; &quot;application/postscript&quot;,       &quot;etx&quot;   =&gt; &quot;text/x-setext&quot;,       &quot;exe&quot;   =&gt; &quot;application/octet-stream&quot;,       &quot;gif&quot;   =&gt; &quot;image/gif&quot;,       &quot;htm&quot;   =&gt; &quot;text/html&quot;,       &quot;html&quot;  =&gt; &quot;text/html&quot;,       &quot;jpe&quot;   =&gt; &quot;image/jpeg&quot;,       &quot;jpeg&quot;  =&gt; &quot;image/jpeg&quot;,       &quot;jpg&quot;   =&gt; &quot;image/jpeg&quot;,       &quot;js&quot;    =&gt; &quot;text/javascript&quot;,       &quot;lha&quot;   =&gt; &quot;application/octet-stream&quot;,       &quot;lzh&quot;   =&gt; &quot;application/octet-stream&quot;,       &quot;mov&quot;   =&gt; &quot;video/quicktime&quot;,       &quot;mpe&quot;   =&gt; &quot;video/mpeg&quot;,       &quot;mpeg&quot;  =&gt; &quot;video/mpeg&quot;,       &quot;mpg&quot;   =&gt; &quot;video/mpeg&quot;,       &quot;pbm&quot;   =&gt; &quot;image/x-portable-bitmap&quot;,       &quot;pdf&quot;   =&gt; &quot;application/pdf&quot;,       &quot;pgm&quot;   =&gt; &quot;image/x-portable-graymap&quot;,       &quot;png&quot;   =&gt; &quot;image/png&quot;,       &quot;pnm&quot;   =&gt; &quot;image/x-portable-anymap&quot;,       &quot;ppm&quot;   =&gt; &quot;image/x-portable-pixmap&quot;,       &quot;ppt&quot;   =&gt; &quot;application/vnd.ms-powerpoint&quot;,       &quot;ps&quot;    =&gt; &quot;application/postscript&quot;,       &quot;qt&quot;    =&gt; &quot;video/quicktime&quot;,       &quot;ras&quot;   =&gt; &quot;image/x-cmu-raster&quot;,       &quot;rb&quot;    =&gt; &quot;text/plain&quot;,       &quot;rd&quot;    =&gt; &quot;text/plain&quot;,       &quot;rtf&quot;   =&gt; &quot;application/rtf&quot;,       &quot;sgm&quot;   =&gt; &quot;text/sgml&quot;,       &quot;sgml&quot;  =&gt; &quot;text/sgml&quot;,       &quot;tif&quot;   =&gt; &quot;image/tiff&quot;,       &quot;tiff&quot;  =&gt; &quot;image/tiff&quot;,       &quot;txt&quot;   =&gt; &quot;text/plain&quot;,       &quot;xbm&quot;   =&gt; &quot;image/x-xbitmap&quot;,       &quot;xls&quot;   =&gt; &quot;application/vnd.ms-excel&quot;,       &quot;xml&quot;   =&gt; &quot;text/xml&quot;,       &quot;xpm&quot;   =&gt; &quot;image/x-xpixmap&quot;,       &quot;xwd&quot;   =&gt; &quot;image/x-xwindowdump&quot;,       &quot;zip&quot;   =&gt; &quot;application/zip&quot;,     }</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+From WEBrick.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">files</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">path</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">root</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000210" class="method-detail">
+        <a name="M000210"></a>
+
+        <div class="method-heading">
+          <a href="Directory.src/M000210.html" target="Code" class="method-signature"
+            onclick="popupCode('Directory.src/M000210.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(root, app=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000212" class="method-detail">
+        <a name="M000212"></a>
+
+        <div class="method-heading">
+          <a href="Directory.src/M000212.html" target="Code" class="method-signature"
+            onclick="popupCode('Directory.src/M000212.html');return false;">
+          <span class="method-name">_call</span><span class="method-args">(env)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000211" class="method-detail">
+        <a name="M000211"></a>
+
+        <div class="method-heading">
+          <a href="Directory.src/M000211.html" target="Code" class="method-signature"
+            onclick="popupCode('Directory.src/M000211.html');return false;">
+          <span class="method-name">call</span><span class="method-args">(env)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000213" class="method-detail">
+        <a name="M000213"></a>
+
+        <div class="method-heading">
+          <a href="Directory.src/M000213.html" target="Code" class="method-signature"
+            onclick="popupCode('Directory.src/M000213.html');return false;">
+          <span class="method-name">each</span><span class="method-args">() {|l| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000214" class="method-detail">
+        <a name="M000214"></a>
+
+        <div class="method-heading">
+          <a href="Directory.src/M000214.html" target="Code" class="method-signature"
+            onclick="popupCode('Directory.src/M000214.html');return false;">
+          <span class="method-name">each_entry</span><span class="method-args">() {|e| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

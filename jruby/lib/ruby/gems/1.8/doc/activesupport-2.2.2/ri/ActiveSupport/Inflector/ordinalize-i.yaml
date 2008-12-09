@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Turns a number into an ordinal string used to denote the position in an ordered
+    sequence such as 1st, 2nd, 3rd, 4th.
+- !ruby/struct:SM::Flow::P 
+  body: 'Examples:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ordinalize(1)     # =&gt; &quot;1st&quot;\n  ordinalize(2)     # =&gt; \
+    &quot;2nd&quot;\n  ordinalize(1002)  # =&gt; &quot;1002nd&quot;\n  ordinalize(1003) \
+    \ # =&gt; &quot;1003rd&quot;\n"
+full_name: ActiveSupport::Inflector#ordinalize
+params: (number)
+name: ordinalize
+is_singleton: false
+aliases: []
+

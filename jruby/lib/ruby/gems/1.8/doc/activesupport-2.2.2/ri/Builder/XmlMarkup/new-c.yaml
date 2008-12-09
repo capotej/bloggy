@@ -1,0 +1,33 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create an XML markup builder. Parameters are specified by an option hash.
+- !ruby/object:SM::Flow::LIST 
+  type: :NOTE
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: Object receiving the markup. <tt>out</tt> must respond to the <tt>&lt;&lt;</tt>
+      operator. The default is a plain string target.
+    label: ":target=><em>target_object</em>:"
+  - !ruby/struct:SM::Flow::LI 
+    body: Number of spaces used for indentation. The default is no indentation and
+      no line breaks.
+    label: ":indent=><em>indentation</em>:"
+  - !ruby/struct:SM::Flow::LI 
+    body: Amount of initial indentation (specified in levels, not spaces).
+    label: ":margin=><em>initial_indentation_level</em>:"
+  - !ruby/struct:SM::Flow::LI 
+    body: The :escape_attrs option is no longer supported by builder (and will be
+      quietly ignored). String attribute values are now automatically escaped. If
+      you need unescaped attribute values (perhaps you are using entities in the attribute
+      values), then give the value as a Symbol. This allows much finer control over
+      escaping attribute values.
+    label: ":escape_attrs=><b>OBSOLETE</em>:"
+full_name: Builder::XmlMarkup::new
+params: (options={})
+name: new
+is_singleton: true
+aliases: []
+

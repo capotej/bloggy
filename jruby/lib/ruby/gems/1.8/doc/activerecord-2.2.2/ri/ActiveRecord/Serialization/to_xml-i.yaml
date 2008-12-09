@@ -1,0 +1,104 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Builds an XML document to represent the model. Some configuration is available
+    through <tt>options</tt>. However more complicated cases should override ActiveRecord::Base#to_xml.
+- !ruby/struct:SM::Flow::P 
+  body: 'By default the generated XML document will include the processing instruction
+    and all the object''s attributes. For example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n  &lt;topic&gt;\n\
+    \    &lt;title&gt;The First Topic&lt;/title&gt;\n    &lt;author-name&gt;David&lt;/author-name&gt;\n\
+    \    &lt;id type=&quot;integer&quot;&gt;1&lt;/id&gt;\n    &lt;approved type=&quot;boolean&quot;&gt;false&lt;/approved&gt;\n\
+    \    &lt;replies-count type=&quot;integer&quot;&gt;0&lt;/replies-count&gt;\n   \
+    \ &lt;bonus-time type=&quot;datetime&quot;&gt;2000-01-01T08:28:00+12:00&lt;/bonus-time&gt;\n\
+    \    &lt;written-on type=&quot;datetime&quot;&gt;2003-07-16T09:28:00+1200&lt;/written-on&gt;\n\
+    \    &lt;content&gt;Have a nice day&lt;/content&gt;\n    &lt;author-email-address&gt;david@loudthinking.com&lt;/author-email-address&gt;\n\
+    \    &lt;parent-id&gt;&lt;/parent-id&gt;\n    &lt;last-read type=&quot;date&quot;&gt;2004-04-15&lt;/last-read&gt;\n\
+    \  &lt;/topic&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: This behavior can be controlled with <tt>:only</tt>, <tt>:except</tt>, <tt>:skip_instruct</tt>,
+    <tt>:skip_types</tt> and <tt>:dasherize</tt>. The <tt>:only</tt> and <tt>:except</tt>
+    options are the same as for the <tt>attributes</tt> method. The default is to
+    dasherize all column names, but you can disable this setting <tt>:dasherize</tt>
+    to <tt>false</tt>. To not have the column type included in the XML output set
+    <tt>:skip_types</tt> to <tt>true</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: 'For instance:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  topic.to_xml(:skip_instruct =&gt; true, :except =&gt; [ :id, :bonus_time, \
+    :written_on, :replies_count ])\n\n  &lt;topic&gt;\n    &lt;title&gt;The First \
+    Topic&lt;/title&gt;\n    &lt;author-name&gt;David&lt;/author-name&gt;\n    &lt;approved \
+    type=&quot;boolean&quot;&gt;false&lt;/approved&gt;\n    &lt;content&gt;Have a \
+    nice day&lt;/content&gt;\n    &lt;author-email-address&gt;david@loudthinking.com&lt;/author-email-address&gt;\n\
+    \    &lt;parent-id&gt;&lt;/parent-id&gt;\n    &lt;last-read type=&quot;date&quot;&gt;2004-04-15&lt;/last-read&gt;\n\
+    \  &lt;/topic&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'To include first level associations use <tt>:include</tt>:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  firm.to_xml :include =&gt; [ :account, :clients ]\n\n  &lt;?xml version=&quot;1.0&quot; \
+    encoding=&quot;UTF-8&quot;?&gt;\n  &lt;firm&gt;\n    &lt;id type=&quot;integer&quot;&gt;1&lt;/id&gt;\n\
+    \    &lt;rating type=&quot;integer&quot;&gt;1&lt;/rating&gt;\n    &lt;name&gt;37signals&lt;/name&gt;\n\
+    \    &lt;clients type=&quot;array&quot;&gt;\n      &lt;client&gt;\n        &lt;rating \
+    type=&quot;integer&quot;&gt;1&lt;/rating&gt;\n        &lt;name&gt;Summit&lt;/name&gt;\n\
+    \      &lt;/client&gt;\n      &lt;client&gt;\n        &lt;rating type=&quot;integer&quot;&gt;1&lt;/rating&gt;\n\
+    \        &lt;name&gt;Microsoft&lt;/name&gt;\n      &lt;/client&gt;\n    &lt;/clients&gt;\n\
+    \    &lt;account&gt;\n      &lt;id type=&quot;integer&quot;&gt;1&lt;/id&gt;\n  \
+    \    &lt;credit-limit type=&quot;integer&quot;&gt;50&lt;/credit-limit&gt;\n    \
+    &lt;/account&gt;\n  &lt;/firm&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'To include deeper levels of associations pass a hash like this:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  firm.to_xml :include =&gt; {:account =&gt; {}, :clients =&gt; {:include \
+    =&gt; :address}}\n  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n\
+    \  &lt;firm&gt;\n    &lt;id type=&quot;integer&quot;&gt;1&lt;/id&gt;\n    &lt;rating \
+    type=&quot;integer&quot;&gt;1&lt;/rating&gt;\n    &lt;name&gt;37signals&lt;/name&gt;\n\
+    \    &lt;clients type=&quot;array&quot;&gt;\n      &lt;client&gt;\n        &lt;rating \
+    type=&quot;integer&quot;&gt;1&lt;/rating&gt;\n        &lt;name&gt;Summit&lt;/name&gt;\n\
+    \        &lt;address&gt;\n          ...\n        &lt;/address&gt;\n      &lt;/client&gt;\n\
+    \      &lt;client&gt;\n        &lt;rating type=&quot;integer&quot;&gt;1&lt;/rating&gt;\n\
+    \        &lt;name&gt;Microsoft&lt;/name&gt;\n        &lt;address&gt;\n         \
+    \ ...\n        &lt;/address&gt;\n      &lt;/client&gt;\n    &lt;/clients&gt;\n\
+    \    &lt;account&gt;\n      &lt;id type=&quot;integer&quot;&gt;1&lt;/id&gt;\n  \
+    \    &lt;credit-limit type=&quot;integer&quot;&gt;50&lt;/credit-limit&gt;\n    \
+    &lt;/account&gt;\n  &lt;/firm&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'To include any methods on the model being called use <tt>:methods</tt>:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  firm.to_xml :methods =&gt; [ :calculated_earnings, :real_earnings ]\n\n\
+    \  &lt;firm&gt;\n    # ... normal attributes as shown above ...\n    &lt;calculated-earnings&gt;100000000000000000&lt;/calculated-earnings&gt;\n\
+    \    &lt;real-earnings&gt;5&lt;/real-earnings&gt;\n  &lt;/firm&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'To call any additional Procs use <tt>:procs</tt>. The Procs are passed a
+    modified version of the options hash that was given to <tt>to_xml</tt>:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  proc = Proc.new { |options| options[:builder].tag!('abc', 'def') }\n  firm.to_xml \
+    :procs =&gt; [ proc ]\n\n  &lt;firm&gt;\n    # ... normal attributes as shown \
+    above ...\n    &lt;abc&gt;def&lt;/abc&gt;\n  &lt;/firm&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Alternatively, you can yield the builder object as part of the <tt>to_xml</tt>
+    call:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  firm.to_xml do |xml|\n    xml.creator do\n      xml.first_name &quot;David&quot;\n\
+    \      xml.last_name &quot;Heinemeier Hansson&quot;\n    end\n  end\n\n  &lt;firm&gt;\n\
+    \    # ... normal attributes as shown above ...\n    &lt;creator&gt;\n      &lt;first_name&gt;David&lt;/first_name&gt;\n\
+    \      &lt;last_name&gt;Heinemeier Hansson&lt;/last_name&gt;\n    &lt;/creator&gt;\n\
+    \  &lt;/firm&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'As noted above, you may override <tt>to_xml</tt> in your ActiveRecord::Base
+    subclasses to have complete control about what''s generated. The general form
+    of doing this is:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class IHaveMyOwnXML &lt; ActiveRecord::Base\n    def to_xml(options = {})\n\
+    \      options[:indent] ||= 2\n      xml = options[:builder] ||= Builder::XmlMarkup.new(:indent \
+    =&gt; options[:indent])\n      xml.instruct! unless options[:skip_instruct]\n\
+    \      xml.level_one do\n        xml.tag!(:second_level, 'content')\n      end\n\
+    \    end\n  end\n"
+full_name: ActiveRecord::Serialization#to_xml
+params: (options = {}, &block)
+name: to_xml
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Converts a collection of elements into a formatted string by calling <tt>to_s</tt>
+    on all elements and joining them:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Blog.find(:all).to_formatted_s # =&gt; &quot;First PostSecond PostThird \
+    Post&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Adding in the <tt>:db</tt> argument as the format yields a prettier output:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Blog.find(:all).to_formatted_s(:db) # =&gt; &quot;First Post,Second Post,Third \
+    Post&quot;\n"
+full_name: ActiveSupport::CoreExtensions::Array::Conversions#to_formatted_s
+params: (format = :default)
+name: to_formatted_s
+is_singleton: false
+aliases: []
+

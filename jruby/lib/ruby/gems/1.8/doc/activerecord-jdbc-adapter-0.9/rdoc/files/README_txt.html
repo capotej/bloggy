@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README.txt</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README.txt</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README.txt
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Tue Dec 09 02:21:17 UTC 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+activerecord-jdbc-adapter is a database adapter for Rails&#8217; <a
+href="../classes/ActiveRecord.html">ActiveRecord</a> component that can be
+used with <a href="http://www.jruby.org/">JRuby</a>. It allows use of
+virtually any JDBC-compliant database with your JRuby on Rails application.
+</p>
+<h2>Databases</h2>
+<p>
+What&#8216;s there, and what is not there:
+</p>
+<ul>
+<li>MySQL - Complete support
+
+</li>
+<li>PostgreSQL - Complete support
+
+</li>
+<li>Oracle - Complete support
+
+</li>
+<li>Microsoft SQL Server - Complete support except for change_column_default
+
+</li>
+<li>DB2 - Complete, except for the migrations:
+
+<ul>
+<li>change_column
+
+</li>
+<li>change_column_default
+
+</li>
+<li>remove_column
+
+</li>
+<li>rename_column
+
+</li>
+<li>add_index
+
+</li>
+<li>remove_index
+
+</li>
+<li>rename_table
+
+</li>
+</ul>
+</li>
+<li>FireBird - Complete, except for change_column_default and rename_column
+
+</li>
+<li>Derby - Complete, except for:
+
+<ul>
+<li>change_column
+
+</li>
+<li>change_column_default
+
+</li>
+<li>remove_column
+
+</li>
+<li>rename_column
+
+</li>
+</ul>
+</li>
+<li>HSQLDB - Complete
+
+</li>
+<li>H2 - Complete
+
+</li>
+<li>SQLite3 - work in progress
+
+</li>
+<li>Informix - Fairly complete support, all tests pass and migrations appear to
+work. Comments welcome.
+
+</li>
+</ul>
+<p>
+Other databases will require testing and likely a custom configuration
+module. Please join the jruby-extras <a
+href="http://rubyforge.org/mail/?group_id=2014">mailing-list</a> to help us
+discover support for more databases.
+</p>
+<h2>Using <a href="../classes/ActiveRecord.html">ActiveRecord</a> JDBC</h2>
+<h3>Inside Rails</h3>
+<p>
+To use activerecord-jdbc-adapter with JRuby on Rails:
+</p>
+<ol>
+<li>Choose the adapter you wish to gem install. The following pre-packaged
+adapters are available:
+
+</li>
+</ol>
+<pre>
+  * base jdbc (&lt;tt&gt;activerecord-jdbc-adapter&lt;/tt&gt;). Supports all available databases via JDBC, but requires you to download and manually install the database vendor's JDBC driver .jar file.
+  * mysql (&lt;tt&gt;activerecord-jdbcmysql-adapter&lt;/tt&gt;)
+  * postgresql (&lt;tt&gt;activerecord-jdbcpostgresql-adapter&lt;/tt&gt;)
+  * derby (&lt;tt&gt;activerecord-jdbcderby-adapter&lt;/tt&gt;)
+  * hsqldb (&lt;tt&gt;activerecord-jdbchsqldb-adapter&lt;/tt&gt;)
+  * h2 (&lt;tt&gt;activerecord-jdbch2-adapter&lt;/tt&gt;)
+</pre>
+<ol>
+<li>If you&#8216;re using Rails 2.0, you may skip to the next step. For Rails
+prior to version 2.0, you&#8216;ll need to add one-time setup to your
+config/environment.rb file in your Rails application. Add the following
+lines just before the <tt>Rails::Initializer</tt>. (If you&#8216;re using
+activerecord-jdbc-adapter under the old gem name used in versions 0.5 and
+earlier (<a href="../classes/ActiveRecord.html">ActiveRecord</a>-JDBC),
+replace &#8216;activerecord-jdbc-adapter&#8217; with &#8216;<a
+href="../classes/ActiveRecord.html">ActiveRecord</a>-JDBC&#8217; below.)
+
+<pre>
+ if RUBY_PLATFORM =~ /java/
+   require 'rubygems'
+   gem 'activerecord-jdbc-adapter'
+   require 'jdbc_adapter'
+ end
+</pre>
+</li>
+<li>Configure your database.yml to use the <tt>jdbc</tt> adapter. For mysql,
+postgres, derby, oracle, hsqldb, h2, and informix you can simply configure
+the database in the normal Rails style. If you use one of the convenience
+&#8216;activerecord-jdbcXXX-adapter&#8217; adapters, be sure and put a
+&#8216;jdbc&#8217; prefix in front of the databas adapter name as below.
+
+<pre>
+ development:
+   adapter: jdbcmysql
+   username: blog
+   password:
+   hostname: localhost
+   database: weblog_development
+</pre>
+</li>
+</ol>
+<p>
+For other databases, you&#8216;ll need to know the database driver class
+and URL. Example:
+</p>
+<pre>
+    development:
+      adapter: jdbc
+      username: blog
+      password:
+      driver: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/weblog_development
+</pre>
+<h3>Standalone, with <a href="../classes/ActiveRecord.html">ActiveRecord</a></h3>
+<ol>
+<li>Install the gem with JRuby:
+
+<pre>
+ jruby -S gem install activerecord-jdbc-adapter
+</pre>
+<p>
+If you wish to use the adapter for a specific database, you can install it
+directly and a driver gem will be installed as well:
+</p>
+<pre>
+ jruby -S gem install activerecord-jdbcderby-adapter
+</pre>
+</li>
+<li>If using <a href="../classes/ActiveRecord.html">ActiveRecord</a> 2.0 (Rails
+2.0) or greater, you can skip to the next step. Otherwise, ensure the
+following code gets executed in your script:
+
+<pre>
+ require 'rubygems'
+ gem 'activerecord-jdbc-adapter'
+ require 'jdbc_adapter'
+ require 'active_record'
+</pre>
+</li>
+<li>After this you can establish a JDBC connection like this:
+
+<pre>
+ ActiveRecord::Base.establish_connection(
+   :adapter =&gt; 'jdbcderby',
+   :database =&gt; &quot;db/my-database&quot;
+ )
+</pre>
+<p>
+or like this (but requires that you manually put the driver jar on the
+classpath):
+</p>
+<pre>
+ ActiveRecord::Base.establish_connection(
+   :adapter =&gt; 'jdbc',
+   :driver =&gt; 'org.apache.derby.jdbc.EmbeddedDriver',
+   :url =&gt; 'jdbc:derby:test_ar;create=true'
+ )
+</pre>
+</li>
+</ol>
+<h2>Getting the source</h2>
+<p>
+The source for activerecord-jdbc-adapter is available using git.
+</p>
+<pre>
+  git clone git://github.com/nicksieger/activerecord-jdbc-adapter.git
+</pre>
+<h2>Running AR-JDBC&#8216;s Tests</h2>
+<p>
+Drivers for 4 open-source databases are included. Provided you have MySQL
+installed, you can simply type <tt>jruby -S rake</tt> to run the tests. A
+database named <tt>weblog_development</tt> is needed beforehand with a
+connection user of &quot;blog&quot; and password empty.
+</p>
+<h2>Authors</h2>
+<p>
+This project was written by Nick Sieger &lt;nick@nicksieger.com&gt; and Ola
+Bini &lt;olabini@gmail.com&gt; with lots of help from the JRuby community.
+</p>
+<h2>License</h2>
+<p>
+activerecord-jdbc-adapter is released under a BSD license. See the LICENSE
+file included with the distribution for details.
+</p>
+<p>
+Open-source driver gems for activerecord-jdbc-adapter are licensed under
+the same license the database&#8216;s drivers are licensed. See each driver
+gem&#8216;s LICENSE.txt file for details.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

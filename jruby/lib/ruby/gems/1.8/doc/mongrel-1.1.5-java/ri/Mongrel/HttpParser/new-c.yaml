@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a new parser.
+full_name: Mongrel::HttpParser::new
+params: |
+  parser.new -> parser
+name: new
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Register a handler object at a particular URI. The handler can be whatever
+    you want, including an array. It's up to you what to do with it.
+- !ruby/struct:SM::Flow::P 
+  body: Registering a handler is not necessarily threadsafe, so be careful if you
+    go mucking around once the server is running.
+full_name: Mongrel::URIClassifier#register
+params: (uri, handler)
+name: register
+is_singleton: false
+aliases: []
+

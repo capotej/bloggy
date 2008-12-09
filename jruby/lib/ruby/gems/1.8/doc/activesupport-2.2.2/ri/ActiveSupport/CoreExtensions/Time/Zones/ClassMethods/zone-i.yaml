@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the TimeZone for the current request, if this has been set (via Time.zone=).
+    If <tt>Time.zone</tt> has not been set for the current request, returns the TimeZone
+    specified in <tt>config.time_zone</tt>.
+full_name: ActiveSupport::CoreExtensions::Time::Zones::ClassMethods#zone
+params: ()
+name: zone
+is_singleton: false
+aliases: []
+

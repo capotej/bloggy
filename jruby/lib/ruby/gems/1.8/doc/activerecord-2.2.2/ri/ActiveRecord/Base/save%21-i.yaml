@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Saves the model.
+- !ruby/struct:SM::Flow::P 
+  body: If the model is new a record gets created in the database, otherwise the existing
+    record gets updated.
+- !ruby/struct:SM::Flow::P 
+  body: With <tt>save!</tt> validations always run. If any of them fail ActiveRecord::RecordInvalid
+    gets raised. See ActiveRecord::Validations for more information.
+- !ruby/struct:SM::Flow::P 
+  body: There's a series of callbacks associated with <tt>save!</tt>. If any of the
+    <tt>before_*</tt> callbacks return <tt>false</tt> the action is cancelled and
+    <tt>save!</tt> raises ActiveRecord::RecordNotSaved. See ActiveRecord::Callbacks
+    for further details.
+full_name: ActiveRecord::Base#save!
+params: ()
+name: save!
+is_singleton: false
+aliases: []
+

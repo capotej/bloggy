@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>interpolate_with_deprecated_syntax (I18n::Backend::Simple)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/i18n_interpolation_deprecation.rb, line 12</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">interpolate_with_deprecated_syntax</span>(<span class="ruby-identifier">locale</span>, <span class="ruby-identifier">string</span>, <span class="ruby-identifier">values</span> = {})
+          <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">string</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+
+          <span class="ruby-identifier">string</span> = <span class="ruby-identifier">string</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/%d|%s/</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">instead</span> = <span class="ruby-constant">DEPRECATED_INTERPOLATORS</span>[<span class="ruby-identifier">s</span>]
+            <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;using #{s} in messages is deprecated; use #{instead} instead.&quot;</span>
+            <span class="ruby-identifier">instead</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">interpolate_without_deprecated_syntax</span>(<span class="ruby-identifier">locale</span>, <span class="ruby-identifier">string</span>, <span class="ruby-identifier">values</span>)
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

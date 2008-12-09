@@ -1,0 +1,19 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Raised when the single-table inheritance mechanism fails to locate the subclass
+    (for example due to improper usage of column that <tt>inheritance_column</tt>
+    points to).
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveRecord::SubclassNotFound
+constants: []
+
+superclass: ActiveRecordError
+name: SubclassNotFound

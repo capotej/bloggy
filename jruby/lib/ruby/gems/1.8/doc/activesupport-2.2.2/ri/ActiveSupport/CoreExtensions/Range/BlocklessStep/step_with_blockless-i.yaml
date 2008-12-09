@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveSupport::CoreExtensions::Range::BlocklessStep#step_with_blockless
+params: (value = 1, &block)
+name: step_with_blockless
+is_singleton: false
+aliases: []
+

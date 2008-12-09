@@ -1,0 +1,16 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: encode64s
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Base64::Encoding
+constants: []
+
+superclass: 
+name: Encoding

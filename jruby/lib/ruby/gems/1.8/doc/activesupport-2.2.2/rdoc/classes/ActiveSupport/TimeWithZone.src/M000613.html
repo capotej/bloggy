@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>since (ActiveSupport::TimeWithZone)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/time_with_zone.rb, line 210</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">since</span>(<span class="ruby-identifier">other</span>)
+      <span class="ruby-comment cmt"># If we're adding a Duration of variable length (i.e., years, months, days), move forward from #time,</span>
+      <span class="ruby-comment cmt"># otherwise move forward from #utc, for accuracy when moving across DST boundaries</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">duration_of_variable_length?</span>(<span class="ruby-identifier">other</span>)
+        <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">:since</span>, <span class="ruby-identifier">other</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">utc</span>.<span class="ruby-identifier">since</span>(<span class="ruby-identifier">other</span>).<span class="ruby-identifier">in_time_zone</span>(<span class="ruby-identifier">time_zone</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

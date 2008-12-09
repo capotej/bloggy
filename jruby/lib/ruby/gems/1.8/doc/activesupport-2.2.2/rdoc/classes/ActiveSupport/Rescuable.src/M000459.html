@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>handler_for_rescue (ActiveSupport::Rescuable)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/rescuable.rb, line 78</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">handler_for_rescue</span>(<span class="ruby-identifier">exception</span>)
+      <span class="ruby-comment cmt"># We go from right to left because pairs are pushed onto rescue_handlers</span>
+      <span class="ruby-comment cmt"># as rescue_from declarations are found.</span>
+      <span class="ruby-identifier">_</span>, <span class="ruby-identifier">rescuer</span> = <span class="ruby-constant">Array</span>(<span class="ruby-identifier">rescue_handlers</span>).<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">detect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">klass_name</span>, <span class="ruby-identifier">handler</span><span class="ruby-operator">|</span>
+        <span class="ruby-comment cmt"># The purpose of allowing strings in rescue_from is to support the</span>
+        <span class="ruby-comment cmt"># declaration of handler associations for exception classes whose</span>
+        <span class="ruby-comment cmt"># definition is yet unknown.</span>
+        <span class="ruby-comment cmt">#</span>
+        <span class="ruby-comment cmt"># Since this loop needs the constants it would be inconsistent to</span>
+        <span class="ruby-comment cmt"># assume they should exist at this point. An early raised exception</span>
+        <span class="ruby-comment cmt"># could trigger some other handler and the array could include</span>
+        <span class="ruby-comment cmt"># precisely a string whose corresponding constant has not yet been</span>
+        <span class="ruby-comment cmt"># seen. This is why we are tolerant to unknown constants.</span>
+        <span class="ruby-comment cmt">#</span>
+        <span class="ruby-comment cmt"># Note that this tolerance only matters if the exception was given as</span>
+        <span class="ruby-comment cmt"># a string, otherwise a NameError will be raised by the interpreter</span>
+        <span class="ruby-comment cmt"># itself when rescue_from CONSTANT is executed.</span>
+        <span class="ruby-identifier">klass</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">klass_name</span>) <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-identifier">klass</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">klass_name</span>.<span class="ruby-identifier">constantize</span> <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-identifier">exception</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-identifier">klass</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">klass</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">rescuer</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Symbol</span>
+        <span class="ruby-identifier">method</span>(<span class="ruby-identifier">rescuer</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Proc</span>
+        <span class="ruby-identifier">rescuer</span>.<span class="ruby-identifier">bind</span>(<span class="ruby-keyword kw">self</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

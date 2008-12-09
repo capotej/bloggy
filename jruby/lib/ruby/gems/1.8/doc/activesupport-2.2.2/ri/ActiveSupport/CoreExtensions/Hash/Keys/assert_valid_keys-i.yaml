@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Validate all keys in a hash match *valid keys, raising ArgumentError on a
+    mismatch. Note that keys are NOT treated indifferently, meaning if you use strings
+    for keys but assert symbols as keys, this will fail.
+- !ruby/struct:SM::Flow::H 
+  text: 'Examples:'
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  { :name =&gt; &quot;Rob&quot;, :years =&gt; &quot;28&quot; }.assert_valid_keys(:name, \
+    :age) # =&gt; raises &quot;ArgumentError: Unknown key(s): years&quot;\n  { :name \
+    =&gt; &quot;Rob&quot;, :age =&gt; &quot;28&quot; }.assert_valid_keys(&quot;name&quot;, \
+    &quot;age&quot;) # =&gt; raises &quot;ArgumentError: Unknown key(s): name, age&quot;\n\
+    \  { :name =&gt; &quot;Rob&quot;, :age =&gt; &quot;28&quot; }.assert_valid_keys(:name, \
+    :age) # =&gt; passes, raises nothing\n"
+full_name: ActiveSupport::CoreExtensions::Hash::Keys#assert_valid_keys
+params: (*valid_keys)
+name: assert_valid_keys
+is_singleton: false
+aliases: []
+

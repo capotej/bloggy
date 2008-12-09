@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds a reference. Optionally adds a <tt>type</tt> column. <tt>references</tt>
+    and <tt>belongs_to</tt> are acceptable.
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 5
+- !ruby/struct:SM::Flow::VERB 
+  body: " t.references(:goat)\n t.references(:goat, :polymorphic =&gt; true)\n t.belongs_to(:goat)\n"
+full_name: ActiveRecord::ConnectionAdapters::Table#references
+params: (*args)
+name: references
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: belongs_to

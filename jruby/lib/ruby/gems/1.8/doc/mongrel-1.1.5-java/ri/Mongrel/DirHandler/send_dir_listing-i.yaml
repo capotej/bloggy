@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a simplistic directory listing if they're enabled, otherwise a 403.
+    Base is the base URI from the REQUEST_URI, dir is the directory to serve on the
+    file system (comes from can_serve()), and response is the HttpResponse object
+    to send the results on.
+full_name: Mongrel::DirHandler#send_dir_listing
+params: (base, dir, response)
+name: send_dir_listing
+is_singleton: false
+aliases: []
+

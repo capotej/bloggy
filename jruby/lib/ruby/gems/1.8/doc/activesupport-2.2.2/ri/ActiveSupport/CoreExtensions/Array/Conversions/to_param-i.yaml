@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Calls <tt>to_param</tt> on all its elements and joins the result with slashes.
+    This is used by <tt>url_for</tt> in Action Pack.
+full_name: ActiveSupport::CoreExtensions::Array::Conversions#to_param
+params: ()
+name: to_param
+is_singleton: false
+aliases: []
+

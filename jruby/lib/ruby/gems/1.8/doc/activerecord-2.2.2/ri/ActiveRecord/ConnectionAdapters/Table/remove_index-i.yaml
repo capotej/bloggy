@@ -1,0 +1,35 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Removes the given index from the table.
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 5
+- !ruby/struct:SM::Flow::H 
+  text: Remove the suppliers_name_index in the suppliers table
+  level: 6
+- !ruby/struct:SM::Flow::VERB 
+  body: "  t.remove_index :name\n"
+- !ruby/struct:SM::Flow::H 
+  text: Remove the index named accounts_branch_id_index in the accounts table
+  level: 6
+- !ruby/struct:SM::Flow::VERB 
+  body: "  t.remove_index :column =&gt; :branch_id\n"
+- !ruby/struct:SM::Flow::H 
+  text: Remove the index named accounts_branch_id_party_id_index in the accounts table
+  level: 6
+- !ruby/struct:SM::Flow::VERB 
+  body: "  t.remove_index :column =&gt; [:branch_id, :party_id]\n"
+- !ruby/struct:SM::Flow::H 
+  text: Remove the index named by_branch_party in the accounts table
+  level: 6
+- !ruby/struct:SM::Flow::VERB 
+  body: "  t.remove_index :name =&gt; :by_branch_party\n"
+full_name: ActiveRecord::ConnectionAdapters::Table#remove_index
+params: (options = {})
+name: remove_index
+is_singleton: false
+aliases: []
+

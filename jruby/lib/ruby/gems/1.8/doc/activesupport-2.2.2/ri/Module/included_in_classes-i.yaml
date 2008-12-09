@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the classes in the current ObjectSpace where this module has been
+    mixed in according to Module#included_modules.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  module M\n  end\n\n  module N\n    include M\n  end\n\n  class C\n    include \
+    M\n  end\n\n  class D &lt; C\n  end\n\n  p M.included_in_classes # =&gt; [C, D]\n"
+full_name: Module#included_in_classes
+params: ()
+name: included_in_classes
+is_singleton: false
+aliases: []
+

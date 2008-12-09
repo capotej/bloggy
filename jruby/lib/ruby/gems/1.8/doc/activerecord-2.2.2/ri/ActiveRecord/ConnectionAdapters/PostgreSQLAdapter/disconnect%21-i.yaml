@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Close the connection.
+full_name: ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#disconnect!
+params: ()
+name: disconnect!
+is_singleton: false
+aliases: []
+

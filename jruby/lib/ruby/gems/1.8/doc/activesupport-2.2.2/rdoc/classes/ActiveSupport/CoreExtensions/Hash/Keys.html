@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActiveSupport::CoreExtensions::Hash::Keys</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActiveSupport::CoreExtensions::Hash::Keys</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/active_support/core_ext/hash/keys_rb.html">
+                lib/active_support/core_ext/hash/keys.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000401">assert_valid_keys</a>&nbsp;&nbsp;
+      <a href="#M000395">stringify_keys</a>&nbsp;&nbsp;
+      <a href="#M000396">stringify_keys!</a>&nbsp;&nbsp;
+      <a href="#M000397">symbolize_keys</a>&nbsp;&nbsp;
+      <a href="#M000398">symbolize_keys!</a>&nbsp;&nbsp;
+      <a href="#M000399">to_options</a>&nbsp;&nbsp;
+      <a href="#M000400">to_options!</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000401" class="method-detail">
+        <a name="M000401"></a>
+
+        <div class="method-heading">
+          <a href="Keys.src/M000401.html" target="Code" class="method-signature"
+            onclick="popupCode('Keys.src/M000401.html');return false;">
+          <span class="method-name">assert_valid_keys</span><span class="method-args">(*valid_keys)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Validate all keys in a hash match *valid keys, raising ArgumentError on a
+mismatch. Note that keys are NOT treated indifferently, meaning if you use
+strings for keys but assert symbols as keys, this will fail.
+</p>
+<h4>Examples:</h4>
+<pre>
+  { :name =&gt; &quot;Rob&quot;, :years =&gt; &quot;28&quot; }.assert_valid_keys(:name, :age) # =&gt; raises &quot;ArgumentError: Unknown key(s): years&quot;
+  { :name =&gt; &quot;Rob&quot;, :age =&gt; &quot;28&quot; }.assert_valid_keys(&quot;name&quot;, &quot;age&quot;) # =&gt; raises &quot;ArgumentError: Unknown key(s): name, age&quot;
+  { :name =&gt; &quot;Rob&quot;, :age =&gt; &quot;28&quot; }.assert_valid_keys(:name, :age) # =&gt; passes, raises nothing
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000395" class="method-detail">
+        <a name="M000395"></a>
+
+        <div class="method-heading">
+          <a href="Keys.src/M000395.html" target="Code" class="method-signature"
+            onclick="popupCode('Keys.src/M000395.html');return false;">
+          <span class="method-name">stringify_keys</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a new hash with all keys converted to strings.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000396" class="method-detail">
+        <a name="M000396"></a>
+
+        <div class="method-heading">
+          <a href="Keys.src/M000396.html" target="Code" class="method-signature"
+            onclick="popupCode('Keys.src/M000396.html');return false;">
+          <span class="method-name">stringify_keys!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Destructively convert all keys to strings.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000397" class="method-detail">
+        <a name="M000397"></a>
+
+        <div class="method-heading">
+          <a href="Keys.src/M000397.html" target="Code" class="method-signature"
+            onclick="popupCode('Keys.src/M000397.html');return false;">
+          <span class="method-name">symbolize_keys</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a new hash with all keys converted to symbols.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000398" class="method-detail">
+        <a name="M000398"></a>
+
+        <div class="method-heading">
+          <a href="Keys.src/M000398.html" target="Code" class="method-signature"
+            onclick="popupCode('Keys.src/M000398.html');return false;">
+          <span class="method-name">symbolize_keys!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Destructively convert all keys to symbols.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000399" class="method-detail">
+        <a name="M000399"></a>
+
+        <div class="method-heading">
+          <span class="method-name">to_options</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Keys.html#M000397">symbolize_keys</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000400" class="method-detail">
+        <a name="M000400"></a>
+
+        <div class="method-heading">
+          <span class="method-name">to_options!</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Keys.html#M000397">symbolize_keys</a>!
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

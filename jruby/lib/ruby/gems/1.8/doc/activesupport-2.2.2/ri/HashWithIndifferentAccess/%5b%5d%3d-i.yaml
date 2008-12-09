@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Assigns a new value to the hash:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  hash = HashWithIndifferentAccess.new\n  hash[:key] = &quot;value&quot;\n"
+full_name: HashWithIndifferentAccess#[]=
+params: (key, value)
+name: '[]='
+is_singleton: false
+aliases: []
+

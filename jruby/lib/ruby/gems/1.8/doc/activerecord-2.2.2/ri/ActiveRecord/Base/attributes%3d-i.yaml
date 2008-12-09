@@ -1,0 +1,25 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Allows you to set all the attributes at once by passing in a hash with keys
+    matching the attribute names (which again matches the column names).
+- !ruby/struct:SM::Flow::P 
+  body: If <tt>guard_protected_attributes</tt> is true (the default), then sensitive
+    attributes can be protected from this form of mass-assignment by using the <tt>attr_protected</tt>
+    macro. Or you can alternatively specify which attributes <b>can</b> be accessed
+    with the <tt>attr_accessible</tt> macro. Then all the attributes not included
+    in that won't be allowed to be mass-assigned.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class User &lt; ActiveRecord::Base\n    attr_protected :is_admin\n  end\n\
+    \n  user = User.new\n  user.attributes = { :username =&gt; 'Phusion', :is_admin \
+    =&gt; true }\n  user.username   # =&gt; &quot;Phusion&quot;\n  user.is_admin? \
+    \ # =&gt; false\n\n  user.send(:attributes=, { :username =&gt; 'Phusion', :is_admin \
+    =&gt; true }, false)\n  user.is_admin?  # =&gt; true\n"
+full_name: ActiveRecord::Base#attributes=
+params: (new_attributes, guard_protected_attributes = true)
+name: attributes=
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,37 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'A generic &quot;counter updater&quot; implementation, intended primarily
+    to be used by increment_counter and decrement_counter, but which may also be useful
+    on its own. It simply does a direct SQL update for the record with the given ID,
+    altering the given hash of counters by the amount given by the corresponding value:'
+- !ruby/struct:SM::Flow::H 
+  text: Parameters
+  level: 4
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>id</tt> - The id of the object you wish to update a counter on.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>counters</tt> - An Array of Hashes containing the names of the fields
+      to update as keys and the amount to update the field by as values.
+    label: '*'
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # For the Post with id of 5, decrement the comment_count by 1, and\n  # \
+    increment the action_count by 1\n  Post.update_counters 5, :comment_count =&gt; \
+    -1, :action_count =&gt; 1\n  # Executes the following SQL:\n  # UPDATE posts\n\
+    \  #    SET comment_count = comment_count - 1,\n  #        action_count = action_count \
+    + 1\n  #  WHERE id = 5\n"
+full_name: ActiveRecord::Base::update_counters
+params: (id, counters)
+name: update_counters
+is_singleton: true
+aliases: []
+

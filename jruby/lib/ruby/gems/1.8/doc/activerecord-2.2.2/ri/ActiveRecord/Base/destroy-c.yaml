@@ -1,0 +1,33 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Destroy an object (or multiple objects) that has the given id, the object
+    is instantiated first, therefore all callbacks and filters are fired off before
+    the object is deleted. This method is less efficient than ActiveRecord#delete
+    but allows cleanup methods and other actions to be run.
+- !ruby/struct:SM::Flow::P 
+  body: This essentially finds the object (or multiple objects) with the given id,
+    creates a new object from the attributes, and then calls destroy on it.
+- !ruby/struct:SM::Flow::H 
+  text: Parameters
+  level: 4
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>id</tt> - Can be either an Integer or an Array of Integers.
+    label: '*'
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Destroy a single object\n  Todo.destroy(1)\n\n  # Destroy multiple objects\n\
+    \  todos = [1,2,3]\n  Todo.destroy(todos)\n"
+full_name: ActiveRecord::Base::destroy
+params: (id)
+name: destroy
+is_singleton: true
+aliases: []
+

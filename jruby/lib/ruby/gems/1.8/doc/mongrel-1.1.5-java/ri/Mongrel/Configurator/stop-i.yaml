@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Calls .stop on all the configured listeners so they stop processing requests
+    (gracefully). By default it assumes that you don't want to restart.
+full_name: Mongrel::Configurator#stop
+params: (needs_restart=false, synchronous=false)
+name: stop
+is_singleton: false
+aliases: []
+

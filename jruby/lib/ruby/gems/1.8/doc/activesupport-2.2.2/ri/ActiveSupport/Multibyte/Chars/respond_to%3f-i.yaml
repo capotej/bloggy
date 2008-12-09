@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns <tt>true</tt> if <em>obj</em> responds to the given method. Private
+    methods are included in the search only if the optional second parameter evaluates
+    to <tt>true</tt>.
+full_name: ActiveSupport::Multibyte::Chars#respond_to?
+params: (method, include_private=false)
+name: respond_to?
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,40 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Holds data about a codepoint in the Unicode database
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: code
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: combining_class
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: decomp_mapping
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: decomp_type
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: lowercase_mapping
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: uppercase_mapping
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveSupport::Multibyte::Codepoint
+constants: []
+
+superclass: Object
+name: Codepoint

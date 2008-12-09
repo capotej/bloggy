@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Does the internal reload for Rails. It might work for most cases, but sometimes
+    you get exceptions. In that case just do a real restart.
+full_name: Mongrel::Rails::RailsHandler#reload!
+params: ()
+name: reload!
+is_singleton: false
+aliases: []
+

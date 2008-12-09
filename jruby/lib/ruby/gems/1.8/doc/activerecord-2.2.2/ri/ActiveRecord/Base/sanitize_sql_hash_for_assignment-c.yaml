@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sanitizes a hash of attribute/value pairs into SQL conditions for a SET clause.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  { :status =&gt; nil, :group_id =&gt; 1 }\n    # =&gt; &quot;status = NULL \
+    , group_id = 1&quot;\n"
+full_name: ActiveRecord::Base::sanitize_sql_hash_for_assignment
+params: (attrs)
+name: sanitize_sql_hash_for_assignment
+is_singleton: true
+aliases: []
+

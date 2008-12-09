@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The validation process on save can be skipped by passing false. The regular
+    Base#save method is replaced with this when the validations module is mixed in,
+    which it is by default.
+full_name: ActiveRecord::Validations#save_with_validation
+params: (perform_validation = true)
+name: save_with_validation
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'The first argument should be the main extension module. The extension module
+    should contain the constants:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  * class Request, with OpenID::Extension as an ancestor\n  * class Response, \
+    with OpenID::Extension as an ancestor\n  * string NS_URI, which defines the namespace \
+    of the extension, should\n    be an absolute http uri\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'All trailing arguments will be passed to extension::Request.new in #check.
+    The openid response will be passed to extension::Response#from_success_response,
+    #get_extension_args will be called on the result to attain the gathered data.'
+- !ruby/struct:SM::Flow::P 
+  body: This method returns the key at which the response data will be found in the
+    session, which is the namespace uri by default.
+full_name: Rack::Auth::OpenID#add_extension
+params: (ext, *args)
+name: add_extension
+is_singleton: false
+aliases: []
+

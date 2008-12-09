@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns an array of record hashes with the column names as keys and column
+    values as values.
+full_name: ActiveRecord::ConnectionAdapters::DatabaseStatements#select_all
+params: (sql, name = nil)
+name: select_all
+is_singleton: false
+aliases: []
+

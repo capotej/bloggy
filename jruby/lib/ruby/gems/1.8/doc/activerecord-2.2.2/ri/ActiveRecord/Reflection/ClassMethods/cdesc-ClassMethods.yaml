@@ -1,0 +1,35 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Reflection allows you to interrogate Active Record classes and objects about
+    their associations and aggregations. This information can, for example, be used
+    in a form builder that took an Active Record object and created input fields for
+    all of the attributes depending on their type and displayed the associations to
+    other objects.
+- !ruby/struct:SM::Flow::P 
+  body: You can find the interface for the AggregateReflection and AssociationReflection
+    classes in the abstract MacroReflection class.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: create_reflection
+- !ruby/object:RI::MethodSummary 
+  name: reflect_on_aggregation
+- !ruby/object:RI::MethodSummary 
+  name: reflect_on_all_aggregations
+- !ruby/object:RI::MethodSummary 
+  name: reflect_on_all_associations
+- !ruby/object:RI::MethodSummary 
+  name: reflect_on_association
+- !ruby/object:RI::MethodSummary 
+  name: reflections
+class_methods: []
+
+full_name: ActiveRecord::Reflection::ClassMethods
+constants: []
+
+superclass: 
+name: ClassMethods

@@ -1,0 +1,40 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: charset
+- !ruby/object:RI::MethodSummary 
+  name: collation
+- !ruby/object:RI::MethodSummary 
+  name: current_database
+- !ruby/object:RI::MethodSummary 
+  name: modify_types
+- !ruby/object:RI::MethodSummary 
+  name: quote
+- !ruby/object:RI::MethodSummary 
+  name: quoted_false
+- !ruby/object:RI::MethodSummary 
+  name: quoted_true
+- !ruby/object:RI::MethodSummary 
+  name: rename_table
+- !ruby/object:RI::MethodSummary 
+  name: show_variable
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: adapter_selector
+- !ruby/object:RI::MethodSummary 
+  name: column_selector
+- !ruby/object:RI::MethodSummary 
+  name: extended
+full_name: "::MySQL"
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"zeroDateTimeBehavior=convertToNull&jdbcCompliantTruncation=false&useUnicode=true&characterEncoding=utf8"'
+  name: URL_OPTIONS
+superclass: 
+name: MySQL

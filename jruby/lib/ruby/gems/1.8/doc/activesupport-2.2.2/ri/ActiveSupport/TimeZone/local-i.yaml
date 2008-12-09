@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Method for creating new ActiveSupport::TimeWithZone instance in time zone
+    of <tt>self</tt> from given values. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Time.zone = &quot;Hawaii&quot;                      # =&gt; &quot;Hawaii&quot;\n\
+    \  Time.zone.local(2007, 2, 1, 15, 30, 45)   # =&gt; Thu, 01 Feb 2007 15:30:45 \
+    HST -10:00\n"
+full_name: ActiveSupport::TimeZone#local
+params: (*args)
+name: local
+is_singleton: false
+aliases: []
+

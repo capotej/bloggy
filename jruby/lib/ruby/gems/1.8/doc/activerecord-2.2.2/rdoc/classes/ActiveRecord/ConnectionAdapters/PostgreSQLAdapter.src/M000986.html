@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>change_column (ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/postgresql_adapter.rb, line 819</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">change_column</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">quoted_table_name</span> = <span class="ruby-identifier">quote_table_name</span>(<span class="ruby-identifier">table_name</span>)
+
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;ALTER TABLE #{quoted_table_name} ALTER COLUMN #{quote_column_name(column_name)} TYPE #{type_to_sql(type, options[:limit], options[:precision], options[:scale])}&quot;</span>
+        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">StatementInvalid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">postgresql_version</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">80000</span>
+          <span class="ruby-comment cmt"># This is PostgreSQL 7.x, so we have to use a more arcane way of doing it.</span>
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-identifier">begin_db_transaction</span>
+            <span class="ruby-identifier">tmp_column_name</span> = <span class="ruby-node">&quot;#{column_name}_ar_tmp&quot;</span>
+            <span class="ruby-identifier">add_column</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">tmp_column_name</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">options</span>)
+            <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;UPDATE #{quoted_table_name} SET #{quote_column_name(tmp_column_name)} = CAST(#{quote_column_name(column_name)} AS #{type_to_sql(type, options[:limit], options[:precision], options[:scale])})&quot;</span>
+            <span class="ruby-identifier">remove_column</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>)
+            <span class="ruby-identifier">rename_column</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">tmp_column_name</span>, <span class="ruby-identifier">column_name</span>)
+            <span class="ruby-identifier">commit_db_transaction</span>
+          <span class="ruby-keyword kw">rescue</span>
+            <span class="ruby-identifier">rollback_db_transaction</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">change_column_default</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:default</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options_include_default?</span>(<span class="ruby-identifier">options</span>)
+        <span class="ruby-identifier">change_column_null</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:null</span>], <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:default</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">:null</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

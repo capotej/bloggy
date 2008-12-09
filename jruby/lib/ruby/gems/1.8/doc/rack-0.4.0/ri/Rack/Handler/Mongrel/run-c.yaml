@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: server  if block_given?
+comment: 
+full_name: Rack::Handler::Mongrel::run
+params: (app, options={}) {|server if block_given?| ...}
+name: run
+is_singleton: true
+aliases: []
+

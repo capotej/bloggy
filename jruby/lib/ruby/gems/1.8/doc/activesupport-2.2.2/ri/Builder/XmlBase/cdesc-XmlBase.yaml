@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: XmlBase is a base class for building XML builders. See Builder::XmlMarkup
+    and Builder::XmlEvents for examples.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "<<"
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RI::MethodSummary 
+  name: nil?
+- !ruby/object:RI::MethodSummary 
+  name: tag!
+- !ruby/object:RI::MethodSummary 
+  name: text!
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Builder::XmlBase
+constants: []
+
+superclass: BlankSlate
+name: XmlBase

@@ -1,0 +1,88 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This is the final portion of authentication. Unless any errors outside of
+    specification occur, a 303 redirect will be returned with Location determined
+    by the OpenID response type. If none of the response type :login_* urls are set,
+    the redirect will be set to <tt>session[:openid][:site_return]</tt>. If <tt>session[:openid][:site_return]</tt>
+    is unset, the realm will be used.
+- !ruby/struct:SM::Flow::P 
+  body: Any messages from OpenID's response are appended to the 303 response body.
+- !ruby/struct:SM::Flow::P 
+  body: Data gathered from extensions are stored in session[:openid] with the extension's
+    namespace uri as the key.
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>env['rack.auth.openid.response']</tt> is the openid response.
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: 'The four valid possible outcomes are:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: 'failure: <tt>options[:login_fail]</tt> or <tt>session[:site_return]</tt>
+      or the realm'
+    label: '*'
+  - !ruby/object:SM::Flow::LIST 
+    type: :BULLET
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      body: <tt>session[:openid]</tt> is cleared and any messages are send to rack.errors
+      label: '*'
+    - !ruby/struct:SM::Flow::LI 
+      body: <tt>session[:openid]['authenticated']</tt> is <tt>false</tt>
+      label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: 'success: <tt>options[:login_good]</tt> or <tt>session[:site_return]</tt>
+      or the realm'
+    label: '*'
+  - !ruby/object:SM::Flow::LIST 
+    type: :BULLET
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      body: <tt>session[:openid]</tt> is cleared
+      label: '*'
+    - !ruby/struct:SM::Flow::LI 
+      body: <tt>session[:openid]['authenticated']</tt> is <tt>true</tt>
+      label: '*'
+    - !ruby/struct:SM::Flow::LI 
+      body: <tt>session[:openid]['identity']</tt> is the actual identifier
+      label: '*'
+    - !ruby/struct:SM::Flow::LI 
+      body: <tt>session[:openid]['identifier']</tt> is the pretty identifier
+      label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: 'cancel: <tt>options[:login_good]</tt> or <tt>session[:site_return]</tt>
+      or the realm'
+    label: '*'
+  - !ruby/object:SM::Flow::LIST 
+    type: :BULLET
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      body: <tt>session[:openid]</tt> is cleared
+      label: '*'
+    - !ruby/struct:SM::Flow::LI 
+      body: <tt>session[:openid]['authenticated']</tt> is <tt>false</tt>
+      label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: 'setup_needed: resubmits the authentication request. A flag is set for non-immediate
+      handling.'
+    label: '*'
+  - !ruby/object:SM::Flow::LIST 
+    type: :BULLET
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      body: <tt>session[:openid][:setup_needed]</tt> is set to <tt>true</tt>, which
+        will prevent immediate style openid authentication.
+      label: '*'
+full_name: Rack::Auth::OpenID#finish
+params: (consumer, session, req)
+name: finish
+is_singleton: false
+aliases: []
+

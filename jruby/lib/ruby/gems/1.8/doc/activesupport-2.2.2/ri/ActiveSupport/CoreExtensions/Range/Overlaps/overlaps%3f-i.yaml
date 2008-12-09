@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Compare two ranges and see if they overlap eachother
+- !ruby/struct:SM::Flow::VERB 
+  body: " (1..5).overlaps?(4..6) # =&gt; true\n (1..5).overlaps?(7..9) # =&gt; false\n"
+full_name: ActiveSupport::CoreExtensions::Range::Overlaps#overlaps?
+params: (other)
+name: overlaps?
+is_singleton: false
+aliases: []
+

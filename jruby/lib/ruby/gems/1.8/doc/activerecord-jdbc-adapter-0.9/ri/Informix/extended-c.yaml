@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::Informix::extended"
+params: (base)
+name: extended
+is_singleton: true
+aliases: []
+

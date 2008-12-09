@@ -1,0 +1,44 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Enables the use of byte calculations and declarations, like 45.bytes + 2.6.megabytes
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: byte
+- !ruby/object:RI::MethodSummary 
+  name: bytes
+- !ruby/object:RI::MethodSummary 
+  name: exabyte
+- !ruby/object:RI::MethodSummary 
+  name: exabytes
+- !ruby/object:RI::MethodSummary 
+  name: gigabyte
+- !ruby/object:RI::MethodSummary 
+  name: gigabytes
+- !ruby/object:RI::MethodSummary 
+  name: kilobyte
+- !ruby/object:RI::MethodSummary 
+  name: kilobytes
+- !ruby/object:RI::MethodSummary 
+  name: megabyte
+- !ruby/object:RI::MethodSummary 
+  name: megabytes
+- !ruby/object:RI::MethodSummary 
+  name: petabyte
+- !ruby/object:RI::MethodSummary 
+  name: petabytes
+- !ruby/object:RI::MethodSummary 
+  name: terabyte
+- !ruby/object:RI::MethodSummary 
+  name: terabytes
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Numeric::Bytes
+constants: []
+
+superclass: 
+name: Bytes

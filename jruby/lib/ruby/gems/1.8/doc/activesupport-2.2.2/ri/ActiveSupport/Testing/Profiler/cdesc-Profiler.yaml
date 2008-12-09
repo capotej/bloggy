@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: output_filename
+- !ruby/object:RI::MethodSummary 
+  name: record
+- !ruby/object:RI::MethodSummary 
+  name: report
+- !ruby/object:RI::MethodSummary 
+  name: run
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: ActiveSupport::Testing::Profiler
+constants: []
+
+superclass: Performer
+name: Profiler

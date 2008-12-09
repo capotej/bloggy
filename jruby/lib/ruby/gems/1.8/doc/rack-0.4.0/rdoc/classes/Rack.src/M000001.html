@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>call (Rack)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/lobster.rb, line 32</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+      <span class="ruby-identifier">req</span> = <span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">env</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">req</span>.<span class="ruby-constant">GET</span>[<span class="ruby-value str">&quot;flip&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;left&quot;</span>
+        <span class="ruby-identifier">lobster</span> = <span class="ruby-constant">LobsterString</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;\n&quot;</span>).
+          <span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">ljust</span>(<span class="ruby-value">42</span>).<span class="ruby-identifier">reverse</span> }.
+          <span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+        <span class="ruby-identifier">href</span> = <span class="ruby-value str">&quot;?flip=right&quot;</span>
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">req</span>.<span class="ruby-constant">GET</span>[<span class="ruby-value str">&quot;flip&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;crash&quot;</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Lobster crashed&quot;</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">lobster</span> = <span class="ruby-constant">LobsterString</span>
+        <span class="ruby-identifier">href</span> = <span class="ruby-value str">&quot;?flip=left&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-constant">Response</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">finish</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">res</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">res</span>.<span class="ruby-identifier">write</span> <span class="ruby-value str">&quot;&lt;title&gt;Lobstericious!&lt;/title&gt;&quot;</span>
+        <span class="ruby-identifier">res</span>.<span class="ruby-identifier">write</span> <span class="ruby-value str">&quot;&lt;pre&gt;&quot;</span>
+        <span class="ruby-identifier">res</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">lobster</span>
+        <span class="ruby-identifier">res</span>.<span class="ruby-identifier">write</span> <span class="ruby-value str">&quot;&lt;/pre&gt;&quot;</span>
+        <span class="ruby-identifier">res</span>.<span class="ruby-identifier">write</span> <span class="ruby-node">&quot;&lt;p&gt;&lt;a href='#{href}'&gt;flip!&lt;/a&gt;&lt;/p&gt;&quot;</span>
+        <span class="ruby-identifier">res</span>.<span class="ruby-identifier">write</span> <span class="ruby-value str">&quot;&lt;p&gt;&lt;a href='?flip=crash'&gt;crash!&lt;/a&gt;&lt;/p&gt;&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

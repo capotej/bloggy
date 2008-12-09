@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converts Date to a Time (or DateTime if necessary) with the time portion set
+    to the end of the day (23:59:59)
+full_name: ActiveSupport::CoreExtensions::Date::Calculations#end_of_day
+params: ()
+name: end_of_day
+is_singleton: false
+aliases: []
+

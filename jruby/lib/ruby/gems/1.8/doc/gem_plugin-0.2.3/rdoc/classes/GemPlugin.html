@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: GemPlugin</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">GemPlugin</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/gem_plugin_rb.html">
+                lib/gem_plugin.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Implements a dynamic plugin loading, configuration, and discovery system
+based on RubyGems and a simple additional name space that looks like a URI.
+</p>
+<p>
+A plugin is created and put into a category with the following code:
+</p>
+<pre>
+ class MyThing &lt; GemPlugin::Plugin &quot;/things&quot;
+   ...
+ end
+</pre>
+<p>
+What this does is sets up your MyThing in the plugin registry via <a
+href="GemPlugin/Manager.html">GemPlugin::Manager</a>. You can then later
+get this plugin with <a
+href="GemPlugin/Manager.html#M000005">GemPlugin::Manager.create</a>(&quot;/things/mything&quot;)
+and can also pass in options as a second parameter.
+</p>
+<p>
+This isn&#8216;t such a big deal, but the power is really from the <a
+href="GemPlugin/Manager.html#M000003">GemPlugin::Manager.load</a> method.
+This method will go through the installed gems and require_gem any that
+depend on the gem_plugin RubyGem. You can arbitrarily include or exclude
+gems based on what they also depend on, thus letting you load these gems
+when appropriate.
+</p>
+<p>
+Since this system was written originally for the Mongrel project
+that&#8216;ll be the best example of using it.
+</p>
+<p>
+Imagine you have a neat plugin for Mongrel called snazzy_command that gives
+the mongrel_rails a new command snazzy (like: mongrel_rails snazzy).
+You&#8216;d like people to be able to grab this plugin if they want and use
+it, because it&#8216;s snazzy.
+</p>
+<p>
+First thing you do is create a gem of your project and make sure that it
+depends on &quot;mongrel&quot; AND &quot;gem_plugin&quot;. This signals to
+the <a href="GemPlugin.html">GemPlugin</a> system that this is a plugin for
+mongrel.
+</p>
+<p>
+Next you put this code into a file like lib/init.rb (can be anything
+really):
+</p>
+<pre>
+ class Snazzy &lt; GemPlugin::Plugin &quot;/commands&quot;
+   ...
+ end
+</pre>
+<p>
+Then when you create your gem you have the following bits in your Rakefile:
+</p>
+<pre>
+ spec.add_dependency('mongrel', '&gt;= 0.3.9')
+ spec.add_dependency('gem_plugin', '&gt;= 0.1')
+ spec.autorequire = 'init.rb'
+</pre>
+<p>
+Finally, you just have to now publish this gem for people to install and
+Mongrel will &quot;magically&quot; be able to install it.
+</p>
+<p>
+The &quot;magic&quot; part though is pretty simple and done via the <a
+href="GemPlugin/Manager.html#M000003">GemPlugin::Manager.load</a> method.
+Read that to see how it is really done.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000001">Plugin</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="GemPlugin/Base.html" class="link">GemPlugin::Base</a><br />
+Class <a href="GemPlugin/Manager.html" class="link">GemPlugin::Manager</a><br />
+Class <a href="GemPlugin/PluginNotLoaded.html" class="link">GemPlugin::PluginNotLoaded</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EXCLUDE</td>
+          <td>=</td>
+          <td class="context-item-value">true</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">INCLUDE</td>
+          <td>=</td>
+          <td class="context-item-value">false</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="GemPlugin.src/M000001.html" target="Code" class="method-signature"
+            onclick="popupCode('GemPlugin.src/M000001.html');return false;">
+          <span class="method-name">Plugin</span><span class="method-args">(c)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This nifty function works with the <a
+href="GemPlugin/Base.html">GemPlugin::Base</a> to give you the syntax:
+</p>
+<pre>
+ class MyThing &lt; GemPlugin::Plugin &quot;/things&quot;
+   ...
+ end
+</pre>
+<p>
+What it does is temporarily sets the GemPlugin::Base.category, and then
+returns <a href="GemPlugin/Base.html">GemPlugin::Base</a>. Since the next
+immediate thing Ruby does is use this returned class to create the new
+class, <a href="GemPlugin/Base.html#M000009">GemPlugin::Base.inherited</a>
+gets called. <a
+href="GemPlugin/Base.html#M000009">GemPlugin::Base.inherited</a> then uses
+the set category, class name, and class to register the plugin in the right
+way.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

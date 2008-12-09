@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'All subclasses of ActiveRecord::Base have two named \scopes:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>all</tt> - which is similar to a <tt>find(:all)</tt> query, and
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>scoped</tt> - which allows for the creation of anonymous \scopes, on
+      the fly: <tt>Shirt.scoped(:conditions =&gt; {:color =&gt; ''red''}).scoped(:include
+      =&gt; :washing_instructions)</tt>'
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: These anonymous \scopes tend to be useful when procedurally generating complex
+    queries, where passing intermediate values (scopes) around as first-class objects
+    is convenient.
+full_name: ActiveRecord::NamedScope::included
+params: (base)
+name: included
+is_singleton: true
+aliases: []
+

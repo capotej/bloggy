@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns any connections in use by the current thread back to the pool, and
+    also returns connections to the pool cached by threads that are no longer alive.
+full_name: ActiveRecord::ConnectionAdapters::ConnectionHandler#clear_active_connections!
+params: ()
+name: clear_active_connections!
+is_singleton: false
+aliases: []
+

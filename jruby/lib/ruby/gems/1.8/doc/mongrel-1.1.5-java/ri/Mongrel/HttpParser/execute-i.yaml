@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Takes a Hash and a String of data, parses the String of data filling in the
+    Hash returning an Integer to indicate how much of the data has been read. No matter
+    what the return value, you should call HttpParser#finished? and HttpParser#error?
+    to figure out if it's done parsing or there was an error.
+- !ruby/struct:SM::Flow::P 
+  body: This function now throws an exception when there is a parsing error. This
+    makes the logic for working with the parser much easier. You can still test for
+    an error, but now you need to wrap the parser with an exception handling block.
+- !ruby/struct:SM::Flow::P 
+  body: The third argument allows for parsing a partial request and then continuing
+    the parsing from that position. It needs all of the original data as well so you
+    have to append to the data buffer as you read.
+full_name: Mongrel::HttpParser#execute
+params: |
+  parser.execute(req_hash, data, start) -> Integer
+name: execute
+is_singleton: false
+aliases: []
+

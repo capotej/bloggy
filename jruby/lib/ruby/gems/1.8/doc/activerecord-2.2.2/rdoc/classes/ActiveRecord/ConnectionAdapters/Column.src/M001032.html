@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>fast_string_to_time (ActiveRecord::ConnectionAdapters::Column)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/abstract/schema_definitions.rb, line 193</span>
+          <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fast_string_to_time</span>(<span class="ruby-identifier">string</span>)
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">string</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">Format</span><span class="ruby-operator">::</span><span class="ruby-constant">ISO_DATETIME</span>
+              <span class="ruby-identifier">microsec</span> = (<span class="ruby-identifier">$7</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">*</span> <span class="ruby-value">1_000_000</span>).<span class="ruby-identifier">to_i</span>
+              <span class="ruby-identifier">new_time</span> <span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">$2</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">$3</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">$4</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">$5</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">$6</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">microsec</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

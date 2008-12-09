@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the load path instance. Custom implementations are expected to behave
+    like a Ruby Array.
+full_name: I18n::load_path=
+params: (load_path)
+name: load_path=
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Helper methods for building various aspects of the HTTP response.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: content_type
+- !ruby/object:RI::MethodSummary 
+  name: entity_tag
+- !ruby/object:RI::MethodSummary 
+  name: etag
+- !ruby/object:RI::MethodSummary 
+  name: header
+- !ruby/object:RI::MethodSummary 
+  name: headers
+- !ruby/object:RI::MethodSummary 
+  name: last_modified
+- !ruby/object:RI::MethodSummary 
+  name: redirect
+class_methods: []
+
+full_name: Sinatra::ResponseHelpers
+constants: []
+
+superclass: 
+name: ResponseHelpers

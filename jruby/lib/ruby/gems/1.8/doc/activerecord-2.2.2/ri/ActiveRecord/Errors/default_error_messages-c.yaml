@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::Errors::default_error_messages
+params: ()
+name: default_error_messages
+is_singleton: true
+aliases: []
+

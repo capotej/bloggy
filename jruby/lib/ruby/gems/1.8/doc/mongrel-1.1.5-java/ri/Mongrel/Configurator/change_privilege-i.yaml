@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Change privileges of the process to specified user and group.
+full_name: Mongrel::Configurator#change_privilege
+params: (user, group)
+name: change_privilege
+is_singleton: false
+aliases: []
+

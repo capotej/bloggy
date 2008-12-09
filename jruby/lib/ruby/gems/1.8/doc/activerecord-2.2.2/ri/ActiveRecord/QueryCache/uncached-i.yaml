@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: ""
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Disable the query cache within the block if Active Record is configured.
+full_name: ActiveRecord::QueryCache#uncached
+params: (&block) {|| ...}
+name: uncached
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::PostgreSQL#last_insert_id"
+params: (table, sequence_name)
+name: last_insert_id
+is_singleton: false
+aliases: []
+

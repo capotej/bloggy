@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Validates that the given directory exists
+full_name: Mongrel::Command::Base#valid_dir?
+params: (file, message)
+name: valid_dir?
+is_singleton: false
+aliases: []
+

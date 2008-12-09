@@ -1,0 +1,55 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Headers
+  rw: R
+  name: headers
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Headers
+  rw: R
+  name: original_headers
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: client_error?
+- !ruby/object:RI::MethodSummary 
+  name: content_length
+- !ruby/object:RI::MethodSummary 
+  name: content_type
+- !ruby/object:RI::MethodSummary 
+  name: empty?
+- !ruby/object:RI::MethodSummary 
+  name: forbidden?
+- !ruby/object:RI::MethodSummary 
+  name: include?
+- !ruby/object:RI::MethodSummary 
+  name: informational?
+- !ruby/object:RI::MethodSummary 
+  name: invalid?
+- !ruby/object:RI::MethodSummary 
+  name: location
+- !ruby/object:RI::MethodSummary 
+  name: not_found?
+- !ruby/object:RI::MethodSummary 
+  name: ok?
+- !ruby/object:RI::MethodSummary 
+  name: redirect?
+- !ruby/object:RI::MethodSummary 
+  name: redirection?
+- !ruby/object:RI::MethodSummary 
+  name: server_error?
+- !ruby/object:RI::MethodSummary 
+  name: successful?
+class_methods: []
+
+full_name: Rack::Response::Helpers
+constants: []
+
+superclass: 
+name: Helpers

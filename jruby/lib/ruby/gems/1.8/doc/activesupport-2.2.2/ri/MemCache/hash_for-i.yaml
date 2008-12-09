@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns an interoperable hash value for <tt>key</tt>. (I think, docs are sketchy
+    for down servers).
+full_name: MemCache#hash_for
+params: (key)
+name: hash_for
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,73 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: REXML
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Locked down XmlSimple#xml_in_string
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: xml_in
+- !ruby/object:RI::MethodSummary 
+  name: xml_in_string
+- !ruby/object:RI::MethodSummary 
+  name: xml_out
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: xml_in
+- !ruby/object:RI::MethodSummary 
+  name: xml_in_string
+- !ruby/object:RI::MethodSummary 
+  name: xml_out
+full_name: XmlSimple
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Declare options that are valid for xml_in and xml_out.
+  value: '{     ''in''  => %w(       keyattr keeproot forcecontent contentkey noattr       searchpath
+    forcearray suppressempty anonymoustag       cache grouptags normalisespace normalizespace       variables
+    varattr keytosymbol     ),     ''out'' => %w(       keyattr keeproot contentkey
+    noattr rootname       xmldeclaration outputfile noescape suppressempty       anonymoustag
+    indent grouptags noindent     )'
+  name: KNOWN_OPTIONS
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Define some reasonable defaults.
+  value: '[]'
+  name: DEF_KEY_ATTRIBUTES
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''opt'''
+  name: DEF_ROOT_NAME
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''content'''
+  name: DEF_CONTENT_KEY
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"<?xml version=''1.0'' standalone=''yes''?>"'
+  name: DEF_XML_DECLARATION
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''anon'''
+  name: DEF_ANONYMOUS_TAG
+- !ruby/object:RI::Constant 
+  comment: 
+  value: "true"
+  name: DEF_FORCE_ARRAY
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''  '''
+  name: DEF_INDENTATION
+- !ruby/object:RI::Constant 
+  comment: 
+  value: "false"
+  name: DEF_KEY_TO_SYMBOL
+superclass: Object
+name: XmlSimple

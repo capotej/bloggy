@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Loads and creates a plugin for you based on the given name and configured
+    with the selected options. The options are merged with the defaults prior to passing
+    them in.
+full_name: Mongrel::Configurator#plugin
+params: (name, options={})
+name: plugin
+is_singleton: false
+aliases: []
+

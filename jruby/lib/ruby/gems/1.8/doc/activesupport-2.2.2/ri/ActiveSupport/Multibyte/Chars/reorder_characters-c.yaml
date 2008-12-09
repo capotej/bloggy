@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Re-order codepoints so the string becomes canonical.
+full_name: ActiveSupport::Multibyte::Chars::reorder_characters
+params: (codepoints)
+name: reorder_characters
+is_singleton: true
+aliases: []
+

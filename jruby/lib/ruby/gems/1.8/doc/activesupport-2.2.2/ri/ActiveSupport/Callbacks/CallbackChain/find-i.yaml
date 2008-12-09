@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (c)
+comment: 
+full_name: ActiveSupport::Callbacks::CallbackChain#find
+params: (callback, &block) {|c| ...}
+name: find
+is_singleton: false
+aliases: []
+

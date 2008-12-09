@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Initializes <tt>attribute</tt> to zero if <tt>nil</tt> and adds the value
+    passed as <tt>by</tt> (default is 1). The increment is performed directly on the
+    underlying attribute, no setter is invoked. Only makes sense for number-based
+    attributes. Returns <tt>self</tt>.
+full_name: ActiveRecord::Base#increment
+params: (attribute, by = 1)
+name: increment
+is_singleton: false
+aliases: []
+

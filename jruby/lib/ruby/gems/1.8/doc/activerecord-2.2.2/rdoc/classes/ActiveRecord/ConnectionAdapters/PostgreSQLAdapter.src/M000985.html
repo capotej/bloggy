@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>add_column (ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/postgresql_adapter.rb, line 807</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_column</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">default</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:default</span>]
+        <span class="ruby-identifier">notnull</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:null</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword kw">false</span>
+
+        <span class="ruby-comment cmt"># Add the column.</span>
+        <span class="ruby-identifier">execute</span>(<span class="ruby-node">&quot;ALTER TABLE #{quote_table_name(table_name)} ADD COLUMN #{quote_column_name(column_name)} #{type_to_sql(type, options[:limit], options[:precision], options[:scale])}&quot;</span>)
+
+        <span class="ruby-identifier">change_column_default</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">default</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options_include_default?</span>(<span class="ruby-identifier">options</span>)
+        <span class="ruby-identifier">change_column_null</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">default</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">notnull</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>define_attribute_methods (ActiveRecord::AttributeMethods::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/attribute_methods.rb, line 69</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">define_attribute_methods</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">generated_methods?</span>
+        <span class="ruby-identifier">columns_hash</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">column</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">instance_method_already_implemented?</span>(<span class="ruby-identifier">name</span>)
+            <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">serialized_attributes</span>[<span class="ruby-identifier">name</span>]
+              <span class="ruby-identifier">define_read_method_for_serialized_attribute</span>(<span class="ruby-identifier">name</span>)
+            <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">create_time_zone_conversion_attribute?</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">column</span>)
+              <span class="ruby-identifier">define_read_method_for_time_zone_conversion</span>(<span class="ruby-identifier">name</span>)
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">define_read_method</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_sym</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">column</span>)
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">instance_method_already_implemented?</span>(<span class="ruby-node">&quot;#{name}=&quot;</span>)
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">create_time_zone_conversion_attribute?</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">column</span>)
+              <span class="ruby-identifier">define_write_method_for_time_zone_conversion</span>(<span class="ruby-identifier">name</span>)
+            <span class="ruby-keyword kw">else</span>  
+              <span class="ruby-identifier">define_write_method</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_sym</span>)
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">instance_method_already_implemented?</span>(<span class="ruby-node">&quot;#{name}?&quot;</span>)
+            <span class="ruby-identifier">define_question_method</span>(<span class="ruby-identifier">name</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

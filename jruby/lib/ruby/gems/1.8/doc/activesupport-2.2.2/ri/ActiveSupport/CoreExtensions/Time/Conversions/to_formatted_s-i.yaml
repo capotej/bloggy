@@ -1,0 +1,35 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converts to a formatted string. See DATE_FORMATS for builtin formats.
+- !ruby/struct:SM::Flow::P 
+  body: This method is aliased to <tt>to_s</tt>.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  time = Time.now                     # =&gt; Thu Jan 18 06:10:17 CST 2007\n\
+    \n  time.to_formatted_s(:time)          # =&gt; &quot;06:10:17&quot;\n  time.to_s(:time) \
+    \                   # =&gt; &quot;06:10:17&quot;\n\n  time.to_formatted_s(:db) \
+    \           # =&gt; &quot;2007-01-18 06:10:17&quot;\n  time.to_formatted_s(:number) \
+    \       # =&gt; &quot;20070118061017&quot;\n  time.to_formatted_s(:short)      \
+    \   # =&gt; &quot;18 Jan 06:10&quot;\n  time.to_formatted_s(:long)          # =&gt; \
+    &quot;January 18, 2007 06:10&quot;\n  time.to_formatted_s(:long_ordinal)  # =&gt; \
+    &quot;January 18th, 2007 06:10&quot;\n  time.to_formatted_s(:rfc822)        # \
+    =&gt; &quot;Thu, 18 Jan 2007 06:10:17 -0600&quot;\n"
+- !ruby/struct:SM::Flow::H 
+  text: Adding your own time formats to <tt>to_formatted_s</tt>
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: You can add your own formats to the Time::DATE_FORMATS hash. Use the format
+    name as the hash key and either a strftime string or Proc instance that takes
+    a time argument as the value.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # config/initializers/time_formats.rb\n  Time::DATE_FORMATS[:month_and_year] \
+    = &quot;%B %Y&quot;\n  Time::DATE_FORMATS[:short_ordinal] = lambda { |time| time.strftime(&quot;%B \
+    #{time.day.ordinalize}&quot;) }\n"
+full_name: ActiveSupport::CoreExtensions::Time::Conversions#to_formatted_s
+params: (format = :default)
+name: to_formatted_s
+is_singleton: false
+aliases: []
+

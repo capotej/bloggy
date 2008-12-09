@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The stdoutput should be completely bypassed but we'll drop a warning just
+    in case
+full_name: Mongrel::CGIWrapper#stdoutput
+params: ()
+name: stdoutput
+is_singleton: false
+aliases: []
+

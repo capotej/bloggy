@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the current default locale. Used to set a custom default locale.
+full_name: I18n::default_locale=
+params: (locale)
+name: default_locale=
+is_singleton: true
+aliases: []
+

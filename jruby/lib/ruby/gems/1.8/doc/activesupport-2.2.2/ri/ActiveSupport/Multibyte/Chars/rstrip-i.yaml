@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Strips entire range of Unicode whitespace from the right of the string.
+full_name: ActiveSupport::Multibyte::Chars#rstrip
+params: ()
+name: rstrip
+is_singleton: false
+aliases: []
+

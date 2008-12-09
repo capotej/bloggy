@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>call (Rack::Auth::OpenID)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/auth/openid.rb, line 199</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+        <span class="ruby-identifier">env</span>[<span class="ruby-value str">'rack.auth.openid'</span>] = <span class="ruby-keyword kw">self</span>
+        <span class="ruby-identifier">session</span> = <span class="ruby-identifier">env</span>[<span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:session_key</span>]]
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">session</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">session</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
+          <span class="ruby-identifier">raise</span>(<span class="ruby-constant">NoSession</span>, <span class="ruby-value str">'No compatible session'</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-comment cmt"># let us work in our own namespace...</span>
+        <span class="ruby-identifier">session</span> = (<span class="ruby-identifier">session</span>[<span class="ruby-identifier">:openid</span>] <span class="ruby-operator">||=</span> {})
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">session</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">session</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
+          <span class="ruby-identifier">raise</span>(<span class="ruby-constant">NoSession</span>, <span class="ruby-value str">'Incompatible session'</span>)
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">request</span> = <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">env</span>
+        <span class="ruby-identifier">consumer</span> = <span class="ruby-operator">::</span><span class="ruby-constant">OpenID</span><span class="ruby-operator">::</span><span class="ruby-constant">Consumer</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">session</span>, <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:store</span>]
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-value str">'openid.mode'</span>]
+          <span class="ruby-identifier">finish</span> <span class="ruby-identifier">consumer</span>, <span class="ruby-identifier">session</span>, <span class="ruby-identifier">request</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:openid_param</span>]]
+          <span class="ruby-identifier">check</span> <span class="ruby-identifier">consumer</span>, <span class="ruby-identifier">session</span>, <span class="ruby-identifier">request</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">env</span>[<span class="ruby-value str">'rack.errors'</span>].<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;No valid params provided.&quot;</span>
+          <span class="ruby-identifier">bad_request</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">NoSession</span>
+        <span class="ruby-identifier">env</span>[<span class="ruby-value str">'rack.errors'</span>].<span class="ruby-identifier">puts</span>(<span class="ruby-identifier">$!</span>.<span class="ruby-identifier">message</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">$@</span>)
+
+        <span class="ruby-ivar">@options</span>. <span class="ruby-comment cmt">### Missing or incompatible session</span>
+          <span class="ruby-identifier">fetch</span> <span class="ruby-identifier">:no_session</span>, [ <span class="ruby-value">500</span>,
+            {<span class="ruby-value str">'Content-Type'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value str">'text/plain'</span>},
+            <span class="ruby-identifier">$!</span>.<span class="ruby-identifier">message</span> ]
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-identifier">env</span>[<span class="ruby-value str">'rack.errors'</span>].<span class="ruby-identifier">puts</span>(<span class="ruby-identifier">$!</span>.<span class="ruby-identifier">message</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">$@</span>)
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:catch_error</span>]
+          <span class="ruby-identifier">raise</span>(<span class="ruby-identifier">$!</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-ivar">@options</span>.
+          <span class="ruby-identifier">fetch</span> <span class="ruby-identifier">:error</span>, [ <span class="ruby-value">500</span>,
+            {<span class="ruby-value str">'Content-Type'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value str">'text/plain'</span>},
+            <span class="ruby-value str">'OpenID has encountered an error.'</span> ]
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

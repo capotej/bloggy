@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Convenience method which returns a new Time representing the time 1 day since
+    the instance time
+full_name: ActiveSupport::CoreExtensions::Time::Calculations#tomorrow
+params: ()
+name: tomorrow
+is_singleton: false
+aliases: []
+

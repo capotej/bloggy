@@ -1,0 +1,25 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: <b>Handlers</b> connect web servers with Rack.
+- !ruby/struct:SM::Flow::P 
+  body: Rack includes Handlers for Mongrel, WEBrick, FastCGI, CGI, SCGI and LiteSpeed.
+- !ruby/struct:SM::Flow::P 
+  body: Handlers usually are activated by calling <tt>MyHandler.run(myapp)</tt>. A
+    second optional hash can be passed to include server-specific configuration.
+attributes: []
+
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: get
+- !ruby/object:RI::MethodSummary 
+  name: register
+full_name: Rack::Handler
+constants: []
+
+superclass: 
+name: Handler

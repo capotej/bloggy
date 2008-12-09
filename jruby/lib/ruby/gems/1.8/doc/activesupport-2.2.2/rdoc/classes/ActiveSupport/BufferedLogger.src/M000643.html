@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (ActiveSupport::BufferedLogger)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/buffered_logger.rb, line 37</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">log</span>, <span class="ruby-identifier">level</span> = <span class="ruby-constant">DEBUG</span>)
+      <span class="ruby-ivar">@level</span>         = <span class="ruby-identifier">level</span>
+      <span class="ruby-ivar">@buffer</span>        = {}
+      <span class="ruby-ivar">@auto_flushing</span> = <span class="ruby-value">1</span>
+      <span class="ruby-ivar">@guard</span> = <span class="ruby-constant">Mutex</span>.<span class="ruby-identifier">new</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">log</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:write</span>)
+        <span class="ruby-ivar">@log</span> = <span class="ruby-identifier">log</span>
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">log</span>)
+        <span class="ruby-ivar">@log</span> = <span class="ruby-identifier">open</span>(<span class="ruby-identifier">log</span>, (<span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">WRONLY</span> <span class="ruby-operator">|</span> <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">APPEND</span>))
+        <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">sync</span> = <span class="ruby-keyword kw">true</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">log</span>))
+        <span class="ruby-ivar">@log</span> = <span class="ruby-identifier">open</span>(<span class="ruby-identifier">log</span>, (<span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">WRONLY</span> <span class="ruby-operator">|</span> <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">APPEND</span> <span class="ruby-operator">|</span> <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span>))
+        <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">sync</span> = <span class="ruby-keyword kw">true</span>
+        <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">write</span>(<span class="ruby-value str">&quot;# Logfile created on %s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>])
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

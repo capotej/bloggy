@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Does this adapter support DDL rollbacks in transactions? That is, would CREATE
+    TABLE or ALTER TABLE get rolled back by a transaction? PostgreSQL, SQL Server,
+    and others support this. MySQL and others do not.
+full_name: ActiveRecord::ConnectionAdapters::AbstractAdapter#supports_ddl_transactions?
+params: ()
+name: supports_ddl_transactions?
+is_singleton: false
+aliases: []
+

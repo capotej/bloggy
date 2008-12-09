@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Tries to rescue the exception by looking up and calling a registered handler.
+full_name: ActiveSupport::Rescuable#rescue_with_handler
+params: (exception)
+name: rescue_with_handler
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: You set the rewrite rules when building the object.
+- !ruby/struct:SM::Flow::P 
+  body: pattern =&gt; What to look for or replacement if used alone
+- !ruby/struct:SM::Flow::P 
+  body: replacement, block =&gt; One of them is used to replace the found text
+full_name: Mongrel::RedirectHandler::new
+params: (pattern, replacement = nil, &block)
+name: new
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Called by the subclass to setup the command and parse the argv arguments.
+    The call is destructive on argv since it uses the OptionParser#parse! function.
+full_name: Mongrel::Command::Base::new
+params: (options={})
+name: new
+is_singleton: true
+aliases: []
+

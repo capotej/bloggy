@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'XML Character converter, from Sam Ruby: (see http://intertwingly.net/stories/2005/09/28/xchar.rb).'
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: Builder::XChar
+constants: []
+
+superclass: 
+name: XChar

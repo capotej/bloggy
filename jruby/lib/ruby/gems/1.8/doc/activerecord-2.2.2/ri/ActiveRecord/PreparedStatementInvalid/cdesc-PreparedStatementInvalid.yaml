@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Raised when number of bind variables in statement given to <tt>:condition</tt>
+    key (for example, when using <tt>find</tt> method) does not match number of expected
+    variables.
+- !ruby/struct:SM::Flow::P 
+  body: For example, in
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Location.find :all, :conditions =&gt; [&quot;lat = ? AND lng = ?&quot;, \
+    53.7362]\n"
+- !ruby/struct:SM::Flow::P 
+  body: two placeholders are given but only one variable to fill them.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveRecord::PreparedStatementInvalid
+constants: []
+
+superclass: ActiveRecordError
+name: PreparedStatementInvalid

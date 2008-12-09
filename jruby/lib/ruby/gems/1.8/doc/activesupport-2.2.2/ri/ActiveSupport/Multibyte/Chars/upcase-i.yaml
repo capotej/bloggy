@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Convert characters in the string to uppercase.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  'Laurent, \xc3\xb2u sont les tests?'.mb_chars.upcase.to_s #=&gt; &quot;LAURENT, \
+    \xc3\x92U SONT LES TESTS?&quot;\n"
+full_name: ActiveSupport::Multibyte::Chars#upcase
+params: ()
+name: upcase
+is_singleton: false
+aliases: []
+

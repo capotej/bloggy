@@ -1,0 +1,257 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Migrations can manage the evolution of a schema used by several physical databases.
+    It's a solution to the common problem of adding a field to make a new feature
+    work in your local database, but being unsure of how to push that change to other
+    developers and to the production server. With migrations, you can describe the
+    transformations in self-contained classes that can be checked into version control
+    systems and executed against another database that might be one, two, or five
+    versions behind.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example of a simple migration:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class AddSsl &lt; ActiveRecord::Migration\n    def self.up\n      add_column \
+    :accounts, :ssl_enabled, :boolean, :default =&gt; 1\n    end\n\n    def self.down\n\
+    \      remove_column :accounts, :ssl_enabled\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: This migration will add a boolean flag to the accounts table and remove it
+    if you're backing out of the migration. It shows how all migrations have two class
+    methods <tt>up</tt> and <tt>down</tt> that describes the transformations required
+    to implement or remove the migration. These methods can consist of both the migration
+    specific methods like add_column and remove_column, but may also contain regular
+    Ruby code for generating data needed for the transformations.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example of a more complex migration that also needs to initialize data:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class AddSystemSettings &lt; ActiveRecord::Migration\n    def self.up\n\
+    \      create_table :system_settings do |t|\n        t.string  :name\n        t.string \
+    \ :label\n        t.text  :value\n        t.string  :type\n        t.integer  :position\n\
+    \      end\n\n      SystemSetting.create :name =&gt; &quot;notice&quot;, :label \
+    =&gt; &quot;Use notice?&quot;, :value =&gt; 1\n    end\n\n    def self.down\n\
+    \      drop_table :system_settings\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: This migration first adds the system_settings table, then creates the very
+    first row in it using the Active Record model that relies on the table. It also
+    uses the more advanced create_table syntax where you can specify a complete table
+    schema in one block call.
+- !ruby/struct:SM::Flow::H 
+  text: Available transformations
+  level: 2
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>create_table(name, options)</tt> Creates a table called <tt>name</tt>
+      and makes the table object available to a block that can then add columns to
+      it, following the same format as add_column. See example above. The options
+      hash is for fragments like &quot;DEFAULT CHARSET=UTF-8&quot; that are appended
+      to the create table definition.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>drop_table(name)</tt>: Drops the table called <tt>name</tt>.'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>rename_table(old_name, new_name)</tt>: Renames the table called <tt>old_name</tt>
+      to <tt>new_name</tt>.'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>add_column(table_name, column_name, type, options)</tt>: Adds a new
+      column to the table called <tt>table_name</tt> named <tt>column_name</tt> specified
+      to be one of the following types: <tt>:string</tt>, <tt>:text</tt>, <tt>:integer</tt>,
+      <tt>:float</tt>, <tt>:decimal</tt>, <tt>:datetime</tt>, <tt>:timestamp</tt>,
+      <tt>:time</tt>, <tt>:date</tt>, <tt>:binary</tt>, <tt>:boolean</tt>. A default
+      value can be specified by passing an <tt>options</tt> hash like <tt>{ :default
+      =&gt; 11 }</tt>. Other options include <tt>:limit</tt> and <tt>:null</tt> (e.g.
+      <tt>{ :limit =&gt; 50, :null =&gt; false }</tt>) -- see ActiveRecord::ConnectionAdapters::TableDefinition#column
+      for details.'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>rename_column(table_name, column_name, new_column_name)</tt>: Renames
+      a column but keeps the type and content.'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>change_column(table_name, column_name, type, options)</tt>: Changes
+      the column to a different type using the same parameters as add_column.'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>remove_column(table_name, column_name)</tt>: Removes the column named
+      <tt>column_name</tt> from the table called <tt>table_name</tt>.'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>add_index(table_name, column_names, options)</tt>: Adds a new index
+      with the name of the column. Other options include <tt>:name</tt> and <tt>:unique</tt>
+      (e.g. <tt>{ :name =&gt; &quot;users_name_index&quot;, :unique =&gt; true }</tt>).'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>remove_index(table_name, index_name)</tt>: Removes the index specified
+      by <tt>index_name</tt>.'
+    label: '*'
+- !ruby/struct:SM::Flow::H 
+  text: Irreversible transformations
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: Some transformations are destructive in a manner that cannot be reversed.
+    Migrations of that kind should raise an <tt>ActiveRecord::IrreversibleMigration</tt>
+    exception in their <tt>down</tt> method.
+- !ruby/struct:SM::Flow::H 
+  text: Running migrations from within Rails
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: The Rails package has several tools to help create and apply migrations.
+- !ruby/struct:SM::Flow::P 
+  body: To generate a new migration, you can use
+- !ruby/struct:SM::Flow::VERB 
+  body: "  script/generate migration MyNewMigration\n"
+- !ruby/struct:SM::Flow::P 
+  body: where MyNewMigration is the name of your migration. The generator will create
+    an empty migration file <tt>nnn_my_new_migration.rb</tt> in the <tt>db/migrate/</tt>
+    directory where <tt>nnn</tt> is the next largest migration number.
+- !ruby/struct:SM::Flow::P 
+  body: You may then edit the <tt>self.up</tt> and <tt>self.down</tt> methods of MyNewMigration.
+- !ruby/struct:SM::Flow::P 
+  body: There is a special syntactic shortcut to generate migrations that add fields
+    to a table.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  script/generate migration add_fieldname_to_tablename fieldname:string\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'This will generate the file <tt>nnn_add_fieldname_to_tablename</tt>, which
+    will look like this:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class AddFieldnameToTablename &lt; ActiveRecord::Migration\n    def self.up\n\
+    \      add_column :tablenames, :fieldname, :string\n    end\n\n    def self.down\n\
+    \      remove_column :tablenames, :fieldname\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: To run migrations against the currently configured database, use <tt>rake
+    db:migrate</tt>. This will update the database by running all of the pending migrations,
+    creating the <tt>schema_migrations</tt> table (see &quot;About the schema_migrations
+    table&quot; section below) if missing.
+- !ruby/struct:SM::Flow::P 
+  body: To roll the database back to a previous migration version, use <tt>rake db:migrate
+    VERSION=X</tt> where <tt>X</tt> is the version to which you wish to downgrade.
+    If any of the migrations throw an <tt>ActiveRecord::IrreversibleMigration</tt>
+    exception, that step will fail and you'll have some manual work to do.
+- !ruby/struct:SM::Flow::H 
+  text: Database support
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: Migrations are currently supported in MySQL, PostgreSQL, SQLite, SQL Server,
+    Sybase, and Oracle (all supported databases except DB2).
+- !ruby/struct:SM::Flow::H 
+  text: More examples
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: 'Not all migrations change the schema. Some just fix the data:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class RemoveEmptyTags &lt; ActiveRecord::Migration\n    def self.up\n  \
+    \    Tag.find(:all).each { |tag| tag.destroy if tag.pages.empty? }\n    end\n\n\
+    \    def self.down\n      # not much we can do to restore deleted data\n      raise \
+    ActiveRecord::IrreversibleMigration, &quot;Can't recover the deleted tags&quot;\n\
+    \    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Others remove columns when they migrate up instead of down:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class RemoveUnnecessaryItemAttributes &lt; ActiveRecord::Migration\n   \
+    \ def self.up\n      remove_column :items, :incomplete_items_count\n      remove_column \
+    :items, :completed_items_count\n    end\n\n    def self.down\n      add_column \
+    :items, :incomplete_items_count\n      add_column :items, :completed_items_count\n\
+    \    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'And sometimes you need to do something in SQL not abstracted directly by
+    migrations:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class MakeJoinUnique &lt; ActiveRecord::Migration\n    def self.up\n   \
+    \   execute &quot;ALTER TABLE `pages_linked_pages` ADD UNIQUE `page_id_linked_page_id` \
+    (`page_id`,`linked_page_id`)&quot;\n    end\n\n    def self.down\n      execute \
+    &quot;ALTER TABLE `pages_linked_pages` DROP INDEX `page_id_linked_page_id`&quot;\n\
+    \    end\n  end\n"
+- !ruby/struct:SM::Flow::H 
+  text: Using a model after changing its table
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: 'Sometimes you''ll want to add a column in a migration and populate it immediately
+    after. In that case, you''ll need to make a call to Base#reset_column_information
+    in order to ensure that the model has the latest column data from after the new
+    column was added. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class AddPeopleSalary &lt; ActiveRecord::Migration\n    def self.up\n  \
+    \    add_column :people, :salary, :integer\n      Person.reset_column_information\n\
+    \      Person.find(:all).each do |p|\n        p.update_attribute :salary, SalaryCalculator.compute(p)\n\
+    \      end\n    end\n  end\n"
+- !ruby/struct:SM::Flow::H 
+  text: Controlling verbosity
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: By default, migrations will describe the actions they are taking, writing
+    them to the console as they happen, along with benchmarks describing how long
+    each step took.
+- !ruby/struct:SM::Flow::P 
+  body: You can quiet them down by setting ActiveRecord::Migration.verbose = false.
+- !ruby/struct:SM::Flow::P 
+  body: 'You can also insert your own messages and benchmarks by using the <tt>say_with_time</tt>
+    method:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  def self.up\n    ...\n    say_with_time &quot;Updating salaries...&quot; \
+    do\n      Person.find(:all).each do |p|\n        p.update_attribute :salary, SalaryCalculator.compute(p)\n\
+    \      end\n    end\n    ...\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: The phrase &quot;Updating salaries...&quot; would then be printed, along with
+    the benchmark for the block when the block completes.
+- !ruby/struct:SM::Flow::H 
+  text: About the schema_migrations table
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: Rails versions 2.0 and prior used to create a table called <tt>schema_info</tt>
+    when using migrations. This table contained the version of the schema as of the
+    last applied migration.
+- !ruby/struct:SM::Flow::P 
+  body: Starting with Rails 2.1, the <tt>schema_info</tt> table is (automatically)
+    replaced by the <tt>schema_migrations</tt> table, which contains the version numbers
+    of all the migrations applied.
+- !ruby/struct:SM::Flow::P 
+  body: 'As a result, it is now possible to add migration files that are numbered
+    lower than the current schema version: when migrating up, those never-applied
+    &quot;interleaved&quot; migrations will be automatically applied, and when migrating
+    down, never-applied &quot;interleaved&quot; migrations will be skipped.'
+- !ruby/struct:SM::Flow::H 
+  text: Timestamped Migrations
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: 'By default, Rails generates migrations that look like:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "   20080717013526_your_migration_name.rb\n"
+- !ruby/struct:SM::Flow::P 
+  body: The prefix is a generation timestamp (in UTC).
+- !ruby/struct:SM::Flow::P 
+  body: 'If you''d prefer to use numeric prefixes, you can turn timestamped migrations
+    off by setting:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "   config.active_record.timestamped_migrations = false\n"
+- !ruby/struct:SM::Flow::P 
+  body: In environment.rb.
+attributes: []
+
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: announce
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RI::MethodSummary 
+  name: migrate
+- !ruby/object:RI::MethodSummary 
+  name: say
+- !ruby/object:RI::MethodSummary 
+  name: say_with_time
+- !ruby/object:RI::MethodSummary 
+  name: suppress_messages
+- !ruby/object:RI::MethodSummary 
+  name: write
+full_name: ActiveRecord::Migration
+constants: []
+
+superclass: Object
+name: Migration

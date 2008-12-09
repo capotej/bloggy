@@ -1,0 +1,130 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The MySQL adapter will work with both Ruby/MySQL, which is a Ruby-based MySQL
+    adapter that comes bundled with Active Record, and with the faster C-based MySQL/Ruby
+    adapter (available both as a gem and from http://www.tmtm.org/en/mysql/ruby/).
+- !ruby/struct:SM::Flow::P 
+  body: 'Options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:host</tt> - Defaults to &quot;localhost&quot;.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:port</tt> - Defaults to 3306.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:socket</tt> - Defaults to &quot;/tmp/mysql.sock&quot;.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:username</tt> - Defaults to &quot;root&quot;
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:password</tt> - Defaults to nothing.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:database</tt> - The name of the database. No default, must be provided.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:encoding</tt> - (Optional) Sets the client encoding by executing &quot;SET
+      NAMES &lt;encoding&gt;&quot; after connection.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:sslca</tt> - Necessary to use MySQL with an SSL connection.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:sslkey</tt> - Necessary to use MySQL with an SSL connection.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:sslcert</tt> - Necessary to use MySQL with an SSL connection.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:sslcapath</tt> - Necessary to use MySQL with an SSL connection.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:sslcipher</tt> - Necessary to use MySQL with an SSL connection.
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: 'By default, the MysqlAdapter will consider all columns of type <tt>tinyint(1)</tt>
+    as boolean. If you wish to disable this emulation (which was the default behavior
+    in versions 0.13.1 and earlier) you can add the following line to your environment.rb
+    file:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ActiveRecord::ConnectionAdapters::MysqlAdapter.emulate_booleans = false\n"
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: active?
+- !ruby/object:RI::MethodSummary 
+  name: case_sensitive_equality_operator
+- !ruby/object:RI::MethodSummary 
+  name: change_column_null
+- !ruby/object:RI::MethodSummary 
+  name: charset
+- !ruby/object:RI::MethodSummary 
+  name: collation
+- !ruby/object:RI::MethodSummary 
+  name: create_database
+- !ruby/object:RI::MethodSummary 
+  name: current_database
+- !ruby/object:RI::MethodSummary 
+  name: disconnect!
+- !ruby/object:RI::MethodSummary 
+  name: drop_table
+- !ruby/object:RI::MethodSummary 
+  name: limited_update_conditions
+- !ruby/object:RI::MethodSummary 
+  name: quote
+- !ruby/object:RI::MethodSummary 
+  name: quoted_false
+- !ruby/object:RI::MethodSummary 
+  name: quoted_true
+- !ruby/object:RI::MethodSummary 
+  name: reconnect!
+- !ruby/object:RI::MethodSummary 
+  name: rename_table
+- !ruby/object:RI::MethodSummary 
+  name: reset!
+- !ruby/object:RI::MethodSummary 
+  name: select_rows
+- !ruby/object:RI::MethodSummary 
+  name: show_variable
+- !ruby/object:RI::MethodSummary 
+  name: type_to_sql
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: ActiveRecord::ConnectionAdapters::MysqlAdapter
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''MySQL''.freeze'
+  name: ADAPTER_NAME
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '[         "Server shutdown in progress",         "Broken pipe",         "Lost
+    connection to MySQL server during query",         "MySQL server has gone away"
+    ]'
+  name: LOST_CONNECTION_ERROR_MESSAGES
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''1''.freeze, ''0''.freeze'
+  name: QUOTED_FALSE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{         :primary_key => "int(11) DEFAULT NULL auto_increment PRIMARY KEY".freeze,         :string      =>
+    { :name => "varchar", :limit => 255 },         :text        => { :name => "text"
+    },         :integer     => { :name => "int", :limit => 4 },         :float       =>
+    { :name => "float" },         :decimal     => { :name => "decimal" },         :datetime    =>
+    { :name => "datetime" },         :timestamp   => { :name => "datetime" },         :time        =>
+    { :name => "time" },         :date        => { :name => "date" },         :binary      =>
+    { :name => "blob" },         :boolean     => { :name => "tinyint", :limit => 1
+    }'
+  name: NATIVE_DATABASE_TYPES
+superclass: AbstractAdapter
+name: MysqlAdapter

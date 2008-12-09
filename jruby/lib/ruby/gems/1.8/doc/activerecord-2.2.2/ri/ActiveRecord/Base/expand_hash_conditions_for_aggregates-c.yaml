@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Accepts a hash of SQL conditions and replaces those attributes that correspond
+    to a <tt>composed_of</tt> relationship with their expanded aggregate attribute
+    values. Given:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "    class Person &lt; ActiveRecord::Base\n      composed_of :address, :class_name \
+    =&gt; &quot;Address&quot;,\n        :mapping =&gt; [%w(address_street street), \
+    %w(address_city city)]\n    end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Then:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "    { :address =&gt; Address.new(&quot;813 abc st.&quot;, &quot;chicago&quot;) \
+    }\n      # =&gt; { :address_street =&gt; &quot;813 abc st.&quot;, :address_city \
+    =&gt; &quot;chicago&quot; }\n"
+full_name: ActiveRecord::Base::expand_hash_conditions_for_aggregates
+params: (attrs)
+name: expand_hash_conditions_for_aggregates
+is_singleton: true
+aliases: []
+

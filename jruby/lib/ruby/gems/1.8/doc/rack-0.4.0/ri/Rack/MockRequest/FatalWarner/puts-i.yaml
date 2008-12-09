@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Rack::MockRequest::FatalWarner#puts
+params: (warning)
+name: puts
+is_singleton: false
+aliases: []
+

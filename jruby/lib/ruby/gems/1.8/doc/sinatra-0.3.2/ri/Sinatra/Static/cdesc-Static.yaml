@@ -1,0 +1,18 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Rack::Utils
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: invoke
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Sinatra::Static
+constants: []
+
+superclass: Object
+name: Static

@@ -1,0 +1,21 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: freeze_with_memoizable
+- !ruby/object:RI::MethodSummary 
+  name: memoize_all
+- !ruby/object:RI::MethodSummary 
+  name: unmemoize_all
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: included
+full_name: ActiveSupport::Freezable
+constants: []
+
+superclass: 
+name: Freezable

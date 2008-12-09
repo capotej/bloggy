@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: ""
+comment: 
+full_name: ActiveRecord::Migration::say_with_time
+params: (message) {|| ...}
+name: say_with_time
+is_singleton: true
+aliases: []
+

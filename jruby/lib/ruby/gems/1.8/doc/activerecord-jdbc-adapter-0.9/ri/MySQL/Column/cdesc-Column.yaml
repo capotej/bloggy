@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: init_column
+- !ruby/object:RI::MethodSummary 
+  name: missing_default_forged_as_empty_string?
+- !ruby/object:RI::MethodSummary 
+  name: simplified_type
+class_methods: []
+
+full_name: "::MySQL::Column"
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: Set.new([:binary, :string, :text])
+  name: TYPES_ALLOWING_EMPTY_STRING_DEFAULT
+superclass: 
+name: Column

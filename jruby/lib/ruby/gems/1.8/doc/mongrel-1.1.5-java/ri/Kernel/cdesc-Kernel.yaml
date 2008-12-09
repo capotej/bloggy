@@ -1,0 +1,24 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: log_open_files
+- !ruby/object:RI::MethodSummary 
+  name: log_open_files
+- !ruby/object:RI::MethodSummary 
+  name: open
+- !ruby/object:RI::MethodSummary 
+  name: open
+- !ruby/object:RI::MethodSummary 
+  name: orig_open
+class_methods: []
+
+full_name: Kernel
+constants: []
+
+superclass: 
+name: Kernel

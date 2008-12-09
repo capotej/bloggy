@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Let ActiveSupport::BasicObject at least raise exceptions.
+full_name: ActiveSupport::BasicObject#raise
+params: (*args)
+name: raise
+is_singleton: false
+aliases: []
+

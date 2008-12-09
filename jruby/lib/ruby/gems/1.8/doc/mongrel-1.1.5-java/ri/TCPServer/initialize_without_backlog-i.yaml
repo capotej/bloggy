@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Alias for #initialize'
+full_name: TCPServer#initialize_without_backlog
+params: (*args)
+name: initialize_without_backlog
+is_singleton: false
+aliases: []
+

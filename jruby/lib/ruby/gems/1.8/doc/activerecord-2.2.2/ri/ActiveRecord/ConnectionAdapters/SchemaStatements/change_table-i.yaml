@@ -1,0 +1,72 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: Table.new(table_name, self)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A block for changing columns in <tt>table</tt>.
+- !ruby/struct:SM::Flow::H 
+  text: Example
+  level: 3
+- !ruby/struct:SM::Flow::VERB 
+  body: " # change_table() yields a Table instance\n change_table(:suppliers) do |t|\n\
+    \   t.column :name, :string, :limit =&gt; 60\n   # Other column alterations here\n\
+    \ end\n"
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 5
+- !ruby/struct:SM::Flow::H 
+  text: Add a column
+  level: 6
+- !ruby/struct:SM::Flow::VERB 
+  body: " change_table(:suppliers) do |t|\n   t.column :name, :string, :limit =&gt; \
+    60\n end\n"
+- !ruby/struct:SM::Flow::H 
+  text: Add 2 integer columns
+  level: 6
+- !ruby/struct:SM::Flow::VERB 
+  body: " change_table(:suppliers) do |t|\n   t.integer :width, :height, :null =&gt; \
+    false, :default =&gt; 0\n end\n"
+- !ruby/struct:SM::Flow::H 
+  text: Add created_at/updated_at columns
+  level: 6
+- !ruby/struct:SM::Flow::VERB 
+  body: " change_table(:suppliers) do |t|\n   t.timestamps\n end\n"
+- !ruby/struct:SM::Flow::H 
+  text: Add a foreign key column
+  level: 6
+- !ruby/struct:SM::Flow::VERB 
+  body: " change_table(:suppliers) do |t|\n   t.references :company\n end\n"
+- !ruby/struct:SM::Flow::P 
+  body: Creates a <tt>company_id(integer)</tt> column
+- !ruby/struct:SM::Flow::H 
+  text: Add a polymorphic foreign key column
+  level: 6
+- !ruby/struct:SM::Flow::VERB 
+  body: " change_table(:suppliers) do |t|\n   t.belongs_to :company, :polymorphic \
+    =&gt; true\n end\n"
+- !ruby/struct:SM::Flow::P 
+  body: Creates <tt>company_type(varchar)</tt> and <tt>company_id(integer)</tt> columns
+- !ruby/struct:SM::Flow::H 
+  text: Remove a column
+  level: 6
+- !ruby/struct:SM::Flow::VERB 
+  body: " change_table(:suppliers) do |t|\n   t.remove :company\n end\n"
+- !ruby/struct:SM::Flow::H 
+  text: Remove several columns
+  level: 6
+- !ruby/struct:SM::Flow::VERB 
+  body: " change_table(:suppliers) do |t|\n   t.remove :company_id\n   t.remove :width, \
+    :height\n end\n"
+- !ruby/struct:SM::Flow::H 
+  text: Remove an index
+  level: 6
+- !ruby/struct:SM::Flow::VERB 
+  body: " change_table(:suppliers) do |t|\n   t.remove_index :company_id\n end\n"
+- !ruby/struct:SM::Flow::P 
+  body: See also Table for details on all of the various column transformation
+full_name: ActiveRecord::ConnectionAdapters::SchemaStatements#change_table
+params: (table_name) {|Table.new(table_name, self)| ...}
+name: change_table
+is_singleton: false
+aliases: []
+

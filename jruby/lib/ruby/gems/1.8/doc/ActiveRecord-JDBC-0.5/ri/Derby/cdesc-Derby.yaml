@@ -1,0 +1,87 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: JdbcSpec::MissingFunctionalityHelper
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: add_quotes
+- !ruby/object:RI::MethodSummary 
+  name: auto_increment_stmt
+- !ruby/object:RI::MethodSummary 
+  name: change_column
+- !ruby/object:RI::MethodSummary 
+  name: classes_for_table_name
+- !ruby/object:RI::MethodSummary 
+  name: create_column
+- !ruby/object:RI::MethodSummary 
+  name: expand_double_quotes
+- !ruby/object:RI::MethodSummary 
+  name: modify_types
+- !ruby/object:RI::MethodSummary 
+  name: primary_keys
+- !ruby/object:RI::MethodSummary 
+  name: quoted_false
+- !ruby/object:RI::MethodSummary 
+  name: quoted_true
+- !ruby/object:RI::MethodSummary 
+  name: recreate_database
+- !ruby/object:RI::MethodSummary 
+  name: reinstate_auto_increment
+- !ruby/object:RI::MethodSummary 
+  name: reinstate_auto_increment
+- !ruby/object:RI::MethodSummary 
+  name: remove_column
+- !ruby/object:RI::MethodSummary 
+  name: rename_table
+- !ruby/object:RI::MethodSummary 
+  name: reset_pk_sequence!
+- !ruby/object:RI::MethodSummary 
+  name: reset_sequence!
+- !ruby/object:RI::MethodSummary 
+  name: select_limited_ids_list
+- !ruby/object:RI::MethodSummary 
+  name: strip_quotes
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: adapter_selector
+- !ruby/object:RI::MethodSummary 
+  name: column_selector
+- !ruby/object:RI::MethodSummary 
+  name: extended
+- !ruby/object:RI::MethodSummary 
+  name: included
+- !ruby/object:RI::MethodSummary 
+  name: monkey_rails
+full_name: "::Derby"
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"SELECT C.COLUMNNAME, C.REFERENCEID, C.COLUMNNUMBER FROM SYS.SYSCOLUMNS
+    C, SYS.SYSTABLES T WHERE T.TABLEID = ''%s'' AND T.TABLEID = C.REFERENCEID ORDER
+    BY C.COLUMNNUMBER"'
+  name: COLUMN_INFO_STMT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"SELECT COLUMNDATATYPE, COLUMNDEFAULT FROM SYS.SYSCOLUMNS WHERE REFERENCEID
+    = ''%s'' AND COLUMNNAME = ''%s''"'
+  name: COLUMN_TYPE_STMT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"SELECT AUTOINCREMENTSTART, AUTOINCREMENTINC, COLUMNNAME, REFERENCEID, COLUMNDEFAULT
+    FROM SYS.SYSCOLUMNS WHERE REFERENCEID = ''%s'' AND COLUMNNAME = ''%s''"'
+  name: AUTO_INC_STMT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"SELECT AUTOINCREMENTSTART, AUTOINCREMENTINC, COLUMNNAME, REFERENCEID, COLUMNDEFAULT
+    FROM SYS.SYSCOLUMNS WHERE REFERENCEID = (SELECT T.TABLEID FROM SYS.SYSTABLES T
+    WHERE T.TABLENAME = ''%s'') AND COLUMNNAME = ''%s''"'
+  name: AUTO_INC_STMT2
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '%w(VARCHAR CLOB BLOB)'
+  name: SIZEABLE
+superclass: 
+name: Derby

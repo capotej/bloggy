@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (ActiveRecord::ConnectionAdapters::JdbcColumn)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/jdbc_adapter.rb, line 273</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">config</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">default</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+        <span class="ruby-identifier">dialect</span> = <span class="ruby-identifier">config</span>[<span class="ruby-identifier">:dialect</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">config</span>[<span class="ruby-identifier">:driver</span>]
+        <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">reg</span>, <span class="ruby-identifier">func</span> <span class="ruby-keyword kw">in</span> <span class="ruby-constant">COLUMN_TYPES</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">reg</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">dialect</span>.<span class="ruby-identifier">to_s</span>
+            <span class="ruby-identifier">func</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">config</span>,<span class="ruby-keyword kw">self</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">name</span>,<span class="ruby-identifier">default_value</span>(<span class="ruby-identifier">default</span>),<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+        <span class="ruby-identifier">init_column</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">default</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

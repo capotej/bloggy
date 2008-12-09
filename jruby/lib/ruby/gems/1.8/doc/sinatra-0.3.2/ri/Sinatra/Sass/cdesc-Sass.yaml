@@ -1,0 +1,53 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Generate valid CSS using Sass (part of Haml)
+- !ruby/struct:SM::Flow::P 
+  body: Sass templates can be in external files with <tt>.sass</tt> extension or can
+    use Sinatra's in_file_templates. In either case, the file can be rendered by passing
+    the name of the template to the <tt>sass</tt> method as a symbol.
+- !ruby/struct:SM::Flow::P 
+  body: Unlike Haml, Sass does not support a layout file, so the <tt>sass</tt> method
+    will ignore both the default <tt>layout.sass</tt> file and any parameters passed
+    in as <tt>:layout</tt> in the options hash.
+- !ruby/struct:SM::Flow::H 
+  text: Sass Template Files
+  level: 3
+- !ruby/struct:SM::Flow::P 
+  body: Sass templates can be stored in separate files with a <tt>.sass</tt> extension
+    under the view path.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  get '/stylesheet.css' do\n    header 'Content-Type' =&gt; 'text/css; charset=utf-8'\n\
+    \    sass :stylesheet\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'The &quot;views/stylesheet.sass&quot; file might contain the following:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " body\n   #admin\n     :background-color #CCC\n   #main\n     :background-color \
+    #000\n #form\n   :border-color #AAA\n   :border-width 10px\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'And yields the following output:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  body #admin {\n    background-color: #CCC; }\n  body #main {\n    background-color: \
+    #000; }\n\n  #form {\n    border-color: #AAA;\n    border-width: 10px; }\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'NOTE: Haml must be installed or a LoadError will be raised the first time
+    an attempt is made to render a Sass template.'
+- !ruby/struct:SM::Flow::P 
+  body: See http://haml.hamptoncatlin.com/docs/rdoc/classes/Sass.html for comprehensive
+    documentation on Sass.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: sass
+class_methods: []
+
+full_name: Sinatra::Sass
+constants: []
+
+superclass: 
+name: Sass

@@ -1,0 +1,51 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Locking::Pessimistic provides support for row-level locking using SELECT ...
+    FOR UPDATE and other lock types.
+- !ruby/struct:SM::Flow::P 
+  body: 'Pass <tt>:lock =&gt; true</tt> to ActiveRecord::Base.find to obtain an exclusive
+    lock on the selected rows:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # select * from accounts where id=1 for update\n  Account.find(1, :lock \
+    =&gt; true)\n"
+- !ruby/struct:SM::Flow::P 
+  body: Pass <tt>:lock =&gt; 'some locking clause'</tt> to give a database-specific
+    locking clause of your own such as 'LOCK IN SHARE MODE' or 'FOR UPDATE NOWAIT'.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Account.transaction do\n    # select * from accounts where name = 'shugo' \
+    limit 1 for update\n    shugo = Account.find(:first, :conditions =&gt; &quot;name \
+    = 'shugo'&quot;, :lock =&gt; true)\n    yuko = Account.find(:first, :conditions \
+    =&gt; &quot;name = 'yuko'&quot;, :lock =&gt; true)\n    shugo.balance -= 100\n\
+    \    shugo.save!\n    yuko.balance += 100\n    yuko.save!\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'You can also use ActiveRecord::Base#lock! method to lock one record by id.
+    This may be better if you don''t need to lock every row. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Account.transaction do\n    # select * from accounts where ...\n    accounts \
+    = Account.find(:all, :conditions =&gt; ...)\n    account1 = accounts.detect { \
+    |account| ... }\n    account2 = accounts.detect { |account| ... }\n    # select \
+    * from accounts where id=? for update\n    account1.lock!\n    account2.lock!\n\
+    \    account1.balance -= 100\n    account1.save!\n    account2.balance += 100\n\
+    \    account2.save!\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Database-specific information on row locking:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  MySQL: http://dev.mysql.com/doc/refman/5.1/en/innodb-locking-reads.html\n\
+    \  PostgreSQL: http://www.postgresql.org/docs/8.1/interactive/sql-select.html#SQL-FOR-UPDATE-SHARE\n"
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: lock!
+class_methods: []
+
+full_name: ActiveRecord::Locking::Pessimistic
+constants: []
+
+superclass: 
+name: Pessimistic

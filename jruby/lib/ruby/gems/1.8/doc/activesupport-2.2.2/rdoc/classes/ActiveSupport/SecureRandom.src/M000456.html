@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>random_number (ActiveSupport::SecureRandom)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/secure_random.rb, line 162</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">random_number</span>(<span class="ruby-identifier">n</span>=<span class="ruby-value">0</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-value">0</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">n</span>
+          <span class="ruby-identifier">hex</span> = <span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">16</span>)
+          <span class="ruby-identifier">hex</span> = <span class="ruby-value str">'0'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">hex</span> <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">hex</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&amp;</span> <span class="ruby-value">1</span>) <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+          <span class="ruby-identifier">bin</span> = [<span class="ruby-identifier">hex</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">&quot;H*&quot;</span>)
+          <span class="ruby-identifier">mask</span> = <span class="ruby-identifier">bin</span>[<span class="ruby-value">0</span>]
+          <span class="ruby-identifier">mask</span> <span class="ruby-operator">|=</span> <span class="ruby-identifier">mask</span> <span class="ruby-operator">&gt;&gt;</span> <span class="ruby-value">1</span>
+          <span class="ruby-identifier">mask</span> <span class="ruby-operator">|=</span> <span class="ruby-identifier">mask</span> <span class="ruby-operator">&gt;&gt;</span> <span class="ruby-value">2</span>
+          <span class="ruby-identifier">mask</span> <span class="ruby-operator">|=</span> <span class="ruby-identifier">mask</span> <span class="ruby-operator">&gt;&gt;</span> <span class="ruby-value">4</span>
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-identifier">rnd</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">random_bytes</span>(<span class="ruby-identifier">bin</span>.<span class="ruby-identifier">length</span>)
+            <span class="ruby-identifier">rnd</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">rnd</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">mask</span>
+          <span class="ruby-keyword kw">end</span> <span class="ruby-keyword kw">until</span> <span class="ruby-identifier">rnd</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">bin</span>
+          <span class="ruby-identifier">rnd</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">&quot;H*&quot;</span>)[<span class="ruby-value">0</span>].<span class="ruby-identifier">hex</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-comment cmt"># assumption: Float::MANT_DIG &lt;= 64</span>
+          <span class="ruby-identifier">i64</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">random_bytes</span>(<span class="ruby-value">8</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">&quot;Q&quot;</span>)[<span class="ruby-value">0</span>]
+          <span class="ruby-constant">Math</span>.<span class="ruby-identifier">ldexp</span>(<span class="ruby-identifier">i64</span> <span class="ruby-operator">&gt;&gt;</span> (<span class="ruby-value">64</span><span class="ruby-operator">-</span><span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">MANT_DIG</span>), <span class="ruby-operator">-</span><span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">MANT_DIG</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

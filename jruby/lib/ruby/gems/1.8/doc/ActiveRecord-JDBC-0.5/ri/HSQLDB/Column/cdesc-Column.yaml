@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: cast_to_date_or_time
+- !ruby/object:RI::MethodSummary 
+  name: cast_to_time
+- !ruby/object:RI::MethodSummary 
+  name: guess_date_or_time
+- !ruby/object:RI::MethodSummary 
+  name: type_cast
+class_methods: []
+
+full_name: "::HSQLDB::Column"
+constants: []
+
+superclass: 
+name: Column

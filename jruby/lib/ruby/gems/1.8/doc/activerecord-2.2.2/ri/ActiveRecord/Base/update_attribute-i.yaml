@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Updates a single attribute and saves the record without going through the
+    normal validation procedure. This is especially useful for boolean flags on existing
+    records. The regular <tt>update_attribute</tt> method in Base is replaced with
+    this when the validations module is mixed in, which it is by default.
+full_name: ActiveRecord::Base#update_attribute
+params: (name, value)
+name: update_attribute
+is_singleton: false
+aliases: []
+

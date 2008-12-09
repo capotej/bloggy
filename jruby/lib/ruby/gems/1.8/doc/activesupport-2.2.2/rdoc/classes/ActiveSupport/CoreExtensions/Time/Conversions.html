@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActiveSupport::CoreExtensions::Time::Conversions</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActiveSupport::CoreExtensions::Time::Conversions</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/active_support/core_ext/time/conversions_rb.html">
+                lib/active_support/core_ext/time/conversions.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Converting times to formatted strings, dates, and datetimes.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000227">formatted_offset</a>&nbsp;&nbsp;
+      <a href="#M000228">to_date</a>&nbsp;&nbsp;
+      <a href="#M000230">to_datetime</a>&nbsp;&nbsp;
+      <a href="#M000226">to_formatted_s</a>&nbsp;&nbsp;
+      <a href="#M000229">to_time</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DATE_FORMATS</td>
+          <td>=</td>
+          <td class="context-item-value">{           :db           =&gt; &quot;%Y-%m-%d %H:%M:%S&quot;,           :number       =&gt; &quot;%Y%m%d%H%M%S&quot;,           :time         =&gt; &quot;%H:%M&quot;,           :short        =&gt; &quot;%d %b %H:%M&quot;,           :long         =&gt; &quot;%B %d, %Y %H:%M&quot;,           :long_ordinal =&gt; lambda { |time| time.strftime(&quot;%B #{time.day.ordinalize}, %Y %H:%M&quot;) },           :rfc822       =&gt; &quot;%a, %d %b %Y %H:%M:%S %z&quot;</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000227" class="method-detail">
+        <a name="M000227"></a>
+
+        <div class="method-heading">
+          <a href="Conversions.src/M000227.html" target="Code" class="method-signature"
+            onclick="popupCode('Conversions.src/M000227.html');return false;">
+          <span class="method-name">formatted_offset</span><span class="method-args">(colon = true, alternate_utc_string = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the UTC offset as an +HH:MM formatted string.
+</p>
+<pre>
+  Time.local(2000).formatted_offset         # =&gt; &quot;-06:00&quot;
+  Time.local(2000).formatted_offset(false)  # =&gt; &quot;-0600&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000228" class="method-detail">
+        <a name="M000228"></a>
+
+        <div class="method-heading">
+          <a href="Conversions.src/M000228.html" target="Code" class="method-signature"
+            onclick="popupCode('Conversions.src/M000228.html');return false;">
+          <span class="method-name">to_date</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Converts a Time object to a Date, dropping hour, minute, and second
+precision.
+</p>
+<pre>
+  my_time = Time.now  # =&gt; Mon Nov 12 22:59:51 -0500 2007
+  my_time.to_date     # =&gt; Mon, 12 Nov 2007
+
+  your_time = Time.parse(&quot;1/13/2009 1:13:03 P.M.&quot;)  # =&gt; Tue Jan 13 13:13:03 -0500 2009
+  your_time.to_date                                 # =&gt; Tue, 13 Jan 2009
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000230" class="method-detail">
+        <a name="M000230"></a>
+
+        <div class="method-heading">
+          <a href="Conversions.src/M000230.html" target="Code" class="method-signature"
+            onclick="popupCode('Conversions.src/M000230.html');return false;">
+          <span class="method-name">to_datetime</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Converts a Time instance to a Ruby DateTime instance, preserving UTC
+offset.
+</p>
+<pre>
+  my_time = Time.now    # =&gt; Mon Nov 12 23:04:21 -0500 2007
+  my_time.to_datetime   # =&gt; Mon, 12 Nov 2007 23:04:21 -0500
+
+  your_time = Time.parse(&quot;1/13/2009 1:13:03 P.M.&quot;)  # =&gt; Tue Jan 13 13:13:03 -0500 2009
+  your_time.to_datetime                             # =&gt; Tue, 13 Jan 2009 13:13:03 -0500
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000226" class="method-detail">
+        <a name="M000226"></a>
+
+        <div class="method-heading">
+          <a href="Conversions.src/M000226.html" target="Code" class="method-signature"
+            onclick="popupCode('Conversions.src/M000226.html');return false;">
+          <span class="method-name">to_formatted_s</span><span class="method-args">(format = :default)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Converts to a formatted string. See DATE_FORMATS for builtin formats.
+</p>
+<p>
+This method is aliased to <tt>to_s</tt>.
+</p>
+<pre>
+  time = Time.now                     # =&gt; Thu Jan 18 06:10:17 CST 2007
+
+  time.to_formatted_s(:time)          # =&gt; &quot;06:10:17&quot;
+  time.to_s(:time)                    # =&gt; &quot;06:10:17&quot;
+
+  time.to_formatted_s(:db)            # =&gt; &quot;2007-01-18 06:10:17&quot;
+  time.to_formatted_s(:number)        # =&gt; &quot;20070118061017&quot;
+  time.to_formatted_s(:short)         # =&gt; &quot;18 Jan 06:10&quot;
+  time.to_formatted_s(:long)          # =&gt; &quot;January 18, 2007 06:10&quot;
+  time.to_formatted_s(:long_ordinal)  # =&gt; &quot;January 18th, 2007 06:10&quot;
+  time.to_formatted_s(:rfc822)        # =&gt; &quot;Thu, 18 Jan 2007 06:10:17 -0600&quot;
+</pre>
+<h2>Adding your own time formats to <tt><a href="Conversions.html#M000226">to_formatted_s</a></tt></h2>
+<p>
+You can add your own formats to the Time::DATE_FORMATS hash. Use the format
+name as the hash key and either a strftime string or Proc instance that
+takes a time argument as the value.
+</p>
+<pre>
+  # config/initializers/time_formats.rb
+  Time::DATE_FORMATS[:month_and_year] = &quot;%B %Y&quot;
+  Time::DATE_FORMATS[:short_ordinal] = lambda { |time| time.strftime(&quot;%B #{time.day.ordinalize}&quot;) }
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000229" class="method-detail">
+        <a name="M000229"></a>
+
+        <div class="method-heading">
+          <a href="Conversions.src/M000229.html" target="Code" class="method-signature"
+            onclick="popupCode('Conversions.src/M000229.html');return false;">
+          <span class="method-name">to_time</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A method to keep Time, Date and DateTime instances interchangeable on
+conversions. In this case, it simply returns <tt>self</tt>.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

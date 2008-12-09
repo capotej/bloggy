@@ -1,0 +1,35 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Allows for reverse merging two hashes where the keys in the calling hash
+    take precedence over those in the <tt>other_hash</tt>. This is particularly useful
+    for initializing an option hash with default values:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  def setup(options = {})\n    options.reverse_merge! :size =&gt; 25, :velocity \
+    =&gt; 10\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Using <tt>merge</tt>, the above example would look as follows:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  def setup(options = {})\n    { :size =&gt; 25, :velocity =&gt; 10 }.merge(options)\n\
+    \  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: The default <tt>:size</tt> and <tt>:velocity</tt> are only set if the <tt>options</tt>
+    hash passed in doesn't already have the respective key.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: reverse_merge
+- !ruby/object:RI::MethodSummary 
+  name: reverse_merge!
+- !ruby/object:RI::MethodSummary 
+  name: reverse_update
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Hash::ReverseMerge
+constants: []
+
+superclass: 
+name: ReverseMerge

@@ -1,0 +1,29 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: MigrationProxy is used to defer loading of the actual migration classes until
+    they are needed
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: filename
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: name
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: version
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveRecord::MigrationProxy
+constants: []
+
+superclass: Object
+name: MigrationProxy

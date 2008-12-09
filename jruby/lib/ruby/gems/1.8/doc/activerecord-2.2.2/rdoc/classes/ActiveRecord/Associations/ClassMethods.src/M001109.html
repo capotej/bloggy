@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>belongs_to (ActiveRecord::Associations::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/associations.rb, line 987</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">belongs_to</span>(<span class="ruby-identifier">association_id</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">reflection</span> = <span class="ruby-identifier">create_belongs_to_reflection</span>(<span class="ruby-identifier">association_id</span>, <span class="ruby-identifier">options</span>)
+
+        <span class="ruby-identifier">ivar</span> = <span class="ruby-node">&quot;@#{reflection.name}&quot;</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:polymorphic</span>]
+          <span class="ruby-identifier">association_accessor_methods</span>(<span class="ruby-identifier">reflection</span>, <span class="ruby-constant">BelongsToPolymorphicAssociation</span>)
+
+          <span class="ruby-identifier">method_name</span> = <span class="ruby-node">&quot;polymorphic_belongs_to_before_save_for_#{reflection.name}&quot;</span>.<span class="ruby-identifier">to_sym</span>
+          <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">method_name</span>) <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">association</span> = <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">ivar</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">instance_variable_defined?</span>(<span class="ruby-identifier">ivar</span>)
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">association</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">association</span>.<span class="ruby-identifier">target</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">association</span>.<span class="ruby-identifier">new_record?</span>
+                <span class="ruby-identifier">association</span>.<span class="ruby-identifier">save</span>(<span class="ruby-keyword kw">true</span>)
+              <span class="ruby-keyword kw">end</span>
+
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">association</span>.<span class="ruby-identifier">updated?</span>
+                <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">primary_key_name</span>] = <span class="ruby-identifier">association</span>.<span class="ruby-identifier">id</span>
+                <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:foreign_type</span>]] = <span class="ruby-identifier">association</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">base_class</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">before_save</span> <span class="ruby-identifier">method_name</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">association_accessor_methods</span>(<span class="ruby-identifier">reflection</span>, <span class="ruby-constant">BelongsToAssociation</span>)
+          <span class="ruby-identifier">association_constructor_method</span>(<span class="ruby-identifier">:build</span>,  <span class="ruby-identifier">reflection</span>, <span class="ruby-constant">BelongsToAssociation</span>)
+          <span class="ruby-identifier">association_constructor_method</span>(<span class="ruby-identifier">:create</span>, <span class="ruby-identifier">reflection</span>, <span class="ruby-constant">BelongsToAssociation</span>)
+
+          <span class="ruby-identifier">method_name</span> = <span class="ruby-node">&quot;belongs_to_before_save_for_#{reflection.name}&quot;</span>.<span class="ruby-identifier">to_sym</span>
+          <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">method_name</span>) <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">association</span> = <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">ivar</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">instance_variable_defined?</span>(<span class="ruby-identifier">ivar</span>)
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">association</span>.<span class="ruby-identifier">nil?</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">association</span>.<span class="ruby-identifier">new_record?</span>
+                <span class="ruby-identifier">association</span>.<span class="ruby-identifier">save</span>(<span class="ruby-keyword kw">true</span>)
+              <span class="ruby-keyword kw">end</span>
+
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">association</span>.<span class="ruby-identifier">updated?</span>
+                <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">primary_key_name</span>] = <span class="ruby-identifier">association</span>.<span class="ruby-identifier">id</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">before_save</span> <span class="ruby-identifier">method_name</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Create the callbacks to update counter cache</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:counter_cache</span>]
+          <span class="ruby-identifier">cache_column</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:counter_cache</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword kw">true</span> <span class="ruby-operator">?</span>
+            <span class="ruby-node">&quot;#{self.to_s.demodulize.underscore.pluralize}_count&quot;</span> <span class="ruby-operator">:</span>
+            <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:counter_cache</span>]
+
+          <span class="ruby-identifier">method_name</span> = <span class="ruby-node">&quot;belongs_to_counter_cache_after_create_for_#{reflection.name}&quot;</span>.<span class="ruby-identifier">to_sym</span>
+          <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">method_name</span>) <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">association</span> = <span class="ruby-identifier">send</span>(<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">name</span>)
+            <span class="ruby-identifier">association</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">increment_counter</span>(<span class="ruby-identifier">cache_column</span>, <span class="ruby-identifier">send</span>(<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">primary_key_name</span>)) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">association</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">after_create</span> <span class="ruby-identifier">method_name</span>
+
+          <span class="ruby-identifier">method_name</span> = <span class="ruby-node">&quot;belongs_to_counter_cache_before_destroy_for_#{reflection.name}&quot;</span>.<span class="ruby-identifier">to_sym</span>
+          <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">method_name</span>) <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">association</span> = <span class="ruby-identifier">send</span>(<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">name</span>)
+            <span class="ruby-identifier">association</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">decrement_counter</span>(<span class="ruby-identifier">cache_column</span>, <span class="ruby-identifier">send</span>(<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">primary_key_name</span>)) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">association</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">before_destroy</span> <span class="ruby-identifier">method_name</span>
+
+          <span class="ruby-identifier">module_eval</span>(
+            <span class="ruby-node">&quot;#{reflection.class_name}.send(:attr_readonly,\&quot;#{cache_column}\&quot;.intern) if defined?(#{reflection.class_name}) &amp;&amp; #{reflection.class_name}.respond_to?(:attr_readonly)&quot;</span>
+          )
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">add_single_associated_validation_callbacks</span>(<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">name</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:validate</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword kw">true</span>
+
+        <span class="ruby-identifier">configure_dependency_for_belongs_to</span>(<span class="ruby-identifier">reflection</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

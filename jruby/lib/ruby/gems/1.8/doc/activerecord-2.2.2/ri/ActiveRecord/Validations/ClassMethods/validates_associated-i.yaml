@@ -1,0 +1,51 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Validates whether the associated object or objects are all valid themselves.
+    Works with any kind of association.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Book &lt; ActiveRecord::Base\n    has_many :pages\n    belongs_to \
+    :library\n\n    validates_associated :pages, :library\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Warning: If, after the above definition, you then wrote:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Page &lt; ActiveRecord::Base\n    belongs_to :book\n\n    validates_associated \
+    :book\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: this would specify a circular dependency and cause infinite recursion.
+- !ruby/struct:SM::Flow::P 
+  body: 'NOTE: This validation will not fail if the association hasn''t been assigned.
+    If you want to ensure that the association is both present and guaranteed to be
+    valid, you also need to use <tt>validates_presence_of</tt>.'
+- !ruby/struct:SM::Flow::P 
+  body: 'Configuration options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:message</tt> - A custom error message (default is: &quot;is invalid&quot;)'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:on</tt> - Specifies when this validation is active (default is <tt>:save</tt>,
+      other options <tt>:create</tt>, <tt>:update</tt>).
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:if</tt> - Specifies a method, proc or string to call to determine if
+      the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or <tt>:if
+      =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The method, proc or
+      string should return or evaluate to a true or false value.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:unless</tt> - Specifies a method, proc or string to call to determine
+      if the validation should not occur (e.g. <tt>:unless =&gt; :skip_validation</tt>,
+      or <tt>:unless =&gt; Proc.new { |user| user.signup_step &lt;= 2 }</tt>). The
+      method, proc or string should return or evaluate to a true or false value.
+    label: '*'
+full_name: ActiveRecord::Validations::ClassMethods#validates_associated
+params: (*attr_names)
+name: validates_associated
+is_singleton: false
+aliases: []
+

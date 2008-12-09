@@ -1,0 +1,21 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Enhance the Fixnum class with a XML escaped character conversion.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: xchr
+class_methods: []
+
+full_name: Fixnum
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: Builder::XChar if ! defined?(XChar)
+  name: XChar
+superclass: Object
+name: Fixnum

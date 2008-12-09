@@ -1,0 +1,47 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::H 
+  text: What is Optimistic Locking
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: Optimistic locking allows multiple users to access the same record for edits,
+    and assumes a minimum of conflicts with the data. It does this by checking whether
+    another process has made changes to a record since it was opened, an ActiveRecord::StaleObjectError
+    is thrown if that has occurred and the update is ignored.
+- !ruby/struct:SM::Flow::P 
+  body: Check out ActiveRecord::Locking::Pessimistic for an alternative.
+- !ruby/struct:SM::Flow::H 
+  text: Usage
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: 'Active Records support optimistic locking if the field <tt>lock_version</tt>
+    is present. Each update to the record increments the lock_version column and the
+    locking facilities ensure that records instantiated twice will let the last one
+    saved raise a StaleObjectError if the first was also updated. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  p1 = Person.find(1)\n  p2 = Person.find(1)\n\n  p1.first_name = &quot;Michael&quot;\n\
+    \  p1.save\n\n  p2.first_name = &quot;should fail&quot;\n  p2.save # Raises a ActiveRecord::StaleObjectError\n"
+- !ruby/struct:SM::Flow::P 
+  body: You're then responsible for dealing with the conflict by rescuing the exception
+    and either rolling back, merging, or otherwise apply the business logic needed
+    to resolve the conflict.
+- !ruby/struct:SM::Flow::P 
+  body: You must ensure that your database schema defaults the lock_version column
+    to 0.
+- !ruby/struct:SM::Flow::P 
+  body: This behavior can be turned off by setting <tt>ActiveRecord::Base.lock_optimistically
+    = false</tt>. To override the name of the lock_version column, invoke the <tt>set_locking_column</tt>
+    method. This method uses the same syntax as <tt>set_table_name</tt>
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveRecord::Locking::Optimistic
+constants: []
+
+superclass: 
+name: Optimistic

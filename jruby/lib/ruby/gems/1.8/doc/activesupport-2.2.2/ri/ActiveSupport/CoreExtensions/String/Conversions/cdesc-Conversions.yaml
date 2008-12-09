@@ -1,0 +1,24 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converting strings to other objects
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ord
+- !ruby/object:RI::MethodSummary 
+  name: to_date
+- !ruby/object:RI::MethodSummary 
+  name: to_datetime
+- !ruby/object:RI::MethodSummary 
+  name: to_time
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::String::Conversions
+constants: []
+
+superclass: 
+name: Conversions

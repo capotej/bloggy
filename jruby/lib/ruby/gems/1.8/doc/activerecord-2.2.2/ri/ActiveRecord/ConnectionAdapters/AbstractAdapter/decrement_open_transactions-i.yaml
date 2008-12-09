@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::AbstractAdapter#decrement_open_transactions
+params: ()
+name: decrement_open_transactions
+is_singleton: false
+aliases: []
+

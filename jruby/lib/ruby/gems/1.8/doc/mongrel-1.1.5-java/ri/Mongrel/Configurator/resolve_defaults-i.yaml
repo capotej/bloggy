@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This will resolve the given options against the defaults. Normally just used
+    internally.
+full_name: Mongrel::Configurator#resolve_defaults
+params: (options)
+name: resolve_defaults
+is_singleton: false
+aliases: []
+

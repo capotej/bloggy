@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::MultiparameterAssignmentErrors::new
+params: (errors)
+name: new
+is_singleton: true
+aliases: []
+

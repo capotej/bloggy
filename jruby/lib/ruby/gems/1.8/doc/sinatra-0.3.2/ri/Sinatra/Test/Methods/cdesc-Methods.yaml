@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Rack::Utils
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: follow!
+- !ruby/object:RI::MethodSummary 
+  name: hash_to_param_string
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RI::MethodSummary 
+  name: normalize_rack_environment
+- !ruby/object:RI::MethodSummary 
+  name: session
+class_methods: []
+
+full_name: Sinatra::Test::Methods
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{         :accept => "HTTP_ACCEPT",         :agent => "HTTP_USER_AGENT",         :host
+    => "HTTP_HOST",         :session => "HTTP_COOKIE",         :cookies => "HTTP_COOKIE",         :content_type
+    => "CONTENT_TYPE"'
+  name: ENV_KEY_NAMES
+superclass: 
+name: Methods

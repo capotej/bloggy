@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>pretty_generate (JSON)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/json/common.rb, line 214</span>
+214:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pretty_generate</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opts</span> = <span class="ruby-keyword kw">nil</span>)
+215:     <span class="ruby-identifier">state</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">state</span>.<span class="ruby-identifier">new</span>(
+216:       <span class="ruby-identifier">:indent</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'  '</span>,
+217:       <span class="ruby-identifier">:space</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">' '</span>,
+218:       <span class="ruby-identifier">:object_nl</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;\n&quot;</span>,
+219:       <span class="ruby-identifier">:array_nl</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;\n&quot;</span>,
+220:       <span class="ruby-identifier">:check_circular</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>
+221:     )
+222:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>
+223:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:to_hash</span>
+224:         <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">to_hash</span>
+225:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:to_h</span>
+226:         <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">to_h</span>
+227:       <span class="ruby-keyword kw">else</span>
+228:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;can't convert #{opts.class} into Hash&quot;</span>
+229:       <span class="ruby-keyword kw">end</span>
+230:       <span class="ruby-identifier">state</span>.<span class="ruby-identifier">configure</span>(<span class="ruby-identifier">opts</span>)
+231:     <span class="ruby-keyword kw">end</span>
+232:     <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">to_json</span>(<span class="ruby-identifier">state</span>)
+233:   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

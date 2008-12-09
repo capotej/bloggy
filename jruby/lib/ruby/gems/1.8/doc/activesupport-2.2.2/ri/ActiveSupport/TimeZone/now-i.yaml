@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Returns an ActiveSupport::TimeWithZone instance representing the current
+    time in the time zone represented by <tt>self</tt>. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Time.zone = 'Hawaii'  # =&gt; &quot;Hawaii&quot;\n  Time.zone.now      \
+    \   # =&gt; Wed, 23 Jan 2008 20:24:27 HST -10:00\n"
+full_name: ActiveSupport::TimeZone#now
+params: ()
+name: now
+is_singleton: false
+aliases: []
+

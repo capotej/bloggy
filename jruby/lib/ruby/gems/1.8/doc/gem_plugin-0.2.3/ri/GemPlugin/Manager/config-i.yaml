@@ -1,0 +1,30 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: While Manager.resource will find arbitrary resources, a special case is when
+    you need to load a set of configuration defaults. GemPlugin normalizes this to
+    be if you have a file &quot;resources/defaults.yaml&quot; then you'll be able
+    to load them via Manager.config.
+- !ruby/struct:SM::Flow::P 
+  body: How you use the method is you get the options the user wants set, pass them
+    to Manager.instance.config, and what you get back is a new Hash with the user's
+    settings overriding the defaults.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  opts = Manager.instance.config &quot;mygem&quot;, :age =&gt; 12, :max_load \
+    =&gt; .9\n"
+- !ruby/struct:SM::Flow::P 
+  body: In the above case, if defaults had {:age =&gt; 14} then it would be changed
+    to 12.
+- !ruby/struct:SM::Flow::P 
+  body: This loads the .yaml file on the fly every time, so doing it a whole lot is
+    very stupid. If you need to make frequent calls to this, call it once with no
+    options (Manager.instance.config) then use the returned defaults directly from
+    then on.
+full_name: GemPlugin::Manager#config
+params: (gem_name, options={})
+name: config
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a new hash with only the given keys.
+full_name: ActiveSupport::CoreExtensions::Hash::Slice#slice
+params: (*keys)
+name: slice
+is_singleton: false
+aliases: []
+

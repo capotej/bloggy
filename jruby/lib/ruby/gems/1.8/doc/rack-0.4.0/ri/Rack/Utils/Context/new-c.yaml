@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Rack::Utils::Context::new
+params: (app_f, app_r)
+name: new
+is_singleton: true
+aliases: []
+

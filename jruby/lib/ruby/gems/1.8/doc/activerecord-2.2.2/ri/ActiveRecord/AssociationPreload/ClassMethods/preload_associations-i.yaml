@@ -1,0 +1,56 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Eager loads the named associations for the given ActiveRecord record(s).
+- !ruby/struct:SM::Flow::P 
+  body: In this description, 'association name' shall refer to the name passed to
+    an association creation method. For example, a model that specifies <tt>belongs_to
+    :author</tt>, <tt>has_many :buyers</tt> has association names +:author+ and +:buyers+.
+- !ruby/struct:SM::Flow::H 
+  text: Parameters
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: <tt>records</tt> is an array of ActiveRecord::Base. This array needs not be
+    flat, i.e. <tt>records</tt> itself may also contain arrays of records. In any
+    case, <tt>preload_associations</tt> will preload the associations all records
+    by flattening <tt>records</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: '<tt>associations</tt> specifies one or more associations that you want to
+    preload. It may be:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: a Symbol or a String which specifies a single association name. For example,
+      specifiying +:books+ allows this method to preload all books for an Author.
+    label: '-'
+  - !ruby/struct:SM::Flow::LI 
+    body: an Array which specifies multiple association names. This array is processed
+      recursively. For example, specifying <tt>[:avatar, :books]</tt> allows this
+      method to preload an author's avatar as well as all of his books.
+    label: '-'
+  - !ruby/struct:SM::Flow::LI 
+    body: a Hash which specifies multiple association names, as well as association
+      names for the to-be-preloaded association objects. For example, specifying <tt>{
+      :author =&gt; :avatar }</tt> will preload a book's author, as well as that author's
+      avatar.
+    label: '-'
+- !ruby/struct:SM::Flow::P 
+  body: '+:associations+ has the same format as the +:include+ option for <tt>ActiveRecord::Base.find</tt>.
+    So <tt>associations</tt> could look like this:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  :books\n  [ :books, :author ]\n  { :author =&gt; :avatar }\n  [ :books, \
+    { :author =&gt; :avatar } ]\n"
+- !ruby/struct:SM::Flow::P 
+  body: <tt>preload_options</tt> contains options that will be passed to ActiveRecord#find
+    (which is called under the hood for preloading records). But it is passed only
+    one level deep in the <tt>associations</tt> argument, i.e. it's not passed to
+    the child associations when <tt>associations</tt> is a Hash.
+full_name: ActiveRecord::AssociationPreload::ClassMethods#preload_associations
+params: (records, associations, preload_options={})
+name: preload_associations
+is_singleton: false
+aliases: []
+

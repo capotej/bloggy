@@ -1,0 +1,25 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: format
+- !ruby/object:RI::MethodSummary 
+  name: measure
+- !ruby/object:RI::MethodSummary 
+  name: measure
+- !ruby/object:RI::MethodSummary 
+  name: measure
+class_methods: []
+
+full_name: ActiveSupport::Testing::Metrics::Objects
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: RubyProf::ALLOCATIONS if RubyProf.const_defined?(:ALLOCATIONS)
+  name: Mode
+superclass: Base
+name: Objects

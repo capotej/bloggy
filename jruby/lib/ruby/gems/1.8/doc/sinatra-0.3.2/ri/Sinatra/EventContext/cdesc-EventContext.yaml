@@ -1,0 +1,57 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Rack::Utils
+- !ruby/object:RI::IncludedModule 
+  name: ResponseHelpers
+- !ruby/object:RI::IncludedModule 
+  name: Streaming
+- !ruby/object:RI::IncludedModule 
+  name: RenderingHelpers
+- !ruby/object:RI::IncludedModule 
+  name: Erb
+- !ruby/object:RI::IncludedModule 
+  name: Haml
+- !ruby/object:RI::IncludedModule 
+  name: Builder
+- !ruby/object:RI::IncludedModule 
+  name: Sass
+comment: 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: request
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: response
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: route_params
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: body
+- !ruby/object:RI::MethodSummary 
+  name: complete
+- !ruby/object:RI::MethodSummary 
+  name: data
+- !ruby/object:RI::MethodSummary 
+  name: params
+- !ruby/object:RI::MethodSummary 
+  name: reset!
+- !ruby/object:RI::MethodSummary 
+  name: session
+- !ruby/object:RI::MethodSummary 
+  name: status
+- !ruby/object:RI::MethodSummary 
+  name: stop
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Sinatra::EventContext
+constants: []
+
+superclass: Object
+name: EventContext

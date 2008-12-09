@@ -1,0 +1,29 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: AssociationCollection is an abstract class that provides common stuff to ease
+    the implementation of association proxies that represent collections. See the
+    class hierarchy in AssociationProxy.
+- !ruby/struct:SM::Flow::P 
+  body: 'You need to be careful with assumptions regarding the target: The proxy does
+    not fetch records from the database until it needs them, but new ones created
+    with <tt>build</tt> are added to the target. So, the target may be non-empty and
+    still lack children waiting to be read from the database. If you look directly
+    to the database you cannot assume that''s the entire collection because new records
+    may have beed added to the target, etc.'
+- !ruby/struct:SM::Flow::P 
+  body: If you need to work on all current children, new and existing records, <tt>load_target</tt>
+    and the <tt>loaded</tt> flag are your friends.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveRecord::Associations::AssociationCollection
+constants: []
+
+superclass: AssociationProxy
+name: AssociationCollection

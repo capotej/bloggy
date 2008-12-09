@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Saves a data structure into a file.
+- !ruby/object:SM::Flow::LIST 
+  type: :NOTE
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: Data structure to be saved.
+    label: 'data:'
+  - !ruby/struct:SM::Flow::LI 
+    body: Name of the file belonging to the data structure.
+    label: 'filename:'
+full_name: XmlSimple::Cache#save_storable
+params: (data, filename)
+name: save_storable
+is_singleton: false
+aliases: []
+

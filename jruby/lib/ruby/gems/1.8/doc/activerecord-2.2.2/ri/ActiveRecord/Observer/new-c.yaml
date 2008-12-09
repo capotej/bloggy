@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Start observing the declared classes and their subclasses.
+full_name: ActiveRecord::Observer::new
+params: ()
+name: new
+is_singleton: true
+aliases: []
+

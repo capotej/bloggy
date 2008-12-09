@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Works like with_scope, but discards any nested properties.
+full_name: ActiveRecord::Base::with_exclusive_scope
+params: (method_scoping = {}, &block)
+name: with_exclusive_scope
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>[]= (ActiveSupport::Multibyte::Chars)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/multibyte/chars.rb, line 225</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]=</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+        <span class="ruby-identifier">replace_by</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">pop</span>
+        <span class="ruby-comment cmt"># Indexed replace with regular expressions already works</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Regexp</span>)
+          <span class="ruby-ivar">@wrapped_string</span>[<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>] = <span class="ruby-identifier">replace_by</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">result</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">u_unpack</span>(<span class="ruby-ivar">@wrapped_string</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>)
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">IndexError</span>, <span class="ruby-node">&quot;index #{args[0]} out of string&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">length</span>
+            <span class="ruby-identifier">min</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>]
+            <span class="ruby-identifier">max</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-identifier">min</span> <span class="ruby-operator">:</span> (<span class="ruby-identifier">min</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)
+            <span class="ruby-identifier">range</span> = <span class="ruby-constant">Range</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">min</span>, <span class="ruby-identifier">max</span>)
+            <span class="ruby-identifier">replace_by</span> = [<span class="ruby-identifier">replace_by</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'U'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">replace_by</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>)
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Range</span>)
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">RangeError</span>, <span class="ruby-node">&quot;#{args[0]} out of range&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">min</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">length</span>
+            <span class="ruby-identifier">range</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>]
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">needle</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_s</span>
+            <span class="ruby-identifier">min</span> = <span class="ruby-identifier">index</span>(<span class="ruby-identifier">needle</span>)
+            <span class="ruby-identifier">max</span> = <span class="ruby-identifier">min</span> <span class="ruby-operator">+</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">u_unpack</span>(<span class="ruby-identifier">needle</span>).<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+            <span class="ruby-identifier">range</span> = <span class="ruby-constant">Range</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">min</span>, <span class="ruby-identifier">max</span>)
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">result</span>[<span class="ruby-identifier">range</span>] = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">u_unpack</span>(<span class="ruby-identifier">replace_by</span>)
+          <span class="ruby-ivar">@wrapped_string</span>.<span class="ruby-identifier">replace</span>(<span class="ruby-identifier">result</span>.<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'U*'</span>))
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

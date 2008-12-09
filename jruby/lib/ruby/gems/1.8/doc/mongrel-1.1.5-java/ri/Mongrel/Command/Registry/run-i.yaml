@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Runs the args against the first argument as the command name. If it has any
+    errors it returns a false, otherwise it return true.
+full_name: Mongrel::Command::Registry#run
+params: (args)
+name: run
+is_singleton: false
+aliases: []
+

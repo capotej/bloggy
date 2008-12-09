@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Uses the GemPlugin system to easily load plugins based on their gem dependencies.
+    You pass in either an :includes =&gt; [] or :excludes =&gt; [] setting listing
+    the names of plugins to include or exclude from the determining the dependencies.
+full_name: Mongrel::Configurator#load_plugins
+params: (options={})
+name: load_plugins
+is_singleton: false
+aliases: []
+

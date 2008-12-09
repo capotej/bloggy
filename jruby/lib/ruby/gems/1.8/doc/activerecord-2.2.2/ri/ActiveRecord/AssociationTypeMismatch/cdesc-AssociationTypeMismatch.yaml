@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Raised when an object assigned to an association has an incorrect type.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Ticket &lt; ActiveRecord::Base\n    has_many :patches\n  end\n\n\
+    \  class Patch &lt; ActiveRecord::Base\n    belongs_to :ticket\n  end\n\n  # Comments \
+    are not patches, this assignment raises AssociationTypeMismatch.\n  @ticket.patches \
+    &lt;&lt; Comment.new(:content =&gt; &quot;Please attach tests to your patch.&quot;)\n"
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveRecord::AssociationTypeMismatch
+constants: []
+
+superclass: ActiveRecordError
+name: AssociationTypeMismatch

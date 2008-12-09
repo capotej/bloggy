@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>append_new_node (PopUpMenu)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/json/editor.rb, line 388</span>
+388:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">append_new_node</span>(<span class="ruby-identifier">item</span>)
+389:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">parent</span> = <span class="ruby-identifier">selection</span>.<span class="ruby-identifier">selected</span>
+390:           <span class="ruby-identifier">parent_type</span> = <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">type</span>
+391:           <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">parent_type</span>
+392:           <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Hash'</span>
+393:             <span class="ruby-identifier">key</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">content</span> = <span class="ruby-identifier">ask_for_hash_pair</span>(<span class="ruby-identifier">parent</span>)
+394:             <span class="ruby-identifier">key</span> <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">return</span>
+395:             <span class="ruby-identifier">iter</span> = <span class="ruby-identifier">create_node</span>(<span class="ruby-identifier">parent</span>, <span class="ruby-value str">'Key'</span>, <span class="ruby-identifier">key</span>)
+396:             <span class="ruby-identifier">iter</span> = <span class="ruby-identifier">create_node</span>(<span class="ruby-identifier">iter</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">content</span>)
+397:             <span class="ruby-identifier">toplevel</span>.<span class="ruby-identifier">display_status</span>(
+398:               <span class="ruby-node">&quot;Added a (key, value)-pair to '#{parent_type}'.&quot;</span>)
+399:             <span class="ruby-identifier">window</span>.<span class="ruby-identifier">change</span>
+400:           <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Array'</span>
+401:             <span class="ruby-identifier">type</span>, <span class="ruby-identifier">content</span> = <span class="ruby-identifier">ask_for_element</span>(<span class="ruby-identifier">parent</span>)
+402:             <span class="ruby-identifier">type</span> <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">return</span>
+403:             <span class="ruby-identifier">iter</span> = <span class="ruby-identifier">create_node</span>(<span class="ruby-identifier">parent</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">content</span>)
+404:             <span class="ruby-identifier">window</span>.<span class="ruby-identifier">change</span>
+405:             <span class="ruby-identifier">toplevel</span>.<span class="ruby-identifier">display_status</span>(<span class="ruby-node">&quot;Appendend an element to '#{parent_type}'.&quot;</span>)
+406:           <span class="ruby-keyword kw">else</span>
+407:             <span class="ruby-identifier">toplevel</span>.<span class="ruby-identifier">display_status</span>(<span class="ruby-node">&quot;Cannot append to '#{parent_type}'!&quot;</span>)
+408:           <span class="ruby-keyword kw">end</span>
+409:         <span class="ruby-keyword kw">else</span>
+410:           <span class="ruby-identifier">type</span>, <span class="ruby-identifier">content</span> = <span class="ruby-identifier">ask_for_element</span>
+411:           <span class="ruby-identifier">type</span> <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">return</span>
+412:           <span class="ruby-identifier">iter</span> = <span class="ruby-identifier">create_node</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">content</span>)
+413:           <span class="ruby-identifier">window</span>.<span class="ruby-identifier">change</span>
+414:         <span class="ruby-keyword kw">end</span>
+415:       <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

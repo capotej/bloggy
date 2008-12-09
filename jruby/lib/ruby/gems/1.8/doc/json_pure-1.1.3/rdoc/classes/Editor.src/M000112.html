@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>model2data (Editor)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/json/editor.rb, line 83</span>
+ 83:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">Editor</span>.<span class="ruby-identifier">model2data</span>(<span class="ruby-identifier">iter</span>)
+ 84:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">iter</span>.<span class="ruby-identifier">nil?</span>
+ 85:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">iter</span>.<span class="ruby-identifier">type</span>
+ 86:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Hash'</span>
+ 87:         <span class="ruby-identifier">hash</span> = {}
+ 88:         <span class="ruby-identifier">iter</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">c</span>.<span class="ruby-identifier">content</span>] = <span class="ruby-constant">Editor</span>.<span class="ruby-identifier">model2data</span>(<span class="ruby-identifier">c</span>.<span class="ruby-identifier">first_child</span>) }
+ 89:         <span class="ruby-identifier">hash</span>
+ 90:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Array'</span>
+ 91:         <span class="ruby-identifier">array</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">iter</span>.<span class="ruby-identifier">n_children</span>)
+ 92:         <span class="ruby-identifier">iter</span>.<span class="ruby-identifier">each_with_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">array</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-constant">Editor</span>.<span class="ruby-identifier">model2data</span>(<span class="ruby-identifier">c</span>) }
+ 93:         <span class="ruby-identifier">array</span>
+ 94:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Key'</span>
+ 95:         <span class="ruby-identifier">iter</span>.<span class="ruby-identifier">content</span>
+ 96:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'String'</span>
+ 97:         <span class="ruby-identifier">iter</span>.<span class="ruby-identifier">content</span>
+ 98:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Numeric'</span>
+ 99:         <span class="ruby-identifier">content</span> = <span class="ruby-identifier">iter</span>.<span class="ruby-identifier">content</span>
+100:         <span class="ruby-keyword kw">if</span> <span class="ruby-regexp re">/\./</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">content</span>)
+101:           <span class="ruby-identifier">content</span>.<span class="ruby-identifier">to_f</span>
+102:         <span class="ruby-keyword kw">else</span>
+103:           <span class="ruby-identifier">content</span>.<span class="ruby-identifier">to_i</span>
+104:         <span class="ruby-keyword kw">end</span>
+105:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'TrueClass'</span>
+106:         <span class="ruby-keyword kw">true</span>
+107:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'FalseClass'</span>
+108:         <span class="ruby-keyword kw">false</span>
+109:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'NilClass'</span>
+110:         <span class="ruby-keyword kw">nil</span>
+111:       <span class="ruby-keyword kw">else</span>
+112:         <span class="ruby-identifier">fail</span> <span class="ruby-node">&quot;Unknown type found in model: #{iter.type}&quot;</span>
+113:       <span class="ruby-keyword kw">end</span>
+114:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

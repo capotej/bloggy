@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (self.class::STARTED, name)
+comment: 
+full_name: ActiveSupport::Testing#run
+params: (result) {|self.class::STARTED, name| ...}
+name: run
+is_singleton: false
+aliases: []
+

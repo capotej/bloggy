@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Specifies a humanized form of a string by a regular expression rule or by
+    a string mapping. When using a regular expression based replacement, the normal
+    humanize formatting is called after the replacement. When a string is used, the
+    human form should be specified as desired (example: ''The name'', not ''the_name'')'
+- !ruby/struct:SM::Flow::P 
+  body: 'Examples:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  human /_cnt$/i, '\\1_count'\n  human &quot;legacy_col_person_name&quot;, \
+    &quot;Name&quot;\n"
+full_name: ActiveSupport::Inflector::Inflections#human
+params: (rule, replacement)
+name: human
+is_singleton: false
+aliases: []
+

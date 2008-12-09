@@ -1,0 +1,160 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Writes and controls your response to the client using the HTTP/1.1 specification.
+    You use it by simply doing:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " response.start(200) do |head,out|\n   head['Content-Type'] = 'text/plain'\n\
+    \   out.write(&quot;hello\\n&quot;)\n end\n"
+- !ruby/struct:SM::Flow::P 
+  body: The parameter to start is the response code--which Mongrel will translate
+    for you based on HTTP_STATUS_CODES. The head parameter is how you write custom
+    headers. The out parameter is where you write your body. The default status code
+    for HttpResponse.start is 200 so the above example is redundant.
+- !ruby/struct:SM::Flow::P 
+  body: As you can see, it's just like using a Hash and as you do this it writes the
+    proper header to the output on the fly. You can even intermix specifying headers
+    and writing content. The HttpResponse class with write the things in the proper
+    order once the HttpResponse.block is ended.
+- !ruby/struct:SM::Flow::P 
+  body: 'You may also work the HttpResponse object directly using the various attributes
+    available for the raw socket, body, header, and status codes. If you do this you''re
+    on your own. A design decision was made to force the client to not pipeline requests.
+    HTTP/1.1 pipelining really kills the performance due to how it has to be handled
+    and how unclear the standard is. To fix this the HttpResponse gives a &quot;Connection:
+    close&quot; header which forces the client to close right away. The bonus for
+    this is that it gives a pretty nice speed boost to most clients since they can
+    close their connection immediately.'
+- !ruby/struct:SM::Flow::P 
+  body: One additional caveat is that you don't have to specify the Content-length
+    header as the HttpResponse will write this for you based on the out length.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: body
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: W
+  name: body
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: body
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: W
+  name: body
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: body_sent
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: body_sent
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: header
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: header
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: header_sent
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: header_sent
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: socket
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: socket
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: W
+  name: status
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: status
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: W
+  name: status
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: status
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: status_sent
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: status_sent
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: done
+- !ruby/object:RI::MethodSummary 
+  name: done
+- !ruby/object:RI::MethodSummary 
+  name: done=
+- !ruby/object:RI::MethodSummary 
+  name: done=
+- !ruby/object:RI::MethodSummary 
+  name: finished
+- !ruby/object:RI::MethodSummary 
+  name: finished
+- !ruby/object:RI::MethodSummary 
+  name: reset
+- !ruby/object:RI::MethodSummary 
+  name: reset
+- !ruby/object:RI::MethodSummary 
+  name: send_body
+- !ruby/object:RI::MethodSummary 
+  name: send_body
+- !ruby/object:RI::MethodSummary 
+  name: send_file
+- !ruby/object:RI::MethodSummary 
+  name: send_file
+- !ruby/object:RI::MethodSummary 
+  name: send_header
+- !ruby/object:RI::MethodSummary 
+  name: send_header
+- !ruby/object:RI::MethodSummary 
+  name: send_status
+- !ruby/object:RI::MethodSummary 
+  name: send_status
+- !ruby/object:RI::MethodSummary 
+  name: socket_error
+- !ruby/object:RI::MethodSummary 
+  name: socket_error
+- !ruby/object:RI::MethodSummary 
+  name: start
+- !ruby/object:RI::MethodSummary 
+  name: start
+- !ruby/object:RI::MethodSummary 
+  name: write
+- !ruby/object:RI::MethodSummary 
+  name: write
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Mongrel::HttpResponse
+constants: []
+
+superclass: Object
+name: HttpResponse

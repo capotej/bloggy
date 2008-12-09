@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActiveRecord::Validations</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActiveRecord::Validations</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/active_record/validations_rb.html">
+                lib/active_record/validations.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Please do have a look at <a
+href="Validations/ClassMethods.html">ActiveRecord::Validations::ClassMethods</a>
+for a higher level of validations.
+</p>
+<p>
+Active Records implement validation by overwriting Base#validate (or the
+variations, <tt><a
+href="Validations.html#M000853">validate_on_create</a></tt> and <tt><a
+href="Validations.html#M000854">validate_on_update</a></tt>). Each of these
+methods can inspect the state of the object, which usually means ensuring
+that a number of attributes have a certain value (such as not empty, within
+a given range, matching a certain regular expression).
+</p>
+<p>
+Example:
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    protected
+      def validate
+        errors.add_on_empty %w( first_name last_name )
+        errors.add(&quot;phone_number&quot;, &quot;has invalid format&quot;) unless phone_number =~ /[0-9]*/
+      end
+
+      def validate_on_create # is only run the first time a new object is saved
+        unless valid_discount?(membership_discount)
+          errors.add(&quot;membership_discount&quot;, &quot;has expired&quot;)
+        end
+      end
+
+      def validate_on_update
+        errors.add_to_base(&quot;No changes have occurred&quot;) if unchanged_attributes?
+      end
+  end
+
+  person = Person.new(&quot;first_name&quot; =&gt; &quot;David&quot;, &quot;phone_number&quot; =&gt; &quot;what?&quot;)
+  person.save                         # =&gt; false (and doesn't do the save)
+  person.errors.empty?                # =&gt; false
+  person.errors.count                 # =&gt; 2
+  person.errors.on &quot;last_name&quot;        # =&gt; &quot;can't be empty&quot;
+  person.errors.on &quot;phone_number&quot;     # =&gt; &quot;has invalid format&quot;
+  person.errors.each_full { |msg| puts msg }
+                                      # =&gt; &quot;Last name can't be empty\n&quot; +
+                                      #    &quot;Phone number has invalid format&quot;
+
+  person.attributes = { &quot;last_name&quot; =&gt; &quot;Heinemeier&quot;, &quot;phone_number&quot; =&gt; &quot;555-555&quot; }
+  person.save # =&gt; true (and person is now saved in the database)
+</pre>
+<p>
+An <a href="Errors.html">Errors</a> object is automatically created for
+every Active Record.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000851">errors</a>&nbsp;&nbsp;
+      <a href="#M000848">save_with_validation</a>&nbsp;&nbsp;
+      <a href="#M000849">save_with_validation!</a>&nbsp;&nbsp;
+      <a href="#M000850">valid?</a>&nbsp;&nbsp;
+      <a href="#M000852">validate</a>&nbsp;&nbsp;
+      <a href="#M000853">validate_on_create</a>&nbsp;&nbsp;
+      <a href="#M000854">validate_on_update</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="Validations/ClassMethods.html" class="link">ActiveRecord::Validations::ClassMethods</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VALIDATIONS</td>
+          <td>=</td>
+          <td class="context-item-value">%w( validate validate_on_create validate_on_update )</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000851" class="method-detail">
+        <a name="M000851"></a>
+
+        <div class="method-heading">
+          <a href="Validations.src/M000851.html" target="Code" class="method-signature"
+            onclick="popupCode('Validations.src/M000851.html');return false;">
+          <span class="method-name">errors</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="Errors.html">Errors</a> object that holds all
+information about attribute error messages.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000848" class="method-detail">
+        <a name="M000848"></a>
+
+        <div class="method-heading">
+          <a href="Validations.src/M000848.html" target="Code" class="method-signature"
+            onclick="popupCode('Validations.src/M000848.html');return false;">
+          <span class="method-name">save_with_validation</span><span class="method-args">(perform_validation = true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The validation process on save can be skipped by passing false. The regular
+<a href="Base.html#M001228">Base#save</a> method is replaced with this when
+the validations module is mixed in, which it is by default.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000849" class="method-detail">
+        <a name="M000849"></a>
+
+        <div class="method-heading">
+          <a href="Validations.src/M000849.html" target="Code" class="method-signature"
+            onclick="popupCode('Validations.src/M000849.html');return false;">
+          <span class="method-name">save_with_validation!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Attempts to save the record just like <a
+href="Base.html#M001228">Base#save</a> but will raise a <a
+href="RecordInvalid.html">RecordInvalid</a> exception instead of returning
+false if the record is not valid.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000850" class="method-detail">
+        <a name="M000850"></a>
+
+        <div class="method-heading">
+          <a href="Validations.src/M000850.html" target="Code" class="method-signature"
+            onclick="popupCode('Validations.src/M000850.html');return false;">
+          <span class="method-name">valid?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Runs <tt><a href="Validations.html#M000852">validate</a></tt> and <tt><a
+href="Validations.html#M000853">validate_on_create</a></tt> or <tt><a
+href="Validations.html#M000854">validate_on_update</a></tt> and returns
+true if no <a href="Validations.html#M000851">errors</a> were added
+otherwise false.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Instance methods</h3>
+
+      <div id="method-M000852" class="method-detail">
+        <a name="M000852"></a>
+
+        <div class="method-heading">
+          <a href="Validations.src/M000852.html" target="Code" class="method-signature"
+            onclick="popupCode('Validations.src/M000852.html');return false;">
+          <span class="method-name">validate</span><span class="method-args">(</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Overwrite this method for validation checks on all saves and use <tt><a
+href="Errors.html#M001276">Errors.add</a>(field, msg)</tt> for invalid
+attributes.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000853" class="method-detail">
+        <a name="M000853"></a>
+
+        <div class="method-heading">
+          <a href="Validations.src/M000853.html" target="Code" class="method-signature"
+            onclick="popupCode('Validations.src/M000853.html');return false;">
+          <span class="method-name">validate_on_create</span><span class="method-args">(</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Overwrite this method for validation checks used only on creation.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000854" class="method-detail">
+        <a name="M000854"></a>
+
+        <div class="method-heading">
+          <a href="Validations.src/M000854.html" target="Code" class="method-signature"
+            onclick="popupCode('Validations.src/M000854.html');return false;">
+          <span class="method-name">validate_on_update</span><span class="method-args">(</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Overwrite this method for validation checks used only on updates.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

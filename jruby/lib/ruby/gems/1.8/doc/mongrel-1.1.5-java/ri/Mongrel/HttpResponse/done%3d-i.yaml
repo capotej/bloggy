@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Used during error conditions to mark the response as &quot;done&quot; so there
+    isn't any more processing sent to the client.
+full_name: Mongrel::HttpResponse#done=
+params: (val)
+name: done=
+is_singleton: false
+aliases: []
+

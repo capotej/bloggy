@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Append text to the output target without escaping any markup. May be used
+    within the markup brackets as:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  builder.p { |x| x &lt;&lt; &quot;&lt;br/&gt;HI&quot; }   #=&gt;  &lt;p&gt;&lt;br/&gt;HI&lt;/p&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: This is useful when using non-builder enabled software that generates strings.
+    Just insert the string directly into the builder without changing the inserted
+    markup.
+- !ruby/struct:SM::Flow::P 
+  body: It is also useful for stacking builder objects. Builders only use <tt>&lt;&lt;</tt>
+    to append to the target, so by supporting this method/operation builders can use
+    other builders as their targets.
+full_name: Builder::XmlBase#<<
+params: (text)
+name: "<<"
+is_singleton: false
+aliases: []
+

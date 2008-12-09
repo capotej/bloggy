@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::MySQL#rename_table"
+params: (name, new_name)
+name: rename_table
+is_singleton: false
+aliases: []
+

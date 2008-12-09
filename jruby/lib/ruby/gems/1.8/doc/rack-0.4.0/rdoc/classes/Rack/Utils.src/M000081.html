@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>select_best_encoding (Rack::Utils)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/utils.rb, line 74</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">select_best_encoding</span>(<span class="ruby-identifier">available_encodings</span>, <span class="ruby-identifier">accept_encoding</span>)
+      <span class="ruby-comment cmt"># http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html</span>
+
+      <span class="ruby-identifier">expanded_accept_encoding</span> =
+        <span class="ruby-identifier">accept_encoding</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">m</span>, <span class="ruby-identifier">q</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">m</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;*&quot;</span>
+            (<span class="ruby-identifier">available_encodings</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">accept_encoding</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">m2</span>, <span class="ruby-identifier">_</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m2</span> }).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">m2</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">m2</span>, <span class="ruby-identifier">q</span>] }
+          <span class="ruby-keyword kw">else</span>
+            [[<span class="ruby-identifier">m</span>, <span class="ruby-identifier">q</span>]]
+          <span class="ruby-keyword kw">end</span>
+        }.<span class="ruby-identifier">inject</span>([]) { <span class="ruby-operator">|</span><span class="ruby-identifier">mem</span>, <span class="ruby-identifier">list</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">mem</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">list</span>
+        }
+
+      <span class="ruby-identifier">encoding_candidates</span> = <span class="ruby-identifier">expanded_accept_encoding</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">q</span><span class="ruby-operator">|</span> <span class="ruby-operator">-</span><span class="ruby-identifier">q</span> }.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">m</span>, <span class="ruby-identifier">_</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span> }
+
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">encoding_candidates</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value str">&quot;identity&quot;</span>)
+        <span class="ruby-identifier">encoding_candidates</span>.<span class="ruby-identifier">push</span>(<span class="ruby-value str">&quot;identity&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">expanded_accept_encoding</span>.<span class="ruby-identifier">find_all</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">m</span>, <span class="ruby-identifier">q</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">q</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span><span class="ruby-value">.0</span>
+      }.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">m</span>, <span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">encoding_candidates</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">m</span>)
+      }
+
+      <span class="ruby-keyword kw">return</span> (<span class="ruby-identifier">encoding_candidates</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">available_encodings</span>)[<span class="ruby-value">0</span>]
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

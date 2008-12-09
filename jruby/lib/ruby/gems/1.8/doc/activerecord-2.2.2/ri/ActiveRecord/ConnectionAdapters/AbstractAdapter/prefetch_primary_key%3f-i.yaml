@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Should primary key values be selected from their corresponding sequence before
+    the insert statement? If true, next_sequence_value is called before each insert
+    to set the record's primary key. This is false for all adapters but Firebird.
+full_name: ActiveRecord::ConnectionAdapters::AbstractAdapter#prefetch_primary_key?
+params: (table_name = nil)
+name: prefetch_primary_key?
+is_singleton: false
+aliases: []
+

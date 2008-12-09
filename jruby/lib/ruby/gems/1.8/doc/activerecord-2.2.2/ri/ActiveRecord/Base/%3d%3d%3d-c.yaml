@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Overwrite the default class equality method to provide support for association
+    proxies.
+full_name: ActiveRecord::Base::===
+params: (object)
+name: ===
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create a new MySQL database with optional <tt>:charset</tt> and <tt>:collation</tt>.
+    Charset defaults to utf8.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  create_database 'charset_test', :charset =&gt; 'latin1', :collation =&gt; \
+    'latin1_bin'\n  create_database 'matt_development'\n  create_database 'matt_development', \
+    :charset =&gt; :big5\n"
+full_name: ActiveRecord::ConnectionAdapters::MysqlAdapter#create_database
+params: (name, options = {})
+name: create_database
+is_singleton: false
+aliases: []
+

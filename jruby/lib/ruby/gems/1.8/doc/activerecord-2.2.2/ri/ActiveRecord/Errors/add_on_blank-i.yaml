@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Will add an error message to each of the attributes in <tt>attributes</tt>
+    that is blank (using Object#blank?).
+full_name: ActiveRecord::Errors#add_on_blank
+params: (attributes, custom_message = nil)
+name: add_on_blank
+is_singleton: false
+aliases: []
+

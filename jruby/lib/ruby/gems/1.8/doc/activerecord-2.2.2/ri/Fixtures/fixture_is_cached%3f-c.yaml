@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Fixtures::fixture_is_cached?
+params: (connection, table_name)
+name: fixture_is_cached?
+is_singleton: true
+aliases: []
+

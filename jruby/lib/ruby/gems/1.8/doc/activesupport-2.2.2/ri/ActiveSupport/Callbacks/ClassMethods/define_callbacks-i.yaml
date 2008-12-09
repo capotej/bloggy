@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveSupport::Callbacks::ClassMethods#define_callbacks
+params: (*callbacks)
+name: define_callbacks
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,46 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'ID sets up a basic framework for implementing an id based sessioning service.
+    Cookies sent to the client for maintaining sessions will only contain an id reference.
+    Only #get_session and #set_session should need to be overwritten.'
+- !ruby/struct:SM::Flow::P 
+  body: All parameters are optional.
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":key determines the name of the cookie, by default it is 'rack.session'"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":domain and :path set the related cookie values, by default domain is nil, \
+      and the path is '/'."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":expire_after is the number of seconds in which the session cookie will \
+      expire. By default it is set not to provide any expiry time."
+    label: '*'
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: key
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: context
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Rack::Session::Abstract::ID
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{           :key =>           ''rack.session'',           :path =>          ''/'',           :domain
+    =>        nil,           :expire_after =>  nil'
+  name: DEFAULT_OPTIONS
+superclass: Object
+name: ID

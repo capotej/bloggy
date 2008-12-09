@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: True when environment is :production.
+full_name: Sinatra::Application#production?
+params: ()
+name: production?
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Enable the options specified by setting their values to true. For example,
+    to enable sessions and logging:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  enable :sessions, :logging\n"
+full_name: Sinatra::Application#enable
+params: (*opts)
+name: enable
+is_singleton: false
+aliases: []
+

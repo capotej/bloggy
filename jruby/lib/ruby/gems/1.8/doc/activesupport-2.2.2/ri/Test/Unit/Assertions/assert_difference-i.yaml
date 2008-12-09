@@ -1,0 +1,37 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: ""
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Test numeric difference between the return value of an expression as a result
+    of what is evaluated in the yielded block.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  assert_difference 'Article.count' do\n    post :create, :article =&gt; \
+    {...}\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: An arbitrary expression is passed in and evaluated.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  assert_difference 'assigns(:article).comments(:reload).size' do\n    post \
+    :create, :comment =&gt; {...}\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: An arbitrary positive or negative difference can be specified. The default
+    is +1.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  assert_difference 'Article.count', -1 do\n    post :delete, :id =&gt; ...\n\
+    \  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: An array of expressions can also be passed in and evaluated.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  assert_difference [ 'Article.count', 'Post.count' ], +2 do\n    post :create, \
+    :article =&gt; {...}\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: A error message can be specified.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  assert_difference 'Article.count', -1, &quot;An Article should be destroyed&quot; \
+    do\n    post :delete, :id =&gt; ...\n  end\n"
+full_name: Test::Unit::Assertions#assert_difference
+params: (expressions, difference = 1, message = nil, &block) {|| ...}
+name: assert_difference
+is_singleton: false
+aliases: []
+

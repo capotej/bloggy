@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Rack::Request</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Rack::Request</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/rack/request_rb.html">
+                lib/rack/request.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="Request.html">Rack::Request</a> provides a convenient interface to
+a <a href="../Rack.html">Rack</a> environment. It is stateless, the
+environment <tt>env</tt> passed to the constructor will be directly
+modified.
+</p>
+<pre>
+  req = Rack::Request.new(env)
+  req.post?
+  req.params[&quot;data&quot;]
+</pre>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000114">GET</a>&nbsp;&nbsp;
+      <a href="#M000115">POST</a>&nbsp;&nbsp;
+      <a href="#M000117">[]</a>&nbsp;&nbsp;
+      <a href="#M000118">[]=</a>&nbsp;&nbsp;
+      <a href="#M000126">accept_encoding</a>&nbsp;&nbsp;
+      <a href="#M000093">body</a>&nbsp;&nbsp;
+      <a href="#M000104">content_charset</a>&nbsp;&nbsp;
+      <a href="#M000100">content_length</a>&nbsp;&nbsp;
+      <a href="#M000101">content_type</a>&nbsp;&nbsp;
+      <a href="#M000122">cookies</a>&nbsp;&nbsp;
+      <a href="#M000111">delete?</a>&nbsp;&nbsp;
+      <a href="#M000113">form_data?</a>&nbsp;&nbsp;
+      <a href="#M000125">fullpath</a>&nbsp;&nbsp;
+      <a href="#M000108">get?</a>&nbsp;&nbsp;
+      <a href="#M000112">head?</a>&nbsp;&nbsp;
+      <a href="#M000105">host</a>&nbsp;&nbsp;
+      <a href="#M000102">media_type</a>&nbsp;&nbsp;
+      <a href="#M000103">media_type_params</a>&nbsp;&nbsp;
+      <a href="#M000092">new</a>&nbsp;&nbsp;
+      <a href="#M000116">params</a>&nbsp;&nbsp;
+      <a href="#M000096">path_info</a>&nbsp;&nbsp;
+      <a href="#M000107">path_info=</a>&nbsp;&nbsp;
+      <a href="#M000097">port</a>&nbsp;&nbsp;
+      <a href="#M000109">post?</a>&nbsp;&nbsp;
+      <a href="#M000110">put?</a>&nbsp;&nbsp;
+      <a href="#M000099">query_string</a>&nbsp;&nbsp;
+      <a href="#M000120">referer</a>&nbsp;&nbsp;
+      <a href="#M000121">referrer</a>&nbsp;&nbsp;
+      <a href="#M000098">request_method</a>&nbsp;&nbsp;
+      <a href="#M000094">scheme</a>&nbsp;&nbsp;
+      <a href="#M000095">script_name</a>&nbsp;&nbsp;
+      <a href="#M000106">script_name=</a>&nbsp;&nbsp;
+      <a href="#M000124">url</a>&nbsp;&nbsp;
+      <a href="#M000119">values_at</a>&nbsp;&nbsp;
+      <a href="#M000123">xhr?</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FORM_DATA_MEDIA_TYPES</td>
+          <td>=</td>
+          <td class="context-item-value">[       nil,       'application/x-www-form-urlencoded',       'multipart/form-data'</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The set of form-data media-types. Requests that do not indicate one of the
+media types presents in this list will not be eligible for form-data /
+param parsing.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">env</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The environment of the request.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000092" class="method-detail">
+        <a name="M000092"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000092.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000092.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(env)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000114" class="method-detail">
+        <a name="M000114"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000114.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000114.html');return false;">
+          <span class="method-name">GET</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the data recieved in the query string.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000115" class="method-detail">
+        <a name="M000115"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000115.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000115.html');return false;">
+          <span class="method-name">POST</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the data recieved in the request <a
+href="Request.html#M000093">body</a>.
+</p>
+<p>
+This method support both application/x-www-form-urlencoded and
+multipart/form-data.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000117" class="method-detail">
+        <a name="M000117"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000117.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000117.html');return false;">
+          <span class="method-name">[]</span><span class="method-args">(key)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+shortcut for request.params[key]
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000118" class="method-detail">
+        <a name="M000118"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000118.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000118.html');return false;">
+          <span class="method-name">[]=</span><span class="method-args">(key, value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+shortcut for request.params[key] = value
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000126" class="method-detail">
+        <a name="M000126"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000126.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000126.html');return false;">
+          <span class="method-name">accept_encoding</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000093" class="method-detail">
+        <a name="M000093"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000093.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000093.html');return false;">
+          <span class="method-name">body</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000104" class="method-detail">
+        <a name="M000104"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000104.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000104.html');return false;">
+          <span class="method-name">content_charset</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The character set of the request <a href="Request.html#M000093">body</a> if
+a &quot;charset&quot; media type parameter was given, or nil if no
+&quot;charset&quot; was specified. Note that, per RFC2616, text/* media
+types that specify no explicit charset are to be considered ISO-8859-1.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000100" class="method-detail">
+        <a name="M000100"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000100.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000100.html');return false;">
+          <span class="method-name">content_length</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000101" class="method-detail">
+        <a name="M000101"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000101.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000101.html');return false;">
+          <span class="method-name">content_type</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000122" class="method-detail">
+        <a name="M000122"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000122.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000122.html');return false;">
+          <span class="method-name">cookies</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000111" class="method-detail">
+        <a name="M000111"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000111.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000111.html');return false;">
+          <span class="method-name">delete?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000113" class="method-detail">
+        <a name="M000113"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000113.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000113.html');return false;">
+          <span class="method-name">form_data?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Determine whether the request <a href="Request.html#M000093">body</a>
+contains form-data by checking the request <a
+href="Request.html#M000102">media_type</a> against registered form-data
+media-types: &quot;application/x-www-form-urlencoded&quot; and
+&quot;multipart/form-data&quot;. The list of form-data media types can be
+modified through the <tt>FORM_DATA_MEDIA_TYPES</tt> array.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000125" class="method-detail">
+        <a name="M000125"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000125.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000125.html');return false;">
+          <span class="method-name">fullpath</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000108" class="method-detail">
+        <a name="M000108"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000108.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000108.html');return false;">
+          <span class="method-name">get?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000112" class="method-detail">
+        <a name="M000112"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000112.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000112.html');return false;">
+          <span class="method-name">head?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000105" class="method-detail">
+        <a name="M000105"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000105.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000105.html');return false;">
+          <span class="method-name">host</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000102" class="method-detail">
+        <a name="M000102"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000102.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000102.html');return false;">
+          <span class="method-name">media_type</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The media type (type/subtype) portion of the CONTENT_TYPE header without
+any media type parameters. e.g., when CONTENT_TYPE is
+&quot;text/plain;charset=utf-8&quot;, the media-type is
+&quot;text/plain&quot;.
+</p>
+<p>
+For more information on the use of media types in HTTP, see: <a
+href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.7">www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.7</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000103" class="method-detail">
+        <a name="M000103"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000103.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000103.html');return false;">
+          <span class="method-name">media_type_params</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The media type parameters provided in CONTENT_TYPE as a Hash, or an empty
+Hash if no CONTENT_TYPE or media-type parameters were provided. e.g., when
+the CONTENT_TYPE is &quot;text/plain;charset=utf-8&quot;, this method
+responds with the following Hash:
+</p>
+<pre>
+  { 'charset' =&gt; 'utf-8' }
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000116" class="method-detail">
+        <a name="M000116"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000116.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000116.html');return false;">
+          <span class="method-name">params</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The union of <a href="Request.html#M000114">GET</a> and <a
+href="Request.html#M000115">POST</a> data.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000096" class="method-detail">
+        <a name="M000096"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000096.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000096.html');return false;">
+          <span class="method-name">path_info</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000107" class="method-detail">
+        <a name="M000107"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000107.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000107.html');return false;">
+          <span class="method-name">path_info=</span><span class="method-args">(s)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000097" class="method-detail">
+        <a name="M000097"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000097.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000097.html');return false;">
+          <span class="method-name">port</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000109" class="method-detail">
+        <a name="M000109"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000109.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000109.html');return false;">
+          <span class="method-name">post?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000110" class="method-detail">
+        <a name="M000110"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000110.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000110.html');return false;">
+          <span class="method-name">put?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000099" class="method-detail">
+        <a name="M000099"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000099.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000099.html');return false;">
+          <span class="method-name">query_string</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000120" class="method-detail">
+        <a name="M000120"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000120.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000120.html');return false;">
+          <span class="method-name">referer</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+the <a href="Request.html#M000120">referer</a> of the client or
+&#8217;/&#8217;
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000121" class="method-detail">
+        <a name="M000121"></a>
+
+        <div class="method-heading">
+          <span class="method-name">referrer</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Request.html#M000120">referer</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000098" class="method-detail">
+        <a name="M000098"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000098.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000098.html');return false;">
+          <span class="method-name">request_method</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000094" class="method-detail">
+        <a name="M000094"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000094.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000094.html');return false;">
+          <span class="method-name">scheme</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000095" class="method-detail">
+        <a name="M000095"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000095.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000095.html');return false;">
+          <span class="method-name">script_name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000106" class="method-detail">
+        <a name="M000106"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000106.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000106.html');return false;">
+          <span class="method-name">script_name=</span><span class="method-args">(s)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000124" class="method-detail">
+        <a name="M000124"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000124.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000124.html');return false;">
+          <span class="method-name">url</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Tries to return a remake of the original request URL as a string.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000119" class="method-detail">
+        <a name="M000119"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000119.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000119.html');return false;">
+          <span class="method-name">values_at</span><span class="method-args">(*keys)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+like Hash#values_at
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000123" class="method-detail">
+        <a name="M000123"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000123.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000123.html');return false;">
+          <span class="method-name">xhr?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

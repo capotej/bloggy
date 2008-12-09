@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::Quoting#quoted_string_prefix
+params: ()
+name: quoted_string_prefix
+is_singleton: false
+aliases: []
+

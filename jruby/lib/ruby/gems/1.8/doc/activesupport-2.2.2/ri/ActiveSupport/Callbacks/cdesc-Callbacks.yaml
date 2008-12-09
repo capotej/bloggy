@@ -1,0 +1,53 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Callbacks are hooks into the lifecycle of an object that allow you to trigger
+    logic before or after an alteration of the object state.
+- !ruby/struct:SM::Flow::P 
+  body: Mixing in this module allows you to define callbacks in your class.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Storage\n    include ActiveSupport::Callbacks\n\n    define_callbacks \
+    :before_save, :after_save\n  end\n\n  class ConfigStorage &lt; Storage\n    before_save \
+    :saving_message\n    def saving_message\n      puts &quot;saving...&quot;\n   \
+    \ end\n\n    after_save do |object|\n      puts &quot;saved&quot;\n    end\n\n\
+    \    def save\n      run_callbacks(:before_save)\n      puts &quot;- save&quot;\n\
+    \      run_callbacks(:after_save)\n    end\n  end\n\n  config = ConfigStorage.new\n\
+    \  config.save\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Output:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  saving...\n  - save\n  saved\n"
+- !ruby/struct:SM::Flow::P 
+  body: Callbacks from parent classes are inherited.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Storage\n    include ActiveSupport::Callbacks\n\n    define_callbacks \
+    :before_save, :after_save\n\n    before_save :prepare\n    def prepare\n      \
+    puts &quot;preparing save&quot;\n    end\n  end\n\n  class ConfigStorage &lt; \
+    Storage\n    before_save :saving_message\n    def saving_message\n      puts &quot;saving...&quot;\n\
+    \    end\n\n    after_save do |object|\n      puts &quot;saved&quot;\n    end\n\
+    \n    def save\n      run_callbacks(:before_save)\n      puts &quot;- save&quot;\n\
+    \      run_callbacks(:after_save)\n    end\n  end\n\n  config = ConfigStorage.new\n\
+    \  config.save\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Output:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  preparing save\n  saving...\n  - save\n  saved\n"
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: run_callbacks
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: included
+full_name: ActiveSupport::Callbacks
+constants: []
+
+superclass: 
+name: Callbacks

@@ -1,0 +1,40 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: handler_map
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: handler_map
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: register
+- !ruby/object:RI::MethodSummary 
+  name: register
+- !ruby/object:RI::MethodSummary 
+  name: resolve
+- !ruby/object:RI::MethodSummary 
+  name: resolve
+- !ruby/object:RI::MethodSummary 
+  name: unregister
+- !ruby/object:RI::MethodSummary 
+  name: unregister
+- !ruby/object:RI::MethodSummary 
+  name: uris
+- !ruby/object:RI::MethodSummary 
+  name: uris
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Mongrel::URIClassifier
+constants: []
+
+superclass: Object
+name: URIClassifier

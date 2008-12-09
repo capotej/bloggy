@@ -1,0 +1,55 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds a new index to the table. <tt>column_name</tt> can be a single Symbol,
+    or an Array of Symbols.
+- !ruby/struct:SM::Flow::P 
+  body: The index will be named after the table and the first column name, unless
+    you pass <tt>:name</tt> as an option.
+- !ruby/struct:SM::Flow::P 
+  body: When creating an index on multiple columns, the first column is used as a
+    name for the index. For example, when you specify an index on two columns [<tt>:first</tt>,
+    <tt>:last</tt>], the DBMS creates an index for both columns as well as an index
+    for the first column <tt>:first</tt>. Using just the first name for this index
+    makes sense, because you will never have to create a singular index with this
+    name.
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 5
+- !ruby/struct:SM::Flow::H 
+  text: Creating a simple index
+  level: 6
+- !ruby/struct:SM::Flow::VERB 
+  body: " add_index(:suppliers, :name)\n"
+- !ruby/struct:SM::Flow::P 
+  body: generates
+- !ruby/struct:SM::Flow::VERB 
+  body: " CREATE INDEX suppliers_name_index ON suppliers(name)\n"
+- !ruby/struct:SM::Flow::H 
+  text: Creating a unique index
+  level: 6
+- !ruby/struct:SM::Flow::VERB 
+  body: " add_index(:accounts, [:branch_id, :party_id], :unique =&gt; true)\n"
+- !ruby/struct:SM::Flow::P 
+  body: generates
+- !ruby/struct:SM::Flow::VERB 
+  body: " CREATE UNIQUE INDEX accounts_branch_id_party_id_index ON accounts(branch_id, \
+    party_id)\n"
+- !ruby/struct:SM::Flow::H 
+  text: Creating a named index
+  level: 6
+- !ruby/struct:SM::Flow::VERB 
+  body: " add_index(:accounts, [:branch_id, :party_id], :unique =&gt; true, :name \
+    =&gt; 'by_branch_party')\n"
+- !ruby/struct:SM::Flow::P 
+  body: generates
+- !ruby/struct:SM::Flow::VERB 
+  body: " CREATE UNIQUE INDEX by_branch_party ON accounts(branch_id, party_id)\n"
+full_name: ActiveRecord::ConnectionAdapters::SchemaStatements#add_index
+params: (table_name, column_name, options = {})
+name: add_index
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>merge_translations (I18n::Backend::Simple)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/vendor/i18n-0.0.1/i18n/backend/simple.rb, line 196</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">merge_translations</span>(<span class="ruby-identifier">locale</span>, <span class="ruby-identifier">data</span>)
+          <span class="ruby-identifier">locale</span> = <span class="ruby-identifier">locale</span>.<span class="ruby-identifier">to_sym</span>
+          <span class="ruby-identifier">translations</span>[<span class="ruby-identifier">locale</span>] <span class="ruby-operator">||=</span> {}
+          <span class="ruby-identifier">data</span> = <span class="ruby-identifier">deep_symbolize_keys</span>(<span class="ruby-identifier">data</span>)
+
+          <span class="ruby-comment cmt"># deep_merge by Stefan Rusterholz, see http://www.ruby-forum.com/topic/142809</span>
+          <span class="ruby-identifier">merger</span> = <span class="ruby-identifier">proc</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">v1</span>, <span class="ruby-identifier">v2</span><span class="ruby-operator">|</span> <span class="ruby-constant">Hash</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">v1</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Hash</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">v2</span> <span class="ruby-value">? </span><span class="ruby-identifier">v1</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">v2</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">merger</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">v2</span> }
+          <span class="ruby-identifier">translations</span>[<span class="ruby-identifier">locale</span>].<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">data</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">merger</span>)
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

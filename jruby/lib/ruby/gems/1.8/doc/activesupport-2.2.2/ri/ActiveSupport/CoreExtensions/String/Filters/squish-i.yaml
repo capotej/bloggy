@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the string, first removing all whitespace on both ends of the string,
+    and then changing remaining consecutive whitespace groups into one space each.
+- !ruby/struct:SM::Flow::P 
+  body: 'Examples:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  %{ Multi-line\n     string }.squish                   # =&gt; &quot;Multi-line \
+    string&quot;\n  &quot; foo   bar    \\n   \\t   boo&quot;.squish # =&gt; &quot;foo \
+    bar boo&quot;\n"
+full_name: ActiveSupport::CoreExtensions::String::Filters#squish
+params: ()
+name: squish
+is_singleton: false
+aliases: []
+

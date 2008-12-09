@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>establish_connection (ActiveRecord::Base)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/abstract/connection_specification.rb, line 49</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">establish_connection</span>(<span class="ruby-identifier">spec</span> = <span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">spec</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">AdapterNotSpecified</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-constant">RAILS_ENV</span>
+          <span class="ruby-identifier">establish_connection</span>(<span class="ruby-constant">RAILS_ENV</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">ConnectionSpecification</span>
+          <span class="ruby-ivar">@@connection_handler</span>.<span class="ruby-identifier">establish_connection</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">spec</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Symbol</span>, <span class="ruby-constant">String</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">configuration</span> = <span class="ruby-identifier">configurations</span>[<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">to_s</span>]
+            <span class="ruby-identifier">establish_connection</span>(<span class="ruby-identifier">configuration</span>)
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">AdapterNotSpecified</span>, <span class="ruby-node">&quot;#{spec} database is not configured&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">spec</span> = <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">symbolize_keys</span>
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">:adapter</span>) <span class="ruby-keyword kw">then</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">AdapterNotSpecified</span>, <span class="ruby-value str">&quot;database configuration does not specify adapter&quot;</span> <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-identifier">require</span> <span class="ruby-value str">'rubygems'</span>
+            <span class="ruby-identifier">gem</span> <span class="ruby-node">&quot;activerecord-#{spec[:adapter]}-adapter&quot;</span>
+            <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;active_record/connection_adapters/#{spec[:adapter]}_adapter&quot;</span>
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span>
+            <span class="ruby-keyword kw">begin</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;active_record/connection_adapters/#{spec[:adapter]}_adapter&quot;</span>
+            <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span>
+              <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Please install the #{spec[:adapter]} adapter: `gem install activerecord-#{spec[:adapter]}-adapter` (#{$!})&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">adapter_method</span> = <span class="ruby-node">&quot;#{spec[:adapter]}_connection&quot;</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">adapter_method</span>)
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">AdapterNotFound</span>, <span class="ruby-node">&quot;database configuration specifies nonexistent #{spec[:adapter]} adapter&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">remove_connection</span>
+          <span class="ruby-identifier">establish_connection</span>(<span class="ruby-constant">ConnectionSpecification</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">spec</span>, <span class="ruby-identifier">adapter_method</span>))
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

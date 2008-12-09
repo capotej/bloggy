@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Rack::Auth::OpenID)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/auth/openid.rb, line 137</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">realm</span>, <span class="ruby-identifier">options</span>={})
+        <span class="ruby-ivar">@realm</span> = <span class="ruby-identifier">realm</span>
+        <span class="ruby-identifier">realm</span> = <span class="ruby-constant">URI</span>(<span class="ruby-identifier">realm</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">realm</span>.<span class="ruby-identifier">path</span>.<span class="ruby-identifier">empty?</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Invalid realm path: '#{realm.path}'&quot;</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">realm</span>.<span class="ruby-identifier">absolute?</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Realm '#{@realm}' not absolute&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+        [<span class="ruby-identifier">:return_to</span>, <span class="ruby-identifier">:login_good</span>, <span class="ruby-identifier">:login_fail</span>, <span class="ruby-identifier">:login_quit</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">luri</span> = <span class="ruby-constant">URI</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">key</span>])
+            <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">luri</span>.<span class="ruby-identifier">absolute?</span>
+              <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;:#{key} is not an absolute uri: '#{luri}'&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:return_to</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">ruri</span> = <span class="ruby-constant">URI</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:return_to</span>])
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ruri</span>.<span class="ruby-identifier">path</span>.<span class="ruby-identifier">empty?</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Invalid return_to path: '#{ruri.path}'&quot;</span>
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">realm</span>.<span class="ruby-identifier">path</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">ruri</span>.<span class="ruby-identifier">path</span>[<span class="ruby-value">0</span>, <span class="ruby-identifier">realm</span>.<span class="ruby-identifier">path</span>.<span class="ruby-identifier">size</span>]
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">'return_to not within realm.'</span> \
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># TODO: extension support</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">extensions</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:extensions</span>)
+          <span class="ruby-identifier">extensions</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ext</span>, <span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">add_extension</span> <span class="ruby-identifier">ext</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-ivar">@options</span> = {
+          <span class="ruby-identifier">:session_key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'rack.session'</span>,
+          <span class="ruby-identifier">:openid_param</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'openid_identifier'</span>,
+          <span class="ruby-comment cmt">#:return_to, :login_good, :login_fail, :login_quit</span>
+          <span class="ruby-comment cmt">#:no_session, :auth_fail, :error</span>
+          <span class="ruby-identifier">:store</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OIDStore</span>,
+          <span class="ruby-identifier">:immediate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+          <span class="ruby-identifier">:anonymous</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+          <span class="ruby-identifier">:catch_errors</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>
+        }.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
+        <span class="ruby-ivar">@extensions</span> = {}
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

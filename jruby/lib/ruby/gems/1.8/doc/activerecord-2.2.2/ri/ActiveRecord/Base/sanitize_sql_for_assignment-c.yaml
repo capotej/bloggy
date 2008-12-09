@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Accepts an array, hash, or string of SQL conditions and sanitizes them into
+    a valid SQL fragment for a SET clause.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  { :name =&gt; nil, :group_id =&gt; 4 }  returns &quot;name = NULL , group_id='4'&quot;\n"
+full_name: ActiveRecord::Base::sanitize_sql_for_assignment
+params: (assignments)
+name: sanitize_sql_for_assignment
+is_singleton: true
+aliases: []
+

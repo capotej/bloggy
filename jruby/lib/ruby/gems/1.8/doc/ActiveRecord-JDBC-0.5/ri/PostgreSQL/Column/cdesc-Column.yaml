@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: cast_to_boolean
+- !ruby/object:RI::MethodSummary 
+  name: cast_to_date_or_time
+- !ruby/object:RI::MethodSummary 
+  name: cast_to_time
+- !ruby/object:RI::MethodSummary 
+  name: default_value
+- !ruby/object:RI::MethodSummary 
+  name: guess_date_or_time
+- !ruby/object:RI::MethodSummary 
+  name: simplified_type
+- !ruby/object:RI::MethodSummary 
+  name: type_cast
+class_methods: []
+
+full_name: "::PostgreSQL::Column"
+constants: []
+
+superclass: 
+name: Column

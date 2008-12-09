@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveSupport::Testing::Metrics::[]
+params: (name)
+name: '[]'
+is_singleton: true
+aliases: []
+

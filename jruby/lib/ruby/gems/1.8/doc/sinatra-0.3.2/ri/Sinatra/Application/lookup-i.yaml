@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Visits and invokes each handler registered for the <tt>request_method</tt>
+    in definition order until a Result response is produced. If no handler responds
+    with a Result, the NotFound error handler is invoked.
+- !ruby/struct:SM::Flow::P 
+  body: When the request_method is &quot;HEAD&quot; and no valid Result is produced
+    by the set of handlers registered for HEAD requests, an attempt is made to invoke
+    the GET handlers to generate the response before resorting to the default error
+    handler.
+full_name: Sinatra::Application#lookup
+params: (request)
+name: lookup
+is_singleton: false
+aliases: []
+

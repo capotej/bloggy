@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the offset of this time zone as a formatted string, of the format
+    &quot;+HH:MM&quot;.
+full_name: ActiveSupport::TimeZone#formatted_offset
+params: (colon=true, alternate_utc_string = nil)
+name: formatted_offset
+is_singleton: false
+aliases: []
+

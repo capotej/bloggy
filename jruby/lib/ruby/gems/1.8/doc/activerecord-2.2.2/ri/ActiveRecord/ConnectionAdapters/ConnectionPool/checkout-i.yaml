@@ -1,0 +1,31 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Check-out a database connection from the pool, indicating that you want to
+    use it. You should call #checkin when you no longer need this.'
+- !ruby/struct:SM::Flow::P 
+  body: 'This is done by either returning an existing connection, or by creating a
+    new connection. If the maximum number of connections for this pool has already
+    been reached, but the pool is empty (i.e. they''re all being used), then this
+    method will wait until a thread has checked in a connection. The wait time is
+    bounded however: if no connection can be checked out within the timeout specified
+    for this pool, then a ConnectionTimeoutError exception will be raised.'
+- !ruby/struct:SM::Flow::P 
+  body: 'Returns: an AbstractAdapter object.'
+- !ruby/struct:SM::Flow::P 
+  body: 'Raises:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: 'ConnectionTimeoutError: no connection can be obtained from the pool within
+      the timeout period.'
+    label: '-'
+full_name: ActiveRecord::ConnectionAdapters::ConnectionPool#checkout
+params: ()
+name: checkout
+is_singleton: false
+aliases: []
+

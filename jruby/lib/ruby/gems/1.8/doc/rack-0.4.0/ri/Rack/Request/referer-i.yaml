@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: the referer of the client or '/'
+full_name: Rack::Request#referer
+params: ()
+name: referer
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: referrer

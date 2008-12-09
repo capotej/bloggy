@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Casts value (which is a String) to an appropriate instance.
+full_name: ActiveRecord::ConnectionAdapters::Column#type_cast
+params: (value)
+name: type_cast
+is_singleton: false
+aliases: []
+

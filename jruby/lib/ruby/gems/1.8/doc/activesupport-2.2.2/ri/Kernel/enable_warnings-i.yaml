@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: ""
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets $VERBOSE to true for the duration of the block and back to its original
+    value afterwards.
+full_name: Kernel#enable_warnings
+params: () {|| ...}
+name: enable_warnings
+is_singleton: false
+aliases: []
+

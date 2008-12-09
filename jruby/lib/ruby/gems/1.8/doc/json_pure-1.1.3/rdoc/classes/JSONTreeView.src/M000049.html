@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>ask_for_element (JSONTreeView)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/json/editor.rb, line 897</span>
+897:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ask_for_element</span>(<span class="ruby-identifier">parent</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">default_type</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">value_text</span> = <span class="ruby-ivar">@content</span>)
+898:         <span class="ruby-identifier">type_input</span> = <span class="ruby-identifier">value_input</span> = <span class="ruby-keyword kw">nil</span>
+899: 
+900:         <span class="ruby-identifier">dialog</span> = <span class="ruby-constant">Dialog</span>.<span class="ruby-identifier">new</span>(
+901:           <span class="ruby-node">&quot;New element into #{parent ? parent.type : 'root'}&quot;</span>,
+902:           <span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>,
+903:           [ <span class="ruby-constant">Stock</span><span class="ruby-operator">::</span><span class="ruby-constant">OK</span>, <span class="ruby-constant">Dialog</span><span class="ruby-operator">::</span><span class="ruby-constant">RESPONSE_ACCEPT</span> ],
+904:           [ <span class="ruby-constant">Stock</span><span class="ruby-operator">::</span><span class="ruby-constant">CANCEL</span>, <span class="ruby-constant">Dialog</span><span class="ruby-operator">::</span><span class="ruby-constant">RESPONSE_REJECT</span> ]
+905:         )
+906:         <span class="ruby-identifier">hbox</span> = <span class="ruby-constant">HBox</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">false</span>, <span class="ruby-value">5</span>)
+907:         <span class="ruby-identifier">hbox</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;Type:&quot;</span>), <span class="ruby-keyword kw">false</span>)
+908:         <span class="ruby-identifier">hbox</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">type_input</span> = <span class="ruby-constant">ComboBox</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">true</span>))
+909:         <span class="ruby-identifier">default_active</span> = <span class="ruby-value">0</span>
+910:         <span class="ruby-identifier">types</span> = <span class="ruby-identifier">parent</span> <span class="ruby-value">? </span><span class="ruby-constant">ALL_TYPES</span> <span class="ruby-operator">:</span> <span class="ruby-constant">CONTAINER_TYPES</span>
+911:         <span class="ruby-identifier">types</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+912:           <span class="ruby-identifier">type_input</span>.<span class="ruby-identifier">append_text</span>(<span class="ruby-identifier">t</span>)
+913:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">t</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">default_type</span>
+914:             <span class="ruby-identifier">default_active</span> = <span class="ruby-identifier">i</span>
+915:           <span class="ruby-keyword kw">end</span>
+916:         <span class="ruby-keyword kw">end</span>
+917:         <span class="ruby-identifier">type_input</span>.<span class="ruby-identifier">active</span> = <span class="ruby-identifier">default_active</span>
+918:         <span class="ruby-identifier">dialog</span>.<span class="ruby-identifier">vbox</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">hbox</span>, <span class="ruby-keyword kw">false</span>)
+919:         <span class="ruby-identifier">type_input</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-identifier">:changed</span>) <span class="ruby-keyword kw">do</span>
+920:           <span class="ruby-identifier">configure_value</span>(<span class="ruby-identifier">value_input</span>, <span class="ruby-identifier">types</span>[<span class="ruby-identifier">type_input</span>.<span class="ruby-identifier">active</span>])
+921:         <span class="ruby-keyword kw">end</span>
+922: 
+923:         <span class="ruby-identifier">hbox</span> = <span class="ruby-constant">HBox</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">false</span>, <span class="ruby-value">5</span>)
+924:         <span class="ruby-identifier">hbox</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;Value:&quot;</span>), <span class="ruby-keyword kw">false</span>)
+925:         <span class="ruby-identifier">hbox</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">value_input</span> = <span class="ruby-constant">Entry</span>.<span class="ruby-identifier">new</span>)
+926:         <span class="ruby-identifier">value_input</span>.<span class="ruby-identifier">width_chars</span> = <span class="ruby-value">60</span>
+927:         <span class="ruby-identifier">value_input</span>.<span class="ruby-identifier">text</span> = <span class="ruby-identifier">value_text</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value_text</span>
+928:         <span class="ruby-identifier">configure_value</span>(<span class="ruby-identifier">value_input</span>, <span class="ruby-identifier">types</span>[<span class="ruby-identifier">type_input</span>.<span class="ruby-identifier">active</span>])
+929: 
+930:         <span class="ruby-identifier">dialog</span>.<span class="ruby-identifier">vbox</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">hbox</span>, <span class="ruby-keyword kw">false</span>)
+931: 
+932:         <span class="ruby-identifier">dialog</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-value str">'key-press-event'</span><span class="ruby-value str">'key-press-event'</span>, <span class="ruby-operator">&amp;</span><span class="ruby-constant">DEFAULT_DIALOG_KEY_PRESS_HANDLER</span>)
+933:         <span class="ruby-identifier">dialog</span>.<span class="ruby-identifier">show_all</span>
+934:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">focus</span> = <span class="ruby-identifier">dialog</span>
+935:         <span class="ruby-identifier">dialog</span>.<span class="ruby-identifier">run</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">response</span><span class="ruby-operator">|</span> 
+936:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">response</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Dialog</span><span class="ruby-operator">::</span><span class="ruby-constant">RESPONSE_ACCEPT</span>
+937:             <span class="ruby-identifier">type</span> = <span class="ruby-identifier">types</span>[<span class="ruby-identifier">type_input</span>.<span class="ruby-identifier">active</span>]
+938:             <span class="ruby-ivar">@content</span> = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">type</span>
+939:             <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Numeric'</span>
+940:               <span class="ruby-constant">Integer</span>(<span class="ruby-identifier">value_input</span>.<span class="ruby-identifier">text</span>) <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Float</span>(<span class="ruby-identifier">value_input</span>.<span class="ruby-identifier">text</span>) <span class="ruby-keyword kw">rescue</span> <span class="ruby-value">0</span>
+941:             <span class="ruby-keyword kw">else</span>
+942:               <span class="ruby-identifier">value_input</span>.<span class="ruby-identifier">text</span>
+943:             <span class="ruby-keyword kw">end</span>.<span class="ruby-identifier">to_s</span>
+944:             <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">type</span>, <span class="ruby-ivar">@content</span>
+945:           <span class="ruby-keyword kw">end</span>
+946:         <span class="ruby-keyword kw">end</span>
+947:         <span class="ruby-keyword kw">return</span>
+948:       <span class="ruby-keyword kw">ensure</span>
+949:         <span class="ruby-identifier">dialog</span>.<span class="ruby-identifier">destroy</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">dialog</span>
+950:       <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

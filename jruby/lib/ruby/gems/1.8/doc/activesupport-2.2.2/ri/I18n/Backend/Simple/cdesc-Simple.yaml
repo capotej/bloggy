@@ -1,0 +1,55 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: deep_symbolize_keys
+- !ruby/object:RI::MethodSummary 
+  name: default
+- !ruby/object:RI::MethodSummary 
+  name: init_translations
+- !ruby/object:RI::MethodSummary 
+  name: initialized?
+- !ruby/object:RI::MethodSummary 
+  name: interpolate
+- !ruby/object:RI::MethodSummary 
+  name: load_file
+- !ruby/object:RI::MethodSummary 
+  name: load_rb
+- !ruby/object:RI::MethodSummary 
+  name: load_translations
+- !ruby/object:RI::MethodSummary 
+  name: load_yml
+- !ruby/object:RI::MethodSummary 
+  name: localize
+- !ruby/object:RI::MethodSummary 
+  name: lookup
+- !ruby/object:RI::MethodSummary 
+  name: merge_translations
+- !ruby/object:RI::MethodSummary 
+  name: pluralize
+- !ruby/object:RI::MethodSummary 
+  name: reload!
+- !ruby/object:RI::MethodSummary 
+  name: store_translations
+- !ruby/object:RI::MethodSummary 
+  name: translate
+- !ruby/object:RI::MethodSummary 
+  name: translations
+class_methods: []
+
+full_name: I18n::Backend::Simple
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '%w(scope default)'
+  name: INTERPOLATION_RESERVED_KEYS
+- !ruby/object:RI::Constant 
+  comment: 
+  value: /(\\\\)?\{\{([^\}]+)\}\}/
+  name: MATCH
+superclass: Object
+name: Simple

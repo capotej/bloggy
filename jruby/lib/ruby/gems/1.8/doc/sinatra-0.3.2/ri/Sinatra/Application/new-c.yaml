@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create a new Application with a default configuration taken from the default_options
+    Hash.
+- !ruby/struct:SM::Flow::P 
+  body: 'NOTE: A default Application is automatically created the first time any of
+    Sinatra''s DSL related methods is invoked so there is typically no need to create
+    an instance explicitly. See Sinatra::application for more information.'
+full_name: Sinatra::Application::new
+params: ()
+name: new
+is_singleton: true
+aliases: []
+

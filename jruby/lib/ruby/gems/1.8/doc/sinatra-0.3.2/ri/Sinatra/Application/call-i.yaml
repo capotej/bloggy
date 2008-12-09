@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Rack compatible request invocation interface.
+full_name: Sinatra::Application#call
+params: (env)
+name: call
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Overwrite this method for validation checks on all saves and use <tt>Errors.add(field,
+    msg)</tt> for invalid attributes.
+full_name: ActiveRecord::Validations#validate
+params: (
+name: validate
+is_singleton: false
+aliases: []
+

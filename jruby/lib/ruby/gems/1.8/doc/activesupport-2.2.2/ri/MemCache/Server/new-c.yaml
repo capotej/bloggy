@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create a new MemCache::Server object for the memcached instance listening
+    on the given host and port, weighted by the given weight.
+full_name: MemCache::Server::new
+params: (memcache, host, port = DEFAULT_PORT, weight = DEFAULT_WEIGHT)
+name: new
+is_singleton: true
+aliases: []
+

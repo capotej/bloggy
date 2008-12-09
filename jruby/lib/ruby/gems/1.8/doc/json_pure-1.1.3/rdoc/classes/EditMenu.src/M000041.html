@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>sort (EditMenu)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/json/editor.rb, line 611</span>
+611:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sort</span>(<span class="ruby-identifier">item</span>)
+612:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">current</span> = <span class="ruby-identifier">selection</span>.<span class="ruby-identifier">selected</span>
+613:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">current</span>.<span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'Array'</span>
+614:             <span class="ruby-identifier">parent</span> = <span class="ruby-identifier">current</span>.<span class="ruby-identifier">parent</span>
+615:             <span class="ruby-identifier">ary</span> = <span class="ruby-constant">Editor</span>.<span class="ruby-identifier">model2data</span>(<span class="ruby-identifier">current</span>)
+616:             <span class="ruby-identifier">order</span>, <span class="ruby-identifier">reverse</span> = <span class="ruby-identifier">ask_for_order</span>
+617:             <span class="ruby-identifier">order</span> <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">return</span>
+618:             <span class="ruby-keyword kw">begin</span>
+619:               <span class="ruby-identifier">block</span> = <span class="ruby-identifier">eval</span> <span class="ruby-node">&quot;lambda { |x| #{order} }&quot;</span>
+620:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">reverse</span>
+621:                 <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">sort!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">block</span>[<span class="ruby-identifier">b</span>] <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">block</span>[<span class="ruby-identifier">a</span>] }
+622:               <span class="ruby-keyword kw">else</span>
+623:                 <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">sort!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">block</span>[<span class="ruby-identifier">a</span>] <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">block</span>[<span class="ruby-identifier">b</span>] }
+624:               <span class="ruby-keyword kw">end</span>
+625:             <span class="ruby-keyword kw">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+626:               <span class="ruby-constant">Editor</span>.<span class="ruby-identifier">error_dialog</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-node">&quot;Failed to sort Array with #{order}: #{e}!&quot;</span>)
+627:             <span class="ruby-keyword kw">else</span>
+628:               <span class="ruby-constant">Editor</span>.<span class="ruby-identifier">data2model</span>(<span class="ruby-identifier">ary</span>, <span class="ruby-identifier">model</span>, <span class="ruby-identifier">parent</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+629:                 <span class="ruby-identifier">m</span>.<span class="ruby-identifier">insert_before</span>(<span class="ruby-identifier">parent</span>, <span class="ruby-identifier">current</span>)
+630:               <span class="ruby-keyword kw">end</span>
+631:               <span class="ruby-identifier">model</span>.<span class="ruby-identifier">remove</span>(<span class="ruby-identifier">current</span>)
+632:               <span class="ruby-identifier">expand_collapse</span>(<span class="ruby-identifier">parent</span>)
+633:               <span class="ruby-identifier">window</span>.<span class="ruby-identifier">change</span>
+634:               <span class="ruby-identifier">toplevel</span>.<span class="ruby-identifier">display_status</span>(<span class="ruby-value str">&quot;Array has been sorted.&quot;</span>)
+635:             <span class="ruby-keyword kw">end</span>
+636:           <span class="ruby-keyword kw">else</span>
+637:             <span class="ruby-identifier">toplevel</span>.<span class="ruby-identifier">display_status</span>(<span class="ruby-value str">&quot;Only Array nodes can be sorted!&quot;</span>)
+638:           <span class="ruby-keyword kw">end</span>
+639:         <span class="ruby-keyword kw">else</span>
+640:             <span class="ruby-identifier">toplevel</span>.<span class="ruby-identifier">display_status</span>(<span class="ruby-value str">&quot;Select an Array to sort first!&quot;</span>)
+641:         <span class="ruby-keyword kw">end</span>
+642:       <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveSupport::CoreExtensions::String::Conversions#to_date
+params: ()
+name: to_date
+is_singleton: false
+aliases: []
+

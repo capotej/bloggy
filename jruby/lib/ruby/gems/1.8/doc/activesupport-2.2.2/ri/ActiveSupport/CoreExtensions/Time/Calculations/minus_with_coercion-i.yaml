@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Time#- can also be used to determine the number of seconds between two Time
+    instances. We're layering on additional behavior so that ActiveSupport::TimeWithZone
+    instances are coerced into values that Time#- will recognize
+full_name: ActiveSupport::CoreExtensions::Time::Calculations#minus_with_coercion
+params: (other)
+name: minus_with_coercion
+is_singleton: false
+aliases: []
+

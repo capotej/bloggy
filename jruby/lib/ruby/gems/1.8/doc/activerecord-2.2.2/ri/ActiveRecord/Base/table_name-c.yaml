@@ -1,0 +1,42 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Guesses the table name (in forced lower-case) based on the name of the class
+    in the inheritance hierarchy descending directly from ActiveRecord::Base. So if
+    the hierarchy looks like: Reply &lt; Message &lt; ActiveRecord::Base, then Message
+    is used to guess the table name even when called on Reply. The rules used to do
+    the guess are handled by the Inflector class in Active Support, which knows almost
+    all common English inflections. You can add new inflections in config/initializers/inflections.rb.'
+- !ruby/struct:SM::Flow::P 
+  body: Nested classes are given table names prefixed by the singular form of the
+    parent's table name. Enclosing modules are not considered.
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Invoice &lt; ActiveRecord::Base; end;\n  file                  class \
+    \              table_name\n  invoice.rb            Invoice             invoices\n\
+    \n  class Invoice &lt; ActiveRecord::Base; class Lineitem &lt; ActiveRecord::Base; \
+    end; end;\n  file                  class               table_name\n  invoice.rb \
+    \           Invoice::Lineitem   invoice_lineitems\n\n  module Invoice; class Lineitem \
+    &lt; ActiveRecord::Base; end; end;\n  file                  class             \
+    \  table_name\n  invoice/lineitem.rb   Invoice::Lineitem   lineitems\n"
+- !ruby/struct:SM::Flow::P 
+  body: Additionally, the class-level <tt>table_name_prefix</tt> is prepended and
+    the <tt>table_name_suffix</tt> is appended. So if you have &quot;myapp_&quot;
+    as a prefix, the table name guess for an Invoice class becomes &quot;myapp_invoices&quot;.
+    Invoice::Lineitem becomes &quot;myapp_invoice_lineitems&quot;.
+- !ruby/struct:SM::Flow::P 
+  body: 'You can also overwrite this class method to allow for unguessable links,
+    such as a Mouse class with a link to a &quot;mice&quot; table. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Mouse &lt; ActiveRecord::Base\n    set_table_name &quot;mice&quot;\n\
+    \  end\n"
+full_name: ActiveRecord::Base::table_name
+params: ()
+name: table_name
+is_singleton: true
+aliases: []
+

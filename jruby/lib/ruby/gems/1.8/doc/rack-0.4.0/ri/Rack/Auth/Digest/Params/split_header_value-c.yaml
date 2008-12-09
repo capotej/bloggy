@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Rack::Auth::Digest::Params::split_header_value
+params: (str)
+name: split_header_value
+is_singleton: true
+aliases: []
+

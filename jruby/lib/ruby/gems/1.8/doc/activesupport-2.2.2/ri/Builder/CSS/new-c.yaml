@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create a CSS builder.
+- !ruby/object:SM::Flow::LIST 
+  type: :NOTE
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: Object receiving the markup.1 <tt>out</tt> must respond to <tt>&lt;&lt;</tt>.
+    label: 'out:'
+  - !ruby/struct:SM::Flow::LI 
+    body: Number of spaces used for indentation (0 implies no indentation and no line
+      breaks).
+    label: 'indent:'
+full_name: Builder::CSS::new
+params: (indent=2)
+name: new
+is_singleton: true
+aliases: []
+

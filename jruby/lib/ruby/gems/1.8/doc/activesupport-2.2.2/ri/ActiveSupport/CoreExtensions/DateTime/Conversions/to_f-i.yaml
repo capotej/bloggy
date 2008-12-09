@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converts self to a floating-point number of seconds since the Unix epoch
+full_name: ActiveSupport::CoreExtensions::DateTime::Conversions#to_f
+params: ()
+name: to_f
+is_singleton: false
+aliases: []
+

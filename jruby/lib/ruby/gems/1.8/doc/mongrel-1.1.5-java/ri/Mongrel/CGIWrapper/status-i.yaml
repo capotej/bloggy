@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Computes the status once, but lazily so that people who call header twice
+    don't get penalized. Because CGI insists on including the options status message
+    in the status we have to do a bit of parsing.
+full_name: Mongrel::CGIWrapper#status
+params: ()
+name: status
+is_singleton: false
+aliases: []
+

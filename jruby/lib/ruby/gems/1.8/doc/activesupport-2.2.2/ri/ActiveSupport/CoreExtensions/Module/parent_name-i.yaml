@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the name of the module containing this one.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  p M::N.parent_name # =&gt; &quot;M&quot;\n"
+full_name: ActiveSupport::CoreExtensions::Module#parent_name
+params: ()
+name: parent_name
+is_singleton: false
+aliases: []
+

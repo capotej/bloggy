@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Reverse operation of g_unpack.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Chars.g_pack(Chars.g_unpack('\xe0\xa4\x95\xe0\xa5\x8d\xe0\xa4\xb7\xe0\xa4\
+    \xbf')) #=&gt; '\xe0\xa4\x95\xe0\xa5\x8d\xe0\xa4\xb7\xe0\xa4\xbf'\n"
+full_name: ActiveSupport::Multibyte::Chars::g_pack
+params: (unpacked)
+name: g_pack
+is_singleton: true
+aliases: []
+

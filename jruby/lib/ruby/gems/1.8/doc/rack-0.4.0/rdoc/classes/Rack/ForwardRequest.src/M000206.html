@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Rack::ForwardRequest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/recursive.rb, line 13</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">env</span>={})
+      <span class="ruby-ivar">@url</span> = <span class="ruby-constant">URI</span>(<span class="ruby-identifier">url</span>)
+      <span class="ruby-ivar">@env</span> = <span class="ruby-identifier">env</span>
+
+      <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;PATH_INFO&quot;</span>] =       <span class="ruby-ivar">@url</span>.<span class="ruby-identifier">path</span>
+      <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;QUERY_STRING&quot;</span>] =    <span class="ruby-ivar">@url</span>.<span class="ruby-identifier">query</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@url</span>.<span class="ruby-identifier">query</span>
+      <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;HTTP_HOST&quot;</span>] =       <span class="ruby-ivar">@url</span>.<span class="ruby-identifier">host</span>   <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@url</span>.<span class="ruby-identifier">host</span>
+      <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;HTTP_PORT&quot;</span>] =       <span class="ruby-ivar">@url</span>.<span class="ruby-identifier">port</span>   <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@url</span>.<span class="ruby-identifier">port</span>
+      <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.url_scheme&quot;</span>] = <span class="ruby-ivar">@url</span>.<span class="ruby-identifier">scheme</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@url</span>.<span class="ruby-identifier">scheme</span>
+
+      <span class="ruby-keyword kw">super</span> <span class="ruby-node">&quot;forwarding to #{url}&quot;</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

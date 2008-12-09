@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>log (ActiveRecord::ConnectionAdapters::AbstractAdapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/abstract_adapter.rb, line 170</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+            <span class="ruby-identifier">result</span> = <span class="ruby-keyword kw">nil</span>
+            <span class="ruby-identifier">seconds</span> = <span class="ruby-constant">Benchmark</span>.<span class="ruby-identifier">realtime</span> { <span class="ruby-identifier">result</span> = <span class="ruby-keyword kw">yield</span> }
+            <span class="ruby-ivar">@runtime</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">seconds</span>
+            <span class="ruby-identifier">log_info</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">seconds</span>)
+            <span class="ruby-identifier">result</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">log_info</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span>, <span class="ruby-value">0</span>)
+            <span class="ruby-keyword kw">nil</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+          <span class="ruby-comment cmt"># Log message and raise exception.</span>
+          <span class="ruby-comment cmt"># Set last_verification to 0, so that connection gets verified</span>
+          <span class="ruby-comment cmt"># upon reentering the request loop</span>
+          <span class="ruby-ivar">@last_verification</span> = <span class="ruby-value">0</span>
+          <span class="ruby-identifier">message</span> = <span class="ruby-node">&quot;#{e.class.name}: #{e.message}: #{sql}&quot;</span>
+          <span class="ruby-identifier">log_info</span>(<span class="ruby-identifier">message</span>, <span class="ruby-identifier">name</span>, <span class="ruby-value">0</span>)
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">StatementInvalid</span>, <span class="ruby-identifier">message</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

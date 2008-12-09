@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Append text to the output target. Escape any markup. May be used within the
+    markup brackets as:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  builder.p { |b| b.br; b.text! &quot;HI&quot; }   #=&gt;  &lt;p&gt;&lt;br/&gt;HI&lt;/p&gt;\n"
+full_name: Builder::XmlBase#text!
+params: (text)
+name: text!
+is_singleton: false
+aliases: []
+

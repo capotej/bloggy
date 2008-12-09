@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Add a piece of Rack middleware to the pipeline leading to the application.
+full_name: Sinatra::Application#use
+params: (klass, *args, &block)
+name: use
+is_singleton: false
+aliases: []
+

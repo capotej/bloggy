@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Removes a reference. Optionally removes a <tt>type</tt> column. <tt>remove_references</tt>
+    and <tt>remove_belongs_to</tt> are acceptable.
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 5
+- !ruby/struct:SM::Flow::VERB 
+  body: " t.remove_references(:goat)\n t.remove_references(:goat, :polymorphic =&gt; \
+    true)\n t.remove_belongs_to(:goat)\n"
+full_name: ActiveRecord::ConnectionAdapters::Table#remove_references
+params: (*args)
+name: remove_references
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: remove_belongs_to

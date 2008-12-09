@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+params: (opts={})
+is_singleton: false
+block_params: 
+name: error_generator_opts=
+comment: 
+full_name: Spec::Mocks::BaseExpectation#error_generator_opts=
+visibility: protected
+aliases: []
+

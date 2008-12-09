@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Removes the timestamp columns (created_at and updated_at) from the table.
+- !ruby/struct:SM::Flow::H 
+  text: Example
+  level: 5
+- !ruby/struct:SM::Flow::VERB 
+  body: " t.remove_timestamps\n"
+full_name: ActiveRecord::ConnectionAdapters::Table#remove_timestamps
+params: ()
+name: remove_timestamps
+is_singleton: false
+aliases: []
+

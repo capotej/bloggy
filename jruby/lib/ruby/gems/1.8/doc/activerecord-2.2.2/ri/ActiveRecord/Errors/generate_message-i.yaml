@@ -1,0 +1,29 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Translates an error message in it's default scope (<tt>activerecord.errrors.messages</tt>).
+    Error messages are first looked up in <tt>models.MODEL.attributes.ATTRIBUTE.MESSAGE</tt>,
+    if it's not there, it's looked up in <tt>models.MODEL.MESSAGE</tt> and if that
+    is not there it returns the translation of the default message (e.g. <tt>activerecord.errors.messages.MESSAGE</tt>).
+    The translated model name, translated attribute name and the value are available
+    for interpolation.
+- !ruby/struct:SM::Flow::P 
+  body: 'When using inheritence in your models, it will check all the inherited models
+    too, but only if the model itself hasn''t been found. Say you have <tt>class Admin
+    &lt; User; end</tt> and you wanted the translation for the <tt>:blank</tt> error
+    <tt>message</tt> for the <tt>title</tt> <tt>attribute</tt>, it looks for these
+    translations:'
+- !ruby/struct:SM::Flow::P 
+  body: '&lt;ol&gt; &lt;li&gt;<tt>activerecord.errors.models.admin.attributes.title.blank</tt>&lt;/li&gt;
+    &lt;li&gt;<tt>activerecord.errors.models.admin.blank</tt>&lt;/li&gt; &lt;li&gt;<tt>activerecord.errors.models.user.attributes.title.blank</tt>&lt;/li&gt;
+    &lt;li&gt;<tt>activerecord.errors.models.user.blank</tt>&lt;/li&gt; &lt;li&gt;<tt>activerecord.errors.messages.blank</tt>&lt;/li&gt;
+    &lt;li&gt;any default you provided through the <tt>options</tt> hash (in the activerecord.errors
+    scope)&lt;/li&gt; &lt;/ol&gt;'
+full_name: ActiveRecord::Errors#generate_message
+params: (attribute, message = :invalid, options = {})
+name: generate_message
+is_singleton: false
+aliases: []
+

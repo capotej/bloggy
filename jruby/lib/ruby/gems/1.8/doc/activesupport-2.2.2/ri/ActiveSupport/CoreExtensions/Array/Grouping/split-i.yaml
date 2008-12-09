@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (element)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Divides the array into one or more subarrays based on a delimiting <tt>value</tt>
+    or the result of an optional block.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  [1, 2, 3, 4, 5].split(3)                # =&gt; [[1, 2], [4, 5]]\n  (1..10).to_a.split \
+    { |i| i % 3 == 0 }   # =&gt; [[1, 2], [4, 5], [7, 8], [10]]\n"
+full_name: ActiveSupport::CoreExtensions::Array::Grouping#split
+params: (value = nil) {|element| ...}
+name: split
+is_singleton: false
+aliases: []
+

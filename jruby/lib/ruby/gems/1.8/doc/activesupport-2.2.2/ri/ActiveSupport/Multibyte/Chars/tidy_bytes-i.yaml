@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Replaces all ISO-8859-1 or CP1252 characters by their UTF-8 equivalent resulting
+    in a valid UTF-8 string.
+full_name: ActiveSupport::Multibyte::Chars#tidy_bytes
+params: ()
+name: tidy_bytes
+is_singleton: false
+aliases: []
+

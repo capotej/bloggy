@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>parse_multipart (Rack::Utils::Multipart)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/utils.rb, line 230</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">parse_multipart</span>(<span class="ruby-identifier">env</span>)
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">env</span>[<span class="ruby-value str">'CONTENT_TYPE'</span>] <span class="ruby-operator">=~</span>
+            <span class="ruby-regexp re">%r|\Amultipart/form-data.*boundary=\&quot;?([^\&quot;;,]+)\&quot;?|n</span>
+          <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">boundary</span> = <span class="ruby-node">&quot;--#{$1}&quot;</span>
+
+          <span class="ruby-identifier">params</span> = {}
+          <span class="ruby-identifier">buf</span> = <span class="ruby-value str">&quot;&quot;</span>
+          <span class="ruby-identifier">content_length</span> = <span class="ruby-identifier">env</span>[<span class="ruby-value str">'CONTENT_LENGTH'</span>].<span class="ruby-identifier">to_i</span>
+          <span class="ruby-identifier">input</span> = <span class="ruby-identifier">env</span>[<span class="ruby-value str">'rack.input'</span>]
+
+          <span class="ruby-identifier">boundary_size</span> = <span class="ruby-identifier">boundary</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">+</span> <span class="ruby-constant">EOL</span>.<span class="ruby-identifier">size</span>
+          <span class="ruby-identifier">bufsize</span> = <span class="ruby-value">16384</span>
+
+          <span class="ruby-identifier">content_length</span> <span class="ruby-operator">-=</span> <span class="ruby-identifier">boundary_size</span>
+
+          <span class="ruby-identifier">status</span> = <span class="ruby-identifier">input</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">boundary_size</span>)
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">EOFError</span>, <span class="ruby-value str">&quot;bad content body&quot;</span>  <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">boundary</span> <span class="ruby-operator">+</span> <span class="ruby-constant">EOL</span>
+
+          <span class="ruby-identifier">rx</span> = <span class="ruby-node">/(?:#{EOL})?#{Regexp.quote boundary}(#{EOL}|--)/</span>
+
+          <span class="ruby-identifier">loop</span> {
+            <span class="ruby-identifier">head</span> = <span class="ruby-keyword kw">nil</span>
+            <span class="ruby-identifier">body</span> = <span class="ruby-value str">''</span>
+            <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">content_type</span> = <span class="ruby-identifier">name</span> = <span class="ruby-keyword kw">nil</span>
+
+            <span class="ruby-keyword kw">until</span> <span class="ruby-identifier">head</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">buf</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">rx</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">head</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">i</span> = <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">index</span>(<span class="ruby-value str">&quot;\r\n\r\n&quot;</span>)
+                <span class="ruby-identifier">head</span> = <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-value">2</span>) <span class="ruby-comment cmt"># First \r\n</span>
+                <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">0</span>, <span class="ruby-value">2</span>)          <span class="ruby-comment cmt"># Second \r\n</span>
+
+                <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">head</span>[<span class="ruby-regexp re">/Content-Disposition:.* filename=&quot;?([^\&quot;;]*)&quot;?/n</span><span class="ruby-identifier">i</span>, <span class="ruby-value">1</span>]
+                <span class="ruby-identifier">content_type</span> = <span class="ruby-identifier">head</span>[<span class="ruby-regexp re">/Content-Type: (.*)\r\n/n</span><span class="ruby-identifier">i</span>, <span class="ruby-value">1</span>]
+                <span class="ruby-identifier">name</span> = <span class="ruby-identifier">head</span>[<span class="ruby-regexp re">/Content-Disposition:.* name=&quot;?([^\&quot;;]*)&quot;?/n</span><span class="ruby-identifier">i</span>, <span class="ruby-value">1</span>]
+
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">filename</span>
+                  <span class="ruby-identifier">body</span> = <span class="ruby-constant">Tempfile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;RackMultipart&quot;</span>)
+                  <span class="ruby-identifier">body</span>.<span class="ruby-identifier">binmode</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:binmode</span>)
+                <span class="ruby-keyword kw">end</span>
+
+                <span class="ruby-keyword kw">next</span>
+              <span class="ruby-keyword kw">end</span>
+
+              <span class="ruby-comment cmt"># Save the read body part.</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">head</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">boundary_size</span><span class="ruby-operator">+</span><span class="ruby-value">4</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">size</span>)
+                <span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">boundary_size</span><span class="ruby-operator">+</span><span class="ruby-value">4</span>))
+              <span class="ruby-keyword kw">end</span>
+
+              <span class="ruby-identifier">c</span> = <span class="ruby-identifier">input</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">bufsize</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">content_length</span> <span class="ruby-value">? </span><span class="ruby-identifier">bufsize</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">content_length</span>)
+              <span class="ruby-identifier">raise</span> <span class="ruby-constant">EOFError</span>, <span class="ruby-value str">&quot;bad content body&quot;</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">empty?</span>
+              <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">c</span>
+              <span class="ruby-identifier">content_length</span> <span class="ruby-operator">-=</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">size</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># Save the rest.</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">i</span> = <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">rx</span>)
+              <span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">i</span>)
+              <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">boundary_size</span><span class="ruby-operator">+</span><span class="ruby-value">2</span>)
+
+              <span class="ruby-identifier">content_length</span> = <span class="ruby-value">-1</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$1</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;--&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">filename</span>
+              <span class="ruby-identifier">body</span>.<span class="ruby-identifier">rewind</span>
+              <span class="ruby-identifier">data</span> = {<span class="ruby-identifier">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">filename</span>, <span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">content_type</span>,
+                      <span class="ruby-identifier">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>, <span class="ruby-identifier">:tempfile</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">body</span>, <span class="ruby-identifier">:head</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">head</span>}
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">data</span> = <span class="ruby-identifier">body</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">name</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\[\]\z/</span>
+                <span class="ruby-identifier">params</span>[<span class="ruby-identifier">name</span>] <span class="ruby-operator">||=</span> []
+                <span class="ruby-identifier">params</span>[<span class="ruby-identifier">name</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">data</span>
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-identifier">params</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">data</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-keyword kw">break</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">content_length</span> <span class="ruby-operator">==</span> <span class="ruby-value">-1</span>
+          }
+
+          <span class="ruby-identifier">params</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

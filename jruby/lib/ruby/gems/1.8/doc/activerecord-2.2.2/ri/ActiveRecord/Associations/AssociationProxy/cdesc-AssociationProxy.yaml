@@ -1,0 +1,50 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'This is the root class of all association proxies:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  AssociationProxy\n    BelongsToAssociation\n      HasOneAssociation\n  \
+    \  BelongsToPolymorphicAssociation\n    AssociationCollection\n      HasAndBelongsToManyAssociation\n\
+    \      HasManyAssociation\n        HasManyThroughAssociation\n           HasOneThroughAssociation\n"
+- !ruby/struct:SM::Flow::P 
+  body: Association proxies in Active Record are middlemen between the object that
+    holds the association, known as the <tt>@owner</tt>, and the actual associated
+    object, known as the <tt>@target</tt>. The kind of association any proxy is about
+    is available in <tt>@reflection</tt>. That's an instance of the class ActiveRecord::Reflection::AssociationReflection.
+- !ruby/struct:SM::Flow::P 
+  body: For example, given
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Blog &lt; ActiveRecord::Base\n    has_many :posts\n  end\n\n  blog \
+    = Blog.find(:first)\n"
+- !ruby/struct:SM::Flow::P 
+  body: the association proxy in <tt>blog.posts</tt> has the object in <tt>blog</tt>
+    as <tt>@owner</tt>, the collection of its posts as <tt>@target</tt>, and the <tt>@reflection</tt>
+    object represents a <tt>:has_many</tt> macro.
+- !ruby/struct:SM::Flow::P 
+  body: This class has most of the basic instance methods removed, and delegates unknown
+    methods to <tt>@target</tt> via <tt>method_missing</tt>. As a corner case, it
+    even removes the <tt>class</tt> method and that's why you get
+- !ruby/struct:SM::Flow::VERB 
+  body: "  blog.posts.class # =&gt; Array\n"
+- !ruby/struct:SM::Flow::P 
+  body: though the object behind <tt>blog.posts</tt> is not an Array, but an ActiveRecord::Associations::HasManyAssociation.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>@target</tt> object is not \loaded until needed. For example,
+- !ruby/struct:SM::Flow::VERB 
+  body: "  blog.posts.count\n"
+- !ruby/struct:SM::Flow::P 
+  body: is computed directly through SQL and does not trigger by itself the instantiation
+    of the actual post records.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveRecord::Associations::AssociationProxy
+constants: []
+
+superclass: Object
+name: AssociationProxy

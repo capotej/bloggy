@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Loosely based on Mongrel's Deflate handler
+full_name: Rack::Deflater::deflate
+params: (body)
+name: deflate
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Like <tt>String#[]=</tt>, except instead of byte offsets you specify character
+    offsets.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  s = &quot;M\xc3\xbcller&quot;\n  s.mb_chars[2] = &quot;e&quot; # Replace \
+    character with offset 2\n  s\n  #=&gt; &quot;M\xc3\xbceler&quot;\n\n  s = &quot;M\xc3\
+    \xbcller&quot;\n  s.mb_chars[1, 2] = &quot;\xc3\xb6&quot; # Replace 2 characters \
+    at character offset 1\n  s\n  #=&gt; &quot;M\xc3\xb6ler&quot;\n"
+full_name: ActiveSupport::Multibyte::Chars#[]=
+params: (*args)
+name: '[]='
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: TCPServer#initialize_with_backlog
+params: (*args)
+name: initialize_with_backlog
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: file
+comment: 
+full_name: ActiveSupport::Testing::Benchmarker#with_output_file
+params: () {|file| ...}
+name: with_output_file
+is_singleton: false
+aliases: []
+

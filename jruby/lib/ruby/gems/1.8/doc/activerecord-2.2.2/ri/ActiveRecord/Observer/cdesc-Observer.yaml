@@ -1,0 +1,106 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Singleton
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Observer classes respond to lifecycle callbacks to implement trigger-like
+    behavior outside the original class. This is a great way to reduce the clutter
+    that normally comes when the model class is burdened with functionality that doesn''t
+    pertain to the core responsibility of the class. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class CommentObserver &lt; ActiveRecord::Observer\n    def after_save(comment)\n\
+    \      Notifications.deliver_comment(&quot;admin@do.com&quot;, &quot;New comment \
+    was posted&quot;, comment)\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: This Observer sends an email when a Comment#save is finished.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class ContactObserver &lt; ActiveRecord::Observer\n    def after_create(contact)\n\
+    \      contact.logger.info('New contact added!')\n    end\n\n    def after_destroy(contact)\n\
+    \      contact.logger.warn(&quot;Contact with an id of #{contact.id} was destroyed!&quot;)\n\
+    \    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: This Observer uses logger to log when specific callbacks are triggered.
+- !ruby/struct:SM::Flow::H 
+  text: Observing a class that can't be inferred
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: 'Observers will by default be mapped to the class with which they share a
+    name. So CommentObserver will be tied to observing Comment, ProductManagerObserver
+    to ProductManager, and so on. If you want to name your observer differently than
+    the class you''re interested in observing, you can use the Observer.observe class
+    method which takes either the concrete class (Product) or a symbol for that class
+    (:product):'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class AuditObserver &lt; ActiveRecord::Observer\n    observe :account\n\
+    \n    def after_update(account)\n      AuditTrail.new(account, &quot;UPDATED&quot;)\n\
+    \    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'If the audit observer needs to watch more than one kind of object, this can
+    be specified with multiple arguments:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class AuditObserver &lt; ActiveRecord::Observer\n    observe :account, \
+    :balance\n\n    def after_update(record)\n      AuditTrail.new(record, &quot;UPDATED&quot;)\n\
+    \    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: The AuditObserver will now act on both updates to Account and Balance by treating
+    them both as records.
+- !ruby/struct:SM::Flow::H 
+  text: Available callback methods
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: The observer can implement callback methods for each of the methods described
+    in the Callbacks module.
+- !ruby/struct:SM::Flow::H 
+  text: Storing Observers in Rails
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: If you're using Active Record within Rails, observer classes are usually stored
+    in app/models with the naming convention of app/models/audit_observer.rb.
+- !ruby/struct:SM::Flow::H 
+  text: Configuration
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: In order to activate an observer, list it in the <tt>config.active_record.observers</tt>
+    configuration setting in your <tt>config/environment.rb</tt> file.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  config.active_record.observers = :comment_observer, :signup_observer\n"
+- !ruby/struct:SM::Flow::P 
+  body: Observers will not be invoked unless you define these in your application
+    configuration.
+- !ruby/struct:SM::Flow::H 
+  text: Loading
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: Observers register themselves in the model class they observe, since it is
+    the class that notifies them of events when they occur. As a side-effect, when
+    an observer is loaded its corresponding model class is loaded.
+- !ruby/struct:SM::Flow::P 
+  body: Up to (and including) Rails 2.0.2 observers were instantiated between plugins
+    and application initializers. Now observers are loaded after application initializers,
+    so observed models can make use of extensions.
+- !ruby/struct:SM::Flow::P 
+  body: If by any chance you are using observed models in the initialization you can
+    still load their observers by calling <tt>ModelObserver.instance</tt> before.
+    Observers are singletons and that call instantiates and registers them.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: add_observer!
+- !ruby/object:RI::MethodSummary 
+  name: observed_classes
+- !ruby/object:RI::MethodSummary 
+  name: observed_subclasses
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: observe
+- !ruby/object:RI::MethodSummary 
+  name: observed_class
+full_name: ActiveRecord::Observer
+constants: []
+
+superclass: Object
+name: Observer

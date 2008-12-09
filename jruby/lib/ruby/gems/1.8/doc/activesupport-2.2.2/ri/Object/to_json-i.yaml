@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Dumps object in JSON (JavaScript Object Notation). See www.json.org for more
+    info.
+full_name: Object#to_json
+params: (options = {})
+name: to_json
+is_singleton: false
+aliases: []
+

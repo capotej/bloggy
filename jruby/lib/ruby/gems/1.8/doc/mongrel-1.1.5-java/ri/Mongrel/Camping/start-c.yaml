@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This is a convenience method that wires up a CampingHandler for your application
+    on a given port and uri. It's pretty much all you need for a camping application
+    to work right.
+- !ruby/struct:SM::Flow::P 
+  body: It returns the Mongrel::HttpServer which you should either join or somehow
+    manage. The thread is running when returned.
+full_name: Mongrel::Camping::start
+params: (server, port, uri, klass)
+name: start
+is_singleton: true
+aliases: []
+

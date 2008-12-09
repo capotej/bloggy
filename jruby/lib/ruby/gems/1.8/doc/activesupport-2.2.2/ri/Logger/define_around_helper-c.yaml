@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Logger::define_around_helper
+params: (level)
+name: define_around_helper
+is_singleton: true
+aliases: []
+

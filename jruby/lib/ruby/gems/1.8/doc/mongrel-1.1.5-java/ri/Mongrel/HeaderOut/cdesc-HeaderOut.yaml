@@ -1,0 +1,44 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This class implements a simple way of constructing the HTTP headers dynamically
+    via a Hash syntax. Think of it as a write-only Hash. Refer to HttpResponse for
+    information on how this is used.
+- !ruby/struct:SM::Flow::P 
+  body: One consequence of this write-only nature is that you can write multiple headers
+    by just doing them twice (which is sometimes needed in HTTP), but that the normal
+    semantics for Hash (where doing an insert replaces) is not there.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: allowed_duplicates
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: allowed_duplicates
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: out
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: out
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: '[]='
+- !ruby/object:RI::MethodSummary 
+  name: '[]='
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Mongrel::HeaderOut
+constants: []
+
+superclass: Object
+name: HeaderOut

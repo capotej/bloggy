@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Mongrel::HttpServer#configure_socket_options
+params: ()
+name: configure_socket_options
+is_singleton: false
+aliases: []
+

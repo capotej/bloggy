@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Reloads Rails. This isn't too reliable really, but it should work for most
+    minimal reload purposes. The only reliable way to reload properly is to stop and
+    then start the process.
+full_name: Mongrel::Rails::RailsConfigurator#reload!
+params: ()
+name: reload!
+is_singleton: false
+aliases: []
+

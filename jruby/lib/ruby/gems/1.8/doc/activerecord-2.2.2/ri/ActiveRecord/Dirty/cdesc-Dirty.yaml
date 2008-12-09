@@ -1,0 +1,58 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Track unsaved attribute changes.
+- !ruby/struct:SM::Flow::P 
+  body: 'A newly instantiated object is unchanged:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  person = Person.find_by_name('uncle bob')\n  person.changed?       # =&gt; \
+    false\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Change the name:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  person.name = 'Bob'\n  person.changed?       # =&gt; true\n  person.name_changed? \
+    \ # =&gt; true\n  person.name_was       # =&gt; 'uncle bob'\n  person.name_change \
+    \   # =&gt; ['uncle bob', 'Bob']\n  person.name = 'Bill'\n  person.name_change \
+    \   # =&gt; ['uncle bob', 'Bill']\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Save the changes:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  person.save\n  person.changed?       # =&gt; false\n  person.name_changed? \
+    \ # =&gt; false\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Assigning the same value leaves the attribute unchanged:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  person.name = 'Bill'\n  person.name_changed?  # =&gt; false\n  person.name_change \
+    \   # =&gt; nil\n"
+- !ruby/struct:SM::Flow::P 
+  body: Which attributes have changed?
+- !ruby/struct:SM::Flow::VERB 
+  body: "  person.name = 'bob'\n  person.changed        # =&gt; ['name']\n  person.changes \
+    \       # =&gt; { 'name' =&gt; ['Bill', 'bob'] }\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Before modifying an attribute in-place:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  person.name_will_change!\n  person.name &lt;&lt; 'by'\n  person.name_change \
+    \   # =&gt; ['uncle bob', 'uncle bobby']\n"
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: changed
+- !ruby/object:RI::MethodSummary 
+  name: changed?
+- !ruby/object:RI::MethodSummary 
+  name: changes
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: included
+full_name: ActiveRecord::Dirty
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '[''_changed?'', ''_change'', ''_will_change!'', ''_was'']'
+  name: DIRTY_SUFFIXES
+superclass: 
+name: Dirty

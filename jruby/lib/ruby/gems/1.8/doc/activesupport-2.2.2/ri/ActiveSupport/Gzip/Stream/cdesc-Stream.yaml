@@ -1,0 +1,16 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: close
+class_methods: []
+
+full_name: ActiveSupport::Gzip::Stream
+constants: []
+
+superclass: StringIO
+name: Stream

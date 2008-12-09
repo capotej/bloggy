@@ -1,0 +1,35 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Convert to a formatted string. See DATE_FORMATS for predefined formats.
+- !ruby/struct:SM::Flow::P 
+  body: This method is aliased to <tt>to_s</tt>.
+- !ruby/struct:SM::Flow::H 
+  text: 'Examples:'
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  date = Date.new(2007, 11, 10)       # =&gt; Sat, 10 Nov 2007\n\n  date.to_formatted_s(:db) \
+    \           # =&gt; &quot;2007-11-10&quot;\n  date.to_s(:db)                   \
+    \   # =&gt; &quot;2007-11-10&quot;\n\n  date.to_formatted_s(:short)         # =&gt; \
+    &quot;10 Nov&quot;\n  date.to_formatted_s(:long)          # =&gt; &quot;November \
+    10, 2007&quot;\n  date.to_formatted_s(:long_ordinal)  # =&gt; &quot;November 10th, \
+    2007&quot;\n  date.to_formatted_s(:rfc822)        # =&gt; &quot;10 Nov 2007&quot;\n"
+- !ruby/struct:SM::Flow::H 
+  text: Adding your own time formats to to_formatted_s
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: You can add your own formats to the Date::DATE_FORMATS hash. Use the format
+    name as the hash key and either a strftime string or Proc instance that takes
+    a date argument as the value.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # config/initializers/time_formats.rb\n  Date::DATE_FORMATS[:month_and_year] \
+    = &quot;%B %Y&quot;\n  Date::DATE_FORMATS[:short_ordinal] = lambda { |date| date.strftime(&quot;%B \
+    #{date.day.ordinalize}&quot;) }\n"
+full_name: ActiveSupport::CoreExtensions::Date::Conversions#to_formatted_s
+params: (format = :default)
+name: to_formatted_s
+is_singleton: false
+aliases: []
+

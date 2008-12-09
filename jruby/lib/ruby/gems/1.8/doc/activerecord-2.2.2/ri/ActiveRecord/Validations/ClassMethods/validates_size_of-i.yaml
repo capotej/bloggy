@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Alias for #validates_length_of'
+full_name: ActiveRecord::Validations::ClassMethods#validates_size_of
+params: (*attrs)
+name: validates_size_of
+is_singleton: false
+aliases: []
+

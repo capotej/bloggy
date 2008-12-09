@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Rack::Response::Helpers#location
+params: ()
+name: location
+is_singleton: false
+aliases: []
+

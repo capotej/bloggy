@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Deletes the record in the database and freezes this instance to reflect that
+    no changes should be made (since they can't be persisted).
+- !ruby/struct:SM::Flow::P 
+  body: 'Unlike #destroy, this method doesn''t run any <tt>before_delete</tt> and
+    <tt>after_delete</tt> callbacks, nor will it enforce any association +:dependent+
+    rules.'
+- !ruby/struct:SM::Flow::P 
+  body: In addition to deleting this record, any defined <tt>before_delete</tt> and
+    <tt>after_delete</tt> callbacks are run, and +:dependent+ rules defined on associations
+    are run.
+full_name: ActiveRecord::Base#delete
+params: ()
+name: delete
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,32 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Singleton
+- !ruby/object:RI::IncludedModule 
+  name: Singleton
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A Singleton class that manages all of the available commands and handles running
+    them.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: commands
+- !ruby/object:RI::MethodSummary 
+  name: commands
+- !ruby/object:RI::MethodSummary 
+  name: print_command_list
+- !ruby/object:RI::MethodSummary 
+  name: print_command_list
+- !ruby/object:RI::MethodSummary 
+  name: run
+- !ruby/object:RI::MethodSummary 
+  name: run
+class_methods: []
+
+full_name: Mongrel::Command::Registry
+constants: []
+
+superclass: Object
+name: Registry

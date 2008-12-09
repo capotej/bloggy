@@ -1,0 +1,33 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: _execute
+- !ruby/object:RI::MethodSummary 
+  name: add_order_by_for_association_limiting!
+- !ruby/object:RI::MethodSummary 
+  name: distinct
+- !ruby/object:RI::MethodSummary 
+  name: indexes
+- !ruby/object:RI::MethodSummary 
+  name: modify_types
+- !ruby/object:RI::MethodSummary 
+  name: recreate_database
+- !ruby/object:RI::MethodSummary 
+  name: table_alias_length
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: adapter_selector
+- !ruby/object:RI::MethodSummary 
+  name: column_selector
+- !ruby/object:RI::MethodSummary 
+  name: extended
+full_name: "::Oracle"
+constants: []
+
+superclass: 
+name: Oracle

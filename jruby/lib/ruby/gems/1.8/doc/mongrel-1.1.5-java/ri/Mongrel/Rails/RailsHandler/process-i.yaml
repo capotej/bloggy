@@ -1,0 +1,25 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Attempts to resolve the request as follows:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: If the requested exact PATH_INFO exists as a file then serve it.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: If it exists at PATH_INFO+&quot;.html&quot; exists then serve that.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: Finally, construct a Mongrel::CGIWrapper and run Dispatcher.dispatch to
+      have Rails go.
+    label: '*'
+full_name: Mongrel::Rails::RailsHandler#process
+params: (request, response)
+name: process
+is_singleton: false
+aliases: []
+

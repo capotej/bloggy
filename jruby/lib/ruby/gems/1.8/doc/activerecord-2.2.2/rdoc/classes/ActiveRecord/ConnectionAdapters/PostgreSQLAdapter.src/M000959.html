@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>supports_standard_conforming_strings? (ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/postgresql_adapter.rb, line 253</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">supports_standard_conforming_strings?</span>
+        <span class="ruby-comment cmt"># Temporarily set the client message level above error to prevent unintentional</span>
+        <span class="ruby-comment cmt"># error messages in the logs when working on a PostgreSQL database server that</span>
+        <span class="ruby-comment cmt"># does not support standard conforming strings.</span>
+        <span class="ruby-identifier">client_min_messages_old</span> = <span class="ruby-identifier">client_min_messages</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">client_min_messages</span> = <span class="ruby-value str">'panic'</span>
+
+        <span class="ruby-comment cmt"># postgres-pr does not raise an exception when client_min_messages is set higher</span>
+        <span class="ruby-comment cmt"># than error and &quot;SHOW standard_conforming_strings&quot; fails, but returns an empty</span>
+        <span class="ruby-comment cmt"># PGresult instead.</span>
+        <span class="ruby-identifier">has_support</span> = <span class="ruby-identifier">query</span>(<span class="ruby-value str">'SHOW standard_conforming_strings'</span>)[<span class="ruby-value">0</span>][<span class="ruby-value">0</span>] <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">false</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">client_min_messages</span> = <span class="ruby-identifier">client_min_messages_old</span>
+        <span class="ruby-identifier">has_support</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

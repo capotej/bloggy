@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Loads a single translations file by delegating to #load_rb or #load_yml depending
+    on the file extension and directly merges the data to the existing translations.
+    Raises I18n::UnknownFileType for all other file extensions.'
+full_name: I18n::Backend::Simple#load_file
+params: (filename)
+name: load_file
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,94 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Count operates using three different approaches.
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: 'Count all: By not passing any parameters to count, it will return a count
+      of all the rows for the model.'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: 'Count using column: By passing a column name to count, it will return a
+      count of all the rows for the model with supplied column present'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: Count using options will find the row count matched by the options used.
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: 'The third approach, count using options, accepts an option hash as the only
+    parameter. The options are:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:conditions</tt>: An SQL fragment like &quot;administrator = 1&quot;
+      or [ &quot;user_name = ?&quot;, username ]. See conditions in the intro to ActiveRecord::Base.'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:joins</tt>: Either an SQL fragment for additional joins like &quot;LEFT
+      JOIN comments ON comments.post_id = id&quot; (rarely needed) or named associations
+      in the same form used for the <tt>:include</tt> option, which will perform an
+      INNER JOIN on the associated table(s). If the value is a string, then the records
+      will be returned read-only since they will have attributes that do not correspond
+      to the table''s columns. Pass <tt>:readonly =&gt; false</tt> to override.'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:include</tt>: Named associations that should be loaded alongside using
+      LEFT OUTER JOINs. The symbols named refer to already defined associations. When
+      using named associations, count returns the number of DISTINCT items for the
+      model you''re counting. See eager loading under Associations.'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:order</tt>: An SQL fragment like &quot;created_at DESC, name&quot;
+      (really only used with GROUP BY calculations).'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:group</tt>: An attribute name by which the result should be grouped.
+      Uses the GROUP BY SQL-clause.'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:select</tt>: By default, this is * as in SELECT * FROM, but can be
+      changed if you, for example, want to do a join but not include the joined columns.'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:distinct</tt>: Set this to true to make this a distinct calculation,
+      such as SELECT COUNT(DISTINCT posts.id) ...'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:from</tt> - By default, this is the table name of the class, but can
+      be changed to an alternate table name (or even the name of a database view).
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: 'Examples for counting all:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person.count         # returns the total count of all people\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Examples for counting by column:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person.count(:age)  # returns the total count of all people whose age is \
+    present in database\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Examples for count with options:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person.count(:conditions =&gt; &quot;age &gt; 26&quot;)\n  Person.count(:conditions \
+    =&gt; &quot;age &gt; 26 AND job.salary &gt; 60000&quot;, :include =&gt; :job) \
+    # because of the named association, it finds the DISTINCT count using LEFT OUTER \
+    JOIN.\n  Person.count(:conditions =&gt; &quot;age &gt; 26 AND job.salary &gt; \
+    60000&quot;, :joins =&gt; &quot;LEFT JOIN jobs on jobs.person_id = person.id&quot;) \
+    # finds the number of rows matching the conditions and joins.\n  Person.count('id', \
+    :conditions =&gt; &quot;age &gt; 26&quot;) # Performs a COUNT(id)\n  Person.count(:all, \
+    :conditions =&gt; &quot;age &gt; 26&quot;) # Performs a COUNT(*) (:all is an alias \
+    for '*')\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Note: <tt>Person.count(:all)</tt> will not work because it will use <tt>:all</tt>
+    as the condition. Use Person.count instead.'
+full_name: ActiveRecord::Calculations::ClassMethods#count
+params: (*args)
+name: count
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Begins the transaction (and turns off auto-committing).
+full_name: ActiveRecord::ConnectionAdapters::DatabaseStatements#begin_db_transaction
+params: ()
+name: begin_db_transaction
+is_singleton: false
+aliases: []
+

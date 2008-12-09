@@ -1,0 +1,101 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Transactions are protective blocks where SQL statements are only permanent
+    if they can all succeed as one atomic action. The classic example is a transfer
+    between two accounts where you can only have a deposit if the withdrawal succeeded
+    and vice versa. Transactions enforce the integrity of the database and guard the
+    data against program errors or database break-downs. So basically you should use
+    transaction blocks whenever you have a number of statements that must be executed
+    together or not at all. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ActiveRecord::Base.transaction do\n    david.withdrawal(100)\n    mary.deposit(100)\n\
+    \  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: This example will only take money from David and give to Mary if neither <tt>withdrawal</tt>
+    nor <tt>deposit</tt> raises an exception. Exceptions will force a ROLLBACK that
+    returns the database to the state before the transaction was begun. Be aware,
+    though, that the objects will <em>not</em> have their instance data returned to
+    their pre-transactional state.
+- !ruby/struct:SM::Flow::H 
+  text: Different Active Record classes in a single transaction
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: Though the transaction class method is called on some Active Record class,
+    the objects within the transaction block need not all be instances of that class.
+    This is because transactions are per-database connection, not per-model.
+- !ruby/struct:SM::Flow::P 
+  body: 'In this example a <tt>Balance</tt> record is transactionally saved even though
+    <tt>transaction</tt> is called on the <tt>Account</tt> class:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Account.transaction do\n    balance.save!\n    account.save!\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Note that the <tt>transaction</tt> method is also available as a model instance
+    method. For example, you can also do this:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  balance.transaction do\n    balance.save!\n    account.save!\n  end\n"
+- !ruby/struct:SM::Flow::H 
+  text: Transactions are not distributed across database connections
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: 'A transaction acts on a single database connection. If you have multiple
+    class-specific databases, the transaction will not protect interaction among them.
+    One workaround is to begin a transaction on each class whose models you alter:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Student.transaction do\n    Course.transaction do\n      course.enroll(student)\n\
+    \      student.units += course.units\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: This is a poor solution, but full distributed transactions are beyond the
+    scope of Active Record.
+- !ruby/struct:SM::Flow::H 
+  text: Save and destroy are automatically wrapped in a transaction
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: Both Base#save and Base#destroy come wrapped in a transaction that ensures
+    that whatever you do in validations or callbacks will happen under the protected
+    cover of a transaction. So you can use validations to check for values that the
+    transaction depends on or you can raise exceptions in the callbacks to rollback,
+    including <tt>after_*</tt> callbacks.
+- !ruby/struct:SM::Flow::H 
+  text: Exception handling and rolling back
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: Also have in mind that exceptions thrown within a transaction block will be
+    propagated (after triggering the ROLLBACK), so you should be ready to catch those
+    in your application code.
+- !ruby/struct:SM::Flow::P 
+  body: One exception is the ActiveRecord::Rollback exception, which will trigger
+    a ROLLBACK when raised, but not be re-raised by the transaction block.
+- !ruby/struct:SM::Flow::P 
+  body: '<b>Warning</b>: one should not catch ActiveRecord::StatementInvalid exceptions
+    inside a transaction block. StatementInvalid exceptions indicate that an error
+    occurred at the database level, for example when a unique constraint is violated.
+    On some database systems, such as PostgreSQL, database errors inside a transaction
+    causes the entire transaction to become unusable until it''s restarted from the
+    beginning. Here is an example which demonstrates the problem:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Suppose that we have a Number model with a unique column called 'i'.\n\
+    \  Number.transaction do\n    Number.create(:i =&gt; 0)\n    begin\n      # This \
+    will raise a unique constraint error...\n      Number.create(:i =&gt; 0)\n    \
+    rescue ActiveRecord::StatementInvalid\n      # ...which we ignore.\n    end\n\n\
+    \    # On PostgreSQL, the transaction is now unusable. The following\n    # statement \
+    will cause a PostgreSQL error, even though the unique\n    # constraint is no \
+    longer violated:\n    Number.create(:i =&gt; 1)\n    # =&gt; &quot;PGError: ERROR: \
+    \ current transaction is aborted, commands\n    #     ignored until end of transaction \
+    block&quot;\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: One should restart the entire transaction if a StatementError occurred.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: transaction
+class_methods: []
+
+full_name: ActiveRecord::Transactions::ClassMethods
+constants: []
+
+superclass: 
+name: ClassMethods

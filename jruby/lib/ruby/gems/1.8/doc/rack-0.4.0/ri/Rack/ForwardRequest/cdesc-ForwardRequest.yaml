@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Rack::ForwardRequest gets caught by Rack::Recursive and redirects the current
+    request to the app at <tt>url</tt>.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  raise ForwardRequest.new(&quot;/not-found&quot;)\n"
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: env
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: url
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Rack::ForwardRequest
+constants: []
+
+superclass: Exception
+name: ForwardRequest

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converts a local DateTime to UTC based on the offset of this period.
+full_name: TZInfo::TimezonePeriod#to_utc
+params: (local)
+name: to_utc
+is_singleton: false
+aliases: []
+

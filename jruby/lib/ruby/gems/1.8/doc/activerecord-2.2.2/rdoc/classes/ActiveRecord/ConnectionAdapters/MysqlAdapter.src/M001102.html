@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>change_column_null (ActiveRecord::ConnectionAdapters::MysqlAdapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/mysql_adapter.rb, line 459</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">change_column_null</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">null</span>, <span class="ruby-identifier">default</span> = <span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-identifier">column</span> = <span class="ruby-identifier">column_for</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>)
+
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">null</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">default</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">execute</span>(<span class="ruby-node">&quot;UPDATE #{quote_table_name(table_name)} SET #{quote_column_name(column_name)}=#{quote(default)} WHERE #{quote_column_name(column_name)} IS NULL&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">change_column</span> <span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">column</span>.<span class="ruby-identifier">sql_type</span>, <span class="ruby-identifier">:null</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">null</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,32 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: ActiveSupport::Callbacks
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: full_test_name
+- !ruby/object:RI::MethodSummary 
+  name: run
+- !ruby/object:RI::MethodSummary 
+  name: run_profile
+- !ruby/object:RI::MethodSummary 
+  name: run_test
+- !ruby/object:RI::MethodSummary 
+  name: run_warmup
+- !ruby/object:RI::MethodSummary 
+  name: run_with_callbacks_and_miniunit
+- !ruby/object:RI::MethodSummary 
+  name: run_with_callbacks_and_mocha
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: included
+- !ruby/object:RI::MethodSummary 
+  name: included
+full_name: ActiveSupport::Testing
+constants: []
+
+superclass: 
+name: Testing

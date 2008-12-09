@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The media type (type/subtype) portion of the CONTENT_TYPE header without any
+    media type parameters. e.g., when CONTENT_TYPE is &quot;text/plain;charset=utf-8&quot;,
+    the media-type is &quot;text/plain&quot;.
+- !ruby/struct:SM::Flow::P 
+  body: 'For more information on the use of media types in HTTP, see: http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.7'
+full_name: Rack::Request#media_type
+params: ()
+name: media_type
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: If class_eval is called on an object, add those methods to its metaclass
+full_name: Object#class_eval
+params: (*args, &block)
+name: class_eval
+is_singleton: false
+aliases: []
+

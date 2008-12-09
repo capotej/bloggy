@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Transforms attribute key names into a more humane format, such as &quot;First
+    name&quot; instead of &quot;first_name&quot;. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person.human_attribute_name(&quot;first_name&quot;) # =&gt; &quot;First \
+    name&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: This used to be depricated in favor of humanize, but is now preferred, because
+    it automatically uses the I18n module now. Specify <tt>options</tt> with additional
+    translating options.
+full_name: ActiveRecord::Base::human_attribute_name
+params: (attribute_key_name, options = {})
+name: human_attribute_name
+is_singleton: true
+aliases: []
+

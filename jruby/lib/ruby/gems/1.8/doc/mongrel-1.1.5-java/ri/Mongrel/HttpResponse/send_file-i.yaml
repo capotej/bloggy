@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Appends the contents of <tt>path</tt> to the response stream. The file is
+    opened for binary reading and written in chunks to the socket.
+- !ruby/struct:SM::Flow::P 
+  body: Sendfile API support has been removed in 0.3.13.4 due to stability problems.
+full_name: Mongrel::HttpResponse#send_file
+params: (path, small_file = false)
+name: send_file
+is_singleton: false
+aliases: []
+

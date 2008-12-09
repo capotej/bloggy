@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Is called <em>before</em> <tt>Validations.validate</tt> (which is part of
+    the <tt>Base.save</tt> call) on new objects that haven't been saved yet (no record
+    exists).
+full_name: ActiveRecord::Callbacks#before_validation_on_create
+params: ()
+name: before_validation_on_create
+is_singleton: false
+aliases: []
+

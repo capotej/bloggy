@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Find a table's primary key and sequence.
+full_name: "::PostgreSQL#pk_and_sequence_for"
+params: (table)
+name: pk_and_sequence_for
+is_singleton: false
+aliases: []
+

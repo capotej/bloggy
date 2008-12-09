@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>slice (ActiveSupport::Multibyte::Chars)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/multibyte/chars.rb, line 325</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">slice</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;wrong number of arguments (#{args.size} for 1)&quot;</span> <span class="ruby-comment cmt"># Do as if we were native</span>
+        <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">args</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Numeric</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Regexp</span>)))
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;cannot convert #{args.first.class} into Integer&quot;</span> <span class="ruby-comment cmt"># Do as if we were native</span>
+        <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">args</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">args</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Numeric</span>))
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;cannot convert #{args[1].class} into Integer&quot;</span> <span class="ruby-comment cmt"># Do as if we were native</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Range</span>
+          <span class="ruby-identifier">cps</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">u_unpack</span>(<span class="ruby-ivar">@wrapped_string</span>).<span class="ruby-identifier">slice</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+          <span class="ruby-identifier">result</span> = <span class="ruby-identifier">cps</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">cps</span>.<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'U*'</span>)
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Regexp</span>
+          <span class="ruby-identifier">result</span> = <span class="ruby-ivar">@wrapped_string</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Numeric</span>)
+          <span class="ruby-identifier">character</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">u_unpack</span>(<span class="ruby-ivar">@wrapped_string</span>)[<span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>]]
+          <span class="ruby-identifier">result</span> = <span class="ruby-identifier">character</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> [<span class="ruby-identifier">character</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'U'</span>)
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">result</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">u_unpack</span>(<span class="ruby-ivar">@wrapped_string</span>).<span class="ruby-identifier">slice</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>).<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'U*'</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">result</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">chars</span>(<span class="ruby-identifier">result</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

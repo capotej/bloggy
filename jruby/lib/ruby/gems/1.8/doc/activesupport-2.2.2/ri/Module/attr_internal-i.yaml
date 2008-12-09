@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Alias for #attr_internal_accessor'
+full_name: Module#attr_internal
+params: (*attrs)
+name: attr_internal
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Determine whether the request body contains form-data by checking the request
+    media_type against registered form-data media-types: &quot;application/x-www-form-urlencoded&quot;
+    and &quot;multipart/form-data&quot;. The list of form-data media types can be
+    modified through the <tt>FORM_DATA_MEDIA_TYPES</tt> array.'
+full_name: Rack::Request#form_data?
+params: ()
+name: form_data?
+is_singleton: false
+aliases: []
+

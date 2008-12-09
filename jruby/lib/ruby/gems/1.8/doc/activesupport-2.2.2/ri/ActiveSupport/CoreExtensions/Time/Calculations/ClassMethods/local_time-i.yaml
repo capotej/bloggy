@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Wraps class method <tt>time_with_datetime_fallback</tt> with <tt>utc_or_local</tt>
+    set to <tt>:local</tt>.
+full_name: ActiveSupport::CoreExtensions::Time::Calculations::ClassMethods#local_time
+params: (*args)
+name: local_time
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converting dates to formatted strings, times, and datetimes.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: readable_inspect
+- !ruby/object:RI::MethodSummary 
+  name: to_date
+- !ruby/object:RI::MethodSummary 
+  name: to_datetime
+- !ruby/object:RI::MethodSummary 
+  name: to_formatted_s
+- !ruby/object:RI::MethodSummary 
+  name: to_time
+- !ruby/object:RI::MethodSummary 
+  name: xmlschema
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Date::Conversions
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{           :short        => "%e %b",           :long         => "%B %e,
+    %Y",           :db           => "%Y-%m-%d",           :number       => "%Y%m%d",           :long_ordinal
+    => lambda { |date| date.strftime("%B #{date.day.ordinalize}, %Y") }, # => "April
+    25th, 2007"           :rfc822       => "%e %b %Y"'
+  name: DATE_FORMATS
+superclass: 
+name: Conversions

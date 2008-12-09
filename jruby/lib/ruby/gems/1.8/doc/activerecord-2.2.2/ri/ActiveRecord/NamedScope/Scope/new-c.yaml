@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::NamedScope::Scope::new
+params: (proxy_scope, options, &block)
+name: new
+is_singleton: true
+aliases: []
+

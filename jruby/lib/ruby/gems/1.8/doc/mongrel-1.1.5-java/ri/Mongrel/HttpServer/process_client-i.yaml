@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Does the majority of the IO processing. It has been written in Ruby using
+    about 7 different IO processing strategies and no matter how it's done the performance
+    just does not improve. It is currently carefully constructed to make sure that
+    it gets the best possible performance, but anyone who thinks they can make it
+    faster is more than welcome to take a crack at it.
+full_name: Mongrel::HttpServer#process_client
+params: (client)
+name: process_client
+is_singleton: false
+aliases: []
+

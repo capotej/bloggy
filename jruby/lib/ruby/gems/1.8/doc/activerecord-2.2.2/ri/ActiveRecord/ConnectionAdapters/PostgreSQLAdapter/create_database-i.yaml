@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create a new PostgreSQL database. Options include <tt>:owner</tt>, <tt>:template</tt>,
+    <tt>:encoding</tt>, <tt>:tablespace</tt>, and <tt>:connection_limit</tt> (note
+    that MySQL uses <tt>:charset</tt> while PostgreSQL uses <tt>:encoding</tt>).
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  create_database config[:database], config\n  create_database 'foo_development', \
+    :encoding =&gt; 'unicode'\n"
+full_name: ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#create_database
+params: (name, options = {})
+name: create_database
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,18 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: current
+- !ruby/object:RI::MethodSummary 
+  name: local_offset
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::DateTime::Calculations::ClassMethods
+constants: []
+
+superclass: 
+name: ClassMethods

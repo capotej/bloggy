@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns <tt>-1</tt>, <tt>0</tt> or <tt>+1</tt> depending on whether the Chars
+    object is to be sorted before, equal or after the object on the right side of
+    the operation. It accepts any object that implements <tt>to_s</tt>. See <tt>String#&lt;=&gt;</tt>
+    for more details.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  '\xc3\xa9'.mb_chars &lt;=&gt; '\xc3\xbc'.mb_chars #=&gt; -1\n"
+full_name: ActiveSupport::Multibyte::Chars#<=>
+params: (other)
+name: <=>
+is_singleton: false
+aliases: []
+

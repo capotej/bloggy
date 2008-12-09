@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Instantiates a new column in the table.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>name</tt> is the column's name, such as <tt>supplier_id</tt> in <tt>supplier_id
+    int(11)</tt>. <tt>default</tt> is the type-casted default value, such as <tt>new</tt>
+    in <tt>sales_stage varchar(20) default 'new'</tt>. <tt>sql_type</tt> is only used
+    to extract the column's length, if necessary. For example +60+ in <tt>company_name
+    varchar(60)</tt>. <tt>null</tt> determines if this column allows <tt>NULL</tt>
+    values.
+full_name: ActiveRecord::ConnectionAdapters::Column::new
+params: (name, default, sql_type = nil, null = true)
+name: new
+is_singleton: true
+aliases: []
+

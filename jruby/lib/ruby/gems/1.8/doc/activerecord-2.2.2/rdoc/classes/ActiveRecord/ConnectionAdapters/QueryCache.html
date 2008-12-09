@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActiveRecord::ConnectionAdapters::QueryCache</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActiveRecord::ConnectionAdapters::QueryCache</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/active_record/connection_adapters/abstract/query_cache_rb.html">
+                lib/active_record/connection_adapters/abstract/query_cache.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000948">cache</a>&nbsp;&nbsp;
+      <a href="#M000950">clear_query_cache</a>&nbsp;&nbsp;
+      <a href="#M000952">columns_with_query_cache</a>&nbsp;&nbsp;
+      <a href="#M000947">dirties_query_cache</a>&nbsp;&nbsp;
+      <a href="#M000946">included</a>&nbsp;&nbsp;
+      <a href="#M000951">select_all_with_query_cache</a>&nbsp;&nbsp;
+      <a href="#M000949">uncached</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">query_cache</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">query_cache_enabled</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000947" class="method-detail">
+        <a name="M000947"></a>
+
+        <div class="method-heading">
+          <a href="QueryCache.src/M000947.html" target="Code" class="method-signature"
+            onclick="popupCode('QueryCache.src/M000947.html');return false;">
+          <span class="method-name">dirties_query_cache</span><span class="method-args">(base, *method_names)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000946" class="method-detail">
+        <a name="M000946"></a>
+
+        <div class="method-heading">
+          <a href="QueryCache.src/M000946.html" target="Code" class="method-signature"
+            onclick="popupCode('QueryCache.src/M000946.html');return false;">
+          <span class="method-name">included</span><span class="method-args">(base)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000948" class="method-detail">
+        <a name="M000948"></a>
+
+        <div class="method-heading">
+          <a href="QueryCache.src/M000948.html" target="Code" class="method-signature"
+            onclick="popupCode('QueryCache.src/M000948.html');return false;">
+          <span class="method-name">cache</span><span class="method-args">() {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Enable the query <a href="QueryCache.html#M000948">cache</a> within the
+block.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000950" class="method-detail">
+        <a name="M000950"></a>
+
+        <div class="method-heading">
+          <a href="QueryCache.src/M000950.html" target="Code" class="method-signature"
+            onclick="popupCode('QueryCache.src/M000950.html');return false;">
+          <span class="method-name">clear_query_cache</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Clears the query <a href="QueryCache.html#M000948">cache</a>.
+</p>
+<p>
+One reason you may wish to call this method explicitly is between queries
+that ask the database to randomize results. Otherwise the <a
+href="QueryCache.html#M000948">cache</a> would see the same SQL query and
+repeatedly return the same result each time, silently undermining the
+randomness you were expecting.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000952" class="method-detail">
+        <a name="M000952"></a>
+
+        <div class="method-heading">
+          <a href="QueryCache.src/M000952.html" target="Code" class="method-signature"
+            onclick="popupCode('QueryCache.src/M000952.html');return false;">
+          <span class="method-name">columns_with_query_cache</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000951" class="method-detail">
+        <a name="M000951"></a>
+
+        <div class="method-heading">
+          <a href="QueryCache.src/M000951.html" target="Code" class="method-signature"
+            onclick="popupCode('QueryCache.src/M000951.html');return false;">
+          <span class="method-name">select_all_with_query_cache</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000949" class="method-detail">
+        <a name="M000949"></a>
+
+        <div class="method-heading">
+          <a href="QueryCache.src/M000949.html" target="Code" class="method-signature"
+            onclick="popupCode('QueryCache.src/M000949.html');return false;">
+          <span class="method-name">uncached</span><span class="method-args">() {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Disable the query <a href="QueryCache.html#M000948">cache</a> within the
+block.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

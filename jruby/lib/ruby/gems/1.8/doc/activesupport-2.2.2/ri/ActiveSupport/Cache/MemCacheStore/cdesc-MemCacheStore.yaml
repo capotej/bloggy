@@ -1,0 +1,41 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'A cache store implementation which stores data in Memcached: http://www.danga.com/memcached/'
+- !ruby/struct:SM::Flow::P 
+  body: This is currently the most popular cache store for production websites.
+- !ruby/struct:SM::Flow::P 
+  body: 'Special features:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: Clustering and load balancing. One can specify multiple memcached servers,
+      and MemCacheStore will load balance between all available servers. If a server
+      goes down, then MemCacheStore will ignore it until it goes back online.
+    label: '-'
+  - !ruby/struct:SM::Flow::LI 
+    body: 'Time-based expiry support. See #write and the +:expires_in+ option.'
+    label: '-'
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: addresses
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: clear
+- !ruby/object:RI::MethodSummary 
+  name: stats
+- !ruby/object:RI::MethodSummary 
+  name: write
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: ActiveSupport::Cache::MemCacheStore
+constants: []
+
+superclass: Store
+name: MemCacheStore

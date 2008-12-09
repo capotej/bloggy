@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Used to wrap the normal args variable used inside CGI.
+full_name: Mongrel::CGIWrapper#args
+params: ()
+name: args
+is_singleton: false
+aliases: []
+

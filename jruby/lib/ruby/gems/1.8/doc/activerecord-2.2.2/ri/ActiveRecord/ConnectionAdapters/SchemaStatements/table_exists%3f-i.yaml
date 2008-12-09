@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: def tables(name = nil) end
+full_name: ActiveRecord::ConnectionAdapters::SchemaStatements#table_exists?
+params: (table_name)
+name: table_exists?
+is_singleton: false
+aliases: []
+

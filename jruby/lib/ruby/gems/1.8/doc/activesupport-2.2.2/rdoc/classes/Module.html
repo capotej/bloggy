@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Module</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Module</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/active_support/vendor/builder-2_1_2/blankslate_rb.html">
+                lib/active_support/vendor/builder-2.1.2/blankslate.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/core_ext/module_rb.html">
+                lib/active_support/core_ext/module.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/core_ext/module/inclusion_rb.html">
+                lib/active_support/core_ext/module/inclusion.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/core_ext/module/synchronization_rb.html">
+                lib/active_support/core_ext/module/synchronization.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/core_ext/module/attr_accessor_with_default_rb.html">
+                lib/active_support/core_ext/module/attr_accessor_with_default.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/core_ext/module/loading_rb.html">
+                lib/active_support/core_ext/module/loading.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/core_ext/module/delegation_rb.html">
+                lib/active_support/core_ext/module/delegation.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/core_ext/module/attr_internal_rb.html">
+                lib/active_support/core_ext/module/attr_internal.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/core_ext/module/attribute_accessors_rb.html">
+                lib/active_support/core_ext/module/attribute_accessors.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/deprecation_rb.html">
+                lib/active_support/deprecation.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Object.html">
+                Object
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Extends the module object with module and instance accessors for class
+attributes, just like the native attr* accessors for instance attributes.
+</p>
+<pre>
+ module AppConfiguration
+   mattr_accessor :google_api_key
+   self.google_api_key = &quot;123456789&quot;
+
+   mattr_accessor :paypal_url
+   self.paypal_url = &quot;www.sandbox.paypal.com&quot;
+ end
+
+ AppConfiguration.google_api_key = &quot;overriding the api key!&quot;
+</pre>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000067">append_features</a>&nbsp;&nbsp;
+      <a href="#M000071">as_load_path</a>&nbsp;&nbsp;
+      <a href="#M000070">attr_accessor_with_default</a>&nbsp;&nbsp;
+      <a href="#M000076">attr_internal</a>&nbsp;&nbsp;
+      <a href="#M000075">attr_internal_accessor</a>&nbsp;&nbsp;
+      <a href="#M000073">attr_internal_reader</a>&nbsp;&nbsp;
+      <a href="#M000074">attr_internal_writer</a>&nbsp;&nbsp;
+      <a href="#M000072">delegate</a>&nbsp;&nbsp;
+      <a href="#M000068">included_in_classes</a>&nbsp;&nbsp;
+      <a href="#M000079">mattr_accessor</a>&nbsp;&nbsp;
+      <a href="#M000077">mattr_reader</a>&nbsp;&nbsp;
+      <a href="#M000078">mattr_writer</a>&nbsp;&nbsp;
+      <a href="#M000069">synchronize</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="ActiveSupport/CoreExtensions/Module.html">ActiveSupport::CoreExtensions::Module</a></span>
+        <span class="include-name">ActiveSupport::Deprecation::ClassMethods</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+    <div id="aliases-list">
+      <h3 class="section-bar">External Aliases</h3>
+
+      <div class="name-list">
+                        <table summary="aliases">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">append_features</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">blankslate_original_append_features</td>
+        </tr>
+                        </table>
+      </div>
+    </div>
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000067" class="method-detail">
+        <a name="M000067"></a>
+
+        <div class="method-heading">
+          <a href="Module.src/M000067.html" target="Code" class="method-signature"
+            onclick="popupCode('Module.src/M000067.html');return false;">
+          <span class="method-name">append_features</span><span class="method-args">(mod)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000071" class="method-detail">
+        <a name="M000071"></a>
+
+        <div class="method-heading">
+          <a href="Module.src/M000071.html" target="Code" class="method-signature"
+            onclick="popupCode('Module.src/M000071.html');return false;">
+          <span class="method-name">as_load_path</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns String#underscore applied to the module name minus trailing
+classes.
+</p>
+<pre>
+  ActiveRecord.as_load_path               # =&gt; &quot;active_record&quot;
+  ActiveRecord::Associations.as_load_path # =&gt; &quot;active_record/associations&quot;
+  ActiveRecord::Base.as_load_path         # =&gt; &quot;active_record&quot; (Base is a class)
+</pre>
+<p>
+The <a href="Kernel.html">Kernel</a> module gives an empty string by
+definition.
+</p>
+<pre>
+  Kernel.as_load_path # =&gt; &quot;&quot;
+  Math.as_load_path   # =&gt; &quot;math&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000070" class="method-detail">
+        <a name="M000070"></a>
+
+        <div class="method-heading">
+          <a href="Module.src/M000070.html" target="Code" class="method-signature"
+            onclick="popupCode('Module.src/M000070.html');return false;">
+          <span class="method-name">attr_accessor_with_default</span><span class="method-args">(sym, default = nil, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Declare an attribute accessor with an initial default return value.
+</p>
+<p>
+To give attribute <tt>:age</tt> the initial value <tt>25</tt>:
+</p>
+<pre>
+  class Person
+    attr_accessor_with_default :age, 25
+  end
+
+  some_person.age
+  =&gt; 25
+  some_person.age = 26
+  some_person.age
+  =&gt; 26
+</pre>
+<p>
+To give attribute <tt>:element_name</tt> a dynamic default value, evaluated
+in scope of self:
+</p>
+<pre>
+  attr_accessor_with_default(:element_name) { name.underscore }
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000076" class="method-detail">
+        <a name="M000076"></a>
+
+        <div class="method-heading">
+          <span class="method-name">attr_internal</span><span class="method-args">(*attrs)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Module.html#M000075">attr_internal_accessor</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000075" class="method-detail">
+        <a name="M000075"></a>
+
+        <div class="method-heading">
+          <a href="Module.src/M000075.html" target="Code" class="method-signature"
+            onclick="popupCode('Module.src/M000075.html');return false;">
+          <span class="method-name">attr_internal_accessor</span><span class="method-args">(*attrs)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Declares an attribute reader and writer backed by an internally-named
+instance variable.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000073" class="method-detail">
+        <a name="M000073"></a>
+
+        <div class="method-heading">
+          <a href="Module.src/M000073.html" target="Code" class="method-signature"
+            onclick="popupCode('Module.src/M000073.html');return false;">
+          <span class="method-name">attr_internal_reader</span><span class="method-args">(*attrs)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Declares an attribute reader backed by an internally-named instance
+variable.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000074" class="method-detail">
+        <a name="M000074"></a>
+
+        <div class="method-heading">
+          <a href="Module.src/M000074.html" target="Code" class="method-signature"
+            onclick="popupCode('Module.src/M000074.html');return false;">
+          <span class="method-name">attr_internal_writer</span><span class="method-args">(*attrs)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Declares an attribute writer backed by an internally-named instance
+variable.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000072" class="method-detail">
+        <a name="M000072"></a>
+
+        <div class="method-heading">
+          <a href="Module.src/M000072.html" target="Code" class="method-signature"
+            onclick="popupCode('Module.src/M000072.html');return false;">
+          <span class="method-name">delegate</span><span class="method-args">(*methods)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Provides a <a href="Module.html#M000072">delegate</a> class method to
+easily expose contained objects&#8217; methods as your own. Pass one or
+more methods (specified as symbols or strings) and the name of the target
+object as the final <tt>:to</tt> option (also a symbol or string). At least
+one method and the <tt>:to</tt> option are required.
+</p>
+<p>
+Delegation is particularly useful with Active Record associations:
+</p>
+<pre>
+  class Greeter &lt; ActiveRecord::Base
+    def hello()   &quot;hello&quot;   end
+    def goodbye() &quot;goodbye&quot; end
+  end
+
+  class Foo &lt; ActiveRecord::Base
+    belongs_to :greeter
+    delegate :hello, :to =&gt; :greeter
+  end
+
+  Foo.new.hello   # =&gt; &quot;hello&quot;
+  Foo.new.goodbye # =&gt; NoMethodError: undefined method `goodbye' for #&lt;Foo:0x1af30c&gt;
+</pre>
+<p>
+Multiple delegates to the same target are allowed:
+</p>
+<pre>
+  class Foo &lt; ActiveRecord::Base
+    belongs_to :greeter
+    delegate :hello, :goodbye, :to =&gt; :greeter
+  end
+
+  Foo.new.goodbye # =&gt; &quot;goodbye&quot;
+</pre>
+<p>
+Methods can be delegated to instance variables, class variables, or
+constants by providing them as a symbols:
+</p>
+<pre>
+  class Foo
+    CONSTANT_ARRAY = [0,1,2,3]
+    @@class_array  = [4,5,6,7]
+
+    def initialize
+      @instance_array = [8,9,10,11]
+    end
+    delegate :sum, :to =&gt; :CONSTANT_ARRAY
+    delegate :min, :to =&gt; :@@class_array
+    delegate :max, :to =&gt; :@instance_array
+  end
+
+  Foo.new.sum # =&gt; 6
+  Foo.new.min # =&gt; 4
+  Foo.new.max # =&gt; 11
+</pre>
+<p>
+Delegates can optionally be prefixed using the <tt>:prefix</tt> option. If
+the value is <tt>true</tt>, the <a href="Module.html#M000072">delegate</a>
+methods are prefixed with the name of the object being delegated to.
+</p>
+<pre>
+  Person = Struct.new(:name, :address)
+
+  class Invoice &lt; Struct.new(:client)
+    delegate :name, :address, :to =&gt; :client, :prefix =&gt; true
+  end
+
+  john_doe = Person.new(&quot;John Doe&quot;, &quot;Vimmersvej 13&quot;)
+  invoice = Invoice.new(john_doe)
+  invoice.client_name    # =&gt; &quot;John Doe&quot;
+  invoice.client_address # =&gt; &quot;Vimmersvej 13&quot;
+</pre>
+<p>
+It is also possible to supply a custom prefix.
+</p>
+<pre>
+  class Invoice &lt; Struct.new(:client)
+    delegate :name, :address, :to =&gt; :client, :prefix =&gt; :customer
+  end
+
+  invoice = Invoice.new(john_doe)
+  invoice.customer_name    # =&gt; &quot;John Doe&quot;
+  invoice.customer_address # =&gt; &quot;Vimmersvej 13&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000068" class="method-detail">
+        <a name="M000068"></a>
+
+        <div class="method-heading">
+          <a href="Module.src/M000068.html" target="Code" class="method-signature"
+            onclick="popupCode('Module.src/M000068.html');return false;">
+          <span class="method-name">included_in_classes</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the classes in the current ObjectSpace where this module has been
+mixed in according to Module#included_modules.
+</p>
+<pre>
+  module M
+  end
+
+  module N
+    include M
+  end
+
+  class C
+    include M
+  end
+
+  class D &lt; C
+  end
+
+  p M.included_in_classes # =&gt; [C, D]
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000079" class="method-detail">
+        <a name="M000079"></a>
+
+        <div class="method-heading">
+          <a href="Module.src/M000079.html" target="Code" class="method-signature"
+            onclick="popupCode('Module.src/M000079.html');return false;">
+          <span class="method-name">mattr_accessor</span><span class="method-args">(*syms)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000077" class="method-detail">
+        <a name="M000077"></a>
+
+        <div class="method-heading">
+          <a href="Module.src/M000077.html" target="Code" class="method-signature"
+            onclick="popupCode('Module.src/M000077.html');return false;">
+          <span class="method-name">mattr_reader</span><span class="method-args">(*syms)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000078" class="method-detail">
+        <a name="M000078"></a>
+
+        <div class="method-heading">
+          <a href="Module.src/M000078.html" target="Code" class="method-signature"
+            onclick="popupCode('Module.src/M000078.html');return false;">
+          <span class="method-name">mattr_writer</span><span class="method-args">(*syms)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000069" class="method-detail">
+        <a name="M000069"></a>
+
+        <div class="method-heading">
+          <a href="Module.src/M000069.html" target="Code" class="method-signature"
+            onclick="popupCode('Module.src/M000069.html');return false;">
+          <span class="method-name">synchronize</span><span class="method-args">(*methods)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Synchronize access around a method, delegating synchronization to a
+particular mutex. A mutex (either a Mutex, or any object that responds to
+<a href="Module.html#M000069">synchronize</a> and yields to a block) must
+be provided as a final :with option. The :with option should be a symbol or
+string, and can represent a method, constant, or instance or class
+variable. Example:
+</p>
+<pre>
+  class SharedCache
+    @@lock = Mutex.new
+    def expire
+      ...
+    end
+    synchronize :expire, :with =&gt; :@@lock
+  end
+</pre>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: '''0.123456'' -&gt; 123456 ''1.123456'' -&gt; 123456'
+full_name: ActiveRecord::ConnectionAdapters::Column::microseconds
+params: (time)
+name: microseconds
+is_singleton: true
+aliases: []
+

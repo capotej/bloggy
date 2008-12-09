@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Parses a query string by breaking it up at the '&amp;' and ';' characters.
+    You can also use this to parse cookies by changing the characters used in the
+    second parameter (which defaults to '&amp;;'.
+full_name: Mongrel::HttpRequest::query_parse
+params: (qs, d = '&;')
+name: query_parse
+is_singleton: true
+aliases: []
+

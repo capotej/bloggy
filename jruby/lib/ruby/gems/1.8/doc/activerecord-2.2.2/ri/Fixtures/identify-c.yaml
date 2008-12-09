@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a consistent identifier for <tt>label</tt>. This will always be a
+    positive integer, and will always be the same for a given label, assuming the
+    same OS, platform, and version of Ruby.
+full_name: Fixtures::identify
+params: (label)
+name: identify
+is_singleton: true
+aliases: []
+

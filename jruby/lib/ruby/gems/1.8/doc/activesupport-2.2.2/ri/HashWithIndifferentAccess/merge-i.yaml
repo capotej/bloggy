@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Merges the instantized and the specified hashes together, giving precedence
+    to the values from the second hash Does not overwrite the existing hash.
+full_name: HashWithIndifferentAccess#merge
+params: (hash)
+name: merge
+is_singleton: false
+aliases: []
+

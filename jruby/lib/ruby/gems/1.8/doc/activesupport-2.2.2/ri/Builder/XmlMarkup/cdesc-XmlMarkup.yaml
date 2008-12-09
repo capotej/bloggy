@@ -1,0 +1,152 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create XML markup easily. All (well, almost all) methods sent to an XmlMarkup
+    object will be translated to the equivalent XML markup. Any method with a block
+    will be treated as an XML markup tag with nested markup in the block.
+- !ruby/struct:SM::Flow::P 
+  body: Examples will demonstrate this easier than words. In the following, <tt>xm</tt>
+    is an <tt>XmlMarkup</tt> object.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  xm.em(&quot;emphasized&quot;)             # =&gt; <em>emphasized</em>\n\
+    \  xm.em { xmm.b(&quot;emp &amp; bold&quot;) }   # =&gt; <b><em>emph &amp;amp; \
+    bold</em></b>\n  xm.a(&quot;A Link&quot;, &quot;href&quot;=&gt;&quot;http://onestepback.org&quot;)\n\
+    \                                  # =&gt; &lt;a href=&quot;http://onestepback.org&quot;&gt;A \
+    Link&lt;/a&gt;\n  xm.div { br }                    # =&gt; &lt;div&gt;&lt;br/&gt;&lt;/div&gt;\n\
+    \  xm.target(&quot;name&quot;=&gt;&quot;compile&quot;, &quot;option&quot;=&gt;&quot;fast&quot;)\n\
+    \                                  # =&gt; &lt;target option=&quot;fast&quot; name=&quot;compile&quot;\\\
+    &gt;\n                                  # NOTE: order of attributes is not specified.\n\
+    \n  xm.instruct!                   # &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n\
+    \  xm.html {                      # &lt;html&gt;\n    xm.head {                \
+    \    #   &lt;head&gt;\n      xm.title(&quot;History&quot;)        #     &lt;title&gt;History&lt;/title&gt;\n\
+    \    }                            #   &lt;/head&gt;\n    xm.body {             \
+    \       #   &lt;body&gt;\n      xm.comment! &quot;HI&quot;           #     &lt;! \
+    -- HI --&gt;\n      xm.h1(&quot;Header&quot;)            #     &lt;h1&gt;Header&lt;/h1&gt;\n\
+    \      xm.p(&quot;paragraph&quot;)          #     &lt;p&gt;paragraph&lt;/p&gt;\n\
+    \    }                            #   &lt;/body&gt;\n  }                       \
+    \       # &lt;/html&gt;\n"
+- !ruby/struct:SM::Flow::H 
+  text: 'Notes:'
+  level: 2
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: The order that attributes are inserted in markup tags is undefined.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: Sometimes you wish to insert text without enclosing tags. Use the <tt>text!</tt>
+      method to accomplish this.
+    label: '*'
+  - !ruby/struct:SM::Flow::P 
+    body: 'Example:'
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  xm.div {                          # &lt;div&gt;\n    xm.text! &quot;line&quot;; \
+      xm.br          #   line&lt;br/&gt;\n    xm.text! &quot;another line&quot;; xmbr \
+      \  #    another line&lt;br/&gt;\n  }                                 # &lt;/div&gt;\n"
+  - !ruby/struct:SM::Flow::LI 
+    body: The special XML characters &lt;, &gt;, and &amp; are converted to &amp;lt;,
+      &amp;gt; and &amp;amp; automatically. Use the <tt>&lt;&lt;</tt> operation to
+      insert text without modification.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: Sometimes tags use special characters not allowed in ruby identifiers. Use
+      the <tt>tag!</tt> method to handle these cases.
+    label: '*'
+  - !ruby/struct:SM::Flow::P 
+    body: 'Example:'
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  xml.tag!(&quot;SOAP:Envelope&quot;) { ... }\n"
+  - !ruby/struct:SM::Flow::P 
+    body: will produce ...
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  &lt;SOAP:Envelope&gt; ... &lt;/SOAP:Envelope&gt;&quot;\n"
+  - !ruby/struct:SM::Flow::P 
+    body: <tt>tag!</tt> will also take text and attribute arguments (after the tag
+      name) like normal markup methods. (But see the next bullet item for a better
+      way to handle XML namespaces).
+  - !ruby/struct:SM::Flow::LI 
+    body: Direct support for XML namespaces is now available. If the first argument
+      to a tag call is a symbol, it will be joined to the tag to produce a namespace:tag
+      combination. It is easier to show this than describe it.
+    label: '*'
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  xml.SOAP :Envelope do ... end\n"
+  - !ruby/struct:SM::Flow::P 
+    body: Just put a space before the colon in a namespace to produce the right form
+      for builder (e.g. &quot;<tt>SOAP:Envelope</tt>&quot; =&gt; &quot;<tt>xml.SOAP
+      :Envelope</tt>&quot;)
+  - !ruby/struct:SM::Flow::LI 
+    body: XmlMarkup builds the markup in any object (called a <em>target</em>) that
+      accepts the <tt>&lt;&lt;</tt> method. If no target is given, then XmlMarkup
+      defaults to a string target.
+    label: '*'
+  - !ruby/struct:SM::Flow::P 
+    body: 'Examples:'
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  xm = Builder::XmlMarkup.new\n  result = xm.title(&quot;yada&quot;)\n\
+      \  # result is a string containing the markup.\n\n  buffer = &quot;&quot;\n  \
+      xm = Builder::XmlMarkup.new(buffer)\n  # The markup is appended to buffer (using \
+      &lt;&lt;)\n\n  xm = Builder::XmlMarkup.new(STDOUT)\n  # The markup is written \
+      to STDOUT (using &lt;&lt;)\n\n  xm = Builder::XmlMarkup.new\n  x2 = Builder::XmlMarkup.new(:target=&gt;xm)\n\
+      \  # Markup written to +x2+ will be send to <tt>xm</tt>.\n"
+  - !ruby/struct:SM::Flow::LI 
+    body: Indentation is enabled by providing the number of spaces to indent for each
+      level as a second argument to XmlBuilder.new. Initial indentation may be specified
+      using a third parameter.
+    label: '*'
+  - !ruby/struct:SM::Flow::P 
+    body: 'Example:'
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  xm = Builder.new(:indent=&gt;2)\n  # xm will produce nicely formatted \
+      and indented XML.\n\n  xm = Builder.new(:indent=&gt;2, :margin=&gt;4)\n  # xm \
+      will produce nicely formatted and indented XML with 2\n  # spaces per indent \
+      and an over all indentation level of 4.\n\n  builder = Builder::XmlMarkup.new(:target=&gt;$stdout, \
+      :indent=&gt;2)\n  builder.name { |b| b.first(&quot;Jim&quot;); b.last(&quot;Weirich) \
+      }\n  # prints:\n  #     &lt;name&gt;\n  #       &lt;first&gt;Jim&lt;/first&gt;\n\
+      \  #       &lt;last&gt;Weirich&lt;/last&gt;\n  #     &lt;/name&gt;\n"
+  - !ruby/struct:SM::Flow::LI 
+    body: The instance_eval implementation which forces self to refer to the message
+      receiver as self is now obsolete. We now use normal block calls to execute the
+      markup block. This means that all markup methods must now be explicitly send
+      to the xml builder. For instance, instead of
+    label: '*'
+  - !ruby/struct:SM::Flow::VERB 
+    body: "   xml.div { strong(&quot;text&quot;) }\n"
+  - !ruby/struct:SM::Flow::P 
+    body: 'you need to write:'
+  - !ruby/struct:SM::Flow::VERB 
+    body: "   xml.div { xml.strong(&quot;text&quot;) }\n"
+  - !ruby/struct:SM::Flow::P 
+    body: Although more verbose, the subtle change in semantics within the block was
+      found to be prone to error. To make this change a little less cumbersome, the
+      markup block now gets the markup object sent as an argument, allowing you to
+      use a shorter alias within the block.
+  - !ruby/struct:SM::Flow::P 
+    body: 'For example:'
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  xml_builder = Builder::XmlMarkup.new\n  xml_builder.div { |xml|\n    \
+      xml.stong(&quot;text&quot;)\n  }\n"
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: cdata!
+- !ruby/object:RI::MethodSummary 
+  name: comment!
+- !ruby/object:RI::MethodSummary 
+  name: declare!
+- !ruby/object:RI::MethodSummary 
+  name: instruct!
+- !ruby/object:RI::MethodSummary 
+  name: target!
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Builder::XmlMarkup
+constants: []
+
+superclass: XmlBase
+name: XmlMarkup

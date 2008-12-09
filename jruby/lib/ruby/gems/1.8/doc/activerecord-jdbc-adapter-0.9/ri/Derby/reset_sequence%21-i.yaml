@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set the sequence to the max value of the table's column.
+full_name: "::Derby#reset_sequence!"
+params: (table, column, sequence = nil)
+name: reset_sequence!
+is_singleton: false
+aliases: []
+

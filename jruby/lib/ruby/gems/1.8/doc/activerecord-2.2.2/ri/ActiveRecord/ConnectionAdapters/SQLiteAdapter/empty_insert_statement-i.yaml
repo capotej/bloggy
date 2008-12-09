@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::SQLiteAdapter#empty_insert_statement
+params: (table_name)
+name: empty_insert_statement
+is_singleton: false
+aliases: []
+

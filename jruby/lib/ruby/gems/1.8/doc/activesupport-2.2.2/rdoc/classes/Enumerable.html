@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Enumerable</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Enumerable</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/active_support/core_ext/enumerable_rb.html">
+                lib/active_support/core_ext/enumerable.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/json/encoders/enumerable_rb.html">
+                lib/active_support/json/encoders/enumerable.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000810">each_with_object</a>&nbsp;&nbsp;
+      <a href="#M000808">group_by</a>&nbsp;&nbsp;
+      <a href="#M000811">index_by</a>&nbsp;&nbsp;
+      <a href="#M000812">many?</a>&nbsp;&nbsp;
+      <a href="#M000809">sum</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000810" class="method-detail">
+        <a name="M000810"></a>
+
+        <div class="method-heading">
+          <a href="Enumerable.src/M000810.html" target="Code" class="method-signature"
+            onclick="popupCode('Enumerable.src/M000810.html');return false;">
+          <span class="method-name">each_with_object</span><span class="method-args">(memo, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Iterates over a collection, passing the current element <b>and</b> the
+<tt>memo</tt> to the block. Handy for building up hashes or reducing
+collections down to one object. Examples:
+</p>
+<pre>
+  %w(foo bar).each_with_object({}) { |str, hsh| hsh[str] = str.upcase } #=&gt; {'foo' =&gt; 'FOO', 'bar' =&gt; 'BAR'}
+</pre>
+<p>
+<b>Note</b> that you can&#8216;t use immutable objects like numbers, true
+or false as the memo. You would think the following returns 120, but since
+the memo is never changed, it does not.
+</p>
+<pre>
+  (1..5).each_with_object(1) { |value, memo| memo *= value } # =&gt; 1
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000808" class="method-detail">
+        <a name="M000808"></a>
+
+        <div class="method-heading">
+          <a href="Enumerable.src/M000808.html" target="Code" class="method-signature"
+            onclick="popupCode('Enumerable.src/M000808.html');return false;">
+          <span class="method-name">group_by</span><span class="method-args">() {|element| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Collect an enumerable into sets, grouped by the result of a block. Useful,
+for example, for grouping records by date.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  latest_transcripts.group_by(&amp;:day).each do |day, transcripts|
+    p &quot;#{day} -&gt; #{transcripts.map(&amp;:class).join(', ')}&quot;
+  end
+  &quot;2006-03-01 -&gt; Transcript&quot;
+  &quot;2006-02-28 -&gt; Transcript&quot;
+  &quot;2006-02-27 -&gt; Transcript, Transcript&quot;
+  &quot;2006-02-26 -&gt; Transcript, Transcript&quot;
+  &quot;2006-02-25 -&gt; Transcript&quot;
+  &quot;2006-02-24 -&gt; Transcript, Transcript&quot;
+  &quot;2006-02-23 -&gt; Transcript&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000811" class="method-detail">
+        <a name="M000811"></a>
+
+        <div class="method-heading">
+          <a href="Enumerable.src/M000811.html" target="Code" class="method-signature"
+            onclick="popupCode('Enumerable.src/M000811.html');return false;">
+          <span class="method-name">index_by</span><span class="method-args">() {|elem| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Convert an enumerable to a hash. Examples:
+</p>
+<pre>
+  people.index_by(&amp;:login)
+    =&gt; { &quot;nextangle&quot; =&gt; &lt;Person ...&gt;, &quot;chade-&quot; =&gt; &lt;Person ...&gt;, ...}
+  people.index_by { |person| &quot;#{person.first_name} #{person.last_name}&quot; }
+    =&gt; { &quot;Chade- Fowlersburg-e&quot; =&gt; &lt;Person ...&gt;, &quot;David Heinemeier Hansson&quot; =&gt; &lt;Person ...&gt;, ...}
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000812" class="method-detail">
+        <a name="M000812"></a>
+
+        <div class="method-heading">
+          <a href="Enumerable.src/M000812.html" target="Code" class="method-signature"
+            onclick="popupCode('Enumerable.src/M000812.html');return false;">
+          <span class="method-name">many?</span><span class="method-args">(&amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if the collection has more than 1 element. Functionally
+equivalent to collection.size &gt; 1. Works with a block too ala any?, so
+people.many? { |p| p.age &gt; 26 } # =&gt; returns true if more than 1
+person is over 26.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000809" class="method-detail">
+        <a name="M000809"></a>
+
+        <div class="method-heading">
+          <a href="Enumerable.src/M000809.html" target="Code" class="method-signature"
+            onclick="popupCode('Enumerable.src/M000809.html');return false;">
+          <span class="method-name">sum</span><span class="method-args">(identity = 0, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Calculates a <a href="Enumerable.html#M000809">sum</a> from the elements.
+Examples:
+</p>
+<pre>
+ payments.sum { |p| p.price * p.tax_rate }
+ payments.sum(&amp;:price)
+</pre>
+<p>
+The latter is a shortcut for:
+</p>
+<pre>
+ payments.inject { |sum, p| sum + p.price }
+</pre>
+<p>
+It can also calculate the <a href="Enumerable.html#M000809">sum</a> without
+the use of a block.
+</p>
+<pre>
+ [5, 15, 10].sum # =&gt; 30
+ [&quot;foo&quot;, &quot;bar&quot;].sum # =&gt; &quot;foobar&quot;
+ [[1, 2], [3, 1, 5]].sum =&gt; [1, 2, 3, 1, 5]
+</pre>
+<p>
+The default <a href="Enumerable.html#M000809">sum</a> of an empty list is
+zero. You can override this default:
+</p>
+<pre>
+ [].sum(Payment.new(0)) { |i| i.amount } # =&gt; Payment.new(0)
+</pre>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

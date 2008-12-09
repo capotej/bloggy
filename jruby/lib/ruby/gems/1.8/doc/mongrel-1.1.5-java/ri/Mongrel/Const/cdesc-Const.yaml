@@ -1,0 +1,317 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Frequently used constants when constructing requests or responses. Many times
+    the constant just refers to a string with the same contents. Using these constants
+    gave about a 3% to 10% performance improvement over using the strings directly.
+    Symbols did not really improve things much compared to constants.
+- !ruby/struct:SM::Flow::P 
+  body: While Mongrel does try to emulate the CGI/1.2 protocol, it does not use the
+    REMOTE_IDENT, REMOTE_USER, or REMOTE_HOST parameters since those are either a
+    security problem or too taxing on performance.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: Mongrel::Const
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"Date".freeze'
+  name: DATE
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This is the part of the path after the SCRIPT_NAME. URIClassifier will determine
+      this.
+  value: '"PATH_INFO".freeze'
+  name: PATH_INFO
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This is the initial part that your handler is identified as by URIClassifier.
+  value: '"SCRIPT_NAME".freeze'
+  name: SCRIPT_NAME
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The original URI requested by the client. Passed to URIClassifier to build
+      PATH_INFO and SCRIPT_NAME.
+  value: '''REQUEST_URI''.freeze'
+  name: REQUEST_URI
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''REQUEST_PATH''.freeze'
+  name: REQUEST_PATH
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"1.1.5".freeze'
+  name: MONGREL_VERSION
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"mongrel".freeze'
+  name: MONGREL_TMP_BASE
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The standard empty 404 response for bad requests. Use Error4040Handler for
+      custom stuff.
+  value: '"HTTP/1.1 404 Not Found\r\nConnection: close\r\nServer: Mongrel #{MONGREL_VERSION}\r\n\r\nNOT
+    FOUND".freeze'
+  name: ERROR_404_RESPONSE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"CONTENT_LENGTH".freeze'
+  name: CONTENT_LENGTH
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A common header for indicating the server is too busy. Not used yet.
+  value: '"HTTP/1.1 503 Service Unavailable\r\n\r\nBUSY".freeze'
+  name: ERROR_503_RESPONSE
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The basic max request size we'll try to read.
+  value: (16 * 1024)
+  name: CHUNK_SIZE
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This is the maximum header that is allowed before a client is booted. The
+      parser detects this, but we'd also like to do this as well.
+  value: 1024 * (80 + 32)
+  name: MAX_HEADER
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Maximum request body size before it is moved out of memory and into a tempfile
+      for reading.
+  value: MAX_HEADER
+  name: MAX_BODY
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A frozen format for this is about 15% faster
+  value: '"HTTP/1.1 %d %s\r\nConnection: close\r\n".freeze'
+  name: STATUS_FORMAT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"Content-Type".freeze'
+  name: CONTENT_TYPE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"Last-Modified".freeze'
+  name: LAST_MODIFIED
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"ETag".freeze'
+  name: ETAG
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"/".freeze'
+  name: SLASH
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"REQUEST_METHOD".freeze'
+  name: REQUEST_METHOD
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"GET".freeze'
+  name: GET
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"HEAD".freeze'
+  name: HEAD
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: ETag is based on the apache standard of hex mtime-size-inode (inode is 0
+      on win32)
+  value: '"\"%x-%x-%x\"".freeze'
+  name: ETAG_FORMAT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"%s: %s\r\n".freeze'
+  name: HEADER_FORMAT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"\r\n".freeze'
+  name: LINE_END
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"REMOTE_ADDR".freeze'
+  name: REMOTE_ADDR
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"HTTP_X_FORWARDED_FOR".freeze'
+  name: HTTP_X_FORWARDED_FOR
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"HTTP_IF_MODIFIED_SINCE".freeze'
+  name: HTTP_IF_MODIFIED_SINCE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"HTTP_IF_NONE_MATCH".freeze'
+  name: HTTP_IF_NONE_MATCH
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"HTTP/1.1 302 Found\r\nLocation: %s\r\nConnection: close\r\n\r\n".freeze'
+  name: REDIRECT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"HOST".freeze'
+  name: HOST
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"Date".freeze'
+  name: DATE
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This is the part of the path after the SCRIPT_NAME. URIClassifier will determine
+      this.
+  value: '"PATH_INFO".freeze'
+  name: PATH_INFO
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This is the initial part that your handler is identified as by URIClassifier.
+  value: '"SCRIPT_NAME".freeze'
+  name: SCRIPT_NAME
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The original URI requested by the client. Passed to URIClassifier to build
+      PATH_INFO and SCRIPT_NAME.
+  value: '''REQUEST_URI''.freeze'
+  name: REQUEST_URI
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''REQUEST_PATH''.freeze'
+  name: REQUEST_PATH
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"1.1.5".freeze'
+  name: MONGREL_VERSION
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"mongrel".freeze'
+  name: MONGREL_TMP_BASE
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The standard empty 404 response for bad requests. Use Error4040Handler for
+      custom stuff.
+  value: '"HTTP/1.1 404 Not Found\r\nConnection: close\r\nServer: Mongrel #{MONGREL_VERSION}\r\n\r\nNOT
+    FOUND".freeze'
+  name: ERROR_404_RESPONSE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"CONTENT_LENGTH".freeze'
+  name: CONTENT_LENGTH
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A common header for indicating the server is too busy. Not used yet.
+  value: '"HTTP/1.1 503 Service Unavailable\r\n\r\nBUSY".freeze'
+  name: ERROR_503_RESPONSE
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The basic max request size we'll try to read.
+  value: (16 * 1024)
+  name: CHUNK_SIZE
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This is the maximum header that is allowed before a client is booted. The
+      parser detects this, but we'd also like to do this as well.
+  value: 1024 * (80 + 32)
+  name: MAX_HEADER
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Maximum request body size before it is moved out of memory and into a tempfile
+      for reading.
+  value: MAX_HEADER
+  name: MAX_BODY
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A frozen format for this is about 15% faster
+  value: '"HTTP/1.1 %d %s\r\nConnection: close\r\n".freeze'
+  name: STATUS_FORMAT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"Content-Type".freeze'
+  name: CONTENT_TYPE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"Last-Modified".freeze'
+  name: LAST_MODIFIED
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"ETag".freeze'
+  name: ETAG
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"/".freeze'
+  name: SLASH
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"REQUEST_METHOD".freeze'
+  name: REQUEST_METHOD
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"GET".freeze'
+  name: GET
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"HEAD".freeze'
+  name: HEAD
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: ETag is based on the apache standard of hex mtime-size-inode (inode is 0
+      on win32)
+  value: '"\"%x-%x-%x\"".freeze'
+  name: ETAG_FORMAT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"%s: %s\r\n".freeze'
+  name: HEADER_FORMAT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"\r\n".freeze'
+  name: LINE_END
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"REMOTE_ADDR".freeze'
+  name: REMOTE_ADDR
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"HTTP_X_FORWARDED_FOR".freeze'
+  name: HTTP_X_FORWARDED_FOR
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"HTTP_IF_MODIFIED_SINCE".freeze'
+  name: HTTP_IF_MODIFIED_SINCE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"HTTP_IF_NONE_MATCH".freeze'
+  name: HTTP_IF_NONE_MATCH
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"HTTP/1.1 302 Found\r\nLocation: %s\r\nConnection: close\r\n\r\n".freeze'
+  name: REDIRECT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"HOST".freeze'
+  name: HOST
+superclass: 
+name: Const

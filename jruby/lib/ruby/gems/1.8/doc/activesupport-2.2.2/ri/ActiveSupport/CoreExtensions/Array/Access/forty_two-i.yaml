@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Equal to <tt>self[41]</tt>. Also known as accessing &quot;the reddit&quot;.
+full_name: ActiveSupport::CoreExtensions::Array::Access#forty_two
+params: ()
+name: forty_two
+is_singleton: false
+aliases: []
+

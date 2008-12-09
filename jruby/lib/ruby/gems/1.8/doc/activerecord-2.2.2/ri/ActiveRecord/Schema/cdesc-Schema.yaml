@@ -1,0 +1,31 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Allows programmers to programmatically define a schema in a portable DSL.
+    This means you can define tables, indexes, etc. without using SQL directly, so
+    your applications can more easily support multiple databases.
+- !ruby/struct:SM::Flow::P 
+  body: 'Usage:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ActiveRecord::Schema.define do\n    create_table :authors do |t|\n     \
+    \ t.string :name, :null =&gt; false\n    end\n\n    add_index :authors, :name, \
+    :unique\n\n    create_table :posts do |t|\n      t.integer :author_id, :null =&gt; \
+    false\n      t.string :subject\n      t.text :body\n      t.boolean :private, \
+    :default =&gt; false\n    end\n\n    add_index :posts, :author_id\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: ActiveRecord::Schema is only supported by database adapters that also support
+    migrations, the two features being very similar.
+attributes: []
+
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: define
+full_name: ActiveRecord::Schema
+constants: []
+
+superclass: Migration
+name: Schema

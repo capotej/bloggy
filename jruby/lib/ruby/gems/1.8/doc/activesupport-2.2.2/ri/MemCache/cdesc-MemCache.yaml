@@ -1,0 +1,122 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A Ruby client library for memcached.
+- !ruby/struct:SM::Flow::P 
+  body: This is intended to provide access to basic memcached functionality. It does
+    not attempt to be complete implementation of the entire API, but it is approaching
+    a complete implementation.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The multithread setting for this instance
+  rw: R
+  name: multithread
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The namespace for this instance
+  rw: R
+  name: namespace
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The amount of time to wait for a response from a memcached server. If a
+      response is not completed within this time, the connection to the server will
+      be closed and an error will be raised.
+  rw: RW
+  name: request_timeout
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The servers this client talks to. Play at your own peril.
+  rw: R
+  name: servers
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: '[]'
+- !ruby/object:RI::MethodSummary 
+  name: '[]='
+- !ruby/object:RI::MethodSummary 
+  name: active?
+- !ruby/object:RI::MethodSummary 
+  name: add
+- !ruby/object:RI::MethodSummary 
+  name: cache_decr
+- !ruby/object:RI::MethodSummary 
+  name: cache_get
+- !ruby/object:RI::MethodSummary 
+  name: cache_get_multi
+- !ruby/object:RI::MethodSummary 
+  name: cache_incr
+- !ruby/object:RI::MethodSummary 
+  name: decr
+- !ruby/object:RI::MethodSummary 
+  name: delete
+- !ruby/object:RI::MethodSummary 
+  name: flush_all
+- !ruby/object:RI::MethodSummary 
+  name: get
+- !ruby/object:RI::MethodSummary 
+  name: get_multi
+- !ruby/object:RI::MethodSummary 
+  name: get_server_for_key
+- !ruby/object:RI::MethodSummary 
+  name: handle_error
+- !ruby/object:RI::MethodSummary 
+  name: hash_for
+- !ruby/object:RI::MethodSummary 
+  name: incr
+- !ruby/object:RI::MethodSummary 
+  name: inspect
+- !ruby/object:RI::MethodSummary 
+  name: make_cache_key
+- !ruby/object:RI::MethodSummary 
+  name: raise_on_error_response!
+- !ruby/object:RI::MethodSummary 
+  name: readonly?
+- !ruby/object:RI::MethodSummary 
+  name: request_setup
+- !ruby/object:RI::MethodSummary 
+  name: reset
+- !ruby/object:RI::MethodSummary 
+  name: servers=
+- !ruby/object:RI::MethodSummary 
+  name: set
+- !ruby/object:RI::MethodSummary 
+  name: stats
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: MemCache
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The version of MemCache you are using.
+  value: '''1.5.0'''
+  name: VERSION
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default options for the cache object.
+  value: '{     :namespace   => nil,     :readonly    => false,     :multithread =>
+    false,   }'
+  name: DEFAULT_OPTIONS
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default memcached port.
+  value: "11211"
+  name: DEFAULT_PORT
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default memcached server weight.
+  value: "1"
+  name: DEFAULT_WEIGHT
+superclass: Object
+name: MemCache

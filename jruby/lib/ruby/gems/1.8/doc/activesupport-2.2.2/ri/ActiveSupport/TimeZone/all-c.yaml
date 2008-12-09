@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an array of all TimeZone objects. There are multiple TimeZone objects
+    per time zone, in many cases, to make it easier for users to find their own time
+    zone.
+full_name: ActiveSupport::TimeZone::all
+params: ()
+name: all
+is_singleton: true
+aliases: []
+

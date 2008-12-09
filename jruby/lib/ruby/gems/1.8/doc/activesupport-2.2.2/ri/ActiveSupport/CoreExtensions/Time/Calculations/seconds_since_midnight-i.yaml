@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Seconds since midnight: Time.now.seconds_since_midnight'
+full_name: ActiveSupport::CoreExtensions::Time::Calculations#seconds_since_midnight
+params: ()
+name: seconds_since_midnight
+is_singleton: false
+aliases: []
+

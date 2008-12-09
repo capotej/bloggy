@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>_start_tag (Builder::XmlEvents)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/vendor/builder-2.1.2/builder/xmlevents.rb, line 53</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_start_tag</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">attrs</span>, <span class="ruby-identifier">end_too</span>=<span class="ruby-keyword kw">false</span>)
+      <span class="ruby-ivar">@target</span>.<span class="ruby-identifier">start_tag</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">attrs</span>)
+      <span class="ruby-identifier">_end_tag</span>(<span class="ruby-identifier">sym</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">end_too</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

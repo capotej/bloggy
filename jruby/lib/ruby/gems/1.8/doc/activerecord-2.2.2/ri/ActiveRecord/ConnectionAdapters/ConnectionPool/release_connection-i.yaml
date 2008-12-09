@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Signal that the thread is finished with the current connection. #release_connection
+    releases the connection-thread association and returns the connection to the pool.'
+full_name: ActiveRecord::ConnectionAdapters::ConnectionPool#release_connection
+params: ()
+name: release_connection
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Notes about changing in Derby:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "   http://db.apache.org/derby/docs/10.2/ref/rrefsqlj81859.html#rrefsqlj81859__rrefsqlj37860)\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'We support changing columns using the strategy outlined in:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "   https://issues.apache.org/jira/browse/DERBY-1515\n"
+- !ruby/struct:SM::Flow::P 
+  body: This feature has not made it into a formal release and is not in Java 6. We
+    will need to conditionally support this somehow (supposed to arrive for 10.3.0.0)
+full_name: "::Derby#change_column"
+params: (table_name, column_name, type, options = {})
+name: change_column
+is_singleton: false
+aliases: []
+

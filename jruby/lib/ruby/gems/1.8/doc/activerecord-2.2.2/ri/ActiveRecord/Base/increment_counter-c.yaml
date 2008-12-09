@@ -1,0 +1,35 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Increment a number field by one, usually representing a count.
+- !ruby/struct:SM::Flow::P 
+  body: This is used for caching aggregate values, so that they don't need to be computed
+    every time. For example, a DiscussionBoard may cache post_count and comment_count
+    otherwise every time the board is shown it would have to run an SQL query to find
+    how many posts and comments there are.
+- !ruby/struct:SM::Flow::H 
+  text: Parameters
+  level: 4
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>counter_name</tt> - The name of the field that should be incremented.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>id</tt> - The id of the object that should be incremented.
+    label: '*'
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Increment the post_count column for the record with an id of 5\n  DiscussionBoard.increment_counter(:post_count, \
+    5)\n"
+full_name: ActiveRecord::Base::increment_counter
+params: (counter_name, id)
+name: increment_counter
+is_singleton: true
+aliases: []
+

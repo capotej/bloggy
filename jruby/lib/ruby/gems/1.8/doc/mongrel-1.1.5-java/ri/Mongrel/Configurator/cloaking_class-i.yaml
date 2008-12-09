@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Generates a class for cloaking the current self and making the DSL nicer.
+full_name: Mongrel::Configurator#cloaking_class
+params: ()
+name: cloaking_class
+is_singleton: false
+aliases: []
+

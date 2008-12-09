@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Gives a human readable format of the range.
+- !ruby/struct:SM::Flow::H 
+  text: 'Example:'
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  [1..100].to_formatted_s # =&gt; &quot;1..100&quot;\n"
+full_name: ActiveSupport::CoreExtensions::Range::Conversions#to_formatted_s
+params: (format = :default)
+name: to_formatted_s
+is_singleton: false
+aliases: []
+

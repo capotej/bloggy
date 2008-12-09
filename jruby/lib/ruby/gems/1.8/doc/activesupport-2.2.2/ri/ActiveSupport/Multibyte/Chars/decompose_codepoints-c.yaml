@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Decompose composed characters to the decomposed form.
+full_name: ActiveSupport::Multibyte::Chars::decompose_codepoints
+params: (type, codepoints)
+name: decompose_codepoints
+is_singleton: true
+aliases: []
+

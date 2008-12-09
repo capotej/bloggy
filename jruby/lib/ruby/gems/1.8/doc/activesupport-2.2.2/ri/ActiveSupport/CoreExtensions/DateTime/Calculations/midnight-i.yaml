@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Alias for #beginning_of_day'
+full_name: ActiveSupport::CoreExtensions::DateTime::Calculations#midnight
+params: ()
+name: midnight
+is_singleton: false
+aliases: []
+

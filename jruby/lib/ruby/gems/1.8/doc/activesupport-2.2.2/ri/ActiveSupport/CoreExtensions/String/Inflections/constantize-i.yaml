@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: <tt>constantize</tt> tries to find a declared constant with the name specified
+    in the string. It raises a NameError when the name is not in CamelCase or is not
+    initialized.
+- !ruby/struct:SM::Flow::P 
+  body: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &quot;Module&quot;.constantize # =&gt; Module\n  &quot;Class&quot;.constantize \
+    \ # =&gt; Class\n"
+full_name: ActiveSupport::CoreExtensions::String::Inflections#constantize
+params: ()
+name: constantize
+is_singleton: false
+aliases: []
+

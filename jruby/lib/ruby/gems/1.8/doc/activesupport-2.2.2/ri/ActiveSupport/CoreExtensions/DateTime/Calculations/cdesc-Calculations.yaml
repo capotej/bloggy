@@ -1,0 +1,52 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Enables the use of time calculations within DateTime itself
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: advance
+- !ruby/object:RI::MethodSummary 
+  name: ago
+- !ruby/object:RI::MethodSummary 
+  name: at_beginning_of_day
+- !ruby/object:RI::MethodSummary 
+  name: at_midnight
+- !ruby/object:RI::MethodSummary 
+  name: beginning_of_day
+- !ruby/object:RI::MethodSummary 
+  name: change
+- !ruby/object:RI::MethodSummary 
+  name: compare_with_coercion
+- !ruby/object:RI::MethodSummary 
+  name: end_of_day
+- !ruby/object:RI::MethodSummary 
+  name: future?
+- !ruby/object:RI::MethodSummary 
+  name: getutc
+- !ruby/object:RI::MethodSummary 
+  name: in
+- !ruby/object:RI::MethodSummary 
+  name: midnight
+- !ruby/object:RI::MethodSummary 
+  name: past?
+- !ruby/object:RI::MethodSummary 
+  name: seconds_since_midnight
+- !ruby/object:RI::MethodSummary 
+  name: since
+- !ruby/object:RI::MethodSummary 
+  name: utc
+- !ruby/object:RI::MethodSummary 
+  name: utc?
+- !ruby/object:RI::MethodSummary 
+  name: utc_offset
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::DateTime::Calculations
+constants: []
+
+superclass: 
+name: Calculations

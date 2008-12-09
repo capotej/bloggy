@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (I18n::MissingTranslationData)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/vendor/i18n-0.0.1/i18n/exceptions.rb, line 14</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">locale</span>, <span class="ruby-identifier">key</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-ivar">@key</span>, <span class="ruby-ivar">@locale</span>, <span class="ruby-ivar">@options</span> = <span class="ruby-identifier">key</span>, <span class="ruby-identifier">locale</span>, <span class="ruby-identifier">options</span>
+      <span class="ruby-identifier">keys</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:normalize_translation_keys</span>, <span class="ruby-identifier">locale</span>, <span class="ruby-identifier">key</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:scope</span>])
+      <span class="ruby-identifier">keys</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'no key'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">keys</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span>
+      <span class="ruby-keyword kw">super</span> <span class="ruby-node">&quot;translation missing: #{keys.join(', ')}&quot;</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a new Time where one or more of the elements have been changed according
+    to the <tt>options</tt> parameter. The time options (hour, minute, sec, usec)
+    reset cascadingly, so if only the hour is passed, then minute, sec, and usec is
+    set to 0. If the hour and minute is passed, then sec and usec is set to 0.
+full_name: ActiveSupport::CoreExtensions::Time::Calculations#change
+params: (options)
+name: change
+is_singleton: false
+aliases: []
+

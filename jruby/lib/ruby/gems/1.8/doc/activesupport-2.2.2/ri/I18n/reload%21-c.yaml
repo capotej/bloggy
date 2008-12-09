@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Tells the backend to reload translations. Used in situations like the Rails
+    development environment. Backends can implement whatever strategy is useful.
+full_name: I18n::reload!
+params: ()
+name: reload!
+is_singleton: true
+aliases: []
+

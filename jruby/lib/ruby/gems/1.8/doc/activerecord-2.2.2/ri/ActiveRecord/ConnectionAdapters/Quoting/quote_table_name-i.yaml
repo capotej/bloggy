@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Quotes the table name. Defaults to column name quoting.
+full_name: ActiveRecord::ConnectionAdapters::Quoting#quote_table_name
+params: (table_name)
+name: quote_table_name
+is_singleton: false
+aliases: []
+

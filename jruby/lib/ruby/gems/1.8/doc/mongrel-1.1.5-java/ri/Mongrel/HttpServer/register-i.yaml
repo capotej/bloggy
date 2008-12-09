@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Simply registers a handler with the internal URIClassifier. When the URI is
+    found in the prefix of a request then your handler's HttpHandler::process method
+    is called. See Mongrel::URIClassifier#register for more information.
+- !ruby/struct:SM::Flow::P 
+  body: If you set in_front=true then the passed in handler will be put in the front
+    of the list for that particular URI. Otherwise it's placed at the end of the list.
+full_name: Mongrel::HttpServer#register
+params: (uri, handler, in_front=false)
+name: register
+is_singleton: false
+aliases: []
+

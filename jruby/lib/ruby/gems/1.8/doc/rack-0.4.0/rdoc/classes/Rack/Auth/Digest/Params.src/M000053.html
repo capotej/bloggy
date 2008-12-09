@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>dequote (Rack::Auth::Digest::Params)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/auth/digest/params.rb, line 14</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">dequote</span>(<span class="ruby-identifier">str</span>) <span class="ruby-comment cmt"># From WEBrick::HTTPUtils</span>
+          <span class="ruby-identifier">ret</span> = (<span class="ruby-regexp re">/\A&quot;(.*)&quot;\Z/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">str</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">$1</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">str</span>.<span class="ruby-identifier">dup</span>
+          <span class="ruby-identifier">ret</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/\\(.)/</span>, <span class="ruby-value str">&quot;\\1&quot;</span>)
+          <span class="ruby-identifier">ret</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

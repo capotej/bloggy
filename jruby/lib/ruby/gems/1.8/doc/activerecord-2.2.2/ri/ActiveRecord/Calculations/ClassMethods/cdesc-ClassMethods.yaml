@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: average
+- !ruby/object:RI::MethodSummary 
+  name: calculate
+- !ruby/object:RI::MethodSummary 
+  name: construct_count_options_from_args
+- !ruby/object:RI::MethodSummary 
+  name: count
+- !ruby/object:RI::MethodSummary 
+  name: maximum
+- !ruby/object:RI::MethodSummary 
+  name: minimum
+- !ruby/object:RI::MethodSummary 
+  name: sum
+class_methods: []
+
+full_name: ActiveRecord::Calculations::ClassMethods
+constants: []
+
+superclass: 
+name: ClassMethods

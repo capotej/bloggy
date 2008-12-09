@@ -1,0 +1,19 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveSupport::Memoizable
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: Proc.new do |symbol|       "@_memoized_#{symbol.to_s.sub(/\?\Z/, '_query').sub(/!\Z/,
+    '_bang')}".to_sym
+  name: MEMOIZED_IVAR
+superclass: 
+name: Memoizable

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a new ConnectionPool object. <tt>spec</tt> is a ConnectionSpecification
+    object which describes database connection information (e.g. adapter, host name,
+    username, password, etc), as well as the maximum size for this ConnectionPool.
+- !ruby/struct:SM::Flow::P 
+  body: The default ConnectionPool maximum size is 5.
+full_name: ActiveRecord::ConnectionAdapters::ConnectionPool::new
+params: (spec)
+name: new
+is_singleton: true
+aliases: []
+

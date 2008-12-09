@@ -1,0 +1,21 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+name: RubyEngine
+constants: 
+- !ruby/object:RI::Constant 
+  name: ENGINES
+  value: '{         ''mri'' => MRI.new,         ''rbx'' => Rubinius.new'
+  comment: 
+comment: 
+attributes: []
+
+instance_methods: []
+
+full_name: Spec::Adapters::RubyEngine
+superclass: 
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: adapter
+- !ruby/object:RI::MethodSummary 
+  name: engine

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>has_one (ActiveRecord::Associations::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/associations.rb, line 874</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_one</span>(<span class="ruby-identifier">association_id</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:through</span>]
+          <span class="ruby-identifier">reflection</span> = <span class="ruby-identifier">create_has_one_through_reflection</span>(<span class="ruby-identifier">association_id</span>, <span class="ruby-identifier">options</span>)
+          <span class="ruby-identifier">association_accessor_methods</span>(<span class="ruby-identifier">reflection</span>, <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Associations</span><span class="ruby-operator">::</span><span class="ruby-constant">HasOneThroughAssociation</span>)
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">reflection</span> = <span class="ruby-identifier">create_has_one_reflection</span>(<span class="ruby-identifier">association_id</span>, <span class="ruby-identifier">options</span>)
+
+          <span class="ruby-identifier">ivar</span> = <span class="ruby-node">&quot;@#{reflection.name}&quot;</span>
+
+          <span class="ruby-identifier">method_name</span> = <span class="ruby-node">&quot;has_one_after_save_for_#{reflection.name}&quot;</span>.<span class="ruby-identifier">to_sym</span>
+          <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">method_name</span>) <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">association</span> = <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">ivar</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">instance_variable_defined?</span>(<span class="ruby-identifier">ivar</span>)
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">association</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">association</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">association</span>[<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">primary_key_name</span>] <span class="ruby-operator">!=</span> <span class="ruby-identifier">id</span>)
+              <span class="ruby-identifier">association</span>[<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">primary_key_name</span>] = <span class="ruby-identifier">id</span>
+              <span class="ruby-identifier">association</span>.<span class="ruby-identifier">save</span>(<span class="ruby-keyword kw">true</span>)
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">after_save</span> <span class="ruby-identifier">method_name</span>
+
+          <span class="ruby-identifier">add_single_associated_validation_callbacks</span>(<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">name</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:validate</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword kw">true</span>
+          <span class="ruby-identifier">association_accessor_methods</span>(<span class="ruby-identifier">reflection</span>, <span class="ruby-constant">HasOneAssociation</span>)
+          <span class="ruby-identifier">association_constructor_method</span>(<span class="ruby-identifier">:build</span>,  <span class="ruby-identifier">reflection</span>, <span class="ruby-constant">HasOneAssociation</span>)
+          <span class="ruby-identifier">association_constructor_method</span>(<span class="ruby-identifier">:create</span>, <span class="ruby-identifier">reflection</span>, <span class="ruby-constant">HasOneAssociation</span>)
+
+          <span class="ruby-identifier">configure_dependency_for_has_one</span>(<span class="ruby-identifier">reflection</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

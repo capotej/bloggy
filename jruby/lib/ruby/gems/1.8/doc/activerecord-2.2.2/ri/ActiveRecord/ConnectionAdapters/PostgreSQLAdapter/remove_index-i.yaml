@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Drops an index from a table.
+full_name: ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#remove_index
+params: (table_name, options = {})
+name: remove_index
+is_singleton: false
+aliases: []
+

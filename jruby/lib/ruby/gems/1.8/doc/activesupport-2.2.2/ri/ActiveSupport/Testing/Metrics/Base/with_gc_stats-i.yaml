@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: ""
+comment: 
+full_name: ActiveSupport::Testing::Metrics::Base#with_gc_stats
+params: () {|| ...}
+name: with_gc_stats
+is_singleton: false
+aliases: []
+

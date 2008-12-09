@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: History.txt</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>History.txt</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>History.txt
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Tue Dec 09 02:21:17 UTC 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>0.9</h2>
+<ul>
+<li>Now updated to support <a
+href="../classes/ActiveRecord.html">ActiveRecord</a> 2.2. JNDI-based
+connections will automatically connect/disconnect for every AR connection
+pool checkout/checkin. For best results, set your pool: parameter &gt;= the
+actual maximum size of the JNDI connection pool. (We&#8216;ll look at how
+to eliminate the need to configure AR&#8216;s pool in the future.)
+
+</li>
+<li>NEW! Informix support courtesy of Javier Fernandez-Ivern.
+
+</li>
+<li>Backport another Oracle CLOB issue, thanks Edson C�sar.
+
+</li>
+<li>Rubyforge 22018: chomp final trailing semicolon for oracle
+
+</li>
+<li>JRUBY-2848: Fix NPE error in set_native_database_types
+
+</li>
+<li>Rework oracle lob saving callback to be Rails 2.1 friendly (assist from
+court3nay)
+
+</li>
+<li>JRUBY-2715: Add create/drop database methods to Postgres (Peter Williams)
+
+</li>
+<li>JRUBY-3183: Fix structure dump for Postgres (Ryan Bell)
+
+</li>
+<li>JRUBY-3184: recreate_database for test database working for PG (Ryan Bell)
+
+</li>
+<li>JRUBY-3186: disable referential integrity for PG (Ryan Bell)
+
+</li>
+<li>Authoritative repository now hosted at
+git://github.com/nicksieger/activerecord-jdbc-adapter.git; rubyforge svn
+trunk cleaned out.
+
+</li>
+</ul>
+<h2>0.8.2</h2>
+<ul>
+<li>Added an optional config key called :dialect. Using :dialect allows you to
+override the default SQL dialect for the driver class being used. There are
+a few cases for this:
+
+<ul>
+<li>Using using Sybase w/ the jTDS driver.
+
+</li>
+<li>Using rebranded drivers.
+
+</li>
+<li>It makes more sense to use :dialect, rather then :driver when using JNDI.
+
+</li>
+</ul>
+</li>
+<li>JRUBY-2619: Typo with :test config causing problems with dev database (Igor
+Minar)
+
+</li>
+<li>20524, JRUBY-2612: Since when did I think that there was a true? method on
+Object?
+
+</li>
+</ul>
+<h2>0.8.1</h2>
+<ul>
+<li>Now sporting a JDBC sqlite3 adapter! Thanks Joseph Athman.
+
+</li>
+<li>Added support for InterSystems Cache database (Ryan Bell)
+
+</li>
+<li>Fix for JRUBY-2256
+
+</li>
+<li>JRUBY-1638, JRUBY-2404, JRUBY-2463: schema.table handling and Oracle NUMBER
+fixes (Darcy Schultz &amp; Jesse Hu)
+
+</li>
+<li>Add structure dump and other DDL-ish for DB2 (courtesy abedra and
+stuarthalloway)
+
+</li>
+<li>Fix missing quote_table_name function under Rails 1.2.6 and earlier
+
+</li>
+<li>Small tweaks to jdbc.rake to select proper config
+
+</li>
+<li>JRUBY-2011: Fix MSSQL string un-quoting issue (Silvio Fonseca)
+
+</li>
+<li>JRUBY-1977, 17427: Fix information_schema select issue with MSSQL (Matt
+Burke)
+
+</li>
+<li>20479: Improve get_table_name for MSSQL (Aslak Hellesøy)
+
+</li>
+<li>20243: numerics improvements for MSSQL (Aslak Hellesøy)
+
+</li>
+<li>20172: don&#8216;t quote table names for MSSQL (Thor Marius Henrichsen)
+
+</li>
+<li>19729: check for primary key existence in postgres during insert (Martin
+Luder)
+
+</li>
+<li>JRUBY-2297, 18846: retrying failing SQL statements is harmful when not
+autocommitting (Craig McMillan)
+
+</li>
+<li>10021: very preliminary sybase support. (Mark Atkinson) Not usable until
+collision w/ sqlserver driver is resolved.
+
+</li>
+<li>JRUBY-2312, JRUBY-2319, JRUBY-2322: Oracle timestamping issues (Jesse Hu
+&amp; Michael König)
+
+</li>
+<li>JRUBY-2422: Fix MySQL referential integrity and rollback issues
+
+</li>
+<li>JRUBY-2382: mysql string quoting fails with ArrayIndexOutofBoundsException
+
+</li>
+</ul>
+<h2>0.8</h2>
+<ul>
+<li>NOTE: This release is only compatible with JRuby 1.1RC3 or later.
+
+</li>
+<li>Because of recent API changes in trunk in preparation for JRuby 1.1, this
+release is not backward compatible with previous JRuby releases. Hence the
+version bump.
+
+</li>
+<li>Internal: convert Java methods to be defined with annotations
+
+</li>
+<li>Fix problem with reserved words coming back pre-quoted from indexes in
+postgres
+
+</li>
+<li>JRUBY-2205: Fix N^2 allocation of bytelists for mysql quoting (taw)
+
+</li>
+<li>Attempt a fix for Rubyforge 18059
+
+</li>
+<li>Upgrade derby to 10.3.2.1
+
+</li>
+<li>Fix db:create etc. in the case where JDBC is loaded in Rails&#8217;
+preinitializer.rb
+
+</li>
+<li>Fix db:drop to actually work
+
+</li>
+<li>Fix for Rubyforge 11567 (Matt Williams)
+
+</li>
+</ul>
+<h2>0.7.2</h2>
+<ul>
+<li>JRUBY-1905: add_column for derby, hsqldb, and postgresql (Stephen Bannasch)
+
+</li>
+<li>Fix db:create for JDBC
+
+</li>
+<li>Support Rails 2 with the old &quot;require &#8216;jdbc_adapter&#8217;&quot;
+approach
+
+</li>
+<li>JRUBY-1966: Instead of searching for just tables, search for views and
+tables.
+
+</li>
+<li>JRUBY-1583: DB2 numeric quoting (Ryan Shillington)
+
+</li>
+<li>JRUBY-1634: Oracle DATE type mapping (Daniel Wintschel)
+
+</li>
+<li>JRUBY-1543: rename_column issue with more recent MySQL drivers (Oliver
+Schmelzle)
+
+</li>
+<li>Rubyforge 15074: ConnectionAdapters::JdbcAdapter.indexes is missing name
+and schema_name parameters in the method signature (Igor Minar)
+
+</li>
+<li>Rubyforge 13558: definition for the indexes method (T Meyarivan)
+
+</li>
+<li>JRUBY-2051: handle schemaname and tablename more correctly for columns
+
+</li>
+<li>JRUBY-2102: Postgres Adapter cannot handle datetime type (Rainer Hahnekamp)
+
+</li>
+<li>JRUBY-2018: Oracle behind <a
+href="../classes/ActiveRecord.html">ActiveRecord</a>-JDBC fails with
+&quot;Invalid column index&quot; (K Venkatasubramaniyan)
+
+</li>
+<li>JRUBY-2012: jdbc_mysql structure dump fails for mysql views (Tyler
+Jennings)
+
+</li>
+</ul>
+<h2>0.7.1</h2>
+<ul>
+<li>Add adapter and driver for H2 courtesy of Caleb Land
+
+</li>
+<li>Fix &quot;undefined method `last&#8217; for {}:Hash&quot; error introduced
+with new Rake 0.8.1 (JRUBY-1859)
+
+</li>
+</ul>
+<h2>0.7</h2>
+<ul>
+<li>PLEASE NOTE: This release is not compatible with JRuby releases earlier
+than 1.0.3 or 1.1b2. If you must use JRuby 1.0.2 or earlier, please install
+the 0.6 release.
+
+</li>
+<li>Release coincides with JRuby 1.0.3 and JRuby 1.1b2 releases
+
+</li>
+<li>Simultaneous support for JRuby trunk and 1.0 branch
+
+</li>
+<li>Get rid of log_no_bench method, so we time SQL execution again.
+
+</li>
+<li>Implement select_rows
+
+</li>
+<li>MySQL migration and quoting updates
+
+</li>
+</ul>
+<h2>0.6</h2>
+<ul>
+<li>Gem is renamed to &quot;activerecord-jdbc-adapter&quot; to follow new
+conventions introduced in Rails 2.0 for third-party adapters. Rails 2.0
+compatibility is introduced.
+
+</li>
+<li>Add dependency on <a href="../classes/ActiveRecord.html">ActiveRecord</a>
+&gt;= 1.14 (from the Rails 1.1.x release)
+
+</li>
+<li>New drivers (jdbc-XXX) and adapter (activerecord-jdbcXXX-adapter) gems
+available separately. See the README.txt file for details.
+
+</li>
+<li>Plain &quot;jdbc&quot; driver is still available if you want to use the
+full driver/url way of specifying the driver.
+
+</li>
+<li>More bugfixes to Oracle and SQLServer courtesy of Ola &amp; ThoughtWorks
+
+</li>
+</ul>
+<h2>0.5</h2>
+<ul>
+<li>Release coincides with JRuby 1.0.1 release
+
+</li>
+<li>It is no longer necessary to specify :driver and :url configuration
+parameters for the mysql, postgresql, oracle, derby, hsqldb, and h2
+adapters. The previous configuration is still valid and compatible, but for
+new applications, this makes it possible to use the exact same database.yml
+configuration as Rails applications running under native Ruby.
+
+</li>
+<li>JDBC drivers can now be dynamically loaded by Ruby code, without being on
+the classpath prior to launching JRuby. Simply use &quot;require
+&#8216;jdbc-driver.jar&#8217;&quot; in JRuby code to add it to the runtime
+classpath.
+
+</li>
+<li>Updates to HSQL, MS SQLServer, Postgres, Oracle and Derby adapters
+
+</li>
+</ul>
+<h2>0.4</h2>
+<ul>
+<li>Release coincides with JRuby 1.0 release
+
+</li>
+<li>Shoring up PostgreSQL (courtesy Dudley Flanders) and HSQL (courtesy Matthew
+Williams)
+
+</li>
+<li>Fix timestamps on Oracle to use DATE (as everything else)
+
+</li>
+<li>Derby fixes: Fix for open result set issue, better structure dump, quoting,
+column type changing
+
+</li>
+<li>Sybase type recognition fix (courtesy Dean Mao)
+
+</li>
+</ul>
+<h2>0.3.1</h2>
+<ul>
+<li>Derby critical fixes shortly after 0.3
+
+</li>
+</ul>
+<h2>0.3</h2>
+<ul>
+<li>Release coincides with JRuby 1.0.0RC1 release
+
+</li>
+<li>Improvements for Derby, Postgres, and Oracle, all of which are running &gt;
+95% of AR tests
+
+</li>
+</ul>
+<h2>0.2.4</h2>
+<ul>
+<li>Release coincides with JRuby 0.9.9 release
+
+</li>
+<li>JRuby 0.9.9 is required
+
+</li>
+<li>MySQL close to 100% working
+
+</li>
+<li>Derby improvements
+
+</li>
+<li>DECIMAL/NUMERIC/FLOAT/REAL bugs fixed with type recognition for Oracle,
+Postgres, etc.
+
+</li>
+<li>HSQLDB has regressed this release and may not be functioning; we&#8216;ll
+get it fixed for the next one
+
+</li>
+</ul>
+<h2>0.2.3</h2>
+<ul>
+<li>Release coincides (and compatible) with JRuby 0.9.8 release
+
+</li>
+<li>8 bugs fixed: see <a href="http://rubyurl.com/0Da">rubyurl.com/0Da</a>
+
+</li>
+<li>Improvements and compatibility fixes for Rails 1.2.x
+
+</li>
+</ul>
+<h2>0.2.1, 0.2.2</h2>
+<ul>
+<li>Early releases, added better support for multiple databases
+
+</li>
+</ul>
+<h2>0.0.1</h2>
+<ul>
+<li>Initial, very alpha release
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

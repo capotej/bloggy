@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (value)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns <tt>value</tt> after yielding <tt>value</tt> to the block. This simplifies
+    the process of constructing an object, performing work on the object, and then
+    returning the object from a method. It is a Ruby-ized realization of the K combinator,
+    courtesy of Mikael Brockman.
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: " # Without returning\n def foo\n   values = []\n   values &lt;&lt; &quot;bar&quot;\n\
+    \   values &lt;&lt; &quot;baz&quot;\n   return values\n end\n\n foo # =&gt; ['bar', \
+    'baz']\n\n # returning with a local variable\n def foo\n   returning values = \
+    [] do\n     values &lt;&lt; 'bar'\n     values &lt;&lt; 'baz'\n   end\n end\n\n\
+    \ foo # =&gt; ['bar', 'baz']\n\n # returning with a block argument\n def foo\n\
+    \   returning [] do |values|\n     values &lt;&lt; 'bar'\n     values &lt;&lt; \
+    'baz'\n   end\n end\n\n foo # =&gt; ['bar', 'baz']\n"
+full_name: Object#returning
+params: (value) {|value| ...}
+name: returning
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the table name to use to the given value, or (if the value is nil or
+    false) to the value returned by the given block.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Project &lt; ActiveRecord::Base\n    set_table_name &quot;project&quot;\n\
+    \  end\n"
+full_name: ActiveRecord::Base::set_table_name
+params: (value = nil, &block)
+name: set_table_name
+is_singleton: true
+aliases: []
+

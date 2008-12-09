@@ -1,0 +1,36 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converts an XML document in the same way as the Perl module XML::Simple.
+- !ruby/object:SM::Flow::LIST 
+  type: :NOTE
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: 'XML source. Could be one of the following:'
+    label: 'string:'
+  - !ruby/object:SM::Flow::LIST 
+    type: :BULLET
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      body: 'nil: Tries to load and parse ''&lt;scriptname&gt;.xml''.'
+      label: '-'
+    - !ruby/struct:SM::Flow::LI 
+      body: 'filename: Tries to load and parse filename.'
+      label: '-'
+    - !ruby/struct:SM::Flow::LI 
+      body: 'IO object: Reads from object until EOF is detected and parses result.'
+      label: '-'
+    - !ruby/struct:SM::Flow::LI 
+      body: 'XML string: Parses string.'
+      label: '-'
+  - !ruby/struct:SM::Flow::LI 
+    body: Options to be used.
+    label: 'options:'
+full_name: XmlSimple#xml_in
+params: (string = nil, options = nil)
+name: xml_in
+is_singleton: false
+aliases: []
+

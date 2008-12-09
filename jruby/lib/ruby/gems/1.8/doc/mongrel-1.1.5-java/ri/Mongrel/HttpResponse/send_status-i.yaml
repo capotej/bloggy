@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Mongrel::HttpResponse#send_status
+params: (content_length=@body.length)
+name: send_status
+is_singleton: false
+aliases: []
+

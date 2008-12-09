@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Tells you whether the parser is in an error state.
+full_name: Mongrel::HttpParser#error?
+params: |
+  parser.error? -> true/false
+name: error?
+is_singleton: false
+aliases: []
+

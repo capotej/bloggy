@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Inserts the passed string at specified codepoint offsets.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  'Caf\xc3\xa9'.mb_chars.insert(4, ' p\xc3\xa9rifer\xc3\xb4l').to_s #=&gt; \
+    &quot;Caf\xc3\xa9 p\xc3\xa9rifer\xc3\xb4l&quot;\n"
+full_name: ActiveSupport::Multibyte::Chars#insert
+params: (offset, fragment)
+name: insert
+is_singleton: false
+aliases: []
+

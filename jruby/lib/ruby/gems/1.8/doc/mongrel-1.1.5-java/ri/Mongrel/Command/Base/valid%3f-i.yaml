@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Validates the given expression is true and prints the message if not, exiting.
+full_name: Mongrel::Command::Base#valid?
+params: (exp, message)
+name: valid?
+is_singleton: false
+aliases: []
+

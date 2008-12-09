@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActiveSupport::Base64</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActiveSupport::Base64</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/active_support/base64_rb.html">
+                lib/active_support/base64.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="Base64.html">Base64</a> provides utility methods for encoding and
+de-coding binary data using a base 64 representation. A base 64
+representation of binary data consists entirely of printable US-ASCII
+characters. The <a href="Base64.html">Base64</a> module is included in Ruby
+1.8, but has been removed in Ruby 1.9.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000130">decode64</a>&nbsp;&nbsp;
+      <a href="#M000129">encode64</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000130" class="method-detail">
+        <a name="M000130"></a>
+
+        <div class="method-heading">
+          <a href="Base64.src/M000130.html" target="Code" class="method-signature"
+            onclick="popupCode('Base64.src/M000130.html');return false;">
+          <span class="method-name">decode64</span><span class="method-args">(data)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Decodes a base 64 encoded string to its original representation.
+</p>
+<pre>
+ ActiveSupport::Base64.decode64(&quot;T3JpZ2luYWwgdW5lbmNvZGVkIHN0cmluZw==&quot;)
+ # =&gt; &quot;Original unencoded string&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000129" class="method-detail">
+        <a name="M000129"></a>
+
+        <div class="method-heading">
+          <a href="Base64.src/M000129.html" target="Code" class="method-signature"
+            onclick="popupCode('Base64.src/M000129.html');return false;">
+          <span class="method-name">encode64</span><span class="method-args">(data)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Encodes a string to its base 64 representation. Each 60 characters of
+output is separated by a newline character.
+</p>
+<pre>
+ ActiveSupport::Base64.encode64(&quot;Original unencoded string&quot;)
+ # =&gt; &quot;T3JpZ2luYWwgdW5lbmNvZGVkIHN0cmluZw==\n&quot;
+</pre>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

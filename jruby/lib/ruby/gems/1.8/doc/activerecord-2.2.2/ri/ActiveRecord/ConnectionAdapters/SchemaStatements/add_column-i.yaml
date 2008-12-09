@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds a new column to the named table. See TableDefinition#column for details
+    of the options you can use.
+full_name: ActiveRecord::ConnectionAdapters::SchemaStatements#add_column
+params: (table_name, column_name, type, options = {})
+name: add_column
+is_singleton: false
+aliases: []
+

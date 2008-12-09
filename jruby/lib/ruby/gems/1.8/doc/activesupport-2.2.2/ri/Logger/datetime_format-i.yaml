@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Get the logging datetime format. Returns nil if the formatter does not support
+    datetime formatting.
+full_name: Logger#datetime_format
+params: ()
+name: datetime_format
+is_singleton: false
+aliases: []
+

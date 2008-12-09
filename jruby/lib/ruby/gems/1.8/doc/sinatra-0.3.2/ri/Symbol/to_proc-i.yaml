@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Symbol#to_proc
+params: ()
+name: to_proc
+is_singleton: false
+aliases: []
+

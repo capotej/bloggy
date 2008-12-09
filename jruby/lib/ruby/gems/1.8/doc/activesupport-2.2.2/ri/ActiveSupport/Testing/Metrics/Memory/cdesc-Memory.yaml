@@ -1,0 +1,31 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: format
+- !ruby/object:RI::MethodSummary 
+  name: measure
+- !ruby/object:RI::MethodSummary 
+  name: measure
+- !ruby/object:RI::MethodSummary 
+  name: measure
+- !ruby/object:RI::MethodSummary 
+  name: measure
+- !ruby/object:RI::MethodSummary 
+  name: measure
+- !ruby/object:RI::MethodSummary 
+  name: measure
+class_methods: []
+
+full_name: ActiveSupport::Testing::Metrics::Memory
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: RubyProf::MEMORY if RubyProf.const_defined?(:MEMORY)
+  name: Mode
+superclass: Base
+name: Memory

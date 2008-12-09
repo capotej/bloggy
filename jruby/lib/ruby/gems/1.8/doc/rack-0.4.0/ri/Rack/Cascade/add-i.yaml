@@ -1,0 +1,11 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Rack::Cascade#add
+params: (app)
+name: add
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: "<<"

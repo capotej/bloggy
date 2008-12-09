@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Quote the column name used for optimistic locking.
+full_name: ActiveRecord::Locking::Optimistic::ClassMethods#quoted_locking_column
+params: ()
+name: quoted_locking_column
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Execute this migration in the named direction
+full_name: ActiveRecord::Migration::migrate
+params: (direction)
+name: migrate
+is_singleton: true
+aliases: []
+

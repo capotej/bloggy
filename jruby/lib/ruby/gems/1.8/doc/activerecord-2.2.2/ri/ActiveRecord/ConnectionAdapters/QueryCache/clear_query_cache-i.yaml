@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Clears the query cache.
+- !ruby/struct:SM::Flow::P 
+  body: One reason you may wish to call this method explicitly is between queries
+    that ask the database to randomize results. Otherwise the cache would see the
+    same SQL query and repeatedly return the same result each time, silently undermining
+    the randomness you were expecting.
+full_name: ActiveRecord::ConnectionAdapters::QueryCache#clear_query_cache
+params: ()
+name: clear_query_cache
+is_singleton: false
+aliases: []
+

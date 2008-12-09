@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Kernel#log_open_files
+params: ()
+name: log_open_files
+is_singleton: false
+aliases: []
+

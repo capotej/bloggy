@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+full_name: ActiveRecord::Base::aggregate_mapping
+params: (reflection)
+name: aggregate_mapping
+is_singleton: true
+aliases: []
+

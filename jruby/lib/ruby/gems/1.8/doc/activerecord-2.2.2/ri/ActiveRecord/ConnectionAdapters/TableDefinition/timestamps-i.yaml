@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Appends <tt>:datetime</tt> columns <tt>:created_at</tt> and <tt>:updated_at</tt>
+    to the table.
+full_name: ActiveRecord::ConnectionAdapters::TableDefinition#timestamps
+params: (*args)
+name: timestamps
+is_singleton: false
+aliases: []
+

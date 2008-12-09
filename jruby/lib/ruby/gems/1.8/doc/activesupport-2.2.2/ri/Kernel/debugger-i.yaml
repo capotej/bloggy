@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Starts a debugging session if ruby-debug has been loaded (call script/server
+    --debugger to do load it).
+full_name: Kernel#debugger
+params: ()
+name: debugger
+is_singleton: false
+aliases: []
+

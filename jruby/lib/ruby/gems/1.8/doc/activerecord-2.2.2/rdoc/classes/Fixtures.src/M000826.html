@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>insert_fixtures (Fixtures)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/fixtures.rb, line 561</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">insert_fixtures</span>
+    <span class="ruby-identifier">now</span> = <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">default_timezone</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:utc</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">utc</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+    <span class="ruby-identifier">now</span> = <span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">:db</span>)
+
+    <span class="ruby-comment cmt"># allow a standard key to be used for doing defaults in YAML</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+      <span class="ruby-identifier">delete</span>(<span class="ruby-value str">'DEFAULTS'</span>)
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">assoc</span>(<span class="ruby-value str">'DEFAULTS'</span>))
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># track any join tables we need to insert later</span>
+    <span class="ruby-identifier">habtm_fixtures</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">habtm</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">h</span>[<span class="ruby-identifier">habtm</span>] = <span class="ruby-constant">HabtmFixtures</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@connection</span>, <span class="ruby-identifier">habtm</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:join_table</span>], <span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">label</span>, <span class="ruby-identifier">fixture</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">row</span> = <span class="ruby-identifier">fixture</span>.<span class="ruby-identifier">to_hash</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">model_class</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">model_class</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+        <span class="ruby-comment cmt"># fill in timestamp columns if they aren't specified and the model is set to record_timestamps</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">model_class</span>.<span class="ruby-identifier">record_timestamps</span>
+          <span class="ruby-identifier">timestamp_column_names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">row</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">now</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">row</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">name</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># interpolate the fixture label</span>
+        <span class="ruby-identifier">row</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">row</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">label</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;$LABEL&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># generate a primary key if necessary</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">has_primary_key_column?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">row</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">primary_key_name</span>)
+          <span class="ruby-identifier">row</span>[<span class="ruby-identifier">primary_key_name</span>] = <span class="ruby-constant">Fixtures</span>.<span class="ruby-identifier">identify</span>(<span class="ruby-identifier">label</span>)
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># If STI is used, find the correct subclass for association reflection</span>
+        <span class="ruby-identifier">reflection_class</span> =
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">row</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">inheritance_column_name</span>)
+            <span class="ruby-identifier">row</span>[<span class="ruby-identifier">inheritance_column_name</span>].<span class="ruby-identifier">constantize</span> <span class="ruby-keyword kw">rescue</span> <span class="ruby-identifier">model_class</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">model_class</span>
+          <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">reflection_class</span>.<span class="ruby-identifier">reflect_on_all_associations</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">association</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">association</span>.<span class="ruby-identifier">macro</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:belongs_to</span>
+            <span class="ruby-comment cmt"># Do not replace association name with association foreign key if they are named the same</span>
+            <span class="ruby-identifier">fk_name</span> = (<span class="ruby-identifier">association</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:foreign_key</span>] <span class="ruby-operator">||</span> <span class="ruby-node">&quot;#{association.name}_id&quot;</span>).<span class="ruby-identifier">to_s</span>
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">association</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">fk_name</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">value</span> = <span class="ruby-identifier">row</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">association</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>)
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">association</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:polymorphic</span>]
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/\s*\(([^\)]*)\)\s*$/</span>, <span class="ruby-value str">&quot;&quot;</span>)
+                  <span class="ruby-identifier">target_type</span> = <span class="ruby-identifier">$1</span>
+                  <span class="ruby-identifier">target_type_name</span> = (<span class="ruby-identifier">association</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:foreign_type</span>] <span class="ruby-operator">||</span> <span class="ruby-node">&quot;#{association.name}_type&quot;</span>).<span class="ruby-identifier">to_s</span>
+
+                  <span class="ruby-comment cmt"># support polymorphic belongs_to as &quot;label (Type)&quot;</span>
+                  <span class="ruby-identifier">row</span>[<span class="ruby-identifier">target_type_name</span>] = <span class="ruby-identifier">target_type</span>
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">end</span>
+
+              <span class="ruby-identifier">row</span>[<span class="ruby-identifier">fk_name</span>] = <span class="ruby-constant">Fixtures</span>.<span class="ruby-identifier">identify</span>(<span class="ruby-identifier">value</span>)
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:has_and_belongs_to_many</span>
+            <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">targets</span> = <span class="ruby-identifier">row</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">association</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>))
+              <span class="ruby-identifier">targets</span> = <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">targets</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/\s*,\s*/</span>)
+              <span class="ruby-identifier">join_fixtures</span> = <span class="ruby-identifier">habtm_fixtures</span>[<span class="ruby-identifier">association</span>]
+
+              <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">target</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">join_fixtures</span>[<span class="ruby-node">&quot;#{label}_#{target}&quot;</span>] = <span class="ruby-constant">Fixture</span>.<span class="ruby-identifier">new</span>(
+                  { <span class="ruby-identifier">association</span>.<span class="ruby-identifier">primary_key_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">row</span>[<span class="ruby-identifier">primary_key_name</span>],
+                    <span class="ruby-identifier">association</span>.<span class="ruby-identifier">association_foreign_key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Fixtures</span>.<span class="ruby-identifier">identify</span>(<span class="ruby-identifier">target</span>) }, <span class="ruby-keyword kw">nil</span>)
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">insert_fixture</span>(<span class="ruby-identifier">fixture</span>, <span class="ruby-ivar">@table_name</span>)
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># insert any HABTM join tables we discovered</span>
+    <span class="ruby-identifier">habtm_fixtures</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">fixture</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">fixture</span>.<span class="ruby-identifier">delete_existing_fixtures</span>
+      <span class="ruby-identifier">fixture</span>.<span class="ruby-identifier">insert_fixtures</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

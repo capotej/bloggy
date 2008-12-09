@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: run
+- !ruby/object:RI::MethodSummary 
+  name: send_body
+- !ruby/object:RI::MethodSummary 
+  name: send_headers
+- !ruby/object:RI::MethodSummary 
+  name: serve
+full_name: Rack::Handler::LSWS
+constants: []
+
+superclass: Object
+name: LSWS

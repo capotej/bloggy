@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Runs <tt>validate</tt> and <tt>validate_on_create</tt> or <tt>validate_on_update</tt>
+    and returns true if no errors were added otherwise false.
+full_name: ActiveRecord::Validations#valid?
+params: ()
+name: valid?
+is_singleton: false
+aliases: []
+

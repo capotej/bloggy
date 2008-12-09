@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Holds static data from the Unicode database
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ===
+- !ruby/object:RI::MethodSummary 
+  name: load
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: dirname
+- !ruby/object:RI::MethodSummary 
+  name: filename
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: ActiveSupport::Multibyte::UnicodeDatabase
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: ":codepoints, :composition_exclusion, :composition_map, :boundary, :cp1252"
+  name: ATTRIBUTES
+superclass: Object
+name: UnicodeDatabase

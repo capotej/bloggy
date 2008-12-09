@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Wrapper around <tt>increment</tt> that saves the record. This method differs
+    from its non-bang version in that it passes through the attribute setter. Saving
+    is not subjected to validation checks. Returns <tt>true</tt> if the record could
+    be saved.
+full_name: ActiveRecord::Base#increment!
+params: (attribute, by = 1)
+name: increment!
+is_singleton: false
+aliases: []
+

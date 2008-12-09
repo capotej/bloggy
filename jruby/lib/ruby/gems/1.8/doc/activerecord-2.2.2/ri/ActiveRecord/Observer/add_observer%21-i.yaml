@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+full_name: ActiveRecord::Observer#add_observer!
+params: (klass)
+name: add_observer!
+is_singleton: false
+aliases: []
+

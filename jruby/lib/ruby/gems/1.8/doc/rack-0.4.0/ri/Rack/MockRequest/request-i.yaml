@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Rack::MockRequest#request
+params: (method="GET", uri="", opts={})
+name: request
+is_singleton: false
+aliases: []
+

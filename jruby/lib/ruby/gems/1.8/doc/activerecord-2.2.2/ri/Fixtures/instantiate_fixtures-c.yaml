@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Fixtures::instantiate_fixtures
+params: (object, table_name, fixtures, load_instances = true)
+name: instantiate_fixtures
+is_singleton: true
+aliases: []
+

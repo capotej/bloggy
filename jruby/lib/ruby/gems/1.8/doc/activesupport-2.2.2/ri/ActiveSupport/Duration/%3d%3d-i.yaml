@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns true if <tt>other</tt> is also a Duration instance with the same <tt>value</tt>,
+    or if <tt>other == value</tt>.
+full_name: ActiveSupport::Duration#==
+params: (other)
+name: ==
+is_singleton: false
+aliases: []
+

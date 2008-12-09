@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::SQLiteAdapter#requires_reloading?
+params: ()
+name: requires_reloading?
+is_singleton: false
+aliases: []
+

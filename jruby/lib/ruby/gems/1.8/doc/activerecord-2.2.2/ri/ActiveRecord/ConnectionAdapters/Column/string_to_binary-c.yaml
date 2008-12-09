@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Used to convert from Strings to BLOBs
+full_name: ActiveRecord::ConnectionAdapters::Column::string_to_binary
+params: (value)
+name: string_to_binary
+is_singleton: true
+aliases: []
+

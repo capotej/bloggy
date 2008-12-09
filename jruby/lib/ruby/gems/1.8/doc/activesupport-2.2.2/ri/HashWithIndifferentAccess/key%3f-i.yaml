@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Checks the hash for a key matching the argument passed in:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  hash = HashWithIndifferentAccess.new\n  hash[&quot;key&quot;] = &quot;value&quot;\n\
+    \  hash.key? :key  # =&gt; true\n  hash.key? &quot;key&quot; # =&gt; true\n"
+full_name: HashWithIndifferentAccess#key?
+params: (key)
+name: key?
+is_singleton: false
+aliases: []
+

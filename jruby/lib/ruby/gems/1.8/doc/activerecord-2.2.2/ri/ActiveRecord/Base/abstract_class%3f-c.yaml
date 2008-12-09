@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns whether this class is a base AR class. If A is a base class and B
+    descends from A, then B.base_class will return B.
+full_name: ActiveRecord::Base::abstract_class?
+params: ()
+name: abstract_class?
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Locate a specific time zone object. If the argument is a string, it is interpreted
+    to mean the name of the timezone to locate. If it is a numeric value it is either
+    the hour offset, or the second offset, of the timezone to find. (The first one
+    with that offset will be returned.) Returns <tt>nil</tt> if no such time zone
+    is known to the system.
+full_name: ActiveSupport::TimeZone::[]
+params: (arg)
+name: '[]'
+is_singleton: true
+aliases: []
+

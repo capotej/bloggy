@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Close the connection to the memcached server targeted by this object. The
+    server is not considered dead.
+full_name: MemCache::Server#close
+params: ()
+name: close
+is_singleton: false
+aliases: []
+

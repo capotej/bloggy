@@ -1,0 +1,20 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: basic?
+- !ruby/object:RI::MethodSummary 
+  name: credentials
+- !ruby/object:RI::MethodSummary 
+  name: username
+class_methods: []
+
+full_name: Rack::Auth::Basic::Request
+constants: []
+
+superclass: Auth::AbstractRequest
+name: Request

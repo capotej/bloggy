@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: convert something to a boolean
+full_name: ActiveRecord::ConnectionAdapters::Column::value_to_boolean
+params: (value)
+name: value_to_boolean
+is_singleton: true
+aliases: []
+

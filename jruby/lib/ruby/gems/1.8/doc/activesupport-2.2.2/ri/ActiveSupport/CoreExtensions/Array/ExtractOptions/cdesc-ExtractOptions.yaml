@@ -1,0 +1,16 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: extract_options!
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Array::ExtractOptions
+constants: []
+
+superclass: 
+name: ExtractOptions

@@ -1,0 +1,68 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This class represents a memcached server instance.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The host the memcached server is running on.
+  rw: R
+  name: host
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The port the memcached server is listening on.
+  rw: R
+  name: port
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The time of next retry if the connection is dead.
+  rw: R
+  name: retry
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A text status string describing the state of the server.
+  rw: R
+  name: status
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The weight given to the server.
+  rw: R
+  name: weight
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: alive?
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: inspect
+- !ruby/object:RI::MethodSummary 
+  name: socket
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: MemCache::Server
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The amount of time to wait to establish a connection with a memcached server.
+      If a connection cannot be established within this time limit, the server will
+      be marked as down.
+  value: "0.25"
+  name: CONNECT_TIMEOUT
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The amount of time to wait before attempting to re-establish a connection
+      with a server that is marked dead.
+  value: "30.0"
+  name: RETRY_DELAY
+superclass: Object
+name: Server

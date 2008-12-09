@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActiveSupport::SecureRandom</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActiveSupport::SecureRandom</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/active_support/secure_random_rb.html">
+                lib/active_support/secure_random.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Secure random number generator interface.</h1>
+<p>
+This library is an interface for secure random number generator which is
+suitable for generating session key in HTTP cookies, etc.
+</p>
+<p>
+It supports following secure random number generators.
+</p>
+<ul>
+<li>openssl
+
+</li>
+<li>/dev/urandom
+
+</li>
+<li>Win32
+
+</li>
+</ul>
+<p>
+<b>Note</b>: This module is based on the <a
+href="SecureRandom.html">SecureRandom</a> library from Ruby 1.9, revision
+18786, August 23 2008. It&#8216;s 100% interface-compatible with Ruby
+1.9&#8216;s <a href="SecureRandom.html">SecureRandom</a> library.
+</p>
+<h2>Example</h2>
+<pre>
+ # random hexadecimal string.
+ p SecureRandom.hex(10) #=&gt; &quot;52750b30ffbc7de3b362&quot;
+ p SecureRandom.hex(10) #=&gt; &quot;92b15d6c8dc4beb5f559&quot;
+ p SecureRandom.hex(11) #=&gt; &quot;6aca1b5c58e4863e6b81b8&quot;
+ p SecureRandom.hex(12) #=&gt; &quot;94b2fff3e7fd9b9c391a2306&quot;
+ p SecureRandom.hex(13) #=&gt; &quot;39b290146bea6ce975c37cfc23&quot;
+ ...
+
+ # random base64 string.
+ p SecureRandom.base64(10) #=&gt; &quot;EcmTPZwWRAozdA==&quot;
+ p SecureRandom.base64(10) #=&gt; &quot;9b0nsevdwNuM/w==&quot;
+ p SecureRandom.base64(10) #=&gt; &quot;KO1nIU+p9DKxGg==&quot;
+ p SecureRandom.base64(11) #=&gt; &quot;l7XEiFja+8EKEtY=&quot;
+ p SecureRandom.base64(12) #=&gt; &quot;7kJSM/MzBJI+75j8&quot;
+ p SecureRandom.base64(13) #=&gt; &quot;vKLJ0tXBHqQOuIcSIg==&quot;
+ ...
+
+ # random binary string.
+ p SecureRandom.random_bytes(10) #=&gt; &quot;\016\t{\370g\310pbr\301&quot;
+ p SecureRandom.random_bytes(10) #=&gt; &quot;\323U\030TO\234\357\020\a\337&quot;
+ ...
+</pre>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000455">base64</a>&nbsp;&nbsp;
+      <a href="#M000454">hex</a>&nbsp;&nbsp;
+      <a href="#M000453">random_bytes</a>&nbsp;&nbsp;
+      <a href="#M000456">random_number</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000455" class="method-detail">
+        <a name="M000455"></a>
+
+        <div class="method-heading">
+          <a href="SecureRandom.src/M000455.html" target="Code" class="method-signature"
+            onclick="popupCode('SecureRandom.src/M000455.html');return false;">
+          <span class="method-name">base64</span><span class="method-args">(n=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="SecureRandom.html#M000455">SecureRandom.base64</a> generates a
+random <a href="SecureRandom.html#M000455">base64</a> string.
+</p>
+<p>
+The argument n specifies the length of the random length. The length of the
+result string is about 4/3 of n.
+</p>
+<p>
+If n is not specified, 16 is assumed. It may be larger in future.
+</p>
+<p>
+If secure random number generator is not available, NotImplementedError is
+raised.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000454" class="method-detail">
+        <a name="M000454"></a>
+
+        <div class="method-heading">
+          <a href="SecureRandom.src/M000454.html" target="Code" class="method-signature"
+            onclick="popupCode('SecureRandom.src/M000454.html');return false;">
+          <span class="method-name">hex</span><span class="method-args">(n=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="SecureRandom.html#M000454">SecureRandom.hex</a> generates a random
+<a href="SecureRandom.html#M000454">hex</a> string.
+</p>
+<p>
+The argument n specifies the length of the random length. The length of the
+result string is twice of n.
+</p>
+<p>
+If n is not specified, 16 is assumed. It may be larger in future.
+</p>
+<p>
+If secure random number generator is not available, NotImplementedError is
+raised.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000453" class="method-detail">
+        <a name="M000453"></a>
+
+        <div class="method-heading">
+          <a href="SecureRandom.src/M000453.html" target="Code" class="method-signature"
+            onclick="popupCode('SecureRandom.src/M000453.html');return false;">
+          <span class="method-name">random_bytes</span><span class="method-args">(n=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="SecureRandom.html#M000453">SecureRandom.random_bytes</a> generates
+a random binary string.
+</p>
+<p>
+The argument n specifies the length of the result string.
+</p>
+<p>
+If n is not specified, 16 is assumed. It may be larger in future.
+</p>
+<p>
+If secure random number generator is not available, NotImplementedError is
+raised.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000456" class="method-detail">
+        <a name="M000456"></a>
+
+        <div class="method-heading">
+          <a href="SecureRandom.src/M000456.html" target="Code" class="method-signature"
+            onclick="popupCode('SecureRandom.src/M000456.html');return false;">
+          <span class="method-name">random_number</span><span class="method-args">(n=0)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="SecureRandom.html#M000456">SecureRandom.random_number</a>
+generates a random number.
+</p>
+<p>
+If an positive integer is given as n, <a
+href="SecureRandom.html#M000456">SecureRandom.random_number</a> returns an
+integer: 0 &lt;= <a
+href="SecureRandom.html#M000456">SecureRandom.random_number(n)</a> &lt; n.
+</p>
+<p>
+If 0 is given or an argument is not given, <a
+href="SecureRandom.html#M000456">SecureRandom.random_number</a> returns an
+float: 0.0 &lt;= <a
+href="SecureRandom.html#M000456">SecureRandom.random_number</a>() &lt; 1.0.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

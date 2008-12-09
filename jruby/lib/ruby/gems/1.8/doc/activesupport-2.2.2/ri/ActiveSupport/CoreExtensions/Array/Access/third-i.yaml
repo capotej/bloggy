@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Equal to <tt>self[2]</tt>.
+full_name: ActiveSupport::CoreExtensions::Array::Access#third
+params: ()
+name: third
+is_singleton: false
+aliases: []
+

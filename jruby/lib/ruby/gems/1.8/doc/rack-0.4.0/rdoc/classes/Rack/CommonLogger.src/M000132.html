@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>each (Rack::CommonLogger)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/commonlogger.rb, line 34</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each</span>
+      <span class="ruby-identifier">length</span> = <span class="ruby-value">0</span>
+      <span class="ruby-ivar">@body</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">part</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">length</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">part</span>.<span class="ruby-identifier">size</span>
+        <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">part</span>
+      }
+
+      <span class="ruby-ivar">@now</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+
+      <span class="ruby-comment cmt"># Common Log Format: http://httpd.apache.org/docs/1.3/logs.html#common</span>
+      <span class="ruby-comment cmt"># lilith.local - - [07/Aug/2006 23:58:02] &quot;GET / HTTP/1.1&quot; 500 -</span>
+      <span class="ruby-comment cmt">#             %{%s - %s [%s] &quot;%s %s%s %s&quot; %d %s\n} %</span>
+      <span class="ruby-ivar">@logger</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">%{%s - %s [%s] &quot;%s %s%s %s&quot; %d %s %0.4f\n}</span> <span class="ruby-operator">%</span>
+        [
+         <span class="ruby-ivar">@env</span>[<span class="ruby-value str">'HTTP_X_FORWARDED_FOR'</span>] <span class="ruby-operator">||</span> <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;REMOTE_ADDR&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;-&quot;</span>,
+         <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;REMOTE_USER&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;-&quot;</span>,
+         <span class="ruby-ivar">@now</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-value str">&quot;%d/%b/%Y %H:%M:%S&quot;</span>),
+         <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;REQUEST_METHOD&quot;</span>],
+         <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;PATH_INFO&quot;</span>],
+         <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;QUERY_STRING&quot;</span>].<span class="ruby-identifier">empty?</span> <span class="ruby-value">? </span><span class="ruby-value str">&quot;&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;?&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;QUERY_STRING&quot;</span>],
+         <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;HTTP_VERSION&quot;</span>],
+         <span class="ruby-ivar">@status</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>],
+         (<span class="ruby-identifier">length</span>.<span class="ruby-identifier">zero?</span> <span class="ruby-value">? </span><span class="ruby-value str">&quot;-&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">length</span>.<span class="ruby-identifier">to_s</span>),
+         <span class="ruby-ivar">@now</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@time</span>
+        ]
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

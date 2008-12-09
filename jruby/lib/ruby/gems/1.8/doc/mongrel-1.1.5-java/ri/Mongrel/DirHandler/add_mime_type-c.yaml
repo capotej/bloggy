@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: There is a small number of default mime types for extensions, but this lets
+    you add any others you'll need when serving content.
+full_name: Mongrel::DirHandler::add_mime_type
+params: (extension, type)
+name: add_mime_type
+is_singleton: true
+aliases: []
+

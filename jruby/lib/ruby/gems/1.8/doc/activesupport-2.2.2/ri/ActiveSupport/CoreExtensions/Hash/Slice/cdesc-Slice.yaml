@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Slice a hash to include only the given keys. This is useful for limiting
+    an options hash to valid keys before passing to a method:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  def search(criteria = {})\n    assert_valid_keys(:mass, :velocity, :time)\n\
+    \  end\n\n  search(options.slice(:mass, :velocity, :time))\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'If you have an array of keys you want to limit to, you should splat them:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  valid_keys = [:mass, :velocity, :time]\n  search(options.slice(*valid_keys))\n"
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: slice
+- !ruby/object:RI::MethodSummary 
+  name: slice!
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Hash::Slice
+constants: []
+
+superclass: 
+name: Slice

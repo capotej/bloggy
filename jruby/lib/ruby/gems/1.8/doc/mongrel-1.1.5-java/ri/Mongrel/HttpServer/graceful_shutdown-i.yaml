@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Performs a wait on all the currently running threads and kills any that take
+    too long. It waits by @timeout seconds, which can be set in .initialize or via
+    mongrel_rails. The @throttle setting does extend this waiting period by that much
+    longer.
+full_name: Mongrel::HttpServer#graceful_shutdown
+params: ()
+name: graceful_shutdown
+is_singleton: false
+aliases: []
+

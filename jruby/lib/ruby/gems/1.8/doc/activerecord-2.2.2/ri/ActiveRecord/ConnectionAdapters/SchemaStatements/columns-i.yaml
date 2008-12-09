@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns an array of Column objects for the table specified by <tt>table_name</tt>.
+    See the concrete implementation for details on the expected parameter values.
+full_name: ActiveRecord::ConnectionAdapters::SchemaStatements#columns
+params: (table_name, name = nil)
+name: columns
+is_singleton: false
+aliases: []
+

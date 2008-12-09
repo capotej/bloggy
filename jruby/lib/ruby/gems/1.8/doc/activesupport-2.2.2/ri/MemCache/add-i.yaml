@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Add <tt>key</tt> to the cache with value <tt>value</tt> that expires in <tt>expiry</tt>
+    seconds, but only if <tt>key</tt> does not already exist in the cache. If <tt>raw</tt>
+    is true, <tt>value</tt> will not be Marshalled.
+- !ruby/struct:SM::Flow::P 
+  body: Readers should call this method in the event of a cache miss, not MemCache#set
+    or MemCache#[]=.
+full_name: MemCache#add
+params: (key, value, expiry = 0, raw = false)
+name: add
+is_singleton: false
+aliases: []
+

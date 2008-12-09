@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a new hash with <tt>self</tt> and <tt>other_hash</tt> merged recursively.
+full_name: ActiveSupport::CoreExtensions::Hash::DeepMerge#deep_merge
+params: (other_hash)
+name: deep_merge
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Unpack the string at codepoints boundaries. Raises an EncodingError when the
+    encoding of the string isn't valid UTF-8.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Chars.u_unpack('Caf\xc3\xa9') #=&gt; [67, 97, 102, 233]\n"
+full_name: ActiveSupport::Multibyte::Chars::u_unpack
+params: (string)
+name: u_unpack
+is_singleton: true
+aliases: []
+

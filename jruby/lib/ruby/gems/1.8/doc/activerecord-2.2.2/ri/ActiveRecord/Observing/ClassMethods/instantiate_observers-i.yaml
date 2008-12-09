@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Instantiate the global Active Record observers.
+full_name: ActiveRecord::Observing::ClassMethods#instantiate_observers
+params: ()
+name: instantiate_observers
+is_singleton: false
+aliases: []
+

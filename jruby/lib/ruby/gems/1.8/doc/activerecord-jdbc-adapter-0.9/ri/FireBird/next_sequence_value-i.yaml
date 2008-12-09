@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::FireBird#next_sequence_value"
+params: (sequence_name)
+name: next_sequence_value
+is_singleton: false
+aliases: []
+

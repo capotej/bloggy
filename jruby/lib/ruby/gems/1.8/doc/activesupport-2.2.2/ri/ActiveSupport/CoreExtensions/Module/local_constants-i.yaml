@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the constants that have been defined locally by this object and not
+    in an ancestor. This method is exact if running under Ruby 1.9. In previous versions
+    it may miss some constants if their definition in some ancestor is identical to
+    their definition in the receiver.
+full_name: ActiveSupport::CoreExtensions::Module#local_constants
+params: ()
+name: local_constants
+is_singleton: false
+aliases: []
+

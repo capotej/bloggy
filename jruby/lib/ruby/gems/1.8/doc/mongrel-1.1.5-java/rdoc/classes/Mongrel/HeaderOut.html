@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Mongrel::HeaderOut</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Mongrel::HeaderOut</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/mongrel/header_out_rb.html">
+                lib/mongrel/header_out.rb
+                </a>
+        <br />
+                <a href="../../files/lib/mongrel/header_out_rb.html">
+                lib/mongrel/header_out.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+This class implements a simple way of constructing the HTTP headers
+dynamically via a Hash syntax. Think of it as a write-only Hash. Refer to
+<a href="HttpResponse.html">HttpResponse</a> for information on how this is
+used.
+</p>
+<p>
+One consequence of this write-only nature is that you can write multiple
+headers by just doing them twice (which is sometimes needed in HTTP), but
+that the normal semantics for Hash (where doing an insert replaces) is not
+there.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000102">[]=</a>&nbsp;&nbsp;
+      <a href="#M000104">[]=</a>&nbsp;&nbsp;
+      <a href="#M000101">new</a>&nbsp;&nbsp;
+      <a href="#M000103">new</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">allowed_duplicates</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">allowed_duplicates</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">out</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">out</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000101" class="method-detail">
+        <a name="M000101"></a>
+
+        <div class="method-heading">
+          <a href="#M000101" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(out)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000101-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000101-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/header_out.rb, line 13</span>
+13:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">out</span>)
+14:       <span class="ruby-ivar">@sent</span> = {}
+15:       <span class="ruby-ivar">@allowed_duplicates</span> = {<span class="ruby-value str">&quot;Set-Cookie&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;Set-Cookie2&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+16:         <span class="ruby-value str">&quot;Warning&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;WWW-Authenticate&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>}
+17:       <span class="ruby-ivar">@out</span> = <span class="ruby-identifier">out</span>
+18:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000103" class="method-detail">
+        <a name="M000103"></a>
+
+        <div class="method-heading">
+          <a href="#M000103" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(out)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000103-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000103-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/header_out.rb, line 13</span>
+13:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">out</span>)
+14:       <span class="ruby-ivar">@sent</span> = {}
+15:       <span class="ruby-ivar">@allowed_duplicates</span> = {<span class="ruby-value str">&quot;Set-Cookie&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;Set-Cookie2&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+16:         <span class="ruby-value str">&quot;Warning&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>, <span class="ruby-value str">&quot;WWW-Authenticate&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>}
+17:       <span class="ruby-ivar">@out</span> = <span class="ruby-identifier">out</span>
+18:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000102" class="method-detail">
+        <a name="M000102"></a>
+
+        <div class="method-heading">
+          <a href="#M000102" class="method-signature">
+          <span class="method-name">[]=</span><span class="method-args">(key,value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Simply writes &quot;#{key}: #{value}&quot; to an output buffer.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000102-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000102-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/header_out.rb, line 21</span>
+21:     <span class="ruby-keyword kw">def</span><span class="ruby-operator">[]=</span>(<span class="ruby-identifier">key</span>,<span class="ruby-identifier">value</span>)
+22:       <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@sent</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">key</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-ivar">@allowed_duplicates</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">key</span>)
+23:         <span class="ruby-ivar">@sent</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-keyword kw">true</span>
+24:         <span class="ruby-ivar">@out</span>.<span class="ruby-identifier">write</span>(<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">HEADER_FORMAT</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>])
+25:       <span class="ruby-keyword kw">end</span>
+26:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000104" class="method-detail">
+        <a name="M000104"></a>
+
+        <div class="method-heading">
+          <a href="#M000104" class="method-signature">
+          <span class="method-name">[]=</span><span class="method-args">(key,value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Simply writes &quot;#{key}: #{value}&quot; to an output buffer.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000104-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000104-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/header_out.rb, line 21</span>
+21:     <span class="ruby-keyword kw">def</span><span class="ruby-operator">[]=</span>(<span class="ruby-identifier">key</span>,<span class="ruby-identifier">value</span>)
+22:       <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@sent</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">key</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-ivar">@allowed_duplicates</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">key</span>)
+23:         <span class="ruby-ivar">@sent</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-keyword kw">true</span>
+24:         <span class="ruby-ivar">@out</span>.<span class="ruby-identifier">write</span>(<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">HEADER_FORMAT</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>])
+25:       <span class="ruby-keyword kw">end</span>
+26:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

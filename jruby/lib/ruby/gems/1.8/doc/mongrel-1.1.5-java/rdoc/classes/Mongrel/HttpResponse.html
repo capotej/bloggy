@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Mongrel::HttpResponse</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Mongrel::HttpResponse</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/mongrel/http_response_rb.html">
+                lib/mongrel/http_response.rb
+                </a>
+        <br />
+                <a href="../../files/lib/mongrel/http_response_rb.html">
+                lib/mongrel/http_response.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Writes and controls your response to the client using the HTTP/1.1
+specification. You use it by simply doing:
+</p>
+<pre>
+ response.start(200) do |head,out|
+   head['Content-Type'] = 'text/plain'
+   out.write(&quot;hello\n&quot;)
+ end
+</pre>
+<p>
+The parameter to <a href="HttpResponse.html#M000238">start</a> is the
+response code&#8212;which <a href="../Mongrel.html">Mongrel</a> will
+translate for you based on HTTP_STATUS_CODES. The head parameter is how you
+<a href="HttpResponse.html#M000245">write</a> custom headers. The out
+parameter is where you <a href="HttpResponse.html#M000245">write</a> your
+body. The default status code for <a
+href="HttpResponse.html#M000238">HttpResponse.start</a> is 200 so the above
+example is redundant.
+</p>
+<p>
+As you can see, it&#8216;s just like using a Hash and as you do this it
+writes the proper header to the output on the fly. You can even intermix
+specifying headers and writing content. The <a
+href="HttpResponse.html">HttpResponse</a> class with <a
+href="HttpResponse.html#M000245">write</a> the things in the proper order
+once the HttpResponse.block is ended.
+</p>
+<p>
+You may also work the <a href="HttpResponse.html">HttpResponse</a> object
+directly using the various attributes available for the raw socket, body,
+header, and status codes. If you do this you&#8216;re on your own. A design
+decision was made to force the client to not pipeline requests. HTTP/1.1
+pipelining really kills the performance due to how it has to be handled and
+how unclear the standard is. To fix this the <a
+href="HttpResponse.html">HttpResponse</a> gives a &quot;Connection:
+close&quot; header which forces the client to close right away. The bonus
+for this is that it gives a pretty nice speed boost to most clients since
+they can close their connection immediately.
+</p>
+<p>
+One additional caveat is that you don&#8216;t have to specify the
+Content-length header as the <a href="HttpResponse.html">HttpResponse</a>
+will <a href="HttpResponse.html#M000245">write</a> this for you based on
+the out length.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000260">done</a>&nbsp;&nbsp;
+      <a href="#M000248">done</a>&nbsp;&nbsp;
+      <a href="#M000259">done=</a>&nbsp;&nbsp;
+      <a href="#M000247">done=</a>&nbsp;&nbsp;
+      <a href="#M000258">finished</a>&nbsp;&nbsp;
+      <a href="#M000246">finished</a>&nbsp;&nbsp;
+      <a href="#M000237">new</a>&nbsp;&nbsp;
+      <a href="#M000249">new</a>&nbsp;&nbsp;
+      <a href="#M000239">reset</a>&nbsp;&nbsp;
+      <a href="#M000251">reset</a>&nbsp;&nbsp;
+      <a href="#M000242">send_body</a>&nbsp;&nbsp;
+      <a href="#M000254">send_body</a>&nbsp;&nbsp;
+      <a href="#M000255">send_file</a>&nbsp;&nbsp;
+      <a href="#M000243">send_file</a>&nbsp;&nbsp;
+      <a href="#M000253">send_header</a>&nbsp;&nbsp;
+      <a href="#M000241">send_header</a>&nbsp;&nbsp;
+      <a href="#M000252">send_status</a>&nbsp;&nbsp;
+      <a href="#M000240">send_status</a>&nbsp;&nbsp;
+      <a href="#M000244">socket_error</a>&nbsp;&nbsp;
+      <a href="#M000256">socket_error</a>&nbsp;&nbsp;
+      <a href="#M000250">start</a>&nbsp;&nbsp;
+      <a href="#M000238">start</a>&nbsp;&nbsp;
+      <a href="#M000245">write</a>&nbsp;&nbsp;
+      <a href="#M000257">write</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">body</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">body</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">body</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">body</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">body_sent</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">body_sent</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">header</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">header</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">header_sent</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">header_sent</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">socket</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">socket</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">status</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">status</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">status</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">status</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">status_sent</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">status_sent</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000237" class="method-detail">
+        <a name="M000237"></a>
+
+        <div class="method-heading">
+          <a href="#M000237" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(socket)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000237-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000237-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 42</span>
+42:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">socket</span>)
+43:       <span class="ruby-ivar">@socket</span> = <span class="ruby-identifier">socket</span>
+44:       <span class="ruby-ivar">@body</span> = <span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>
+45:       <span class="ruby-ivar">@status</span> = <span class="ruby-value">404</span>
+46:       <span class="ruby-ivar">@reason</span> = <span class="ruby-keyword kw">nil</span>
+47:       <span class="ruby-ivar">@header</span> = <span class="ruby-constant">HeaderOut</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>)
+48:       <span class="ruby-ivar">@header</span>[<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">DATE</span>] = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">httpdate</span>
+49:       <span class="ruby-ivar">@body_sent</span> = <span class="ruby-keyword kw">false</span>
+50:       <span class="ruby-ivar">@header_sent</span> = <span class="ruby-keyword kw">false</span>
+51:       <span class="ruby-ivar">@status_sent</span> = <span class="ruby-keyword kw">false</span>
+52:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000249" class="method-detail">
+        <a name="M000249"></a>
+
+        <div class="method-heading">
+          <a href="#M000249" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(socket)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000249-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000249-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 42</span>
+42:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">socket</span>)
+43:       <span class="ruby-ivar">@socket</span> = <span class="ruby-identifier">socket</span>
+44:       <span class="ruby-ivar">@body</span> = <span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>
+45:       <span class="ruby-ivar">@status</span> = <span class="ruby-value">404</span>
+46:       <span class="ruby-ivar">@reason</span> = <span class="ruby-keyword kw">nil</span>
+47:       <span class="ruby-ivar">@header</span> = <span class="ruby-constant">HeaderOut</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>)
+48:       <span class="ruby-ivar">@header</span>[<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">DATE</span>] = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">httpdate</span>
+49:       <span class="ruby-ivar">@body_sent</span> = <span class="ruby-keyword kw">false</span>
+50:       <span class="ruby-ivar">@header_sent</span> = <span class="ruby-keyword kw">false</span>
+51:       <span class="ruby-ivar">@status_sent</span> = <span class="ruby-keyword kw">false</span>
+52:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000260" class="method-detail">
+        <a name="M000260"></a>
+
+        <div class="method-heading">
+          <a href="#M000260" class="method-signature">
+          <span class="method-name">done</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000260-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000260-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 158</span>
+158:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">done</span>
+159:       (<span class="ruby-ivar">@status_sent</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@header_sent</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@body_sent</span>)
+160:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000248" class="method-detail">
+        <a name="M000248"></a>
+
+        <div class="method-heading">
+          <a href="#M000248" class="method-signature">
+          <span class="method-name">done</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000248-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000248-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 158</span>
+158:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">done</span>
+159:       (<span class="ruby-ivar">@status_sent</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@header_sent</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@body_sent</span>)
+160:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000259" class="method-detail">
+        <a name="M000259"></a>
+
+        <div class="method-heading">
+          <a href="#M000259" class="method-signature">
+          <span class="method-name">done=</span><span class="method-args">(val)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used during error conditions to mark the response as &quot;<a
+href="HttpResponse.html#M000248">done</a>&quot; so there isn&#8216;t any
+more processing sent to the client.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000259-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000259-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 152</span>
+152:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">done=</span>(<span class="ruby-identifier">val</span>)
+153:       <span class="ruby-ivar">@status_sent</span> = <span class="ruby-keyword kw">true</span>
+154:       <span class="ruby-ivar">@header_sent</span> = <span class="ruby-keyword kw">true</span>
+155:       <span class="ruby-ivar">@body_sent</span> = <span class="ruby-keyword kw">true</span>
+156:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000247" class="method-detail">
+        <a name="M000247"></a>
+
+        <div class="method-heading">
+          <a href="#M000247" class="method-signature">
+          <span class="method-name">done=</span><span class="method-args">(val)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used during error conditions to mark the response as &quot;<a
+href="HttpResponse.html#M000248">done</a>&quot; so there isn&#8216;t any
+more processing sent to the client.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000247-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000247-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 152</span>
+152:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">done=</span>(<span class="ruby-identifier">val</span>)
+153:       <span class="ruby-ivar">@status_sent</span> = <span class="ruby-keyword kw">true</span>
+154:       <span class="ruby-ivar">@header_sent</span> = <span class="ruby-keyword kw">true</span>
+155:       <span class="ruby-ivar">@body_sent</span> = <span class="ruby-keyword kw">true</span>
+156:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000258" class="method-detail">
+        <a name="M000258"></a>
+
+        <div class="method-heading">
+          <a href="#M000258" class="method-signature">
+          <span class="method-name">finished</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This takes whatever has been <a href="HttpResponse.html#M000248">done</a>
+to header and body and then writes it in the proper format to make an
+HTTP/1.1 response.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000258-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000258-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 144</span>
+144:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">finished</span>
+145:       <span class="ruby-identifier">send_status</span>
+146:       <span class="ruby-identifier">send_header</span>
+147:       <span class="ruby-identifier">send_body</span>
+148:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000246" class="method-detail">
+        <a name="M000246"></a>
+
+        <div class="method-heading">
+          <a href="#M000246" class="method-signature">
+          <span class="method-name">finished</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This takes whatever has been <a href="HttpResponse.html#M000248">done</a>
+to header and body and then writes it in the proper format to make an
+HTTP/1.1 response.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000246-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000246-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 144</span>
+144:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">finished</span>
+145:       <span class="ruby-identifier">send_status</span>
+146:       <span class="ruby-identifier">send_header</span>
+147:       <span class="ruby-identifier">send_body</span>
+148:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000239" class="method-detail">
+        <a name="M000239"></a>
+
+        <div class="method-heading">
+          <a href="#M000239" class="method-signature">
+          <span class="method-name">reset</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Primarily used in exception handling to <a
+href="HttpResponse.html#M000239">reset</a> the response output in order to
+<a href="HttpResponse.html#M000245">write</a> an alternative response. It
+will abort with an exception if you have already sent the header or the
+body. This is pretty catastrophic actually.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000239-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000239-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 72</span>
+72:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reset</span>
+73:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@body_sent</span>
+74:         <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;You have already sent the request body.&quot;</span>
+75:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@header_sent</span>
+76:         <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;You have already sent the request headers.&quot;</span>
+77:       <span class="ruby-keyword kw">else</span>
+78:         <span class="ruby-ivar">@header</span>.<span class="ruby-identifier">out</span>.<span class="ruby-identifier">truncate</span>(<span class="ruby-value">0</span>)
+79:         <span class="ruby-ivar">@body</span>.<span class="ruby-identifier">close</span>
+80:         <span class="ruby-ivar">@body</span> = <span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>
+81:       <span class="ruby-keyword kw">end</span>
+82:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000251" class="method-detail">
+        <a name="M000251"></a>
+
+        <div class="method-heading">
+          <a href="#M000251" class="method-signature">
+          <span class="method-name">reset</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Primarily used in exception handling to <a
+href="HttpResponse.html#M000239">reset</a> the response output in order to
+<a href="HttpResponse.html#M000245">write</a> an alternative response. It
+will abort with an exception if you have already sent the header or the
+body. This is pretty catastrophic actually.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000251-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000251-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 72</span>
+72:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reset</span>
+73:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@body_sent</span>
+74:         <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;You have already sent the request body.&quot;</span>
+75:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@header_sent</span>
+76:         <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;You have already sent the request headers.&quot;</span>
+77:       <span class="ruby-keyword kw">else</span>
+78:         <span class="ruby-ivar">@header</span>.<span class="ruby-identifier">out</span>.<span class="ruby-identifier">truncate</span>(<span class="ruby-value">0</span>)
+79:         <span class="ruby-ivar">@body</span>.<span class="ruby-identifier">close</span>
+80:         <span class="ruby-ivar">@body</span> = <span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>
+81:       <span class="ruby-keyword kw">end</span>
+82:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000242" class="method-detail">
+        <a name="M000242"></a>
+
+        <div class="method-heading">
+          <a href="#M000242" class="method-signature">
+          <span class="method-name">send_body</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000242-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000242-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 100</span>
+100:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_body</span>
+101:       <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@body_sent</span>
+102:         <span class="ruby-ivar">@body</span>.<span class="ruby-identifier">rewind</span>
+103:         <span class="ruby-identifier">write</span>(<span class="ruby-ivar">@body</span>.<span class="ruby-identifier">read</span>)
+104:         <span class="ruby-ivar">@body_sent</span> = <span class="ruby-keyword kw">true</span>
+105:       <span class="ruby-keyword kw">end</span>
+106:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000254" class="method-detail">
+        <a name="M000254"></a>
+
+        <div class="method-heading">
+          <a href="#M000254" class="method-signature">
+          <span class="method-name">send_body</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000254-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000254-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 100</span>
+100:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_body</span>
+101:       <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@body_sent</span>
+102:         <span class="ruby-ivar">@body</span>.<span class="ruby-identifier">rewind</span>
+103:         <span class="ruby-identifier">write</span>(<span class="ruby-ivar">@body</span>.<span class="ruby-identifier">read</span>)
+104:         <span class="ruby-ivar">@body_sent</span> = <span class="ruby-keyword kw">true</span>
+105:       <span class="ruby-keyword kw">end</span>
+106:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000255" class="method-detail">
+        <a name="M000255"></a>
+
+        <div class="method-heading">
+          <a href="#M000255" class="method-signature">
+          <span class="method-name">send_file</span><span class="method-args">(path, small_file = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Appends the contents of <tt>path</tt> to the response stream. The file is
+opened for binary reading and written in chunks to the socket.
+</p>
+<p>
+Sendfile API support has been removed in 0.3.13.4 due to stability
+problems.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000255-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000255-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 112</span>
+112:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_file</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">small_file</span> = <span class="ruby-keyword kw">false</span>)
+113:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">small_file</span>
+114:         <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-value str">&quot;rb&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@socket</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span> }
+115:       <span class="ruby-keyword kw">else</span>
+116:         <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-value str">&quot;rb&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+117:           <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">chunk</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>(<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">CHUNK_SIZE</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">chunk</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+118:             <span class="ruby-keyword kw">begin</span>
+119:               <span class="ruby-identifier">write</span>(<span class="ruby-identifier">chunk</span>)
+120:             <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Object</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">exc</span>
+121:               <span class="ruby-keyword kw">break</span>
+122:             <span class="ruby-keyword kw">end</span>
+123:           <span class="ruby-keyword kw">end</span>
+124:         <span class="ruby-keyword kw">end</span>
+125:       <span class="ruby-keyword kw">end</span>
+126:       <span class="ruby-ivar">@body_sent</span> = <span class="ruby-keyword kw">true</span>
+127:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000243" class="method-detail">
+        <a name="M000243"></a>
+
+        <div class="method-heading">
+          <a href="#M000243" class="method-signature">
+          <span class="method-name">send_file</span><span class="method-args">(path, small_file = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Appends the contents of <tt>path</tt> to the response stream. The file is
+opened for binary reading and written in chunks to the socket.
+</p>
+<p>
+Sendfile API support has been removed in 0.3.13.4 due to stability
+problems.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000243-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000243-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 112</span>
+112:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_file</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">small_file</span> = <span class="ruby-keyword kw">false</span>)
+113:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">small_file</span>
+114:         <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-value str">&quot;rb&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@socket</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span> }
+115:       <span class="ruby-keyword kw">else</span>
+116:         <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-value str">&quot;rb&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+117:           <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">chunk</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>(<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">CHUNK_SIZE</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">chunk</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+118:             <span class="ruby-keyword kw">begin</span>
+119:               <span class="ruby-identifier">write</span>(<span class="ruby-identifier">chunk</span>)
+120:             <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Object</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">exc</span>
+121:               <span class="ruby-keyword kw">break</span>
+122:             <span class="ruby-keyword kw">end</span>
+123:           <span class="ruby-keyword kw">end</span>
+124:         <span class="ruby-keyword kw">end</span>
+125:       <span class="ruby-keyword kw">end</span>
+126:       <span class="ruby-ivar">@body_sent</span> = <span class="ruby-keyword kw">true</span>
+127:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000253" class="method-detail">
+        <a name="M000253"></a>
+
+        <div class="method-heading">
+          <a href="#M000253" class="method-signature">
+          <span class="method-name">send_header</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000253-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000253-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 92</span>
+92:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_header</span>
+93:       <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@header_sent</span>
+94:         <span class="ruby-ivar">@header</span>.<span class="ruby-identifier">out</span>.<span class="ruby-identifier">rewind</span>
+95:         <span class="ruby-identifier">write</span>(<span class="ruby-ivar">@header</span>.<span class="ruby-identifier">out</span>.<span class="ruby-identifier">read</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">LINE_END</span>)
+96:         <span class="ruby-ivar">@header_sent</span> = <span class="ruby-keyword kw">true</span>
+97:       <span class="ruby-keyword kw">end</span>
+98:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000241" class="method-detail">
+        <a name="M000241"></a>
+
+        <div class="method-heading">
+          <a href="#M000241" class="method-signature">
+          <span class="method-name">send_header</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000241-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000241-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 92</span>
+92:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_header</span>
+93:       <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@header_sent</span>
+94:         <span class="ruby-ivar">@header</span>.<span class="ruby-identifier">out</span>.<span class="ruby-identifier">rewind</span>
+95:         <span class="ruby-identifier">write</span>(<span class="ruby-ivar">@header</span>.<span class="ruby-identifier">out</span>.<span class="ruby-identifier">read</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">LINE_END</span>)
+96:         <span class="ruby-ivar">@header_sent</span> = <span class="ruby-keyword kw">true</span>
+97:       <span class="ruby-keyword kw">end</span>
+98:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000252" class="method-detail">
+        <a name="M000252"></a>
+
+        <div class="method-heading">
+          <a href="#M000252" class="method-signature">
+          <span class="method-name">send_status</span><span class="method-args">(content_length=@body.length)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000252-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000252-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 84</span>
+84:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_status</span>(<span class="ruby-identifier">content_length</span>=<span class="ruby-ivar">@body</span>.<span class="ruby-identifier">length</span>)
+85:       <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@status_sent</span>
+86:         <span class="ruby-ivar">@header</span>[<span class="ruby-value str">'Content-Length'</span>] = <span class="ruby-identifier">content_length</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">content_length</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@status</span> <span class="ruby-operator">!=</span> <span class="ruby-value">304</span>
+87:         <span class="ruby-identifier">write</span>(<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">STATUS_FORMAT</span> <span class="ruby-operator">%</span> [<span class="ruby-ivar">@status</span>, <span class="ruby-ivar">@reason</span> <span class="ruby-operator">||</span> <span class="ruby-constant">HTTP_STATUS_CODES</span>[<span class="ruby-ivar">@status</span>]])
+88:         <span class="ruby-ivar">@status_sent</span> = <span class="ruby-keyword kw">true</span>
+89:       <span class="ruby-keyword kw">end</span>
+90:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000240" class="method-detail">
+        <a name="M000240"></a>
+
+        <div class="method-heading">
+          <a href="#M000240" class="method-signature">
+          <span class="method-name">send_status</span><span class="method-args">(content_length=@body.length)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000240-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000240-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 84</span>
+84:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_status</span>(<span class="ruby-identifier">content_length</span>=<span class="ruby-ivar">@body</span>.<span class="ruby-identifier">length</span>)
+85:       <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@status_sent</span>
+86:         <span class="ruby-ivar">@header</span>[<span class="ruby-value str">'Content-Length'</span>] = <span class="ruby-identifier">content_length</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">content_length</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@status</span> <span class="ruby-operator">!=</span> <span class="ruby-value">304</span>
+87:         <span class="ruby-identifier">write</span>(<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">STATUS_FORMAT</span> <span class="ruby-operator">%</span> [<span class="ruby-ivar">@status</span>, <span class="ruby-ivar">@reason</span> <span class="ruby-operator">||</span> <span class="ruby-constant">HTTP_STATUS_CODES</span>[<span class="ruby-ivar">@status</span>]])
+88:         <span class="ruby-ivar">@status_sent</span> = <span class="ruby-keyword kw">true</span>
+89:       <span class="ruby-keyword kw">end</span>
+90:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000244" class="method-detail">
+        <a name="M000244"></a>
+
+        <div class="method-heading">
+          <a href="#M000244" class="method-signature">
+          <span class="method-name">socket_error</span><span class="method-args">(details)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000244-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000244-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 129</span>
+129:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">socket_error</span>(<span class="ruby-identifier">details</span>)
+130:       <span class="ruby-comment cmt"># ignore these since it means the client closed off early</span>
+131:       <span class="ruby-ivar">@socket</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">nil</span>
+132:       <span class="ruby-identifier">done</span> = <span class="ruby-keyword kw">true</span>
+133:       <span class="ruby-identifier">raise</span> <span class="ruby-identifier">details</span>
+134:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000256" class="method-detail">
+        <a name="M000256"></a>
+
+        <div class="method-heading">
+          <a href="#M000256" class="method-signature">
+          <span class="method-name">socket_error</span><span class="method-args">(details)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000256-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000256-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 129</span>
+129:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">socket_error</span>(<span class="ruby-identifier">details</span>)
+130:       <span class="ruby-comment cmt"># ignore these since it means the client closed off early</span>
+131:       <span class="ruby-ivar">@socket</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">nil</span>
+132:       <span class="ruby-identifier">done</span> = <span class="ruby-keyword kw">true</span>
+133:       <span class="ruby-identifier">raise</span> <span class="ruby-identifier">details</span>
+134:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000250" class="method-detail">
+        <a name="M000250"></a>
+
+        <div class="method-heading">
+          <a href="#M000250" class="method-signature">
+          <span class="method-name">start</span><span class="method-args">(status=200, finalize=false, reason=nil) {|@header, @body| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Receives a block passing it the header and body for you to work with. When
+the block is <a href="HttpResponse.html#M000246">finished</a> it writes
+everything you&#8216;ve <a href="HttpResponse.html#M000248">done</a> to the
+socket in the proper order. This lets you intermix header and body content
+as needed. Handlers are able to modify pretty much any part of the request
+in the chain, and can stop further processing by simple passing
+&quot;finalize=true&quot; to the <a
+href="HttpResponse.html#M000238">start</a> method. By default all handlers
+run and then mongrel finalizes the request when they&#8216;re all <a
+href="HttpResponse.html#M000248">done</a>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000250-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000250-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 62</span>
+62:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">start</span>(<span class="ruby-identifier">status</span>=<span class="ruby-value">200</span>, <span class="ruby-identifier">finalize</span>=<span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">reason</span>=<span class="ruby-keyword kw">nil</span>)
+63:       <span class="ruby-ivar">@status</span> = <span class="ruby-identifier">status</span>.<span class="ruby-identifier">to_i</span>
+64:       <span class="ruby-ivar">@reason</span> = <span class="ruby-identifier">reason</span>
+65:       <span class="ruby-keyword kw">yield</span> <span class="ruby-ivar">@header</span>, <span class="ruby-ivar">@body</span>
+66:       <span class="ruby-identifier">finished</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">finalize</span>
+67:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000238" class="method-detail">
+        <a name="M000238"></a>
+
+        <div class="method-heading">
+          <a href="#M000238" class="method-signature">
+          <span class="method-name">start</span><span class="method-args">(status=200, finalize=false, reason=nil) {|@header, @body| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Receives a block passing it the header and body for you to work with. When
+the block is <a href="HttpResponse.html#M000246">finished</a> it writes
+everything you&#8216;ve <a href="HttpResponse.html#M000248">done</a> to the
+socket in the proper order. This lets you intermix header and body content
+as needed. Handlers are able to modify pretty much any part of the request
+in the chain, and can stop further processing by simple passing
+&quot;finalize=true&quot; to the <a
+href="HttpResponse.html#M000238">start</a> method. By default all handlers
+run and then mongrel finalizes the request when they&#8216;re all <a
+href="HttpResponse.html#M000248">done</a>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000238-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000238-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 62</span>
+62:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">start</span>(<span class="ruby-identifier">status</span>=<span class="ruby-value">200</span>, <span class="ruby-identifier">finalize</span>=<span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">reason</span>=<span class="ruby-keyword kw">nil</span>)
+63:       <span class="ruby-ivar">@status</span> = <span class="ruby-identifier">status</span>.<span class="ruby-identifier">to_i</span>
+64:       <span class="ruby-ivar">@reason</span> = <span class="ruby-identifier">reason</span>
+65:       <span class="ruby-keyword kw">yield</span> <span class="ruby-ivar">@header</span>, <span class="ruby-ivar">@body</span>
+66:       <span class="ruby-identifier">finished</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">finalize</span>
+67:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000245" class="method-detail">
+        <a name="M000245"></a>
+
+        <div class="method-heading">
+          <a href="#M000245" class="method-signature">
+          <span class="method-name">write</span><span class="method-args">(data)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000245-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000245-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 136</span>
+136:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write</span>(<span class="ruby-identifier">data</span>)
+137:       <span class="ruby-ivar">@socket</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">data</span>)
+138:     <span class="ruby-keyword kw">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">details</span>
+139:       <span class="ruby-identifier">socket_error</span>(<span class="ruby-identifier">details</span>)
+140:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000257" class="method-detail">
+        <a name="M000257"></a>
+
+        <div class="method-heading">
+          <a href="#M000257" class="method-signature">
+          <span class="method-name">write</span><span class="method-args">(data)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000257-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000257-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/http_response.rb, line 136</span>
+136:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write</span>(<span class="ruby-identifier">data</span>)
+137:       <span class="ruby-ivar">@socket</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">data</span>)
+138:     <span class="ruby-keyword kw">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">details</span>
+139:       <span class="ruby-identifier">socket_error</span>(<span class="ruby-identifier">details</span>)
+140:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

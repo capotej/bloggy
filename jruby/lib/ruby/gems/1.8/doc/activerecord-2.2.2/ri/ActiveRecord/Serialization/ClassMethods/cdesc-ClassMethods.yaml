@@ -1,0 +1,16 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: json_class_name
+class_methods: []
+
+full_name: ActiveRecord::Serialization::ClassMethods
+constants: []
+
+superclass: 
+name: ClassMethods

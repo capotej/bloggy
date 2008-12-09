@@ -1,0 +1,53 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Represents a SQL table in an abstract way for updating a table. Also see TableDefinition
+    and SchemaStatements#create_table
+- !ruby/struct:SM::Flow::P 
+  body: 'Available transformations are:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  change_table :table do |t|\n    t.column\n    t.index\n    t.timestamps\n\
+    \    t.change\n    t.change_default\n    t.rename\n    t.references\n    t.belongs_to\n\
+    \    t.string\n    t.text\n    t.integer\n    t.float\n    t.decimal\n    t.datetime\n\
+    \    t.timestamp\n    t.time\n    t.date\n    t.binary\n    t.boolean\n    t.remove\n\
+    \    t.remove_references\n    t.remove_belongs_to\n    t.remove_index\n    t.remove_timestamps\n\
+    \  end\n"
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: belongs_to
+- !ruby/object:RI::MethodSummary 
+  name: change
+- !ruby/object:RI::MethodSummary 
+  name: change_default
+- !ruby/object:RI::MethodSummary 
+  name: column
+- !ruby/object:RI::MethodSummary 
+  name: index
+- !ruby/object:RI::MethodSummary 
+  name: references
+- !ruby/object:RI::MethodSummary 
+  name: remove
+- !ruby/object:RI::MethodSummary 
+  name: remove_belongs_to
+- !ruby/object:RI::MethodSummary 
+  name: remove_index
+- !ruby/object:RI::MethodSummary 
+  name: remove_references
+- !ruby/object:RI::MethodSummary 
+  name: remove_timestamps
+- !ruby/object:RI::MethodSummary 
+  name: rename
+- !ruby/object:RI::MethodSummary 
+  name: timestamps
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: ActiveRecord::ConnectionAdapters::Table
+constants: []
+
+superclass: Object
+name: Table

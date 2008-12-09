@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::Column::new_time
+params: (year, mon, mday, hour, min, sec, microsec)
+name: new_time
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Makes it easier to access parts of an array.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: fifth
+- !ruby/object:RI::MethodSummary 
+  name: forty_two
+- !ruby/object:RI::MethodSummary 
+  name: fourth
+- !ruby/object:RI::MethodSummary 
+  name: from
+- !ruby/object:RI::MethodSummary 
+  name: second
+- !ruby/object:RI::MethodSummary 
+  name: third
+- !ruby/object:RI::MethodSummary 
+  name: to
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Array::Access
+constants: []
+
+superclass: 
+name: Access

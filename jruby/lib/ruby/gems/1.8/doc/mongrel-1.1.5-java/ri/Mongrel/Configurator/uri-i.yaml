@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Called inside a Configurator.listener block in order to add URI-&gt;handler
+    mappings for that listener. Use this as many times as you like. It expects the
+    following options or defaults:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":handler =&gt; HttpHandler -- Handler to use for this location."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":in_front =&gt; true/false -- Rather than appending, it prepends this handler."
+    label: '*'
+full_name: Mongrel::Configurator#uri
+params: (location, options={})
+name: uri
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,50 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: ConnectionHandler is a collection of ConnectionPool objects. It is used for
+    keeping separate connection pools for ActiveRecord models that connect to different
+    databases.
+- !ruby/struct:SM::Flow::P 
+  body: 'For example, suppose that you have 5 models, with the following hierarchy:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " |\n +-- Book\n |    |\n |    +-- ScaryBook\n |    +-- GoodBook\n +-- Author\n\
+    \ +-- BankAccount\n"
+- !ruby/struct:SM::Flow::P 
+  body: Suppose that Book is to connect to a separate database (i.e. one other than
+    the default database). Then Book, ScaryBook and GoodBook will all use the same
+    connection pool. Likewise, Author and BankAccount will use the same connection
+    pool. However, the connection pool used by Author/BankAccount is not the same
+    as the one used by Book/ScaryBook/GoodBook.
+- !ruby/struct:SM::Flow::P 
+  body: Normally there is only a single ConnectionHandler instance, accessible via
+    ActiveRecord::Base.connection_handler. ActiveRecord models use this to determine
+    that connection pool that they should use.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: clear_active_connections!
+- !ruby/object:RI::MethodSummary 
+  name: clear_all_connections!
+- !ruby/object:RI::MethodSummary 
+  name: clear_reloadable_connections!
+- !ruby/object:RI::MethodSummary 
+  name: connected?
+- !ruby/object:RI::MethodSummary 
+  name: connection_pools
+- !ruby/object:RI::MethodSummary 
+  name: establish_connection
+- !ruby/object:RI::MethodSummary 
+  name: remove_connection
+- !ruby/object:RI::MethodSummary 
+  name: retrieve_connection_pool
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: ActiveRecord::ConnectionAdapters::ConnectionHandler
+constants: []
+
+superclass: Object
+name: ConnectionHandler

@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: flush
+- !ruby/object:RI::MethodSummary 
+  name: puts
+- !ruby/object:RI::MethodSummary 
+  name: string
+- !ruby/object:RI::MethodSummary 
+  name: write
+class_methods: []
+
+full_name: Rack::MockRequest::FatalWarner
+constants: []
+
+superclass: Object
+name: FatalWarner

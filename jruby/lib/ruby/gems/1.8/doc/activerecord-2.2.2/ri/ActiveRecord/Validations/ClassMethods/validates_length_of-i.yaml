@@ -1,0 +1,94 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Validates that the specified attribute matches the length restrictions supplied.
+    Only one option can be used at a time:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Person &lt; ActiveRecord::Base\n    validates_length_of :first_name, \
+    :maximum=&gt;30\n    validates_length_of :last_name, :maximum=&gt;30, :message=&gt;&quot;less \
+    than {{count}} if you don't mind&quot;\n    validates_length_of :fax, :in =&gt; \
+    7..32, :allow_nil =&gt; true\n    validates_length_of :phone, :in =&gt; 7..32, \
+    :allow_blank =&gt; true\n    validates_length_of :user_name, :within =&gt; 6..20, \
+    :too_long =&gt; &quot;pick a shorter name&quot;, :too_short =&gt; &quot;pick a \
+    longer name&quot;\n    validates_length_of :fav_bra_size, :minimum =&gt; 1, :too_short \
+    =&gt; &quot;please enter at least {{count}} character&quot;\n    validates_length_of \
+    :smurf_leader, :is =&gt; 4, :message =&gt; &quot;papa is spelled with {{count}} \
+    characters... don't play me.&quot;\n    validates_length_of :essay, :minimum =&gt; \
+    100, :too_short =&gt; &quot;Your essay must be at least {{count}} words.&quot;), \
+    :tokenizer =&gt; lambda {|str| str.scan(/\\w+/) }\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Configuration options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:minimum</tt> - The minimum size of the attribute.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:maximum</tt> - The maximum size of the attribute.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:is</tt> - The exact size of the attribute.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:within</tt> - A range specifying the minimum and maximum size of the
+      attribute.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:in</tt> - A synonym(or alias) for <tt>:within</tt>.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:allow_nil</tt> - Attribute may be <tt>nil</tt>; skip validation.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:allow_blank</tt> - Attribute may be blank; skip validation.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:too_long</tt> - The error message if the attribute goes over the maximum
+      (default is: &quot;is too long (maximum is {{count}} characters)&quot;).'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:too_short</tt> - The error message if the attribute goes under the
+      minimum (default is: &quot;is too short (min is {{count}} characters)&quot;).'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:wrong_length</tt> - The error message if using the <tt>:is</tt> method
+      and the attribute is the wrong size (default is: &quot;is the wrong length (should
+      be {{count}} characters)&quot;).'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:message</tt> - The error message to use for a <tt>:minimum</tt>, <tt>:maximum</tt>,
+      or <tt>:is</tt> violation. An alias of the appropriate <tt>too_long</tt>/<tt>too_short</tt>/<tt>wrong_length</tt>
+      message.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:on</tt> - Specifies when this validation is active (default is <tt>:save</tt>,
+      other options <tt>:create</tt>, <tt>:update</tt>).
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:if</tt> - Specifies a method, proc or string to call to determine if
+      the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or <tt>:if
+      =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The method, proc or
+      string should return or evaluate to a true or false value.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:unless</tt> - Specifies a method, proc or string to call to determine
+      if the validation should not occur (e.g. <tt>:unless =&gt; :skip_validation</tt>,
+      or <tt>:unless =&gt; Proc.new { |user| user.signup_step &lt;= 2 }</tt>). The
+      method, proc or string should return or evaluate to a true or false value.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:tokenizer</tt> - Specifies how to split up the attribute string. (e.g.
+      <tt>:tokenizer =&gt; lambda {|str| str.scan(/\w+/)}</tt> to count words as in
+      above example.) Defaults to <tt>lambda{ |value| value.split(//) }</tt> which
+      counts individual characters.
+    label: '*'
+full_name: ActiveRecord::Validations::ClassMethods#validates_length_of
+params: (*attrs)
+name: validates_length_of
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: validates_size_of

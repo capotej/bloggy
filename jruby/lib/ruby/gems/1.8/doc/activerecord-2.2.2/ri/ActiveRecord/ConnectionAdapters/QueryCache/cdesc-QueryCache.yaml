@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: query_cache
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: query_cache_enabled
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: cache
+- !ruby/object:RI::MethodSummary 
+  name: clear_query_cache
+- !ruby/object:RI::MethodSummary 
+  name: columns_with_query_cache
+- !ruby/object:RI::MethodSummary 
+  name: select_all_with_query_cache
+- !ruby/object:RI::MethodSummary 
+  name: uncached
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: dirties_query_cache
+- !ruby/object:RI::MethodSummary 
+  name: included
+full_name: ActiveRecord::ConnectionAdapters::QueryCache
+constants: []
+
+superclass: 
+name: QueryCache

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>type_to_sql (ActiveRecord::ConnectionAdapters::MysqlAdapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/mysql_adapter.rb, line 500</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">type_to_sql</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">limit</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">precision</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">scale</span> = <span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">super</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'integer'</span>
+
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">limit</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value">1</span>; <span class="ruby-value str">'tinyint'</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value">2</span>; <span class="ruby-value str">'smallint'</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value">3</span>; <span class="ruby-value str">'mediumint'</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>, <span class="ruby-value">4</span>, <span class="ruby-value">11</span>; <span class="ruby-value str">'int(11)'</span>  <span class="ruby-comment cmt"># compatibility with MySQL default</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value">5</span><span class="ruby-operator">..</span><span class="ruby-value">8</span>; <span class="ruby-value str">'bigint'</span>
+        <span class="ruby-keyword kw">else</span> <span class="ruby-identifier">raise</span>(<span class="ruby-constant">ActiveRecordError</span>, <span class="ruby-node">&quot;No integer type has byte size #{limit}&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

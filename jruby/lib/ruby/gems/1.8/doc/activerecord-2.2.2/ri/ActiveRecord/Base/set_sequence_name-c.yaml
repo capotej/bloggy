@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the name of the sequence to use when generating ids to the given value,
+    or (if the value is nil or false) to the value returned by the given block. This
+    is required for Oracle and is useful for any database which relies on sequences
+    for primary key generation.
+- !ruby/struct:SM::Flow::P 
+  body: 'If a sequence name is not explicitly set when using Oracle or Firebird, it
+    will default to the commonly used pattern of: #{table_name}_seq'
+- !ruby/struct:SM::Flow::P 
+  body: If a sequence name is not explicitly set when using PostgreSQL, it will discover
+    the sequence corresponding to your primary key for you.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Project &lt; ActiveRecord::Base\n    set_sequence_name &quot;projectseq&quot; \
+    \  # default would have been &quot;project_seq&quot;\n  end\n"
+full_name: ActiveRecord::Base::set_sequence_name
+params: (value = nil, &block)
+name: set_sequence_name
+is_singleton: true
+aliases: []
+

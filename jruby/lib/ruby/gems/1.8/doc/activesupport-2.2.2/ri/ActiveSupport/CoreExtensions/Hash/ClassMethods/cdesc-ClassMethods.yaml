@@ -1,0 +1,16 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: from_xml
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Hash::ClassMethods
+constants: []
+
+superclass: 
+name: ClassMethods

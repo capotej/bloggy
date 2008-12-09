@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: ""
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::AbstractAdapter#log
+params: (sql, name) {|| ...}
+name: log
+is_singleton: false
+aliases: []
+

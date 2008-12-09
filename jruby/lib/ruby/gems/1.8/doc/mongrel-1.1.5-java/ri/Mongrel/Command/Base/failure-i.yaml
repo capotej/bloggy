@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Just a simple method to display failure until something better is developed.
+full_name: Mongrel::Command::Base#failure
+params: (message)
+name: failure
+is_singleton: false
+aliases: []
+

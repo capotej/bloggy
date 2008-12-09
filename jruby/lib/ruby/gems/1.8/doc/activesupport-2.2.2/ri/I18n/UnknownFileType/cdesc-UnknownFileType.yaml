@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: filename
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: type
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: I18n::UnknownFileType
+constants: []
+
+superclass: ArgumentError
+name: UnknownFileType

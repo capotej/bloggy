@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Rack::Utils::Multipart::parse_multipart
+params: (env)
+name: parse_multipart
+is_singleton: true
+aliases: []
+

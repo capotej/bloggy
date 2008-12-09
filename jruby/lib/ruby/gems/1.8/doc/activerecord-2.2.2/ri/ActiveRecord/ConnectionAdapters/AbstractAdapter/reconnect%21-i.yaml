@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Disconnects from the database if already connected, and establishes a new
+    connection with the database.
+full_name: ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!
+params: ()
+name: reconnect!
+is_singleton: false
+aliases: []
+

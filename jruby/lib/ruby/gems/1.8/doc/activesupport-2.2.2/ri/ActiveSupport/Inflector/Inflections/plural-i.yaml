@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Specifies a new pluralization rule and its replacement. The rule can either
+    be a string or a regular expression. The replacement should always be a string
+    that may include references to the matched data from the rule.
+full_name: ActiveSupport::Inflector::Inflections#plural
+params: (rule, replacement)
+name: plural
+is_singleton: false
+aliases: []
+

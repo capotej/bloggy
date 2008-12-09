@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns an array of column objects where the primary id, all columns ending
+    in &quot;_id&quot; or &quot;_count&quot;, and columns used for single table inheritance
+    have been removed.
+full_name: ActiveRecord::Base::content_columns
+params: ()
+name: content_columns
+is_singleton: true
+aliases: []
+

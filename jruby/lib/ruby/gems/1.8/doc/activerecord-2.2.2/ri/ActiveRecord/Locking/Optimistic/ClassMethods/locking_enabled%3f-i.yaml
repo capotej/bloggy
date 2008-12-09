@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Is optimistic locking enabled for this table? Returns true if the <tt>lock_optimistically</tt>
+    flag is set to true (which it is, by default) and the table includes the <tt>locking_column</tt>
+    column (defaults to <tt>lock_version</tt>).
+full_name: ActiveRecord::Locking::Optimistic::ClassMethods#locking_enabled?
+params: ()
+name: locking_enabled?
+is_singleton: false
+aliases: []
+

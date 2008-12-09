@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Escape ampersands, brackets and quotes to their HTML/XML entities.
+full_name: Rack::Utils#escape_html
+params: (string)
+name: escape_html
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Compare #name and TZInfo identifier to a supplied regexp, returning true
+    if a match is found.'
+full_name: ActiveSupport::TimeZone#=~
+params: (re)
+name: =~
+is_singleton: false
+aliases: []
+

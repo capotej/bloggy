@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: delete
+- !ruby/object:RI::MethodSummary 
+  name: find
+- !ruby/object:RI::MethodSummary 
+  name: replace_or_append!
+- !ruby/object:RI::MethodSummary 
+  name: run
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: build
+full_name: ActiveSupport::Callbacks::CallbackChain
+constants: []
+
+superclass: Array
+name: CallbackChain

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: ORDER BY clause for the passed order option.
+- !ruby/struct:SM::Flow::P 
+  body: 'Uses column aliases as defined by #distinct.'
+full_name: "::Oracle#add_order_by_for_association_limiting!"
+params: (sql, options)
+name: add_order_by_for_association_limiting!
+is_singleton: false
+aliases: []
+

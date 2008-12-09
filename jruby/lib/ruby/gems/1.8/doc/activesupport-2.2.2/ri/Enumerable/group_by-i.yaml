@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (element)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Collect an enumerable into sets, grouped by the result of a block. Useful,
+    for example, for grouping records by date.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  latest_transcripts.group_by(&amp;:day).each do |day, transcripts|\n    \
+    p &quot;#{day} -&gt; #{transcripts.map(&amp;:class).join(', ')}&quot;\n  end\n\
+    \  &quot;2006-03-01 -&gt; Transcript&quot;\n  &quot;2006-02-28 -&gt; Transcript&quot;\n\
+    \  &quot;2006-02-27 -&gt; Transcript, Transcript&quot;\n  &quot;2006-02-26 -&gt; \
+    Transcript, Transcript&quot;\n  &quot;2006-02-25 -&gt; Transcript&quot;\n  &quot;2006-02-24 \
+    -&gt; Transcript, Transcript&quot;\n  &quot;2006-02-23 -&gt; Transcript&quot;\n"
+full_name: Enumerable#group_by
+params: () {|element| ...}
+name: group_by
+is_singleton: false
+aliases: []
+

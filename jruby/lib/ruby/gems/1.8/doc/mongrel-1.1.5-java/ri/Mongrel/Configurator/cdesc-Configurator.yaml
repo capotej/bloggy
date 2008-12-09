@@ -1,0 +1,155 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Implements a simple DSL for configuring a Mongrel server for your purposes.
+    More used by framework implementers to setup Mongrel how they like, but could
+    be used by regular folks to add more things to an existing mongrel configuration.
+- !ruby/struct:SM::Flow::P 
+  body: 'It is used like this:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  require 'mongrel'\n  config = Mongrel::Configurator.new :host =&gt; &quot;127.0.0.1&quot; \
+    do\n    listener :port =&gt; 3000 do\n      uri &quot;/app&quot;, :handler =&gt; \
+    Mongrel::DirHandler.new(&quot;.&quot;, load_mime_map(&quot;mime.yaml&quot;))\n\
+    \    end\n    run\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: This will setup a simple DirHandler at the current directory and load additional
+    mime types from mimy.yaml. The :host =&gt; &quot;127.0.0.1&quot; is actually not
+    specific to the servers but just a hash of default parameters that all server
+    or uri calls receive.
+- !ruby/struct:SM::Flow::P 
+  body: When you are inside the block after Mongrel::Configurator.new you can simply
+    call functions that are part of Configurator (like server, uri, daemonize, etc)
+    without having to refer to anything else. You can also call these functions on
+    the resulting object directly for additional configuration.
+- !ruby/struct:SM::Flow::P 
+  body: A major thing about Configurator is that it actually lets you configure multiple
+    listeners for any hosts and ports you want. These are kept in a map config.listeners
+    so you can get to them.
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":pid_file =&gt; Where to write the process ID."
+    label: '*'
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: defaults
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: defaults
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: listeners
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: listeners
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: needs_restart
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: needs_restart
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: change_privilege
+- !ruby/object:RI::MethodSummary 
+  name: change_privilege
+- !ruby/object:RI::MethodSummary 
+  name: cloaker
+- !ruby/object:RI::MethodSummary 
+  name: cloaker
+- !ruby/object:RI::MethodSummary 
+  name: cloaking_class
+- !ruby/object:RI::MethodSummary 
+  name: cloaking_class
+- !ruby/object:RI::MethodSummary 
+  name: daemonize
+- !ruby/object:RI::MethodSummary 
+  name: daemonize
+- !ruby/object:RI::MethodSummary 
+  name: debug
+- !ruby/object:RI::MethodSummary 
+  name: debug
+- !ruby/object:RI::MethodSummary 
+  name: join
+- !ruby/object:RI::MethodSummary 
+  name: join
+- !ruby/object:RI::MethodSummary 
+  name: listener
+- !ruby/object:RI::MethodSummary 
+  name: listener
+- !ruby/object:RI::MethodSummary 
+  name: load_mime_map
+- !ruby/object:RI::MethodSummary 
+  name: load_mime_map
+- !ruby/object:RI::MethodSummary 
+  name: load_plugins
+- !ruby/object:RI::MethodSummary 
+  name: load_plugins
+- !ruby/object:RI::MethodSummary 
+  name: load_yaml
+- !ruby/object:RI::MethodSummary 
+  name: load_yaml
+- !ruby/object:RI::MethodSummary 
+  name: log
+- !ruby/object:RI::MethodSummary 
+  name: log
+- !ruby/object:RI::MethodSummary 
+  name: plugin
+- !ruby/object:RI::MethodSummary 
+  name: plugin
+- !ruby/object:RI::MethodSummary 
+  name: redirect
+- !ruby/object:RI::MethodSummary 
+  name: redirect
+- !ruby/object:RI::MethodSummary 
+  name: remove_pid_file
+- !ruby/object:RI::MethodSummary 
+  name: remove_pid_file
+- !ruby/object:RI::MethodSummary 
+  name: resolve_defaults
+- !ruby/object:RI::MethodSummary 
+  name: resolve_defaults
+- !ruby/object:RI::MethodSummary 
+  name: run
+- !ruby/object:RI::MethodSummary 
+  name: run
+- !ruby/object:RI::MethodSummary 
+  name: run_config
+- !ruby/object:RI::MethodSummary 
+  name: run_config
+- !ruby/object:RI::MethodSummary 
+  name: setup_signals
+- !ruby/object:RI::MethodSummary 
+  name: setup_signals
+- !ruby/object:RI::MethodSummary 
+  name: stop
+- !ruby/object:RI::MethodSummary 
+  name: stop
+- !ruby/object:RI::MethodSummary 
+  name: uri
+- !ruby/object:RI::MethodSummary 
+  name: uri
+- !ruby/object:RI::MethodSummary 
+  name: write_pid_file
+- !ruby/object:RI::MethodSummary 
+  name: write_pid_file
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Mongrel::Configurator
+constants: []
+
+superclass: Object
+name: Configurator

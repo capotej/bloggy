@@ -1,0 +1,32 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Runs all the callbacks defined for the given options.
+- !ruby/struct:SM::Flow::P 
+  body: 'If a block is given it will be called after each callback receiving as arguments:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " * the result from the callback\n * the object which has the callback\n"
+- !ruby/struct:SM::Flow::P 
+  body: If the result from the block evaluates to false, the callback chain is stopped.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Storage\n    include ActiveSupport::Callbacks\n\n    define_callbacks \
+    :before_save, :after_save\n  end\n\n  class ConfigStorage &lt; Storage\n    before_save \
+    :pass\n    before_save :pass\n    before_save :stop\n    before_save :pass\n\n\
+    \    def pass\n      puts &quot;pass&quot;\n    end\n\n    def stop\n      puts \
+    &quot;stop&quot;\n      return false\n    end\n\n    def save\n      result = \
+    run_callbacks(:before_save) { |result, object| result == false }\n      puts &quot;- \
+    save&quot; if result\n    end\n  end\n\n  config = ConfigStorage.new\n  config.save\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Output:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  pass\n  pass\n  stop\n"
+full_name: ActiveSupport::Callbacks#run_callbacks
+params: (kind, options = {}, &block)
+name: run_callbacks
+is_singleton: false
+aliases: []
+

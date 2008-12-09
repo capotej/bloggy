@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: self
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Silences the logger for the duration of the block.
+full_name: ActiveSupport::BufferedLogger#silence
+params: (temporary_level = ERROR) {|self| ...}
+name: silence
+is_singleton: false
+aliases: []
+

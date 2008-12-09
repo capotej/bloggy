@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Builder::XmlEvents#_start_tag
+params: (sym, attrs, end_too=false)
+name: _start_tag
+is_singleton: false
+aliases: []
+

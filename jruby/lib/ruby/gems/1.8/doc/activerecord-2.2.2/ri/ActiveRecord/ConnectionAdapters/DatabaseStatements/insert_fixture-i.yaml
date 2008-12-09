@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Inserts the given fixture into the table. Overridden in adapters that require
+    something beyond a simple insert (eg. Oracle).
+full_name: ActiveRecord::ConnectionAdapters::DatabaseStatements#insert_fixture
+params: (fixture, table_name)
+name: insert_fixture
+is_singleton: false
+aliases: []
+

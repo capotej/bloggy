@@ -1,0 +1,64 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: add_column
+- !ruby/object:RI::MethodSummary 
+  name: add_index
+- !ruby/object:RI::MethodSummary 
+  name: add_order_by_for_association_limiting!
+- !ruby/object:RI::MethodSummary 
+  name: add_timestamps
+- !ruby/object:RI::MethodSummary 
+  name: assume_migrated_upto_version
+- !ruby/object:RI::MethodSummary 
+  name: change_column
+- !ruby/object:RI::MethodSummary 
+  name: change_column_default
+- !ruby/object:RI::MethodSummary 
+  name: change_table
+- !ruby/object:RI::MethodSummary 
+  name: columns
+- !ruby/object:RI::MethodSummary 
+  name: create_table
+- !ruby/object:RI::MethodSummary 
+  name: distinct
+- !ruby/object:RI::MethodSummary 
+  name: drop_table
+- !ruby/object:RI::MethodSummary 
+  name: initialize_schema_migrations_table
+- !ruby/object:RI::MethodSummary 
+  name: native_database_types
+- !ruby/object:RI::MethodSummary 
+  name: options_include_default?
+- !ruby/object:RI::MethodSummary 
+  name: remove_column
+- !ruby/object:RI::MethodSummary 
+  name: remove_columns
+- !ruby/object:RI::MethodSummary 
+  name: remove_index
+- !ruby/object:RI::MethodSummary 
+  name: remove_timestamps
+- !ruby/object:RI::MethodSummary 
+  name: rename_column
+- !ruby/object:RI::MethodSummary 
+  name: rename_table
+- !ruby/object:RI::MethodSummary 
+  name: structure_dump
+- !ruby/object:RI::MethodSummary 
+  name: table_alias_for
+- !ruby/object:RI::MethodSummary 
+  name: table_alias_length
+- !ruby/object:RI::MethodSummary 
+  name: table_exists?
+class_methods: []
+
+full_name: ActiveRecord::ConnectionAdapters::SchemaStatements
+constants: []
+
+superclass: 
+name: SchemaStatements

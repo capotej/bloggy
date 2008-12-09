@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Checks whether the connection to the database is still active. This includes
+    checking whether the database is actually capable of responding, i.e. whether
+    the connection isn't stale.
+full_name: ActiveRecord::ConnectionAdapters::AbstractAdapter#active?
+params: ()
+name: active?
+is_singleton: false
+aliases: []
+

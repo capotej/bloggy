@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Convert characters in the string to lowercase.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  'V\xc4\x9aDA A V\xc3\x9dZKUM'.mb_chars.downcase.to_s #=&gt; &quot;v\xc4\
+    \x9bda a v\xc3\xbdzkum&quot;\n"
+full_name: ActiveSupport::Multibyte::Chars#downcase
+params: ()
+name: downcase
+is_singleton: false
+aliases: []
+

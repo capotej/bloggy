@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the current locale pseudo-globally, i.e. in the Thread.current hash.
+full_name: I18n::locale=
+params: (locale)
+name: locale=
+is_singleton: true
+aliases: []
+

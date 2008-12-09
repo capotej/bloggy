@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Can you safely .dup this object? False for nil, false, true, symbols, and
+    numbers; true otherwise.
+full_name: Object#duplicable?
+params: ()
+name: duplicable?
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>check_for_name_collision (Builder)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/vendor/builder-2.1.2/builder/xchar.rb, line 12</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">check_for_name_collision</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">method_name</span>, <span class="ruby-identifier">defined_constant</span>=<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">method_name</span>.<span class="ruby-identifier">to_s</span>)
+      <span class="ruby-identifier">fail</span> <span class="ruby-constant">RuntimeError</span>,
+        <span class="ruby-node">&quot;Name Collision: Method '#{method_name}' is already defined in #{klass}&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

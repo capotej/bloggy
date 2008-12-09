@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: From postgresql_adapter.rb
+full_name: "::PostgreSQL#indexes"
+params: (table_name, name = nil)
+name: indexes
+is_singleton: false
+aliases: []
+

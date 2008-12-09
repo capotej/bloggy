@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::SchemaStatements#assume_migrated_upto_version
+params: (version)
+name: assume_migrated_upto_version
+is_singleton: false
+aliases: []
+

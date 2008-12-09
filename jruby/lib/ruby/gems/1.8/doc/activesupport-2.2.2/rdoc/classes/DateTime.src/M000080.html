@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_json (DateTime)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/json/encoders/date_time.rb, line 14</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_json</span>(<span class="ruby-identifier">options</span> = <span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-constant">ActiveSupport</span>.<span class="ruby-identifier">use_standard_json_time_format</span>
+      <span class="ruby-identifier">xmlschema</span>.<span class="ruby-identifier">inspect</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">strftime</span>(<span class="ruby-value str">'&quot;%Y/%m/%d %H:%M:%S %z&quot;'</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

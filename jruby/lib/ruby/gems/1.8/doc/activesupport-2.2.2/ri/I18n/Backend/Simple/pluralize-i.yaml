@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Picks a translation from an array according to English pluralization rules.
+    It will pick the first translation if count is not equal to 1 and the second translation
+    if it is equal to 1. Other backends can implement more flexible or complex pluralization
+    rules.
+full_name: I18n::Backend::Simple#pluralize
+params: (locale, entry, count)
+name: pluralize
+is_singleton: false
+aliases: []
+

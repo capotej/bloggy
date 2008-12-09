@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Time uses <tt>zone</tt> to display the time zone abbreviation, so we're duck-typing
+    it.
+full_name: ActiveSupport::TimeWithZone#zone
+params: ()
+name: zone
+is_singleton: false
+aliases: []
+

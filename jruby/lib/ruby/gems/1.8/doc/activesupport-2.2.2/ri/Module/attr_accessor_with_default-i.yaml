@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Declare an attribute accessor with an initial default return value.
+- !ruby/struct:SM::Flow::P 
+  body: 'To give attribute <tt>:age</tt> the initial value <tt>25</tt>:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Person\n    attr_accessor_with_default :age, 25\n  end\n\n  some_person.age\n\
+    \  =&gt; 25\n  some_person.age = 26\n  some_person.age\n  =&gt; 26\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'To give attribute <tt>:element_name</tt> a dynamic default value, evaluated
+    in scope of self:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  attr_accessor_with_default(:element_name) { name.underscore }\n"
+full_name: Module#attr_accessor_with_default
+params: (sym, default = nil, &block)
+name: attr_accessor_with_default
+is_singleton: false
+aliases: []
+

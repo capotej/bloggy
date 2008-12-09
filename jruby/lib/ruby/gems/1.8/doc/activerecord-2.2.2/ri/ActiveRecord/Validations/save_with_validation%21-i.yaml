@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Attempts to save the record just like Base#save but will raise a RecordInvalid
+    exception instead of returning false if the record is not valid.
+full_name: ActiveRecord::Validations#save_with_validation!
+params: ()
+name: save_with_validation!
+is_singleton: false
+aliases: []
+

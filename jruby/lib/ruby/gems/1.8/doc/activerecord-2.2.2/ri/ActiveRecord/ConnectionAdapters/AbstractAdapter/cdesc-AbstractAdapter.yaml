@@ -1,0 +1,76 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Quoting
+- !ruby/object:RI::IncludedModule 
+  name: DatabaseStatements
+- !ruby/object:RI::IncludedModule 
+  name: SchemaStatements
+- !ruby/object:RI::IncludedModule 
+  name: QueryCache
+- !ruby/object:RI::IncludedModule 
+  name: ActiveSupport::Callbacks
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: ActiveRecord supports multiple database systems. AbstractAdapter and related
+    classes form the abstraction layer which makes this possible. An AbstractAdapter
+    represents a connection to a database, and provides an abstract interface for
+    database-specific functionality such as establishing a connection, escaping values,
+    building the right SQL fragments for ':offset' and ':limit' options, etc.
+- !ruby/struct:SM::Flow::P 
+  body: All the concrete database adapters follow the interface laid down in this
+    class. ActiveRecord::Base.connection returns an AbstractAdapter object, which
+    you can use.
+- !ruby/struct:SM::Flow::P 
+  body: Most of the methods in the adapter are useful during migrations. Most notably,
+    the instance methods provided by SchemaStatement are very useful.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: active?
+- !ruby/object:RI::MethodSummary 
+  name: adapter_name
+- !ruby/object:RI::MethodSummary 
+  name: decrement_open_transactions
+- !ruby/object:RI::MethodSummary 
+  name: disable_referential_integrity
+- !ruby/object:RI::MethodSummary 
+  name: disconnect!
+- !ruby/object:RI::MethodSummary 
+  name: format_log_entry
+- !ruby/object:RI::MethodSummary 
+  name: increment_open_transactions
+- !ruby/object:RI::MethodSummary 
+  name: log
+- !ruby/object:RI::MethodSummary 
+  name: log_info
+- !ruby/object:RI::MethodSummary 
+  name: open_transactions
+- !ruby/object:RI::MethodSummary 
+  name: prefetch_primary_key?
+- !ruby/object:RI::MethodSummary 
+  name: quote_table_name
+- !ruby/object:RI::MethodSummary 
+  name: raw_connection
+- !ruby/object:RI::MethodSummary 
+  name: reconnect!
+- !ruby/object:RI::MethodSummary 
+  name: requires_reloading?
+- !ruby/object:RI::MethodSummary 
+  name: reset!
+- !ruby/object:RI::MethodSummary 
+  name: supports_count_distinct?
+- !ruby/object:RI::MethodSummary 
+  name: supports_ddl_transactions?
+- !ruby/object:RI::MethodSummary 
+  name: supports_migrations?
+- !ruby/object:RI::MethodSummary 
+  name: verify!
+class_methods: []
+
+full_name: ActiveRecord::ConnectionAdapters::AbstractAdapter
+constants: []
+
+superclass: Object
+name: AbstractAdapter

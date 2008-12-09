@@ -1,0 +1,99 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An abstract definition of a column in a table.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: default
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: limit
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: name
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: "null"
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: precision
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: primary
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: scale
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: sql_type
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: type
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: extract_default
+- !ruby/object:RI::MethodSummary 
+  name: has_default?
+- !ruby/object:RI::MethodSummary 
+  name: human_name
+- !ruby/object:RI::MethodSummary 
+  name: klass
+- !ruby/object:RI::MethodSummary 
+  name: number?
+- !ruby/object:RI::MethodSummary 
+  name: text?
+- !ruby/object:RI::MethodSummary 
+  name: type_cast
+- !ruby/object:RI::MethodSummary 
+  name: type_cast_code
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: binary_to_string
+- !ruby/object:RI::MethodSummary 
+  name: fallback_string_to_date
+- !ruby/object:RI::MethodSummary 
+  name: fallback_string_to_time
+- !ruby/object:RI::MethodSummary 
+  name: fast_string_to_date
+- !ruby/object:RI::MethodSummary 
+  name: fast_string_to_time
+- !ruby/object:RI::MethodSummary 
+  name: microseconds
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new_date
+- !ruby/object:RI::MethodSummary 
+  name: new_time
+- !ruby/object:RI::MethodSummary 
+  name: string_to_binary
+- !ruby/object:RI::MethodSummary 
+  name: string_to_date
+- !ruby/object:RI::MethodSummary 
+  name: string_to_dummy_time
+- !ruby/object:RI::MethodSummary 
+  name: string_to_time
+- !ruby/object:RI::MethodSummary 
+  name: value_to_boolean
+- !ruby/object:RI::MethodSummary 
+  name: value_to_decimal
+full_name: ActiveRecord::ConnectionAdapters::Column
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '[true, 1, ''1'', ''t'', ''T'', ''true'', ''TRUE''].to_set'
+  name: TRUE_VALUES
+superclass: Object
+name: Column

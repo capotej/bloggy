@@ -1,0 +1,27 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: environment
+- !ruby/object:RI::MethodSummary 
+  name: output_filename
+- !ruby/object:RI::MethodSummary 
+  name: record
+- !ruby/object:RI::MethodSummary 
+  name: run
+- !ruby/object:RI::MethodSummary 
+  name: with_output_file
+class_methods: []
+
+full_name: ActiveSupport::Testing::Benchmarker
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''measurement,created_at,app,rails,ruby,platform'''
+  name: HEADER
+superclass: Performer
+name: Benchmarker

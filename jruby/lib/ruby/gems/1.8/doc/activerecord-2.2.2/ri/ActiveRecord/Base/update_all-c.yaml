@@ -1,0 +1,47 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Updates all records with details given if they match a set of conditions supplied,
+    limits and order can also be supplied. This method constructs a single SQL UPDATE
+    statement and sends it straight to the database. It does not instantiate the involved
+    models and it does not trigger Active Record callbacks.
+- !ruby/struct:SM::Flow::H 
+  text: Parameters
+  level: 4
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>updates</tt> - A string of column and value pairs that will be set on
+      any records that match conditions.
+    label: '*'
+  - !ruby/struct:SM::Flow::VERB 
+    body: "            What goes into the SET clause.\n"
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>conditions</tt> - An SQL fragment like &quot;administrator = 1&quot;
+      or [ &quot;user_name = ?&quot;, username ]. See conditions in the intro for
+      more info.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>options</tt> - Additional options are <tt>:limit</tt> and <tt>:order</tt>,
+      see the examples for usage.
+    label: '*'
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Update all billing objects with the 3 different attributes given\n  Billing.update_all( \
+    &quot;category = 'authorized', approved = 1, author = 'David'&quot; )\n\n  # Update \
+    records that match our conditions\n  Billing.update_all( &quot;author = 'David'&quot;, \
+    &quot;title LIKE '%Rails%'&quot; )\n\n  # Update records that match our conditions \
+    but limit it to 5 ordered by date\n  Billing.update_all( &quot;author = 'David'&quot;, \
+    &quot;title LIKE '%Rails%'&quot;,\n                        :order =&gt; 'created_at', \
+    :limit =&gt; 5 )\n"
+full_name: ActiveRecord::Base::update_all
+params: (updates, conditions = nil, options = {})
+name: update_all
+is_singleton: true
+aliases: []
+

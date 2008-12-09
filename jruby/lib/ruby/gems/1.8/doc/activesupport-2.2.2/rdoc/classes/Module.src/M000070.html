@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>attr_accessor_with_default (Module)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/core_ext/module/attr_accessor_with_default.rb, line 21</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">attr_accessor_with_default</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">default</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-value str">'Default value or block required'</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-operator">!</span><span class="ruby-identifier">default</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">block</span>
+    <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">block_given?</span> <span class="ruby-value">? </span><span class="ruby-identifier">block</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> { <span class="ruby-identifier">default</span> })
+    <span class="ruby-identifier">module_eval</span>(<span class="ruby-value str">&quot;def \#{sym}=(value)\nclass &lt;&lt; self; attr_reader :\#{sym} end\n@\#{sym} = value\nend\n&quot;</span>, <span class="ruby-keyword kw">__FILE__</span>, <span class="ruby-keyword kw">__LINE__</span>)
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

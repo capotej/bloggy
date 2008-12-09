@@ -1,0 +1,30 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Rescue exceptions raised in controller actions.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>rescue_from</tt> receives a series of exception classes or class names,
+    and a trailing <tt>:with</tt> option with the name of a method or a Proc object
+    to be called to handle them. Alternatively a block can be given.
+- !ruby/struct:SM::Flow::P 
+  body: Handlers that take one argument will be called with the exception, so that
+    the exception can be inspected when dealing with it.
+- !ruby/struct:SM::Flow::P 
+  body: Handlers are inherited. They are searched from right to left, from bottom
+    to top, and up the hierarchy. The handler of the first class for which <tt>exception.is_a?(klass)</tt>
+    holds true is the one invoked, if any.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class ApplicationController &lt; ActionController::Base\n    rescue_from \
+    User::NotAuthorized, :with =&gt; :deny_access # self defined exception\n    rescue_from \
+    ActiveRecord::RecordInvalid, :with =&gt; :show_errors\n\n    rescue_from 'MyAppError::Base' \
+    do |exception|\n      render :xml =&gt; exception, :status =&gt; 500\n    end\n\
+    \n    protected\n      def deny_access\n        ...\n      end\n\n      def show_errors(exception)\n\
+    \        exception.record.new_record? ? ...\n      end\n  end\n"
+full_name: ActiveSupport::Rescuable::ClassMethods#rescue_from
+params: (*klasses, &block)
+name: rescue_from
+is_singleton: false
+aliases: []
+

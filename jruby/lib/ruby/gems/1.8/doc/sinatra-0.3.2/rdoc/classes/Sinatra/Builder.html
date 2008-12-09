@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Sinatra::Builder</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Sinatra::Builder</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/sinatra_rb.html">
+                lib/sinatra.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Generating conservative XML content using <a
+href="Builder.html">Builder</a> templates.
+</p>
+<p>
+<a href="Builder.html">Builder</a> templates can be inline by passing a
+block to the <a href="Builder.html#M000258">builder</a> method, or in
+external files with +.<a href="Builder.html#M000258">builder</a>+ extension
+by passing the name of the template to the <tt><a
+href="Builder.html#M000258">builder</a></tt> method as a <a
+href="../Symbol.html">Symbol</a>.
+</p>
+<h3>Inline Rendering</h3>
+<p>
+If the <a href="Builder.html#M000258">builder</a> method is given a block,
+the block is called directly with an <tt>XmlMarkup</tt> instance and the
+result is returned as <a href="../String.html">String</a>:
+</p>
+<pre>
+  get '/who.xml' do
+    builder do |xml|
+      xml.instruct!
+      xml.person do
+        xml.name &quot;Francis Albert Sinatra&quot;,
+          :aka =&gt; &quot;Frank Sinatra&quot;
+        xml.email 'frank@capitolrecords.com'
+      end
+    end
+  end
+</pre>
+<p>
+Yields the following XML:
+</p>
+<pre>
+  &lt;?xml version='1.0' encoding='UTF-8'?&gt;
+  &lt;person&gt;
+    &lt;name aka='Frank Sinatra'&gt;Francis Albert Sinatra&lt;/name&gt;
+    &lt;email&gt;Frank Sinatra&lt;/email&gt;
+  &lt;/person&gt;
+</pre>
+<h3><a href="Builder.html">Builder</a> Template Files</h3>
+<p>
+<a href="Builder.html">Builder</a> templates can be stored in separate
+files with a +.<a href="Builder.html#M000258">builder</a>+ extension under
+the view path. An <tt>XmlMarkup</tt> object named <tt>xml</tt> is
+automatically made available to template.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  get '/bio.xml' do
+    builder :bio
+  end
+</pre>
+<p>
+The &quot;views/bio.builder&quot; file might contain the following:
+</p>
+<pre>
+  xml.instruct! :xml, :version =&gt; '1.1'
+  xml.person do
+    xml.name &quot;Francis Albert Sinatra&quot;
+    xml.aka &quot;Frank Sinatra&quot;
+    xml.aka &quot;Ol' Blue Eyes&quot;
+    xml.aka &quot;The Chairman of the Board&quot;
+    xml.born 'date' =&gt; '1915-12-12' do
+      xml.text! &quot;Hoboken, New Jersey, U.S.A.&quot;
+    end
+    xml.died 'age' =&gt; 82
+  end
+</pre>
+<p>
+And yields the following output:
+</p>
+<pre>
+  &lt;?xml version='1.1' encoding='UTF-8'?&gt;
+  &lt;person&gt;
+    &lt;name&gt;Francis Albert Sinatra&lt;/name&gt;
+    &lt;aka&gt;Frank Sinatra&lt;/aka&gt;
+    &lt;aka&gt;Ol&amp;apos; Blue Eyes&lt;/aka&gt;
+    &lt;aka&gt;The Chairman of the Board&lt;/aka&gt;
+    &lt;born date='1915-12-12'&gt;Hoboken, New Jersey, U.S.A.&lt;/born&gt;
+    &lt;died age='82' /&gt;
+  &lt;/person&gt;
+</pre>
+<p>
+NOTE: <a href="Builder.html">Builder</a> must be installed or a LoadError
+will be raised the first time an attempt is made to render a <a
+href="Builder.html#M000258">builder</a> template.
+</p>
+<p>
+See <a href="http://builder.rubyforge.org">builder.rubyforge.org</a>/ for
+comprehensive documentation on <a href="Builder.html">Builder</a>.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000258">builder</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000258" class="method-detail">
+        <a name="M000258"></a>
+
+        <div class="method-heading">
+          <a href="#M000258" class="method-signature">
+          <span class="method-name">builder</span><span class="method-args">(content=nil, options={}, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000258-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000258-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sinatra.rb, line 753</span>
+753:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">builder</span>(<span class="ruby-identifier">content</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+754:       <span class="ruby-identifier">options</span>, <span class="ruby-identifier">content</span> = <span class="ruby-identifier">content</span>, <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">content</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+755:       <span class="ruby-identifier">content</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> { <span class="ruby-identifier">block</span> } <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">content</span>.<span class="ruby-identifier">nil?</span>
+756:       <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:builder</span>, <span class="ruby-identifier">content</span>, <span class="ruby-identifier">options</span>)
+757:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

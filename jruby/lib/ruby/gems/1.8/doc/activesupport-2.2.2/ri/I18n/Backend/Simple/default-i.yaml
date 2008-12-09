@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Evaluates a default translation. If the given default is a String it is used
+    literally. If it is a Symbol it will be translated with the given options. If
+    it is an Array the first translation yielded will be returned.
+- !ruby/struct:SM::Flow::P 
+  body: <em>I.e.</em>, <tt>default(locale, [:foo, 'default'])</tt> will return <tt>default</tt>
+    if <tt>translate(locale, :foo)</tt> does not yield a result.
+full_name: I18n::Backend::Simple#default
+params: (locale, default, options = {})
+name: default
+is_singleton: false
+aliases: []
+

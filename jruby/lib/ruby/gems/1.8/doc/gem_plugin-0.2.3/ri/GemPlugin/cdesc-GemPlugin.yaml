@@ -1,0 +1,65 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Implements a dynamic plugin loading, configuration, and discovery system based
+    on RubyGems and a simple additional name space that looks like a URI.
+- !ruby/struct:SM::Flow::P 
+  body: 'A plugin is created and put into a category with the following code:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " class MyThing &lt; GemPlugin::Plugin &quot;/things&quot;\n   ...\n end\n"
+- !ruby/struct:SM::Flow::P 
+  body: What this does is sets up your MyThing in the plugin registry via GemPlugin::Manager.
+    You can then later get this plugin with GemPlugin::Manager.create(&quot;/things/mything&quot;)
+    and can also pass in options as a second parameter.
+- !ruby/struct:SM::Flow::P 
+  body: This isn't such a big deal, but the power is really from the GemPlugin::Manager.load
+    method. This method will go through the installed gems and require_gem any that
+    depend on the gem_plugin RubyGem. You can arbitrarily include or exclude gems
+    based on what they also depend on, thus letting you load these gems when appropriate.
+- !ruby/struct:SM::Flow::P 
+  body: Since this system was written originally for the Mongrel project that'll be
+    the best example of using it.
+- !ruby/struct:SM::Flow::P 
+  body: 'Imagine you have a neat plugin for Mongrel called snazzy_command that gives
+    the mongrel_rails a new command snazzy (like: mongrel_rails snazzy). You''d like
+    people to be able to grab this plugin if they want and use it, because it''s snazzy.'
+- !ruby/struct:SM::Flow::P 
+  body: First thing you do is create a gem of your project and make sure that it depends
+    on &quot;mongrel&quot; AND &quot;gem_plugin&quot;. This signals to the GemPlugin
+    system that this is a plugin for mongrel.
+- !ruby/struct:SM::Flow::P 
+  body: 'Next you put this code into a file like lib/init.rb (can be anything really):'
+- !ruby/struct:SM::Flow::VERB 
+  body: " class Snazzy &lt; GemPlugin::Plugin &quot;/commands&quot;\n   ...\n end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Then when you create your gem you have the following bits in your Rakefile:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " spec.add_dependency('mongrel', '&gt;= 0.3.9')\n spec.add_dependency('gem_plugin', \
+    '&gt;= 0.1')\n spec.autorequire = 'init.rb'\n"
+- !ruby/struct:SM::Flow::P 
+  body: Finally, you just have to now publish this gem for people to install and Mongrel
+    will &quot;magically&quot; be able to install it.
+- !ruby/struct:SM::Flow::P 
+  body: The &quot;magic&quot; part though is pretty simple and done via the GemPlugin::Manager.load
+    method. Read that to see how it is really done.
+attributes: []
+
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: Plugin
+full_name: GemPlugin
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: "true"
+  name: EXCLUDE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: "false"
+  name: INCLUDE
+superclass: 
+name: GemPlugin

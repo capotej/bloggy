@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>check (Rack::Auth::OpenID)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/auth/openid.rb, line 250</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">check</span>(<span class="ruby-identifier">consumer</span>, <span class="ruby-identifier">session</span>, <span class="ruby-identifier">req</span>)
+        <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:openid_param</span>]  = <span class="ruby-identifier">req</span>.<span class="ruby-identifier">params</span>[<span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:openid_param</span>]]
+        <span class="ruby-identifier">oid</span> = <span class="ruby-identifier">consumer</span>.<span class="ruby-identifier">begin</span>(<span class="ruby-identifier">session</span>[<span class="ruby-identifier">:openid_param</span>], <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:anonymous</span>])
+        <span class="ruby-identifier">pp</span> <span class="ruby-identifier">oid</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$DEBUG</span>
+        <span class="ruby-identifier">req</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'rack.auth.openid.request'</span>] = <span class="ruby-identifier">oid</span>
+
+        <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:site_return</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">req</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'HTTP_REFERER'</span>]
+
+        <span class="ruby-comment cmt"># SETUP_NEEDED check!</span>
+        <span class="ruby-comment cmt"># see OpenID::Consumer::CheckIDRequest docs</span>
+        <span class="ruby-identifier">query_args</span> = [<span class="ruby-ivar">@realm</span>, <span class="ruby-operator">*</span><span class="ruby-ivar">@options</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-identifier">:return_to</span>, <span class="ruby-identifier">:immediate</span>)]
+        <span class="ruby-identifier">query_args</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">req</span>.<span class="ruby-identifier">url</span>
+        <span class="ruby-identifier">query_args</span>[<span class="ruby-value">2</span>] = <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">session</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">:setup_needed</span>
+        <span class="ruby-identifier">pp</span> <span class="ruby-identifier">query_args</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$DEBUG</span>
+
+        <span class="ruby-comment cmt">## Extension support</span>
+        <span class="ruby-identifier">extensions</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ext</span>,<span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">oid</span>.<span class="ruby-identifier">add_extension</span> <span class="ruby-identifier">ext</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">oid</span>.<span class="ruby-identifier">send_redirect?</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">query_args</span>)
+          <span class="ruby-identifier">redirect</span> = <span class="ruby-identifier">oid</span>.<span class="ruby-identifier">redirect_url</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">query_args</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$DEBUG</span>
+            <span class="ruby-identifier">pp</span> <span class="ruby-identifier">redirect</span>
+            <span class="ruby-identifier">pp</span> <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">parse_query</span>(<span class="ruby-constant">URI</span>(<span class="ruby-identifier">redirect</span>).<span class="ruby-identifier">query</span>)
+          <span class="ruby-keyword kw">end</span>
+          [ <span class="ruby-value">303</span>, {<span class="ruby-value str">'Location'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">redirect</span>}, [] ]
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-comment cmt"># check on 'action' option.</span>
+          <span class="ruby-identifier">formbody</span> = <span class="ruby-identifier">oid</span>.<span class="ruby-identifier">form_markup</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">query_args</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$DEBUG</span>
+            <span class="ruby-identifier">pp</span> <span class="ruby-identifier">formbody</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">body</span> = <span class="ruby-constant">HTML</span> <span class="ruby-operator">%</span> [<span class="ruby-value str">'Confirm...'</span>, <span class="ruby-identifier">formbody</span>]
+          [ <span class="ruby-value">200</span>, {<span class="ruby-value str">'Content-Type'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value str">'text/html'</span>}, <span class="ruby-identifier">body</span>.<span class="ruby-identifier">to_a</span> ]
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-operator">::</span><span class="ruby-constant">OpenID</span><span class="ruby-operator">::</span><span class="ruby-constant">DiscoveryFailure</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-comment cmt"># thrown from inside OpenID::Consumer#begin by yadis stuff</span>
+        <span class="ruby-identifier">req</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'rack.errors'</span>].<span class="ruby-identifier">puts</span>(<span class="ruby-identifier">$!</span>.<span class="ruby-identifier">message</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">$@</span>)
+
+        <span class="ruby-ivar">@options</span>. <span class="ruby-comment cmt">### Foreign server failed</span>
+          <span class="ruby-identifier">fetch</span> <span class="ruby-identifier">:auth_fail</span>, [ <span class="ruby-value">503</span>,
+            {<span class="ruby-value str">'Content-Type'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value str">'text/plain'</span>},
+            <span class="ruby-value str">'Foreign server failure.'</span> ]
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

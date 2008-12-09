@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Returns an array of AssociationReflection objects for all the associations
+    in the class. If you only want to reflect on a certain association type, pass
+    in the symbol (<tt>:has_many</tt>, <tt>:has_one</tt>, <tt>:belongs_to</tt>) for
+    that as the first parameter. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Account.reflect_on_all_associations             # returns an array of all \
+    associations\n  Account.reflect_on_all_associations(:has_many)  # returns an array \
+    of all has_many associations\n"
+full_name: ActiveRecord::Reflection::ClassMethods#reflect_on_all_associations
+params: (macro = nil)
+name: reflect_on_all_associations
+is_singleton: false
+aliases: []
+

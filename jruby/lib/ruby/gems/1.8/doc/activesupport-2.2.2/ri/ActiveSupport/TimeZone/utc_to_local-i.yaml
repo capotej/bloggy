@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adjust the given time to the simultaneous time in the time zone represented
+    by <tt>self</tt>. Returns a Time.utc() instance -- if you want an ActiveSupport::TimeWithZone
+    instance, use Time#in_time_zone() instead.
+full_name: ActiveSupport::TimeZone#utc_to_local
+params: (time)
+name: utc_to_local
+is_singleton: false
+aliases: []
+

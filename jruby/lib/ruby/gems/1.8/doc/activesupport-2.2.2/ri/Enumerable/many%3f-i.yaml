@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Returns true if the collection has more than 1 element. Functionally equivalent
+    to collection.size &gt; 1. Works with a block too ala any?, so people.many? {
+    |p| p.age &gt; 26 } # =&gt; returns true if more than 1 person is over 26.'
+full_name: Enumerable#many?
+params: (&block)
+name: many?
+is_singleton: false
+aliases: []
+

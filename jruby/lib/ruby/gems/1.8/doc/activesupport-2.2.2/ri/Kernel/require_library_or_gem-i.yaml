@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Require a library with fallback to RubyGems. Warnings during library loading
+    are silenced to increase signal/noise for application warnings.
+full_name: Kernel#require_library_or_gem
+params: (library_name)
+name: require_library_or_gem
+is_singleton: false
+aliases: []
+

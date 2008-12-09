@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: You don't really call this. It's made for you. Main thing it does is hook
+    up the params, and store any remaining body data into the HttpRequest.body attribute.
+full_name: Mongrel::HttpRequest::new
+params: (params, socket, dispatchers)
+name: new
+is_singleton: true
+aliases: []
+

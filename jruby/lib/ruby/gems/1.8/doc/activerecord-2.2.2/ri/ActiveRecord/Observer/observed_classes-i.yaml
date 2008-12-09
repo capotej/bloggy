@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+full_name: ActiveRecord::Observer#observed_classes
+params: ()
+name: observed_classes
+is_singleton: false
+aliases: []
+

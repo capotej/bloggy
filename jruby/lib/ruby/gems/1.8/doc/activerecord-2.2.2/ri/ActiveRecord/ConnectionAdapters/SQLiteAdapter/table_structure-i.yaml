@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::SQLiteAdapter#table_structure
+params: (table_name)
+name: table_structure
+is_singleton: false
+aliases: []
+

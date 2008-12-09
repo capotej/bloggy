@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Sinatra::EventContext::new
+params: (request, response, route_params)
+name: new
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>reflect_on_all_associations (ActiveRecord::Reflection::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/reflection.rb, line 55</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reflect_on_all_associations</span>(<span class="ruby-identifier">macro</span> = <span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-identifier">association_reflections</span> = <span class="ruby-identifier">reflections</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">reflection</span><span class="ruby-operator">|</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">AssociationReflection</span>) }
+        <span class="ruby-identifier">macro</span> <span class="ruby-value">? </span><span class="ruby-identifier">association_reflections</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">reflection</span><span class="ruby-operator">|</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">macro</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">macro</span> } <span class="ruby-operator">:</span> <span class="ruby-identifier">association_reflections</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

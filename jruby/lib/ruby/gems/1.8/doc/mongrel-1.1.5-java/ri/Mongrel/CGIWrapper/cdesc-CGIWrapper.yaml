@@ -1,0 +1,107 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The beginning of a complete wrapper around Mongrel's internal HTTP processing
+    system but maintaining the original Ruby CGI module. Use this only as a crutch
+    to get existing CGI based systems working. It should handle everything, but please
+    notify me if you see special warnings. This work is still very alpha so I need
+    testers to help work out the various corner cases.
+- !ruby/struct:SM::Flow::P 
+  body: The CGIWrapper.handler attribute is normally not set and is available for
+    frameworks that need to get back to the handler. Rails uses this to give people
+    access to the RailsHandler#files (DirHandler really) so they can look-up paths
+    and do other things with the files managed there.
+- !ruby/struct:SM::Flow::P 
+  body: 'In Rails you can get the real file for a request with:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " path = @request.cgi.handler.files.can_serve(@request['PATH_INFO'])\n"
+- !ruby/struct:SM::Flow::P 
+  body: Which is ugly but does the job. Feel free to write a Rails helper for that.
+    Refer to DirHandler#can_serve for more information on this.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Set this to false if you want calls to CGIWrapper.out to not actually send
+      the response until you force it.
+  rw: RW
+  name: default_really_final
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Set this to false if you want calls to CGIWrapper.out to not actually send
+      the response until you force it.
+  rw: RW
+  name: default_really_final
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: handler
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: handler
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: options
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: options
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: args
+- !ruby/object:RI::MethodSummary 
+  name: args
+- !ruby/object:RI::MethodSummary 
+  name: env_table
+- !ruby/object:RI::MethodSummary 
+  name: env_table
+- !ruby/object:RI::MethodSummary 
+  name: header
+- !ruby/object:RI::MethodSummary 
+  name: header
+- !ruby/object:RI::MethodSummary 
+  name: out
+- !ruby/object:RI::MethodSummary 
+  name: out
+- !ruby/object:RI::MethodSummary 
+  name: send_cookies
+- !ruby/object:RI::MethodSummary 
+  name: send_cookies
+- !ruby/object:RI::MethodSummary 
+  name: status
+- !ruby/object:RI::MethodSummary 
+  name: status
+- !ruby/object:RI::MethodSummary 
+  name: stdinput
+- !ruby/object:RI::MethodSummary 
+  name: stdinput
+- !ruby/object:RI::MethodSummary 
+  name: stdoutput
+- !ruby/object:RI::MethodSummary 
+  name: stdoutput
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Mongrel::CGIWrapper
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: these are stripped out of any keys passed to CGIWrapper.header function
+  value: '[ "nph","status","server","connection","type",                      "charset","length","language","expires"]'
+  name: REMOVED_KEYS
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: these are stripped out of any keys passed to CGIWrapper.header function
+  value: '[ "nph","status","server","connection","type",                      "charset","length","language","expires"]'
+  name: REMOVED_KEYS
+superclass: "::CGI"
+name: CGIWrapper

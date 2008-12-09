@@ -1,0 +1,20 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Indicate a specified time in a local timezone has more than one possible time
+    in UTC. This happens when switching from daylight savings time to normal time
+    where the clocks are rolled back. Thrown by period_for_local and local_to_utc
+    when using an ambiguous time and not specifying any means to resolve the ambiguity.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: TZInfo::AmbiguousTime
+constants: []
+
+superclass: StandardError
+name: AmbiguousTime

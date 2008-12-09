@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds an error to the base object instead of any particular attribute. This
+    is used to report errors that don't tie to any specific attribute, but rather
+    to the object as a whole. These error messages don't get prepended with any field
+    name when iterating with <tt>each_full</tt>, so they should be complete sentences.
+full_name: ActiveRecord::Errors#add_to_base
+params: (msg)
+name: add_to_base
+is_singleton: false
+aliases: []
+

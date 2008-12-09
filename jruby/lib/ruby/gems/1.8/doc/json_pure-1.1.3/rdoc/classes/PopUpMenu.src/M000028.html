@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>create (PopUpMenu)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/json/editor.rb, line 457</span>
+457:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
+458:         <span class="ruby-identifier">add_item</span>(<span class="ruby-value str">&quot;Change node&quot;</span>, <span class="ruby-value">?n</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-identifier">:change_node</span>))
+459:         <span class="ruby-identifier">add_separator</span>
+460:         <span class="ruby-identifier">add_item</span>(<span class="ruby-value str">&quot;Cut node&quot;</span>, <span class="ruby-value">?X</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-identifier">:cut_node</span>))
+461:         <span class="ruby-identifier">add_item</span>(<span class="ruby-value str">&quot;Copy node&quot;</span>, <span class="ruby-value">?C</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-identifier">:copy_node</span>))
+462:         <span class="ruby-identifier">add_item</span>(<span class="ruby-value str">&quot;Paste node (appending)&quot;</span>, <span class="ruby-value">?A</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-identifier">:paste_node_appending</span>))
+463:         <span class="ruby-identifier">add_item</span>(<span class="ruby-value str">&quot;Paste node (inserting before)&quot;</span>, <span class="ruby-value">?I</span>,
+464:           <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-identifier">:paste_node_inserting_before</span>))
+465:         <span class="ruby-identifier">add_separator</span>
+466:         <span class="ruby-identifier">add_item</span>(<span class="ruby-value str">&quot;Append new node&quot;</span>, <span class="ruby-value">?a</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-identifier">:append_new_node</span>))
+467:         <span class="ruby-identifier">add_item</span>(<span class="ruby-value str">&quot;Insert new node before&quot;</span>, <span class="ruby-value">?i</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-identifier">:insert_new_node</span>))
+468:         <span class="ruby-identifier">add_separator</span> 
+469:         <span class="ruby-identifier">add_item</span>(<span class="ruby-value str">&quot;Collapse/Expand node (recursively)&quot;</span>, <span class="ruby-value">?e</span>,
+470:           <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>(<span class="ruby-identifier">:collapse_expand</span>))
+471: 
+472:         <span class="ruby-identifier">menu</span>.<span class="ruby-identifier">show_all</span>
+473:         <span class="ruby-identifier">signal_connect</span>(<span class="ruby-identifier">:button_press_event</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">widget</span>, <span class="ruby-identifier">event</span><span class="ruby-operator">|</span>
+474:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">event</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Gdk</span><span class="ruby-operator">::</span><span class="ruby-constant">EventButton</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">event</span>.<span class="ruby-identifier">button</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+475:             <span class="ruby-identifier">menu</span>.<span class="ruby-identifier">popup</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">event</span>.<span class="ruby-identifier">button</span>, <span class="ruby-identifier">event</span>.<span class="ruby-identifier">time</span>)
+476:           <span class="ruby-keyword kw">end</span>
+477:         <span class="ruby-keyword kw">end</span>
+478:         <span class="ruby-identifier">signal_connect</span>(<span class="ruby-identifier">:popup_menu</span>) <span class="ruby-keyword kw">do</span>
+479:           <span class="ruby-identifier">menu</span>.<span class="ruby-identifier">popup</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-value">0</span>, <span class="ruby-constant">Gdk</span><span class="ruby-operator">::</span><span class="ruby-constant">Event</span><span class="ruby-operator">::</span><span class="ruby-constant">CURRENT_TIME</span>)
+480:         <span class="ruby-keyword kw">end</span>
+481:       <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

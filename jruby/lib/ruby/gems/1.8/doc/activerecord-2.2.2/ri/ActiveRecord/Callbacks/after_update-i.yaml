@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Is called <em>after</em> <tt>Base.save</tt> on existing objects that have
+    a record. Note that this callback is still wrapped in the transaction around <tt>save</tt>.
+    For example, if you invoke an external indexer at this point it won't see the
+    changes in the database.
+full_name: ActiveRecord::Callbacks#after_update
+params: ()
+name: after_update
+is_singleton: false
+aliases: []
+

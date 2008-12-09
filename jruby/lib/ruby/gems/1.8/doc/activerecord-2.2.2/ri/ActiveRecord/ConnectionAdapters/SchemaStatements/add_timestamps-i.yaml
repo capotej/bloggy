@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds timestamps (created_at and updated_at) columns to the named table.
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 5
+- !ruby/struct:SM::Flow::VERB 
+  body: " add_timestamps(:suppliers)\n"
+full_name: ActiveRecord::ConnectionAdapters::SchemaStatements#add_timestamps
+params: (table_name)
+name: add_timestamps
+is_singleton: false
+aliases: []
+

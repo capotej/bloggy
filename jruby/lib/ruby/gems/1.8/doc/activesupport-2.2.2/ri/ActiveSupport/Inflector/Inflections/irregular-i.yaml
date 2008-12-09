@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Specifies a new irregular that applies to both pluralization and singularization
+    at the same time. This can only be used for strings, not regular expressions.
+    You simply pass the irregular in singular and plural form.
+- !ruby/struct:SM::Flow::P 
+  body: 'Examples:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  irregular 'octopus', 'octopi'\n  irregular 'person', 'people'\n"
+full_name: ActiveSupport::Inflector::Inflections#irregular
+params: (singular, plural)
+name: irregular
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>change_column (::Derby)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/jdbc_adapter/jdbc_derby.rb, line 283</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">change_column</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-comment cmt"># null/not nulling is easy, handle that separately</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">:null</span>)
+        <span class="ruby-comment cmt"># This seems to only work with 10.2 of Derby</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:null</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword kw">false</span>
+          <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;ALTER TABLE #{table_name} ALTER COLUMN #{column_name} NOT NULL&quot;</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;ALTER TABLE #{table_name} ALTER COLUMN #{column_name} NULL&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># anything left to do?</span>
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;ALTER TABLE #{table_name} ALTER COLUMN #{column_name} SET DATA TYPE #{type_to_sql(type, options[:limit])}&quot;</span>
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-identifier">transaction</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">temp_new_column_name</span> = <span class="ruby-node">&quot;#{column_name}_newtype&quot;</span>
+            <span class="ruby-comment cmt"># 1) ALTER TABLE t ADD COLUMN c1_newtype NEWTYPE;</span>
+            <span class="ruby-identifier">add_column</span> <span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">temp_new_column_name</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">options</span>
+            <span class="ruby-comment cmt"># 2) UPDATE t SET c1_newtype = c1;</span>
+            <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;UPDATE #{table_name} SET #{temp_new_column_name} = CAST(#{column_name} AS #{type_to_sql(type, options[:limit])})&quot;</span>
+            <span class="ruby-comment cmt"># 3) ALTER TABLE t DROP COLUMN c1;</span>
+            <span class="ruby-identifier">remove_column</span> <span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>
+            <span class="ruby-comment cmt"># 4) ALTER TABLE t RENAME COLUMN c1_newtype to c1;</span>
+            <span class="ruby-identifier">rename_column</span> <span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">temp_new_column_name</span>, <span class="ruby-identifier">column_name</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

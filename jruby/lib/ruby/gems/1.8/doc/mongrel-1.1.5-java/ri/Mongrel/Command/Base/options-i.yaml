@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Called by the implemented command to set the options for that command. Every
+    option has a short and long version, a description, a variable to set, and a default
+    value. No exceptions.
+full_name: Mongrel::Command::Base#options
+params: (opts)
+name: options
+is_singleton: false
+aliases: []
+

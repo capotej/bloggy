@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>default_value (::PostgreSQL::Column)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/jdbc_adapter/jdbc_postgre.rb, line 70</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">default_value</span>(<span class="ruby-identifier">value</span>)
+        <span class="ruby-comment cmt"># Boolean types</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;t&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/true/i</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;f&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/false/i</span>
+
+        <span class="ruby-comment cmt"># Char/String/Bytea type values</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">$1</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^'(.*)'::(bpchar|text|character varying|bytea)$/</span>
+
+        <span class="ruby-comment cmt"># Numeric values</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">value</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^-?[0-9]+(\.[0-9]*)?/</span>
+
+        <span class="ruby-comment cmt"># Fixed dates / timestamp</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">$1</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^'(.+)'::(date|timestamp)/</span>
+
+        <span class="ruby-comment cmt"># Anything else is blank, some user type, or some function</span>
+        <span class="ruby-comment cmt"># and we can't know the value of that, so return nil.</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

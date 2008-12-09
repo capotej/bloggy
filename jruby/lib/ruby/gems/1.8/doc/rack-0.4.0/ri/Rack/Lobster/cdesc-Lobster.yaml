@@ -1,0 +1,25 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Paste has a Pony, Rack has a Lobster!
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: Rack::Lobster
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: Zlib::Inflate.inflate("eJx9kEEOwyAMBO99xd7MAcytUhPlJyj2     P6jy9i4k9EQyGAnBarEXeCBqSkntNXsi/ZCvC48zGQoZKikGrFMZvgS5ZHd+aGWVuWwhVF0     t1drVmiR42HcWNz5w3QanT+2gIvTVCiE1lm1Y0eU4JGmIIbaKwextKn8rvW+p5PIwFl8ZWJ     I8jyiTlhTcYXkekJAzTyYN6E08A+dk8voBkAVTJQ==".delete("\n
+    ").unpack("m*")[0])
+  name: LobsterString
+- !ruby/object:RI::Constant 
+  comment: 
+  value: lambda { |env|       if env["QUERY_STRING"].include?("flip")
+  name: LambdaLobster
+superclass: Object
+name: Lobster

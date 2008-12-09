@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>columns (JdbcSpec::MsSQL)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/jdbc_adapter/jdbc_mssql.rb, line 222</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">columns</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">name</span> = <span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-keyword kw">return</span> [] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">table_name</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^information_schema\./i</span>
+        <span class="ruby-identifier">cc</span> = <span class="ruby-keyword kw">super</span>
+        <span class="ruby-identifier">cc</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">col</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">col</span>.<span class="ruby-identifier">identity</span> = <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">col</span>.<span class="ruby-identifier">sql_type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/identity/i</span>
+          <span class="ruby-identifier">col</span>.<span class="ruby-identifier">is_special</span> = <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">col</span>.<span class="ruby-identifier">sql_type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/text|ntext|image/i</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">cc</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

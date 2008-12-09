@@ -1,0 +1,29 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates Rails specific configuration options for people to use instead of
+    the base Configurator.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: rails
+- !ruby/object:RI::MethodSummary 
+  name: rails
+- !ruby/object:RI::MethodSummary 
+  name: reload!
+- !ruby/object:RI::MethodSummary 
+  name: reload!
+- !ruby/object:RI::MethodSummary 
+  name: setup_rails_signals
+- !ruby/object:RI::MethodSummary 
+  name: setup_rails_signals
+class_methods: []
+
+full_name: Mongrel::Rails::RailsConfigurator
+constants: []
+
+superclass: Mongrel::Configurator
+name: RailsConfigurator

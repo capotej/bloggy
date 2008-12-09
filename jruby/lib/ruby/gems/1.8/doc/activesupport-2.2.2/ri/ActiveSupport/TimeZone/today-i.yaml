@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return the current date in this time zone.
+full_name: ActiveSupport::TimeZone#today
+params: ()
+name: today
+is_singleton: false
+aliases: []
+

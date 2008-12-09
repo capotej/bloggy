@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Base64 provides utility methods for encoding and de-coding binary data using
+    a base 64 representation. A base 64 representation of binary data consists entirely
+    of printable US-ASCII characters. The Base64 module is included in Ruby 1.8, but
+    has been removed in Ruby 1.9.
+attributes: []
+
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: decode64
+- !ruby/object:RI::MethodSummary 
+  name: encode64
+full_name: ActiveSupport::Base64
+constants: []
+
+superclass: 
+name: Base64

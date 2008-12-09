@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Runs the thing. It returns the thread used so you can &quot;join&quot; it.
+    You can also access the HttpServer::acceptor attribute to get the thread later.
+full_name: Mongrel::HttpServer#run
+params: ()
+name: run
+is_singleton: false
+aliases: []
+

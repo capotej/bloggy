@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Alias for #application'
+full_name: Sinatra#build_application
+params: ()
+name: build_application
+is_singleton: false
+aliases: []
+

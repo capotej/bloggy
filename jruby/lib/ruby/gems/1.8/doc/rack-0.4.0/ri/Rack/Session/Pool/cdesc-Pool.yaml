@@ -1,0 +1,36 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Rack::Session::Pool provides simple cookie based session management. Session
+    data is stored in a hash held by @pool. In the context of a multithreaded environment,
+    sessions being committed to the pool is done in a merging manner.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  myapp = MyRackApp.new\n  sessioned = Rack::Session::Pool.new(myapp,\n  \
+    \  :key =&gt; 'rack.session',\n    :domain =&gt; 'foo.com',\n    :path =&gt; '/',\n\
+    \    :expire_after =&gt; 2592000\n  )\n  Rack::Handler::WEBrick.run sessioned\n"
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: mutex
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: pool
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Rack::Session::Pool
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: Abstract::ID::DEFAULT_OPTIONS.dup
+  name: DEFAULT_OPTIONS
+superclass: Abstract::ID
+name: Pool

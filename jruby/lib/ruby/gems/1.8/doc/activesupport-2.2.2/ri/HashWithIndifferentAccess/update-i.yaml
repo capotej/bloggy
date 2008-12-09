@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Updates the instantized hash with values from the second:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  hash_1 = HashWithIndifferentAccess.new\n  hash_1[:key] = &quot;value&quot;\n\
+    \n  hash_2 = HashWithIndifferentAccess.new\n  hash_2[:key] = &quot;New Value!&quot;\n\
+    \n  hash_1.update(hash_2) # =&gt; {&quot;key&quot;=&gt;&quot;New Value!&quot;}\n"
+full_name: HashWithIndifferentAccess#update
+params: (other_hash)
+name: update
+is_singleton: false
+aliases: []
+

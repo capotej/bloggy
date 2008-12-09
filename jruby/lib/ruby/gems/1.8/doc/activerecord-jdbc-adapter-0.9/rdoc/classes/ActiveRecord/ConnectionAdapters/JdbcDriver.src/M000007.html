@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>connection (ActiveRecord::ConnectionAdapters::JdbcDriver)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/jdbc_adapter.rb, line 249</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">connection</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">user</span>, <span class="ruby-identifier">pass</span>)
+        <span class="ruby-constant">Jdbc</span><span class="ruby-operator">::</span><span class="ruby-constant">DriverManager</span>.<span class="ruby-identifier">getConnection</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">user</span>, <span class="ruby-identifier">pass</span>)
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-comment cmt"># bypass DriverManager to get around problem with dynamically loaded jdbc drivers</span>
+        <span class="ruby-identifier">props</span> = <span class="ruby-identifier">java</span>.<span class="ruby-identifier">util</span>.<span class="ruby-constant">Properties</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">props</span>.<span class="ruby-identifier">setProperty</span>(<span class="ruby-value str">&quot;user&quot;</span>, <span class="ruby-identifier">user</span>)
+        <span class="ruby-identifier">props</span>.<span class="ruby-identifier">setProperty</span>(<span class="ruby-value str">&quot;password&quot;</span>, <span class="ruby-identifier">pass</span>)
+        <span class="ruby-identifier">create</span>.<span class="ruby-identifier">connect</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">props</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

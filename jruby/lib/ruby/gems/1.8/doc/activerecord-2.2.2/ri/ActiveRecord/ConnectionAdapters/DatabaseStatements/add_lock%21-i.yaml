@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Appends a locking clause to an SQL statement. This method <b>modifies</b>
+    the <tt>sql</tt> parameter.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # SELECT * FROM suppliers FOR UPDATE\n  add_lock! 'SELECT * FROM suppliers', \
+    :lock =&gt; true\n  add_lock! 'SELECT * FROM suppliers', :lock =&gt; ' FOR UPDATE'\n"
+full_name: ActiveRecord::ConnectionAdapters::DatabaseStatements#add_lock!
+params: (sql, options)
+name: add_lock!
+is_singleton: false
+aliases: []
+

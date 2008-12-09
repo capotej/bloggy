@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>method_missing (ActiveRecord::Migration)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/migration.rb, line 339</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">arguments</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-identifier">arg_list</span> = <span class="ruby-identifier">arguments</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:inspect</span>) <span class="ruby-operator">*</span> <span class="ruby-value str">', '</span>
+
+        <span class="ruby-identifier">say_with_time</span> <span class="ruby-node">&quot;#{method}(#{arg_list})&quot;</span> <span class="ruby-keyword kw">do</span>
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">arguments</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">method</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:execute</span>
+            <span class="ruby-identifier">arguments</span>[<span class="ruby-value">0</span>] = <span class="ruby-constant">Migrator</span>.<span class="ruby-identifier">proper_table_name</span>(<span class="ruby-identifier">arguments</span>.<span class="ruby-identifier">first</span>)
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">arguments</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return a new hash with all keys and nested keys converted to symbols.
+full_name: I18n::Backend::Simple#deep_symbolize_keys
+params: (hash)
+name: deep_symbolize_keys
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,21 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Raised on attempt to save stale record. Record is stale when it's being saved
+    in another query after instantiation, for example, when two users edit the same
+    wiki page and one starts editing and saves the page before the other.
+- !ruby/struct:SM::Flow::P 
+  body: Read more about optimistic locking in ActiveRecord::Locking module RDoc.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveRecord::StaleObjectError
+constants: []
+
+superclass: ActiveRecordError
+name: StaleObjectError

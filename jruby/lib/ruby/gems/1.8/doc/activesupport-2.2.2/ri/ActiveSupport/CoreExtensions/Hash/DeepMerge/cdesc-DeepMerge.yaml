@@ -1,0 +1,20 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Allows for deep merging
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: deep_merge
+- !ruby/object:RI::MethodSummary 
+  name: deep_merge!
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Hash::DeepMerge
+constants: []
+
+superclass: 
+name: DeepMerge

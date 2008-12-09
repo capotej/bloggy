@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>json_create (Time)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/json/add/core.rb, line 11</span>
+11:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">json_create</span>(<span class="ruby-identifier">object</span>)
+12:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">usec</span> = <span class="ruby-identifier">object</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'u'</span>) <span class="ruby-comment cmt"># used to be tv_usec -&gt; tv_nsec</span>
+13:       <span class="ruby-identifier">object</span>[<span class="ruby-value str">'n'</span>] = <span class="ruby-identifier">usec</span> <span class="ruby-operator">*</span> <span class="ruby-value">1000</span>
+14:     <span class="ruby-keyword kw">end</span>
+15:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:tv_nsec</span>)
+16:       <span class="ruby-identifier">at</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">object</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value str">'s'</span>, <span class="ruby-value str">'n'</span>))
+17:     <span class="ruby-keyword kw">else</span>
+18:       <span class="ruby-identifier">at</span>(<span class="ruby-identifier">object</span>[<span class="ruby-value str">'s'</span>], <span class="ruby-identifier">object</span>[<span class="ruby-value str">'n'</span>] <span class="ruby-operator">/</span> <span class="ruby-value">1000</span>)
+19:     <span class="ruby-keyword kw">end</span>
+20:   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

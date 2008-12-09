@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>next_sequence_value (::FireBird)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/jdbc_adapter/jdbc_firebird.rb, line 35</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">next_sequence_value</span>(<span class="ruby-identifier">sequence_name</span>)
+      <span class="ruby-identifier">select_one</span>(<span class="ruby-node">&quot;SELECT GEN_ID(#{sequence_name}, 1 ) FROM RDB$DATABASE;&quot;</span>)[<span class="ruby-value str">&quot;gen_id&quot;</span>]
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

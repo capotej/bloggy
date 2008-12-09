@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>call (Rack::Static)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/static.rb, line 26</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+      <span class="ruby-identifier">path</span> = <span class="ruby-identifier">env</span>[<span class="ruby-value str">&quot;PATH_INFO&quot;</span>]
+      <span class="ruby-identifier">can_serve</span> = <span class="ruby-ivar">@urls</span>.<span class="ruby-identifier">any?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">url</span><span class="ruby-operator">|</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">url</span>) <span class="ruby-operator">==</span> <span class="ruby-value">0</span> }
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">can_serve</span>
+        <span class="ruby-ivar">@file_server</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

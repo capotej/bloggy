@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+full_name: ActiveSupport::Testing::Performer#output_filename
+params: ()
+name: output_filename
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::Column::new_date
+params: (year, mon, mday)
+name: new_date
+is_singleton: true
+aliases: []
+

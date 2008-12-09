@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Alias for #define_attribute_methods'
+full_name: ActiveRecord::AttributeMethods::ClassMethods#define_read_methods
+params: ()
+name: define_read_methods
+is_singleton: false
+aliases: []
+

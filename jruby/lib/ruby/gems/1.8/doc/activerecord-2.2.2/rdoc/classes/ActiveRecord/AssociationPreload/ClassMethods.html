@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActiveRecord::AssociationPreload::ClassMethods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActiveRecord::AssociationPreload::ClassMethods</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/active_record/association_preload_rb.html">
+                lib/active_record/association_preload.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Implements the details of eager loading of ActiveRecord associations.
+Application developers should not use this module directly.
+</p>
+<p>
+<a href="../Base.html">ActiveRecord::Base</a> is extended with this module.
+The source code in <a href="../Base.html">ActiveRecord::Base</a> references
+methods defined in this module.
+</p>
+<p>
+Note that &#8216;eager loading&#8217; and &#8216;preloading&#8217; are
+actually the same thing. However, there are two different eager loading
+strategies.
+</p>
+<p>
+The first one is by using table joins. This was only strategy available
+prior to Rails 2.1. Suppose that you have an Author model with columns
+&#8216;name&#8217; and &#8216;age&#8217;, and a Book model with columns
+&#8216;name&#8217; and &#8216;sales&#8217;. Using this strategy,
+ActiveRecord would try to retrieve all data for an author and all of its
+books via a single query:
+</p>
+<pre>
+  SELECT * FROM authors
+  LEFT OUTER JOIN books ON authors.id = books.id
+  WHERE authors.name = 'Ken Akamatsu'
+</pre>
+<p>
+However, this could result in many rows that contain redundant data. After
+having received the first row, we already have enough data to instantiate
+the Author object. In all subsequent rows, only the data for the joined
+&#8216;books&#8217; table is useful; the joined &#8216;authors&#8217; data
+is just redundant, and processing this redundant data takes memory and CPU
+time. The problem quickly becomes worse and worse as the level of eager
+loading increases (i.e. if ActiveRecord is to eager load the
+associations&#8217; assocations as well).
+</p>
+<p>
+The second strategy is to use multiple database queries, one for each level
+of association. Since Rails 2.1, this is the default strategy. In
+situations where a table join is necessary (e.g. when the +:conditions+
+option references an association&#8216;s column), it will fallback to the
+table join strategy.
+</p>
+<p>
+See also <a
+href="../Associations/ClassMethods.html">ActiveRecord::Associations::ClassMethods</a>,
+which explains eager loading in a more high-level (application
+developer-friendly) manner.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000835">preload_associations</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Protected Instance methods</h3>
+
+      <div id="method-M000835" class="method-detail">
+        <a name="M000835"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000835.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000835.html');return false;">
+          <span class="method-name">preload_associations</span><span class="method-args">(records, associations, preload_options={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Eager loads the named associations for the given ActiveRecord record(s).
+</p>
+<p>
+In this description, &#8216;association name&#8217; shall refer to the name
+passed to an association creation method. For example, a model that
+specifies <tt>belongs_to :author</tt>, <tt>has_many :buyers</tt> has
+association names +:author+ and +:buyers+.
+</p>
+<h2>Parameters</h2>
+<p>
+<tt>records</tt> is an array of <a
+href="../Base.html">ActiveRecord::Base</a>. This array needs not be flat,
+i.e. <tt>records</tt> itself may also contain arrays of records. In any
+case, <tt><a href="ClassMethods.html#M000835">preload_associations</a></tt>
+will preload the associations all records by flattening <tt>records</tt>.
+</p>
+<p>
+<tt>associations</tt> specifies one or more associations that you want to
+preload. It may be:
+</p>
+<ul>
+<li>a Symbol or a String which specifies a single association name. For
+example, specifiying +:books+ allows this method to preload all books for
+an Author.
+
+</li>
+<li>an Array which specifies multiple association names. This array is
+processed recursively. For example, specifying <tt>[:avatar, :books]</tt>
+allows this method to preload an author&#8216;s avatar as well as all of
+his books.
+
+</li>
+<li>a Hash which specifies multiple association names, as well as association
+names for the to-be-preloaded association objects. For example, specifying
+<tt>{ :author =&gt; :avatar }</tt> will preload a book&#8216;s author, as
+well as that author&#8216;s avatar.
+
+</li>
+</ul>
+<p>
++:associations+ has the same format as the +:include+ option for <tt><a
+href="../Base.html#M001163">ActiveRecord::Base.find</a></tt>. So
+<tt>associations</tt> could look like this:
+</p>
+<pre>
+  :books
+  [ :books, :author ]
+  { :author =&gt; :avatar }
+  [ :books, { :author =&gt; :avatar } ]
+</pre>
+<p>
+<tt>preload_options</tt> contains options that will be passed to
+ActiveRecord#find (which is called under the hood for preloading records).
+But it is passed only one level deep in the <tt>associations</tt> argument,
+i.e. it&#8216;s not passed to the child associations when
+<tt>associations</tt> is a Hash.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

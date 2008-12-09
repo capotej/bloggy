@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Works like a meta run method which goes through all the configured listeners.
+    Use the Configurator.join method to prevent Ruby from exiting until each one is
+    done.
+full_name: Mongrel::Configurator#run
+params: ()
+name: run
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>set_cookie (Rack::Response)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/response.rb, line 53</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_cookie</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">value</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Hash</span>
+        <span class="ruby-identifier">domain</span>  = <span class="ruby-value str">&quot;; domain=&quot;</span>  <span class="ruby-operator">+</span> <span class="ruby-identifier">value</span>[<span class="ruby-identifier">:domain</span>]    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>[<span class="ruby-identifier">:domain</span>]
+        <span class="ruby-identifier">path</span>    = <span class="ruby-value str">&quot;; path=&quot;</span>    <span class="ruby-operator">+</span> <span class="ruby-identifier">value</span>[<span class="ruby-identifier">:path</span>]      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>[<span class="ruby-identifier">:path</span>]
+        <span class="ruby-comment cmt"># According to RFC 2109, we need dashes here.</span>
+        <span class="ruby-comment cmt"># N.B.: cgi.rb uses spaces...</span>
+        <span class="ruby-identifier">expires</span> = <span class="ruby-value str">&quot;; expires=&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">value</span>[<span class="ruby-identifier">:expires</span>].<span class="ruby-identifier">clone</span>.<span class="ruby-identifier">gmtime</span>.
+          <span class="ruby-identifier">strftime</span>(<span class="ruby-value str">&quot;%a, %d-%b-%Y %H:%M:%S GMT&quot;</span>)    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>[<span class="ruby-identifier">:expires</span>]
+        <span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>[<span class="ruby-identifier">:value</span>]
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">value</span> = [<span class="ruby-identifier">value</span>]  <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">Array</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">value</span>
+      <span class="ruby-identifier">cookie</span> = <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">key</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;=&quot;</span> <span class="ruby-operator">+</span>
+        <span class="ruby-identifier">value</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">escape</span> <span class="ruby-identifier">v</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;&amp;&quot;</span>) <span class="ruby-operator">+</span>
+        <span class="ruby-node">&quot;#{domain}#{path}#{expires}&quot;</span>
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-keyword kw">self</span>[<span class="ruby-value str">&quot;Set-Cookie&quot;</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Array</span>
+        <span class="ruby-keyword kw">self</span>[<span class="ruby-value str">&quot;Set-Cookie&quot;</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">cookie</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>
+        <span class="ruby-keyword kw">self</span>[<span class="ruby-value str">&quot;Set-Cookie&quot;</span>] = [<span class="ruby-keyword kw">self</span>[<span class="ruby-value str">&quot;Set-Cookie&quot;</span>], <span class="ruby-identifier">cookie</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">self</span>[<span class="ruby-value str">&quot;Set-Cookie&quot;</span>] = <span class="ruby-identifier">cookie</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

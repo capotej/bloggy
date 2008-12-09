@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Hide the method named <tt>name</tt> in the BlankSlate class. Don't hide <tt>instance_eval</tt>
+    or any method beginning with &quot;__&quot;.
+full_name: BlankSlate::hide
+params: (name)
+name: hide
+is_singleton: true
+aliases: []
+

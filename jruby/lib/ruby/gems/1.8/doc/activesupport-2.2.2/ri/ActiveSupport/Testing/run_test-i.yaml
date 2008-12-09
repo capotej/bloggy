@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveSupport::Testing#run_test
+params: (metric, mode)
+name: run_test
+is_singleton: false
+aliases: []
+

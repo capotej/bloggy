@@ -1,0 +1,43 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a single rails handler and returns it so you can add it to a URI.
+    You can actually attach it to as many URIs as you want, but this returns the same
+    RailsHandler for each call.
+- !ruby/struct:SM::Flow::P 
+  body: 'Requires the following options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":docroot =&gt; The public dir to serve from."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":environment =&gt; Rails environment to use."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":cwd =&gt; The change to working directory"
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: 'And understands the following optional settings:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":mime =&gt; A map of mime types."
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: Because of how Rails is designed you can only have one installed per Ruby
+    interpreter (talk to them about thread safety). Because of this the first time
+    you call this function it does all the config needed to get your Rails working.
+    After that it returns the one handler you've configured. This lets you attach
+    Rails to any URI(s) you want, but it still protects you from threads destroying
+    your handler.
+full_name: Mongrel::Rails::RailsConfigurator#rails
+params: (options={})
+name: rails
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Ensure proxy class responds to all methods that underlying time instance responds
+    to.
+full_name: ActiveSupport::TimeWithZone#respond_to?
+params: (sym, include_priv = false)
+name: respond_to?
+is_singleton: false
+aliases: []
+

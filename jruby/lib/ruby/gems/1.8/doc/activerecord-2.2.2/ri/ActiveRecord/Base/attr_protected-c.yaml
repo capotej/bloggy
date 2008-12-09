@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Attributes named in this macro are protected from mass-assignment, such as
+    <tt>new(attributes)</tt>, <tt>update_attributes(attributes)</tt>, or <tt>attributes=(attributes)</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: Mass-assignment to these attributes will simply be ignored, to assign to them
+    you can use direct writer methods. This is meant to protect sensitive attributes
+    from being overwritten by malicious users tampering with URLs or forms.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Customer &lt; ActiveRecord::Base\n    attr_protected :credit_rating\n\
+    \  end\n\n  customer = Customer.new(&quot;name&quot; =&gt; David, &quot;credit_rating&quot; \
+    =&gt; &quot;Excellent&quot;)\n  customer.credit_rating # =&gt; nil\n  customer.attributes \
+    = { &quot;description&quot; =&gt; &quot;Jolly fellow&quot;, &quot;credit_rating&quot; \
+    =&gt; &quot;Superb&quot; }\n  customer.credit_rating # =&gt; nil\n\n  customer.credit_rating \
+    = &quot;Average&quot;\n  customer.credit_rating # =&gt; &quot;Average&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: To start from an all-closed default and enable attributes as needed, have
+    a look at <tt>attr_accessible</tt>.
+full_name: ActiveRecord::Base::attr_protected
+params: (*attributes)
+name: attr_protected
+is_singleton: true
+aliases: []
+

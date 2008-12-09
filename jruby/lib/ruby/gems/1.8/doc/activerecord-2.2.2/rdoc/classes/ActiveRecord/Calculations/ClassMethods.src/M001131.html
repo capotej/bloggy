@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>construct_count_options_from_args (ActiveRecord::Calculations::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/calculations.rb, line 133</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">construct_count_options_from_args</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+          <span class="ruby-identifier">options</span>     = {}
+          <span class="ruby-identifier">column_name</span> = <span class="ruby-identifier">:all</span>
+          
+          <span class="ruby-comment cmt"># We need to handle</span>
+          <span class="ruby-comment cmt">#   count()</span>
+          <span class="ruby-comment cmt">#   count(:column_name=:all)</span>
+          <span class="ruby-comment cmt">#   count(options={})</span>
+          <span class="ruby-comment cmt">#   count(column_name=:all, options={})</span>
+          <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">size</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-value">1</span>
+            <span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">options</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">:</span> <span class="ruby-identifier">column_name</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>]
+          <span class="ruby-keyword kw">when</span> <span class="ruby-value">2</span>
+            <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">options</span> = <span class="ruby-identifier">args</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Unexpected parameters passed to count(): #{args.inspect}&quot;</span>
+          <span class="ruby-keyword kw">end</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+          
+          [<span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">options</span>]
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

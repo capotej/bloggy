@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The character set of the request body if a &quot;charset&quot; media type
+    parameter was given, or nil if no &quot;charset&quot; was specified. Note that,
+    per RFC2616, text/* media types that specify no explicit charset are to be considered
+    ISO-8859-1.
+full_name: Rack::Request#content_charset
+params: ()
+name: content_charset
+is_singleton: false
+aliases: []
+

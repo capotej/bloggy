@@ -1,0 +1,58 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Validates whether the value of the specified attribute is of the correct form
+    by matching it against the regular expression provided.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Person &lt; ActiveRecord::Base\n    validates_format_of :email, :with \
+    =&gt; /\\A([^@\\s]+)@((?:[-a-z0-9]+\\.)+[a-z]{2,})\\Z/i, :on =&gt; :create\n  \
+    end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Note: use <tt>\A</tt> and <tt>\Z</tt> to match the start and end of the string,
+    <tt>^</tt> and <tt>$</tt> match the start/end of a line.'
+- !ruby/struct:SM::Flow::P 
+  body: A regular expression must be provided or else an exception will be raised.
+- !ruby/struct:SM::Flow::P 
+  body: 'Configuration options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:message</tt> - A custom error message (default is: &quot;is invalid&quot;).'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:allow_nil</tt> - If set to true, skips this validation if the attribute
+      is <tt>nil</tt> (default is <tt>false</tt>).
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:allow_blank</tt> - If set to true, skips this validation if the attribute
+      is blank (default is <tt>false</tt>).
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:with</tt> - The regular expression used to validate the format with
+      (note: must be supplied!).'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:on</tt> - Specifies when this validation is active (default is <tt>:save</tt>,
+      other options <tt>:create</tt>, <tt>:update</tt>).
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:if</tt> - Specifies a method, proc or string to call to determine if
+      the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or <tt>:if
+      =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The method, proc or
+      string should return or evaluate to a true or false value.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:unless</tt> - Specifies a method, proc or string to call to determine
+      if the validation should not occur (e.g. <tt>:unless =&gt; :skip_validation</tt>,
+      or <tt>:unless =&gt; Proc.new { |user| user.signup_step &lt;= 2 }</tt>). The
+      method, proc or string should return or evaluate to a true or false value.
+    label: '*'
+full_name: ActiveRecord::Validations::ClassMethods#validates_format_of
+params: (*attr_names)
+name: validates_format_of
+is_singleton: false
+aliases: []
+

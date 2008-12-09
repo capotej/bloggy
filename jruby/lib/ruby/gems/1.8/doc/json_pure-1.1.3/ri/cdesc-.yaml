@@ -1,0 +1,20 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: JSON
+- !ruby/object:RI::MethodSummary 
+  name: j
+- !ruby/object:RI::MethodSummary 
+  name: jj
+class_methods: []
+
+full_name: ""
+constants: []
+
+superclass: 
+name: ""

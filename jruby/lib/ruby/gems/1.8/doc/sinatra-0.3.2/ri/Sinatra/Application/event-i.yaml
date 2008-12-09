@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Define an event handler for the given request method and path spec. The block
+    is executed when a request matches the method and spec.
+- !ruby/struct:SM::Flow::P 
+  body: 'NOTE: The #get, #post, #put, and #delete helper methods should be used to
+    define events when possible.'
+full_name: Sinatra::Application#event
+params: (method, path, options = {}, &b)
+name: event
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>remove_default_constraint (JdbcSpec::MsSQL)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/jdbc_adapter/jdbc_mssql.rb, line 202</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_default_constraint</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>)
+        <span class="ruby-identifier">defaults</span> = <span class="ruby-identifier">select</span> <span class="ruby-node">&quot;select def.name from sysobjects def, syscolumns col, sysobjects tab where col.cdefault = def.id and col.name = '#{column_name}' and tab.name = '#{table_name}' and col.id = tab.id&quot;</span>
+        <span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">constraint</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;ALTER TABLE #{table_name} DROP CONSTRAINT #{constraint[&quot;name&quot;]}&quot;</span>
+        }
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

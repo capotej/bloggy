@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a new Time if requested year can be accommodated by Ruby's Time class
+    (i.e., if year is within either 1970..2038 or 1902..2038, depending on system
+    architecture); otherwise returns a DateTime
+full_name: ActiveSupport::CoreExtensions::Time::Calculations::ClassMethods#time_with_datetime_fallback
+params: (utc_or_local, year, month=1, day=1, hour=0, min=0, sec=0, usec=0)
+name: time_with_datetime_fallback
+is_singleton: false
+aliases: []
+

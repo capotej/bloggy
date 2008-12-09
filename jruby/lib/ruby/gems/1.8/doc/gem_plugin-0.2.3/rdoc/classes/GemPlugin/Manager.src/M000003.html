@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>load (GemPlugin::Manager)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/gem_plugin.rb, line 107</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load</span>(<span class="ruby-identifier">needs</span> = {})
+      <span class="ruby-identifier">sdir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">Gem</span>.<span class="ruby-identifier">dir</span>, <span class="ruby-value str">&quot;specifications&quot;</span>)
+      <span class="ruby-identifier">gems</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">SourceIndex</span>.<span class="ruby-identifier">from_installed_gems</span>(<span class="ruby-identifier">sdir</span>)
+      <span class="ruby-identifier">needs</span> = <span class="ruby-identifier">needs</span>.<span class="ruby-identifier">merge</span>({<span class="ruby-value str">&quot;gem_plugin&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">INCLUDE</span>})
+      
+      <span class="ruby-identifier">gems</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span>, <span class="ruby-identifier">gem</span><span class="ruby-operator">|</span>
+        <span class="ruby-comment cmt"># don't load gems more than once</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@gems</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-identifier">gem</span>.<span class="ruby-identifier">name</span>        
+        <span class="ruby-identifier">check</span> = <span class="ruby-identifier">needs</span>.<span class="ruby-identifier">dup</span>
+
+        <span class="ruby-comment cmt"># rolls through the depends and inverts anything it finds</span>
+        <span class="ruby-identifier">gem</span>.<span class="ruby-identifier">dependencies</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dep</span><span class="ruby-operator">|</span>
+          <span class="ruby-comment cmt"># this will fail if a gem is depended more than once</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">check</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-identifier">dep</span>.<span class="ruby-identifier">name</span>
+            <span class="ruby-identifier">check</span>[<span class="ruby-identifier">dep</span>.<span class="ruby-identifier">name</span>] = <span class="ruby-operator">!</span><span class="ruby-identifier">check</span>[<span class="ruby-identifier">dep</span>.<span class="ruby-identifier">name</span>]
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        
+        <span class="ruby-comment cmt"># now since excluded gems start as true, inverting them</span>
+        <span class="ruby-comment cmt"># makes them false so we'll skip this gem if any excludes are found</span>
+        <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">check</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">name</span>,<span class="ruby-identifier">test</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">test</span>}).<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+          <span class="ruby-comment cmt"># looks like no needs were set to false, so it's good</span>
+          
+          <span class="ruby-comment cmt"># Previously was set wrong, we already have the correct gem path!</span>
+          <span class="ruby-comment cmt">#gem_dir = File.join(Gem.dir, &quot;gems&quot;, &quot;#{gem.name}-#{gem.version}&quot;)</span>
+          <span class="ruby-identifier">gem_dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">Gem</span>.<span class="ruby-identifier">dir</span>, <span class="ruby-value str">&quot;gems&quot;</span>, <span class="ruby-identifier">path</span>)
+          
+          <span class="ruby-identifier">require</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">gem_dir</span>, <span class="ruby-value str">&quot;lib&quot;</span>, <span class="ruby-identifier">gem</span>.<span class="ruby-identifier">name</span>, <span class="ruby-value str">&quot;init.rb&quot;</span>)
+          <span class="ruby-ivar">@gems</span>[<span class="ruby-identifier">gem</span>.<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">gem_dir</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

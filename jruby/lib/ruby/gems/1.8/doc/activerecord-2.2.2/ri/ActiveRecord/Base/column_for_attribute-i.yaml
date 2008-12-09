@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the column object for the named attribute.
+full_name: ActiveRecord::Base#column_for_attribute
+params: (name)
+name: column_for_attribute
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>distinct (::PostgreSQL)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/jdbc_adapter/jdbc_postgre.rb, line 234</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">distinct</span>(<span class="ruby-identifier">columns</span>, <span class="ruby-identifier">order_by</span>)
+      <span class="ruby-keyword kw">return</span> <span class="ruby-node">&quot;DISTINCT #{columns}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">order_by</span>.<span class="ruby-identifier">blank?</span>
+
+      <span class="ruby-comment cmt"># construct a clean list of column names from the ORDER BY clause, removing</span>
+      <span class="ruby-comment cmt"># any asc/desc modifiers</span>
+      <span class="ruby-identifier">order_columns</span> = <span class="ruby-identifier">order_by</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">','</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">split</span>.<span class="ruby-identifier">first</span> }
+      <span class="ruby-identifier">order_columns</span>.<span class="ruby-identifier">delete_if</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">:blank?</span>
+      <span class="ruby-identifier">order_columns</span> = <span class="ruby-identifier">order_columns</span>.<span class="ruby-identifier">zip</span>((<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">order_columns</span>.<span class="ruby-identifier">size</span>).<span class="ruby-identifier">to_a</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{s} AS alias_#{i}&quot;</span> }
+
+      <span class="ruby-comment cmt"># return a DISTINCT ON() clause that's distinct on the columns we want but includes</span>
+      <span class="ruby-comment cmt"># all the required columns for the ORDER BY to work properly</span>
+      <span class="ruby-identifier">sql</span> = <span class="ruby-node">&quot;DISTINCT ON (#{columns}) #{columns}, &quot;</span>
+      <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">order_columns</span> <span class="ruby-operator">*</span> <span class="ruby-value str">', '</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

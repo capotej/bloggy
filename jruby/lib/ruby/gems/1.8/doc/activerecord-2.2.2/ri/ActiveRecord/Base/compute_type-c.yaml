@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the class type of the record using the current module as a prefix.
+    So descendents of MyApp::Business::Account would appear as MyApp::Business::AccountSubclass.
+full_name: ActiveRecord::Base::compute_type
+params: (type_name)
+name: compute_type
+is_singleton: true
+aliases: []
+

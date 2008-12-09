@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Capitalizes all the words and replaces some characters in the string to create
+    a nicer looking title. <tt>titleize</tt> is meant for creating pretty output.
+    It is not used in the Rails internals.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>titleize</tt> is also aliased as <tt>titlecase</tt>.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &quot;man from the boondocks&quot;.titleize # =&gt; &quot;Man From The \
+    Boondocks&quot;\n  &quot;x-men: the last stand&quot;.titleize  # =&gt; &quot;X \
+    Men: The Last Stand&quot;\n"
+full_name: ActiveSupport::CoreExtensions::String::Inflections#titleize
+params: ()
+name: titleize
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: titlecase

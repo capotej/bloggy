@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Loads the MIME map file and checks that it is correct on loading. This is
+    commonly passed to Mongrel::DirHandler or any framework handler that uses DirHandler
+    to serve files. You can also include a set of default MIME types as additional
+    settings. See Mongrel::DirHandler for how the MIME types map is organized.
+full_name: Mongrel::Configurator#load_mime_map
+params: (file, mime={})
+name: load_mime_map
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Updates all the attributes from the passed-in Hash and saves the record. If
+    the object is invalid, the saving will fail and false will be returned.
+full_name: ActiveRecord::Base#update_attributes
+params: (attributes)
+name: update_attributes
+is_singleton: false
+aliases: []
+

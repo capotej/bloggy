@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns all the full error messages in an array.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Company &lt; ActiveRecord::Base\n    validates_presence_of :name, \
+    :address, :email\n    validates_length_of :name, :in =&gt; 5..30\n  end\n\n  company \
+    = Company.create(:address =&gt; '123 First St.')\n  company.errors.full_messages \
+    # =&gt;\n    [&quot;Name is too short (minimum is 5 characters)&quot;, &quot;Name \
+    can't be blank&quot;, &quot;Address can't be blank&quot;]\n"
+full_name: ActiveRecord::Errors#full_messages
+params: (options = {})
+name: full_messages
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Used to allow you to let users specify their own configurations inside your
+    Configurator setup. You pass it a script name and it reads it in and does an eval
+    on the contents passing in the right binding so they can put their own Configurator
+    statements.
+full_name: Mongrel::Configurator#run_config
+params: (script)
+name: run_config
+is_singleton: false
+aliases: []
+

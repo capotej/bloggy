@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Delegates to id in order to allow two records of the same type and id to
+    work with something like:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  [ Person.find(1), Person.find(2), Person.find(3) ] &amp; [ Person.find(1), \
+    Person.find(4) ] # =&gt; [ Person.find(1) ]\n"
+full_name: ActiveRecord::Base#hash
+params: ()
+name: hash
+is_singleton: false
+aliases: []
+

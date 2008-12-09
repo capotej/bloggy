@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Restores a data structure from a memory cache. If restoring the data structure
+    failed for any reason, nil will be returned.
+- !ruby/object:SM::Flow::LIST 
+  type: :NOTE
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: Name of the file belonging to the data structure.
+    label: 'filename:'
+full_name: XmlSimple::Cache#restore_mem_copy
+params: (filename)
+name: restore_mem_copy
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Retrieve the connection associated with the current thread, or call #checkout
+    to obtain one if necessary.'
+- !ruby/struct:SM::Flow::P 
+  body: '#connection can be called any number of times; the connection is held in
+    a hash keyed by the thread id.'
+full_name: ActiveRecord::ConnectionAdapters::ConnectionPool#connection
+params: ()
+name: connection
+is_singleton: false
+aliases: []
+

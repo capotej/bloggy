@@ -1,0 +1,18 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: require
+- !ruby/object:RI::MethodSummary 
+  name: require
+full_name: Mongrel::Gems
+constants: []
+
+superclass: 
+name: Gems

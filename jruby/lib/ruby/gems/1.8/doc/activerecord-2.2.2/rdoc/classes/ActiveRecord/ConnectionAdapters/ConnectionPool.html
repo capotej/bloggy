@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: ActiveRecord::ConnectionAdapters::ConnectionPool</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">ActiveRecord::ConnectionAdapters::ConnectionPool</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/active_record/connection_adapters/abstract/connection_pool_rb.html">
+                lib/active_record/connection_adapters/abstract/connection_pool.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Connection pool base class for managing ActiveRecord database connections.
+</p>
+<h2>Introduction</h2>
+<p>
+A <a href="ConnectionPool.html#M000994">connection</a> pool synchronizes
+thread access to a limited number of database connections. The basic idea
+is that each thread checks out a database <a
+href="ConnectionPool.html#M000994">connection</a> from the pool, uses that
+<a href="ConnectionPool.html#M000994">connection</a>, and checks the <a
+href="ConnectionPool.html#M000994">connection</a> back in. <a
+href="ConnectionPool.html">ConnectionPool</a> is completely thread-safe,
+and will ensure that a <a href="ConnectionPool.html#M000994">connection</a>
+cannot be used by two threads at the same time, as long as <a
+href="ConnectionPool.html">ConnectionPool</a>&#8216;s contract is correctly
+followed. It will also handle cases in which there are more threads than
+connections: if all connections have been checked out, and a thread tries
+to <a href="ConnectionPool.html#M001001">checkout</a> a <a
+href="ConnectionPool.html#M000994">connection</a> anyway, then <a
+href="ConnectionPool.html">ConnectionPool</a> will wait until some other
+thread has checked in a <a
+href="ConnectionPool.html#M000994">connection</a>.
+</p>
+<h2>Obtaining (checking out) a <a href="ConnectionPool.html#M000994">connection</a></h2>
+<p>
+Connections can be obtained and used from a <a
+href="ConnectionPool.html#M000994">connection</a> pool in several ways:
+</p>
+<ol>
+<li>Simply use <a href="../Base.html#M001262">ActiveRecord::Base.connection</a>
+as with ActiveRecord 2.1 and earlier (pre-<a
+href="ConnectionPool.html#M000994">connection</a>-pooling). Eventually,
+when you&#8216;re done with the <a
+href="ConnectionPool.html#M000994">connection</a>(s) and wish it to be
+returned to the pool, you call
+ActiveRecord::Base.clear_active_connections!. This will be the default
+behavior for ActiveRecord when used in conjunction with ActionPack&#8216;s
+request handling cycle.
+
+</li>
+<li>Manually check out a <a href="ConnectionPool.html#M000994">connection</a>
+from the pool with <a
+href="../Base.html#M001269">ActiveRecord::Base.connection_pool</a>.<a
+href="ConnectionPool.html#M001001">checkout</a>. You are responsible for
+returning this <a href="ConnectionPool.html#M000994">connection</a> to the
+pool when finished by calling <a
+href="../Base.html#M001269">ActiveRecord::Base.connection_pool</a>.<a
+href="ConnectionPool.html#M001002">checkin</a>(<a
+href="ConnectionPool.html#M000994">connection</a>).
+
+</li>
+<li>Use <a
+href="../Base.html#M001269">ActiveRecord::Base.connection_pool</a>.<a
+href="ConnectionPool.html#M000996">with_connection</a>(&amp;block), which
+obtains a <a href="ConnectionPool.html#M000994">connection</a>, yields it
+as the sole argument to the block, and returns it to the pool after the
+block completes.
+
+</li>
+</ol>
+<p>
+Connections in the pool are actually <a
+href="AbstractAdapter.html">AbstractAdapter</a> objects (or objects
+compatible with <a href="AbstractAdapter.html">AbstractAdapter</a>&#8216;s
+interface).
+</p>
+<h2>Options</h2>
+<p>
+There are two <a
+href="ConnectionPool.html#M000994">connection</a>-pooling-related options
+that you can add to your database <a
+href="ConnectionPool.html#M000994">connection</a> configuration:
+</p>
+<ul>
+<li><tt>pool</tt>: number indicating size of <a
+href="ConnectionPool.html#M000994">connection</a> pool (default 5)
+
+</li>
+<li><tt>wait_timeout</tt>: number of seconds to block and wait for a <a
+href="ConnectionPool.html#M000994">connection</a> before giving up and
+raising a timeout error (default 5 seconds).
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M001002">checkin</a>&nbsp;&nbsp;
+      <a href="#M001001">checkout</a>&nbsp;&nbsp;
+      <a href="#M000999">clear_reloadable_connections!</a>&nbsp;&nbsp;
+      <a href="#M001000">clear_stale_cached_connections!</a>&nbsp;&nbsp;
+      <a href="#M000997">connected?</a>&nbsp;&nbsp;
+      <a href="#M000994">connection</a>&nbsp;&nbsp;
+      <a href="#M000998">disconnect!</a>&nbsp;&nbsp;
+      <a href="#M000993">new</a>&nbsp;&nbsp;
+      <a href="#M000995">release_connection</a>&nbsp;&nbsp;
+      <a href="#M000996">with_connection</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">spec</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000993" class="method-detail">
+        <a name="M000993"></a>
+
+        <div class="method-heading">
+          <a href="ConnectionPool.src/M000993.html" target="Code" class="method-signature"
+            onclick="popupCode('ConnectionPool.src/M000993.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(spec)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates a <a href="ConnectionPool.html#M000993">new</a> <a
+href="ConnectionPool.html">ConnectionPool</a> object. <tt>spec</tt> is a
+ConnectionSpecification object which describes database <a
+href="ConnectionPool.html#M000994">connection</a> information (e.g.
+adapter, host name, username, password, etc), as well as the maximum size
+for this <a href="ConnectionPool.html">ConnectionPool</a>.
+</p>
+<p>
+The default <a href="ConnectionPool.html">ConnectionPool</a> maximum size
+is 5.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M001002" class="method-detail">
+        <a name="M001002"></a>
+
+        <div class="method-heading">
+          <a href="ConnectionPool.src/M001002.html" target="Code" class="method-signature"
+            onclick="popupCode('ConnectionPool.src/M001002.html');return false;">
+          <span class="method-name">checkin</span><span class="method-args">(conn)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Check-in a database <a href="ConnectionPool.html#M000994">connection</a>
+back into the pool, indicating that you no longer need this <a
+href="ConnectionPool.html#M000994">connection</a>.
+</p>
+<p>
+<tt>conn</tt>: an <a href="AbstractAdapter.html">AbstractAdapter</a>
+object, which was obtained by earlier by calling <tt><a
+href="ConnectionPool.html#M001001">checkout</a></tt> on this pool.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001001" class="method-detail">
+        <a name="M001001"></a>
+
+        <div class="method-heading">
+          <a href="ConnectionPool.src/M001001.html" target="Code" class="method-signature"
+            onclick="popupCode('ConnectionPool.src/M001001.html');return false;">
+          <span class="method-name">checkout</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Check-out a database <a href="ConnectionPool.html#M000994">connection</a>
+from the pool, indicating that you want to use it. You should call <a
+href="ConnectionPool.html#M001002">checkin</a> when you no longer need
+this.
+</p>
+<p>
+This is done by either returning an existing <a
+href="ConnectionPool.html#M000994">connection</a>, or by creating a <a
+href="ConnectionPool.html#M000993">new</a> <a
+href="ConnectionPool.html#M000994">connection</a>. If the maximum number of
+connections for this pool has already been reached, but the pool is empty
+(i.e. they&#8216;re all being used), then this method will wait until a
+thread has checked in a <a
+href="ConnectionPool.html#M000994">connection</a>. The wait time is bounded
+however: if no <a href="ConnectionPool.html#M000994">connection</a> can be
+checked out within the timeout specified for this pool, then a <a
+href="../ConnectionTimeoutError.html">ConnectionTimeoutError</a> exception
+will be raised.
+</p>
+<p>
+Returns: an <a href="AbstractAdapter.html">AbstractAdapter</a> object.
+</p>
+<p>
+Raises:
+</p>
+<ul>
+<li><a href="../ConnectionTimeoutError.html">ConnectionTimeoutError</a>: no <a
+href="ConnectionPool.html#M000994">connection</a> can be obtained from the
+pool within the timeout period.
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000999" class="method-detail">
+        <a name="M000999"></a>
+
+        <div class="method-heading">
+          <a href="ConnectionPool.src/M000999.html" target="Code" class="method-signature"
+            onclick="popupCode('ConnectionPool.src/M000999.html');return false;">
+          <span class="method-name">clear_reloadable_connections!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Clears the cache which maps classes
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001000" class="method-detail">
+        <a name="M001000"></a>
+
+        <div class="method-heading">
+          <a href="ConnectionPool.src/M001000.html" target="Code" class="method-signature"
+            onclick="popupCode('ConnectionPool.src/M001000.html');return false;">
+          <span class="method-name">clear_stale_cached_connections!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return any checked-out connections back to the pool by threads that are no
+longer alive.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000997" class="method-detail">
+        <a name="M000997"></a>
+
+        <div class="method-heading">
+          <a href="ConnectionPool.src/M000997.html" target="Code" class="method-signature"
+            onclick="popupCode('ConnectionPool.src/M000997.html');return false;">
+          <span class="method-name">connected?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if a <a href="ConnectionPool.html#M000994">connection</a> has
+already been opened.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000994" class="method-detail">
+        <a name="M000994"></a>
+
+        <div class="method-heading">
+          <a href="ConnectionPool.src/M000994.html" target="Code" class="method-signature"
+            onclick="popupCode('ConnectionPool.src/M000994.html');return false;">
+          <span class="method-name">connection</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retrieve the <a href="ConnectionPool.html#M000994">connection</a>
+associated with the current thread, or call <a
+href="ConnectionPool.html#M001001">checkout</a> to obtain one if necessary.
+</p>
+<p>
+<a href="ConnectionPool.html#M000994">connection</a> can be called any
+number of times; the <a href="ConnectionPool.html#M000994">connection</a>
+is held in a hash keyed by the thread id.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000998" class="method-detail">
+        <a name="M000998"></a>
+
+        <div class="method-heading">
+          <a href="ConnectionPool.src/M000998.html" target="Code" class="method-signature"
+            onclick="popupCode('ConnectionPool.src/M000998.html');return false;">
+          <span class="method-name">disconnect!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Disconnects all connections in the pool, and clears the pool.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000995" class="method-detail">
+        <a name="M000995"></a>
+
+        <div class="method-heading">
+          <a href="ConnectionPool.src/M000995.html" target="Code" class="method-signature"
+            onclick="popupCode('ConnectionPool.src/M000995.html');return false;">
+          <span class="method-name">release_connection</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Signal that the thread is finished with the current <a
+href="ConnectionPool.html#M000994">connection</a>. <a
+href="ConnectionPool.html#M000995">release_connection</a> releases the <a
+href="ConnectionPool.html#M000994">connection</a>-thread association and
+returns the <a href="ConnectionPool.html#M000994">connection</a> to the
+pool.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000996" class="method-detail">
+        <a name="M000996"></a>
+
+        <div class="method-heading">
+          <a href="ConnectionPool.src/M000996.html" target="Code" class="method-signature"
+            onclick="popupCode('ConnectionPool.src/M000996.html');return false;">
+          <span class="method-name">with_connection</span><span class="method-args">() {|conn| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Reserve a <a href="ConnectionPool.html#M000994">connection</a>, and yield
+it to a block. Ensure the <a
+href="ConnectionPool.html#M000994">connection</a> is checked back in when
+finished.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

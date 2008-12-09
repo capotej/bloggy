@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: List of attributes with unsaved changes.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  person.changed # =&gt; []\n  person.name = 'bob'\n  person.changed # =&gt; \
+    ['name']\n"
+full_name: ActiveRecord::Dirty#changed
+params: ()
+name: changed
+is_singleton: false
+aliases: []
+

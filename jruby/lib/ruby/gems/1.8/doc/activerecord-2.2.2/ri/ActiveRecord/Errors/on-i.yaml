@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns <tt>nil</tt>, if no errors are associated with the specified <tt>attribute</tt>.
+    Returns the error message, if one error is associated with the specified <tt>attribute</tt>.
+    Returns an array of error messages, if more than one error is associated with
+    the specified <tt>attribute</tt>.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Company &lt; ActiveRecord::Base\n    validates_presence_of :name, \
+    :address, :email\n    validates_length_of :name, :in =&gt; 5..30\n  end\n\n  company \
+    = Company.create(:address =&gt; '123 First St.')\n  company.errors.on(:name)  \
+    \    # =&gt; [&quot;is too short (minimum is 5 characters)&quot;, &quot;can't be \
+    blank&quot;]\n  company.errors.on(:email)     # =&gt; &quot;can't be blank&quot;\n\
+    \  company.errors.on(:address)   # =&gt; nil\n"
+full_name: ActiveRecord::Errors#on
+params: (attribute)
+name: "on"
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: '[]'

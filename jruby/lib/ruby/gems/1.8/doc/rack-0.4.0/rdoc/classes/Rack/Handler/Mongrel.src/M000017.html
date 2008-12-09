@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>run (Rack::Handler::Mongrel)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/handler/mongrel.rb, line 7</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">run</span>(<span class="ruby-identifier">app</span>, <span class="ruby-identifier">options</span>={})
+        <span class="ruby-identifier">server</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpServer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:Host</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">'0.0.0.0'</span>,
+                                           <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:Port</span>] <span class="ruby-operator">||</span> <span class="ruby-value">8080</span>)
+        <span class="ruby-comment cmt"># Acts like Rack::URLMap, utilizing Mongrel's own path finding methods.</span>
+        <span class="ruby-comment cmt"># Use is similar to #run, replacing the app argument with a hash of </span>
+        <span class="ruby-comment cmt"># { path=&gt;app, ... } or an instance of Rack::URLMap.</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:map</span>]
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">app</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
+            <span class="ruby-identifier">app</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span>, <span class="ruby-identifier">appl</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">path</span> = <span class="ruby-value str">'/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">path</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">path</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value">?/</span>
+              <span class="ruby-identifier">server</span>.<span class="ruby-identifier">register</span>(<span class="ruby-identifier">path</span>, <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Handler</span><span class="ruby-operator">::</span><span class="ruby-constant">Mongrel</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">appl</span>))
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">app</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">URLMap</span>
+            <span class="ruby-identifier">app</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">:@mapping</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">appl</span>)<span class="ruby-operator">|</span>
+             <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">host</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">options</span>[<span class="ruby-identifier">:Host</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:Host</span>] <span class="ruby-operator">!=</span> <span class="ruby-identifier">host</span>
+             <span class="ruby-identifier">path</span> = <span class="ruby-value str">'/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">path</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">path</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value">?/</span>
+             <span class="ruby-identifier">server</span>.<span class="ruby-identifier">register</span>(<span class="ruby-identifier">path</span>, <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Handler</span><span class="ruby-operator">::</span><span class="ruby-constant">Mongrel</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">appl</span>))
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;first argument should be a Hash or URLMap&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">server</span>.<span class="ruby-identifier">register</span>(<span class="ruby-value str">'/'</span>, <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Handler</span><span class="ruby-operator">::</span><span class="ruby-constant">Mongrel</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">app</span>))
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">server</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+        <span class="ruby-identifier">server</span>.<span class="ruby-identifier">run</span>.<span class="ruby-identifier">join</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Spec::Example::Configuration</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Spec::Example::Configuration</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/spec/example/configuration_rb.html">
+                lib/spec/example/configuration.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../../Object.html">
+                Object
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000072">after</a>&nbsp;&nbsp;
+      <a href="#M000073">append_after</a>&nbsp;&nbsp;
+      <a href="#M000069">append_before</a>&nbsp;&nbsp;
+      <a href="#M000070">before</a>&nbsp;&nbsp;
+      <a href="#M000065">extend</a>&nbsp;&nbsp;
+      <a href="#M000064">include</a>&nbsp;&nbsp;
+      <a href="#M000066">include_or_extend</a>&nbsp;&nbsp;
+      <a href="#M000063">mock_with</a>&nbsp;&nbsp;
+      <a href="#M000067">predicate_matchers</a>&nbsp;&nbsp;
+      <a href="#M000071">prepend_after</a>&nbsp;&nbsp;
+      <a href="#M000068">prepend_before</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000072" class="method-detail">
+        <a name="M000072"></a>
+
+        <div class="method-heading">
+          <span class="method-name">after</span><span class="method-args">(*args, &amp;proc)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Configuration.html#M000071">prepend_after</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000073" class="method-detail">
+        <a name="M000073"></a>
+
+        <div class="method-heading">
+          <a href="Configuration.src/M000073.html" target="Code" class="method-signature"
+            onclick="popupCode('Configuration.src/M000073.html');return false;">
+          <span class="method-name">append_after</span><span class="method-args">(*args, &amp;proc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Appends a global <tt><a href="Configuration.html#M000072">after</a></tt>
+block to all example groups. See <a
+href="Configuration.html#M000069">append_before</a> for filtering
+semantics.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000069" class="method-detail">
+        <a name="M000069"></a>
+
+        <div class="method-heading">
+          <a href="Configuration.src/M000069.html" target="Code" class="method-signature"
+            onclick="popupCode('Configuration.src/M000069.html');return false;">
+          <span class="method-name">append_before</span><span class="method-args">(*args, &amp;proc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Appends a global <tt><a href="Configuration.html#M000070">before</a></tt>
+block to all example groups.
+</p>
+<p>
+If you want to restrict the block to a subset of all the example groups
+then specify this in a Hash as the last argument:
+</p>
+<pre>
+  config.prepend_before(:all, :type =&gt; :farm)
+</pre>
+<p>
+or
+</p>
+<pre>
+  config.prepend_before(:type =&gt; :farm)
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000070" class="method-detail">
+        <a name="M000070"></a>
+
+        <div class="method-heading">
+          <span class="method-name">before</span><span class="method-args">(*args, &amp;proc)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Configuration.html#M000069">append_before</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000065" class="method-detail">
+        <a name="M000065"></a>
+
+        <div class="method-heading">
+          <a href="Configuration.src/M000065.html" target="Code" class="method-signature"
+            onclick="popupCode('Configuration.src/M000065.html');return false;">
+          <span class="method-name">extend</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000064" class="method-detail">
+        <a name="M000064"></a>
+
+        <div class="method-heading">
+          <a href="Configuration.src/M000064.html" target="Code" class="method-signature"
+            onclick="popupCode('Configuration.src/M000064.html');return false;">
+          <span class="method-name">include(Some::Helpers)<br />
+include(Some::Helpers, More::Helpers)<br />
+include(My::Helpers, :type => :key)<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Declares modules to be included in multiple example groups
+(<tt>describe</tt> blocks). With no :type, the modules listed will be
+included in all example groups. Use :type to restrict the inclusion to a
+subset of example groups. The value assigned to :type should be a key that
+maps to a class that is either a subclass of <a
+href="ExampleGroup.html">Spec::Example::ExampleGroup</a> or extends <a
+href="ExampleGroupMethods.html">Spec::Example::ExampleGroupMethods</a> and
+includes <a href="ExampleMethods.html">Spec::Example::ExampleMethods</a>
+</p>
+<pre>
+  config.include(My::Pony, My::Horse, :type =&gt; :farm)
+</pre>
+<p>
+Only example groups that have that type will get the modules included:
+</p>
+<pre>
+  describe &quot;Downtown&quot;, :type =&gt; :city do
+    # Will *not* get My::Pony and My::Horse included
+  end
+
+  describe &quot;Old Mac Donald&quot;, :type =&gt; :farm do
+    # *Will* get My::Pony and My::Horse included
+  end
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000066" class="method-detail">
+        <a name="M000066"></a>
+
+        <div class="method-heading">
+          <a href="Configuration.src/M000066.html" target="Code" class="method-signature"
+            onclick="popupCode('Configuration.src/M000066.html');return false;">
+          <span class="method-name">include_or_extend</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000063" class="method-detail">
+        <a name="M000063"></a>
+
+        <div class="method-heading">
+          <a href="Configuration.src/M000063.html" target="Code" class="method-signature"
+            onclick="popupCode('Configuration.src/M000063.html');return false;">
+          <span class="method-name">mock_with</span><span class="method-args">(mock_framework)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Chooses what mock framework to use. <a href="../Example.html">Example</a>:
+</p>
+<pre>
+  Spec::Runner.configure do |config|
+    config.mock_with :rspec, :mocha, :flexmock, or :rr
+  end
+</pre>
+<p>
+To use any other mock framework, you&#8216;ll have to provide your own
+adapter. This is simply a module that responds to the following methods:
+</p>
+<pre>
+  setup_mocks_for_rspec
+  verify_mocks_for_rspec
+  teardown_mocks_for_rspec.
+</pre>
+<p>
+These are your hooks into the lifecycle of a given example. RSpec will call
+setup_mocks_for_rspec <a href="Configuration.html#M000070">before</a>
+running anything else in each <a href="../Example.html">Example</a>. After
+executing the <a href="Configuration.html#M000072">after</a> methods, RSpec
+will then call verify_mocks_for_rspec and teardown_mocks_for_rspec (this is
+guaranteed to run even if there are failures in verify_mocks_for_rspec).
+</p>
+<p>
+Once you&#8216;ve defined this module, you can pass that to <a
+href="Configuration.html#M000063">mock_with</a>:
+</p>
+<pre>
+  Spec::Runner.configure do |config|
+    config.mock_with MyMockFrameworkAdapter
+  end
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000067" class="method-detail">
+        <a name="M000067"></a>
+
+        <div class="method-heading">
+          <a href="Configuration.src/M000067.html" target="Code" class="method-signature"
+            onclick="popupCode('Configuration.src/M000067.html');return false;">
+          <span class="method-name">predicate_matchers</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Defines global predicate matchers. <a href="../Example.html">Example</a>:
+</p>
+<pre>
+  config.predicate_matchers[:swim] = :can_swim?
+</pre>
+<p>
+This makes it possible to say:
+</p>
+<pre>
+  person.should swim # passes if person.can_swim? returns true
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000071" class="method-detail">
+        <a name="M000071"></a>
+
+        <div class="method-heading">
+          <a href="Configuration.src/M000071.html" target="Code" class="method-signature"
+            onclick="popupCode('Configuration.src/M000071.html');return false;">
+          <span class="method-name">prepend_after</span><span class="method-args">(*args, &amp;proc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Prepends a global <tt><a href="Configuration.html#M000072">after</a></tt>
+block to all example groups. See <a
+href="Configuration.html#M000069">append_before</a> for filtering
+semantics.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000068" class="method-detail">
+        <a name="M000068"></a>
+
+        <div class="method-heading">
+          <a href="Configuration.src/M000068.html" target="Code" class="method-signature"
+            onclick="popupCode('Configuration.src/M000068.html');return false;">
+          <span class="method-name">prepend_before</span><span class="method-args">(*args, &amp;proc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Prepends a global <tt><a href="Configuration.html#M000070">before</a></tt>
+block to all example groups. See <a
+href="Configuration.html#M000069">append_before</a> for filtering
+semantics.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

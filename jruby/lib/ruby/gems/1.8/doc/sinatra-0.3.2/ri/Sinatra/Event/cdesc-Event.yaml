@@ -1,0 +1,48 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Rack::Utils
+comment: 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: block
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: options
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: param_keys
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: path
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: pattern
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: invoke
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Sinatra::Event
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''[^/?:,&#\.]''.freeze unless defined?(URI_CHAR)'
+  name: URI_CHAR
+- !ruby/object:RI::Constant 
+  comment: 
+  value: /(:(#{URI_CHAR}+)|\*)/.freeze unless defined?(PARAM)
+  name: PARAM
+- !ruby/object:RI::Constant 
+  comment: 
+  value: /(.*?)/
+  name: SPLAT
+superclass: Object
+name: Event

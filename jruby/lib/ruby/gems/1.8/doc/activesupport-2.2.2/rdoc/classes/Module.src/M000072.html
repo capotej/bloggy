@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>delegate (Module)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/core_ext/module/delegation.rb, line 75</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">delegate</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">methods</span>)
+    <span class="ruby-identifier">options</span> = <span class="ruby-identifier">methods</span>.<span class="ruby-identifier">pop</span>
+    <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">to</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:to</span>]
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;Delegation needs a target. Supply an options hash with a :to key as the last argument (e.g. delegate :hello, :to =&gt; :greeter).&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:prefix</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword kw">true</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:to</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^[^a-z_]/</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;Can only automatically set the delegation prefix when delegating to a method.&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">prefix</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:prefix</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-node">&quot;#{options[:prefix] == true ? to : options[:prefix]}_&quot;</span>
+
+    <span class="ruby-identifier">methods</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">module_eval</span>(<span class="ruby-value str">&quot;def \#{prefix}\#{method}(*args, &amp;block)\n\#{to}.__send__(\#{method.inspect}, *args, &amp;block)\nend\n&quot;</span>, <span class="ruby-value str">&quot;(__DELEGATION__)&quot;</span>, <span class="ruby-value">1</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

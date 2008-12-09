@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>from_xml (ActiveSupport::CoreExtensions::Hash::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/core_ext/hash/conversions.rb, line 169</span>
+          <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">from_xml</span>(<span class="ruby-identifier">xml</span>)
+            <span class="ruby-comment cmt"># TODO: Refactor this into something much cleaner that doesn't rely on XmlSimple</span>
+            <span class="ruby-identifier">typecast_xml_value</span>(<span class="ruby-identifier">undasherize_keys</span>(<span class="ruby-constant">XmlSimple</span>.<span class="ruby-identifier">xml_in_string</span>(<span class="ruby-identifier">xml</span>,
+              <span class="ruby-value str">'forcearray'</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+              <span class="ruby-value str">'forcecontent'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+              <span class="ruby-value str">'keeproot'</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>,
+              <span class="ruby-value str">'contentkey'</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'__content__'</span>)
+            ))
+          <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

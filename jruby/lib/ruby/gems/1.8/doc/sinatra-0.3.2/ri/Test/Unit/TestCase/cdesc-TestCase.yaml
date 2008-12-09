@@ -1,0 +1,18 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: should
+- !ruby/object:RI::MethodSummary 
+  name: should
+class_methods: []
+
+full_name: Test::Unit::TestCase
+constants: []
+
+superclass: Object
+name: TestCase

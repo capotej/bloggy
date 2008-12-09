@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>structure_dump (::PostgreSQL)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/jdbc_adapter/jdbc_postgre.rb, line 237</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">structure_dump</span>
+      <span class="ruby-identifier">database</span> = <span class="ruby-ivar">@config</span>[<span class="ruby-identifier">:database</span>]
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">database</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@config</span>[<span class="ruby-identifier">:url</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\/([^\/]*)$/</span>
+          <span class="ruby-identifier">database</span> = <span class="ruby-identifier">$1</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Could not figure out what database this url is for #{@config[&quot;url&quot;]}&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'PGHOST'</span>]     = <span class="ruby-ivar">@config</span>[<span class="ruby-identifier">:host</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@config</span>[<span class="ruby-identifier">:host</span>]
+      <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'PGPORT'</span>]     = <span class="ruby-ivar">@config</span>[<span class="ruby-identifier">:port</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@config</span>[<span class="ruby-identifier">:port</span>]
+      <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'PGPASSWORD'</span>] = <span class="ruby-ivar">@config</span>[<span class="ruby-identifier">:password</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@config</span>[<span class="ruby-identifier">:password</span>]
+      <span class="ruby-identifier">search_path</span> = <span class="ruby-ivar">@config</span>[<span class="ruby-identifier">:schema_search_path</span>]
+      <span class="ruby-identifier">search_path</span> = <span class="ruby-node">&quot;--schema=#{search_path}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">search_path</span>
+
+      <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">close</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-identifier">file</span> = <span class="ruby-node">&quot;db/#{RAILS_ENV}_structure.sql&quot;</span>
+        <span class="ruby-node">`pg_dump -i -U &quot;#{@config[:username]}&quot; -s -x -O -f #{file} #{search_path} #{database}`</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Error dumping database&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+
+        <span class="ruby-comment cmt"># need to patch away any references to SQL_ASCII as it breaks the JDBC driver</span>
+        <span class="ruby-identifier">lines</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">readlines</span>(<span class="ruby-identifier">file</span>)
+        <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file</span>, <span class="ruby-value str">&quot;w&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">line</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/SQL_ASCII/</span>, <span class="ruby-value str">'UNICODE'</span>)
+            <span class="ruby-identifier">io</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">line</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">ensure</span>
+        <span class="ruby-identifier">reconnect!</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,53 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Validates that the value of the specified attribute is not in a particular
+    enumerable object.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Person &lt; ActiveRecord::Base\n    validates_exclusion_of :username, \
+    :in =&gt; %w( admin superuser ), :message =&gt; &quot;You don't belong here&quot;\n\
+    \    validates_exclusion_of :age, :in =&gt; 30..60, :message =&gt; &quot;This site \
+    is only for under 30 and over 60&quot;\n    validates_exclusion_of :format, :in \
+    =&gt; %w( mov avi ), :message =&gt; &quot;extension {{value}} is not allowed&quot;\n\
+    \  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Configuration options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:in</tt> - An enumerable object of items that the value shouldn't be
+      part of.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:message</tt> - Specifies a custom error message (default is: &quot;is
+      reserved&quot;).'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:allow_nil</tt> - If set to true, skips this validation if the attribute
+      is <tt>nil</tt> (default is <tt>false</tt>).
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:allow_blank</tt> - If set to true, skips this validation if the attribute
+      is blank (default is <tt>false</tt>).
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:if</tt> - Specifies a method, proc or string to call to determine if
+      the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or <tt>:if
+      =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The method, proc or
+      string should return or evaluate to a true or false value.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:unless</tt> - Specifies a method, proc or string to call to determine
+      if the validation should not occur (e.g. <tt>:unless =&gt; :skip_validation</tt>,
+      or <tt>:unless =&gt; Proc.new { |user| user.signup_step &lt;= 2 }</tt>). The
+      method, proc or string should return or evaluate to a true or false value.
+    label: '*'
+full_name: ActiveRecord::Validations::ClassMethods#validates_exclusion_of
+params: (*attr_names)
+name: validates_exclusion_of
+is_singleton: false
+aliases: []
+

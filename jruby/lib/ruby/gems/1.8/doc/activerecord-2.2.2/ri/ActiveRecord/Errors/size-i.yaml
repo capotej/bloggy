@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the total number of errors added. Two errors added to the same attribute
+    will be counted as such.
+full_name: ActiveRecord::Errors#size
+params: ()
+name: size
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: count
+- !ruby/object:RI::AliasName 
+  name: length

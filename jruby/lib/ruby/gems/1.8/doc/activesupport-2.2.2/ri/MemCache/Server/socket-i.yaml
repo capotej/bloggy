@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Try to connect to the memcached server targeted by this object. Returns the
+    connected socket object on success or nil on failure.
+full_name: MemCache::Server#socket
+params: ()
+name: socket
+is_singleton: false
+aliases: []
+

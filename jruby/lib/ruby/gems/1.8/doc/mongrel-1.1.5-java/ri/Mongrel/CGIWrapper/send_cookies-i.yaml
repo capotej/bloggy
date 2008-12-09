@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Takes any 'cookie' setting and sends it over the Mongrel header, then removes
+    the setting from the options. If cookie is an Array or Hash then it sends those
+    on with .to_s, otherwise it just calls .to_s on it and hopefully your &quot;cookie&quot;
+    can write itself correctly.
+full_name: Mongrel::CGIWrapper#send_cookies
+params: (to)
+name: send_cookies
+is_singleton: false
+aliases: []
+

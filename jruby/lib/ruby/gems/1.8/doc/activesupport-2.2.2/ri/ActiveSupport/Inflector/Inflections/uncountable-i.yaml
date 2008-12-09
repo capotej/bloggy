@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Add uncountable words that shouldn't be attempted inflected.
+- !ruby/struct:SM::Flow::P 
+  body: 'Examples:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  uncountable &quot;money&quot;\n  uncountable &quot;money&quot;, &quot;information&quot;\n\
+    \  uncountable %w( money information rice )\n"
+full_name: ActiveSupport::Inflector::Inflections#uncountable
+params: (*words)
+name: uncountable
+is_singleton: false
+aliases: []
+

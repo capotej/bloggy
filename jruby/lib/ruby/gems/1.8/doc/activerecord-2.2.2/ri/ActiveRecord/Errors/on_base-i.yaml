@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns errors assigned to the base object through <tt>add_to_base</tt> according
+    to the normal rules of <tt>on(attribute)</tt>.
+full_name: ActiveRecord::Errors#on_base
+params: ()
+name: on_base
+is_singleton: false
+aliases: []
+

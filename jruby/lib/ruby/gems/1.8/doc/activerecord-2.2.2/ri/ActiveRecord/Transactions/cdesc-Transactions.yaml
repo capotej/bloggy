@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: See ActiveRecord::Transactions::ClassMethods for documentation.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: rollback_active_record_state!
+- !ruby/object:RI::MethodSummary 
+  name: transaction
+- !ruby/object:RI::MethodSummary 
+  name: with_transaction_returning_status
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: included
+full_name: ActiveRecord::Transactions
+constants: []
+
+superclass: 
+name: Transactions

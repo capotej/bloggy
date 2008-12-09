@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Rack::Handler::SCGI#process_request
+params: (request, input_body, socket)
+name: process_request
+is_singleton: false
+aliases: []
+

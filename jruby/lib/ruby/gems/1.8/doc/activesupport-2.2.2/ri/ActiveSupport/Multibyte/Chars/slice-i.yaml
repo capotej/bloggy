@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Implements Unicode-aware slice with codepoints. Slicing on one point returns
+    the codepoints for that character.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  '\xe3\x81\x93\xe3\x82\x93\xe3\x81\xab\xe3\x81\xa1\xe3\x81\xaf'.mb_chars.slice(2..3).to_s \
+    #=&gt; &quot;\xe3\x81\xab\xe3\x81\xa1&quot;\n"
+full_name: ActiveSupport::Multibyte::Chars#slice
+params: (*args)
+name: slice
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: '[]'

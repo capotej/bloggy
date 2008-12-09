@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::NamedScope::Scope#respond_to?
+params: (method, include_private = false)
+name: respond_to?
+is_singleton: false
+aliases: []
+

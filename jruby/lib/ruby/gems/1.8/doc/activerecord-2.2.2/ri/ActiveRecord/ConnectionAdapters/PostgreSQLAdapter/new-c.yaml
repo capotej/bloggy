@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Initializes and connects a PostgreSQL adapter.
+full_name: ActiveRecord::ConnectionAdapters::PostgreSQLAdapter::new
+params: (connection, logger, connection_parameters, config)
+name: new
+is_singleton: true
+aliases: []
+

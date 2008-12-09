@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>run (ActiveSupport::Testing::Profiler)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/testing/performance.rb, line 172</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@supported</span>
+
+          <span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">measure_mode</span> = <span class="ruby-ivar">@metric</span>.<span class="ruby-identifier">measure_mode</span>
+          <span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">start</span>
+          <span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">pause</span>
+          <span class="ruby-identifier">profile_options</span>[<span class="ruby-identifier">:runs</span>].<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">times</span> { <span class="ruby-identifier">run_test</span>(<span class="ruby-ivar">@metric</span>, <span class="ruby-identifier">:profile</span>) }
+          <span class="ruby-ivar">@data</span> = <span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">stop</span>
+          <span class="ruby-ivar">@total</span> = <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">threads</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">sum</span>(<span class="ruby-value">0</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">method_infos</span><span class="ruby-operator">|</span> <span class="ruby-identifier">method_infos</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">total_time</span> }
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

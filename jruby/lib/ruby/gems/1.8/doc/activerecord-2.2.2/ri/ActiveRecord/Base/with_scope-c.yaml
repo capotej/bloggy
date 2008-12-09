@@ -1,0 +1,47 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: ""
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Scope parameters to method calls within the block. Takes a hash of method_name
+    =&gt; parameters hash. method_name may be <tt>:find</tt> or <tt>:create</tt>.
+    <tt>:find</tt> parameters may include the <tt>:conditions</tt>, <tt>:joins</tt>,
+    <tt>:include</tt>, <tt>:offset</tt>, <tt>:limit</tt>, and <tt>:readonly</tt> options.
+    <tt>:create</tt> parameters are an attributes hash.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Article &lt; ActiveRecord::Base\n    def self.create_with_scope\n\
+    \      with_scope(:find =&gt; { :conditions =&gt; &quot;blog_id = 1&quot; }, :create \
+    =&gt; { :blog_id =&gt; 1 }) do\n        find(1) # =&gt; SELECT * from articles \
+    WHERE blog_id = 1 AND id = 1\n        a = create(1)\n        a.blog_id # =&gt; \
+    1\n      end\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: In nested scopings, all previous parameters are overwritten by the innermost
+    rule, with the exception of <tt>:conditions</tt> and <tt>:include</tt> options
+    in <tt>:find</tt>, which are merged.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Article &lt; ActiveRecord::Base\n    def self.find_with_scope\n  \
+    \    with_scope(:find =&gt; { :conditions =&gt; &quot;blog_id = 1&quot;, :limit \
+    =&gt; 1 }, :create =&gt; { :blog_id =&gt; 1 }) do\n        with_scope(:find =&gt; \
+    { :limit =&gt; 10 })\n          find(:all) # =&gt; SELECT * from articles WHERE \
+    blog_id = 1 LIMIT 10\n        end\n        with_scope(:find =&gt; { :conditions \
+    =&gt; &quot;author_id = 3&quot; })\n          find(:all) # =&gt; SELECT * from \
+    articles WHERE blog_id = 1 AND author_id = 3 LIMIT 1\n        end\n      end\n\
+    \    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: You can ignore any previous scopings by using the <tt>with_exclusive_scope</tt>
+    method.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Article &lt; ActiveRecord::Base\n    def self.find_with_exclusive_scope\n\
+    \      with_scope(:find =&gt; { :conditions =&gt; &quot;blog_id = 1&quot;, :limit \
+    =&gt; 1 }) do\n        with_exclusive_scope(:find =&gt; { :limit =&gt; 10 })\n\
+    \          find(:all) # =&gt; SELECT * from articles LIMIT 10\n        end\n   \
+    \   end\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: '<b>Note</b>: the +:find+ scope also has effect on update and deletion methods,
+    like <tt>update_all</tt> and <tt>delete_all</tt>.'
+full_name: ActiveRecord::Base::with_scope
+params: (method_scoping = {}, action = :merge, &block) {|| ...}
+name: with_scope
+is_singleton: true
+aliases: []
+

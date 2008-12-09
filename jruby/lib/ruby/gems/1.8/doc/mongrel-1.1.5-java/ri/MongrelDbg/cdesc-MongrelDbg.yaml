@@ -1,0 +1,49 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: begin_trace
+- !ruby/object:RI::MethodSummary 
+  name: begin_trace
+- !ruby/object:RI::MethodSummary 
+  name: configure
+- !ruby/object:RI::MethodSummary 
+  name: configure
+- !ruby/object:RI::MethodSummary 
+  name: end_trace
+- !ruby/object:RI::MethodSummary 
+  name: end_trace
+- !ruby/object:RI::MethodSummary 
+  name: trace
+- !ruby/object:RI::MethodSummary 
+  name: trace
+- !ruby/object:RI::MethodSummary 
+  name: tracing?
+- !ruby/object:RI::MethodSummary 
+  name: tracing?
+full_name: MongrelDbg
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{ :tracing => {}}'
+  name: SETTINGS
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{ }'
+  name: LOGGING
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{ :tracing => {}}'
+  name: SETTINGS
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{ }'
+  name: LOGGING
+superclass: 
+name: MongrelDbg

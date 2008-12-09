@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a hash of column objects for the table associated with this class.
+full_name: ActiveRecord::Base::columns_hash
+params: ()
+name: columns_hash
+is_singleton: true
+aliases: []
+

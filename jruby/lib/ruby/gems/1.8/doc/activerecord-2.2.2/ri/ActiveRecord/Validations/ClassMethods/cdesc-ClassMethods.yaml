@@ -1,0 +1,97 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Active Record classes can implement validations in several ways. The highest
+    level, easiest to read, and recommended approach is to use the declarative <tt>validates_..._of</tt>
+    class methods (and <tt>validates_associated</tt>) documented below. These are
+    sufficient for most model validations.
+- !ruby/struct:SM::Flow::P 
+  body: Slightly lower level is <tt>validates_each</tt>. It provides some of the same
+    options as the purely declarative validation methods, but like all the lower-level
+    approaches it requires manually adding to the errors collection when the record
+    is invalid.
+- !ruby/struct:SM::Flow::P 
+  body: At a yet lower level, a model can use the class methods <tt>validate</tt>,
+    <tt>validate_on_create</tt> and <tt>validate_on_update</tt> to add validation
+    methods or blocks. These are ActiveSupport::Callbacks and follow the same rules
+    of inheritance and chaining.
+- !ruby/struct:SM::Flow::P 
+  body: The lowest level style is to define the instance methods <tt>validate</tt>,
+    <tt>validate_on_create</tt> and <tt>validate_on_update</tt> as documented in ActiveRecord::Validations.
+- !ruby/struct:SM::Flow::H 
+  text: <tt>validate</tt>, <tt>validate_on_create</tt> and <tt>validate_on_update</tt>
+    Class Methods
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: Calls to these methods add a validation method or block to the class. Again,
+    this approach is recommended only when the higher-level methods documented below
+    (<tt>validates_..._of</tt> and <tt>validates_associated</tt>) are insufficient
+    to handle the required validation.
+- !ruby/struct:SM::Flow::P 
+  body: 'This can be done with a symbol pointing to a method:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Comment &lt; ActiveRecord::Base\n    validate :must_be_friends\n\n\
+    \    def must_be_friends\n      errors.add_to_base(&quot;Must be friends to leave \
+    a comment&quot;) unless commenter.friend_of?(commentee)\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Or with a block which is passed the current record to be validated:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Comment &lt; ActiveRecord::Base\n    validate do |comment|\n     \
+    \ comment.must_be_friends\n    end\n\n    def must_be_friends\n      errors.add_to_base(&quot;Must \
+    be friends to leave a comment&quot;) unless commenter.friend_of?(commentee)\n\
+    \    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: This usage applies to <tt>validate_on_create</tt> and <tt>validate_on_update</tt>
+    as well.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: create!
+- !ruby/object:RI::MethodSummary 
+  name: validates_acceptance_of
+- !ruby/object:RI::MethodSummary 
+  name: validates_associated
+- !ruby/object:RI::MethodSummary 
+  name: validates_confirmation_of
+- !ruby/object:RI::MethodSummary 
+  name: validates_each
+- !ruby/object:RI::MethodSummary 
+  name: validates_exclusion_of
+- !ruby/object:RI::MethodSummary 
+  name: validates_format_of
+- !ruby/object:RI::MethodSummary 
+  name: validates_inclusion_of
+- !ruby/object:RI::MethodSummary 
+  name: validates_length_of
+- !ruby/object:RI::MethodSummary 
+  name: validates_numericality_of
+- !ruby/object:RI::MethodSummary 
+  name: validates_presence_of
+- !ruby/object:RI::MethodSummary 
+  name: validates_size_of
+- !ruby/object:RI::MethodSummary 
+  name: validates_uniqueness_of
+class_methods: []
+
+full_name: ActiveRecord::Validations::ClassMethods
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{         :on => :save,         :allow_nil => false,         :allow_blank
+    => false,         :message => nil'
+  name: DEFAULT_VALIDATION_OPTIONS
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '[ :is, :within, :in, :minimum, :maximum ].freeze'
+  name: ALL_RANGE_OPTIONS
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{ :greater_than => ''>'', :greater_than_or_equal_to => ''>='',                                   :equal_to
+    => ''=='', :less_than => ''<'', :less_than_or_equal_to => ''<='',                                   :odd
+    => ''odd?'', :even => ''even?'' }.freeze'
+  name: ALL_NUMERICALITY_CHECKS
+superclass: 
+name: ClassMethods

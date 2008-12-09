@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A convenience wrapper for <tt>find(:last, *args)</tt>. You can pass in all
+    the same arguments to this method as you can to <tt>find(:last)</tt>.
+full_name: ActiveRecord::Base::last
+params: (*args)
+name: last
+is_singleton: true
+aliases: []
+

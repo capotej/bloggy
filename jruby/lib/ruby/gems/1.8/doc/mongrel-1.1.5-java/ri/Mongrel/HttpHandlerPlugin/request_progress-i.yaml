@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Mongrel::HttpHandlerPlugin#request_progress
+params: (params, clen, total)
+name: request_progress
+is_singleton: false
+aliases: []
+

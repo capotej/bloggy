@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Mongrel</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Mongrel</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/mongrel_rb.html">
+                lib/mongrel.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/gems_rb.html">
+                lib/mongrel/gems.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/camping_rb.html">
+                lib/mongrel/camping.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/const_rb.html">
+                lib/mongrel/const.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/command_rb.html">
+                lib/mongrel/command.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/header_out_rb.html">
+                lib/mongrel/header_out.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/stats_rb.html">
+                lib/mongrel/stats.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/configurator_rb.html">
+                lib/mongrel/configurator.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/cgi_rb.html">
+                lib/mongrel/cgi.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/uri_classifier_rb.html">
+                lib/mongrel/uri_classifier.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/handlers_rb.html">
+                lib/mongrel/handlers.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/rails_rb.html">
+                lib/mongrel/rails.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/http_response_rb.html">
+                lib/mongrel/http_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/http_request_rb.html">
+                lib/mongrel/http_request.rb
+                </a>
+        <br />
+                <a href="../files/ext/http11/http11_c.html">
+                ext/http11/http11.c
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/camping_rb.html">
+                lib/mongrel/camping.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/cgi_rb.html">
+                lib/mongrel/cgi.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/command_rb.html">
+                lib/mongrel/command.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/configurator_rb.html">
+                lib/mongrel/configurator.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/const_rb.html">
+                lib/mongrel/const.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/gems_rb.html">
+                lib/mongrel/gems.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/handlers_rb.html">
+                lib/mongrel/handlers.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/header_out_rb.html">
+                lib/mongrel/header_out.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/http_request_rb.html">
+                lib/mongrel/http_request.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/http_response_rb.html">
+                lib/mongrel/http_response.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/rails_rb.html">
+                lib/mongrel/rails.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/stats_rb.html">
+                lib/mongrel/stats.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel/uri_classifier_rb.html">
+                lib/mongrel/uri_classifier.rb
+                </a>
+        <br />
+                <a href="../files/lib/mongrel_rb.html">
+                lib/mongrel.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="Mongrel.html">Mongrel</a> module containing all of the classes
+(include C extensions) for running a <a href="Mongrel.html">Mongrel</a> web
+server. It contains a minimalist HTTP server with just enough functionality
+to service web application requests fast as possible.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="Mongrel/Camping.html" class="link">Mongrel::Camping</a><br />
+Module <a href="Mongrel/Command.html" class="link">Mongrel::Command</a><br />
+Module <a href="Mongrel/Const.html" class="link">Mongrel::Const</a><br />
+Module <a href="Mongrel/Gems.html" class="link">Mongrel::Gems</a><br />
+Module <a href="Mongrel/HttpHandlerPlugin.html" class="link">Mongrel::HttpHandlerPlugin</a><br />
+Module <a href="Mongrel/Rails.html" class="link">Mongrel::Rails</a><br />
+Class <a href="Mongrel/CGIWrapper.html" class="link">Mongrel::CGIWrapper</a><br />
+Class <a href="Mongrel/Configurator.html" class="link">Mongrel::Configurator</a><br />
+Class <a href="Mongrel/DeflateFilter.html" class="link">Mongrel::DeflateFilter</a><br />
+Class <a href="Mongrel/DirHandler.html" class="link">Mongrel::DirHandler</a><br />
+Class <a href="Mongrel/Error404Handler.html" class="link">Mongrel::Error404Handler</a><br />
+Class <a href="Mongrel/HeaderOut.html" class="link">Mongrel::HeaderOut</a><br />
+Class <a href="Mongrel/HttpHandler.html" class="link">Mongrel::HttpHandler</a><br />
+Class <a href="Mongrel/HttpParams.html" class="link">Mongrel::HttpParams</a><br />
+Class <a href="Mongrel/HttpParser.html" class="link">Mongrel::HttpParser</a><br />
+Class <a href="Mongrel/HttpParserError.html" class="link">Mongrel::HttpParserError</a><br />
+Class <a href="Mongrel/HttpRequest.html" class="link">Mongrel::HttpRequest</a><br />
+Class <a href="Mongrel/HttpResponse.html" class="link">Mongrel::HttpResponse</a><br />
+Class <a href="Mongrel/HttpServer.html" class="link">Mongrel::HttpServer</a><br />
+Class <a href="Mongrel/RedirectHandler.html" class="link">Mongrel::RedirectHandler</a><br />
+Class <a href="Mongrel/StatisticsFilter.html" class="link">Mongrel::StatisticsFilter</a><br />
+Class <a href="Mongrel/Stats.html" class="link">Mongrel::Stats</a><br />
+Class <a href="Mongrel/StatusHandler.html" class="link">Mongrel::StatusHandler</a><br />
+Class <a href="Mongrel/StopServer.html" class="link">Mongrel::StopServer</a><br />
+Class <a href="Mongrel/TimeoutError.html" class="link">Mongrel::TimeoutError</a><br />
+Class <a href="Mongrel/URIClassifier.html" class="link">Mongrel::URIClassifier</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTTP_STATUS_CODES</td>
+          <td>=</td>
+          <td class="context-item-value">{       100  =&gt; 'Continue',      101  =&gt; 'Switching Protocols',      200  =&gt; 'OK',      201  =&gt; 'Created',      202  =&gt; 'Accepted',      203  =&gt; 'Non-Authoritative Information',      204  =&gt; 'No Content',      205  =&gt; 'Reset Content',      206  =&gt; 'Partial Content',      300  =&gt; 'Multiple Choices',      301  =&gt; 'Moved Permanently',      302  =&gt; 'Moved Temporarily',      303  =&gt; 'See Other',      304  =&gt; 'Not Modified',      305  =&gt; 'Use Proxy',      400  =&gt; 'Bad Request',      401  =&gt; 'Unauthorized',      402  =&gt; 'Payment Required',      403  =&gt; 'Forbidden',      404  =&gt; 'Not Found',      405  =&gt; 'Method Not Allowed',      406  =&gt; 'Not Acceptable',      407  =&gt; 'Proxy Authentication Required',      408  =&gt; 'Request Time-out',      409  =&gt; 'Conflict',      410  =&gt; 'Gone',      411  =&gt; 'Length Required',      412  =&gt; 'Precondition Failed',      413  =&gt; 'Request Entity Too Large',      414  =&gt; 'Request-URI Too Large',      415  =&gt; 'Unsupported Media Type',      500  =&gt; 'Internal Server Error',      501  =&gt; 'Not Implemented',      502  =&gt; 'Bad Gateway',      503  =&gt; 'Service Unavailable',      504  =&gt; 'Gateway Time-out',      505  =&gt; 'HTTP Version not supported'</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Every standard HTTP code mapped to the appropriate message. These are used
+so frequently that they are placed directly in <a
+href="Mongrel.html">Mongrel</a> for easy access rather than <a
+href="Mongrel/Const.html">Mongrel::Const</a> itself.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTTP_STATUS_CODES</td>
+          <td>=</td>
+          <td class="context-item-value">{       100  =&gt; 'Continue',      101  =&gt; 'Switching Protocols',      200  =&gt; 'OK',      201  =&gt; 'Created',      202  =&gt; 'Accepted',      203  =&gt; 'Non-Authoritative Information',      204  =&gt; 'No Content',      205  =&gt; 'Reset Content',      206  =&gt; 'Partial Content',      300  =&gt; 'Multiple Choices',      301  =&gt; 'Moved Permanently',      302  =&gt; 'Moved Temporarily',      303  =&gt; 'See Other',      304  =&gt; 'Not Modified',      305  =&gt; 'Use Proxy',      400  =&gt; 'Bad Request',      401  =&gt; 'Unauthorized',      402  =&gt; 'Payment Required',      403  =&gt; 'Forbidden',      404  =&gt; 'Not Found',      405  =&gt; 'Method Not Allowed',      406  =&gt; 'Not Acceptable',      407  =&gt; 'Proxy Authentication Required',      408  =&gt; 'Request Time-out',      409  =&gt; 'Conflict',      410  =&gt; 'Gone',      411  =&gt; 'Length Required',      412  =&gt; 'Precondition Failed',      413  =&gt; 'Request Entity Too Large',      414  =&gt; 'Request-URI Too Large',      415  =&gt; 'Unsupported Media Type',      500  =&gt; 'Internal Server Error',      501  =&gt; 'Not Implemented',      502  =&gt; 'Bad Gateway',      503  =&gt; 'Service Unavailable',      504  =&gt; 'Gateway Time-out',      505  =&gt; 'HTTP Version not supported'</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Every standard HTTP code mapped to the appropriate message. These are used
+so frequently that they are placed directly in <a
+href="Mongrel.html">Mongrel</a> for easy access rather than <a
+href="Mongrel/Const.html">Mongrel::Const</a> itself.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

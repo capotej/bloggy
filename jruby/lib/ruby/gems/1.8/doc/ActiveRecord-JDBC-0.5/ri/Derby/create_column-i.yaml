@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::Derby#create_column"
+params: (name, refid, colno)
+name: create_column
+is_singleton: false
+aliases: []
+

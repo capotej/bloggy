@@ -1,0 +1,35 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Updates an object (or multiple objects) and saves it to the database, if validations
+    pass. The resulting object is returned whether the object was saved successfully
+    to the database or not.
+- !ruby/struct:SM::Flow::H 
+  text: Parameters
+  level: 4
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>id</tt> - This should be the id or an array of ids to be updated.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>attributes</tt> - This should be a Hash of attributes to be set on the
+      object, or an array of Hashes.
+    label: '*'
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Updating one record:\n  Person.update(15, { :user_name =&gt; 'Samuel', \
+    :group =&gt; 'expert' })\n\n  # Updating multiple records:\n  people = { 1 =&gt; \
+    { &quot;first_name&quot; =&gt; &quot;David&quot; }, 2 =&gt; { &quot;first_name&quot; \
+    =&gt; &quot;Jeremy&quot; } }\n  Person.update(people.keys, people.values)\n"
+full_name: ActiveRecord::Base::update
+params: (id, attributes)
+name: update
+is_singleton: true
+aliases: []
+

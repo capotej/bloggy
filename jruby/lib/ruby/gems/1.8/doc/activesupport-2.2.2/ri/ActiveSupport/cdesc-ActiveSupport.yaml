@@ -1,0 +1,50 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'The TimeZone class serves as a wrapper around TZInfo::Timezone instances.
+    It allows us to do the following:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: Limit the set of zones provided by TZInfo to a meaningful subset of 142
+      zones.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: Retrieve and display zones with a friendlier name (e.g., &quot;Eastern Time
+      (US &amp; Canada)&quot; instead of &quot;America/New_York&quot;).
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: Lazily load TZInfo::Timezone instances only when they're needed.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: Create ActiveSupport::TimeWithZone instances via TimeZone's <tt>local</tt>,
+      <tt>parse</tt>, <tt>at</tt> and <tt>now</tt> methods.
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: 'If you set <tt>config.time_zone</tt> in the Rails Initializer, you can access
+    this TimeZone object via <tt>Time.zone</tt>:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # environment.rb:\n  Rails::Initializer.run do |config|\n    config.time_zone \
+    = &quot;Eastern Time (US &amp; Canada)&quot;\n  end\n\n  Time.zone       # =&gt; \
+    #&lt;TimeZone:0x514834...&gt;\n  Time.zone.name  # =&gt; &quot;Eastern Time (US \
+    &amp; Canada)&quot;\n  Time.zone.now   # =&gt; Sun, 18 May 2008 14:30:44 EDT -04:00\n"
+- !ruby/struct:SM::Flow::P 
+  body: The version of TZInfo bundled with Active Support only includes the definitions
+    necessary to support the zones defined by the TimeZone class. If you need to use
+    zones that aren't defined by TimeZone, you'll need to install the TZInfo gem (if
+    a recent version of the gem is installed locally, this will be used instead of
+    the bundled version.)
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveSupport
+constants: []
+
+superclass: 
+name: ActiveSupport

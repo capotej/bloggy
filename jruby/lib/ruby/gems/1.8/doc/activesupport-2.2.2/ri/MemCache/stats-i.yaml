@@ -1,0 +1,29 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Returns statistics for each memcached server. An explanation of the statistics
+    can be found in the memcached docs:'
+- !ruby/struct:SM::Flow::P 
+  body: http://code.sixapart.com/svn/memcached/trunk/server/doc/protocol.txt
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &gt;&gt; pp CACHE.stats\n  {&quot;localhost:11211&quot;=&gt;\n    {&quot;bytes&quot;=&gt;4718,\n\
+    \     &quot;pid&quot;=&gt;20188,\n     &quot;connection_structures&quot;=&gt;4,\n\
+    \     &quot;time&quot;=&gt;1162278121,\n     &quot;pointer_size&quot;=&gt;32,\n\
+    \     &quot;limit_maxbytes&quot;=&gt;67108864,\n     &quot;cmd_get&quot;=&gt;14532,\n\
+    \     &quot;version&quot;=&gt;&quot;1.2.0&quot;,\n     &quot;bytes_written&quot;=&gt;432583,\n\
+    \     &quot;cmd_set&quot;=&gt;32,\n     &quot;get_misses&quot;=&gt;0,\n     &quot;total_connections&quot;=&gt;19,\n\
+    \     &quot;curr_connections&quot;=&gt;3,\n     &quot;curr_items&quot;=&gt;4,\n\
+    \     &quot;uptime&quot;=&gt;1557,\n     &quot;get_hits&quot;=&gt;14532,\n     \
+    &quot;total_items&quot;=&gt;32,\n     &quot;rusage_system&quot;=&gt;0.313952,\n\
+    \     &quot;rusage_user&quot;=&gt;0.119981,\n     &quot;bytes_read&quot;=&gt;190619}}\n\
+    \  =&gt; nil\n"
+full_name: MemCache#stats
+params: ()
+name: stats
+is_singleton: false
+aliases: []
+

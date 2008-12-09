@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Does the heavy lifting of properly reading the larger body requests in small
+    chunks. It expects @body to be an IO object, @socket to be valid, and will set
+    @body = nil if the request fails. It also expects any initial part of the body
+    that has been read to be in the @body already.
+full_name: Mongrel::HttpRequest#read_body
+params: (remain, total)
+name: read_body
+is_singleton: false
+aliases: []
+

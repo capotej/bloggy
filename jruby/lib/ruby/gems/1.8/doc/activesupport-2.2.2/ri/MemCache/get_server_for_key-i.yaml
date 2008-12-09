@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Pick a server to handle the request based on a hash of the key.
+full_name: MemCache#get_server_for_key
+params: (key)
+name: get_server_for_key
+is_singleton: false
+aliases: []
+

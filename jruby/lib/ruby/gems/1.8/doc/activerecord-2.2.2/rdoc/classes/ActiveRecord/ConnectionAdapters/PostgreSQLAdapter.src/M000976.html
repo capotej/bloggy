@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>indexes (ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/postgresql_adapter.rb, line 637</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">indexes</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">name</span> = <span class="ruby-keyword kw">nil</span>)
+         <span class="ruby-identifier">schemas</span> = <span class="ruby-identifier">schema_search_path</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/,/</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">quote</span>(<span class="ruby-identifier">p</span>) }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">','</span>)
+         <span class="ruby-identifier">result</span> = <span class="ruby-identifier">query</span>(<span class="ruby-value str">&quot;SELECT distinct i.relname, d.indisunique, a.attname\nFROM pg_class t, pg_class i, pg_index d, pg_attribute a\nWHERE i.relkind = 'i'\nAND d.indexrelid = i.oid\nAND d.indisprimary = 'f'\nAND t.oid = d.indrelid\nAND t.relname = '\#{table_name}'\nAND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN (\#{schemas}) )\nAND a.attrelid = t.oid\nAND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum\nOR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum\nOR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum\nOR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum\nOR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )\nORDER BY i.relname\n&quot;</span>, <span class="ruby-identifier">name</span>)
+
+        <span class="ruby-identifier">current_index</span> = <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-identifier">indexes</span> = []
+
+        <span class="ruby-identifier">result</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">current_index</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">row</span>[<span class="ruby-value">0</span>]
+            <span class="ruby-identifier">indexes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">IndexDefinition</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">row</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">row</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;t&quot;</span>, [])
+            <span class="ruby-identifier">current_index</span> = <span class="ruby-identifier">row</span>[<span class="ruby-value">0</span>]
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">indexes</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">columns</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">row</span>[<span class="ruby-value">2</span>]
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">indexes</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

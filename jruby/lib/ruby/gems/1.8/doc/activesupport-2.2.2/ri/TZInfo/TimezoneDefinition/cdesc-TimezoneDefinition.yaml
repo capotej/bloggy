@@ -1,0 +1,18 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: TimezoneDefinition is included into Timezone definition modules. TimezoneDefinition
+    provides the methods for defining timezones.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: TZInfo::TimezoneDefinition
+constants: []
+
+superclass: 
+name: TimezoneDefinition

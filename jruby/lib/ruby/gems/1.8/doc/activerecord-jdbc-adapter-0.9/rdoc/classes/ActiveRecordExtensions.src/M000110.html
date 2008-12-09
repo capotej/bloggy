@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>informix_connection (::ActiveRecordExtensions)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/jdbc_adapter/jdbc_informix.rb, line 30</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">informix_connection</span>(<span class="ruby-identifier">config</span>)
+      <span class="ruby-identifier">config</span>[<span class="ruby-identifier">:port</span>] <span class="ruby-operator">||=</span> <span class="ruby-value">9088</span>
+      <span class="ruby-identifier">config</span>[<span class="ruby-identifier">:url</span>] <span class="ruby-operator">||=</span> <span class="ruby-node">&quot;jdbc:informix-sqli://#{config[:host]}:#{config[:port]}/#{config[:database]}:INFORMIXSERVER=#{config[:servername]}&quot;</span>
+      <span class="ruby-identifier">config</span>[<span class="ruby-identifier">:driver</span>] = <span class="ruby-value str">'com.informix.jdbc.IfxDriver'</span>
+      <span class="ruby-identifier">jdbc_connection</span>(<span class="ruby-identifier">config</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

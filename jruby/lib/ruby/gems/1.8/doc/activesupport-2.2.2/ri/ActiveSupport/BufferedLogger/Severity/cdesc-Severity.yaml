@@ -1,0 +1,38 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: ActiveSupport::BufferedLogger::Severity
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: "0"
+  name: DEBUG
+- !ruby/object:RI::Constant 
+  comment: 
+  value: "1"
+  name: INFO
+- !ruby/object:RI::Constant 
+  comment: 
+  value: "2"
+  name: WARN
+- !ruby/object:RI::Constant 
+  comment: 
+  value: "3"
+  name: ERROR
+- !ruby/object:RI::Constant 
+  comment: 
+  value: "4"
+  name: FATAL
+- !ruby/object:RI::Constant 
+  comment: 
+  value: "5"
+  name: UNKNOWN
+superclass: 
+name: Severity

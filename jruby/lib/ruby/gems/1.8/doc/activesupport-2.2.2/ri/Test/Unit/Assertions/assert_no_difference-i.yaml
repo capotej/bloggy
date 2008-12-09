@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Assertion that the numeric result of evaluating an expression is not changed
+    before and after invoking the passed in block.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  assert_no_difference 'Article.count' do\n    post :create, :article =&gt; \
+    invalid_attributes\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: A error message can be specified.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  assert_no_difference 'Article.count', &quot;An Article should not be destroyed&quot; \
+    do\n    post :create, :article =&gt; invalid_attributes\n  end\n"
+full_name: Test::Unit::Assertions#assert_no_difference
+params: (expressions, message = nil, &block)
+name: assert_no_difference
+is_singleton: false
+aliases: []
+

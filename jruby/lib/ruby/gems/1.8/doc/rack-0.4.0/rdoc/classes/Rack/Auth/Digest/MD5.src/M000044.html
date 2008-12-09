@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>call (Rack::Auth::Digest::MD5)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/auth/digest/md5.rb, line 33</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+          <span class="ruby-identifier">auth</span> = <span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">env</span>)
+
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">provided?</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">unauthorized</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">auth</span>.<span class="ruby-identifier">digest?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">auth</span>.<span class="ruby-identifier">correct_uri?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">valid_qop?</span>(<span class="ruby-identifier">auth</span>)
+            <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">bad_request</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">valid?</span>(<span class="ruby-identifier">auth</span>)
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">nonce</span>.<span class="ruby-identifier">stale?</span>
+              <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">unauthorized</span>(<span class="ruby-identifier">challenge</span>(<span class="ruby-identifier">:stale</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>))
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">env</span>[<span class="ruby-value str">'REMOTE_USER'</span>] = <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">username</span>
+
+              <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">unauthorized</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns an instance of the specified <tt>klass</tt> with the attributes of
+    the current record. This is mostly useful in relation to single-table inheritance
+    structures where you want a subclass to appear as the superclass. This can be
+    used along with record identification in Action Pack to allow, say, <tt>Client
+    &lt; Company</tt> to do something like render <tt>:partial =&gt; @client.becomes(Company)</tt>
+    to render that instance using the companies/company partial instead of clients/client.
+- !ruby/struct:SM::Flow::P 
+  body: 'Note: The new instance will share a link to the same attributes as the original
+    class. So any change to the attributes in either instance will affect the other.'
+full_name: ActiveRecord::Base#becomes
+params: (klass)
+name: becomes
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Mongrel::RedirectHandler</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Mongrel::RedirectHandler</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/mongrel/handlers_rb.html">
+                lib/mongrel/handlers.rb
+                </a>
+        <br />
+                <a href="../../files/lib/mongrel/handlers_rb.html">
+                lib/mongrel/handlers.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="HttpHandler.html">
+                Mongrel::HttpHandler
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+This handler allows you to redirect one url to another. You can use it like
+String#gsub, where the string is the REQUEST_URI. REQUEST_URI is the full
+path with GET parameters.
+</p>
+<p>
+Eg. /test/something?help=true&amp;disclaimer=false
+</p>
+<h2>Examples</h2>
+<pre>
+  h = Mongrel::HttpServer.new('0.0.0.0')
+  h.register '/test', Mongrel::RedirectHandler.new('/to/there') # simple
+  h.register '/to',   Mongrel::RedirectHandler.new(/t/, 'w') # regexp
+  # and with a block
+  h.register '/hey',  Mongrel::RedirectHandler.new(/(\w+)/) { |match| ... }
+</pre>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000233">new</a>&nbsp;&nbsp;
+      <a href="#M000235">new</a>&nbsp;&nbsp;
+      <a href="#M000234">process</a>&nbsp;&nbsp;
+      <a href="#M000236">process</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000233" class="method-detail">
+        <a name="M000233"></a>
+
+        <div class="method-heading">
+          <a href="#M000233" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(pattern, replacement = nil, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+You set the rewrite rules when building the object.
+</p>
+<p>
+pattern =&gt; What to look for or replacement if used alone
+</p>
+<p>
+replacement, block =&gt; One of them is used to replace the found text
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000233-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000233-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/handlers.rb, line 447</span>
+447:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">pattern</span>, <span class="ruby-identifier">replacement</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+448:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">replacement</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">block</span>
+449:         <span class="ruby-ivar">@pattern</span>, <span class="ruby-ivar">@replacement</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">pattern</span>
+450:       <span class="ruby-keyword kw">else</span>
+451:         <span class="ruby-ivar">@pattern</span>, <span class="ruby-ivar">@replacement</span>, <span class="ruby-ivar">@block</span> = <span class="ruby-identifier">pattern</span>, <span class="ruby-identifier">replacement</span>, <span class="ruby-identifier">block</span>
+452:       <span class="ruby-keyword kw">end</span>
+453:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000235" class="method-detail">
+        <a name="M000235"></a>
+
+        <div class="method-heading">
+          <a href="#M000235" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(pattern, replacement = nil, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+You set the rewrite rules when building the object.
+</p>
+<p>
+pattern =&gt; What to look for or replacement if used alone
+</p>
+<p>
+replacement, block =&gt; One of them is used to replace the found text
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000235-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000235-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/handlers.rb, line 447</span>
+447:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">pattern</span>, <span class="ruby-identifier">replacement</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+448:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">replacement</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">block</span>
+449:         <span class="ruby-ivar">@pattern</span>, <span class="ruby-ivar">@replacement</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">pattern</span>
+450:       <span class="ruby-keyword kw">else</span>
+451:         <span class="ruby-ivar">@pattern</span>, <span class="ruby-ivar">@replacement</span>, <span class="ruby-ivar">@block</span> = <span class="ruby-identifier">pattern</span>, <span class="ruby-identifier">replacement</span>, <span class="ruby-identifier">block</span>
+452:       <span class="ruby-keyword kw">end</span>
+453:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000234" class="method-detail">
+        <a name="M000234"></a>
+
+        <div class="method-heading">
+          <a href="#M000234" class="method-signature">
+          <span class="method-name">process</span><span class="method-args">(request, response)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Process the request and return a redirect response
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000234-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000234-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/handlers.rb, line 456</span>
+456:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">process</span>(<span class="ruby-identifier">request</span>, <span class="ruby-identifier">response</span>)
+457:       <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@pattern</span>
+458:         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">socket</span>.<span class="ruby-identifier">write</span>(<span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">REDIRECT</span> <span class="ruby-operator">%</span> <span class="ruby-ivar">@replacement</span>)
+459:       <span class="ruby-keyword kw">else</span>
+460:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@block</span>
+461:           <span class="ruby-identifier">new_path</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-value str">'REQUEST_URI'</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-ivar">@pattern</span>, <span class="ruby-operator">&amp;</span><span class="ruby-ivar">@block</span>)
+462:         <span class="ruby-keyword kw">else</span>
+463:           <span class="ruby-identifier">new_path</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-value str">'REQUEST_URI'</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-ivar">@pattern</span>, <span class="ruby-ivar">@replacement</span>)
+464:         <span class="ruby-keyword kw">end</span>
+465:         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">socket</span>.<span class="ruby-identifier">write</span>(<span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">REDIRECT</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">new_path</span>)
+466:       <span class="ruby-keyword kw">end</span>
+467:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000236" class="method-detail">
+        <a name="M000236"></a>
+
+        <div class="method-heading">
+          <a href="#M000236" class="method-signature">
+          <span class="method-name">process</span><span class="method-args">(request, response)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Process the request and return a redirect response
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000236-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000236-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/handlers.rb, line 456</span>
+456:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">process</span>(<span class="ruby-identifier">request</span>, <span class="ruby-identifier">response</span>)
+457:       <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@pattern</span>
+458:         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">socket</span>.<span class="ruby-identifier">write</span>(<span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">REDIRECT</span> <span class="ruby-operator">%</span> <span class="ruby-ivar">@replacement</span>)
+459:       <span class="ruby-keyword kw">else</span>
+460:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@block</span>
+461:           <span class="ruby-identifier">new_path</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-value str">'REQUEST_URI'</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-ivar">@pattern</span>, <span class="ruby-operator">&amp;</span><span class="ruby-ivar">@block</span>)
+462:         <span class="ruby-keyword kw">else</span>
+463:           <span class="ruby-identifier">new_path</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-value str">'REQUEST_URI'</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-ivar">@pattern</span>, <span class="ruby-ivar">@replacement</span>)
+464:         <span class="ruby-keyword kw">end</span>
+465:         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">socket</span>.<span class="ruby-identifier">write</span>(<span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">REDIRECT</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">new_path</span>)
+466:       <span class="ruby-keyword kw">end</span>
+467:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

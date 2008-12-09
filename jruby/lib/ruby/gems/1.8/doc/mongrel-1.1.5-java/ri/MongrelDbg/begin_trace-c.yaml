@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: MongrelDbg::begin_trace
+params: (target)
+name: begin_trace
+is_singleton: true
+aliases: []
+

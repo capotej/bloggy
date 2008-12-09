@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>included (ActiveSupport::Testing)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/testing/setup_and_teardown.rb, line 12</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">base</span>)
+        <span class="ruby-identifier">base</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-keyword kw">do</span>
+          <span class="ruby-identifier">include</span> <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Callbacks</span>
+          <span class="ruby-identifier">define_callbacks</span> <span class="ruby-identifier">:setup</span>, <span class="ruby-identifier">:teardown</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">Mini</span>)
+            <span class="ruby-identifier">undef_method</span> <span class="ruby-identifier">:run</span>
+            <span class="ruby-identifier">alias_method</span> <span class="ruby-identifier">:run</span>, <span class="ruby-identifier">:run_with_callbacks_and_miniunit</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-keyword kw">begin</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'mocha'</span>
+              <span class="ruby-identifier">undef_method</span> <span class="ruby-identifier">:run</span>
+              <span class="ruby-identifier">alias_method</span> <span class="ruby-identifier">:run</span>, <span class="ruby-identifier">:run_with_callbacks_and_mocha</span>
+            <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span>
+              <span class="ruby-identifier">undef_method</span> <span class="ruby-identifier">:run</span>
+              <span class="ruby-identifier">alias_method</span> <span class="ruby-identifier">:run</span>, <span class="ruby-identifier">:run_with_callbacks_and_testunit</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a new Date where one or more of the elements have been changed according
+    to the <tt>options</tt> parameter.
+- !ruby/struct:SM::Flow::P 
+  body: 'Examples:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Date.new(2007, 5, 12).change(:day =&gt; 1)                  # =&gt; Date.new(2007, \
+    5, 1)\n  Date.new(2007, 5, 12).change(:year =&gt; 2005, :month =&gt; 1) # =&gt; \
+    Date.new(2005, 1, 12)\n"
+full_name: ActiveSupport::CoreExtensions::Date::Calculations#change
+params: (options)
+name: change
+is_singleton: false
+aliases: []
+

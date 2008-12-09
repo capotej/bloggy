@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Map of changed attrs =&gt; [original value, new value].
+- !ruby/struct:SM::Flow::VERB 
+  body: "  person.changes # =&gt; {}\n  person.name = 'bob'\n  person.changes # =&gt; \
+    { 'name' =&gt; ['bill', 'bob'] }\n"
+full_name: ActiveRecord::Dirty#changes
+params: ()
+name: changes
+is_singleton: false
+aliases: []
+

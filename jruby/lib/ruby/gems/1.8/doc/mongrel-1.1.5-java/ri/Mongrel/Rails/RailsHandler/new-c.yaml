@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Mongrel::Rails::RailsHandler::new
+params: (dir, mime_map = {})
+name: new
+is_singleton: true
+aliases: []
+

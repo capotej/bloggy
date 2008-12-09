@@ -1,0 +1,24 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Methods for sending files and streams to the browser instead of rendering.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: send_data
+- !ruby/object:RI::MethodSummary 
+  name: send_file
+class_methods: []
+
+full_name: Sinatra::Streaming
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{       :type         => ''application/octet-stream''.freeze,       :disposition  =>
+    ''attachment''.freeze,       :stream       => true,       :buffer_size  => 8192'
+  name: DEFAULT_SEND_FILE_OPTIONS
+superclass: 
+name: Streaming

@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Works just like <tt>String#ljust</tt>, only integer specifies characters instead
+    of bytes.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &quot;\xc2\xbe cup&quot;.mb_chars.rjust(8).to_s\n  #=&gt; &quot;\xc2\xbe\
+    \ cup   &quot;\n\n  &quot;\xc2\xbe cup&quot;.mb_chars.rjust(8, &quot;\xc2\_&quot;).to_s \
+    # Use non-breaking whitespace\n  #=&gt; &quot;\xc2\xbe cup\xc2\_\xc2\_\xc2\_&quot;\n"
+full_name: ActiveSupport::Multibyte::Chars#ljust
+params: (integer, padstr=' ')
+name: ljust
+is_singleton: false
+aliases: []
+

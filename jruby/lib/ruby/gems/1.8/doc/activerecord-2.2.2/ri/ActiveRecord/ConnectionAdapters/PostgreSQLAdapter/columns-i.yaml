@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the list of all column definitions for a table.
+full_name: ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#columns
+params: (table_name, name = nil)
+name: columns
+is_singleton: false
+aliases: []
+

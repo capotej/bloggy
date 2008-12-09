@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the beginning of the array up to <tt>position</tt>.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  %w( a b c d ).to(0)  # =&gt; %w( a )\n  %w( a b c d ).to(2)  # =&gt; %w( \
+    a b c )\n  %w( a b c d ).to(10) # =&gt; %w( a b c d )\n  %w().to(0)           \
+    # =&gt; %w()\n"
+full_name: ActiveSupport::CoreExtensions::Array::Access#to
+params: (position)
+name: to
+is_singleton: false
+aliases: []
+

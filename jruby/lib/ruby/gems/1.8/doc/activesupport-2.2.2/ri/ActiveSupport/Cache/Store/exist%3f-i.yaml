@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveSupport::Cache::Store#exist?
+params: (key, options = nil)
+name: exist?
+is_singleton: false
+aliases: []
+

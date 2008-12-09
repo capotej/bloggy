@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>validates_presence_of (ActiveRecord::Validations::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/validations.rb, line 510</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validates_presence_of</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">attr_names</span>)
+        <span class="ruby-identifier">configuration</span> = { <span class="ruby-identifier">:on</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:save</span> }
+        <span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">attr_names</span>.<span class="ruby-identifier">extract_options!</span>)
+
+        <span class="ruby-comment cmt"># can't use validates_each here, because it cannot cope with nonexistent attributes,</span>
+        <span class="ruby-comment cmt"># while errors.add_on_empty can</span>
+        <span class="ruby-identifier">send</span>(<span class="ruby-identifier">validation_method</span>(<span class="ruby-identifier">configuration</span>[<span class="ruby-identifier">:on</span>]), <span class="ruby-identifier">configuration</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">record</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add_on_blank</span>(<span class="ruby-identifier">attr_names</span>, <span class="ruby-identifier">configuration</span>[<span class="ruby-identifier">:message</span>])
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

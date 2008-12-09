@@ -1,0 +1,24 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: BlankSlate provides an abstract base class with no predefined methods (except
+    for <tt>__send__</tt> and <tt>__id__</tt>). BlankSlate is useful as a base class
+    when writing classes that depend upon <tt>method_missing</tt> (e.g. dynamic proxies).
+attributes: []
+
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: find_hidden_method
+- !ruby/object:RI::MethodSummary 
+  name: hide
+- !ruby/object:RI::MethodSummary 
+  name: reveal
+full_name: BlankSlate
+constants: []
+
+superclass: Object
+name: BlankSlate

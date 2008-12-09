@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Reset the connection to all memcache servers. This should be called if there
+    is a problem with a cache lookup that might have left the connection in a corrupted
+    state.
+full_name: MemCache#reset
+params: ()
+name: reset
+is_singleton: false
+aliases: []
+

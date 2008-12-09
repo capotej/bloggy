@@ -1,0 +1,36 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Extensions to the built in Ruby logger.
+- !ruby/struct:SM::Flow::P 
+  body: 'If you want to use the default log formatter as defined in the Ruby core,
+    then you will need to set the formatter for the logger as in:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  logger.formatter = Formatter.new\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'You can then specify the datetime format, for example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  logger.datetime_format = &quot;%Y-%m-%d&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Note: This logger is deprecated in favor of ActiveSupport::BufferedLogger'
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: datetime_format
+- !ruby/object:RI::MethodSummary 
+  name: datetime_format=
+- !ruby/object:RI::MethodSummary 
+  name: formatter
+- !ruby/object:RI::MethodSummary 
+  name: silence
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: define_around_helper
+full_name: Logger
+constants: []
+
+superclass: Object
+name: Logger

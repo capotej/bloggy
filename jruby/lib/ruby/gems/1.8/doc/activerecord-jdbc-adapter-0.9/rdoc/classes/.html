@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header"></td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/jdbc_adapter/jdbc_derby_rb.html">
+                lib/jdbc_adapter/jdbc_derby.rb
+                </a>
+        <br />
+                <a href="../files/lib/jdbc_adapter/jdbc_cachedb_rb.html">
+                lib/jdbc_adapter/jdbc_cachedb.rb
+                </a>
+        <br />
+                <a href="../files/lib/jdbc_adapter/jdbc_mysql_rb.html">
+                lib/jdbc_adapter/jdbc_mysql.rb
+                </a>
+        <br />
+                <a href="../files/lib/jdbc_adapter/jdbc_sqlite3_rb.html">
+                lib/jdbc_adapter/jdbc_sqlite3.rb
+                </a>
+        <br />
+                <a href="../files/lib/jdbc_adapter/jdbc_hsqldb_rb.html">
+                lib/jdbc_adapter/jdbc_hsqldb.rb
+                </a>
+        <br />
+                <a href="../files/lib/jdbc_adapter/jdbc_mssql_rb.html">
+                lib/jdbc_adapter/jdbc_mssql.rb
+                </a>
+        <br />
+                <a href="../files/lib/jdbc_adapter/jdbc_informix_rb.html">
+                lib/jdbc_adapter/jdbc_informix.rb
+                </a>
+        <br />
+                <a href="../files/lib/jdbc_adapter/jdbc_oracle_rb.html">
+                lib/jdbc_adapter/jdbc_oracle.rb
+                </a>
+        <br />
+                <a href="../files/lib/jdbc_adapter/jdbc_firebird_rb.html">
+                lib/jdbc_adapter/jdbc_firebird.rb
+                </a>
+        <br />
+                <a href="../files/lib/jdbc_adapter/jdbc_postgre_rb.html">
+                lib/jdbc_adapter/jdbc_postgre.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="ActiveRecordExtensions.html" class="link">::ActiveRecordExtensions</a><br />
+Module <a href="CacheDB.html" class="link">::CacheDB</a><br />
+Module <a href="Derby.html" class="link">::Derby</a><br />
+Module <a href="FireBird.html" class="link">::FireBird</a><br />
+Module <a href="HSQLDB.html" class="link">::HSQLDB</a><br />
+Module <a href="Informix.html" class="link">::Informix</a><br />
+Module <a href="MySQL.html" class="link">::MySQL</a><br />
+Module <a href="Oracle.html" class="link">::Oracle</a><br />
+Module <a href="PostgreSQL.html" class="link">::PostgreSQL</a><br />
+Module <a href="SQLite3.html" class="link">::SQLite3</a><br />
+Class <a href="Base.html" class="link">::Base</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

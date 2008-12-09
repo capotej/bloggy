@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the hash of options used for the macro. For example, it would return
+    <tt>{ :class_name =&gt; &quot;Money&quot; }</tt> for <tt>composed_of :balance,
+    :class_name =&gt; 'Money'</tt> or +{}+ for <tt>has_many :clients</tt>.
+full_name: ActiveRecord::Reflection::MacroReflection#options
+params: ()
+name: options
+is_singleton: false
+aliases: []
+

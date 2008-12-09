@@ -1,0 +1,33 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Establishes the connection to the database. Accepts a hash as input where
+    the <tt>:adapter</tt> key must be specified with the name of a database adapter
+    (in lower-case) example for regular databases (MySQL, Postgresql, etc):'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ActiveRecord::Base.establish_connection(\n    :adapter  =&gt; &quot;mysql&quot;,\n\
+    \    :host     =&gt; &quot;localhost&quot;,\n    :username =&gt; &quot;myuser&quot;,\n\
+    \    :password =&gt; &quot;mypass&quot;,\n    :database =&gt; &quot;somedatabase&quot;\n\
+    \  )\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Example for SQLite database:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ActiveRecord::Base.establish_connection(\n    :adapter =&gt; &quot;sqlite&quot;,\n\
+    \    :database  =&gt; &quot;path/to/dbfile&quot;\n  )\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Also accepts keys as strings (for parsing from YAML for example):'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ActiveRecord::Base.establish_connection(\n    &quot;adapter&quot; =&gt; \
+    &quot;sqlite&quot;,\n    &quot;database&quot;  =&gt; &quot;path/to/dbfile&quot;\n\
+    \  )\n"
+- !ruby/struct:SM::Flow::P 
+  body: The exceptions AdapterNotSpecified, AdapterNotFound and ArgumentError may
+    be returned on an error.
+full_name: ActiveRecord::Base::establish_connection
+params: (spec = nil)
+name: establish_connection
+is_singleton: true
+aliases: []
+

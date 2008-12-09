@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Accepts an array of conditions. The array has each value sanitized and interpolated
+    into the SQL statement.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  [&quot;name='%s' and group_id='%s'&quot;, &quot;foo'bar&quot;, 4]  returns \
+    \ &quot;name='foo''bar' and group_id='4'&quot;\n"
+full_name: ActiveRecord::Base::sanitize_sql_array
+params: (ary)
+name: sanitize_sql_array
+is_singleton: true
+aliases: []
+

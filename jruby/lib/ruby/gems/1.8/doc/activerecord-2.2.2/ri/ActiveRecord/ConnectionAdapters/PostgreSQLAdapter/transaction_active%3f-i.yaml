@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Check whether a transaction is active.
+full_name: ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#transaction_active?
+params: ()
+name: transaction_active?
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>pk_and_sequence_for (::PostgreSQL)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/jdbc_adapter/jdbc_postgre.rb, line 123</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pk_and_sequence_for</span>(<span class="ruby-identifier">table</span>)
+      <span class="ruby-comment cmt"># First try looking for a sequence with a dependency on the</span>
+      <span class="ruby-comment cmt"># given table's primary key.</span>
+        <span class="ruby-identifier">result</span> = <span class="ruby-identifier">select</span>(<span class="ruby-value str">&quot;SELECT attr.attname AS nm, name.nspname AS nsp, seq.relname AS rel\nFROM pg_class      seq,\npg_attribute  attr,\npg_depend     dep,\npg_namespace  name,\npg_constraint cons\nWHERE seq.oid           = dep.objid\nAND seq.relnamespace  = name.oid\nAND seq.relkind       = 'S'\nAND attr.attrelid     = dep.refobjid\nAND attr.attnum       = dep.refobjsubid\nAND attr.attrelid     = cons.conrelid\nAND attr.attnum       = cons.conkey[1]\nAND cons.contype      = 'p'\nAND dep.refobjid      = '\#{table}'::regclass\n&quot;</span>, <span class="ruby-value str">'PK and serial sequence'</span>)[<span class="ruby-value">0</span>]
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">empty?</span>
+          <span class="ruby-comment cmt"># If that fails, try parsing the primary key's default value.</span>
+          <span class="ruby-comment cmt"># Support the 7.x and 8.0 nextval('foo'::text) as well as</span>
+          <span class="ruby-comment cmt"># the 8.1+ nextval('foo'::regclass).</span>
+          <span class="ruby-comment cmt"># TODO: assumes sequence is in same schema as table.</span>
+          <span class="ruby-identifier">result</span> = <span class="ruby-identifier">select</span>(<span class="ruby-value str">&quot;SELECT attr.attname AS nm, name.nspname AS nsp, split_part(def.adsrc, '\\\\\\'', 2) AS rel\nFROM pg_class       t\nJOIN pg_namespace   name ON (t.relnamespace = name.oid)\nJOIN pg_attribute   attr ON (t.oid = attrelid)\nJOIN pg_attrdef     def  ON (adrelid = attrelid AND adnum = attnum)\nJOIN pg_constraint  cons ON (conrelid = adrelid AND adnum = conkey[1])\nWHERE t.oid = '\#{table}'::regclass\nAND cons.contype = 'p'\nAND def.adsrc ~* 'nextval'\n&quot;</span>, <span class="ruby-value str">'PK and custom sequence'</span>)[<span class="ruby-value">0</span>]
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-comment cmt"># check for existence of . in sequence name as in public.foo_sequence.  if it does not exist, join the current namespace</span>
+        <span class="ruby-identifier">result</span>[<span class="ruby-value str">'rel'</span>][<span class="ruby-value str">'.'</span>] <span class="ruby-operator">?</span> [<span class="ruby-identifier">result</span>[<span class="ruby-value str">'nm'</span>], <span class="ruby-identifier">result</span>[<span class="ruby-value str">'rel'</span>]] <span class="ruby-operator">:</span> [<span class="ruby-identifier">result</span>[<span class="ruby-value str">'nm'</span>], <span class="ruby-node">&quot;#{result['nsp']}.#{result['rel']}&quot;</span>]
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

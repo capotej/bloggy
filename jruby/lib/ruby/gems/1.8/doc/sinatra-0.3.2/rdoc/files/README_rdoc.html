@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README.rdoc</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README.rdoc</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README.rdoc
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Tue Dec 09 02:07:07 UTC 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1><a href="../classes/Sinatra.html">Sinatra</a></h1>
+<p>
+<a href="../classes/Sinatra.html">Sinatra</a> is a DSL for quickly creating
+web-applications in Ruby with minimal effort.
+</p>
+<h2>Sample App</h2>
+<pre>
+  # myapp.rb
+  require 'rubygems'
+  require 'sinatra'
+  get '/' do
+    'Hello world!'
+  end
+</pre>
+<p>
+Run with <tt>ruby myapp.rb</tt> and view at <tt><a
+href="http://localhost:4567">localhost:4567</a></tt>
+</p>
+<h2>HTTP Methods</h2>
+<pre>
+  get '/' do
+    .. show things ..
+  end
+
+  post '/' do
+    .. create something ..
+  end
+
+  put '/' do
+    .. update something ..
+  end
+
+  delete '/' do
+    .. annihilate something ..
+  end
+
+  head '/' do
+
+  end
+</pre>
+<p>
+NOTE: <tt>put</tt> and <tt>delete</tt> are also triggered when a
+<tt>_method</tt> parameter is set to PUT or DELETE and the HTTP request
+method is POST
+</p>
+<h2>Routes</h2>
+<p>
+Routes are matched based on the order of declaration. The first route that
+matches the request is invoked.
+</p>
+<p>
+Simple:
+</p>
+<pre>
+  get '/hi' do
+    ...
+  end
+</pre>
+<p>
+Named parameters:
+</p>
+<pre>
+  get '/:name' do
+    # matches /sinatra and the like and sets params[:name]
+  end
+</pre>
+<p>
+Splat parameters:
+</p>
+<pre>
+  get '/say/*/to/*' do
+    # matches /say/hello/to/world
+    params[&quot;splat&quot;] # =&gt; [&quot;hello&quot;, &quot;world&quot;]
+  end
+
+  get '/download/*.*' do
+    # matches /download/path/to/file.xml
+    params[&quot;splat&quot;] # =&gt; [&quot;path/to/file&quot;, &quot;xml&quot;]
+  end
+</pre>
+<p>
+User agent matching:
+</p>
+<pre>
+  get '/foo', :agent =&gt; /Songbird (\d\.\d)[\d\/]*?/ do
+    &quot;You're using Songbird version #{params[:agent][0]}&quot;
+  end
+
+  get '/foo' do
+    # matches non-songbird browsers
+  end
+</pre>
+<h2>Static files</h2>
+<p>
+Put all of your static content in the ./public directory
+</p>
+<pre>
+  root
+    \ public
+</pre>
+<p>
+If a file exists that maps to the REQUEST_PATH then it is served and the
+request ends. Otherwise, <a href="../classes/Sinatra.html">Sinatra</a> will
+look for an event that matches the path.
+</p>
+<h2>Views</h2>
+<p>
+Views are searched for in a &quot;views&quot; directory in the same
+location as your main application.
+</p>
+<h3>Haml Templates</h3>
+<pre>
+  get '/' do
+    haml :index
+  end
+</pre>
+<p>
+Renders <tt>./views/index.haml</tt>.
+</p>
+<h3>Erb</h3>
+<pre>
+  get '/' do
+    erb :index
+  end
+</pre>
+<p>
+Renders <tt>./views/index.erb</tt>
+</p>
+<h3>Builder</h3>
+<p>
+See <a href="../classes/Sinatra/Builder.html">Sinatra::Builder</a>
+</p>
+<h3>Sass</h3>
+<pre>
+  get '/stylesheet.css' do
+    content_type 'text/css', :charset =&gt; 'utf-8'
+    sass :stylesheet
+  end
+</pre>
+<p>
+Renders <tt>./views/stylesheet.sass</tt>.
+</p>
+<h3>Inline Templates</h3>
+<pre>
+  get '/' do
+    haml '%div.title Hello World'
+  end
+</pre>
+<p>
+Renders the inlined template string.
+</p>
+<h3>Accessing Variables</h3>
+<p>
+Templates are evaluated within the <a
+href="../classes/Sinatra/EventContext.html">Sinatra::EventContext</a>
+instance used to evaluate event blocks. Instance variables set in event
+blocks can be accessed direcly in views:
+</p>
+<pre>
+  get '/:id' do
+    @foo = Foo.find(params[:id])
+    haml '%h1== @foo.name'
+  end
+</pre>
+<p>
+Or, specify an explicit Hash of local variables:
+</p>
+<pre>
+  get '/:id' do
+    foo = Foo.find(params[:id])
+    haml '%h1== foo.name', :locals =&gt; { :foo =&gt; foo }
+  end
+</pre>
+<p>
+This is typically used when rendering templates as partials from within
+other templates.
+</p>
+<h3>In-file Templates</h3>
+<p>
+Templates may be defined at the end of the source file:
+</p>
+<pre>
+  get '/' do
+    haml :index
+  end
+
+  use_in_file_templates!
+
+  __END__
+
+  @@ layout
+  X
+  = yield
+  X
+
+  @@ index
+  %div.title Hello world!!!!!
+</pre>
+<p>
+It&#8216;s also possible to define named templates using the top-level
+template method:
+</p>
+<pre>
+  template :layout do
+    &quot;X\n=yield\nX&quot;
+  end
+
+  template :index do
+    '%div.title Hello World!'
+  end
+
+  get '/' do
+    haml :index
+  end
+</pre>
+<h2>Helpers</h2>
+<p>
+The top-level <tt>helpers</tt> method takes a block and extends all
+EventContext instances with the methods defined:
+</p>
+<pre>
+  helpers do
+    def bar(name)
+      &quot;#{name}bar&quot;
+    end
+  end
+
+  get '/:name' do
+    bar(params[:name])
+  end
+</pre>
+<h2>Filters</h2>
+<p>
+These are run in <a
+href="../classes/Sinatra/EventContext.html">Sinatra::EventContext</a>
+before every event.
+</p>
+<pre>
+  before do
+    .. this code will run before each event ..
+  end
+</pre>
+<h2>Halt!</h2>
+<p>
+To immediately stop a request during a before filter or event use:
+</p>
+<pre>
+  throw :halt
+</pre>
+<p>
+Set the body to the result of a helper method
+</p>
+<pre>
+  throw :halt, :helper_method
+</pre>
+<p>
+Set the body to the result of a helper method after sending it parameters
+from the local scope
+</p>
+<pre>
+  throw :halt, [:helper_method, foo, bar]
+</pre>
+<p>
+Set the body to a simple string
+</p>
+<pre>
+  throw :halt, 'this will be the body'
+</pre>
+<p>
+Set status then the body
+</p>
+<pre>
+  throw :halt, [401, 'go away!']
+</pre>
+<p>
+Set the status then call a helper method with params from local scope
+</p>
+<pre>
+  throw :halt, [401, [:helper_method, foo, bar]]
+</pre>
+<p>
+Run a proc inside the <a
+href="../classes/Sinatra/EventContext.html">Sinatra::EventContext</a>
+instance and set the body to the result
+</p>
+<pre>
+  throw :halt, lambda { puts 'In a proc!'; 'I just wrote to $stdout!' }
+</pre>
+<p>
+Create you own to_result
+</p>
+<pre>
+  class MyResultObject
+    def to_result(event_context, *args)
+      event_context.body = 'This will be the body!
+    end
+  end
+
+  get '/' do
+    throw :halt, MyResultObject.new
+  end
+</pre>
+<p>
+Get the gist? If you want more fun with this then checkout
+<tt>to_result</tt> on <a href="../classes/Array.html">Array</a>, <a
+href="../classes/Symbol.html">Symbol</a>, <a
+href="../classes/Fixnum.html">Fixnum</a>, <a
+href="../classes/NilClass.html">NilClass</a>.
+</p>
+<h2>Configuration and Reloading</h2>
+<p>
+<a href="../classes/Sinatra.html">Sinatra</a> supports multiple
+environments and reloading. Reloading happens before every request when
+running under the :development environment. Wrap your configurations in
+<tt>configure</tt> (i.e. Database connections, Constants, etc.) to protect
+them from reloading or to target specific environments.
+</p>
+<p>
+All environments:
+</p>
+<pre>
+  configure do
+    ...
+  end
+</pre>
+<p>
+Production:
+</p>
+<pre>
+  configure :production do
+    ...
+  end
+</pre>
+<p>
+Two at a time:
+</p>
+<pre>
+  configure :production, :test do
+    ...
+  end
+</pre>
+<p>
+This is also really nifty for error handling.
+</p>
+<h2>Error handling</h2>
+<p>
+Error handlers run inside the current <a
+href="../classes/Sinatra/EventContext.html">Sinatra::EventContext</a>
+instance, which means you get all the goodies it has to offer (i.e. haml,
+erb, throw :halt, etc.)
+</p>
+<h3>Not Found</h3>
+<p>
+When <a href="../classes/Sinatra/NotFound.html">Sinatra::NotFound</a> is
+raised, the not_found handler is invoked:
+</p>
+<pre>
+  not_found do
+    'This is nowhere to be found'
+  end
+</pre>
+<h3>Error</h3>
+<p>
+By default, the <tt>error</tt> handler is invoked on <a
+href="../classes/Sinatra/ServerError.html">Sinatra::ServerError</a> or when
+an unknown error occurs.
+</p>
+<p>
+The exception can be obtained from the &#8216;sinatra.error&#8217; variable
+in request.env.
+</p>
+<pre>
+  error do
+    'Sorry there was a nasty error - ' + request.env['sinatra.error'].name
+  end
+</pre>
+<p>
+Custom errors:
+</p>
+<pre>
+  error MyCustomError do
+    'So what happened was...' + request.env['sinatra.error'].message
+  end
+</pre>
+<p>
+Then, if this happens:
+</p>
+<pre>
+  get '/' do
+    raise MyCustomError, 'something bad'
+  end
+</pre>
+<p>
+You get this:
+</p>
+<pre>
+  So what happened was... something bad
+</pre>
+<p>
+<a href="../classes/Sinatra.html">Sinatra</a> installs special not_found
+and error handlers when running under the development.
+</p>
+<h2>Mime types</h2>
+<p>
+When using send_file or static files you may have mime types <a
+href="../classes/Sinatra.html">Sinatra</a> doesn&#8216;t understand. Use
+<tt>mime</tt> in those cases.
+</p>
+<pre>
+  mime :foo, 'text/foo'
+</pre>
+<h2>Rack Middleware</h2>
+<p>
+<a href="../classes/Sinatra.html">Sinatra</a> rides on <a
+href="http://rack.rubyforge.org/">Rack</a>, a minimal standard interface
+for Ruby web frameworks. One of Rack&#8216;s most interesting capabilities
+for application developers is support for &quot;middleware&quot; &#8212;
+components that sit between the server and your application monitoring
+and/or manipulating the HTTP request/response to provide various types of
+common functionality.
+</p>
+<p>
+<a href="../classes/Sinatra.html">Sinatra</a> makes building Rack
+middleware pipelines a cinch via a top-level <tt>use</tt> method:
+</p>
+<pre>
+  require 'sinatra'
+  require 'my_custom_middleware'
+
+  use Rack::Lint
+  use MyCustomMiddleware
+
+  get '/hello' do
+    'Hello World'
+  end
+</pre>
+<p>
+The semantics of <tt>use</tt> are identical to those defined for the <a
+href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a>
+DSL (most frequently used from rackup files). For example, the <tt>use</tt>
+method accepts multiple/variable args as well as blocks:
+</p>
+<pre>
+  use Rack::Auth::Basic do |username, password|
+    username == 'admin' &amp;&amp; password == 'secret'
+  end
+</pre>
+<p>
+Rack is distributed with a variety of standard middleware for logging,
+debugging, URL routing, authentication, and session handling. <a
+href="../classes/Sinatra.html">Sinatra</a> uses many of of these components
+automatically based on configuration so you typically don&#8216;t have to
+<tt>use</tt> them explicitly.
+</p>
+<h2>Testing</h2>
+<h3><a href="../classes/Test.html">Test</a>/Unit</h3>
+<pre>
+  require 'rubygems'
+  require 'sinatra'
+  require 'sinatra/test/unit'
+  require 'my_sinatra_app'
+
+  class MyAppTest &lt; Test::Unit::TestCase
+
+    def test_my_default
+      get_it '/'
+      assert_equal 'My Default Page!', @response.body
+    end
+
+    def test_with_agent
+      get_it '/', :agent =&gt; 'Songbird'
+      assert_equal 'You're in Songbird!', @response.body
+    end
+
+    ...
+
+  end
+</pre>
+<h3><a href="../classes/Test.html">Test</a>/Spec</h3>
+<pre>
+  require 'rubygems'
+  require 'sinatra'
+  require 'sinatra/test/spec'
+  require 'my_sinatra_app'
+
+  describe 'My app' do
+
+    it &quot;should show a default page&quot; do
+      get_it '/'
+      should.be.ok
+      body.should.equal 'My Default Page!'
+    end
+
+    ...
+
+  end
+</pre>
+<h3>RSpec</h3>
+<pre>
+  require 'rubygems'
+  require 'spec'
+  require 'sinatra'
+  require 'sinatra/test/rspec'
+  require 'my_sinatra_app'
+
+  describe 'My app' do
+    it 'should show a default page' do
+      get_it '/'
+      @response.should be_ok
+      @response.body.should == 'My Default Page!'
+    end
+
+    ...
+
+  end
+</pre>
+<p>
+See <a
+href="../classes/Sinatra/Test/Methods.html">Sinatra::Test::Methods</a> for
+more information on <tt>get_it</tt>, <tt>post_it</tt>, <tt>put_it</tt>, and
+friends.
+</p>
+<h2>Command line</h2>
+<p>
+<a href="../classes/Sinatra.html">Sinatra</a> applications can be run
+directly:
+</p>
+<pre>
+  ruby myapp.rb [-h] [-x] [-p PORT] [-e ENVIRONMENT]
+</pre>
+<p>
+Options are:
+</p>
+<pre>
+  -h # help
+  -p # set the port (default is 4567)
+  -e # set the environment (default is development)
+  -x # turn on the mutex lock (default is off)
+</pre>
+<h2>Contributing</h2>
+<h3>Tools</h3>
+<p>
+Besides Ruby itself, you only need a text editor, preferably one that
+supports Ruby syntax hilighting. VIM and Emacs are a fine choice on any
+platform, but feel free to use whatever you&#8216;re familiar with.
+</p>
+<p>
+<a href="../classes/Sinatra.html">Sinatra</a> uses the Git source code
+management system. If you&#8216;re unfamiliar with Git, you can find more
+information and tutorials on <a href="http://git.or.cz">git.or.cz</a>/ as
+well as <a href="http://git-scm.com">git-scm.com</a>/. Scott Chacon created
+a great series of introductory screencasts about Git, which you can find
+here: <a href="http://www.gitcasts.com">www.gitcasts.com</a>/
+</p>
+<h3>First Time: Cloning The <a href="../classes/Sinatra.html">Sinatra</a> Repo</h3>
+<pre>
+  cd where/you/keep/your/projects
+  git clone git://github.com/bmizerany/sinatra.git
+  cd sinatra
+  cd path/to/your_project
+  ln -s ../sinatra/
+</pre>
+<h3>Updating Your Existing <a href="../classes/Sinatra.html">Sinatra</a> Clone</h3>
+<pre>
+  cd where/you/keep/sinatra
+  git pull
+</pre>
+<h3>Using Edge <a href="../classes/Sinatra.html">Sinatra</a> in Your App</h3>
+<p>
+at the top of your sinatra_app.rb file:
+</p>
+<pre>
+  $:.unshift File.dirname(__FILE__) + '/sinatra/lib'
+  require 'sinatra'
+
+  get '/about' do
+    &quot;I'm running on Version &quot; + Sinatra::VERSION
+  end
+</pre>
+<h3>Contributing a Patch</h3>
+<p>
+There are several ways to do this. Probably the easiest (and preferred) way
+is to fork <a href="../classes/Sinatra.html">Sinatra</a> on GitHub (<a
+href="http://github.com/bmizerany/sinatra">github.com/bmizerany/sinatra</a>),
+push your changes to your <a href="../classes/Sinatra.html">Sinatra</a>
+repo, and then send Blake Mizerany (bmizerany on GitHub) a pull request.
+</p>
+<p>
+You can also create a patch file and attach it to a feature request or bug
+fix on the issue tracker (see below) or send it to the mailing list (see
+Community section).
+</p>
+<h3>Issue Tracking and Feature Requests</h3>
+<p>
+<a href="http://sinatra.lighthouseapp.com">sinatra.lighthouseapp.com</a>/
+</p>
+<h2>Community</h2>
+<h3>Mailing List</h3>
+<p>
+<a
+href="http://groups.google.com/group/sinatrarb">groups.google.com/group/sinatrarb</a>
+</p>
+<p>
+If you have a problem or question, please make sure to include all the
+relevant information in your mail, like the <a
+href="../classes/Sinatra.html">Sinatra</a> version you&#8216;re using, what
+version of Ruby you have, and so on.
+</p>
+<h3>IRC Channel</h3>
+<p>
+You can find us on the Freenode network in the channel sinatra
+(irc://chat.freenode.net/sinatra)
+</p>
+<p>
+There&#8216;s usually someone online at any given time, but we cannot pay
+attention to the channel all the time, so please stick around for a while
+after asking a question.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

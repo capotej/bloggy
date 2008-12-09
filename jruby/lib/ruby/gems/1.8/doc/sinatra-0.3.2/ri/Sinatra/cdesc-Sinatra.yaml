@@ -1,0 +1,39 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: application
+- !ruby/object:RI::MethodSummary 
+  name: application=
+- !ruby/object:RI::MethodSummary 
+  name: build_application
+- !ruby/object:RI::MethodSummary 
+  name: env
+- !ruby/object:RI::MethodSummary 
+  name: host
+- !ruby/object:RI::MethodSummary 
+  name: options
+- !ruby/object:RI::MethodSummary 
+  name: port
+- !ruby/object:RI::MethodSummary 
+  name: run
+- !ruby/object:RI::MethodSummary 
+  name: server
+class_methods: []
+
+full_name: Sinatra
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''0.3.2'''
+  name: VERSION
+- !ruby/object:RI::Constant 
+  comment: 
+  value: Struct.new(:block, :params, :status) unless defined?(Result)
+  name: Result
+superclass: 
+name: Sinatra

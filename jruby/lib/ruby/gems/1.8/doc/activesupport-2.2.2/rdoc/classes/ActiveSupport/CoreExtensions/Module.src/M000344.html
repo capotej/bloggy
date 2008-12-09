@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>alias_method_chain (ActiveSupport::CoreExtensions::Module)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/core_ext/module/aliasing.rb, line 25</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">alias_method_chain</span>(<span class="ruby-identifier">target</span>, <span class="ruby-identifier">feature</span>)
+        <span class="ruby-comment cmt"># Strip out punctuation on predicates or bang methods since</span>
+        <span class="ruby-comment cmt"># e.g. target?_without_feature is not a valid method name.</span>
+        <span class="ruby-identifier">aliased_target</span>, <span class="ruby-identifier">punctuation</span> = <span class="ruby-identifier">target</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/([?!=])$/</span>, <span class="ruby-value str">''</span>), <span class="ruby-identifier">$1</span>
+        <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">aliased_target</span>, <span class="ruby-identifier">punctuation</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+
+        <span class="ruby-identifier">with_method</span>, <span class="ruby-identifier">without_method</span> = <span class="ruby-node">&quot;#{aliased_target}_with_#{feature}#{punctuation}&quot;</span>, <span class="ruby-node">&quot;#{aliased_target}_without_#{feature}#{punctuation}&quot;</span>
+
+        <span class="ruby-identifier">alias_method</span> <span class="ruby-identifier">without_method</span>, <span class="ruby-identifier">target</span>
+        <span class="ruby-identifier">alias_method</span> <span class="ruby-identifier">target</span>, <span class="ruby-identifier">with_method</span>
+
+        <span class="ruby-keyword kw">case</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">public_method_defined?</span>(<span class="ruby-identifier">without_method</span>)
+            <span class="ruby-identifier">public</span> <span class="ruby-identifier">target</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">protected_method_defined?</span>(<span class="ruby-identifier">without_method</span>)
+            <span class="ruby-identifier">protected</span> <span class="ruby-identifier">target</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">private_method_defined?</span>(<span class="ruby-identifier">without_method</span>)
+            <span class="ruby-identifier">private</span> <span class="ruby-identifier">target</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

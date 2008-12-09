@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Rack::Response#delete_cookie
+params: (key, value={})
+name: delete_cookie
+is_singleton: false
+aliases: []
+

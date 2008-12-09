@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::Derby::monkey_rails"
+params: ()
+name: monkey_rails
+is_singleton: true
+aliases: []
+

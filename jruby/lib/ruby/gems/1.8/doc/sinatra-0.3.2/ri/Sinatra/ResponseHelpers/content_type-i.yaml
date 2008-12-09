@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set the content type of the response body (HTTP 'Content-Type' header).
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>type</tt> argument may be an internet media type (e.g., 'text/html',
+    'application/xml+atom', 'image/png') or a Symbol key into the Rack::File::MIME_TYPES
+    table.
+- !ruby/struct:SM::Flow::P 
+  body: 'Media type parameters, such as &quot;charset&quot;, may also be specified
+    using the optional hash argument:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  get '/foo.html' do\n    content_type 'text/html', :charset =&gt; 'utf-8'\n\
+    \    &quot;&lt;h1&gt;Hello World&lt;/h1&gt;&quot;\n  end\n"
+full_name: Sinatra::ResponseHelpers#content_type
+params: (type, params={})
+name: content_type
+is_singleton: false
+aliases: []
+

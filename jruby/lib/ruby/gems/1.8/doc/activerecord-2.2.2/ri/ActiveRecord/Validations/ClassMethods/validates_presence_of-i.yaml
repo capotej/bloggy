@@ -1,0 +1,48 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Validates that the specified attributes are not blank (as defined by Object#blank?).
+    Happens by default on save. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Person &lt; ActiveRecord::Base\n    validates_presence_of :first_name\n\
+    \  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: The first_name attribute must be in the object and it cannot be blank.
+- !ruby/struct:SM::Flow::P 
+  body: 'If you want to validate the presence of a boolean field (where the real values
+    are true and false), you will want to use validates_inclusion_of :field_name,
+    :in =&gt; [true, false] This is due to the way Object#blank? handles boolean values.
+    false.blank? # =&gt; true'
+- !ruby/struct:SM::Flow::P 
+  body: 'Configuration options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>message</tt> - A custom error message (default is: &quot;can''t be
+      blank&quot;).'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>on</tt> - Specifies when this validation is active (default is <tt>:save</tt>,
+      other options <tt>:create</tt>, <tt>:update</tt>).
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>if</tt> - Specifies a method, proc or string to call to determine if
+      the validation should occur (e.g. :if =&gt; :allow_validation, or :if =&gt;
+      Proc.new { |user| user.signup_step &gt; 2 }). The method, proc or string should
+      return or evaluate to a true or false value.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>unless</tt> - Specifies a method, proc or string to call to determine
+      if the validation should not occur (e.g. :unless =&gt; :skip_validation, or
+      :unless =&gt; Proc.new { |user| user.signup_step &lt;= 2 }). The method, proc
+      or string should return or evaluate to a true or false value.
+    label: '*'
+full_name: ActiveRecord::Validations::ClassMethods#validates_presence_of
+params: (*attr_names)
+name: validates_presence_of
+is_singleton: false
+aliases: []
+

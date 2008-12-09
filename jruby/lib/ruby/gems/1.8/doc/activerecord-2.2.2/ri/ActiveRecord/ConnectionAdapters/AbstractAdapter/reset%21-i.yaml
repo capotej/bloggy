@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Reset the state of this connection, directing the DBMS to clear transactions
+    and other connection-related server-side state. Usually a database-dependent operation.
+- !ruby/struct:SM::Flow::P 
+  body: The default implementation does nothing; the implementation should be overridden
+    by concrete adapters.
+full_name: ActiveRecord::ConnectionAdapters::AbstractAdapter#reset!
+params: ()
+name: reset!
+is_singleton: false
+aliases: []
+

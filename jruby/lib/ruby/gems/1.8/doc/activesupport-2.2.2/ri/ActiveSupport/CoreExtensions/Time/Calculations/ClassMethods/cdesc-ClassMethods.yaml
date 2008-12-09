@@ -1,0 +1,24 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ===
+- !ruby/object:RI::MethodSummary 
+  name: days_in_month
+- !ruby/object:RI::MethodSummary 
+  name: local_time
+- !ruby/object:RI::MethodSummary 
+  name: time_with_datetime_fallback
+- !ruby/object:RI::MethodSummary 
+  name: utc_time
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Time::Calculations::ClassMethods
+constants: []
+
+superclass: 
+name: ClassMethods

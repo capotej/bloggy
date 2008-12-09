@@ -1,0 +1,33 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Delete an object (or multiple objects) where the <tt>id</tt> given matches
+    the primary_key. A SQL <tt>DELETE</tt> command is executed on the database which
+    means that no callbacks are fired off running this. This is an efficient method
+    of deleting records that don't need cleaning up after or other actions to be taken.
+- !ruby/struct:SM::Flow::P 
+  body: Objects are <em>not</em> instantiated with this method, and so +:dependent+
+    rules defined on associations are not honered.
+- !ruby/struct:SM::Flow::H 
+  text: Parameters
+  level: 4
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>id</tt> - Can be either an Integer or an Array of Integers.
+    label: '*'
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Delete a single object\n  Todo.delete(1)\n\n  # Delete multiple objects\n\
+    \  todos = [1,2,3]\n  Todo.delete(todos)\n"
+full_name: ActiveRecord::Base::delete
+params: (id)
+name: delete
+is_singleton: true
+aliases: []
+

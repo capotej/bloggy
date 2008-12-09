@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This is the maximum length a table alias can be
+full_name: ActiveRecord::ConnectionAdapters::SchemaStatements#table_alias_length
+params: ()
+name: table_alias_length
+is_singleton: false
+aliases: []
+

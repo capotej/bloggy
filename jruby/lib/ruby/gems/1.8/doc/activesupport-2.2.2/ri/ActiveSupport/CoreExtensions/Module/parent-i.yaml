@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the module which contains this one according to its name.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  module M\n    module N\n    end\n  end\n  X = M::N\n\n  p M::N.parent # \
+    =&gt; M\n  p X.parent    # =&gt; M\n"
+- !ruby/struct:SM::Flow::P 
+  body: The parent of top-level and anonymous modules is Object.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  p M.parent          # =&gt; Object\n  p Module.new.parent # =&gt; Object\n"
+full_name: ActiveSupport::CoreExtensions::Module#parent
+params: ()
+name: parent
+is_singleton: false
+aliases: []
+

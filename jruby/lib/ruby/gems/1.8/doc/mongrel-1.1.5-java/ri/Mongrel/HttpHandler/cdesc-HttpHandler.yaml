@@ -1,0 +1,49 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: You implement your application handler with this. It's very light giving just
+    the minimum necessary for you to handle a request and shoot back a response. Look
+    at the HttpRequest and HttpResponse objects for how to use them.
+- !ruby/struct:SM::Flow::P 
+  body: This is used for very simple handlers that don't require much to operate.
+    More extensive plugins or those you intend to distribute as GemPlugins should
+    be implemented using the HttpHandlerPlugin mixin.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: listener
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: listener
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: request_notify
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: request_notify
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: process
+- !ruby/object:RI::MethodSummary 
+  name: process
+- !ruby/object:RI::MethodSummary 
+  name: request_begins
+- !ruby/object:RI::MethodSummary 
+  name: request_begins
+- !ruby/object:RI::MethodSummary 
+  name: request_progress
+- !ruby/object:RI::MethodSummary 
+  name: request_progress
+class_methods: []
+
+full_name: Mongrel::HttpHandler
+constants: []
+
+superclass: Object
+name: HttpHandler

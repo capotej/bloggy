@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sends the contents of a file back to the user. Not terribly efficient since
+    it's opening and closing the file for each read.
+full_name: Mongrel::DirHandler#send_file
+params: (req_path, request, response, header_only=false)
+name: send_file
+is_singleton: false
+aliases: []
+

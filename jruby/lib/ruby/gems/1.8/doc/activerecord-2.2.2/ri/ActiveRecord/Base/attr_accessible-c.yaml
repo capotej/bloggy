@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Specifies a white list of model attributes that can be set via mass-assignment,
+    such as <tt>new(attributes)</tt>, <tt>update_attributes(attributes)</tt>, or <tt>attributes=(attributes)</tt>
+- !ruby/struct:SM::Flow::P 
+  body: 'This is the opposite of the <tt>attr_protected</tt> macro: Mass-assignment
+    will only set attributes in this list, to assign to the rest of attributes you
+    can use direct writer methods. This is meant to protect sensitive attributes from
+    being overwritten by malicious users tampering with URLs or forms. If you''d rather
+    start from an all-open default and restrict attributes as needed, have a look
+    at <tt>attr_protected</tt>.'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Customer &lt; ActiveRecord::Base\n    attr_accessible :name, :nickname\n\
+    \  end\n\n  customer = Customer.new(:name =&gt; &quot;David&quot;, :nickname =&gt; \
+    &quot;Dave&quot;, :credit_rating =&gt; &quot;Excellent&quot;)\n  customer.credit_rating \
+    # =&gt; nil\n  customer.attributes = { :name =&gt; &quot;Jolly fellow&quot;, :credit_rating \
+    =&gt; &quot;Superb&quot; }\n  customer.credit_rating # =&gt; nil\n\n  customer.credit_rating \
+    = &quot;Average&quot;\n  customer.credit_rating # =&gt; &quot;Average&quot;\n"
+full_name: ActiveRecord::Base::attr_accessible
+params: (*attributes)
+name: attr_accessible
+is_singleton: true
+aliases: []
+

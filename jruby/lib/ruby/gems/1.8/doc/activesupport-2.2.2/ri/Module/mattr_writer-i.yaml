@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Module#mattr_writer
+params: (*syms)
+name: mattr_writer
+is_singleton: false
+aliases: []
+

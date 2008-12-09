@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a JSON string representing the datetime. If ActiveSupport.use_standard_json_time_format
+    is set to true, the ISO 8601 format is used.
+- !ruby/struct:SM::Flow::H 
+  text: 'Examples:'
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # With ActiveSupport.use_standard_json_time_format = true\n  DateTime.civil(2005,2,1,15,15,10).to_json\n\
+    \  # =&gt; &quot;2005-02-01T15:15:10+00:00&quot;\n\n  # With ActiveSupport.use_standard_json_time_format \
+    = false\n  DateTime.civil(2005,2,1,15,15,10).to_json\n  # =&gt; &quot;2005/02/01 \
+    15:15:10 +0000&quot;\n"
+full_name: DateTime#to_json
+params: (options = nil)
+name: to_json
+is_singleton: false
+aliases: []
+

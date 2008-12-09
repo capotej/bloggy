@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Generates all the attribute related methods for columns in the database accessors,
+    mutators and query methods.
+full_name: ActiveRecord::AttributeMethods::ClassMethods#define_attribute_methods
+params: ()
+name: define_attribute_methods
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: define_read_methods

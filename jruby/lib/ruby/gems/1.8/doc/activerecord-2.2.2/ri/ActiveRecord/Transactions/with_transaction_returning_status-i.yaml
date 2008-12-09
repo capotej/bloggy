@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Executes <tt>method</tt> within a transaction and captures its return value
+    as a status flag. If the status is true the transaction is committed, otherwise
+    a ROLLBACK is issued. In any case the status flag is returned.
+- !ruby/struct:SM::Flow::P 
+  body: This method is available within the context of an ActiveRecord::Base instance.
+full_name: ActiveRecord::Transactions#with_transaction_returning_status
+params: (method, *args)
+name: with_transaction_returning_status
+is_singleton: false
+aliases: []
+

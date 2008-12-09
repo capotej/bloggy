@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Quotes a string, escaping any ' (single quote) and \ (backslash) characters.
+full_name: ActiveRecord::ConnectionAdapters::Quoting#quote_string
+params: (s)
+name: quote_string
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Accepts a list of paths to translation files. Loads translations from plain
+    Ruby (*.rb) or YAML files (*.yml). See #load_rb and #load_yml for details.'
+full_name: I18n::Backend::Simple#load_translations
+params: (*filenames)
+name: load_translations
+is_singleton: false
+aliases: []
+

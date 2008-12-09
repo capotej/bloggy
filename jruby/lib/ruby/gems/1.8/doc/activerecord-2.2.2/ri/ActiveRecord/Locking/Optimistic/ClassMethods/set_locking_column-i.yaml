@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set the column to use for optimistic locking. Defaults to <tt>lock_version</tt>.
+full_name: ActiveRecord::Locking::Optimistic::ClassMethods#set_locking_column
+params: (value = nil, &block)
+name: set_locking_column
+is_singleton: false
+aliases: []
+

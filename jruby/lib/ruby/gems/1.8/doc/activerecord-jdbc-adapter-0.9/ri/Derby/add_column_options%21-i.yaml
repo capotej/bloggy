@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Override default -- fix case where ActiveRecord passes :default =&gt; nil,
+    :null =&gt; true
+full_name: "::Derby#add_column_options!"
+params: (sql, options)
+name: add_column_options!
+is_singleton: false
+aliases: []
+

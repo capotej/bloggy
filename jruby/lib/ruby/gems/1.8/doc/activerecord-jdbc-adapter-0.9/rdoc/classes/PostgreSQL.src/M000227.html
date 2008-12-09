@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>reset_pk_sequence! (::PostgreSQL)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/jdbc_adapter/jdbc_postgre.rb, line 104</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reset_pk_sequence!</span>(<span class="ruby-identifier">table</span>, <span class="ruby-identifier">pk</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">sequence</span> = <span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">pk</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">sequence</span>
+        <span class="ruby-identifier">default_pk</span>, <span class="ruby-identifier">default_sequence</span> = <span class="ruby-identifier">pk_and_sequence_for</span>(<span class="ruby-identifier">table</span>)
+        <span class="ruby-identifier">pk</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">default_pk</span>
+        <span class="ruby-identifier">sequence</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">default_sequence</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pk</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sequence</span>
+          <span class="ruby-identifier">select_value</span> <span class="ruby-value str">&quot;SELECT setval('\#{sequence}', (SELECT COALESCE(MAX(\#{pk})+(SELECT increment_by FROM \#{sequence}), (SELECT min_value FROM \#{sequence})) FROM \#{table}), false)\n&quot;</span>, <span class="ruby-value str">'Reset sequence'</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;#{table} has primary key #{pk} with no default sequence&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@logger</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

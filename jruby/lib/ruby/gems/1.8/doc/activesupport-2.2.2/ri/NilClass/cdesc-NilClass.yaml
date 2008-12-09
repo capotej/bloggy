@@ -1,0 +1,40 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Extensions to <tt>nil</tt> which allow for more helpful error messages for
+    people who are new to Rails.
+- !ruby/struct:SM::Flow::P 
+  body: 'Ruby raises NoMethodError if you invoke a method on an object that does not
+    respond to it:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  $ ruby -e nil.destroy\n  -e:1: undefined method `destroy' for nil:NilClass \
+    (NoMethodError)\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'With these extensions, if the method belongs to the public interface of the
+    classes in NilClass::WHINERS the error message suggests which could be the actual
+    intended class:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  $ script/runner nil.destroy\n  ...\n  You might have expected an instance \
+    of ActiveRecord::Base.\n  ...\n"
+- !ruby/struct:SM::Flow::P 
+  body: NilClass#id exists in Ruby 1.8 (though it is deprecated). Since <tt>id</tt>
+    is a fundamental method of Active Record models NilClass#id is redefined as well
+    to raise a RuntimeError and warn the user. She probably wanted a model database
+    identifier and the 4 returned by the original method could result in obscure bugs.
+- !ruby/struct:SM::Flow::P 
+  body: The flag <tt>config.whiny_nils</tt> determines whether this feature is enabled.
+    By default it is on in development and test modes, and it is off in production
+    mode.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: NilClass
+constants: []
+
+superclass: Object
+name: NilClass

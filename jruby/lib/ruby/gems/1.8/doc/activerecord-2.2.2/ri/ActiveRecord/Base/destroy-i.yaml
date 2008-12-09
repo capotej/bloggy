@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Deletes the record in the database and freezes this instance to reflect that
+    no changes should be made (since they can't be persisted).
+full_name: ActiveRecord::Base#destroy
+params: ()
+name: destroy
+is_singleton: false
+aliases: []
+

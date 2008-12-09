@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns true if its safe to reload the connection between requests for development
+    mode.
+full_name: ActiveRecord::ConnectionAdapters::AbstractAdapter#requires_reloading?
+params: ()
+name: requires_reloading?
+is_singleton: false
+aliases: []
+

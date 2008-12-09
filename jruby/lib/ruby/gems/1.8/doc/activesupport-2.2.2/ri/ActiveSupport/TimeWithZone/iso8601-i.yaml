@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Alias for #xmlschema'
+full_name: ActiveSupport::TimeWithZone#iso8601
+params: ()
+name: iso8601
+is_singleton: false
+aliases: []
+

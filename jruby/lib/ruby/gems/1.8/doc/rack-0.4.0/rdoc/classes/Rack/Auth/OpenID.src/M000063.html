@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>finish (Rack::Auth::OpenID)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/auth/openid.rb, line 332</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">finish</span>(<span class="ruby-identifier">consumer</span>, <span class="ruby-identifier">session</span>, <span class="ruby-identifier">req</span>)
+        <span class="ruby-identifier">oid</span> = <span class="ruby-identifier">consumer</span>.<span class="ruby-identifier">complete</span>(<span class="ruby-identifier">req</span>.<span class="ruby-identifier">params</span>, <span class="ruby-identifier">req</span>.<span class="ruby-identifier">url</span>)
+        <span class="ruby-identifier">pp</span> <span class="ruby-identifier">oid</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$DEBUG</span>
+        <span class="ruby-identifier">req</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'rack.auth.openid.response'</span>] = <span class="ruby-identifier">oid</span>
+
+        <span class="ruby-identifier">goto</span> = <span class="ruby-identifier">session</span>.<span class="ruby-identifier">fetch</span> <span class="ruby-identifier">:site_return</span>, <span class="ruby-ivar">@realm</span>
+        <span class="ruby-identifier">body</span> = []
+
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">oid</span>.<span class="ruby-identifier">status</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-operator">::</span><span class="ruby-constant">OpenID</span><span class="ruby-operator">::</span><span class="ruby-constant">Consumer</span><span class="ruby-operator">::</span><span class="ruby-constant">FAILURE</span>
+          <span class="ruby-identifier">session</span>.<span class="ruby-identifier">clear</span>
+          <span class="ruby-identifier">session</span>[<span class="ruby-value str">'authenticated'</span>] = <span class="ruby-keyword kw">false</span>
+          <span class="ruby-identifier">req</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'rack.errors'</span>].<span class="ruby-identifier">puts</span> <span class="ruby-identifier">oid</span>.<span class="ruby-identifier">message</span>
+
+          <span class="ruby-identifier">goto</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:login_fail</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@option</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">:login_fail</span>
+          <span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Authentication unsuccessful.\n&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-operator">::</span><span class="ruby-constant">OpenID</span><span class="ruby-operator">::</span><span class="ruby-constant">Consumer</span><span class="ruby-operator">::</span><span class="ruby-constant">SUCCESS</span>
+          <span class="ruby-identifier">session</span>.<span class="ruby-identifier">clear</span>
+
+          <span class="ruby-comment cmt">## Extension support</span>
+          <span class="ruby-identifier">extensions</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ext</span>, <span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">session</span>[<span class="ruby-identifier">ext</span><span class="ruby-operator">::</span><span class="ruby-constant">NS_URI</span>] = <span class="ruby-identifier">ext</span><span class="ruby-operator">::</span><span class="ruby-constant">Response</span>.
+              <span class="ruby-identifier">from_success_response</span>(<span class="ruby-identifier">oid</span>).
+              <span class="ruby-identifier">get_extension_args</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">session</span>[<span class="ruby-value str">'authenticated'</span>] = <span class="ruby-keyword kw">true</span>
+          <span class="ruby-comment cmt"># Value for unique identification and such</span>
+          <span class="ruby-identifier">session</span>[<span class="ruby-value str">'identity'</span>] = <span class="ruby-identifier">oid</span>.<span class="ruby-identifier">identity_url</span>
+          <span class="ruby-comment cmt"># Value for display and UI labels</span>
+          <span class="ruby-identifier">session</span>[<span class="ruby-value str">'identifier'</span>] = <span class="ruby-identifier">oid</span>.<span class="ruby-identifier">display_identifier</span>
+
+          <span class="ruby-identifier">goto</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:login_good</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">:login_good</span>
+          <span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Authentication successful.\n&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-operator">::</span><span class="ruby-constant">OpenID</span><span class="ruby-operator">::</span><span class="ruby-constant">Consumer</span><span class="ruby-operator">::</span><span class="ruby-constant">CANCEL</span>
+          <span class="ruby-identifier">session</span>.<span class="ruby-identifier">clear</span>
+          <span class="ruby-identifier">session</span>[<span class="ruby-value str">'authenticated'</span>] = <span class="ruby-keyword kw">false</span>
+
+          <span class="ruby-identifier">goto</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:login_fail</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@option</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">:login_fail</span>
+          <span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Authentication cancelled.\n&quot;</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-operator">::</span><span class="ruby-constant">OpenID</span><span class="ruby-operator">::</span><span class="ruby-constant">Consumer</span><span class="ruby-operator">::</span><span class="ruby-constant">SETUP_NEEDED</span>
+          <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:setup_needed</span>] = <span class="ruby-keyword kw">true</span>
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">o_id</span> = <span class="ruby-identifier">session</span>[<span class="ruby-identifier">:openid_param</span>]
+            <span class="ruby-identifier">raise</span>(<span class="ruby-value str">'Required values missing.'</span>)
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">goto</span> = <span class="ruby-identifier">req</span>.<span class="ruby-identifier">script_name</span><span class="ruby-operator">+</span>
+            <span class="ruby-value str">'?'</span><span class="ruby-operator">+</span><span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:openid_param</span>]<span class="ruby-operator">+</span>
+            <span class="ruby-value str">'='</span><span class="ruby-operator">+</span><span class="ruby-identifier">o_id</span>
+          <span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Reauthentication required.\n&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">oid</span>.<span class="ruby-identifier">message</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">oid</span>.<span class="ruby-identifier">message</span>
+        [ <span class="ruby-value">303</span>, {<span class="ruby-value str">'Location'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">goto</span>}, <span class="ruby-identifier">body</span>]
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

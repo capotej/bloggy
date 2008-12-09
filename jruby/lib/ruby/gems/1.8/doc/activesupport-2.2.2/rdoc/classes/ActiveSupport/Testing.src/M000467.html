@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>run (ActiveSupport::Testing)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/testing/performance.rb, line 35</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">result</span>)
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">method_name</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^default_test$/</span>
+
+        <span class="ruby-keyword kw">yield</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">STARTED</span>, <span class="ruby-identifier">name</span>)
+        <span class="ruby-ivar">@_result</span> = <span class="ruby-identifier">result</span>
+
+        <span class="ruby-identifier">run_warmup</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">profile_options</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">metrics</span> = <span class="ruby-identifier">profile_options</span>[<span class="ruby-identifier">:metrics</span>]
+          <span class="ruby-identifier">metrics</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">metric_name</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">klass</span> = <span class="ruby-constant">Metrics</span>[<span class="ruby-identifier">metric_name</span>.<span class="ruby-identifier">to_sym</span>]
+              <span class="ruby-identifier">run_profile</span>(<span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span>)
+              <span class="ruby-identifier">result</span>.<span class="ruby-identifier">add_run</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">yield</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">FINISHED</span>, <span class="ruby-identifier">name</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

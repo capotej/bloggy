@@ -1,0 +1,85 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'A Hash of options is taken as it''s single initializing argument. For example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  simple_oid = OpenID.new('http://mysite.com/')\n\n  return_oid = OpenID.new('http://mysite.com/', \
+    {\n    :return_to =&gt; 'http://mysite.com/openid'\n  })\n\n  page_oid = OpenID.new('http://mysite.com/',\n\
+    \    :login_good =&gt; 'http://mysite.com/auth_good'\n  )\n\n  complex_oid = OpenID.new('http://mysite.com/',\n\
+    \    :return_to =&gt; 'http://mysite.com/openid',\n    :login_good =&gt; 'http://mysite.com/user/preferences',\n\
+    \    :auth_fail =&gt; [500, {'Content-Type'=&gt;'text/plain'},\n      'Unable to \
+    negotiate with foreign server.'],\n    :immediate =&gt; true,\n    :extensions \
+    =&gt; {\n      ::OpenID::SReg =&gt; [['email'],['nickname']]\n    }\n  )\n"
+- !ruby/struct:SM::Flow::H 
+  text: Arguments
+  level: 1
+- !ruby/struct:SM::Flow::P 
+  body: The first argument is the realm, identifying the site they are trusting with
+    their identity. This is required.
+- !ruby/struct:SM::Flow::P 
+  body: 'NOTE: In OpenID 1.x, the realm or trust_root is optional and the return_to
+    url is required. As this library strives tward ruby-openid 2.0, and OpenID 2.0
+    compatibiliy, the realm is required and return_to is optional. However, this implimentation
+    is still backwards compatible with OpenID 1.0 servers.'
+- !ruby/struct:SM::Flow::P 
+  body: The optional second argument is a hash of options.
+- !ruby/struct:SM::Flow::H 
+  text: Options
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: <tt>:return_to</tt> defines the url to return to after the client authenticates
+    with the openid service provider. This url should point to where Rack::Auth::OpenID
+    is mounted. If <tt>:return_to</tt> is not provided, :return_to will be the current
+    url including all query parameters.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>:session_key</tt> defines the key to the session hash in the env. It defaults
+    to 'rack.session'.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>:openid_param</tt> defines at what key in the request parameters to find
+    the identifier to resolve. As per the 2.0 spec, the default is 'openid_identifier'.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>:immediate</tt> as true will make immediate type of requests the default.
+    See OpenID specification documentation.
+- !ruby/struct:SM::Flow::H 
+  text: URL options
+  level: 3
+- !ruby/struct:SM::Flow::P 
+  body: <tt>:login_good</tt> is the url to go to after the authentication process
+    has completed.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>:login_fail</tt> is the url to go to after the authentication process
+    has failed.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>:login_quit</tt> is the url to go to after the authentication process
+    has been cancelled.
+- !ruby/struct:SM::Flow::H 
+  text: Response options
+  level: 3
+- !ruby/struct:SM::Flow::P 
+  body: <tt>:no_session</tt> should be a rack response to be returned if no or an
+    incompatible session is found.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>:auth_fail</tt> should be a rack response to be returned if an OpenID::DiscoveryFailure
+    occurs. This is typically due to being unable to access the identity url or identity
+    server.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>:error</tt> should be a rack response to return if any other generic error
+    would occur and <tt>options[:catch_errors]</tt> is true.
+- !ruby/struct:SM::Flow::H 
+  text: Extensions
+  level: 3
+- !ruby/struct:SM::Flow::P 
+  body: <tt>:extensions</tt> should be a hash of openid extension implementations.
+    The key should be the extension main module, the value should be an array of arguments
+    for extension::Request.new
+- !ruby/struct:SM::Flow::P 
+  body: 'The hash is iterated over and passed to #add_extension for processing. Please
+    see #add_extension for further documentation.'
+full_name: Rack::Auth::OpenID::new
+params: (realm, options={})
+name: new
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,40 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: identifier
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: kind
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: method
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: options
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ==
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: dup
+- !ruby/object:RI::MethodSummary 
+  name: eql?
+- !ruby/object:RI::MethodSummary 
+  name: hash
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: ActiveSupport::Callbacks::Callback
+constants: []
+
+superclass: Object
+name: Callback

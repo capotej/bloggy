@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: By default, <tt>camelize</tt> converts strings to UpperCamelCase. If the argument
+    to <tt>camelize</tt> is set to <tt>:lower</tt> then <tt>camelize</tt> produces
+    lowerCamelCase.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>camelize</tt> will also convert '/' to '::' which is useful for converting
+    paths to namespaces.
+- !ruby/struct:SM::Flow::P 
+  body: 'Examples:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &quot;active_record&quot;.camelize                # =&gt; &quot;ActiveRecord&quot;\n\
+    \  &quot;active_record&quot;.camelize(:lower)        # =&gt; &quot;activeRecord&quot;\n\
+    \  &quot;active_record/errors&quot;.camelize         # =&gt; &quot;ActiveRecord::Errors&quot;\n\
+    \  &quot;active_record/errors&quot;.camelize(:lower) # =&gt; &quot;activeRecord::Errors&quot;\n"
+full_name: ActiveSupport::Inflector#camelize
+params: (lower_case_and_underscored_word, first_letter_in_uppercase = true)
+name: camelize
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Capitalizes the first word, turns underscores into spaces, and strips '_id'.
+    Like <tt>titleize</tt>, this is meant for creating pretty output.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &quot;employee_salary&quot; # =&gt; &quot;Employee salary&quot;\n  &quot;author_id&quot; \
+    \      # =&gt; &quot;Author&quot;\n"
+full_name: ActiveSupport::CoreExtensions::String::Inflections#humanize
+params: ()
+name: humanize
+is_singleton: false
+aliases: []
+

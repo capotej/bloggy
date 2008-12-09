@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>POST (Rack::Request)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/request.rb, line 107</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-constant">POST</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.request.form_input&quot;</span>].<span class="ruby-identifier">eql?</span> <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.input&quot;</span>]
+        <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.request.form_hash&quot;</span>]
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">form_data?</span>
+        <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.request.form_input&quot;</span>] = <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.input&quot;</span>]
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.request.form_hash&quot;</span>] =
+            <span class="ruby-constant">Utils</span><span class="ruby-operator">::</span><span class="ruby-constant">Multipart</span>.<span class="ruby-identifier">parse_multipart</span>(<span class="ruby-identifier">env</span>)
+          <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.request.form_vars&quot;</span>] = <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.input&quot;</span>].<span class="ruby-identifier">read</span>
+          <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.request.form_hash&quot;</span>] = <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">parse_query</span>(<span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.request.form_vars&quot;</span>])
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-ivar">@env</span>[<span class="ruby-value str">&quot;rack.request.form_hash&quot;</span>]
+      <span class="ruby-keyword kw">else</span>
+        {}
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

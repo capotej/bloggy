@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: derby_connection
+- !ruby/object:RI::MethodSummary 
+  name: h2_connection
+- !ruby/object:RI::MethodSummary 
+  name: hsqldb_connection
+- !ruby/object:RI::MethodSummary 
+  name: mysql_connection
+- !ruby/object:RI::MethodSummary 
+  name: oracle_connection
+- !ruby/object:RI::MethodSummary 
+  name: postgresql_connection
+class_methods: []
+
+full_name: "::ActiveRecordExtensions"
+constants: []
+
+superclass: 
+name: ActiveRecordExtensions

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::DatabaseStatements#limited_update_conditions
+params: (where_sql, quoted_table_name, quoted_primary_key)
+name: limited_update_conditions
+is_singleton: false
+aliases: []
+

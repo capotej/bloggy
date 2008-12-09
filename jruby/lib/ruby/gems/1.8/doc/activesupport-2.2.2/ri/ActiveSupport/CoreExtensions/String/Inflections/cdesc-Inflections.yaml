@@ -1,0 +1,50 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: String inflections define new methods on the String class to transform names
+    for different purposes. For instance, you can figure out the name of a database
+    from the name of a class.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &quot;ScaleScore&quot;.tableize # =&gt; &quot;scale_scores&quot;\n"
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: camelcase
+- !ruby/object:RI::MethodSummary 
+  name: camelize
+- !ruby/object:RI::MethodSummary 
+  name: classify
+- !ruby/object:RI::MethodSummary 
+  name: constantize
+- !ruby/object:RI::MethodSummary 
+  name: dasherize
+- !ruby/object:RI::MethodSummary 
+  name: demodulize
+- !ruby/object:RI::MethodSummary 
+  name: foreign_key
+- !ruby/object:RI::MethodSummary 
+  name: humanize
+- !ruby/object:RI::MethodSummary 
+  name: parameterize
+- !ruby/object:RI::MethodSummary 
+  name: pluralize
+- !ruby/object:RI::MethodSummary 
+  name: singularize
+- !ruby/object:RI::MethodSummary 
+  name: tableize
+- !ruby/object:RI::MethodSummary 
+  name: titlecase
+- !ruby/object:RI::MethodSummary 
+  name: titleize
+- !ruby/object:RI::MethodSummary 
+  name: underscore
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::String::Inflections
+constants: []
+
+superclass: 
+name: Inflections

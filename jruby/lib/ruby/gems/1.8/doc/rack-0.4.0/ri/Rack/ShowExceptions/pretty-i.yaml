@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Rack::ShowExceptions#pretty
+params: (env, exception)
+name: pretty
+is_singleton: false
+aliases: []
+

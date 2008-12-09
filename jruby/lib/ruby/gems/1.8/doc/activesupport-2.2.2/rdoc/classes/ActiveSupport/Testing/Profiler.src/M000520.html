@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>output_filename (ActiveSupport::Testing::Profiler)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/testing/performance.rb, line 206</span>
+          <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">output_filename</span>(<span class="ruby-identifier">printer_class</span>)
+            <span class="ruby-identifier">suffix</span> =
+              <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">printer_class</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">demodulize</span>
+                <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'FlatPrinter'</span>; <span class="ruby-value str">'flat.txt'</span>
+                <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'GraphPrinter'</span>; <span class="ruby-value str">'graph.txt'</span>
+                <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'GraphHtmlPrinter'</span>; <span class="ruby-value str">'graph.html'</span>
+                <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'CallTreePrinter'</span>; <span class="ruby-value str">'tree.txt'</span>
+                <span class="ruby-keyword kw">else</span> <span class="ruby-identifier">printer_class</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/Printer$/</span>, <span class="ruby-value str">''</span>).<span class="ruby-identifier">underscore</span>
+              <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-node">&quot;#{super()}_#{suffix}&quot;</span>
+          <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: It sets up and uses session data at <tt>:openid</tt> within the session. It
+    sets up the ::OpenID::Consumer using the store specified by <tt>options[:store]</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: 'If the parameter specified by <tt>options[:openid_param]</tt> is present,
+    processing is passed to #check and the result is returned.'
+- !ruby/struct:SM::Flow::P 
+  body: 'If the parameter ''openid.mode'' is set, implying a followup from the openid
+    server, processing is passed to #finish and the result is returned.'
+- !ruby/struct:SM::Flow::P 
+  body: If neither of these conditions are met, a 400 error is returned.
+- !ruby/struct:SM::Flow::P 
+  body: If an error is thrown and <tt>options[:catch_errors]</tt> is false, the exception
+    will be reraised. Otherwise a 500 error is returned.
+full_name: Rack::Auth::OpenID#call
+params: (env)
+name: call
+is_singleton: false
+aliases: []
+

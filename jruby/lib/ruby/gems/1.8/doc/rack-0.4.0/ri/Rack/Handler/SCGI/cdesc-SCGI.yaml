@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: app
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: process_request
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: run
+full_name: Rack::Handler::SCGI
+constants: []
+
+superclass: "::SCGI::Processor"
+name: SCGI

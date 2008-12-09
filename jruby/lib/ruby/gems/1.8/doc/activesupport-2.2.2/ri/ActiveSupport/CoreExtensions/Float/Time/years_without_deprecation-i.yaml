@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveSupport::CoreExtensions::Float::Time#years_without_deprecation
+params: ()
+name: years_without_deprecation
+is_singleton: false
+aliases: []
+

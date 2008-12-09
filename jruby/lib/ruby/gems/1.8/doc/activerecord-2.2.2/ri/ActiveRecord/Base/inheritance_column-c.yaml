@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Defines the column name for use with single table inheritance -- can be set
+    in subclasses like so: self.inheritance_column = &quot;type_id&quot;'
+full_name: ActiveRecord::Base::inheritance_column
+params: ()
+name: inheritance_column
+is_singleton: true
+aliases: []
+

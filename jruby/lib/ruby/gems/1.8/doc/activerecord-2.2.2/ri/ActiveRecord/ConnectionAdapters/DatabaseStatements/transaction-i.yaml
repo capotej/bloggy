@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: ""
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Wrap a block in a transaction. Returns result of block.
+full_name: ActiveRecord::ConnectionAdapters::DatabaseStatements#transaction
+params: (start_db_transaction = true) {|| ...}
+name: transaction
+is_singleton: false
+aliases: []
+

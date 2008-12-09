@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: MongrelDbg::configure
+params: (log_dir = File.join("log","mongrel_debug"))
+name: configure
+is_singleton: true
+aliases: []
+

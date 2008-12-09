@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>_call (Rack::Directory)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/directory.rb, line 55</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_call</span>(<span class="ruby-identifier">env</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">env</span>[<span class="ruby-value str">&quot;PATH_INFO&quot;</span>].<span class="ruby-identifier">include?</span> <span class="ruby-value str">&quot;..&quot;</span>
+        <span class="ruby-identifier">body</span> = <span class="ruby-value str">&quot;Forbidden\n&quot;</span>
+        <span class="ruby-identifier">size</span> = <span class="ruby-identifier">body</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:bytesize</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">bytesize</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">size</span>
+        <span class="ruby-keyword kw">return</span> [<span class="ruby-value">403</span>, {<span class="ruby-value str">&quot;Content-Type&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;text/plain&quot;</span>,<span class="ruby-value str">&quot;Content-Length&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">size</span>.<span class="ruby-identifier">to_s</span>}, [<span class="ruby-identifier">body</span>]]
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-ivar">@path</span> = <span class="ruby-constant">F</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@root</span>, <span class="ruby-constant">Utils</span>.<span class="ruby-identifier">unescape</span>(<span class="ruby-identifier">env</span>[<span class="ruby-value str">'PATH_INFO'</span>]))
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">F</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@path</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-constant">F</span>.<span class="ruby-identifier">readable?</span>(<span class="ruby-ivar">@path</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-constant">F</span>.<span class="ruby-identifier">file?</span>(<span class="ruby-ivar">@path</span>)
+          <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-constant">F</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-ivar">@path</span>)
+          <span class="ruby-ivar">@files</span> = [[<span class="ruby-value str">'../'</span>,<span class="ruby-value str">'Parent Directory'</span>,<span class="ruby-value str">''</span>,<span class="ruby-value str">''</span>,<span class="ruby-value str">''</span>]]
+          <span class="ruby-identifier">sName</span>, <span class="ruby-identifier">pInfo</span> = <span class="ruby-identifier">env</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-value str">'SCRIPT_NAME'</span>, <span class="ruby-value str">'PATH_INFO'</span>)
+          <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">entries</span>(<span class="ruby-ivar">@path</span>).<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">file</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value">?.</span>
+            <span class="ruby-identifier">fl</span>    = <span class="ruby-constant">F</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@path</span>, <span class="ruby-identifier">file</span>)
+            <span class="ruby-identifier">sz</span>    = <span class="ruby-constant">F</span>.<span class="ruby-identifier">size</span>(<span class="ruby-identifier">fl</span>)
+            <span class="ruby-identifier">url</span>   = <span class="ruby-constant">F</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">sName</span>, <span class="ruby-identifier">pInfo</span>, <span class="ruby-identifier">file</span>)
+            <span class="ruby-identifier">type</span>  = <span class="ruby-constant">F</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">fl</span>) <span class="ruby-operator">?</span> <span class="ruby-value str">'directory'</span> <span class="ruby-operator">:</span>
+              <span class="ruby-constant">MIME_TYPES</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-constant">F</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">file</span>)[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>],<span class="ruby-value str">'unknown'</span>)
+            <span class="ruby-identifier">size</span>  = (<span class="ruby-identifier">type!</span>=<span class="ruby-value str">'directory'</span> <span class="ruby-operator">?</span> (<span class="ruby-identifier">sz</span><span class="ruby-operator">&lt;</span><span class="ruby-value">10240</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;#{sz}B&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{sz/1024}KB&quot;</span>) <span class="ruby-operator">:</span> <span class="ruby-value str">'-'</span>)
+            <span class="ruby-identifier">mtime</span> = <span class="ruby-constant">F</span>.<span class="ruby-identifier">mtime</span>(<span class="ruby-identifier">fl</span>).<span class="ruby-identifier">httpdate</span>
+            <span class="ruby-ivar">@files</span> <span class="ruby-operator">&lt;&lt;</span> [ <span class="ruby-identifier">url</span>, <span class="ruby-identifier">file</span>, <span class="ruby-identifier">size</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">mtime</span> ]
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">return</span> [ <span class="ruby-value">200</span>, {<span class="ruby-value str">'Content-Type'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value str">'text/html'</span>}, <span class="ruby-keyword kw">self</span> ]
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">body</span> = <span class="ruby-node">&quot;Entity not found: #{env[&quot;PATH_INFO&quot;]}\n&quot;</span>
+      <span class="ruby-identifier">size</span> = <span class="ruby-identifier">body</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:bytesize</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">bytesize</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">size</span>
+      <span class="ruby-keyword kw">return</span> [<span class="ruby-value">404</span>, {<span class="ruby-value str">&quot;Content-Type&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;text/plain&quot;</span>, <span class="ruby-value str">&quot;Content-Length&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">size</span>.<span class="ruby-identifier">to_s</span>}, [<span class="ruby-identifier">body</span>]]
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

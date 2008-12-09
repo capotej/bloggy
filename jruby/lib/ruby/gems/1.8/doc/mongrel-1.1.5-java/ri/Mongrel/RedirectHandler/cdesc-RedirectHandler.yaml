@@ -1,0 +1,35 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This handler allows you to redirect one url to another. You can use it like
+    String#gsub, where the string is the REQUEST_URI. REQUEST_URI is the full path
+    with GET parameters.
+- !ruby/struct:SM::Flow::P 
+  body: Eg. /test/something?help=true&amp;disclaimer=false
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 2
+- !ruby/struct:SM::Flow::VERB 
+  body: "  h = Mongrel::HttpServer.new('0.0.0.0')\n  h.register '/test', Mongrel::RedirectHandler.new('/to/there') \
+    # simple\n  h.register '/to',   Mongrel::RedirectHandler.new(/t/, 'w') # regexp\n\
+    \  # and with a block\n  h.register '/hey',  Mongrel::RedirectHandler.new(/(\\\
+    w+)/) { |match| ... }\n"
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: process
+- !ruby/object:RI::MethodSummary 
+  name: process
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Mongrel::RedirectHandler
+constants: []
+
+superclass: Mongrel::HttpHandler
+name: RedirectHandler

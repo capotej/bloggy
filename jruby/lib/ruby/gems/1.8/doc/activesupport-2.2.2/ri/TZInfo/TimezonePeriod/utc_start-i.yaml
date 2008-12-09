@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The start time of the period in UTC as a DateTime. May be nil if unbounded.
+full_name: TZInfo::TimezonePeriod#utc_start
+params: ()
+name: utc_start
+is_singleton: false
+aliases: []
+

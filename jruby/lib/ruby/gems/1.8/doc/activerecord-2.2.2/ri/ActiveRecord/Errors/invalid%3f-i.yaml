@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns true if the specified <tt>attribute</tt> has errors associated with
+    it.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Company &lt; ActiveRecord::Base\n    validates_presence_of :name, \
+    :address, :email\n    validates_length_of :name, :in =&gt; 5..30\n  end\n\n  company \
+    = Company.create(:address =&gt; '123 First St.')\n  company.errors.invalid?(:name) \
+    \     # =&gt; true\n  company.errors.invalid?(:address)   # =&gt; false\n"
+full_name: ActiveRecord::Errors#invalid?
+params: (attribute)
+name: invalid?
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: self  if block_given?
+comment: 
+full_name: Rack::Response::new
+params: (body=[], status=200, header={}, &block) {|self if block_given?| ...}
+name: new
+is_singleton: true
+aliases: []
+

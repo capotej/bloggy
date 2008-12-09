@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (slice)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Splits or iterates over the array in groups of size <tt>number</tt>, padding
+    any remaining slots with <tt>fill_with</tt> unless it is <tt>false</tt>.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  %w(1 2 3 4 5 6 7).in_groups_of(3) {|group| p group}\n  [&quot;1&quot;, \
+    &quot;2&quot;, &quot;3&quot;]\n  [&quot;4&quot;, &quot;5&quot;, &quot;6&quot;]\n\
+    \  [&quot;7&quot;, nil, nil]\n\n  %w(1 2 3).in_groups_of(2, '&amp;nbsp;') {|group| \
+    p group}\n  [&quot;1&quot;, &quot;2&quot;]\n  [&quot;3&quot;, &quot;&amp;nbsp;&quot;]\n\
+    \n  %w(1 2 3).in_groups_of(2, false) {|group| p group}\n  [&quot;1&quot;, &quot;2&quot;]\n\
+    \  [&quot;3&quot;]\n"
+full_name: ActiveSupport::CoreExtensions::Array::Grouping#in_groups_of
+params: (number, fill_with = nil) {|slice| ...}
+name: in_groups_of
+is_singleton: false
+aliases: []
+

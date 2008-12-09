@@ -1,0 +1,54 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Send binary data to the user as a file download. May set content type, apparent
+    file name, and specify whether to show data inline or download as an attachment.
+- !ruby/struct:SM::Flow::P 
+  body: 'Options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:filename</tt> - Suggests a filename for the browser to use.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:type</tt> - specifies an HTTP content type. Defaults to 'application/octet-stream'.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:disposition</tt> - specifies whether the file will be shown inline
+      or downloaded. Valid values are 'inline' and 'attachment' (default).
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:status</tt> - specifies the status code to send with the response.
+      Defaults to '200 OK'.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:last_modified</tt> - an optional RFC 2616 formatted date value (See
+      Time#httpdate) indicating the last modified time of the response entity. If
+      the request includes an If-Modified-Since header that matches this value exactly,
+      a 304 Not Modified response is sent instead of the data.
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: 'Generic data download:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  send_data buffer\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Download a dynamically-generated tarball:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  send_data generate_tgz('dir'), :filename =&gt; 'dir.tgz'\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Display an image Active Record in the browser:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  send_data image.data,\n    :type =&gt; image.content_type,\n    :disposition \
+    =&gt; 'inline'\n"
+- !ruby/struct:SM::Flow::P 
+  body: See <tt>send_file</tt> for more information on HTTP Content-* headers and
+    caching.
+full_name: Sinatra::Streaming#send_data
+params: (data, options = {})
+name: send_data
+is_singleton: false
+aliases: []
+

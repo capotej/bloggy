@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: quote
+- !ruby/object:RI::MethodSummary 
+  name: quote_column_name
+- !ruby/object:RI::MethodSummary 
+  name: quote_string
+- !ruby/object:RI::MethodSummary 
+  name: quote_table_name
+- !ruby/object:RI::MethodSummary 
+  name: quoted_date
+- !ruby/object:RI::MethodSummary 
+  name: quoted_false
+- !ruby/object:RI::MethodSummary 
+  name: quoted_string_prefix
+- !ruby/object:RI::MethodSummary 
+  name: quoted_true
+class_methods: []
+
+full_name: ActiveRecord::ConnectionAdapters::Quoting
+constants: []
+
+superclass: 
+name: Quoting

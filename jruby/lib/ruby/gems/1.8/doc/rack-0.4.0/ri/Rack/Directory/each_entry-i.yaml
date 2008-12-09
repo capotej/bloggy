@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: e
+comment: 
+full_name: Rack::Directory#each_entry
+params: () {|e| ...}
+name: each_entry
+is_singleton: false
+aliases: []
+

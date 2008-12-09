@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Short-hand for years_since(1)
+full_name: ActiveSupport::CoreExtensions::Date::Calculations#next_year
+params: ()
+name: next_year
+is_singleton: false
+aliases: []
+

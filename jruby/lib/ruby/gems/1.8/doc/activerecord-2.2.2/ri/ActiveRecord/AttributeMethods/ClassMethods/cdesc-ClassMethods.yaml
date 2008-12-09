@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Declare and check for suffixed attribute methods.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: attribute_method_suffix
+- !ruby/object:RI::MethodSummary 
+  name: cache_attribute?
+- !ruby/object:RI::MethodSummary 
+  name: cache_attributes
+- !ruby/object:RI::MethodSummary 
+  name: cached_attributes
+- !ruby/object:RI::MethodSummary 
+  name: define_attribute_methods
+- !ruby/object:RI::MethodSummary 
+  name: define_read_methods
+- !ruby/object:RI::MethodSummary 
+  name: generated_methods?
+- !ruby/object:RI::MethodSummary 
+  name: instance_method_already_implemented?
+- !ruby/object:RI::MethodSummary 
+  name: match_attribute_method?
+class_methods: []
+
+full_name: ActiveRecord::AttributeMethods::ClassMethods
+constants: []
+
+superclass: 
+name: ClassMethods

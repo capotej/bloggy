@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Returns a clone of the record that hasn''t been assigned an id yet and is
+    treated as a new record. Note that this is a &quot;shallow&quot; clone: it copies
+    the object''s attributes only, not its associations. The extent of a &quot;deep&quot;
+    clone is application-specific and is therefore left to the application to implement
+    according to its need.'
+full_name: ActiveRecord::Base#clone
+params: ()
+name: clone
+is_singleton: false
+aliases: []
+

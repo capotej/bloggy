@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Is called <em>after</em> <tt>Base.destroy</tt> (and all the attributes have
+    been frozen).
+- !ruby/struct:SM::Flow::VERB 
+  body: " class Contact &lt; ActiveRecord::Base\n   after_destroy { |record| logger.info( \
+    &quot;Contact #{record.id} was destroyed.&quot; ) }\n end\n"
+full_name: ActiveRecord::Callbacks#after_destroy
+params: ()
+name: after_destroy
+is_singleton: false
+aliases: []
+

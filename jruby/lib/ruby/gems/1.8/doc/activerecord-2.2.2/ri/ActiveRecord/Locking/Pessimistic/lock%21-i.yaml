@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Obtain a row lock on this record. Reloads the record to obtain the requested
+    lock. Pass an SQL locking clause to append the end of the SELECT statement or
+    pass true for &quot;FOR UPDATE&quot; (the default, an exclusive row lock). Returns
+    the locked record.
+full_name: ActiveRecord::Locking::Pessimistic#lock!
+params: (lock = true)
+name: lock!
+is_singleton: false
+aliases: []
+

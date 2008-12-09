@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Alias for #symbolize_keys'
+full_name: ActiveSupport::CoreExtensions::Hash::Keys#to_options
+params: ()
+name: to_options
+is_singleton: false
+aliases: []
+

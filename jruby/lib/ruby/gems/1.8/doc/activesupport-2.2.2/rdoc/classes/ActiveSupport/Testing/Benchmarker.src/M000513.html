@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>environment (ActiveSupport::Testing::Benchmarker)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/testing/performance.rb, line 125</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">environment</span>
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-ivar">@env</span>
+            <span class="ruby-identifier">app</span> = <span class="ruby-node">&quot;#{$1}.#{$2}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-value str">'.git'</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-value">`git branch -v`</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^\* (\S+)\s+(\S+)/</span>
+
+            <span class="ruby-identifier">rails</span> = <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">VERSION</span><span class="ruby-operator">::</span><span class="ruby-constant">STRING</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-value str">'vendor/rails/.git'</span>)
+              <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-value str">'vendor/rails'</span>) <span class="ruby-keyword kw">do</span>
+                <span class="ruby-identifier">rails</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;.#{$1}.#{$2}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-value">`git branch -v`</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^\* (\S+)\s+(\S+)/</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">ruby</span> = <span class="ruby-keyword kw">defined?</span>(<span class="ruby-constant">RUBY_ENGINE</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">RUBY_ENGINE</span> <span class="ruby-operator">:</span> <span class="ruby-value str">'ruby'</span>
+            <span class="ruby-identifier">ruby</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;-#{RUBY_VERSION}.#{RUBY_PATCHLEVEL}&quot;</span>
+
+            <span class="ruby-ivar">@env</span> = [<span class="ruby-identifier">app</span>, <span class="ruby-identifier">rails</span>, <span class="ruby-identifier">ruby</span>, <span class="ruby-constant">RUBY_PLATFORM</span>] <span class="ruby-operator">*</span> <span class="ruby-value str">','</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-ivar">@env</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

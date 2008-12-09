@@ -1,0 +1,48 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Represents the schema of an SQL table in an abstract way. This class provides
+    methods for manipulating the schema representation.
+- !ruby/struct:SM::Flow::P 
+  body: 'Inside migration files, the <tt>t</tt> object in <tt>create_table</tt> and
+    <tt>change_table</tt> is actually of this type:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class SomeMigration &lt; ActiveRecord::Migration\n    def self.up\n    \
+    \  create_table :foo do |t|\n        puts t.class  # =&gt; &quot;ActiveRecord::ConnectionAdapters::TableDefinition&quot;\n\
+    \      end\n    end\n\n    def self.down\n      ...\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: The table definitions The Columns are stored as a ColumnDefinition in the
+    <tt>columns</tt> attribute.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: An array of ColumnDefinition objects, representing the column changes that
+      have been defined.
+  rw: RW
+  name: columns
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: '[]'
+- !ruby/object:RI::MethodSummary 
+  name: belongs_to
+- !ruby/object:RI::MethodSummary 
+  name: column
+- !ruby/object:RI::MethodSummary 
+  name: primary_key
+- !ruby/object:RI::MethodSummary 
+  name: references
+- !ruby/object:RI::MethodSummary 
+  name: timestamps
+- !ruby/object:RI::MethodSummary 
+  name: to_sql
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: ActiveRecord::ConnectionAdapters::TableDefinition
+constants: []
+
+superclass: Object
+name: TableDefinition

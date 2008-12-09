@@ -1,0 +1,16 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: acts_like_date?
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Date::Behavior
+constants: []
+
+superclass: 
+name: Behavior

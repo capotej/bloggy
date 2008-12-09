@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Resets the parser to it's initial state so that you can reuse it rather than
+    making new ones.
+full_name: Mongrel::HttpParser#reset
+params: |
+  parser.reset -> nil
+name: reset
+is_singleton: false
+aliases: []
+

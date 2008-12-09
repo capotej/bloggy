@@ -1,0 +1,92 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Serves the contents of a directory. You give it the path to the root where
+    the files are located, and it tries to find the files based on the PATH_INFO inside
+    the directory. If the requested path is a directory then it returns a simple directory
+    listing.
+- !ruby/struct:SM::Flow::P 
+  body: It does a simple protection against going outside it's root path by converting
+    all paths to an absolute expanded path, and then making sure that the final expanded
+    path includes the root path. If it doesn't than it simply gives a 404.
+- !ruby/struct:SM::Flow::P 
+  body: If you pass nil as the root path, it will not check any locations or expand
+    any paths. This lets you serve files from multiple drives on win32. It should
+    probably not be used in a public-facing way without additional checks.
+- !ruby/struct:SM::Flow::P 
+  body: The default content type is &quot;text/plain; charset=ISO-8859-1&quot; but
+    you can change it anything you want using the DirHandler.default_content_type
+    attribute.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: default_content_type
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: RW
+  name: default_content_type
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: path
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: path
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: can_serve
+- !ruby/object:RI::MethodSummary 
+  name: can_serve
+- !ruby/object:RI::MethodSummary 
+  name: process
+- !ruby/object:RI::MethodSummary 
+  name: process
+- !ruby/object:RI::MethodSummary 
+  name: send_dir_listing
+- !ruby/object:RI::MethodSummary 
+  name: send_dir_listing
+- !ruby/object:RI::MethodSummary 
+  name: send_file
+- !ruby/object:RI::MethodSummary 
+  name: send_file
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: add_mime_type
+- !ruby/object:RI::MethodSummary 
+  name: add_mime_type
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Mongrel::DirHandler
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"mime_types.yml"'
+  name: MIME_TYPES_FILE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: YAML.load_file(File.join(File.dirname(__FILE__), MIME_TYPES_FILE))
+  name: MIME_TYPES
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"Only HEAD and GET allowed.".freeze'
+  name: ONLY_HEAD_GET
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"mime_types.yml"'
+  name: MIME_TYPES_FILE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: YAML.load_file(File.join(File.dirname(__FILE__), MIME_TYPES_FILE))
+  name: MIME_TYPES
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"Only HEAD and GET allowed.".freeze'
+  name: ONLY_HEAD_GET
+superclass: HttpHandler
+name: DirHandler

@@ -1,0 +1,11 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::TableDefinition#references
+params: (*args)
+name: references
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: belongs_to

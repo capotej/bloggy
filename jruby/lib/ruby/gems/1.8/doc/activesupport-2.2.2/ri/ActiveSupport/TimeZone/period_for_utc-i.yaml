@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Available so that TimeZone instances respond like TZInfo::Timezone instances
+full_name: ActiveSupport::TimeZone#period_for_utc
+params: (time)
+name: period_for_utc
+is_singleton: false
+aliases: []
+

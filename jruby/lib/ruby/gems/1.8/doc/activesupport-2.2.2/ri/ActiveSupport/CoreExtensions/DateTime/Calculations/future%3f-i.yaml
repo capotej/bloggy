@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Tells whether the DateTime object's datetime lies in the future
+full_name: ActiveSupport::CoreExtensions::DateTime::Calculations#future?
+params: ()
+name: future?
+is_singleton: false
+aliases: []
+

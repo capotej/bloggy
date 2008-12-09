@@ -1,0 +1,83 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sends the file by streaming it 8192 bytes at a time. This way the whole file
+    doesn't need to be read into memory at once. This makes it feasible to send even
+    large files.
+- !ruby/struct:SM::Flow::P 
+  body: Be careful to sanitize the path parameter if it coming from a web page. send_file(params[:path])
+    allows a malicious user to download any file on your server.
+- !ruby/struct:SM::Flow::P 
+  body: 'Options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:filename</tt> - suggests a filename for the browser to use. Defaults
+      to File.basename(path).
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:type</tt> - specifies an HTTP content type. Defaults to 'application/octet-stream'.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:disposition</tt> - specifies whether the file will be shown inline
+      or downloaded. Valid values are 'inline' and 'attachment' (default). When set
+      to nil, the Content-Disposition and Content-Transfer-Encoding headers are omitted
+      entirely.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:stream</tt> - whether to send the file to the user agent as it is read
+      (true) or to read the entire file before sending (false). Defaults to true.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:buffer_size</tt> - specifies size (in bytes) of the buffer used to
+      stream the file. Defaults to 8192.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:status</tt> - specifies the status code to send with the response.
+      Defaults to '200 OK'.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:last_modified</tt> - an optional RFC 2616 formatted date value (See
+      Time#httpdate) indicating the last modified time of the file. If the request
+      includes an If-Modified-Since header that matches this value exactly, a 304
+      Not Modified response is sent instead of the file. Defaults to the file's last
+      modified time.
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: The default Content-Type and Content-Disposition headers are set to download
+    arbitrary binary files in as many browsers as possible. IE versions 4, 5, 5.5,
+    and 6 are all known to have a variety of quirks (especially when downloading over
+    SSL).
+- !ruby/struct:SM::Flow::P 
+  body: 'Simple download:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  send_file '/path/to.zip'\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Show a JPEG in the browser:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  send_file '/path/to.jpeg',\n    :type =&gt; 'image/jpeg',\n    :disposition \
+    =&gt; 'inline'\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Show a 404 page in the browser:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  send_file '/path/to/404.html,\n    :type =&gt; 'text/html; charset=utf-8',\n\
+    \    :status =&gt; 404\n"
+- !ruby/struct:SM::Flow::P 
+  body: Read about the other Content-* HTTP headers if you'd like to provide the user
+    with more information (such as Content-Description). http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11
+- !ruby/struct:SM::Flow::P 
+  body: Also be aware that the document may be cached by proxies and browsers. The
+    Pragma and Cache-Control headers declare how the file may be cached by intermediaries.
+    They default to require clients to validate with the server before releasing cached
+    responses. See http://www.mnot.net/cache_docs/ for an overview of web caching
+    and http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9 for the Cache-Control
+    header spec.
+full_name: Sinatra::Streaming#send_file
+params: (path, options = {})
+name: send_file
+is_singleton: false
+aliases: []
+

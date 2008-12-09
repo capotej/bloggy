@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Saves a data structure in a shared memory cache.
+- !ruby/object:SM::Flow::LIST 
+  type: :NOTE
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: Data structure to be saved.
+    label: 'data:'
+  - !ruby/struct:SM::Flow::LI 
+    body: Name of the file belonging to the data structure.
+    label: 'filename:'
+full_name: XmlSimple::Cache#save_mem_share
+params: (data, filename)
+name: save_mem_share
+is_singleton: false
+aliases: []
+

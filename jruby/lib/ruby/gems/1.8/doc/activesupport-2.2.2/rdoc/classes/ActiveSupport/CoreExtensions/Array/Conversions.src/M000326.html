@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_sentence (ActiveSupport::CoreExtensions::Array::Conversions)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/core_ext/array/conversions.rb, line 10</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_sentence</span>(<span class="ruby-identifier">options</span> = {})          
+          <span class="ruby-identifier">options</span>.<span class="ruby-identifier">assert_valid_keys</span>(<span class="ruby-identifier">:connector</span>, <span class="ruby-identifier">:skip_last_comma</span>, <span class="ruby-identifier">:locale</span>)
+          
+          <span class="ruby-identifier">default</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">translate</span>(<span class="ruby-value str">'support.array.sentence_connector'</span><span class="ruby-value str">'support.array.sentence_connector'</span>, <span class="ruby-identifier">:locale</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:locale</span>])
+          <span class="ruby-identifier">default_skip_last_comma</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">translate</span>(<span class="ruby-value str">'support.array.skip_last_comma'</span><span class="ruby-value str">'support.array.skip_last_comma'</span>, <span class="ruby-identifier">:locale</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:locale</span>])
+          <span class="ruby-identifier">options</span>.<span class="ruby-identifier">reverse_merge!</span> <span class="ruby-identifier">:connector</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">default</span>, <span class="ruby-identifier">:skip_last_comma</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">default_skip_last_comma</span>
+          <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:connector</span>] = <span class="ruby-node">&quot;#{options[:connector]} &quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:connector</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:connector</span>].<span class="ruby-identifier">strip</span> <span class="ruby-operator">==</span> <span class="ruby-value str">''</span>
+
+          <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">length</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-value">0</span>
+              <span class="ruby-value str">&quot;&quot;</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-value">1</span>
+              <span class="ruby-keyword kw">self</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_s</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-value">2</span>
+              <span class="ruby-node">&quot;#{self[0]} #{options[:connector]}#{self[1]}&quot;</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-node">&quot;#{self[0...-1].join(', ')}#{options[:skip_last_comma] ? '' : ','} #{options[:connector]}#{self[-1]}&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

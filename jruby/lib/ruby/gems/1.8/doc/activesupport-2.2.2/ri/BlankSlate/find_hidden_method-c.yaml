@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: BlankSlate::find_hidden_method
+params: (name)
+name: find_hidden_method
+is_singleton: true
+aliases: []
+

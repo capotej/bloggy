@@ -1,0 +1,20 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+name: ClassMethods
+constants: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: add_shared_example_group
+- !ruby/object:RI::MethodSummary 
+  name: find_shared_example_group
+- !ruby/object:RI::MethodSummary 
+  name: shared_example_groups
+full_name: Spec::Example::SharedExampleGroup::ClassMethods
+superclass: 
+class_methods: []
+

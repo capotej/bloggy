@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>compose_codepoints (ActiveSupport::Multibyte::Chars)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/multibyte/chars.rb, line 551</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">compose_codepoints</span>(<span class="ruby-identifier">codepoints</span>)
+          <span class="ruby-identifier">pos</span> = <span class="ruby-value">0</span>
+          <span class="ruby-identifier">eoa</span> = <span class="ruby-identifier">codepoints</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+          <span class="ruby-identifier">starter_pos</span> = <span class="ruby-value">0</span>
+          <span class="ruby-identifier">starter_char</span> = <span class="ruby-identifier">codepoints</span>[<span class="ruby-value">0</span>]
+          <span class="ruby-identifier">previous_combining_class</span> = <span class="ruby-value">-1</span>
+          <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">pos</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">eoa</span>
+            <span class="ruby-identifier">pos</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+            <span class="ruby-identifier">lindex</span> = <span class="ruby-identifier">starter_char</span> <span class="ruby-operator">-</span> <span class="ruby-constant">HANGUL_LBASE</span>
+            <span class="ruby-comment cmt"># -- Hangul</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-value">0</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">lindex</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">lindex</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">HANGUL_LCOUNT</span>
+              <span class="ruby-identifier">vindex</span> = <span class="ruby-identifier">codepoints</span>[<span class="ruby-identifier">starter_pos</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>] <span class="ruby-operator">-</span> <span class="ruby-constant">HANGUL_VBASE</span> <span class="ruby-keyword kw">rescue</span> <span class="ruby-identifier">vindex</span> = <span class="ruby-value">-1</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-value">0</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">vindex</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">vindex</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">HANGUL_VCOUNT</span>
+                <span class="ruby-identifier">tindex</span> = <span class="ruby-identifier">codepoints</span>[<span class="ruby-identifier">starter_pos</span><span class="ruby-operator">+</span><span class="ruby-value">2</span>] <span class="ruby-operator">-</span> <span class="ruby-constant">HANGUL_TBASE</span> <span class="ruby-keyword kw">rescue</span> <span class="ruby-identifier">tindex</span> = <span class="ruby-value">-1</span>
+                <span class="ruby-keyword kw">if</span> <span class="ruby-value">0</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">tindex</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">tindex</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">HANGUL_TCOUNT</span>
+                  <span class="ruby-identifier">j</span> = <span class="ruby-identifier">starter_pos</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span>
+                  <span class="ruby-identifier">eoa</span> <span class="ruby-operator">-=</span> <span class="ruby-value">2</span>
+                <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-identifier">tindex</span> = <span class="ruby-value">0</span>
+                  <span class="ruby-identifier">j</span> = <span class="ruby-identifier">starter_pos</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+                  <span class="ruby-identifier">eoa</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+                <span class="ruby-keyword kw">end</span>
+                <span class="ruby-identifier">codepoints</span>[<span class="ruby-identifier">starter_pos</span><span class="ruby-operator">..</span><span class="ruby-identifier">j</span>] = (<span class="ruby-identifier">lindex</span> <span class="ruby-operator">*</span> <span class="ruby-constant">HANGUL_VCOUNT</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">vindex</span>) <span class="ruby-operator">*</span> <span class="ruby-constant">HANGUL_TCOUNT</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">tindex</span> <span class="ruby-operator">+</span> <span class="ruby-constant">HANGUL_SBASE</span>
+              <span class="ruby-keyword kw">end</span>
+              <span class="ruby-identifier">starter_pos</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+              <span class="ruby-identifier">starter_char</span> = <span class="ruby-identifier">codepoints</span>[<span class="ruby-identifier">starter_pos</span>]
+            <span class="ruby-comment cmt"># -- Other characters</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">current_char</span> = <span class="ruby-identifier">codepoints</span>[<span class="ruby-identifier">pos</span>]
+              <span class="ruby-identifier">current</span> = <span class="ruby-constant">UCD</span>.<span class="ruby-identifier">codepoints</span>[<span class="ruby-identifier">current_char</span>]
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">current</span>.<span class="ruby-identifier">combining_class</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">previous_combining_class</span>
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ref</span> = <span class="ruby-constant">UCD</span>.<span class="ruby-identifier">composition_map</span>[<span class="ruby-identifier">starter_char</span>]
+                  <span class="ruby-identifier">composition</span> = <span class="ruby-identifier">ref</span>[<span class="ruby-identifier">current_char</span>]
+                <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-identifier">composition</span> = <span class="ruby-keyword kw">nil</span>
+                <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">composition</span>.<span class="ruby-identifier">nil?</span>
+                  <span class="ruby-identifier">codepoints</span>[<span class="ruby-identifier">starter_pos</span>] = <span class="ruby-identifier">composition</span>
+                  <span class="ruby-identifier">starter_char</span> = <span class="ruby-identifier">composition</span>
+                  <span class="ruby-identifier">codepoints</span>.<span class="ruby-identifier">delete_at</span> <span class="ruby-identifier">pos</span>
+                  <span class="ruby-identifier">eoa</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+                  <span class="ruby-identifier">pos</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+                  <span class="ruby-identifier">previous_combining_class</span> = <span class="ruby-value">-1</span>
+                <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-identifier">previous_combining_class</span> = <span class="ruby-identifier">current</span>.<span class="ruby-identifier">combining_class</span>
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-identifier">previous_combining_class</span> = <span class="ruby-identifier">current</span>.<span class="ruby-identifier">combining_class</span>
+              <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">current</span>.<span class="ruby-identifier">combining_class</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+                <span class="ruby-identifier">starter_pos</span> = <span class="ruby-identifier">pos</span>
+                <span class="ruby-identifier">starter_char</span> = <span class="ruby-identifier">codepoints</span>[<span class="ruby-identifier">pos</span>]
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">codepoints</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

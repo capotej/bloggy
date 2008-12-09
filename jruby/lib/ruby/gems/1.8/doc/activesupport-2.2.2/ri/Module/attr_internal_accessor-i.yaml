@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Declares an attribute reader and writer backed by an internally-named instance
+    variable.
+full_name: Module#attr_internal_accessor
+params: (*attrs)
+name: attr_internal_accessor
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: attr_internal

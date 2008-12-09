@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Stolen from Mongrel, with some small modifications: Parses a query string
+    by breaking it up at the ''&amp;'' and '';'' characters. You can also use this
+    to parse cookies by changing the characters used in the second parameter (which
+    defaults to ''&amp;;'').'
+full_name: Rack::Utils#parse_query
+params: (qs, d = '&;')
+name: parse_query
+is_singleton: false
+aliases: []
+

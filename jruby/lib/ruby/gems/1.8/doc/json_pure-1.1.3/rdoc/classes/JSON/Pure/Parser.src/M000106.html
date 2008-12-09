@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (JSON::Pure::Parser)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/json/pure/parser.rb, line 64</span>
+64:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">opts</span> = {})
+65:         <span class="ruby-keyword kw">super</span>
+66:         <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">opts</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">:max_nesting</span>) <span class="ruby-comment cmt"># defaults to 19</span>
+67:           <span class="ruby-ivar">@max_nesting</span> = <span class="ruby-value">19</span>
+68:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:max_nesting</span>]
+69:           <span class="ruby-ivar">@max_nesting</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:max_nesting</span>]
+70:         <span class="ruby-keyword kw">else</span>
+71:           <span class="ruby-ivar">@max_nesting</span> = <span class="ruby-value">0</span>
+72:         <span class="ruby-keyword kw">end</span>
+73:         <span class="ruby-ivar">@allow_nan</span> = <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:allow_nan</span>]
+74:         <span class="ruby-identifier">ca</span> = <span class="ruby-keyword kw">true</span>
+75:         <span class="ruby-identifier">ca</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:create_additions</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">:create_additions</span>)
+76:         <span class="ruby-ivar">@create_id</span> = <span class="ruby-identifier">ca</span> <span class="ruby-value">? </span><span class="ruby-constant">JSON</span>.<span class="ruby-identifier">create_id</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+77:       <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

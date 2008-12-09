@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::HSQLDB#quoted_true"
+params: ()
+name: quoted_true
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns <tt>Time.zone.now</tt> when <tt>config.time_zone</tt> is set, otherwise
+    just returns <tt>Time.now</tt>.
+full_name: ActiveSupport::CoreExtensions::Time::Zones::ClassMethods#current
+params: ()
+name: current
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,62 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::H 
+  text: Secure random number generator interface.
+  level: 1
+- !ruby/struct:SM::Flow::P 
+  body: This library is an interface for secure random number generator which is suitable
+    for generating session key in HTTP cookies, etc.
+- !ruby/struct:SM::Flow::P 
+  body: It supports following secure random number generators.
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: openssl
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: /dev/urandom
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: Win32
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: '<b>Note</b>: This module is based on the SecureRandom library from Ruby 1.9,
+    revision 18786, August 23 2008. It''s 100% interface-compatible with Ruby 1.9''s
+    SecureRandom library.'
+- !ruby/struct:SM::Flow::H 
+  text: Example
+  level: 2
+- !ruby/struct:SM::Flow::VERB 
+  body: " # random hexadecimal string.\n p SecureRandom.hex(10) #=&gt; &quot;52750b30ffbc7de3b362&quot;\n\
+    \ p SecureRandom.hex(10) #=&gt; &quot;92b15d6c8dc4beb5f559&quot;\n p SecureRandom.hex(11) \
+    #=&gt; &quot;6aca1b5c58e4863e6b81b8&quot;\n p SecureRandom.hex(12) #=&gt; &quot;94b2fff3e7fd9b9c391a2306&quot;\n\
+    \ p SecureRandom.hex(13) #=&gt; &quot;39b290146bea6ce975c37cfc23&quot;\n ...\n\n\
+    \ # random base64 string.\n p SecureRandom.base64(10) #=&gt; &quot;EcmTPZwWRAozdA==&quot;\n\
+    \ p SecureRandom.base64(10) #=&gt; &quot;9b0nsevdwNuM/w==&quot;\n p SecureRandom.base64(10) \
+    #=&gt; &quot;KO1nIU+p9DKxGg==&quot;\n p SecureRandom.base64(11) #=&gt; &quot;l7XEiFja+8EKEtY=&quot;\n\
+    \ p SecureRandom.base64(12) #=&gt; &quot;7kJSM/MzBJI+75j8&quot;\n p SecureRandom.base64(13) \
+    #=&gt; &quot;vKLJ0tXBHqQOuIcSIg==&quot;\n ...\n\n # random binary string.\n p \
+    SecureRandom.random_bytes(10) #=&gt; &quot;\\016\\t{\\370g\\310pbr\\301&quot;\n\
+    \ p SecureRandom.random_bytes(10) #=&gt; &quot;\\323U\\030TO\\234\\357\\020\\a\\\
+    337&quot;\n ...\n"
+attributes: []
+
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: base64
+- !ruby/object:RI::MethodSummary 
+  name: hex
+- !ruby/object:RI::MethodSummary 
+  name: random_bytes
+- !ruby/object:RI::MethodSummary 
+  name: random_number
+full_name: ActiveSupport::SecureRandom
+constants: []
+
+superclass: 
+name: SecureRandom

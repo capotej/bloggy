@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Merges conditions so that the result is a valid <tt>condition</tt>
+full_name: ActiveRecord::Base::merge_conditions
+params: (*conditions)
+name: merge_conditions
+is_singleton: true
+aliases: []
+

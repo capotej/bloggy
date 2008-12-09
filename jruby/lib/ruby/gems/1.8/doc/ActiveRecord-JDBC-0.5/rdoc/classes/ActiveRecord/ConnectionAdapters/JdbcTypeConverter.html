@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: ActiveRecord::ConnectionAdapters::JdbcTypeConverter</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">ActiveRecord::ConnectionAdapters::JdbcTypeConverter</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/active_record/connection_adapters/jdbc_adapter_rb.html">
+                lib/active_record/connection_adapters/jdbc_adapter.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+I want to use JDBC&#8216;s DatabaseMetaData#getTypeInfo to choose the best
+native types to use for <a
+href="../../ActiveRecord.html">ActiveRecord</a>&#8216;s
+Adapter#native_database_types in a database-independent way, but apparently
+a database driver can return multiple types for a given java.sql.Types
+constant. So this type converter uses some heuristics to try to pick the
+best (most common) type to use. It&#8216;s not great, it would be better to
+just delegate to each database&#8216;s existin AR adapter&#8216;s
+native_database_types method, but I wanted to try to do this in a way that
+didn&#8216;t pull in all the other adapters as dependencies. Suggestions
+appreciated.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000002">choose_best_types</a>&nbsp;&nbsp;
+      <a href="#M000003">choose_type</a>&nbsp;&nbsp;
+      <a href="#M000001">new</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AR_TO_JDBC_TYPES</td>
+          <td>=</td>
+          <td class="context-item-value">{         :string      =&gt; [ lambda {|r| Jdbc::Types::VARCHAR == r['data_type'].to_i},                           lambda {|r| r['type_name'] =~ /^varchar/i},                           lambda {|r| r['type_name'] =~ /^varchar$/i},                           lambda {|r| r['type_name'] =~ /varying/i}],         :text        =&gt; [ lambda {|r| [Jdbc::Types::LONGVARCHAR, Jdbc::Types::CLOB].include?(r['data_type'].to_i)},                           lambda {|r| r['type_name'] =~ /^(text|clob)/i},                           lambda {|r| r['type_name'] =~ /^character large object$/i},                           lambda {|r| r['sql_data_type'] == 2005}],         :integer     =&gt; [ lambda {|r| Jdbc::Types::INTEGER == r['data_type'].to_i},                           lambda {|r| r['type_name'] =~ /^integer$/i},                           lambda {|r| r['type_name'] =~ /^int4$/i},                           lambda {|r| r['type_name'] =~ /^int$/i}],         :decimal     =&gt; [ lambda {|r| Jdbc::Types::DECIMAL == r['data_type'].to_i},                           lambda {|r| r['type_name'] =~ /^decimal$/i},                           lambda {|r| r['type_name'] =~ /^numeric$/i},                           lambda {|r| r['type_name'] =~ /^number$/i},                           lambda {|r| r['precision'] == '38'},                           lambda {|r| r['data_type'] == '2'}],         :float       =&gt; [ lambda {|r| [Jdbc::Types::FLOAT,Jdbc::Types::DOUBLE, Jdbc::Types::REAL].include?(r['data_type'].to_i)},                           lambda {|r| r['data_type'].to_i == Jdbc::Types::REAL}, #Prefer REAL to DOUBLE for Postgresql                           lambda {|r| r['type_name'] =~ /^float/i},                           lambda {|r| r['type_name'] =~ /^double$/i},                           lambda {|r| r['type_name'] =~ /^real$/i},                           lambda {|r| r['precision'] == '15'}],         :datetime    =&gt; [ lambda {|r| Jdbc::Types::TIMESTAMP == r['data_type'].to_i},                           lambda {|r| r['type_name'] =~ /^datetime$/i},                           lambda {|r| r['type_name'] =~ /^timestamp$/i},                           lambda {|r| r['type_name'] =~ /^date/i}],         :timestamp   =&gt; [ lambda {|r| Jdbc::Types::TIMESTAMP == r['data_type'].to_i},                           lambda {|r| r['type_name'] =~ /^timestamp$/i},                           lambda {|r| r['type_name'] =~ /^datetime/i},                           lambda {|r| r['type_name'] =~ /^date/i}],         :time        =&gt; [ lambda {|r| Jdbc::Types::TIME == r['data_type'].to_i},                           lambda {|r| r['type_name'] =~ /^time$/i},                           lambda {|r| r['type_name'] =~ /^date/i}],         :date        =&gt; [ lambda {|r| Jdbc::Types::DATE == r['data_type'].to_i},                           lambda {|r| r['type_name'] =~ /^date$/i},                           lambda {|r| r['type_name'] =~ /^date/i}],         :binary      =&gt; [ lambda {|r| [Jdbc::Types::LONGVARBINARY,Jdbc::Types::BINARY,Jdbc::Types::BLOB].include?(r['data_type'].to_i)},                           lambda {|r| r['type_name'] =~ /^blob/i},                           lambda {|r| r['type_name'] =~ /sub_type 0$/i}, # For FireBird                           lambda {|r| r['type_name'] =~ /^varbinary$/i}, # We want this sucker for Mimer                           lambda {|r| r['type_name'] =~ /^binary$/i}, ],         :boolean     =&gt; [ lambda {|r| [Jdbc::Types::TINYINT].include?(r['data_type'].to_i)},                           lambda {|r| r['type_name'] =~ /^bool/i},                           lambda {|r| r['data_type'] == '-7'},                           lambda {|r| r['type_name'] =~ /^tinyint$/i},                           lambda {|r| r['type_name'] =~ /^decimal$/i}],       }</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The basic <a href="../../ActiveRecord.html">ActiveRecord</a> types, mapped
+to an array of procs that are used to select the best type. The procs are
+used as selectors in order until there is only one type left. If all the
+selectors are applied and there is still more than one type, an exception
+will be raised.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="JdbcTypeConverter.src/M000001.html" target="Code" class="method-signature"
+            onclick="popupCode('JdbcTypeConverter.src/M000001.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(types)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="JdbcTypeConverter.src/M000002.html" target="Code" class="method-signature"
+            onclick="popupCode('JdbcTypeConverter.src/M000002.html');return false;">
+          <span class="method-name">choose_best_types</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="JdbcTypeConverter.src/M000003.html" target="Code" class="method-signature"
+            onclick="popupCode('JdbcTypeConverter.src/M000003.html');return false;">
+          <span class="method-name">choose_type</span><span class="method-args">(ar_type)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

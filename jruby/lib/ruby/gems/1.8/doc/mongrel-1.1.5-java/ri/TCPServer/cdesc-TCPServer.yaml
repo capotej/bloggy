@@ -1,0 +1,27 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A modification proposed by Sean Treadway that increases the default accept
+    queue of TCPServer to 1024 so that it handles more concurrent requests.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: initialize
+- !ruby/object:RI::MethodSummary 
+  name: initialize
+- !ruby/object:RI::MethodSummary 
+  name: initialize_with_backlog
+- !ruby/object:RI::MethodSummary 
+  name: initialize_with_backlog
+- !ruby/object:RI::MethodSummary 
+  name: initialize_without_backlog
+class_methods: []
+
+full_name: TCPServer
+constants: []
+
+superclass: Object
+name: TCPServer

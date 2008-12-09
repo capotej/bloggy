@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: XmlSimple::xml_in_string
+params: (string, options = nil)
+name: xml_in_string
+is_singleton: true
+aliases: []
+

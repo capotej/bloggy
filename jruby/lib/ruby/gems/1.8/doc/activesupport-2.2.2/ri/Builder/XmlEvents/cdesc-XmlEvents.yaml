@@ -1,0 +1,55 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create a series of SAX-like XML events (e.g. start_tag, end_tag) from the
+    markup code. XmlEvent objects are used in a way similar to XmlMarkup objects,
+    except that a series of events are generated and passed to a handler rather than
+    generating character-based markup.
+- !ruby/struct:SM::Flow::P 
+  body: 'Usage:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  xe = Builder::XmlEvents.new(handler)\n  xe.title(&quot;HI&quot;)    # Sends \
+    start_tag/end_tag/text messages to the handler.\n"
+- !ruby/struct:SM::Flow::P 
+  body: Indentation may also be selected by providing value for the indentation size
+    and initial indentation level.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  xe = Builder::XmlEvents.new(handler, indent_size, initial_indent_level)\n"
+- !ruby/struct:SM::Flow::H 
+  text: XML Event Handler
+  level: 2
+- !ruby/struct:SM::Flow::P 
+  body: The handler object must expect the following events.
+- !ruby/object:SM::Flow::LIST 
+  type: :LABELED
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: Announces that a new tag has been found. <tt>tag</tt> is the name of the
+      tag and <tt>attrs</tt> is a hash of attributes for the tag.
+    label: <tt>start_tag(tag, attrs)</tt>
+  - !ruby/struct:SM::Flow::LI 
+    body: Announces that an end tag for <tt>tag</tt> has been found.
+    label: <tt>end_tag(tag)</tt>
+  - !ruby/struct:SM::Flow::LI 
+    body: Announces that a string of characters (<tt>text</tt>) has been found. A
+      series of characters may be broken up into more than one <tt>text</tt> call,
+      so the client cannot assume that a single callback contains all the text data.
+    label: <tt>text(text)</tt>
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: _end_tag
+- !ruby/object:RI::MethodSummary 
+  name: _start_tag
+- !ruby/object:RI::MethodSummary 
+  name: text!
+class_methods: []
+
+full_name: Builder::XmlEvents
+constants: []
+
+superclass: XmlMarkup
+name: XmlEvents

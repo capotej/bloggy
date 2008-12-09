@@ -1,0 +1,20 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: in_groups
+- !ruby/object:RI::MethodSummary 
+  name: in_groups_of
+- !ruby/object:RI::MethodSummary 
+  name: split
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Array::Grouping
+constants: []
+
+superclass: 
+name: Grouping

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Check whether the server connection is alive. This will cause the socket to
+    attempt to connect if it isn't already connected and or if the server was previously
+    marked as down and the retry time has been exceeded.
+full_name: MemCache::Server#alive?
+params: ()
+name: alive?
+is_singleton: false
+aliases: []
+

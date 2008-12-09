@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Mongrel::HttpParser</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Mongrel::HttpParser</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/ext/http11/http11_c.html">
+                ext/http11/http11.c
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+XXX Why is this defined here?
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000277">error?</a>&nbsp;&nbsp;
+      <a href="#M000276">execute</a>&nbsp;&nbsp;
+      <a href="#M000275">finish</a>&nbsp;&nbsp;
+      <a href="#M000278">finished?</a>&nbsp;&nbsp;
+      <a href="#M000273">new</a>&nbsp;&nbsp;
+      <a href="#M000279">nread</a>&nbsp;&nbsp;
+      <a href="#M000274">reset</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000273" class="method-detail">
+        <a name="M000273"></a>
+
+        <div class="method-heading">
+          <a href="#M000273" class="method-signature">
+          <span class="method-name">parser.new &rarr; parser<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates a <a href="HttpParser.html#M000273">new</a> parser.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000273-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000273-source">
+<pre>
+/**
+ * call-seq:
+ *    parser.new -&gt; parser
+ *
+ * Creates a new parser.
+ */
+VALUE HttpParser_init(VALUE self)
+{
+  http_parser *http = NULL;
+  DATA_GET(self, http_parser, http);
+  http_parser_init(http);
+
+  return self;
+}
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000277" class="method-detail">
+        <a name="M000277"></a>
+
+        <div class="method-heading">
+          <a href="#M000277" class="method-signature">
+          <span class="method-name">parser.error? &rarr; true/false<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Tells you whether the parser is in an error state.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000277-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000277-source">
+<pre>
+/**
+ * call-seq:
+ *    parser.error? -&gt; true/false
+ *
+ * Tells you whether the parser is in an error state.
+ */
+VALUE HttpParser_has_error(VALUE self)
+{
+  http_parser *http = NULL;
+  DATA_GET(self, http_parser, http);
+
+  return http_parser_has_error(http) ? Qtrue : Qfalse;
+}
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000276" class="method-detail">
+        <a name="M000276"></a>
+
+        <div class="method-heading">
+          <a href="#M000276" class="method-signature">
+          <span class="method-name">parser.execute(req_hash, data, start) &rarr; Integer<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Takes a Hash and a String of data, parses the String of data filling in the
+Hash returning an Integer to indicate how much of the data has been read.
+No matter what the return value, you should call HttpParser#finished? and
+HttpParser#error? to figure out if it&#8216;s done parsing or there was an
+error.
+</p>
+<p>
+This function now throws an exception when there is a parsing error. This
+makes the logic for working with the parser much easier. You can still test
+for an error, but now you need to wrap the parser with an exception
+handling block.
+</p>
+<p>
+The third argument allows for parsing a partial request and then continuing
+the parsing from that position. It needs all of the original data as well
+so you have to append to the data buffer as you read.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000276-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000276-source">
+<pre>
+/**
+ * call-seq:
+ *    parser.execute(req_hash, data, start) -&gt; Integer
+ *
+ * Takes a Hash and a String of data, parses the String of data filling in the Hash
+ * returning an Integer to indicate how much of the data has been read.  No matter
+ * what the return value, you should call HttpParser#finished? and HttpParser#error?
+ * to figure out if it's done parsing or there was an error.
+ * 
+ * This function now throws an exception when there is a parsing error.  This makes 
+ * the logic for working with the parser much easier.  You can still test for an 
+ * error, but now you need to wrap the parser with an exception handling block.
+ *
+ * The third argument allows for parsing a partial request and then continuing
+ * the parsing from that position.  It needs all of the original data as well 
+ * so you have to append to the data buffer as you read.
+ */
+VALUE HttpParser_execute(VALUE self, VALUE req_hash, VALUE data, VALUE start)
+{
+  http_parser *http = NULL;
+  int from = 0;
+  char *dptr = NULL;
+  long dlen = 0;
+
+  DATA_GET(self, http_parser, http);
+
+  from = FIX2INT(start);
+  dptr = RSTRING(data)-&gt;ptr;
+  dlen = RSTRING(data)-&gt;len;
+
+  if(from &gt;= dlen) {
+    rb_raise(eHttpParserError, &quot;Requested start is after data buffer end.&quot;);
+  } else {
+    http-&gt;data = (void *)req_hash;
+    http_parser_execute(http, dptr, dlen, from);
+
+    VALIDATE_MAX_LENGTH(http_parser_nread(http), HEADER);
+
+    if(http_parser_has_error(http)) {
+      rb_raise(eHttpParserError, &quot;Invalid HTTP format, parsing fails.&quot;);
+    } else {
+      return INT2FIX(http_parser_nread(http));
+    }
+  }
+}
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000275" class="method-detail">
+        <a name="M000275"></a>
+
+        <div class="method-heading">
+          <a href="#M000275" class="method-signature">
+          <span class="method-name">parser.finish &rarr; true/false<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Finishes a parser early which could put in a &quot;good&quot; or bad state.
+You should call <a href="HttpParser.html#M000274">reset</a> after <a
+href="HttpParser.html#M000275">finish</a> it or bad things will happen.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000275-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000275-source">
+<pre>
+/**
+ * call-seq:
+ *    parser.finish -&gt; true/false
+ *
+ * Finishes a parser early which could put in a &quot;good&quot; or bad state.
+ * You should call reset after finish it or bad things will happen.
+ */
+VALUE HttpParser_finish(VALUE self)
+{
+  http_parser *http = NULL;
+  DATA_GET(self, http_parser, http);
+  http_parser_finish(http);
+
+  return http_parser_is_finished(http) ? Qtrue : Qfalse;
+}
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000278" class="method-detail">
+        <a name="M000278"></a>
+
+        <div class="method-heading">
+          <a href="#M000278" class="method-signature">
+          <span class="method-name">parser.finished? &rarr; true/false<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Tells you whether the parser is finished or not and in a good state.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000278-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000278-source">
+<pre>
+/**
+ * call-seq:
+ *    parser.finished? -&gt; true/false
+ *
+ * Tells you whether the parser is finished or not and in a good state.
+ */
+VALUE HttpParser_is_finished(VALUE self)
+{
+  http_parser *http = NULL;
+  DATA_GET(self, http_parser, http);
+
+  return http_parser_is_finished(http) ? Qtrue : Qfalse;
+}
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000279" class="method-detail">
+        <a name="M000279"></a>
+
+        <div class="method-heading">
+          <a href="#M000279" class="method-signature">
+          <span class="method-name">parser.nread &rarr; Integer<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the amount of data processed so far during this processing cycle.
+It is set to 0 on initialize or <a href="HttpParser.html#M000274">reset</a>
+calls and is incremented each time <a
+href="HttpParser.html#M000276">execute</a> is called.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000279-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000279-source">
+<pre>
+/**
+ * call-seq:
+ *    parser.nread -&gt; Integer
+ *
+ * Returns the amount of data processed so far during this processing cycle.  It is
+ * set to 0 on initialize or reset calls and is incremented each time execute is called.
+ */
+VALUE HttpParser_nread(VALUE self)
+{
+  http_parser *http = NULL;
+  DATA_GET(self, http_parser, http);
+
+  return INT2FIX(http-&gt;nread);
+}
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000274" class="method-detail">
+        <a name="M000274"></a>
+
+        <div class="method-heading">
+          <a href="#M000274" class="method-signature">
+          <span class="method-name">parser.reset &rarr; nil<br />
+</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Resets the parser to it&#8216;s initial state so that you can reuse it
+rather than making <a href="HttpParser.html#M000273">new</a> ones.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000274-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000274-source">
+<pre>
+/**
+ * call-seq:
+ *    parser.reset -&gt; nil
+ *
+ * Resets the parser to it's initial state so that you can reuse it
+ * rather than making new ones.
+ */
+VALUE HttpParser_reset(VALUE self)
+{
+  http_parser *http = NULL;
+  DATA_GET(self, http_parser, http);
+  http_parser_init(http);
+
+  return Qnil;
+}
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

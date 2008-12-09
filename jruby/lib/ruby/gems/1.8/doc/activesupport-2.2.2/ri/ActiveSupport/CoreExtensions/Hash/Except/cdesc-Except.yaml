@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Return a hash that includes everything but the given keys. This is useful
+    for limiting a set of parameters to everything but a few known toggles:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  @person.update_attributes(params[:person].except(:admin))\n"
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: except
+- !ruby/object:RI::MethodSummary 
+  name: except!
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Hash::Except
+constants: []
+
+superclass: 
+name: Except

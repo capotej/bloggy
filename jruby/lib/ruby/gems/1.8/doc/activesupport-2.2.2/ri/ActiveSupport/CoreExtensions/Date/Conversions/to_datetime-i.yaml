@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converts a Date instance to a DateTime, where the time is set to the beginning
+    of the day and UTC offset is set to 0.
+- !ruby/struct:SM::Flow::H 
+  text: 'Example:'
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  date = Date.new(2007, 11, 10)  # =&gt; Sat, 10 Nov 2007\n\n  date.to_datetime \
+    \              # =&gt; Sat, 10 Nov 2007 00:00:00 0000\n"
+full_name: ActiveSupport::CoreExtensions::Date::Conversions#to_datetime
+params: ()
+name: to_datetime
+is_singleton: false
+aliases: []
+

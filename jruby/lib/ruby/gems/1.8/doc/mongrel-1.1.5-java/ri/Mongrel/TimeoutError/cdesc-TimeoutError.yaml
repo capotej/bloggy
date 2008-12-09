@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Thrown at a thread when it is timed out.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: Mongrel::TimeoutError
+constants: []
+
+superclass: Exception
+name: TimeoutError

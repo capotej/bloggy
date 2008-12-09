@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets up the standard signal handlers that are used on most Ruby It only configures
+    if the platform is not win32 and doesn't do a HUP signal since this is typically
+    framework specific.
+- !ruby/struct:SM::Flow::P 
+  body: Requires a :pid_file option given to Configurator.new to indicate a file to
+    delete. It sets the MongrelConfig.needs_restart attribute if the start command
+    should reload. It's up to you to detect this and do whatever is needed for a &quot;restart&quot;.
+- !ruby/struct:SM::Flow::P 
+  body: This command is safely ignored if the platform is win32 (with a warning)
+full_name: Mongrel::Configurator#setup_signals
+params: (options={})
+name: setup_signals
+is_singleton: false
+aliases: []
+

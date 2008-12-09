@@ -1,0 +1,33 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Decrement a number field by one, usually representing a count.
+- !ruby/struct:SM::Flow::P 
+  body: This works the same as increment_counter but reduces the column value by 1
+    instead of increasing it.
+- !ruby/struct:SM::Flow::H 
+  text: Parameters
+  level: 4
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>counter_name</tt> - The name of the field that should be decremented.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>id</tt> - The id of the object that should be decremented.
+    label: '*'
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Decrement the post_count column for the record with an id of 5\n  DiscussionBoard.decrement_counter(:post_count, \
+    5)\n"
+full_name: ActiveRecord::Base::decrement_counter
+params: (counter_name, id)
+name: decrement_counter
+is_singleton: true
+aliases: []
+

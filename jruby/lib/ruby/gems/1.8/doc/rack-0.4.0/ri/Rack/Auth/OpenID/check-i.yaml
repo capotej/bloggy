@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'As the first part of OpenID consumer action, #check retrieves the data required
+    for completion.'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>session[:openid][:openid_param]</tt> is set to the submitted identifier
+      to be authenticated.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>session[:openid][:site_return]</tt> is set as the request's HTTP_REFERER,
+      unless already set.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>env['rack.auth.openid.request']</tt> is the openid checkid request instance.
+    label: '*'
+full_name: Rack::Auth::OpenID#check
+params: (consumer, session, req)
+name: check
+is_singleton: false
+aliases: []
+

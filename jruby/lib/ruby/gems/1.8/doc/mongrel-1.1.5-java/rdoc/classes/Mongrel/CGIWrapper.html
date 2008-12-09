@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Mongrel::CGIWrapper</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Mongrel::CGIWrapper</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/mongrel/cgi_rb.html">
+                lib/mongrel/cgi.rb
+                </a>
+        <br />
+                <a href="../../files/lib/mongrel/cgi_rb.html">
+                lib/mongrel/cgi.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                ::CGI
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+The beginning of a complete wrapper around <a
+href="../Mongrel.html">Mongrel</a>&#8216;s internal HTTP processing system
+but maintaining the original Ruby CGI module. Use this only as a crutch to
+get existing CGI based systems working. It should handle everything, but
+please notify me if you see special warnings. This work is still very alpha
+so I need testers to help work <a href="CGIWrapper.html#M000168">out</a>
+the various corner cases.
+</p>
+<p>
+The CGIWrapper.handler attribute is normally not set and is available for
+frameworks that need to get back to the handler. <a
+href="Rails.html">Rails</a> uses this to give people access to the
+RailsHandler#files (<a href="DirHandler.html">DirHandler</a> really) so
+they can look-up paths and do other things with the files managed there.
+</p>
+<p>
+In <a href="Rails.html">Rails</a> you can get the real file for a request
+with:
+</p>
+<pre>
+ path = @request.cgi.handler.files.can_serve(@request['PATH_INFO'])
+</pre>
+<p>
+Which is ugly but does the job. Feel free to write a <a
+href="Rails.html">Rails</a> helper for that. Refer to <a
+href="DirHandler.html#M000204">DirHandler#can_serve</a> for more
+information on this.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000170">args</a>&nbsp;&nbsp;
+      <a href="#M000179">args</a>&nbsp;&nbsp;
+      <a href="#M000180">env_table</a>&nbsp;&nbsp;
+      <a href="#M000171">env_table</a>&nbsp;&nbsp;
+      <a href="#M000166">header</a>&nbsp;&nbsp;
+      <a href="#M000175">header</a>&nbsp;&nbsp;
+      <a href="#M000165">new</a>&nbsp;&nbsp;
+      <a href="#M000174">new</a>&nbsp;&nbsp;
+      <a href="#M000168">out</a>&nbsp;&nbsp;
+      <a href="#M000177">out</a>&nbsp;&nbsp;
+      <a href="#M000167">send_cookies</a>&nbsp;&nbsp;
+      <a href="#M000176">send_cookies</a>&nbsp;&nbsp;
+      <a href="#M000178">status</a>&nbsp;&nbsp;
+      <a href="#M000169">status</a>&nbsp;&nbsp;
+      <a href="#M000172">stdinput</a>&nbsp;&nbsp;
+      <a href="#M000181">stdinput</a>&nbsp;&nbsp;
+      <a href="#M000173">stdoutput</a>&nbsp;&nbsp;
+      <a href="#M000182">stdoutput</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REMOVED_KEYS</td>
+          <td>=</td>
+          <td class="context-item-value">[ &quot;nph&quot;,&quot;status&quot;,&quot;server&quot;,&quot;connection&quot;,&quot;type&quot;,                      &quot;charset&quot;,&quot;length&quot;,&quot;language&quot;,&quot;expires&quot;]</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+these are stripped <a href="CGIWrapper.html#M000168">out</a> of any keys
+passed to <a href="CGIWrapper.html#M000166">CGIWrapper.header</a> function
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REMOVED_KEYS</td>
+          <td>=</td>
+          <td class="context-item-value">[ &quot;nph&quot;,&quot;status&quot;,&quot;server&quot;,&quot;connection&quot;,&quot;type&quot;,                      &quot;charset&quot;,&quot;length&quot;,&quot;language&quot;,&quot;expires&quot;]</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+these are stripped <a href="CGIWrapper.html#M000168">out</a> of any keys
+passed to <a href="CGIWrapper.html#M000166">CGIWrapper.header</a> function
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">default_really_final</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Set this to false if you want calls to <a
+href="CGIWrapper.html#M000168">CGIWrapper.out</a> to not actually send the
+response until you force it.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">default_really_final</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Set this to false if you want calls to <a
+href="CGIWrapper.html#M000168">CGIWrapper.out</a> to not actually send the
+response until you force it.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">handler</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">handler</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">options</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">options</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000165" class="method-detail">
+        <a name="M000165"></a>
+
+        <div class="method-heading">
+          <a href="#M000165" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(request, response, *args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Takes an <a href="HttpRequest.html">HttpRequest</a> and <a
+href="HttpResponse.html">HttpResponse</a> object, plus any additional
+arguments normally passed to CGI. These are used internally to create a
+wrapper around the real CGI while maintaining <a
+href="../Mongrel.html">Mongrel</a>&#8216;s view of the world.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000165-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000165-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 42</span>
+42:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">request</span>, <span class="ruby-identifier">response</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+43:       <span class="ruby-ivar">@request</span> = <span class="ruby-identifier">request</span>
+44:       <span class="ruby-ivar">@response</span> = <span class="ruby-identifier">response</span>
+45:       <span class="ruby-ivar">@args</span> = <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>
+46:       <span class="ruby-ivar">@input</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">body</span>
+47:       <span class="ruby-ivar">@head</span> = {}
+48:       <span class="ruby-ivar">@out_called</span> = <span class="ruby-keyword kw">false</span>
+49:       <span class="ruby-ivar">@default_really_final</span>=<span class="ruby-keyword kw">true</span>
+50:       <span class="ruby-keyword kw">super</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+51:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000174" class="method-detail">
+        <a name="M000174"></a>
+
+        <div class="method-heading">
+          <a href="#M000174" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(request, response, *args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Takes an <a href="HttpRequest.html">HttpRequest</a> and <a
+href="HttpResponse.html">HttpResponse</a> object, plus any additional
+arguments normally passed to CGI. These are used internally to create a
+wrapper around the real CGI while maintaining <a
+href="../Mongrel.html">Mongrel</a>&#8216;s view of the world.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000174-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000174-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 42</span>
+42:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">request</span>, <span class="ruby-identifier">response</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+43:       <span class="ruby-ivar">@request</span> = <span class="ruby-identifier">request</span>
+44:       <span class="ruby-ivar">@response</span> = <span class="ruby-identifier">response</span>
+45:       <span class="ruby-ivar">@args</span> = <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>
+46:       <span class="ruby-ivar">@input</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">body</span>
+47:       <span class="ruby-ivar">@head</span> = {}
+48:       <span class="ruby-ivar">@out_called</span> = <span class="ruby-keyword kw">false</span>
+49:       <span class="ruby-ivar">@default_really_final</span>=<span class="ruby-keyword kw">true</span>
+50:       <span class="ruby-keyword kw">super</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+51:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000170" class="method-detail">
+        <a name="M000170"></a>
+
+        <div class="method-heading">
+          <a href="#M000170" class="method-signature">
+          <span class="method-name">args</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used to wrap the normal <a href="CGIWrapper.html#M000170">args</a> variable
+used inside CGI.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000170-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000170-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 160</span>
+160:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">args</span>
+161:       <span class="ruby-ivar">@args</span>
+162:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000179" class="method-detail">
+        <a name="M000179"></a>
+
+        <div class="method-heading">
+          <a href="#M000179" class="method-signature">
+          <span class="method-name">args</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used to wrap the normal <a href="CGIWrapper.html#M000170">args</a> variable
+used inside CGI.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000179-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000179-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 160</span>
+160:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">args</span>
+161:       <span class="ruby-ivar">@args</span>
+162:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000180" class="method-detail">
+        <a name="M000180"></a>
+
+        <div class="method-heading">
+          <a href="#M000180" class="method-signature">
+          <span class="method-name">env_table</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used to wrap the normal <a href="CGIWrapper.html#M000171">env_table</a>
+variable used inside CGI.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000180-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000180-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 165</span>
+165:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">env_table</span>
+166:       <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">params</span>
+167:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000171" class="method-detail">
+        <a name="M000171"></a>
+
+        <div class="method-heading">
+          <a href="#M000171" class="method-signature">
+          <span class="method-name">env_table</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used to wrap the normal <a href="CGIWrapper.html#M000171">env_table</a>
+variable used inside CGI.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000171-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000171-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 165</span>
+165:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">env_table</span>
+166:       <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">params</span>
+167:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000166" class="method-detail">
+        <a name="M000166"></a>
+
+        <div class="method-heading">
+          <a href="#M000166" class="method-signature">
+          <span class="method-name">header</span><span class="method-args">(options = &quot;text/html&quot;)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The <a href="CGIWrapper.html#M000166">header</a> is typically called to
+send back the <a href="CGIWrapper.html#M000166">header</a>. In our case we
+collect it into a hash for later usage.
+</p>
+<p>
+nph &#8212; Mostly ignored. It&#8216;ll output the date. connection &#8212;
+Completely ignored. Why is CGI doing this? length &#8212; Ignored since <a
+href="../Mongrel.html">Mongrel</a> figures this <a
+href="CGIWrapper.html#M000168">out</a> from what you write to output.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000166-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000166-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 60</span>
+60:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">header</span>(<span class="ruby-identifier">options</span> = <span class="ruby-value str">&quot;text/html&quot;</span>)
+61:       <span class="ruby-comment cmt"># if they pass in a string then just write the Content-Type</span>
+62:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">String</span>
+63:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Content-Type'</span>] = <span class="ruby-identifier">options</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Content-Type'</span>]
+64:       <span class="ruby-keyword kw">else</span>
+65:         <span class="ruby-comment cmt"># convert the given options into what Mongrel wants</span>
+66:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Content-Type'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'type'</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;text/html&quot;</span>
+67:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Content-Type'</span>] <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;; charset=&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'charset'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value str">&quot;charset&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'charset'</span>]
+68:         
+69:         <span class="ruby-comment cmt"># setup date only if they use nph</span>
+70:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Date'</span>] = <span class="ruby-constant">CGI</span><span class="ruby-operator">::</span><span class="ruby-identifier">rfc1123_date</span>(<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'nph'</span>]
+71: 
+72:         <span class="ruby-comment cmt"># setup the server to use the default or what they set</span>
+73:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Server'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'server'</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">env_table</span>[<span class="ruby-value str">'SERVER_SOFTWARE'</span>]
+74: 
+75:         <span class="ruby-comment cmt"># remaining possible options they can give</span>
+76:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Status'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'status'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'status'</span>]
+77:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Content-Language'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'language'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'language'</span>]
+78:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Expires'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'expires'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'expires'</span>]
+79: 
+80:         <span class="ruby-comment cmt"># drop the keys we don't want anymore</span>
+81:         <span class="ruby-constant">REMOVED_KEYS</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">k</span>) }
+82: 
+83:         <span class="ruby-comment cmt"># finally just convert the rest raw (which puts 'cookie' directly)</span>
+84:         <span class="ruby-comment cmt"># 'cookie' is translated later as we write the header out</span>
+85:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@head</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">v</span>}
+86:       <span class="ruby-keyword kw">end</span>
+87: 
+88:       <span class="ruby-comment cmt"># doing this fakes out the cgi library to think the headers are empty</span>
+89:       <span class="ruby-comment cmt"># we then do the real headers in the out function call later</span>
+90:       <span class="ruby-value str">&quot;&quot;</span>
+91:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000175" class="method-detail">
+        <a name="M000175"></a>
+
+        <div class="method-heading">
+          <a href="#M000175" class="method-signature">
+          <span class="method-name">header</span><span class="method-args">(options = &quot;text/html&quot;)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The <a href="CGIWrapper.html#M000166">header</a> is typically called to
+send back the <a href="CGIWrapper.html#M000166">header</a>. In our case we
+collect it into a hash for later usage.
+</p>
+<p>
+nph &#8212; Mostly ignored. It&#8216;ll output the date. connection &#8212;
+Completely ignored. Why is CGI doing this? length &#8212; Ignored since <a
+href="../Mongrel.html">Mongrel</a> figures this <a
+href="CGIWrapper.html#M000168">out</a> from what you write to output.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000175-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000175-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 60</span>
+60:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">header</span>(<span class="ruby-identifier">options</span> = <span class="ruby-value str">&quot;text/html&quot;</span>)
+61:       <span class="ruby-comment cmt"># if they pass in a string then just write the Content-Type</span>
+62:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">String</span>
+63:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Content-Type'</span>] = <span class="ruby-identifier">options</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Content-Type'</span>]
+64:       <span class="ruby-keyword kw">else</span>
+65:         <span class="ruby-comment cmt"># convert the given options into what Mongrel wants</span>
+66:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Content-Type'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'type'</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;text/html&quot;</span>
+67:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Content-Type'</span>] <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;; charset=&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'charset'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value str">&quot;charset&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'charset'</span>]
+68:         
+69:         <span class="ruby-comment cmt"># setup date only if they use nph</span>
+70:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Date'</span>] = <span class="ruby-constant">CGI</span><span class="ruby-operator">::</span><span class="ruby-identifier">rfc1123_date</span>(<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'nph'</span>]
+71: 
+72:         <span class="ruby-comment cmt"># setup the server to use the default or what they set</span>
+73:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Server'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'server'</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">env_table</span>[<span class="ruby-value str">'SERVER_SOFTWARE'</span>]
+74: 
+75:         <span class="ruby-comment cmt"># remaining possible options they can give</span>
+76:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Status'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'status'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'status'</span>]
+77:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Content-Language'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'language'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'language'</span>]
+78:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Expires'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'expires'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'expires'</span>]
+79: 
+80:         <span class="ruby-comment cmt"># drop the keys we don't want anymore</span>
+81:         <span class="ruby-constant">REMOVED_KEYS</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">k</span>) }
+82: 
+83:         <span class="ruby-comment cmt"># finally just convert the rest raw (which puts 'cookie' directly)</span>
+84:         <span class="ruby-comment cmt"># 'cookie' is translated later as we write the header out</span>
+85:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@head</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">v</span>}
+86:       <span class="ruby-keyword kw">end</span>
+87: 
+88:       <span class="ruby-comment cmt"># doing this fakes out the cgi library to think the headers are empty</span>
+89:       <span class="ruby-comment cmt"># we then do the real headers in the out function call later</span>
+90:       <span class="ruby-value str">&quot;&quot;</span>
+91:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000168" class="method-detail">
+        <a name="M000168"></a>
+
+        <div class="method-heading">
+          <a href="#M000168" class="method-signature">
+          <span class="method-name">out</span><span class="method-args">(options = &quot;text/html&quot;, really_final=@default_really_final) {||| &quot;&quot;)| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The dumb thing is people can call <a
+href="CGIWrapper.html#M000166">header</a> or this or both and in any order.
+So, we just reuse <a href="CGIWrapper.html#M000166">header</a> and then
+finalize the <a href="HttpResponse.html">HttpResponse</a> the right way.
+Status is taken from the various options and converted to what <a
+href="../Mongrel.html">Mongrel</a> needs via the <a
+href="CGIWrapper.html#M000169">CGIWrapper.status</a> function.
+</p>
+<p>
+We also prevent <a href="Rails.html">Rails</a> from actually doing the
+final send by adding a second parameter &quot;really_final&quot;. Only <a
+href="../Mongrel.html">Mongrel</a> calls this after <a
+href="Rails.html">Rails</a> is done. Since this will break other
+frameworks, it defaults to a different setting for rails (false) and (true)
+for others.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000168-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000168-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 127</span>
+127:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">out</span>(<span class="ruby-identifier">options</span> = <span class="ruby-value str">&quot;text/html&quot;</span>, <span class="ruby-identifier">really_final</span>=<span class="ruby-ivar">@default_really_final</span>)
+128:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@out_called</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">really_final</span>
+129:         <span class="ruby-comment cmt"># don't do it more than once or if it's not the really final call</span>
+130:         <span class="ruby-keyword kw">return</span>
+131:       <span class="ruby-keyword kw">end</span>
+132: 
+133:       <span class="ruby-identifier">header</span>(<span class="ruby-identifier">options</span>)
+134: 
+135:       <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">start</span> <span class="ruby-identifier">status</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">head</span>, <span class="ruby-identifier">body</span><span class="ruby-operator">|</span>
+136:         <span class="ruby-identifier">send_cookies</span>(<span class="ruby-identifier">head</span>)
+137:         
+138:         <span class="ruby-ivar">@head</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">head</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">v</span>}
+139:         <span class="ruby-identifier">body</span>.<span class="ruby-identifier">write</span>(<span class="ruby-keyword kw">yield</span> <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;&quot;</span>)
+140:       <span class="ruby-keyword kw">end</span>
+141: 
+142:       <span class="ruby-ivar">@out_called</span> = <span class="ruby-keyword kw">true</span>
+143:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000177" class="method-detail">
+        <a name="M000177"></a>
+
+        <div class="method-heading">
+          <a href="#M000177" class="method-signature">
+          <span class="method-name">out</span><span class="method-args">(options = &quot;text/html&quot;, really_final=@default_really_final) {||| &quot;&quot;)| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The dumb thing is people can call <a
+href="CGIWrapper.html#M000166">header</a> or this or both and in any order.
+So, we just reuse <a href="CGIWrapper.html#M000166">header</a> and then
+finalize the <a href="HttpResponse.html">HttpResponse</a> the right way.
+Status is taken from the various options and converted to what <a
+href="../Mongrel.html">Mongrel</a> needs via the <a
+href="CGIWrapper.html#M000169">CGIWrapper.status</a> function.
+</p>
+<p>
+We also prevent <a href="Rails.html">Rails</a> from actually doing the
+final send by adding a second parameter &quot;really_final&quot;. Only <a
+href="../Mongrel.html">Mongrel</a> calls this after <a
+href="Rails.html">Rails</a> is done. Since this will break other
+frameworks, it defaults to a different setting for rails (false) and (true)
+for others.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000177-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000177-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 127</span>
+127:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">out</span>(<span class="ruby-identifier">options</span> = <span class="ruby-value str">&quot;text/html&quot;</span>, <span class="ruby-identifier">really_final</span>=<span class="ruby-ivar">@default_really_final</span>)
+128:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@out_called</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">really_final</span>
+129:         <span class="ruby-comment cmt"># don't do it more than once or if it's not the really final call</span>
+130:         <span class="ruby-keyword kw">return</span>
+131:       <span class="ruby-keyword kw">end</span>
+132: 
+133:       <span class="ruby-identifier">header</span>(<span class="ruby-identifier">options</span>)
+134: 
+135:       <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">start</span> <span class="ruby-identifier">status</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">head</span>, <span class="ruby-identifier">body</span><span class="ruby-operator">|</span>
+136:         <span class="ruby-identifier">send_cookies</span>(<span class="ruby-identifier">head</span>)
+137:         
+138:         <span class="ruby-ivar">@head</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">head</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">v</span>}
+139:         <span class="ruby-identifier">body</span>.<span class="ruby-identifier">write</span>(<span class="ruby-keyword kw">yield</span> <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;&quot;</span>)
+140:       <span class="ruby-keyword kw">end</span>
+141: 
+142:       <span class="ruby-ivar">@out_called</span> = <span class="ruby-keyword kw">true</span>
+143:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000167" class="method-detail">
+        <a name="M000167"></a>
+
+        <div class="method-heading">
+          <a href="#M000167" class="method-signature">
+          <span class="method-name">send_cookies</span><span class="method-args">(to)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Takes any &#8216;cookie&#8217; setting and sends it over the <a
+href="../Mongrel.html">Mongrel</a> <a
+href="CGIWrapper.html#M000166">header</a>, then removes the setting from
+the options. If cookie is an Array or Hash then it sends those on with
+.to_s, otherwise it just calls .to_s on it and hopefully your
+&quot;cookie&quot; can write itself correctly.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000167-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000167-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 98</span>
+ 98:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_cookies</span>(<span class="ruby-identifier">to</span>)
+ 99:       <span class="ruby-comment cmt"># convert the cookies based on the myriad of possible ways to set a cookie</span>
+100:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'cookie'</span>]
+101:         <span class="ruby-identifier">cookie</span> = <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'cookie'</span>]
+102:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">cookie</span>
+103:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Array</span>
+104:           <span class="ruby-identifier">cookie</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">to</span>[<span class="ruby-value str">'Set-Cookie'</span>] = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">to_s</span> }
+105:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Hash</span>
+106:           <span class="ruby-identifier">cookie</span>.<span class="ruby-identifier">each_value</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">to</span>[<span class="ruby-value str">'Set-Cookie'</span>] = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">to_s</span>}
+107:         <span class="ruby-keyword kw">else</span>
+108:           <span class="ruby-identifier">to</span>[<span class="ruby-value str">'Set-Cookie'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'cookie'</span>].<span class="ruby-identifier">to_s</span>
+109:         <span class="ruby-keyword kw">end</span>
+110:         
+111:         <span class="ruby-ivar">@head</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'cookie'</span>)
+112:       <span class="ruby-keyword kw">end</span>
+113:       
+114:       <span class="ruby-comment cmt"># @output_cookies seems to never be used, but we'll process it just in case</span>
+115:       <span class="ruby-ivar">@output_cookies</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">to</span>[<span class="ruby-value str">'Set-Cookie'</span>] = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">to_s</span> } <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@output_cookies</span>
+116:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000176" class="method-detail">
+        <a name="M000176"></a>
+
+        <div class="method-heading">
+          <a href="#M000176" class="method-signature">
+          <span class="method-name">send_cookies</span><span class="method-args">(to)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Takes any &#8216;cookie&#8217; setting and sends it over the <a
+href="../Mongrel.html">Mongrel</a> <a
+href="CGIWrapper.html#M000166">header</a>, then removes the setting from
+the options. If cookie is an Array or Hash then it sends those on with
+.to_s, otherwise it just calls .to_s on it and hopefully your
+&quot;cookie&quot; can write itself correctly.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000176-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000176-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 98</span>
+ 98:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_cookies</span>(<span class="ruby-identifier">to</span>)
+ 99:       <span class="ruby-comment cmt"># convert the cookies based on the myriad of possible ways to set a cookie</span>
+100:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'cookie'</span>]
+101:         <span class="ruby-identifier">cookie</span> = <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'cookie'</span>]
+102:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">cookie</span>
+103:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Array</span>
+104:           <span class="ruby-identifier">cookie</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">to</span>[<span class="ruby-value str">'Set-Cookie'</span>] = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">to_s</span> }
+105:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Hash</span>
+106:           <span class="ruby-identifier">cookie</span>.<span class="ruby-identifier">each_value</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">to</span>[<span class="ruby-value str">'Set-Cookie'</span>] = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">to_s</span>}
+107:         <span class="ruby-keyword kw">else</span>
+108:           <span class="ruby-identifier">to</span>[<span class="ruby-value str">'Set-Cookie'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'cookie'</span>].<span class="ruby-identifier">to_s</span>
+109:         <span class="ruby-keyword kw">end</span>
+110:         
+111:         <span class="ruby-ivar">@head</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'cookie'</span>)
+112:       <span class="ruby-keyword kw">end</span>
+113:       
+114:       <span class="ruby-comment cmt"># @output_cookies seems to never be used, but we'll process it just in case</span>
+115:       <span class="ruby-ivar">@output_cookies</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">to</span>[<span class="ruby-value str">'Set-Cookie'</span>] = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">to_s</span> } <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@output_cookies</span>
+116:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000178" class="method-detail">
+        <a name="M000178"></a>
+
+        <div class="method-heading">
+          <a href="#M000178" class="method-signature">
+          <span class="method-name">status</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Computes the <a href="CGIWrapper.html#M000169">status</a> once, but lazily
+so that people who call <a href="CGIWrapper.html#M000166">header</a> twice
+don&#8216;t get penalized. Because CGI insists on including the options <a
+href="CGIWrapper.html#M000169">status</a> message in the <a
+href="CGIWrapper.html#M000169">status</a> we have to do a bit of parsing.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000178-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000178-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 148</span>
+148:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">status</span>
+149:       <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@status</span>
+150:         <span class="ruby-identifier">stat</span> = <span class="ruby-ivar">@head</span>[<span class="ruby-value str">&quot;Status&quot;</span>]
+151:         <span class="ruby-identifier">stat</span> = <span class="ruby-identifier">stat</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">' '</span>)[<span class="ruby-value">0</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">stat</span>
+152: 
+153:         <span class="ruby-ivar">@status</span> = <span class="ruby-identifier">stat</span> <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;200&quot;</span>
+154:       <span class="ruby-keyword kw">end</span>
+155: 
+156:       <span class="ruby-ivar">@status</span>
+157:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000169" class="method-detail">
+        <a name="M000169"></a>
+
+        <div class="method-heading">
+          <a href="#M000169" class="method-signature">
+          <span class="method-name">status</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Computes the <a href="CGIWrapper.html#M000169">status</a> once, but lazily
+so that people who call <a href="CGIWrapper.html#M000166">header</a> twice
+don&#8216;t get penalized. Because CGI insists on including the options <a
+href="CGIWrapper.html#M000169">status</a> message in the <a
+href="CGIWrapper.html#M000169">status</a> we have to do a bit of parsing.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000169-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000169-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 148</span>
+148:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">status</span>
+149:       <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@status</span>
+150:         <span class="ruby-identifier">stat</span> = <span class="ruby-ivar">@head</span>[<span class="ruby-value str">&quot;Status&quot;</span>]
+151:         <span class="ruby-identifier">stat</span> = <span class="ruby-identifier">stat</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">' '</span>)[<span class="ruby-value">0</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">stat</span>
+152: 
+153:         <span class="ruby-ivar">@status</span> = <span class="ruby-identifier">stat</span> <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;200&quot;</span>
+154:       <span class="ruby-keyword kw">end</span>
+155: 
+156:       <span class="ruby-ivar">@status</span>
+157:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000172" class="method-detail">
+        <a name="M000172"></a>
+
+        <div class="method-heading">
+          <a href="#M000172" class="method-signature">
+          <span class="method-name">stdinput</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used to wrap the normal <a href="CGIWrapper.html#M000172">stdinput</a>
+variable used inside CGI.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000172-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000172-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 170</span>
+170:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stdinput</span>
+171:       <span class="ruby-ivar">@input</span>
+172:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000181" class="method-detail">
+        <a name="M000181"></a>
+
+        <div class="method-heading">
+          <a href="#M000181" class="method-signature">
+          <span class="method-name">stdinput</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used to wrap the normal <a href="CGIWrapper.html#M000172">stdinput</a>
+variable used inside CGI.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000181-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000181-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 170</span>
+170:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stdinput</span>
+171:       <span class="ruby-ivar">@input</span>
+172:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000173" class="method-detail">
+        <a name="M000173"></a>
+
+        <div class="method-heading">
+          <a href="#M000173" class="method-signature">
+          <span class="method-name">stdoutput</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The <a href="CGIWrapper.html#M000173">stdoutput</a> should be completely
+bypassed but we&#8216;ll drop a warning just in case
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000173-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000173-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 175</span>
+175:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stdoutput</span>
+176:       <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;WARNING: Your program is doing something not expected.  Please tell Zed that stdoutput was used and what software you are running.  Thanks.&quot;</span>
+177:       <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">body</span>
+178:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000182" class="method-detail">
+        <a name="M000182"></a>
+
+        <div class="method-heading">
+          <a href="#M000182" class="method-signature">
+          <span class="method-name">stdoutput</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The <a href="CGIWrapper.html#M000173">stdoutput</a> should be completely
+bypassed but we&#8216;ll drop a warning just in case
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000182-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000182-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 175</span>
+175:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stdoutput</span>
+176:       <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;WARNING: Your program is doing something not expected.  Please tell Zed that stdoutput was used and what software you are running.  Thanks.&quot;</span>
+177:       <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">body</span>
+178:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

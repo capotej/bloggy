@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Loads a plain Ruby translations file. eval'ing the file must yield a Hash
+    containing translation data with locales as toplevel keys.
+full_name: I18n::Backend::Simple#load_rb
+params: (filename)
+name: load_rb
+is_singleton: false
+aliases: []
+

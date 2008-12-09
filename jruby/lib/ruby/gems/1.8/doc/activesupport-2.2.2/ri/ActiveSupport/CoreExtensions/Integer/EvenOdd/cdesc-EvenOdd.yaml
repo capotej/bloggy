@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: For checking if a fixnum is even or odd.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  2.even?  # =&gt; true\n  2.odd?   # =&gt; false\n  1.even?  # =&gt; false\n\
+    \  1.odd?   # =&gt; true\n  0.even?  # =&gt; true\n  0.odd?   # =&gt; false\n  \
+    -1.even? # =&gt; false\n  -1.odd?  # =&gt; true\n"
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: even?
+- !ruby/object:RI::MethodSummary 
+  name: multiple_of?
+- !ruby/object:RI::MethodSummary 
+  name: odd?
+class_methods: []
+
+full_name: ActiveSupport::CoreExtensions::Integer::EvenOdd
+constants: []
+
+superclass: 
+name: EvenOdd

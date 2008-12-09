@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>paste_node_appending (PopUpMenu)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/json/editor.rb, line 321</span>
+321:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">paste_node_appending</span>(<span class="ruby-identifier">item</span>)
+322:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">current</span> = <span class="ruby-identifier">selection</span>.<span class="ruby-identifier">selected</span>
+323:           <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clipboard_data</span>
+324:             <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">current</span>.<span class="ruby-identifier">type</span>
+325:             <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Array'</span>
+326:               <span class="ruby-constant">Editor</span>.<span class="ruby-identifier">data2model</span>(<span class="ruby-ivar">@clipboard_data</span>, <span class="ruby-identifier">model</span>, <span class="ruby-identifier">current</span>)
+327:               <span class="ruby-identifier">expand_collapse</span>(<span class="ruby-identifier">current</span>)
+328:             <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'Hash'</span>
+329:               <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@clipboard_data</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
+330:                 <span class="ruby-identifier">parent</span> = <span class="ruby-identifier">current</span>.<span class="ruby-identifier">parent</span>
+331:                 <span class="ruby-identifier">hash</span> = <span class="ruby-constant">Editor</span>.<span class="ruby-identifier">model2data</span>(<span class="ruby-identifier">current</span>)
+332:                 <span class="ruby-identifier">model</span>.<span class="ruby-identifier">remove</span>(<span class="ruby-identifier">current</span>)
+333:                 <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">update</span>(<span class="ruby-ivar">@clipboard_data</span>)
+334:                 <span class="ruby-constant">Editor</span>.<span class="ruby-identifier">data2model</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">model</span>, <span class="ruby-identifier">parent</span>)
+335:                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">parent</span>
+336:                   <span class="ruby-identifier">expand_collapse</span>(<span class="ruby-identifier">parent</span>)
+337:                 <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@expanded</span>
+338:                   <span class="ruby-identifier">expand_all</span>
+339:                 <span class="ruby-keyword kw">end</span>
+340:                 <span class="ruby-identifier">window</span>.<span class="ruby-identifier">change</span>
+341:               <span class="ruby-keyword kw">else</span>
+342:                 <span class="ruby-identifier">toplevel</span>.<span class="ruby-identifier">display_status</span>(
+343:                   <span class="ruby-node">&quot;Cannot paste non-#{current.type} data into '#{current.type}'!&quot;</span>)
+344:               <span class="ruby-keyword kw">end</span>
+345:             <span class="ruby-keyword kw">else</span>
+346:               <span class="ruby-identifier">toplevel</span>.<span class="ruby-identifier">display_status</span>(
+347:                 <span class="ruby-node">&quot;Cannot paste node below '#{current.type}'!&quot;</span>)
+348:             <span class="ruby-keyword kw">end</span>
+349:           <span class="ruby-keyword kw">else</span>
+350:             <span class="ruby-identifier">toplevel</span>.<span class="ruby-identifier">display_status</span>(<span class="ruby-value str">&quot;Nothing to paste in clipboard!&quot;</span>)
+351:           <span class="ruby-keyword kw">end</span>
+352:         <span class="ruby-keyword kw">else</span>
+353:             <span class="ruby-identifier">toplevel</span>.<span class="ruby-identifier">display_status</span>(<span class="ruby-value str">&quot;Append a node into the root first!&quot;</span>)
+354:         <span class="ruby-keyword kw">end</span>
+355:       <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

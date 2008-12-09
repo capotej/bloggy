@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Rack::Utils::Context#pretty_print
+params: (pp)
+name: pretty_print
+is_singleton: false
+aliases: []
+

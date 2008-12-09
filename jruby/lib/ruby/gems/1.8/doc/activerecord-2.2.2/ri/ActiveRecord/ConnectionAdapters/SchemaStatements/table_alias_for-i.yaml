@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Truncates a table alias according to the limits of the current adapter.
+full_name: ActiveRecord::ConnectionAdapters::SchemaStatements#table_alias_for
+params: (table_name)
+name: table_alias_for
+is_singleton: false
+aliases: []
+

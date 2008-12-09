@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (scanner.scan(char) || break)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Yields a single-character string for each character in the string. When $KCODE
+    = 'UTF8', multi-byte characters are yielded appropriately.
+full_name: ActiveSupport::CoreExtensions::String::Iterators#each_char
+params: () {|scanner.scan(char || break)| ...}
+name: each_char
+is_singleton: false
+aliases: []
+

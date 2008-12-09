@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+full_name: I18n::Backend::Simple#translations
+params: ()
+name: translations
+is_singleton: false
+aliases: []
+

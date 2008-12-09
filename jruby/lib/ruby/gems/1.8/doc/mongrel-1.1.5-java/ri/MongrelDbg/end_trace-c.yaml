@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: MongrelDbg::end_trace
+params: (target)
+name: end_trace
+is_singleton: true
+aliases: []
+

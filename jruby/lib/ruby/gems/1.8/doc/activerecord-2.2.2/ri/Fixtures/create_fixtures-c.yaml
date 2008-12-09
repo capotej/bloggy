@@ -1,0 +1,11 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: ": ActiveRecord::Base.connection"
+comment: 
+full_name: Fixtures::create_fixtures
+params: '(fixtures_directory, table_names, class_names = {}) {|: ActiveRecord::Base.connection|
+  ...}'
+name: create_fixtures
+is_singleton: true
+aliases: []
+

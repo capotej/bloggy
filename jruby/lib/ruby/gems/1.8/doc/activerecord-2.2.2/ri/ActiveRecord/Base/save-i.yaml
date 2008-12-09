@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Saves the model.
+- !ruby/struct:SM::Flow::P 
+  body: If the model is new a record gets created in the database, otherwise the existing
+    record gets updated.
+- !ruby/struct:SM::Flow::P 
+  body: If <tt>perform_validation</tt> is true validations run. If any of them fail
+    the action is cancelled and <tt>save</tt> returns <tt>false</tt>. If the flag
+    is false validations are bypassed altogether. See ActiveRecord::Validations for
+    more information.
+- !ruby/struct:SM::Flow::P 
+  body: There's a series of callbacks associated with <tt>save</tt>. If any of the
+    <tt>before_*</tt> callbacks return <tt>false</tt> the action is cancelled and
+    <tt>save</tt> returns <tt>false</tt>. See ActiveRecord::Callbacks for further
+    details.
+full_name: ActiveRecord::Base#save
+params: |
+  save(perform_validation = true)
+name: save
+is_singleton: false
+aliases: []
+

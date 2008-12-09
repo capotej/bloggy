@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>set_instance_variables_from_hash (Spec::Example::ExampleMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/spec/example/example_methods.rb, line 71</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_instance_variables_from_hash</span>(<span class="ruby-identifier">ivars</span>)
+        <span class="ruby-identifier">ivars</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">variable_name</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+          <span class="ruby-comment cmt"># Ruby 1.9 requires variable.to_s on the next line</span>
+          <span class="ruby-keyword kw">unless</span> [<span class="ruby-value str">'@_implementation'</span>, <span class="ruby-value str">'@_defined_description'</span>, <span class="ruby-value str">'@_matcher_description'</span>, <span class="ruby-value str">'@method_name'</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">variable_name</span>.<span class="ruby-identifier">to_s</span>)
+            <span class="ruby-identifier">instance_variable_set</span> <span class="ruby-identifier">variable_name</span>, <span class="ruby-identifier">value</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

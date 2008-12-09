@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: "::PostgreSQL#quote_column_name"
+params: (name)
+name: quote_column_name
+is_singleton: false
+aliases: []
+

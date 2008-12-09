@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: SELECT DISTINCT clause for a given set of columns and a given ORDER BY clause.
+- !ruby/struct:SM::Flow::P 
+  body: Oracle requires the ORDER BY columns to be in the SELECT list for DISTINCT
+    queries. However, with those columns included in the SELECT DISTINCT list, you
+    won't actually get a distinct list of the column you want (presuming the column
+    has duplicates with multiple values for the ordered-by columns. So we use the
+    FIRST_VALUE function to get a single (first) value for each column, effectively
+    making every row the same.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  distinct(&quot;posts.id&quot;, &quot;posts.created_at desc&quot;)\n"
+full_name: "::Oracle#distinct"
+params: (columns, order_by)
+name: distinct
+is_singleton: false
+aliases: []
+

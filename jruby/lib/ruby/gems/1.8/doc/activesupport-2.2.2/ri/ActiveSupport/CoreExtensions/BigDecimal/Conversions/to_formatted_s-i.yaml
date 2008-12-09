@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveSupport::CoreExtensions::BigDecimal::Conversions#to_formatted_s
+params: (format = DEFAULT_STRING_FORMAT)
+name: to_formatted_s
+is_singleton: false
+aliases: []
+

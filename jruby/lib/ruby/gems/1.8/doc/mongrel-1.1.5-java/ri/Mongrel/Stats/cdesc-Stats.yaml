@@ -1,0 +1,84 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: max
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: max
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: min
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: min
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: n
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: n
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: sum
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: sum
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: sumsq
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: R
+  name: sumsq
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: dump
+- !ruby/object:RI::MethodSummary 
+  name: dump
+- !ruby/object:RI::MethodSummary 
+  name: mean
+- !ruby/object:RI::MethodSummary 
+  name: mean
+- !ruby/object:RI::MethodSummary 
+  name: reset
+- !ruby/object:RI::MethodSummary 
+  name: reset
+- !ruby/object:RI::MethodSummary 
+  name: sample
+- !ruby/object:RI::MethodSummary 
+  name: sample
+- !ruby/object:RI::MethodSummary 
+  name: sd
+- !ruby/object:RI::MethodSummary 
+  name: sd
+- !ruby/object:RI::MethodSummary 
+  name: tick
+- !ruby/object:RI::MethodSummary 
+  name: tick
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Mongrel::Stats
+constants: []
+
+superclass: Object
+name: Stats

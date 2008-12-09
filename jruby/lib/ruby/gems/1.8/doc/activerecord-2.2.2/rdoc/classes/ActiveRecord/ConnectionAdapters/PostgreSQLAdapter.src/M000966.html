@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>insert (ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/postgresql_adapter.rb, line 435</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">insert</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">pk</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">id_value</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">sequence_name</span> = <span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-comment cmt"># Extract the table from the insert sql. Yuck.</span>
+        <span class="ruby-identifier">table</span> = <span class="ruby-identifier">sql</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot; &quot;</span>, <span class="ruby-value">4</span>)[<span class="ruby-value">2</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'&quot;'</span>, <span class="ruby-value str">''</span>)
+
+        <span class="ruby-comment cmt"># Try an insert with 'returning id' if available (PG &gt;= 8.2)</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">supports_insert_with_returning?</span>
+          <span class="ruby-identifier">pk</span>, <span class="ruby-identifier">sequence_name</span> = <span class="ruby-operator">*</span><span class="ruby-identifier">pk_and_sequence_for</span>(<span class="ruby-identifier">table</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">pk</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pk</span>
+            <span class="ruby-identifier">id</span> = <span class="ruby-identifier">select_value</span>(<span class="ruby-node">&quot;#{sql} RETURNING #{quote_column_name(pk)}&quot;</span>)
+            <span class="ruby-identifier">clear_query_cache</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">id</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Otherwise, insert then grab last_insert_id.</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">insert_id</span> = <span class="ruby-keyword kw">super</span>
+          <span class="ruby-identifier">insert_id</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-comment cmt"># If neither pk nor sequence name is given, look them up.</span>
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">pk</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">sequence_name</span>
+            <span class="ruby-identifier">pk</span>, <span class="ruby-identifier">sequence_name</span> = <span class="ruby-operator">*</span><span class="ruby-identifier">pk_and_sequence_for</span>(<span class="ruby-identifier">table</span>)
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-comment cmt"># If a pk is given, fallback to default sequence name.</span>
+          <span class="ruby-comment cmt"># Don't fetch last insert id for a table without a pk.</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pk</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">sequence_name</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">default_sequence_name</span>(<span class="ruby-identifier">table</span>, <span class="ruby-identifier">pk</span>)
+            <span class="ruby-identifier">last_insert_id</span>(<span class="ruby-identifier">table</span>, <span class="ruby-identifier">sequence_name</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

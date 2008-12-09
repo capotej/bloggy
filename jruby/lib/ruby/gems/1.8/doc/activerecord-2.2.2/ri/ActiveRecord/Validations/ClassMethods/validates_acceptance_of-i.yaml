@@ -1,0 +1,55 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Encapsulates the pattern of wanting to validate the acceptance of a terms
+    of service check box (or similar agreement). Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Person &lt; ActiveRecord::Base\n    validates_acceptance_of :terms_of_service\n\
+    \    validates_acceptance_of :eula, :message =&gt; &quot;must be abided&quot;\n\
+    \  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: If the database column does not exist, the <tt>terms_of_service</tt> attribute
+    is entirely virtual. This check is performed only if <tt>terms_of_service</tt>
+    is not <tt>nil</tt> and by default on save.
+- !ruby/struct:SM::Flow::P 
+  body: 'Configuration options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: '<tt>:message</tt> - A custom error message (default is: &quot;must be accepted&quot;).'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:on</tt> - Specifies when this validation is active (default is <tt>:save</tt>,
+      other options <tt>:create</tt>, <tt>:update</tt>).
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:allow_nil</tt> - Skip validation if attribute is <tt>nil</tt> (default
+      is true).
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:accept</tt> - Specifies value that is considered accepted. The default
+      value is a string &quot;1&quot;, which makes it easy to relate to an HTML checkbox.
+      This should be set to <tt>true</tt> if you are validating a database column,
+      since the attribute is typecast from &quot;1&quot; to <tt>true</tt> before validation.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:if</tt> - Specifies a method, proc or string to call to determine if
+      the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or <tt>:if
+      =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The method, proc or
+      string should return or evaluate to a true or false value.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: <tt>:unless</tt> - Specifies a method, proc or string to call to determine
+      if the validation should not occur (e.g. <tt>:unless =&gt; :skip_validation</tt>,
+      or <tt>:unless =&gt; Proc.new { |user| user.signup_step &lt;= 2 }</tt>). The
+      method, proc or string should return or evaluate to a true or false value.
+    label: '*'
+full_name: ActiveRecord::Validations::ClassMethods#validates_acceptance_of
+params: (*attr_names)
+name: validates_acceptance_of
+is_singleton: false
+aliases: []
+

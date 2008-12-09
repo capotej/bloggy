@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>include (Rack::Recursive)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rack/recursive.rb, line 44</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">include</span>(<span class="ruby-identifier">env</span>, <span class="ruby-identifier">path</span>)
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">index</span>(<span class="ruby-ivar">@script_name</span>) <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">path</span>[<span class="ruby-ivar">@script_name</span>.<span class="ruby-identifier">size</span>] <span class="ruby-operator">==</span> <span class="ruby-value">?/</span> <span class="ruby-operator">||</span>
+                                               <span class="ruby-identifier">path</span>[<span class="ruby-ivar">@script_name</span>.<span class="ruby-identifier">size</span>].<span class="ruby-identifier">nil?</span>)
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;can only include below #{@script_name}, not #{path}&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">env</span> = <span class="ruby-identifier">env</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value str">&quot;PATH_INFO&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">path</span>, <span class="ruby-value str">&quot;SCRIPT_NAME&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@script_name</span>,
+                      <span class="ruby-value str">&quot;REQUEST_METHOD&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;GET&quot;</span>,
+                      <span class="ruby-value str">&quot;CONTENT_LENGTH&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;0&quot;</span>, <span class="ruby-value str">&quot;CONTENT_TYPE&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;&quot;</span>,
+                      <span class="ruby-value str">&quot;rack.input&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;&quot;</span>))
+      <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

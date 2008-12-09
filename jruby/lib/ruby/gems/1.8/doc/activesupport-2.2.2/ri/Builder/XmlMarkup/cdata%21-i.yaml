@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Insert a CDATA section into the XML markup.
+- !ruby/struct:SM::Flow::P 
+  body: 'For example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "   xml.cdata!(&quot;text to be included in cdata&quot;)\n       #=&gt; &lt;![CDATA[text \
+    to be included in cdata]]&gt;\n"
+full_name: Builder::XmlMarkup#cdata!
+params: (text)
+name: cdata!
+is_singleton: false
+aliases: []
+

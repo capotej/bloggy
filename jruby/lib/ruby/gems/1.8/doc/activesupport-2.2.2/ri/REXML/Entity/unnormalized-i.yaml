@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: REXML::Entity#unnormalized
+params: ()
+name: unnormalized
+is_singleton: false
+aliases: []
+

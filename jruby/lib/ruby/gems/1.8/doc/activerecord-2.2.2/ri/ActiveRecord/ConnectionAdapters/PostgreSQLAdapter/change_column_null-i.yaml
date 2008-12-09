@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#change_column_null
+params: (table_name, column_name, null, default = nil)
+name: change_column_null
+is_singleton: false
+aliases: []
+

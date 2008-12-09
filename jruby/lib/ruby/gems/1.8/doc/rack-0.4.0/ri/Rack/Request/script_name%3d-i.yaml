@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Rack::Request#script_name=
+params: (s)
+name: script_name=
+is_singleton: false
+aliases: []
+

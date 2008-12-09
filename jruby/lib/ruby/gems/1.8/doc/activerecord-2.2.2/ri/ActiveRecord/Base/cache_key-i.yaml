@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a cache key that can be used to identify this record.
+- !ruby/struct:SM::Flow::H 
+  text: Examples
+  level: 4
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Product.new.cache_key     # =&gt; &quot;products/new&quot;\n  Product.find(5).cache_key \
+    # =&gt; &quot;products/5&quot; (updated_at not available)\n  Person.find(5).cache_key \
+    \ # =&gt; &quot;people/5-20071224150000&quot; (updated_at available)\n"
+full_name: ActiveRecord::Base#cache_key
+params: ()
+name: cache_key
+is_singleton: false
+aliases: []
+
