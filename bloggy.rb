@@ -18,6 +18,17 @@ rescue ActiveRecord::StatementInvalid
 end
 
 class Post < ActiveRecord::Base
+  validates_presence_of :title
+  validates_presence_of :body
+end
+
+#Generic active record response function
+def respond(obj)
+  if obj.save
+    { :status => 'OK', :title => obj.title }.to_json
+  else
+    { :status => 'FAIL' }.to_json
+  end
 end
 
 #Set all content_type's to json
@@ -44,47 +55,29 @@ end
 put '/post/:id' do
   
   post = Post.find(params[:id])
+  data = ActiveSupport::JSON.decode(params[:data])
 
-  if post and params[:data]
-   
-    data = ActiveSupport::JSON.decode(params[:data])
-    post.title = data["title"] 
-    post.body = data["body"]
+  post.title = data["title"] 
+  post.body = data["body"]
 
-    if post.save
-      { :status => 'OK', :title => post.title }.to_json
-    else
-      throw :halt, [500, 'no worky']
-    end
-
-  else
-    throw :halt, [500, 'data please']
-  end
-
+  respond(post)
+  
 end
 
 #POST /post body with data field set to JSON: { "title": "test", "body": "body test" }
 post '/post' do
-  if params[:data]
-   
-    data = ActiveSupport::JSON.decode(params[:data])
-    post = Post.new({:title => data["title"], :body => data["body"]})
-    
-    if post.save
-      { :status => 'OK', :title => post.title }.to_json
-    else
-      throw :halt, [500, 'no worky']
-    end
 
-  else
-    throw :halt, [500, 'data please']
-  end
+  data = ActiveSupport::JSON.decode(params[:data])
+  post = Post.new({:title => data["title"], :body => data["body"]})
+
+  respond(post)
+
 end
 
 #DELETE /post/1 deletes post
 delete '/post/:id' do
   post = Post.find(params[:id])
   if post.destroy
-      { :status => 'OK', :title => post.title }.to_json
+    { :status => 'OK', :title => post.title }.to_json
   end
 end
