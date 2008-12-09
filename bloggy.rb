@@ -30,20 +30,17 @@ get '/' do
   redirect '/index.html'
 end
 
-#GET /posts Returns all posts as json
+#GET /posts returns all posts as json
 get '/posts' do
-
-  posts = Post.find :all
-  posts.to_json
-
+  Post.find(:all).to_json
 end
 
-#GET /post/1 Returns that post as json
+#GET /post/1 returns that post as json
 get '/post/:id' do
   Post.find(params[:id]).to_json
 end
 
-#PUT /post/1 Update that post with json
+#PUT /post/1 update that post with json
 put '/post/:id' do
   
   post = Post.find(params[:id])
@@ -84,7 +81,7 @@ post '/post' do
   end
 end
 
-#DELETE
+#DELETE /post/1 deletes post
 delete '/post/:id' do
   post = Post.find(params[:id])
   if post.destroy
