@@ -5,23 +5,19 @@
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
  <title>Bloggy test</title>
 
-
  <script type="text/javascript" src="/moo.js"></script>
- 
-
  <script type="text/javascript">
    
-   var show_posts = function(posts){
-       posts.each(function(item, index){
-	   add_post(item.title);
-       });
-   };
-
+var show_posts = function(posts){
+    posts.each(function(item, index){
+	add_post(item.title);
+    });
+};
 
 var add_post = function(title){
     li = new Element('li', { 'html': title });
     $("posts").appendChild(li);
-}
+};
 
 var do_post = new Request.JSON({
     url: "post", 
@@ -39,12 +35,11 @@ var get_posts = new Request.JSON({
     }
 }); 
 
-
 var submit = function(){
     var title = $("title").get('value');
     var body = $("body").get('value');
     do_post.post({data: JSON.encode({title: title, body: body})});
-}
+};
 
 document.addEvent('domready', function(){
     get_posts.send();
@@ -66,9 +61,6 @@ document.addEvent('domready', function(){
      Body: <textarea id="body" rows="5" cols="30"></textarea><br/>
      <input type="button" value="submit" id="submit">
    </div>
-
-
-
   
  </body>
  

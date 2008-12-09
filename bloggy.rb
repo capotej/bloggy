@@ -6,7 +6,6 @@ require 'active_record'
 
 ActiveRecord::Base.establish_connection(:adapter => "jdbcderby", :database => "db/posts")
 
-
 begin
   ActiveRecord::Schema.define do
     create_table :posts do |t|
@@ -26,7 +25,6 @@ get '/' do
   redirect '/index.html'
 end
 
-
 #GET /posts Returns all posts as json
 get '/posts' do
 
@@ -45,7 +43,6 @@ post '/post' do
   if params[:data]
    
     data = ActiveSupport::JSON.decode(params[:data])
-       
     post = Post.new({:title => data["title"], :body => data["body"]})
     
     if post.save
@@ -53,7 +50,7 @@ post '/post' do
     else
       throw :halt, [500, 'no worky']
     end
-  
+
   else
     throw :halt, [500, 'data please']
   end
