@@ -4,7 +4,8 @@ gem 'activerecord-jdbc-adapter'
 require 'jdbc_adapter'
 require 'active_record'
 
-ActiveRecord::Base.establish_connection(:adapter => "jdbcderby", :database => "db/posts")
+ActiveRecord::Base.establish_connection(:adapter => "jdbcsqlite3", :database => "posts.db")
+ActiveRecord::Base.logger = Logger.new(STDERR)
 
 #create db unless already exists
 begin
@@ -15,7 +16,7 @@ begin
       t.timestamps
     end
   end
-rescue ActiveRecord::StatementInvalid
+rescue ActiveRecord::ActiveRecordError
 end
 
 #Post model and validations
@@ -85,3 +86,5 @@ delete '/post/:id' do
     { :status => 'OK', :title => post.title }.to_json
   end
 end
+
+
