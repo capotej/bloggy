@@ -6,6 +6,7 @@ require 'active_record'
 
 ActiveRecord::Base.establish_connection(:adapter => "jdbcderby", :database => "db/posts")
 
+#create db unless already exists
 begin
   ActiveRecord::Schema.define do
     create_table :posts do |t|
@@ -17,6 +18,7 @@ begin
 rescue ActiveRecord::StatementInvalid
 end
 
+#Post model and validations
 class Post < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :body
@@ -35,6 +37,8 @@ end
 before do
   content_type 'text/json'
 end
+
+### Blog Web Service
 
 #GET /index.html
 get '/' do
