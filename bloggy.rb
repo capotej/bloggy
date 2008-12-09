@@ -21,9 +21,14 @@ end
 class Post < ActiveRecord::Base
 end
 
-
-#GET / Returns all posts as json
+#GET /index.html
 get '/' do
+  redirect '/index.html'
+end
+
+
+#GET /posts Returns all posts as json
+get '/posts' do
 
   content_type 'text/json'
   
@@ -32,7 +37,7 @@ get '/' do
 
 end
 
-#POST body with data field set to url encoded JSON: { "title": "test", "body": "body test" }
+#POST /post body with data field set to JSON: { "title": "test", "body": "body test" }
 post '/post' do
 
   content_type 'text/json'

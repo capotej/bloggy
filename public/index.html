@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>Bloggy test</title>
+
+ <script type="text/javascript" src="/moo.js"></script>
+ <script type="text/javascript">
+
+   var show_posts = function(posts){
+       posts.each(function(item, index){
+	   li = new Element('li', { 'html': item.title });
+	   $("posts").appendChild(li);
+       });
+   };
+
+
+   var jsonRequest = new Request.JSON({
+       url: "posts", 
+       method: "get",
+       onComplete: function(posts){
+	   show_posts(posts, 'after');
+       }
+   }); 
+
+document.addEvent('domready', function(){
+    jsonRequest.send();
+    
+});
+
+ </script>
+ 
+ </head>
+
+ <body>
+   <ul id="posts">
+   
+   </ul>
+ 
+   
+
+
+
+  
+ </body>
+ 
+</html>

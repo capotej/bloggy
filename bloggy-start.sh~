@@ -1,2 +1,0 @@
-#!/bin/sh
-jruby/bin/jruby bloggy.rb
