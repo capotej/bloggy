@@ -5,7 +5,7 @@ require 'sequel'
 require 'json'
 require 'logger'
 
-DB = Sequel.connect('jdbc:sqlite::posts.db:', :loggers => [Logger.new('db.log')] )
+DB = Sequel.connect('jdbc:sqlite:posts.db')
 
 #create table unless already exists
 unless DB.table_exists?("posts")
