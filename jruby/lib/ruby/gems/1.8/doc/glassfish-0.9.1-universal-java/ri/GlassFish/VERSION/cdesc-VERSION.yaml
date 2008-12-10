@@ -1,0 +1,18 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: GlassFish::VERSION
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"0.9.1"'
+  name: STRING
+superclass: 
+name: VERSION

@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: GlassFish::Server#startup
+params: (args)
+name: startup
+is_singleton: false
+aliases: []
+

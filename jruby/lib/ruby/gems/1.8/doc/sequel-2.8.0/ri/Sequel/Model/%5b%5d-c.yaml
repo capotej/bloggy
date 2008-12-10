@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the first record from the database matching the conditions. If a hash
+    is given, it is used as the conditions. If another object is given, it finds the
+    first record whose primary key(s) match the given argument(s). If caching is used,
+    the cache is checked first before a dataset lookup is attempted unless a hash
+    is supplied.
+full_name: Sequel::Model::[]
+params: (*args)
+name: '[]'
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: row
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Correctly return rows from the database and return them as hashes.
+full_name: Sequel::Dataset#fetch_rows
+params: (sql, &block) {|row| ...}
+name: fetch_rows
+is_singleton: false
+aliases: []
+

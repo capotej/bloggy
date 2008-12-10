@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Can return Identifiers, QualifiedIdentifiers, or Functions:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: Function - returned if any arguments are supplied, using the method name
+      as the function name, and the arguments as the function arguments.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: QualifiedIdentifier - returned if the method name contains __, with the
+      table being the part before __, and the column being the part after.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: Identifier - returned otherwise, using the method name.
+    label: '*'
+full_name: Sequel::SQL::VirtualRow#method_missing
+params: (m, *args)
+name: method_missing
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,21 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Dataset::UnsupportedIntersectExceptAll
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: empty?
+class_methods: []
+
+full_name: Sequel::Oracle::DatasetMethods
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '%w''distinct columns from join where group having union intersect except
+    order limit''.freeze'
+  name: SELECT_CLAUSE_ORDER
+superclass: 
+name: DatasetMethods

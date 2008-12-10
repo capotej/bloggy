@@ -1,0 +1,21 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: fetch_rows
+- !ruby/object:RI::MethodSummary 
+  name: literal
+class_methods: []
+
+full_name: Sequel::DB2::Dataset
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: "256"
+  name: MAX_COL_SIZE
+superclass: Sequel::Dataset
+name: Dataset

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns true if a table with the given name exists. This requires a query
+    to the database unless this database object already has the schema for the given
+    table name.
+full_name: Sequel::Database#table_exists?
+params: (name)
+name: table_exists?
+is_singleton: false
+aliases: []
+

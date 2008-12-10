@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: cps.executeQuery
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Execute the given stored procedure with the give name. If a block is given,
+    the stored procedure should return rows.
+full_name: Sequel::Database#call_sproc
+params: (name, opts = {}) {|cps.executeQuery| ...}
+name: call_sproc
+is_singleton: false
+aliases: []
+

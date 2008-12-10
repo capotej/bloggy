@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Removes an index for the given table and column/s:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  DB.drop_index :posts, :title\n  DB.drop_index :posts, [:author, :title]\n"
+- !ruby/struct:SM::Flow::P 
+  body: See alter_table.
+full_name: Sequel::Database#drop_index
+params: (table, columns)
+name: drop_index
+is_singleton: false
+aliases: []
+

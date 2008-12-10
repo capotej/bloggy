@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Hash</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Hash</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/sequel_core/core_sql_rb.html">
+                lib/sequel_core/core_sql.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/core_ext_rb.html">
+                lib/sequel_core/core_ext.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Object.html">
+                Object
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000048">&amp;</a>&nbsp;&nbsp;
+      <a href="#M000051">case</a>&nbsp;&nbsp;
+      <a href="#M000052">sql_expr</a>&nbsp;&nbsp;
+      <a href="#M000053">sql_negate</a>&nbsp;&nbsp;
+      <a href="#M000054">sql_or</a>&nbsp;&nbsp;
+      <a href="#M000049">|</a>&nbsp;&nbsp;
+      <a href="#M000050">~</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+    <div id="aliases-list">
+      <h3 class="section-bar">External Aliases</h3>
+
+      <div class="name-list">
+                        <table summary="aliases">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">index</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">key</td>
+        </tr>
+                        </table>
+      </div>
+    </div>
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000048" class="method-detail">
+        <a name="M000048"></a>
+
+        <div class="method-heading">
+          <a href="#M000048" class="method-signature">
+          <span class="method-name">&amp;</span><span class="method-args">(ce)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a <a
+href="Sequel/SQL/BooleanExpression.html">Sequel::SQL::BooleanExpression</a>
+created from this hash, matching all of the conditions in this hash and the
+condition specified by the given argument.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000048-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000048-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core/core_sql.rb, line 77</span>
+77:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&amp;</span>(<span class="ruby-identifier">ce</span>)
+78:     <span class="ruby-operator">::</span><span class="ruby-constant">Sequel</span><span class="ruby-operator">::</span><span class="ruby-constant">SQL</span><span class="ruby-operator">::</span><span class="ruby-constant">BooleanExpression</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:AND</span>, <span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">ce</span>)
+79:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
+
+        <div class="method-heading">
+          <a href="#M000051" class="method-signature">
+          <span class="method-name">case</span><span class="method-args">(default, expression = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a <a
+href="Sequel/SQL/CaseExpression.html">Sequel::SQL::CaseExpression</a> with
+this hash as the conditions and the given default value. Note that the
+order of the conditions will be arbitrary, so all conditions should be
+orthogonal.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000051-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000051-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core/core_sql.rb, line 97</span>
+97:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">case</span>(<span class="ruby-identifier">default</span>, <span class="ruby-identifier">expression</span> = <span class="ruby-keyword kw">nil</span>)
+98:     <span class="ruby-operator">::</span><span class="ruby-constant">Sequel</span><span class="ruby-operator">::</span><span class="ruby-constant">SQL</span><span class="ruby-operator">::</span><span class="ruby-constant">CaseExpression</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">to_a</span>, <span class="ruby-identifier">default</span>, <span class="ruby-identifier">expression</span>)
+99:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
+
+        <div class="method-heading">
+          <a href="#M000052" class="method-signature">
+          <span class="method-name">sql_expr</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a <a
+href="Sequel/SQL/BooleanExpression.html">Sequel::SQL::BooleanExpression</a>
+created from this hash, matching all of the conditions.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000052-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000052-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/core_sql.rb, line 103</span>
+103:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sql_expr</span>
+104:     <span class="ruby-operator">::</span><span class="ruby-constant">Sequel</span><span class="ruby-operator">::</span><span class="ruby-constant">SQL</span><span class="ruby-operator">::</span><span class="ruby-constant">BooleanExpression</span>.<span class="ruby-identifier">from_value_pairs</span>(<span class="ruby-keyword kw">self</span>)
+105:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
+
+        <div class="method-heading">
+          <a href="#M000053" class="method-signature">
+          <span class="method-name">sql_negate</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a <a
+href="Sequel/SQL/BooleanExpression.html">Sequel::SQL::BooleanExpression</a>
+created from this hash, matching none of the conditions.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000053-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000053-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/core_sql.rb, line 109</span>
+109:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sql_negate</span>
+110:     <span class="ruby-operator">::</span><span class="ruby-constant">Sequel</span><span class="ruby-operator">::</span><span class="ruby-constant">SQL</span><span class="ruby-operator">::</span><span class="ruby-constant">BooleanExpression</span>.<span class="ruby-identifier">from_value_pairs</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">:AND</span>, <span class="ruby-keyword kw">true</span>)
+111:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
+
+        <div class="method-heading">
+          <a href="#M000054" class="method-signature">
+          <span class="method-name">sql_or</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a <a
+href="Sequel/SQL/BooleanExpression.html">Sequel::SQL::BooleanExpression</a>
+created from this hash, matching any of the conditions.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000054-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000054-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/core_sql.rb, line 115</span>
+115:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sql_or</span>
+116:     <span class="ruby-operator">::</span><span class="ruby-constant">Sequel</span><span class="ruby-operator">::</span><span class="ruby-constant">SQL</span><span class="ruby-operator">::</span><span class="ruby-constant">BooleanExpression</span>.<span class="ruby-identifier">from_value_pairs</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">:OR</span>)
+117:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000049" class="method-detail">
+        <a name="M000049"></a>
+
+        <div class="method-heading">
+          <a href="#M000049" class="method-signature">
+          <span class="method-name">|</span><span class="method-args">(ce)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a <a
+href="Sequel/SQL/BooleanExpression.html">Sequel::SQL::BooleanExpression</a>
+created from this hash, matching all of the conditions in this hash or the
+condition specified by the given argument.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000049-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000049-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core/core_sql.rb, line 84</span>
+84:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">|</span>(<span class="ruby-identifier">ce</span>)
+85:     <span class="ruby-operator">::</span><span class="ruby-constant">Sequel</span><span class="ruby-operator">::</span><span class="ruby-constant">SQL</span><span class="ruby-operator">::</span><span class="ruby-constant">BooleanExpression</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:OR</span>, <span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">ce</span>)
+86:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000050" class="method-detail">
+        <a name="M000050"></a>
+
+        <div class="method-heading">
+          <a href="#M000050" class="method-signature">
+          <span class="method-name">~</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a <a
+href="Sequel/SQL/BooleanExpression.html">Sequel::SQL::BooleanExpression</a>
+created from this hash, not matching any of the conditions.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000050-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000050-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core/core_sql.rb, line 90</span>
+90:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">~</span>
+91:     <span class="ruby-operator">::</span><span class="ruby-constant">Sequel</span><span class="ruby-operator">::</span><span class="ruby-constant">SQL</span><span class="ruby-operator">::</span><span class="ruby-constant">BooleanExpression</span>.<span class="ruby-identifier">from_value_pairs</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">:OR</span>, <span class="ruby-keyword kw">true</span>)
+92:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

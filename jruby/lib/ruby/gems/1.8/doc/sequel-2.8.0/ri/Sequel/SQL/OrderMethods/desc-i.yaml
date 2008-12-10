@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Mark the receiving SQL column as sorting in a descending fashion.
+full_name: Sequel::SQL::OrderMethods#desc
+params: ()
+name: desc
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Intercepts method calls intended for the database and sends them along.
+full_name: Sequel::Migration#method_missing
+params: (method_sym, *args, &block)
+name: method_missing
+is_singleton: false
+aliases: []
+

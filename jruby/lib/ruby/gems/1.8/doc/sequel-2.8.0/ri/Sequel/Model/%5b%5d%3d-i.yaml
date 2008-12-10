@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets value of the column's attribute and marks the column as changed. If the
+    column already has the same value, this is a no-op.
+full_name: Sequel::Model#[]=
+params: (column, value)
+name: '[]='
+is_singleton: false
+aliases: []
+

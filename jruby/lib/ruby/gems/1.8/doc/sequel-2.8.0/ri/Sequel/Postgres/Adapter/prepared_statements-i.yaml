@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Hash of prepared statements for this connection. Keys are string names of
+    the server side prepared statement, and values are SQL strings.
+full_name: Sequel::Postgres::Adapter#prepared_statements
+params: ()
+name: prepared_statements
+is_singleton: false
+aliases: []
+

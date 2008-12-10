@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converts all column names to lowercase
+full_name: Sequel::DBI::Database#lowercase
+params: ()
+name: lowercase
+is_singleton: false
+aliases: []
+

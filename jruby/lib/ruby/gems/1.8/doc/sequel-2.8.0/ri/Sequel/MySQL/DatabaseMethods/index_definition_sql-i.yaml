@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Handle MySQL specific index SQL syntax
+full_name: Sequel::MySQL::DatabaseMethods#index_definition_sql
+params: (table_name, index)
+name: index_definition_sql
+is_singleton: false
+aliases: []
+

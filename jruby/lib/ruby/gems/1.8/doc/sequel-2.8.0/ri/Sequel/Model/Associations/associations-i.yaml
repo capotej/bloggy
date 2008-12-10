@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Array of association name symbols
+full_name: Sequel::Model::Associations#associations
+params: ()
+name: associations
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the pagination info for this paginated dataset, and returns self.
+full_name: Sequel::Dataset::Pagination#set_pagination_info
+params: (page_no, page_size, record_count)
+name: set_pagination_info
+is_singleton: false
+aliases: []
+

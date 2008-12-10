@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Unique for objects with the same class and pk (if pk is not nil), or the same
+    class and values (if pk is nil).
+full_name: Sequel::Model#hash
+params: ()
+name: hash
+is_singleton: false
+aliases: []
+

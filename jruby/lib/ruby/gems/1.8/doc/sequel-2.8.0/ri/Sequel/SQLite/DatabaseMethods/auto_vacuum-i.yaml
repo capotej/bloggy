@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A symbol signifying the value of the auto_vacuum PRAGMA.
+full_name: Sequel::SQLite::DatabaseMethods#auto_vacuum
+params: ()
+name: auto_vacuum
+is_singleton: false
+aliases: []
+

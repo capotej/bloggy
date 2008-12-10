@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Module for holding all MySQL-related classes and modules for Sequel.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: Sequel::MySQL
+constants: []
+
+superclass: 
+name: MySQL

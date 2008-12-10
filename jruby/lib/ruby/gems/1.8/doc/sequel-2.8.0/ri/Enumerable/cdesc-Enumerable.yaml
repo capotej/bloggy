@@ -1,0 +1,16 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: send_each
+class_methods: []
+
+full_name: Enumerable
+constants: []
+
+superclass: 
+name: Enumerable

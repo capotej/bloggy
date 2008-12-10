@@ -1,0 +1,18 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: fetch_rows
+- !ruby/object:RI::MethodSummary 
+  name: literal
+class_methods: []
+
+full_name: Sequel::OpenBase::Dataset
+constants: []
+
+superclass: Sequel::Dataset
+name: Dataset

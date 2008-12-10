@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Finds a single record according to the supplied filter, e.g.:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Ticket.find :author =&gt; 'Sharon' # =&gt; record\n"
+full_name: Sequel::Model::find
+params: (*args, &block)
+name: find
+is_singleton: true
+aliases: []
+

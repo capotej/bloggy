@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Alias for #execute_dui'
+full_name: Sequel::Informix::Database#do
+params: (sql, opts={})
+name: do
+is_singleton: false
+aliases: []
+

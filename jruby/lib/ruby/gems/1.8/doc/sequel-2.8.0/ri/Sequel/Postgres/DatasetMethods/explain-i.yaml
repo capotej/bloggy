@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return the results of an EXPLAIN query as a string
+full_name: Sequel::Postgres::DatasetMethods#explain
+params: (opts = nil)
+name: explain
+is_singleton: false
+aliases: []
+

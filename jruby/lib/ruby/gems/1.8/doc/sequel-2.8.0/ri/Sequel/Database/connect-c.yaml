@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (db = c.new(opts))
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Connects to a database. See Sequel.connect.
+full_name: Sequel::Database::connect
+params: (conn_string, opts = {}, &block) {|db = c.new(opts)| ...}
+name: connect
+is_singleton: true
+aliases: []
+

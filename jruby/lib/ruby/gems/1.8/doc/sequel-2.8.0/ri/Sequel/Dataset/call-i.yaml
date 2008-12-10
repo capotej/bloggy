@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: For the given type (:select, :insert, :update, or :delete), run the sql with
+    the bind variables specified in the hash. values is a hash of passed to insert
+    or update (if one of those types is used), which may contain placeholders.
+full_name: Sequel::Dataset#call
+params: (type, bind_variables={}, values=nil)
+name: call
+is_singleton: false
+aliases: []
+

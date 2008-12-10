@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a dataset with custom SQL that yields model objects.
+full_name: Sequel::Model::fetch
+params: (*args)
+name: fetch
+is_singleton: true
+aliases: []
+

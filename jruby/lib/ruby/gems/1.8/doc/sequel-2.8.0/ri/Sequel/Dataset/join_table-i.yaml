@@ -1,0 +1,83 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (table_name, last_alias, @opts[:join] || [])
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Returns a joined dataset. Uses the following arguments:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: type - The type of join to do (:inner, :left_outer, :right_outer, :full)
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: 'table - Depends on type:'
+    label: '*'
+  - !ruby/object:SM::Flow::LIST 
+    type: :BULLET
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      body: Dataset - a subselect is performed with an alias of tN for some value
+        of N
+      label: '*'
+    - !ruby/struct:SM::Flow::LI 
+      body: Model (or anything responding to :table_name) - table.table_name
+      label: '*'
+    - !ruby/struct:SM::Flow::LI 
+      body: 'String, Symbol: table'
+      label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: 'expr - specifies conditions, depends on type:'
+    label: '*'
+  - !ruby/object:SM::Flow::LIST 
+    type: :BULLET
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      body: Hash, Array with all two pairs - Assumes key (1st arg) is column of joined
+        table (unless already qualified), and value (2nd arg) is column of the last
+        joined or primary table (or the :implicit_qualifier option). To specify multiple
+        conditions on a single joined table column, you must use an array. Uses a
+        JOIN with an ON clause.
+      label: '*'
+    - !ruby/struct:SM::Flow::LI 
+      body: Array - If all members of the array are symbols, considers them as columns
+        and uses a JOIN with a USING clause. Most databases will remove duplicate
+        columns from the result set if this is used.
+      label: '*'
+    - !ruby/struct:SM::Flow::LI 
+      body: nil - If a block is not given, doesn't use ON or USING, so the JOIN should
+        be a NATURAL or CROSS join. If a block is given, uses a ON clause based on
+        the block, see below.
+      label: '*'
+    - !ruby/struct:SM::Flow::LI 
+      body: Everything else - pretty much the same as a using the argument in a call
+        to filter, so strings are considered literal, symbols specify boolean columns,
+        and blockless filter expressions can be used. Uses a JOIN with an ON clause.
+      label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: 'options - a hash of options, with any of the following keys:'
+    label: '*'
+  - !ruby/object:SM::Flow::LIST 
+    type: :BULLET
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      body: ":table_alias - the name of the table's alias when joining, necessary \
+        for joining to the same table more than once. No alias is used by default."
+      label: '*'
+    - !ruby/struct:SM::Flow::LI 
+      body: ":implicit_qualifer - The name to use for qualifying implicit conditions. \
+        By default, the last joined or primary table is used."
+      label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: block - The block argument should only be given if a JOIN with an ON clause
+      is used, in which case it yields the table alias/name for the table currently
+      being joined, the table alias/name for the last joined (or first table), and
+      an array of previous SQL::JoinClause.
+    label: '*'
+full_name: Sequel::Dataset#join_table
+params: (type, table, expr=nil, options={}, &block) {|table_name, last_alias, @opts[:join]
+  || []| ...}
+name: join_table
+is_singleton: false
+aliases: []
+

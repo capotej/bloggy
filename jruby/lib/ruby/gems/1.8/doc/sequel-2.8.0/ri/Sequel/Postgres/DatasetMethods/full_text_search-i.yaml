@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: PostgreSQL specific full text search syntax, using tsearch2 (included in 8.3
+    by default, and available for earlier versions as an add-on).
+full_name: Sequel::Postgres::DatasetMethods#full_text_search
+params: (cols, terms, opts = {})
+name: full_text_search
+is_singleton: false
+aliases: []
+

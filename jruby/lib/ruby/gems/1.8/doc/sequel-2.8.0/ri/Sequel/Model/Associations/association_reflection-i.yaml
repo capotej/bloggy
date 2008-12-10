@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The association reflection hash for the association of the given name.
+full_name: Sequel::Model::Associations#association_reflection
+params: (name)
+name: association_reflection
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Initializes a model instance as an existing record. This constructor is used
+    by Sequel to initialize model instances when fetching records. #load requires
+    that values be a hash where all keys are symbols. It probably should not be used
+    by external code.'
+full_name: Sequel::Model::load
+params: (values)
+name: load
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Whether or not setting the primary key inside new/set/update is restricted,
+    true by default.
+full_name: Sequel::Model::restrict_primary_key?
+params: ()
+name: restrict_primary_key?
+is_singleton: true
+aliases: []
+

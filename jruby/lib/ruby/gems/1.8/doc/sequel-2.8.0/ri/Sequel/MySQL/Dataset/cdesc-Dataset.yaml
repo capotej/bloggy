@@ -1,0 +1,35 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Sequel::MySQL::DatasetMethods
+- !ruby/object:RI::IncludedModule 
+  name: StoredProcedures
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Dataset class for MySQL datasets accessed via the native driver.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: delete
+- !ruby/object:RI::MethodSummary 
+  name: fetch_rows
+- !ruby/object:RI::MethodSummary 
+  name: insert
+- !ruby/object:RI::MethodSummary 
+  name: literal
+- !ruby/object:RI::MethodSummary 
+  name: prepare
+- !ruby/object:RI::MethodSummary 
+  name: replace
+- !ruby/object:RI::MethodSummary 
+  name: update
+class_methods: []
+
+full_name: Sequel::MySQL::Dataset
+constants: []
+
+superclass: Sequel::Dataset
+name: Dataset

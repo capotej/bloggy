@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the columns as a list of frozen strings instead of a list of symbols.
+    This makes it possible to check whether a column exists without creating a symbol,
+    which would be a memory leak if called with user input.
+full_name: Sequel::Model::str_columns
+params: ()
+name: str_columns
+is_singleton: true
+aliases: []
+

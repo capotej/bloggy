@@ -1,0 +1,37 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Validates only if the fields in the model (specified by atts) are unique in
+    the database. Pass an array of fields instead of multiple fields to specify that
+    the combination of fields must be unique, instead of that each field should have
+    a unique value.
+- !ruby/struct:SM::Flow::P 
+  body: You should also add a unique index in the database, as this suffers from a
+    fairly obvious race condition.
+- !ruby/struct:SM::Flow::P 
+  body: 'Possible Options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":allow_nil - Whether to skip the validation if the value(s) is/are nil \
+      (default: false)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":if - A symbol (indicating an instance_method) or proc (which is instance_evaled) \
+      skipping this validation if it returns nil or false."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":message - The message to use (default: 'is already taken')"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":tag - The tag to use for this validation (default: :uniqueness)"
+    label: '*'
+full_name: Sequel::Model::validates_uniqueness_of
+params: (*atts)
+name: validates_uniqueness_of
+is_singleton: true
+aliases: []
+

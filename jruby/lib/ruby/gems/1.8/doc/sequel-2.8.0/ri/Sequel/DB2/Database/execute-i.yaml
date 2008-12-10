@@ -1,0 +1,11 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (sth)
+comment: 
+full_name: Sequel::DB2::Database#execute
+params: (sql, opts={}) {|sth| ...}
+name: execute
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: do

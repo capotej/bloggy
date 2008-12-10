@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Inserts values into the associated table. The returned value is generally
+    the value of the primary key for the inserted row, but that is adapter dependent.
+full_name: Sequel::Dataset#insert
+params: (*values)
+name: insert
+is_singleton: false
+aliases: []
+

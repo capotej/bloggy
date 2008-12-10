@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: row
+comment: 
+full_name: Sequel::OpenBase::Dataset#fetch_rows
+params: (sql) {|row| ...}
+name: fetch_rows
+is_singleton: false
+aliases: []
+

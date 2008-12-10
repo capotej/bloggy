@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: row
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Yield a hash for each row in the dataset.
+full_name: Sequel::SQLite::Dataset#fetch_rows
+params: (sql) {|row| ...}
+name: fetch_rows
+is_singleton: false
+aliases: []
+

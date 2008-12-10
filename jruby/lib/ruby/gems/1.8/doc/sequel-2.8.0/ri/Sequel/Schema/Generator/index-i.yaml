@@ -1,0 +1,25 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Add an index on the given column(s) with the given options to the DDL. The
+    available options are:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":type - The type of index to use (only supported by some databases)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":unique - Make the index unique, so duplicate values are not allowed."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":where - Create a partial index (only supported by some databases)"
+    label: '*'
+full_name: Sequel::Schema::Generator#index
+params: (columns, opts = {})
+name: index
+is_singleton: false
+aliases: []
+

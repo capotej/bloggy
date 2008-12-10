@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: self if block_given?
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates new instance with values set to passed-in Hash. If a block is given,
+    yield the instance to the block unless from_db is true. This method runs the after_initialize
+    hook after it has optionally yielded itself to the block.
+- !ruby/struct:SM::Flow::P 
+  body: 'Arguments:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: values - should be a hash with symbol keys, though string keys will work
+      if from_db is false.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: from_db - should only be set by Model.load, forget it exists.
+    label: '*'
+full_name: Sequel::Model::new
+params: (values = {}, from_db = false) {|self if block_given?| ...}
+name: new
+is_singleton: true
+aliases: []
+

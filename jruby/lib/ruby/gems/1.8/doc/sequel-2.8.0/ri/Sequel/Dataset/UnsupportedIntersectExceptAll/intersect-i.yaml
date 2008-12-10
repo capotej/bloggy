@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Raise an Error if INTERSECT is used
+full_name: Sequel::Dataset::UnsupportedIntersectExceptAll#intersect
+params: (ds, all=false)
+name: intersect
+is_singleton: false
+aliases: []
+

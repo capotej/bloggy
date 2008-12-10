@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Like delete but runs hooks before and after delete. If before_destroy returns
+    false, returns false without deleting the object the the database. Otherwise,
+    deletes the item from the database and returns self.
+full_name: Sequel::Model#destroy
+params: ()
+name: destroy
+is_singleton: false
+aliases: []
+

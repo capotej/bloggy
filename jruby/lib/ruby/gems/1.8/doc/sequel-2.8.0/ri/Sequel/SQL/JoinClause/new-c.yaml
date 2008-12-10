@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create an object with the given conditions and default value.
+full_name: Sequel::SQL::JoinClause::new
+params: (join_type, table, table_alias = nil)
+name: new
+is_singleton: true
+aliases: []
+

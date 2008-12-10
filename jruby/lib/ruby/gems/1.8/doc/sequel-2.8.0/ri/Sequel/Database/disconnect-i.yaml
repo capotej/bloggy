@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Disconnects all available connections from the connection pool. If any connections
+    are currently in use, they will not be disconnected.
+full_name: Sequel::Database#disconnect
+params: ()
+name: disconnect
+is_singleton: false
+aliases: []
+

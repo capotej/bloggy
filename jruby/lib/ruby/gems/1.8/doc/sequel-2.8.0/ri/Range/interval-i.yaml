@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the interval between the beginning and end of the range.
+- !ruby/struct:SM::Flow::P 
+  body: 'For exclusive ranges, is one less than the inclusive range:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  (0..10).interval # =&gt; 10\n  (0...10).interval # =&gt; 9\n"
+- !ruby/struct:SM::Flow::P 
+  body: Only works for numeric ranges, for other ranges the result is undefined, and
+    the method may raise an error.
+full_name: Range#interval
+params: ()
+name: interval
+is_singleton: false
+aliases: []
+

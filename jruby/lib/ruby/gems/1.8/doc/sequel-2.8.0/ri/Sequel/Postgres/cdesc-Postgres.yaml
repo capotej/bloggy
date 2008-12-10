@@ -1,0 +1,40 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Top level module for holding all PostgreSQL-related modules and classes for
+    Sequel.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: Sequel::Postgres
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hash with integer keys and proc values for converting PostgreSQL types.
+  value: '{       16 => lambda{ |s| s == ''t'' }, # boolean       17 => lambda{ |s|
+    Adapter.unescape_bytea(s).to_blob }, # bytea       20 => lambda{ |s| s.to_i },
+    # int8       21 => lambda{ |s| s.to_i }, # int2       22 => lambda{ |s| s.to_i
+    }, # int2vector       23 => lambda{ |s| s.to_i }, # int4       26 => lambda{ |s|
+    s.to_i }, # oid       700 => lambda{ |s| s.to_f }, # float4       701 => lambda{
+    |s| s.to_f }, # float8       790 => lambda{ |s| s.to_d }, # money       1082 =>
+    lambda{ |s| @use_iso_date_format ? Date.new(*s.split("-").map{|x| x.to_i}) : s.to_date
+    }, # date       1083 => lambda{ |s| s.to_time }, # time without time zone       1114
+    => lambda{ |s| s.to_sequel_time }, # timestamp without time zone       1184 =>
+    lambda{ |s| s.to_sequel_time }, # timestamp with time zone       1266 => lambda{
+    |s| s.to_time }, # time with time zone       1700 => lambda{ |s| s.to_d }, # numeric     }'
+  name: PG_TYPES
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Array of exceptions that need to be converted. JDBC uses NativeExceptions,
+      the native adapter uses PGError.
+  value: '[]'
+  name: CONVERTED_EXCEPTIONS
+superclass: 
+name: Postgres

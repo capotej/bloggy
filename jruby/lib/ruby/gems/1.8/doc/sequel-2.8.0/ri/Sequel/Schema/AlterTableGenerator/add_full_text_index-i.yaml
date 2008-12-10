@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Add a full text index on the given columns to the DDL for the table. See Generator#index
+    for available options.
+full_name: Sequel::Schema::AlterTableGenerator#add_full_text_index
+params: (columns, opts = {})
+name: add_full_text_index
+is_singleton: false
+aliases: []
+

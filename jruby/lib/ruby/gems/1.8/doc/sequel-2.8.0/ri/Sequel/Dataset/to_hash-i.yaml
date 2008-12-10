@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a hash with one column used as key and another used as value. If rows
+    have duplicate values for the key column, the latter row(s) will overwrite the
+    value of the previous row(s). If the value_column is not given or nil, uses the
+    entire hash as the value.
+full_name: Sequel::Dataset#to_hash
+params: (key_column, value_column = nil)
+name: to_hash
+is_singleton: false
+aliases: []
+

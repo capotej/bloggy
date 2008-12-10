@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Array of SQL DDL statements, the first for creating a table with the given
+    name and column specifications, and the others for specifying indexes on the table.
+full_name: Sequel::Schema::SQL#create_table_sql_list
+params: (name, columns, indexes = nil)
+name: create_table_sql_list
+is_singleton: false
+aliases: []
+

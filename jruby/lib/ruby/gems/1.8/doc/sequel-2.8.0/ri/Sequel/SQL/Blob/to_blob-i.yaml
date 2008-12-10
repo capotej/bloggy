@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: return self.
+full_name: Sequel::SQL::Blob#to_blob
+params: ()
+name: to_blob
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,41 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Take pairs of values (e.g. a hash or array of arrays of two pairs) and converts
+    it to a BooleanExpression. The operator and args used depends on the case of the
+    right (2nd) argument:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: 0..10 - left &gt;= 0 AND left &lt;= 10
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '[1,2] - left IN (1,2)'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: nil - left IS NULL
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: /as/ - left ~ 'as'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":blah - left = blah"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '''blah'' - left = ''blah'''
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: 'If multiple arguments are given, they are joined with the op given (AND by
+    default, OR possible). If negate is set to true, all subexpressions are inverted
+    before used. Therefore, the following expressions are equivalent:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ~from_value_pairs(hash)\n  from_value_pairs(hash, :OR, true)\n"
+full_name: Sequel::SQL::BooleanExpression::from_value_pairs
+params: (pairs, op=:AND, negate=false)
+name: from_value_pairs
+is_singleton: true
+aliases: []
+

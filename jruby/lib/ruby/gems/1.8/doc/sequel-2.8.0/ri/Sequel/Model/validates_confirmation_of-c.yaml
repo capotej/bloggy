@@ -1,0 +1,41 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Validates confirmation of an attribute. Checks that the object has a _confirmation
+    value matching the current value. For example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  validates_confirmation_of :blah\n"
+- !ruby/struct:SM::Flow::P 
+  body: Just makes sure that object.blah = object.blah_confirmation. Often used for
+    passwords or email addresses on web forms.
+- !ruby/struct:SM::Flow::P 
+  body: 'Possible Options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":allow_false - Whether to skip the validation if the value is blank (default: \
+      false)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":allow_nil - Whether to skip the validation if the value is nil (default: \
+      false)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":if - A symbol (indicating an instance_method) or proc (which is instance_evaled) \
+      skipping this validation if it returns nil or false."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":message - The message to use (default: 'is not confirmed')"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":tag - The tag to use for this validation (default: :confirmation)"
+    label: '*'
+full_name: Sequel::Model::validates_confirmation_of
+params: (*atts)
+name: validates_confirmation_of
+is_singleton: true
+aliases: []
+

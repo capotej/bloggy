@@ -1,0 +1,325 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Model has some methods that are added via metaprogramming:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: All of the methods in DATASET_METHODS have class methods created that call
+      the Model's dataset with the method of the same name with the given arguments.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: 'All of the methods in HOOKS have class methods created that accept either
+      a method name symbol or an optional tag and a block. These methods run the code
+      as a callback at the specified time. For example:'
+    label: '*'
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  Model.before_save :do_something\n  Model.before_save(:do_something_else){ \
+      self.something_else = 42}\n  object = Model.new\n  object.save\n"
+  - !ruby/struct:SM::Flow::P 
+    body: Would run the object's :do_something method following by the code block
+      related to :do_something_else. Note that if you specify a block, a tag is optional.
+      If the tag is not nil, it will overwrite a previous block with the same tag.
+      This allows hooks to work with systems that reload code.
+  - !ruby/struct:SM::Flow::LI 
+    body: All of the methods in HOOKS also create instance methods, but you should
+      not override these instance methods.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: 'The following instance_methods all call the class method of the same name:
+      columns, dataset, db, primary_key, str_columns.'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: 'The following class level attr_readers are created: allowed_columns, cache_store,
+      cache_ttl, dataset_methods, primary_key, restricted_columns, sti_dataset, and
+      sti_key. You should not usually need to access these directly.'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: 'The following class level attr_accessors are created: raise_on_typecast_failure,
+      raise_on_save_failure, strict_param_setting, typecast_empty_string_to_nil, and
+      typecast_on_assignment:'
+    label: '*'
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  # Don't raise an error if a validation attempt fails in\n  # save/create/save_changes/etc.\n\
+      \  Model.raise_on_save_failure = false\n  Model.before_save{false}\n  Model.new.save \
+      # =&gt; nil\n  # Don't raise errors in new/set/update/etc. if an attempt to\n\
+      \  # access a missing/restricted method occurs (just silently\n  # skip it)\n\
+      \  Model.strict_param_setting = false\n  Model.new(:id=&gt;1) # No Error\n  # \
+      Don't typecast attribute values on assignment\n  Model.typecast_on_assignment \
+      = false\n  m = Model.new\n  m.number = '10'\n  m.number # =&gt; '10' instead \
+      of 10\n  # Don't typecast empty string to nil for non-string, non-blob columns.\n\
+      \  Model.typecast_empty_string_to_nil = false\n  m.number = ''\n  m.number # \
+      =&gt; '' instead of nil\n  # Don't raise if unable to typecast data for a column\n\
+      \  Model.typecast_empty_string_to_nil = true\n  Model.raise_on_typecast_failure \
+      = false\n  m.not_null_column = '' # =&gt; nil\n  m.number = 'A' # =&gt; 'A'\n"
+  - !ruby/struct:SM::Flow::LI 
+    body: 'The following class level method aliases are defined:'
+    label: '*'
+  - !ruby/object:SM::Flow::LIST 
+    type: :BULLET
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      body: Model.dataset= =&gt; set_dataset
+      label: '*'
+    - !ruby/struct:SM::Flow::LI 
+      body: Model.is_a =&gt; is
+      label: '*'
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The hash of attribute values. Keys are symbols with the names of the underlying
+      database columns.
+  rw: R
+  name: values
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ==
+- !ruby/object:RI::MethodSummary 
+  name: ===
+- !ruby/object:RI::MethodSummary 
+  name: '[]'
+- !ruby/object:RI::MethodSummary 
+  name: '[]='
+- !ruby/object:RI::MethodSummary 
+  name: associations
+- !ruby/object:RI::MethodSummary 
+  name: cache_key
+- !ruby/object:RI::MethodSummary 
+  name: changed_columns
+- !ruby/object:RI::MethodSummary 
+  name: delete
+- !ruby/object:RI::MethodSummary 
+  name: destroy
+- !ruby/object:RI::MethodSummary 
+  name: each
+- !ruby/object:RI::MethodSummary 
+  name: errors
+- !ruby/object:RI::MethodSummary 
+  name: exists?
+- !ruby/object:RI::MethodSummary 
+  name: hash
+- !ruby/object:RI::MethodSummary 
+  name: id
+- !ruby/object:RI::MethodSummary 
+  name: inspect
+- !ruby/object:RI::MethodSummary 
+  name: keys
+- !ruby/object:RI::MethodSummary 
+  name: new?
+- !ruby/object:RI::MethodSummary 
+  name: pk
+- !ruby/object:RI::MethodSummary 
+  name: pk_hash
+- !ruby/object:RI::MethodSummary 
+  name: refresh
+- !ruby/object:RI::MethodSummary 
+  name: reload
+- !ruby/object:RI::MethodSummary 
+  name: save
+- !ruby/object:RI::MethodSummary 
+  name: save!
+- !ruby/object:RI::MethodSummary 
+  name: save_changes
+- !ruby/object:RI::MethodSummary 
+  name: set
+- !ruby/object:RI::MethodSummary 
+  name: set_all
+- !ruby/object:RI::MethodSummary 
+  name: set_except
+- !ruby/object:RI::MethodSummary 
+  name: set_only
+- !ruby/object:RI::MethodSummary 
+  name: set_values
+- !ruby/object:RI::MethodSummary 
+  name: set_with_params
+- !ruby/object:RI::MethodSummary 
+  name: this
+- !ruby/object:RI::MethodSummary 
+  name: update
+- !ruby/object:RI::MethodSummary 
+  name: update_all
+- !ruby/object:RI::MethodSummary 
+  name: update_except
+- !ruby/object:RI::MethodSummary 
+  name: update_only
+- !ruby/object:RI::MethodSummary 
+  name: update_values
+- !ruby/object:RI::MethodSummary 
+  name: update_with_params
+- !ruby/object:RI::MethodSummary 
+  name: valid?
+- !ruby/object:RI::MethodSummary 
+  name: validate
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: '[]'
+- !ruby/object:RI::MethodSummary 
+  name: columns
+- !ruby/object:RI::MethodSummary 
+  name: create
+- !ruby/object:RI::MethodSummary 
+  name: create_table
+- !ruby/object:RI::MethodSummary 
+  name: create_table!
+- !ruby/object:RI::MethodSummary 
+  name: dataset
+- !ruby/object:RI::MethodSummary 
+  name: db
+- !ruby/object:RI::MethodSummary 
+  name: db=
+- !ruby/object:RI::MethodSummary 
+  name: db_schema
+- !ruby/object:RI::MethodSummary 
+  name: def_dataset_method
+- !ruby/object:RI::MethodSummary 
+  name: delete_all
+- !ruby/object:RI::MethodSummary 
+  name: destroy_all
+- !ruby/object:RI::MethodSummary 
+  name: drop_table
+- !ruby/object:RI::MethodSummary 
+  name: eager_loading_dataset
+- !ruby/object:RI::MethodSummary 
+  name: fetch
+- !ruby/object:RI::MethodSummary 
+  name: find
+- !ruby/object:RI::MethodSummary 
+  name: find_or_create
+- !ruby/object:RI::MethodSummary 
+  name: has_hooks?
+- !ruby/object:RI::MethodSummary 
+  name: has_validations?
+- !ruby/object:RI::MethodSummary 
+  name: hook_blocks
+- !ruby/object:RI::MethodSummary 
+  name: implicit_table_name
+- !ruby/object:RI::MethodSummary 
+  name: inherited
+- !ruby/object:RI::MethodSummary 
+  name: is
+- !ruby/object:RI::MethodSummary 
+  name: load
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: no_primary_key
+- !ruby/object:RI::MethodSummary 
+  name: primary_key_hash
+- !ruby/object:RI::MethodSummary 
+  name: restrict_primary_key
+- !ruby/object:RI::MethodSummary 
+  name: restrict_primary_key?
+- !ruby/object:RI::MethodSummary 
+  name: schema
+- !ruby/object:RI::MethodSummary 
+  name: serialize
+- !ruby/object:RI::MethodSummary 
+  name: serialized?
+- !ruby/object:RI::MethodSummary 
+  name: set_allowed_columns
+- !ruby/object:RI::MethodSummary 
+  name: set_cache
+- !ruby/object:RI::MethodSummary 
+  name: set_cache_ttl
+- !ruby/object:RI::MethodSummary 
+  name: set_dataset
+- !ruby/object:RI::MethodSummary 
+  name: set_primary_key
+- !ruby/object:RI::MethodSummary 
+  name: set_restricted_columns
+- !ruby/object:RI::MethodSummary 
+  name: set_schema
+- !ruby/object:RI::MethodSummary 
+  name: set_sti_key
+- !ruby/object:RI::MethodSummary 
+  name: skip_superclass_validations
+- !ruby/object:RI::MethodSummary 
+  name: str_columns
+- !ruby/object:RI::MethodSummary 
+  name: subset
+- !ruby/object:RI::MethodSummary 
+  name: table_exists?
+- !ruby/object:RI::MethodSummary 
+  name: table_name
+- !ruby/object:RI::MethodSummary 
+  name: unrestrict_primary_key
+- !ruby/object:RI::MethodSummary 
+  name: validate
+- !ruby/object:RI::MethodSummary 
+  name: validates
+- !ruby/object:RI::MethodSummary 
+  name: validates_acceptance_of
+- !ruby/object:RI::MethodSummary 
+  name: validates_confirmation_of
+- !ruby/object:RI::MethodSummary 
+  name: validates_each
+- !ruby/object:RI::MethodSummary 
+  name: validates_format_of
+- !ruby/object:RI::MethodSummary 
+  name: validates_length_of
+- !ruby/object:RI::MethodSummary 
+  name: validates_numericality_of
+- !ruby/object:RI::MethodSummary 
+  name: validates_presence_of
+- !ruby/object:RI::MethodSummary 
+  name: validates_uniqueness_of
+- !ruby/object:RI::MethodSummary 
+  name: validations
+full_name: Sequel::Model
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Dataset methods to proxy via metaprogramming
+  value: '%w''<< all avg count delete distinct eager eager_graph each each_page         empty?
+    except exclude filter first from from_self full_outer_join get graph         group
+    group_and_count group_by having import inner_join insert         insert_multiple
+    intersect interval invert_order join join_table last         left_outer_join limit
+    map multi_insert naked order order_by order_more         paginate print query
+    range reverse_order right_outer_join select         select_all select_more server
+    set set_graph_aliases single_value size to_csv to_hash        transform union
+    uniq unfiltered unordered update where''.map{|x| x.to_sym}'
+  name: DATASET_METHODS
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Instance variables that are inherited in subclasses
+  value: '{:@allowed_columns=>:dup, :@cache_store=>nil,       :@cache_ttl=>nil, :@dataset_methods=>:dup,
+    :@primary_key=>nil,        :@raise_on_save_failure=>nil, :@restricted_columns=>:dup,
+    :@restrict_primary_key=>nil,       :@sti_dataset=>nil, :@sti_key=>nil, :@strict_param_setting=>nil,       :@typecast_empty_string_to_nil=>nil,
+    :@typecast_on_assignment=>nil,       :@raise_on_typecast_failure=>nil, :@association_reflections=>:dup}'
+  name: INHERITED_INSTANCE_VARIABLES
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Validations without an :if option are always run
+  value: proc{true}
+  name: DEFAULT_VALIDATION_IF_PROC
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hooks that are safe for public use
+  value: '[:after_initialize, :before_create, :after_create, :before_update,       :after_update,
+    :before_save, :after_save, :before_destroy, :after_destroy,       :before_validation,
+    :after_validation]'
+  name: HOOKS
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hooks that are only for internal use
+  value: '[:before_update_values, :before_delete]'
+  name: PRIVATE_HOOKS
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The setter methods (methods ending with =) that are never allowed to be
+      called automatically via set.
+  value: '%w"== === []= taguri= typecast_empty_string_to_nil= typecast_on_assignment=
+    strict_param_setting= raise_on_save_failure= raise_on_typecast_failure="'
+  name: RESTRICTED_SETTER_METHODS
+superclass: Object
+name: Model

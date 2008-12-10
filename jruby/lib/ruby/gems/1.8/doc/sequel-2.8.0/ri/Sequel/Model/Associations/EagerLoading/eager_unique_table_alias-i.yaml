@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a unique table alias that hasn't already been used in the query. Will
+    either be the table_alias itself or table_alias_N for some integer N (starting
+    at 0 and increasing until an unused one is found).
+full_name: Sequel::Model::Associations::EagerLoading#eager_unique_table_alias
+params: (ds, table_alias)
+name: eager_unique_table_alias
+is_singleton: false
+aliases: []
+

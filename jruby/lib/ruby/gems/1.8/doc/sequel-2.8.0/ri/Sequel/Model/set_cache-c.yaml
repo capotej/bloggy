@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set the cache store for the model, as well as the caching before_* hooks.
+- !ruby/struct:SM::Flow::P 
+  body: 'The cache store should implement the following API:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "   cache_store.set(key, obj, time) # Associate the obj with the given key\n\
+    \                                   # in the cache for the time (specified\n   \
+    \                                # in seconds)\n   cache_store.get(key) =&gt; obj \
+    # Returns object set with same key\n   cache_store.get(key2) =&gt; nil # nil returned \
+    if there isn't an object\n                                # currently in the cache \
+    with that key\n"
+full_name: Sequel::Model::set_cache
+params: (store, opts = {})
+name: set_cache
+is_singleton: true
+aliases: []
+

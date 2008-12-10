@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Separates the schema from the table and returns a string with them quoted
+    (if quoting identifiers)
+full_name: Sequel::Dataset#quote_schema_table
+params: (table)
+name: quote_schema_table
+is_singleton: false
+aliases: []
+

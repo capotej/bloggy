@@ -1,0 +1,39 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A SingleThreadedPool acts as a replacement for a ConnectionPool for use in
+    single-threaded applications. ConnectionPool imposes a substantial performance
+    penalty, so SingleThreadedPool is used to gain some speed.
+- !ruby/struct:SM::Flow::P 
+  body: Note that using a single threaded pool with some adapters can cause errors
+    in certain cases, see Sequel.single_threaded=.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The proc used to create a new database connection
+  rw: W
+  name: connection_proc
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The proc used to disconnect a database connection.
+  rw: RW
+  name: disconnection_proc
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: conn
+- !ruby/object:RI::MethodSummary 
+  name: disconnect
+- !ruby/object:RI::MethodSummary 
+  name: hold
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Sequel::SingleThreadedPool
+constants: []
+
+superclass: Object
+name: SingleThreadedPool

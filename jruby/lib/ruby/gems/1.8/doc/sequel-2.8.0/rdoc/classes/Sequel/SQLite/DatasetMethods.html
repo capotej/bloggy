@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Sequel::SQLite::DatasetMethods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Sequel::SQLite::DatasetMethods</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/sequel_core/adapters/shared/sqlite_rb.html">
+                lib/sequel_core/adapters/shared/sqlite.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Instance methods for datasets that connect to an <a
+href="../SQLite.html">SQLite</a> database
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000276">complex_expression_sql</a>&nbsp;&nbsp;
+      <a href="#M000277">delete</a>&nbsp;&nbsp;
+      <a href="#M000278">insert</a>&nbsp;&nbsp;
+      <a href="#M000279">insert_sql</a>&nbsp;&nbsp;
+      <a href="#M000280">quoted_identifier</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">Dataset::UnsupportedIntersectExceptAll</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000276" class="method-detail">
+        <a name="M000276"></a>
+
+        <div class="method-heading">
+          <a href="#M000276" class="method-signature">
+          <span class="method-name">complex_expression_sql</span><span class="method-args">(op, args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="../SQLite.html">SQLite</a> does not support pattern matching via
+regular expressions. <a href="../SQLite.html">SQLite</a> is case
+insensitive (depending on pragma), so use LIKE for ILIKE.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000276-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000276-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/adapters/shared/sqlite.rb, line 117</span>
+117:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">complex_expression_sql</span>(<span class="ruby-identifier">op</span>, <span class="ruby-identifier">args</span>)
+118:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">op</span>
+119:         <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:~</span>, <span class="ruby-value str">'!~'</span><span class="ruby-value str">'!~'</span>, <span class="ruby-value str">'~*'</span><span class="ruby-value str">'~*'</span>, <span class="ruby-value str">'!~*'</span><span class="ruby-value str">'!~*'</span>
+120:           <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-value str">&quot;SQLite does not support pattern matching via regular expressions&quot;</span>
+121:         <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:LIKE</span>, <span class="ruby-value str">'NOT LIKE'</span><span class="ruby-value str">'NOT LIKE'</span>, <span class="ruby-identifier">:ILIKE</span>, <span class="ruby-value str">'NOT ILIKE'</span><span class="ruby-value str">'NOT ILIKE'</span>
+122:           <span class="ruby-comment cmt"># SQLite is case insensitive for ASCII, and non case sensitive for other character sets</span>
+123:           <span class="ruby-node">&quot;#{'NOT ' if [:'NOT LIKE', :'NOT ILIKE'].include?(op)}(#{literal(args.at(0))} LIKE #{literal(args.at(1))})&quot;</span>
+124:         <span class="ruby-keyword kw">else</span>
+125:           <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">op</span>, <span class="ruby-identifier">args</span>)
+126:         <span class="ruby-keyword kw">end</span>
+127:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000277" class="method-detail">
+        <a name="M000277"></a>
+
+        <div class="method-heading">
+          <a href="#M000277" class="method-signature">
+          <span class="method-name">delete</span><span class="method-args">(opts = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="../SQLite.html">SQLite</a> performs a TRUNCATE style DELETE if no
+filter is specified. Since we want to always return the count of records,
+do a specific count in the case of no filter.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000277-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000277-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/adapters/shared/sqlite.rb, line 132</span>
+132:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">opts</span> = {})
+133:         <span class="ruby-comment cmt"># check if no filter is specified</span>
+134:         <span class="ruby-identifier">opts</span> = <span class="ruby-ivar">@opts</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">opts</span>)
+135:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:where</span>]
+136:           <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">transaction</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:server</span>]) <span class="ruby-keyword kw">do</span>
+137:             <span class="ruby-identifier">unfiltered_count</span> = <span class="ruby-identifier">count</span>
+138:             <span class="ruby-identifier">execute_dui</span>(<span class="ruby-identifier">delete_sql</span>(<span class="ruby-identifier">opts</span>))
+139:             <span class="ruby-identifier">unfiltered_count</span>
+140:           <span class="ruby-keyword kw">end</span>
+141:         <span class="ruby-keyword kw">else</span>
+142:           <span class="ruby-identifier">execute_dui</span>(<span class="ruby-identifier">delete_sql</span>(<span class="ruby-identifier">opts</span>))
+143:         <span class="ruby-keyword kw">end</span>
+144:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000278" class="method-detail">
+        <a name="M000278"></a>
+
+        <div class="method-heading">
+          <a href="#M000278" class="method-signature">
+          <span class="method-name">insert</span><span class="method-args">(*values)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Insert the values into the database.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000278-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000278-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/adapters/shared/sqlite.rb, line 147</span>
+147:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">insert</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">values</span>)
+148:         <span class="ruby-identifier">execute_insert</span>(<span class="ruby-identifier">insert_sql</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">values</span>))
+149:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000279" class="method-detail">
+        <a name="M000279"></a>
+
+        <div class="method-heading">
+          <a href="#M000279" class="method-signature">
+          <span class="method-name">insert_sql</span><span class="method-args">(*values)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Allow inserting of values directly from a dataset.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000279-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000279-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/adapters/shared/sqlite.rb, line 152</span>
+152:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">insert_sql</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">values</span>)
+153:         <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">values</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">values</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Sequel</span><span class="ruby-operator">::</span><span class="ruby-constant">Dataset</span>)
+154:           <span class="ruby-node">&quot;INSERT INTO #{source_list(@opts[:from])} #{values.first.sql};&quot;</span>
+155:         <span class="ruby-keyword kw">else</span>
+156:           <span class="ruby-keyword kw">super</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">values</span>)
+157:         <span class="ruby-keyword kw">end</span>
+158:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000280" class="method-detail">
+        <a name="M000280"></a>
+
+        <div class="method-heading">
+          <a href="#M000280" class="method-signature">
+          <span class="method-name">quoted_identifier</span><span class="method-args">(c)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="../SQLite.html">SQLite</a> uses the nonstandard ` (backtick) for
+quoting identifiers.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000280-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000280-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/adapters/shared/sqlite.rb, line 161</span>
+161:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">quoted_identifier</span>(<span class="ruby-identifier">c</span>)
+162:         <span class="ruby-node">&quot;`#{c}`&quot;</span>
+163:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

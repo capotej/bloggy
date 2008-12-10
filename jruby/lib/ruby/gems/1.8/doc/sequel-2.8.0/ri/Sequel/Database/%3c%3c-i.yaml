@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Executes the supplied SQL statement. The SQL can be supplied as a string or
+    as an array of strings. If an array is given, comments and excessive white space
+    are removed. See also Array#to_sql.
+full_name: Sequel::Database#<<
+params: (sql)
+name: "<<"
+is_singleton: false
+aliases: []
+

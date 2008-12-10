@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Handle MySQL specific syntax for column references
+full_name: Sequel::MySQL::DatabaseMethods#column_references_sql
+params: (column)
+name: column_references_sql
+is_singleton: false
+aliases: []
+

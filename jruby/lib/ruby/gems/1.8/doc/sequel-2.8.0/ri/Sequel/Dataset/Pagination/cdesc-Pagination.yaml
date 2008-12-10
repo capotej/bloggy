@@ -1,0 +1,58 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Holds methods that only relate to paginated datasets. Paginated dataset have
+    pages starting at 1 (page 1 is offset 0, page 1 is offset page_size).
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The current page of the dataset, starting at 1 and not 0.
+  rw: RW
+  name: current_page
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The number of pages in the dataset before pagination, of which this paginated
+      dataset is one.
+  rw: RW
+  name: page_count
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The number of records per page (the final page may have fewer than this
+      number of records).
+  rw: RW
+  name: page_size
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The total number of records in the dataset before pagination.
+  rw: RW
+  name: pagination_record_count
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: current_page_record_count
+- !ruby/object:RI::MethodSummary 
+  name: current_page_record_range
+- !ruby/object:RI::MethodSummary 
+  name: first_page?
+- !ruby/object:RI::MethodSummary 
+  name: last_page?
+- !ruby/object:RI::MethodSummary 
+  name: next_page
+- !ruby/object:RI::MethodSummary 
+  name: page_range
+- !ruby/object:RI::MethodSummary 
+  name: prev_page
+- !ruby/object:RI::MethodSummary 
+  name: set_pagination_info
+class_methods: []
+
+full_name: Sequel::Dataset::Pagination
+constants: []
+
+superclass: 
+name: Pagination

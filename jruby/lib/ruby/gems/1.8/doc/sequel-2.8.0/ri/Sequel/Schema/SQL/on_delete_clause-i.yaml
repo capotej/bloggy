@@ -1,0 +1,33 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'SQL DDL ON DELETE fragment to use, based on the given action. The following
+    actions are recognized:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":cascade - Delete rows referencing this row."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":no_action (default) - Raise an error if other rows reference this row, \
+      allow deferring of the integrity check."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":restrict - Raise an error if other rows reference this row, but do not \
+      allow deferring the integrity check."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":set_default - Set columns referencing this row to their default value."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":set_null - Set columns referencing this row to NULL."
+    label: '*'
+full_name: Sequel::Schema::SQL#on_delete_clause
+params: (action)
+name: on_delete_clause
+is_singleton: false
+aliases: []
+

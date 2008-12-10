@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Tue Dec 09 22:52:50 UTC 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2><a href="../classes/Sequel.html">Sequel</a>: The Database Toolkit for Ruby</h2>
+<p>
+<a href="../classes/Sequel.html">Sequel</a> is a lightweight database
+access toolkit for Ruby.
+</p>
+<ul>
+<li><a href="../classes/Sequel.html">Sequel</a> provides thread safety,
+connection pooling and a concise DSL for constructing database queries and
+table schemas.
+
+</li>
+<li><a href="../classes/Sequel.html">Sequel</a> also includes a lightweight but
+comprehensive ORM layer for mapping records to Ruby objects and handling
+associated records.
+
+</li>
+<li><a href="../classes/Sequel.html">Sequel</a> supports advanced database
+features such as prepared statements, bound variables, master/slave
+configurations, and database sharding.
+
+</li>
+<li><a href="../classes/Sequel.html">Sequel</a> makes it easy to deal with
+multiple records without having to break your teeth on SQL.
+
+</li>
+<li><a href="../classes/Sequel.html">Sequel</a> currently has adapters for ADO,
+DB2, DBI, Informix, JDBC, MySQL, ODBC, OpenBase, Oracle, PostgreSQL and
+SQLite3.
+
+</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="http://sequel.rubyforge.org">Website</a>
+
+</li>
+<li><a href="http://github.com/jeremyevans/sequel">Source code</a>
+
+</li>
+<li><a href="http://code.google.com/p/ruby-sequel/issues/list">Bug tracking</a>
+
+</li>
+<li><a href="http://groups.google.com/group/sequel-talk">Google group</a>
+
+</li>
+<li><a href="http://sequel.rubyforge.org/rdoc">RDoc</a>
+
+</li>
+</ul>
+<p>
+To check out the source code:
+</p>
+<pre>
+  git clone git://github.com/jeremyevans/sequel.git
+</pre>
+<h3>Contact</h3>
+<p>
+If you have any comments or suggestions please post to the Google group.
+</p>
+<h2>Installation</h2>
+<pre>
+  sudo gem install sequel
+</pre>
+<h2>A Short Example</h2>
+<pre>
+  require 'rubygems'
+  require 'sequel'
+
+  DB = Sequel.sqlite # memory database
+
+  DB.create_table :items do # Create a new table
+    primary_key :id
+    column :name, :text
+    column :price, :float
+  end
+
+  items = DB[:items] # Create a dataset
+
+  # Populate the table
+  items &lt;&lt; {:name =&gt; 'abc', :price =&gt; rand * 100}
+  items &lt;&lt; {:name =&gt; 'def', :price =&gt; rand * 100}
+  items &lt;&lt; {:name =&gt; 'ghi', :price =&gt; rand * 100}
+
+  # Print out the number of records
+  puts &quot;Item count: #{items.count}&quot;
+
+  # Print out the records in descending order by price
+  items.reverse_order(:price).print
+
+  # Print out the average price
+  puts &quot;The average price is: #{items.avg(:price)}&quot;
+</pre>
+<h2>The <a href="../classes/Sequel.html">Sequel</a> Console</h2>
+<p>
+<a href="../classes/Sequel.html">Sequel</a> includes an IRB console for
+quick&#8216;n&#8216;dirty access to databases. You can use it like this:
+</p>
+<pre>
+  sequel sqlite://test.db # test.db in current directory
+</pre>
+<p>
+You get an IRB session with the database object stored in DB.
+</p>
+<h2>An Introduction</h2>
+<p>
+<a href="../classes/Sequel.html">Sequel</a> is designed to take the hassle
+away from connecting to databases and manipulating them. <a
+href="../classes/Sequel.html">Sequel</a> deals with all the boring stuff
+like maintaining connections, formatting SQL correctly and fetching records
+so you can concentrate on your application.
+</p>
+<p>
+<a href="../classes/Sequel.html">Sequel</a> uses the concept of datasets to
+retrieve data. A Dataset object encapsulates an SQL query and supports
+chainability, letting you fetch data using a convenient Ruby DSL that is
+both concise and infinitely flexible.
+</p>
+<p>
+For example, the following one-liner returns the average GDP for the five
+biggest countries in the middle east region:
+</p>
+<pre>
+  DB[:countries].filter(:region =&gt; 'Middle East').reverse_order(:area).limit(5).avg(:GDP)
+</pre>
+<p>
+Which is equivalent to:
+</p>
+<pre>
+  SELECT avg(GDP) FROM countries WHERE region = 'Middle East' ORDER BY area DESC LIMIT 5
+</pre>
+<p>
+Since datasets retrieve records only when needed, they can be stored and
+later reused. Records are fetched as hashes (they can also be fetched as
+custom model objects), and are accessed using an <a
+href="../classes/Enumerable.html">Enumerable</a> interface:
+</p>
+<pre>
+  middle_east = DB[:countries].filter(:region =&gt; 'Middle East')
+  middle_east.order(:name).each {|r| puts r[:name]}
+</pre>
+<p>
+<a href="../classes/Sequel.html">Sequel</a> also offers convenience methods
+for extracting data from Datasets, such as an extended map method:
+</p>
+<pre>
+  middle_east.map(:name) #=&gt; ['Egypt', 'Greece', 'Israel', ...]
+</pre>
+<p>
+Or getting results as a transposed hash, with one column as key and another
+as value:
+</p>
+<pre>
+  middle_east.to_hash(:name, :area) #=&gt; {'Israel' =&gt; 20000, 'Greece' =&gt; 120000, ...}
+</pre>
+<h2>Getting Started</h2>
+<h3>Connecting to a database</h3>
+<p>
+To connect to a database you simply provide <a
+href="../classes/Sequel.html">Sequel</a> with a URL:
+</p>
+<pre>
+  require 'sequel'
+  DB = Sequel.connect('sqlite://blog.db')
+</pre>
+<p>
+The connection URL can also include such stuff as the user name and
+password:
+</p>
+<pre>
+  DB = Sequel.connect('postgres://cico:12345@localhost:5432/mydb')
+</pre>
+<p>
+You can also specify optional parameters, such as the connection pool size,
+or loggers for logging SQL queries:
+</p>
+<pre>
+  DB = Sequel.connect(&quot;postgres://postgres:postgres@localhost/my_db&quot;,
+    :max_connections =&gt; 10, :loggers =&gt; [Logger.new('log/db.log']))
+</pre>
+<p>
+You can specify a block to connect, which will disconnect from the database
+after it completes:
+</p>
+<pre>
+  Sequel.connect('postgres://cico:12345@localhost:5432/mydb'){|db| db[:posts].delete}
+</pre>
+<h3>Arbitrary SQL queries</h3>
+<pre>
+  DB.execute(&quot;create table t (a text, b text)&quot;)
+  DB.execute(&quot;insert into t values ('a', 'b')&quot;)
+</pre>
+<p>
+Or more succinctly:
+</p>
+<pre>
+  DB &lt;&lt; &quot;create table t (a text, b text)&quot;
+  DB &lt;&lt; &quot;insert into t values ('a', 'b')&quot;
+</pre>
+<p>
+You can also create datasets based on raw SQL:
+</p>
+<pre>
+  dataset = DB['select * from items']
+  dataset.count # will return the number of records in the result set
+  dataset.map(:id) # will return an array containing all values of the id column in the result set
+</pre>
+<p>
+You can also fetch records with raw SQL through the dataset:
+</p>
+<pre>
+  DB['select * from items'].each do |row|
+    p row
+  end
+</pre>
+<h3>Getting Dataset Instances</h3>
+<p>
+Dataset is the primary means through which records are retrieved and
+manipulated. You can create an blank dataset by using the dataset method:
+</p>
+<pre>
+  dataset = DB.dataset
+</pre>
+<p>
+Or by using the from methods:
+</p>
+<pre>
+  posts = DB.from(:posts)
+</pre>
+<p>
+The recommended way is the equivalent shorthand:
+</p>
+<pre>
+  posts = DB[:posts]
+</pre>
+<p>
+Datasets will only fetch records when you explicitly ask for them. Datasets
+can be manipulated to filter through records, change record order, join
+tables, etc..
+</p>
+<h3>Retrieving Records</h3>
+<p>
+You can retrieve records by using the all method:
+</p>
+<pre>
+  posts.all
+</pre>
+<p>
+The all method returns an array of hashes, where each hash corresponds to a
+record.
+</p>
+<p>
+You can also iterate through records one at a time:
+</p>
+<pre>
+  posts.each{|row| p row}
+</pre>
+<p>
+Or perform more advanced stuff:
+</p>
+<pre>
+  posts.map(:id)
+  posts.inject({}){|h, r| h[r[:id]] = r[:name]}
+</pre>
+<p>
+You can also retrieve the first record in a dataset:
+</p>
+<pre>
+  posts.first
+</pre>
+<p>
+Or retrieve a single record with a specific value:
+</p>
+<pre>
+  posts[:id =&gt; 1]
+</pre>
+<p>
+If the dataset is ordered, you can also ask for the last record:
+</p>
+<pre>
+  posts.order(:stamp).last
+</pre>
+<h3>Filtering Records</h3>
+<p>
+The simplest way to filter records is to provide a hash of values to match:
+</p>
+<pre>
+  my_posts = posts.filter(:category =&gt; 'ruby', :author =&gt; 'david')
+</pre>
+<p>
+You can also specify ranges:
+</p>
+<pre>
+  my_posts = posts.filter(:stamp =&gt; (Date.today - 14)..(Date.today - 7))
+</pre>
+<p>
+Or lists of values:
+</p>
+<pre>
+  my_posts = posts.filter(:category =&gt; ['ruby', 'postgres', 'linux'])
+</pre>
+<p>
+<a href="../classes/Sequel.html">Sequel</a> also accepts expressions:
+</p>
+<pre>
+  my_posts = posts.filter(:stamp &gt; Date.today &lt;&lt; 1)
+</pre>
+<p>
+Some adapters (like postgresql) will also let you specify Regexps:
+</p>
+<pre>
+  my_posts = posts.filter(:category =&gt; /ruby/i)
+</pre>
+<p>
+You can also use an inverse filter:
+</p>
+<pre>
+  my_posts = posts.exclude(:category =&gt; /ruby/i)
+  my_posts = posts.filter(:category =&gt; /ruby/i).invert # same as above
+</pre>
+<p>
+You can also specify a custom WHERE clause using a string:
+</p>
+<pre>
+  posts.filter('stamp IS NOT NULL')
+</pre>
+<p>
+You can use parameters in your string, as well (ActiveRecord style):
+</p>
+<pre>
+  posts.filter('(stamp &lt; ?) AND (author != ?)', Date.today - 3, author_name)
+  posts.filter((:stamp &lt; Date.today - 3) &amp; ~(:author =&gt; author_name)) # same as above
+</pre>
+<p>
+Datasets can also be used as subqueries:
+</p>
+<pre>
+  DB[:items].filter('price &gt; ?', DB[:items].select('AVG(price) + 100'))
+</pre>
+<p>
+After filtering you can retrieve the matching records by using any of the
+retrieval methods:
+</p>
+<pre>
+  my_posts.each{|row| p row}
+</pre>
+<p>
+See the doc/dataset_filtering.rdoc file for more details.
+</p>
+<h3>Summarizing Records</h3>
+<p>
+Counting records is easy:
+</p>
+<pre>
+  posts.filter(:category =&gt; /ruby/i).count
+</pre>
+<p>
+And you can also query maximum/minimum values:
+</p>
+<pre>
+  max_value = DB[:history].max(:value)
+</pre>
+<p>
+Or calculate a sum:
+</p>
+<pre>
+  total = DB[:items].sum(:price)
+</pre>
+<h3>Ordering Records</h3>
+<p>
+Ordering datasets is simple:
+</p>
+<pre>
+  posts.order(:stamp) # ORDER BY stamp
+  posts.order(:stamp, :name) # ORDER BY stamp, name
+</pre>
+<p>
+You can also specify descending order
+</p>
+<pre>
+  posts.order(:stamp.desc) # ORDER BY stamp DESC
+</pre>
+<h3>Deleting Records</h3>
+<p>
+Deleting records from the table is done with delete:
+</p>
+<pre>
+  posts.filter('stamp &lt; ?', Date.today - 3).delete
+</pre>
+<h3>Inserting Records</h3>
+<p>
+Inserting records into the table is done with insert:
+</p>
+<pre>
+  posts.insert(:category =&gt; 'ruby', :author =&gt; 'david')
+  posts &lt;&lt; {:category =&gt; 'ruby', :author =&gt; 'david'} # same as above
+</pre>
+<h3>Updating Records</h3>
+<p>
+Updating records in the table is done with update:
+</p>
+<pre>
+  posts.filter('stamp &lt; ?', Date.today - 7).update(:state =&gt; 'archived')
+</pre>
+<h3>Joining Tables</h3>
+<p>
+Joining is very useful in a variety of scenarios, for example many-to-many
+relationships. With <a href="../classes/Sequel.html">Sequel</a> it&#8216;s
+really easy:
+</p>
+<pre>
+  order_items = DB[:items].join(:order_items, :item_id =&gt; :id).
+    filter(:order_items__order_id =&gt; 1234)
+</pre>
+<p>
+This is equivalent to the SQL:
+</p>
+<pre>
+  SELECT * FROM items LEFT OUTER JOIN order_items
+  ON order_items.item_id = items.id
+  WHERE order_items.order_id = 1234
+</pre>
+<p>
+You can then do anything you like with the dataset:
+</p>
+<pre>
+  order_total = order_items.sum(:price)
+</pre>
+<p>
+Which is equivalent to the SQL:
+</p>
+<pre>
+  SELECT sum(price) FROM items LEFT OUTER JOIN order_items
+  ON order_items.item_id = items.id
+  WHERE order_items.order_id = 1234
+</pre>
+<h3>Graphing Datasets</h3>
+<p>
+When retrieving records from joined datasets, you get the results in a
+single hash, which is subject to clobbering:
+</p>
+<pre>
+  DB[:items].join(:order_items, :item_id =&gt; :id).first
+  =&gt; {:id=&gt;(could be items.id or order_items.id), :item_id=&gt;order_items.order_id}
+</pre>
+<p>
+Using graph, you can split the result hashes into subhashes, one per join:
+</p>
+<pre>
+  DB[:items].graph(:order_items, :item_id =&gt; :id).first
+  =&gt; {:items=&gt;{:id=&gt;items.id}, :order_items=&gt;{:id=&gt;order_items.id, :item_id=&gt;order_items.item_id}}
+</pre>
+<h2><a href="../classes/Sequel.html">Sequel</a> Models</h2>
+<p>
+Models in <a href="../classes/Sequel.html">Sequel</a> are based on the
+Active Record pattern described by Martin Fowler (<a
+href="http://www.martinfowler.com/eaaCatalog/activeRecord.html">www.martinfowler.com/eaaCatalog/activeRecord.html</a>).
+A model class corresponds to a table or a dataset, and an instance of that
+class wraps a single record in the model&#8216;s underlying dataset.
+</p>
+<p>
+Model classes are defined as regular Ruby classes:
+</p>
+<pre>
+  DB = Sequel.connect('sqlite:/blog.db')
+  class Post &lt; Sequel::Model
+  end
+</pre>
+<p>
+Just like in DataMapper or ActiveRecord, <a
+href="../classes/Sequel.html">Sequel</a> model classes assume that the
+table name is a plural of the class name:
+</p>
+<pre>
+  Post.table_name #=&gt; :posts
+</pre>
+<p>
+You can, however, explicitly set the table name or even the dataset used:
+</p>
+<pre>
+  class Post &lt; Sequel::Model(:my_posts)
+  end
+  # or:
+  Post.set_dataset :my_posts
+  # or:
+  Post.set_dataset DB[:my_posts].where(:category =&gt; 'ruby')
+</pre>
+<h3>Model instances</h3>
+<p>
+Model instance are identified by a primary key. By default, <a
+href="../classes/Sequel.html">Sequel</a> assumes the primary key column to
+be :id. The Model#[] method can be used to fetch records by their primary
+key:
+</p>
+<pre>
+  post = Post[123]
+</pre>
+<p>
+The Model#pk method is used to retrieve the record&#8216;s primary key
+value:
+</p>
+<pre>
+  post.pk #=&gt; 123
+</pre>
+<p>
+<a href="../classes/Sequel.html">Sequel</a> models allow you to use any
+column as a primary key, and even composite keys made from multiple
+columns:
+</p>
+<pre>
+  class Post &lt; Sequel::Model
+    set_primary_key [:category, :title]
+  end
+
+  post = Post['ruby', 'hello world']
+  post.pk #=&gt; ['ruby', 'hello world']
+</pre>
+<p>
+You can also define a model class that does not have a primary key, but
+then you lose the ability to update records.
+</p>
+<p>
+A model instance can also be fetched by specifying a condition:
+</p>
+<pre>
+  post = Post[:title =&gt; 'hello world']
+  post = Post.find(:num_comments &lt; 10)
+</pre>
+<h3>Iterating over records</h3>
+<p>
+A model class lets you iterate over specific records by acting as a proxy
+to the underlying dataset. This means that you can use the entire Dataset
+API to create customized queries that return model instances, e.g.:
+</p>
+<pre>
+  Post.filter(:category =&gt; 'ruby').each{|post| p post}
+</pre>
+<p>
+You can also manipulate the records in the dataset:
+</p>
+<pre>
+  Post.filter(:num_comments &lt; 7).delete
+  Post.filter(:title.like(/ruby/)).update(:category =&gt; 'ruby')
+</pre>
+<h3>Accessing record values</h3>
+<p>
+A model instances stores its values as a hash:
+</p>
+<pre>
+  post.values #=&gt; {:id =&gt; 123, :category =&gt; 'ruby', :title =&gt; 'hello world'}
+</pre>
+<p>
+You can read the record values as object attributes (assuming the attribute
+names are valid columns in the model&#8216;s dataset):
+</p>
+<pre>
+  post.id #=&gt; 123
+  post.title #=&gt; 'hello world'
+</pre>
+<p>
+You can also change record values:
+</p>
+<pre>
+  post.title = 'hey there'
+  post.save
+</pre>
+<p>
+Another way to change values by using the update_with_params method:
+</p>
+<pre>
+  post.update_with_params(:title =&gt; 'hey there')
+</pre>
+<h3>Creating new records</h3>
+<p>
+New records can be created by calling Model.create:
+</p>
+<pre>
+  post = Post.create(:title =&gt; 'hello world')
+</pre>
+<p>
+Another way is to construct a new instance and save it:
+</p>
+<pre>
+  post = Post.new
+  post.title = 'hello world'
+  post.save
+</pre>
+<p>
+You can also supply a block to Model.new and Model.create:
+</p>
+<pre>
+  post = Post.create {|p| p.title = 'hello world'}
+
+  post = Post.new do |p|
+    p.title = 'hello world'
+    p.save
+  end
+</pre>
+<h3>Hooks</h3>
+<p>
+You can execute custom code when creating, updating, or deleting records by
+using hooks. The before_create and after_create hooks wrap record creation.
+The before_update and after_update wrap record updating. The before_save
+and after_save wrap record creation and updating. The before_destroy and
+after_destroy wrap destruction. The before_validation and after_validation
+hooks wrap validation.
+</p>
+<p>
+Hooks are defined by supplying a block:
+</p>
+<pre>
+  class Post &lt; Sequel::Model
+    after_create do
+      author.increase_post_count
+    end
+
+    after_destroy do
+      author.decrease_post_count
+    end
+  end
+</pre>
+<h3>Deleting records</h3>
+<p>
+You can delete individual records by calling delete or destroy. The only
+difference between the two methods is that destroy invokes before_destroy
+and after_destroy hooks, while delete does not:
+</p>
+<pre>
+  post.delete #=&gt; bypasses hooks
+  post.destroy #=&gt; runs hooks
+</pre>
+<p>
+Records can also be deleted en-masse by invoking Model.delete and
+Model.destroy. As stated above, you can specify filters for the deleted
+records:
+</p>
+<pre>
+  Post.filter(:category =&gt; 32).delete #=&gt; bypasses hooks
+  Post.filter(:category =&gt; 32).destroy #=&gt; runs hooks
+</pre>
+<p>
+Please note that if Model.destroy is called, each record is deleted
+separately, but Model.delete deletes all relevant records with a single SQL
+statement.
+</p>
+<h3>Associations</h3>
+<p>
+Associations are used in order to specify relationships between model
+classes that reflect relations between tables in the database using foreign
+keys.
+</p>
+<pre>
+  class Post &lt; Sequel::Model
+    many_to_one :author
+    one_to_many :comments
+    many_to_many :tags
+  end
+</pre>
+<p>
+You can also use the ActiveRecord names for these associations:
+</p>
+<pre>
+  class Post &lt; Sequel::Model
+    belongs_to :author
+    has_many :comments
+    has_and_belongs_to_many :tags
+  end
+</pre>
+<p>
+many_to_one creates a getter and setter for each model object:
+</p>
+<pre>
+  class Post &lt; Sequel::Model
+    many_to_one :author
+  end
+
+  post = Post.create(:name =&gt; 'hi!')
+  post.author = Author[:name =&gt; 'Sharon']
+  post.author
+</pre>
+<p>
+one_to_many and many_to_many create a getter method, a method for adding an
+object to the association, a method for removing an object from the
+association, and a method for removing all associated objected from the
+association:
+</p>
+<pre>
+  class Post &lt; Sequel::Model
+    one_to_many :comments
+    many_to_many :tags
+  end
+
+  post = Post.create(:name =&gt; 'hi!')
+  post.comments
+  comment = Comment.create(:text=&gt;'hi')
+  post.add_comment(comment)
+  post.remove_comment(comment)
+  post.remove_all_comments
+  tag = Tag.create(:tag=&gt;'interesting')
+  post.add_tag(tag)
+  post.remove_tag(tag)
+  post.remove_all_tags
+</pre>
+<h3>Eager Loading</h3>
+<p>
+Associations can be eagerly loaded via .eager and the :eager association
+option. Eager loading is used when loading a group of objects. It loads all
+associated objects for all of the current objects in one query, instead of
+using a separate query to get the associated objects for each current
+object. Eager loading requires that you retrieve all model objects at once
+via .all (instead of individually by .each). Eager loading can be cascaded,
+loading association&#8216;s associated objects.
+</p>
+<pre>
+  class Person &lt; Sequel::Model
+    one_to_many :posts, :eager=&gt;[:tags]
+  end
+
+  class Post &lt; Sequel::Model
+    many_to_one :person
+    one_to_many :replies
+    many_to_many :tags
+  end
+
+  class Tag &lt; Sequel::Model
+    many_to_many :posts
+    many_to_many :replies
+  end
+
+  class Reply &lt; Sequel::Model
+    many_to_one :person
+    many_to_one :post
+    many_to_many :tags
+  end
+
+  # Eager loading via .eager
+  Post.eager(:person).all
+
+  # eager is a dataset method, so it works with filters/orders/limits/etc.
+  Post.filter(:topic &gt; 'M').order(:date).limit(5).eager(:person).all
+
+  person = Person.first
+  # Eager loading via :eager (will eagerly load the tags for this person's posts)
+  person.posts
+
+  # These are equivalent
+  Post.eager(:person, :tags).all
+  Post.eager(:person).eager(:tags).all
+
+  # Cascading via .eager
+  Tag.eager(:posts=&gt;:replies).all
+
+  # Will also grab all associated posts' tags (because of :eager)
+  Reply.eager(:person=&gt;:posts).all
+
+  # No depth limit (other than memory/stack), and will also grab posts' tags
+  # Loads all people, their posts, their posts' tags, replies to those posts,
+  # the person for each reply, the tag for each reply, and all posts and
+  # replies that have that tag.  Uses a total of 8 queries.
+  Person.eager(:posts=&gt;{:replies=&gt;[:person, {:tags=&gt;{:posts, :replies}}]}).all
+</pre>
+<p>
+In addition to using eager, you can also use eager_graph, which will use a
+single query to get the object and all associated objects. This may be
+necessary if you want to filter the result set based on columns in
+associated tables. It works with cascading as well, the syntax is exactly
+the same. Note that using eager_graph to eagerly load multiple *_to_many
+associations will cause the result set to be a cartesian product, so you
+should be very careful with your filters when using it in that case.
+</p>
+<h3>Caching model instances with memcached</h3>
+<p>
+<a href="../classes/Sequel.html">Sequel</a> models can be cached using
+memcached based on their primary keys. The use of memcached can
+significantly reduce database load by keeping model instances in memory.
+The set_cache method is used to specify caching:
+</p>
+<pre>
+  require 'memcache'
+  CACHE = MemCache.new 'localhost:11211', :namespace =&gt; 'blog'
+
+  class Author &lt; Sequel::Model
+    set_cache CACHE, :ttl =&gt; 3600
+  end
+
+  Author[333] # database hit
+  Author[333] # cache hit
+</pre>
+<h3>Extending the underlying dataset</h3>
+<p>
+The obvious way to add table-wide logic is to define class methods to the
+model class definition. That way you can define subsets of the underlying
+dataset, change the ordering, or perform actions on multiple records:
+</p>
+<pre>
+  class Post &lt; Sequel::Model
+    def self.posts_with_few_comments
+      filter(:num_comments &lt; 30)
+    end
+
+    def self.clean_posts_with_few_comments
+      posts_with_few_comments.delete
+    end
+  end
+</pre>
+<p>
+You can also implement table-wide logic by defining methods on the dataset:
+</p>
+<pre>
+  class Post &lt; Sequel::Model
+    def_dataset_method(:posts_with_few_comments) do
+      filter(:num_comments &lt; 30)
+    end
+
+    def_dataset_method(:clean_posts_with_few_comments) do
+      posts_with_few_comments.delete
+    end
+  end
+</pre>
+<p>
+This is the recommended way of implementing table-wide operations, and
+allows you to have access to your model API from filtered datasets as well:
+</p>
+<pre>
+  Post.filter(:category =&gt; 'ruby').clean_old_posts
+</pre>
+<p>
+<a href="../classes/Sequel.html">Sequel</a> models also provide a short
+hand notation for filters:
+</p>
+<pre>
+  class Post &lt; Sequel::Model
+    subset(:posts_with_few_comments, :num_comments &lt; 30)
+    subset :invisible, :visible =&gt; false
+  end
+</pre>
+<h3>Defining the underlying schema</h3>
+<p>
+Model classes can also be used as a place to define your table schema and
+control it. The schema DSL is exactly the same provided by <a
+href="../classes/Sequel/Schema/Generator.html">Sequel::Schema::Generator</a>:
+</p>
+<pre>
+  class Post &lt; Sequel::Model
+    set_schema do
+      primary_key :id
+      text :title
+      text :category
+      foreign_key :author_id, :table =&gt; :authors
+    end
+  end
+</pre>
+<p>
+You can then create the underlying table, drop it, or recreate it:
+</p>
+<pre>
+  Post.table_exists?
+  Post.create_table
+  Post.drop_table
+  Post.create_table! # drops the table if it exists and then recreates it
+</pre>
+<h3>Basic Model Validations</h3>
+<p>
+To assign default validations to a sequel model:
+</p>
+<pre>
+  class MyModel &lt; Sequel::Model
+    validates do
+      format_of...
+      presence_of...
+      acceptance_of...
+      confirmation_of...
+      length_of...
+      numericality_of...
+      format_of...
+      each...
+    end
+  end
+</pre>
+<p>
+You may also perform the usual &#8216;longhand&#8217; way to assign default
+model validates directly within the model class itself:
+</p>
+<pre>
+  class MyModel &lt; Sequel::Model
+    validates_format_of...
+    validates_presence_of...
+    validates_acceptance_of...
+    validates_confirmation_of...
+    validates_length_of...
+    validates_numericality_of...
+    validates_format_of...
+    validates_each...
+  end
+</pre>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

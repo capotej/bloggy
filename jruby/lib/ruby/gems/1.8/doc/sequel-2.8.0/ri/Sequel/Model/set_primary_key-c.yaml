@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets primary key, regular and composite are possible.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Tagging &lt; Sequel::Model\n    # composite key\n    set_primary_key \
+    :taggable_id, :tag_id\n  end\n\n  class Person &lt; Sequel::Model\n    # regular \
+    key\n    set_primary_key :person_id\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'You can set it to nil to not have a primary key, but that cause certain things
+    not to work, see #no_primary_key.'
+full_name: Sequel::Model::set_primary_key
+params: (*key)
+name: set_primary_key
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Migrates the supplied database in the specified directory from the current
+    version to the target version. If no current version is supplied, it is extracted
+    from a schema_info table. The schema_info table is automatically created and maintained
+    by the apply function.
+full_name: Sequel::Migrator::apply
+params: (db, directory, target = nil, current = nil)
+name: apply
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: MySQL specific syntax for inserting multiple values at once.
+full_name: Sequel::MySQL::DatasetMethods#multi_insert_sql
+params: (columns, values)
+name: multi_insert_sql
+is_singleton: false
+aliases: []
+

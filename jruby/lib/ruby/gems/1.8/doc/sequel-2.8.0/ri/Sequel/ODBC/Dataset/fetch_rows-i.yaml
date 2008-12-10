@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: hash_row(row)}
+comment: 
+full_name: Sequel::ODBC::Dataset#fetch_rows
+params: (sql, &block) {|hash_row(row)}| ...}
+name: fetch_rows
+is_singleton: false
+aliases: []
+

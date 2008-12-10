@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Use execute_insert to execute the replace_sql.
+full_name: Sequel::JDBC::MySQL::Dataset#replace
+params: (*args)
+name: replace
+is_singleton: false
+aliases: []
+

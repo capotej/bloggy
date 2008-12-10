@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: '&'
+- !ruby/object:RI::MethodSummary 
+  name: case
+- !ruby/object:RI::MethodSummary 
+  name: sql_expr
+- !ruby/object:RI::MethodSummary 
+  name: sql_negate
+- !ruby/object:RI::MethodSummary 
+  name: sql_or
+- !ruby/object:RI::MethodSummary 
+  name: '|'
+- !ruby/object:RI::MethodSummary 
+  name: "~"
+class_methods: []
+
+full_name: Hash
+constants: []
+
+superclass: Object
+name: Hash

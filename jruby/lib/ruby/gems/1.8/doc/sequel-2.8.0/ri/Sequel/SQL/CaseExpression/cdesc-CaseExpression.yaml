@@ -1,0 +1,37 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Represents an SQL CASE expression, used for conditions.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: An array of all two pairs with the first element specifying the condition
+      and the second element specifying the result.
+  rw: R
+  name: conditions
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The default value if no conditions are true
+  rw: R
+  name: default
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The expression to test the conditions against
+  rw: R
+  name: expression
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Sequel::SQL::CaseExpression
+constants: []
+
+superclass: GenericExpression
+name: CaseExpression

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return a Sequel::SQL::BooleanExpression created from this hash, matching none
+    of the conditions.
+full_name: Hash#sql_negate
+params: ()
+name: sql_negate
+is_singleton: false
+aliases: []
+

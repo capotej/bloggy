@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Connect to the database using JavaSQL::DriverManager.getConnection.
+full_name: Sequel::Database#connect
+params: (server)
+name: connect
+is_singleton: false
+aliases: []
+

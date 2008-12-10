@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns an array of fully-formatted error messages.
+full_name: Sequel::Model::Validation::Errors#full_messages
+params: ()
+name: full_messages
+is_singleton: false
+aliases: []
+

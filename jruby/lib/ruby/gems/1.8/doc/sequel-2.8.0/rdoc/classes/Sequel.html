@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Sequel</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Sequel</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/sequel_model/base_rb.html">
+                lib/sequel_model/base.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_model/validations_rb.html">
+                lib/sequel_model/validations.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_model/hooks_rb.html">
+                lib/sequel_model/hooks.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_model/plugins_rb.html">
+                lib/sequel_model/plugins.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_model/caching_rb.html">
+                lib/sequel_model/caching.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_model/record_rb.html">
+                lib/sequel_model/record.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_model/schema_rb.html">
+                lib/sequel_model/schema.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/pretty_table_rb.html">
+                lib/sequel_core/pretty_table.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/schema/generator_rb.html">
+                lib/sequel_core/schema/generator.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/schema/sql_rb.html">
+                lib/sequel_core/schema/sql.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/object_graph_rb.html">
+                lib/sequel_core/object_graph.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/database/schema_rb.html">
+                lib/sequel_core/database/schema.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/dataset/stored_procedures_rb.html">
+                lib/sequel_core/dataset/stored_procedures.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/dataset/query_rb.html">
+                lib/sequel_core/dataset/query.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/dataset/callback_rb.html">
+                lib/sequel_core/dataset/callback.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/dataset/convenience_rb.html">
+                lib/sequel_core/dataset/convenience.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/dataset/pagination_rb.html">
+                lib/sequel_core/dataset/pagination.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/dataset/schema_rb.html">
+                lib/sequel_core/dataset/schema.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/dataset/sql_rb.html">
+                lib/sequel_core/dataset/sql.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/dataset/prepared_statements_rb.html">
+                lib/sequel_core/dataset/prepared_statements.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/mysql_rb.html">
+                lib/sequel_core/adapters/mysql.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/dbi_rb.html">
+                lib/sequel_core/adapters/dbi.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/jdbc/mysql_rb.html">
+                lib/sequel_core/adapters/jdbc/mysql.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/jdbc/oracle_rb.html">
+                lib/sequel_core/adapters/jdbc/oracle.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/jdbc/sqlite_rb.html">
+                lib/sequel_core/adapters/jdbc/sqlite.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/jdbc/postgresql_rb.html">
+                lib/sequel_core/adapters/jdbc/postgresql.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/postgres_rb.html">
+                lib/sequel_core/adapters/postgres.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/oracle_rb.html">
+                lib/sequel_core/adapters/oracle.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/ado_rb.html">
+                lib/sequel_core/adapters/ado.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/odbc_rb.html">
+                lib/sequel_core/adapters/odbc.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/db2_rb.html">
+                lib/sequel_core/adapters/db2.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/informix_rb.html">
+                lib/sequel_core/adapters/informix.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/sqlite_rb.html">
+                lib/sequel_core/adapters/sqlite.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/shared/mysql_rb.html">
+                lib/sequel_core/adapters/shared/mysql.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/shared/postgres_rb.html">
+                lib/sequel_core/adapters/shared/postgres.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/shared/oracle_rb.html">
+                lib/sequel_core/adapters/shared/oracle.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/shared/progress_rb.html">
+                lib/sequel_core/adapters/shared/progress.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/shared/mssql_rb.html">
+                lib/sequel_core/adapters/shared/mssql.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/shared/sqlite_rb.html">
+                lib/sequel_core/adapters/shared/sqlite.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/openbase_rb.html">
+                lib/sequel_core/adapters/openbase.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/adapters/jdbc_rb.html">
+                lib/sequel_core/adapters/jdbc.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/deprecated_rb.html">
+                lib/sequel_core/deprecated.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/database_rb.html">
+                lib/sequel_core/database.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/exceptions_rb.html">
+                lib/sequel_core/exceptions.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/migration_rb.html">
+                lib/sequel_core/migration.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/dataset_rb.html">
+                lib/sequel_core/dataset.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core/sql_rb.html">
+                lib/sequel_core/sql.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_model_rb.html">
+                lib/sequel_model.rb
+                </a>
+        <br />
+                <a href="../files/lib/sequel_core_rb.html">
+                lib/sequel_core.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Top level module for <a href="Sequel.html">Sequel</a>
+</p>
+<p>
+There are some class methods that are added via metaprogramming, one for
+each supported adapter. For example:
+</p>
+<pre>
+  DB = Sequel.sqlite # Memory database
+  DB = Sequel.sqlite('blog.db')
+  DB = Sequel.postgres('database_name', :user=&gt;'user',
+         :password=&gt;'password', :host=&gt;'host', :port=&gt;5432,
+         :max_connections=&gt;10)
+</pre>
+<p>
+If a block is given to these methods, it is passed the opened <a
+href="Sequel/Database.html">Database</a> object, which is closed
+(disconnected) when the block exits. For example:
+</p>
+<pre>
+  Sequel.sqlite('blog.db'){|db| puts db.users.count}
+</pre>
+<p>
+<a href="Sequel.html">Sequel</a> converts the column type tinyint to a
+boolean by default, you can override the conversion to use tinyint as an
+integer:
+</p>
+<pre>
+  Sequel.convert_tinyint_to_bool = false
+</pre>
+<p>
+<a href="Sequel.html">Sequel</a> converts two digit years in Dates and
+DateTimes by default, so 01/02/03 is interpreted at January 2nd, 2003, and
+12/13/99 is interpreted as December 13, 1999.. You can override this # to
+treat those dates as January 2nd, 0003 and December 13, 0099, respectively,
+by setting:
+</p>
+<pre>
+  Sequel.convert_two_digit_years = false
+</pre>
+<p>
+<a href="Sequel.html">Sequel</a> can use either Time or DateTime for times
+returned from the database. It defaults to Time. To change it to DateTime,
+use:
+</p>
+<pre>
+  Sequel.datetime_class = DateTime
+</pre>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000071">Model</a>&nbsp;&nbsp;
+      <a href="#M000072">connect</a>&nbsp;&nbsp;
+      <a href="#M000070">load_gem</a>&nbsp;&nbsp;
+      <a href="#M000073">quote_identifiers=</a>&nbsp;&nbsp;
+      <a href="#M000074">single_threaded=</a>&nbsp;&nbsp;
+      <a href="#M000075">upcase_identifiers=</a>&nbsp;&nbsp;
+      <a href="#M000076">use_parse_tree</a>&nbsp;&nbsp;
+      <a href="#M000077">use_parse_tree=</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="Sequel/ADO.html" class="link">Sequel::ADO</a><br />
+Module <a href="Sequel/DB2.html" class="link">Sequel::DB2</a><br />
+Module <a href="Sequel/DBI.html" class="link">Sequel::DBI</a><br />
+Module <a href="Sequel/Informix.html" class="link">Sequel::Informix</a><br />
+Module <a href="Sequel/JDBC.html" class="link">Sequel::JDBC</a><br />
+Module <a href="Sequel/MSSQL.html" class="link">Sequel::MSSQL</a><br />
+Module <a href="Sequel/Migrator.html" class="link">Sequel::Migrator</a><br />
+Module <a href="Sequel/MySQL.html" class="link">Sequel::MySQL</a><br />
+Module <a href="Sequel/ODBC.html" class="link">Sequel::ODBC</a><br />
+Module <a href="Sequel/OpenBase.html" class="link">Sequel::OpenBase</a><br />
+Module <a href="Sequel/Oracle.html" class="link">Sequel::Oracle</a><br />
+Module <a href="Sequel/Plugins.html" class="link">Sequel::Plugins</a><br />
+Module <a href="Sequel/Postgres.html" class="link">Sequel::Postgres</a><br />
+Module <a href="Sequel/PrettyTable.html" class="link">Sequel::PrettyTable</a><br />
+Module <a href="Sequel/Progress.html" class="link">Sequel::Progress</a><br />
+Module <a href="Sequel/SQL.html" class="link">Sequel::SQL</a><br />
+Module <a href="Sequel/SQLite.html" class="link">Sequel::SQLite</a><br />
+Module <a href="Sequel/Schema.html" class="link">Sequel::Schema</a><br />
+Class <a href="Sequel/ConnectionPool.html" class="link">Sequel::ConnectionPool</a><br />
+Class <a href="Sequel/Database.html" class="link">Sequel::Database</a><br />
+Class <a href="Sequel/DatabaseDisconnectError.html" class="link">Sequel::DatabaseDisconnectError</a><br />
+Class <a href="Sequel/DatabaseError.html" class="link">Sequel::DatabaseError</a><br />
+Class <a href="Sequel/Dataset.html" class="link">Sequel::Dataset</a><br />
+Class <a href="Sequel/Error.html" class="link">Sequel::Error</a><br />
+Class <a href="Sequel/LiteralString.html" class="link">Sequel::LiteralString</a><br />
+Class <a href="Sequel/Migration.html" class="link">Sequel::Migration</a><br />
+Class <a href="Sequel/Model.html" class="link">Sequel::Model</a><br />
+Class <a href="Sequel/SingleThreadedPool.html" class="link">Sequel::SingleThreadedPool</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DATABASES</td>
+          <td>=</td>
+          <td class="context-item-value">[]</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="Array.html">Array</a> of all databases to which <a
+href="Sequel.html">Sequel</a> has connected. If you are developing an
+application that can <a href="Sequel.html#M000072">connect</a> to an
+arbitrary number of databases, delete the database objects from this or
+they will not get garbage collected.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000071" class="method-detail">
+        <a name="M000071"></a>
+
+        <div class="method-heading">
+          <a href="#M000071" class="method-signature">
+          <span class="method-name">Model</span><span class="method-args">(source)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Lets you create a <a href="Sequel.html#M000071">Model</a> subclass with its
+dataset already set. source can be an existing dataset or a symbol (in
+which case it will create a dataset using the default database with source
+as the table name).
+</p>
+<p>
+Example:
+</p>
+<pre>
+  class Comment &lt; Sequel::Model(:something)
+    table_name # =&gt; :something
+  end
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000071-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000071-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_model.rb, line 22</span>
+22:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-constant">Model</span>(<span class="ruby-identifier">source</span>)
+23:     <span class="ruby-ivar">@models</span>[<span class="ruby-identifier">source</span>] <span class="ruby-operator">||=</span> <span class="ruby-constant">Class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Model</span>).<span class="ruby-identifier">set_dataset</span>(<span class="ruby-identifier">source</span>)
+24:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000072" class="method-detail">
+        <a name="M000072"></a>
+
+        <div class="method-heading">
+          <a href="#M000072" class="method-signature">
+          <span class="method-name">connect</span><span class="method-args">(*args, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates a new database object based on the supplied connection string and
+optional arguments. The specified scheme determines the database class
+used, and the rest of the string specifies the connection options. For
+example:
+</p>
+<pre>
+  DB = Sequel.connect('sqlite:/') # Memory database
+  DB = Sequel.connect('sqlite://blog.db') # ./blog.db
+  DB = Sequel.connect('sqlite:///blog.db') # /blog.db
+  DB = Sequel.connect('postgres://user:password@host:port/database_name')
+  DB = Sequel.connect('sqlite:///blog.db', :max_connections=&gt;10)
+</pre>
+<p>
+If a block is given, it is passed the opened <a
+href="Sequel/Database.html">Database</a> object, which is closed when the
+block exits. For example:
+</p>
+<pre>
+  Sequel.connect('sqlite://blog.db'){|db| puts db.users.count}
+</pre>
+<p>
+This is also aliased as Sequel.open.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000072-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000072-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core.rb, line 67</span>
+67:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">connect</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+68:     <span class="ruby-constant">Database</span>.<span class="ruby-identifier">connect</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+69:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000070" class="method-detail">
+        <a name="M000070"></a>
+
+        <div class="method-heading">
+          <a href="#M000070" class="method-signature">
+          <span class="method-name">load_gem</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Allowing loading the necessary <a href="Sequel/JDBC.html">JDBC</a> support
+via a gem, which works for PostgreSQL, <a
+href="Sequel/MySQL.html">MySQL</a>, and <a
+href="Sequel/SQLite.html">SQLite</a>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000070-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000070-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core/adapters/jdbc.rb, line 69</span>
+69:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">load_gem</span>(<span class="ruby-identifier">name</span>)
+70:       <span class="ruby-keyword kw">begin</span>
+71:         <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;jdbc/#{name}&quot;</span>
+72:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span>
+73:         <span class="ruby-comment cmt"># jdbc gem not used, hopefully the user has the .jar in their CLASSPATH</span>
+74:       <span class="ruby-keyword kw">end</span>
+75:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000073" class="method-detail">
+        <a name="M000073"></a>
+
+        <div class="method-heading">
+          <a href="#M000073" class="method-signature">
+          <span class="method-name">quote_identifiers=</span><span class="method-args">(value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Set whether to quote identifiers for all databases by default. By default,
+<a href="Sequel.html">Sequel</a> quotes identifiers in all <a
+href="Sequel/SQL.html">SQL</a> strings, so to turn that off:
+</p>
+<pre>
+  Sequel.quote_identifiers = false
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000073-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000073-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core.rb, line 76</span>
+76:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">quote_identifiers=</span>(<span class="ruby-identifier">value</span>)
+77:     <span class="ruby-constant">Database</span>.<span class="ruby-identifier">quote_identifiers</span> = <span class="ruby-identifier">value</span>
+78:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000074" class="method-detail">
+        <a name="M000074"></a>
+
+        <div class="method-heading">
+          <a href="#M000074" class="method-signature">
+          <span class="method-name">single_threaded=</span><span class="method-args">(value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Set whether to set the single threaded mode for all databases by default.
+By default, <a href="Sequel.html">Sequel</a> uses a threadsafe connection
+pool, which isn&#8216;t as fast as the single threaded connection pool. If
+your program will only have one thread, and speed is a priority, you may
+want to set this to true:
+</p>
+<pre>
+  Sequel.single_threaded = true
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000074-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000074-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core.rb, line 86</span>
+86:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">single_threaded=</span>(<span class="ruby-identifier">value</span>)
+87:     <span class="ruby-constant">Database</span>.<span class="ruby-identifier">single_threaded</span> = <span class="ruby-identifier">value</span>
+88:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000075" class="method-detail">
+        <a name="M000075"></a>
+
+        <div class="method-heading">
+          <a href="#M000075" class="method-signature">
+          <span class="method-name">upcase_identifiers=</span><span class="method-args">(value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Set whether to upcase identifiers for all databases by default. By default,
+<a href="Sequel.html">Sequel</a> upcases identifiers unless the database
+folds unquoted identifiers to lower case (<a
+href="Sequel/MySQL.html">MySQL</a>, PostgreSQL, and <a
+href="Sequel/SQLite.html">SQLite</a>).
+</p>
+<pre>
+  Sequel.upcase_identifiers = false
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000075-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000075-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core.rb, line 95</span>
+95:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">upcase_identifiers=</span>(<span class="ruby-identifier">value</span>)
+96:     <span class="ruby-constant">Database</span>.<span class="ruby-identifier">upcase_identifiers</span> = <span class="ruby-identifier">value</span>
+97:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000076" class="method-detail">
+        <a name="M000076"></a>
+
+        <div class="method-heading">
+          <a href="#M000076" class="method-signature">
+          <span class="method-name">use_parse_tree</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Always returns false, since ParseTree support has been removed.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000076-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000076-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core.rb, line 100</span>
+100:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">use_parse_tree</span>
+101:     <span class="ruby-keyword kw">false</span>
+102:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000077" class="method-detail">
+        <a name="M000077"></a>
+
+        <div class="method-heading">
+          <a href="#M000077" class="method-signature">
+          <span class="method-name">use_parse_tree=</span><span class="method-args">(val)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Raises an error if attempting to turn ParseTree support on (since it no
+longer exists). Otherwise, is a no-op.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000077-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000077-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core.rb, line 106</span>
+106:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">use_parse_tree=</span>(<span class="ruby-identifier">val</span>)
+107:     <span class="ruby-identifier">raise</span>(<span class="ruby-constant">Error</span>, <span class="ruby-value str">'ParseTree support has been removed from Sequel'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">val</span>
+108:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

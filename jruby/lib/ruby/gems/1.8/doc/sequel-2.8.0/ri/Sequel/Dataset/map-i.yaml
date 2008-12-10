@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Maps column values for each record in the dataset (if a column name is given),
+    or performs the stock mapping functionality of Enumerable.
+full_name: Sequel::Dataset#map
+params: (column_name = nil, &block)
+name: map
+is_singleton: false
+aliases: []
+

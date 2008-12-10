@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: ""
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Locks the table with the specified mode.
+full_name: Sequel::Postgres::DatasetMethods#lock
+params: (mode, server=nil) {|| ...}
+name: lock
+is_singleton: false
+aliases: []
+

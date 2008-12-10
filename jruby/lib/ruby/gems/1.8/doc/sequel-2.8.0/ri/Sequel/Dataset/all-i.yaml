@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns an array with all records in the dataset. If a block is given, the
+    array is iterated over after all items have been loaded.
+full_name: Sequel::Dataset#all
+params: (opts = nil, &block)
+name: all
+is_singleton: false
+aliases: []
+

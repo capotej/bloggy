@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Adds an further filter to an existing filter using AND. If no filter exists
+    an error is raised. This method is identical to #filter except it expects an existing
+    filter.'
+full_name: Sequel::Dataset#and
+params: (*cond, &block)
+name: and
+is_singleton: false
+aliases: []
+

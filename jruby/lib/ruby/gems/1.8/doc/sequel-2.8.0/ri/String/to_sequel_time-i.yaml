@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Converts a string into a Time or DateTime object, depending on the value of
+    Sequel.datetime_class
+full_name: String#to_sequel_time
+params: ()
+name: to_sequel_time
+is_singleton: false
+aliases: []
+

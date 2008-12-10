@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Alters the given table with the specified block. Here are the currently available
+    operations:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  DB.alter_table :items do\n    add_column :category, :text, :default =&gt; \
+    'ruby'\n    drop_column :category\n    rename_column :cntr, :counter\n    set_column_type \
+    :value, :float\n    set_column_default :value, :float\n    add_index [:group, \
+    :category]\n    drop_index [:group, :category]\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Note that #add_column accepts all the options available for column definitions
+    using create_table, and #add_index accepts all the options available for index
+    definition.'
+- !ruby/struct:SM::Flow::P 
+  body: See Schema::AlterTableGenerator.
+full_name: Sequel::Database#alter_table
+params: (name, generator=nil, &block)
+name: alter_table
+is_singleton: false
+aliases: []
+

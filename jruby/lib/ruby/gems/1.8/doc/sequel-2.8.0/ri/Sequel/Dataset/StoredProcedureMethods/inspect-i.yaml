@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Programmer friendly string showing this is a stored procedure, showing the
+    name of the procedure.
+full_name: Sequel::Dataset::StoredProcedureMethods#inspect
+params: ()
+name: inspect
+is_singleton: false
+aliases: []
+

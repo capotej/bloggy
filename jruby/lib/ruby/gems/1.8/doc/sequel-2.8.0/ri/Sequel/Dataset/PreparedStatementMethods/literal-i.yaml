@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Changes the values of symbols if they start with $ and prepared_args is present.
+    If so, they are considered placeholders, and they are substituted using prepared_arg.
+full_name: Sequel::Dataset::PreparedStatementMethods#literal
+params: (v)
+name: literal
+is_singleton: false
+aliases: []
+

@@ -1,4 +1,3 @@
-db/
-db/*
-derby.log
+posts.db
+db.log
 *~

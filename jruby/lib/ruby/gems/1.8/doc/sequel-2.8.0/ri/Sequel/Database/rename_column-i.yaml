@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Renames a column in the specified table. This method expects the current
+    column name and the new column name:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  DB.rename_column :items, :cntr, :counter\n"
+- !ruby/struct:SM::Flow::P 
+  body: See alter_table.
+full_name: Sequel::Database#rename_column
+params: (table, *args)
+name: rename_column
+is_singleton: false
+aliases: []
+

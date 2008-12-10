@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: If the given argument is an Integer or an array containing an Integer, returns
+    a Sequel::SQL::Subscript with this column and the given arg. Otherwise returns
+    a Sequel::SQL::BooleanExpression where this column (which should be boolean) or
+    the given argument is true.
+full_name: Symbol#|
+params: (sub)
+name: '|'
+is_singleton: false
+aliases: []
+

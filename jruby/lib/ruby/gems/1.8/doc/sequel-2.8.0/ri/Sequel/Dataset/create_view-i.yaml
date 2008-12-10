@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a view in the database with the given named based on the current dataset.
+full_name: Sequel::Dataset#create_view
+params: (name)
+name: create_view
+is_singleton: false
+aliases: []
+

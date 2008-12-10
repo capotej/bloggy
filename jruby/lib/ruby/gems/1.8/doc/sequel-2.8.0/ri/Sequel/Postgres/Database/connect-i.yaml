@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Connects to the database. In addition to the standard database options, using
+    the :encoding or :charset option changes the client encoding for the connection.
+full_name: Sequel::Postgres::Database#connect
+params: (server)
+name: connect
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Call the DATABASE_SETUP proc directly after initialization, so the object
+    always uses sub adapter specific code. Also, raise an error immediately if the
+    connection doesn't have a uri, since JDBC requires one.
+full_name: Sequel::Database::new
+params: (opts)
+name: new
+is_singleton: true
+aliases: []
+

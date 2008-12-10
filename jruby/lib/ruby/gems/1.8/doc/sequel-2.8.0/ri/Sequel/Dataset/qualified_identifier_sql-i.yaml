@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: SQL fragment for the qualifed identifier, specifying a table and a column
+    (or schema and table).
+full_name: Sequel::Dataset#qualified_identifier_sql
+params: (qcr)
+name: qualified_identifier_sql
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: If no argument is given, returns a Sequel::SQL::ColumnAll object specifying
+    all columns for this table. If an argument is given, returns a Sequel::SQL::NumericExpression
+    using the * (multiplication) operator with this and the given argument.
+full_name: Symbol#*
+params: (ce=(arg=false;
+name: '*'
+is_singleton: false
+aliases: []
+

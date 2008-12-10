@@ -1,0 +1,28 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Validates the presence of an attribute. Requires the value not be blank, with
+    false considered present instead of absent.
+- !ruby/struct:SM::Flow::P 
+  body: 'Possible Options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":if - A symbol (indicating an instance_method) or proc (which is instance_evaled) \
+      skipping this validation if it returns nil or false."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":message - The message to use (default: 'is not present')"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":tag - The tag to use for this validation (default: :presence)"
+    label: '*'
+full_name: Sequel::Model::validates_presence_of
+params: (*atts)
+name: validates_presence_of
+is_singleton: true
+aliases: []
+

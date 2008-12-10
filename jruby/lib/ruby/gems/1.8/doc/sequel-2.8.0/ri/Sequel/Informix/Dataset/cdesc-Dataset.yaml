@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: UnsupportedIntersectExcept
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: fetch_rows
+- !ruby/object:RI::MethodSummary 
+  name: literal
+class_methods: []
+
+full_name: Sequel::Informix::Dataset
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '%w''limit distinct columns from join where having group union order''.freeze'
+  name: SELECT_CLAUSE_ORDER
+superclass: Sequel::Dataset
+name: Dataset

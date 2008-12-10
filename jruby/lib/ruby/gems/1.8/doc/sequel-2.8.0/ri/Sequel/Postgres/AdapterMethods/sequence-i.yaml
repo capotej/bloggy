@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Get the primary key and sequence for the given table.
+full_name: Sequel::Postgres::AdapterMethods#sequence
+params: (schema, table)
+name: sequence
+is_singleton: false
+aliases: []
+

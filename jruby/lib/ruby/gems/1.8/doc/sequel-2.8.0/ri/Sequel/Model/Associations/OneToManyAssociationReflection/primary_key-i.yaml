@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The column in the current table that the key in the associated table references.
+full_name: Sequel::Model::Associations::OneToManyAssociationReflection#primary_key
+params: ()
+name: primary_key
+is_singleton: false
+aliases: []
+

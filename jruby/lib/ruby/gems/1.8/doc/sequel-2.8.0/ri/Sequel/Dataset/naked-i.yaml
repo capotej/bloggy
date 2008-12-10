@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a naked dataset clone - i.e. a dataset that returns records as hashes
+    rather than model objects.
+full_name: Sequel::Dataset#naked
+params: ()
+name: naked
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return a Sequel::SQL::BooleanExpression created from this hash, matching all
+    of the conditions in this hash and the condition specified by the given argument.
+full_name: Hash#&
+params: (ce)
+name: '&'
+is_singleton: false
+aliases: []
+

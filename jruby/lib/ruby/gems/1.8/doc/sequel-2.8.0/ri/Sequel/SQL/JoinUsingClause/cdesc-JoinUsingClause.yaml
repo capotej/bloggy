@@ -1,0 +1,25 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Represents an SQL JOIN table USING (columns) clause.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The columns that appear both tables that should be equal for the conditions
+      to match.
+  rw: R
+  name: using
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Sequel::SQL::JoinUsingClause
+constants: []
+
+superclass: JoinClause
+name: JoinUsingClause

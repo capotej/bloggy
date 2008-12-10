@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return a Sequel::SQL::Array created from this array. Used if this array contains
+    all two pairs and you want it treated as an SQL array instead of a ordered hash-like
+    conditions.
+full_name: Array#sql_array
+params: ()
+name: sql_array
+is_singleton: false
+aliases: []
+

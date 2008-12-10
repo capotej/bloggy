@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: MySQL specific full text search syntax.
+full_name: Sequel::MySQL::DatasetMethods#full_text_search
+params: (cols, terms, opts = {})
+name: full_text_search
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return a Sequel::SQL::CaseExpression with this array as the conditions and
+    the given default value.
+full_name: Array#case
+params: (default, expression = nil)
+name: case
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return a hash with the same values as the given hash, but with the keys converted
+    to strings.
+full_name: Sequel::SQLite::Dataset::ArgumentMapper#map_to_prepared_args
+params: (hash)
+name: map_to_prepared_args
+is_singleton: false
+aliases: []
+

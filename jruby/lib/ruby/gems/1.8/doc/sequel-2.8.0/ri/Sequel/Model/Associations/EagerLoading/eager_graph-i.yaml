@@ -1,0 +1,30 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The secondary eager loading method. Loads all associations in a single query.
+    This method should only be used if you need to filter based on columns in associated
+    tables.
+- !ruby/struct:SM::Flow::P 
+  body: This method builds an object graph using Dataset#graph. Then it uses the graph
+    to build the associations, and finally replaces the graph with a simple array
+    of model objects.
+- !ruby/struct:SM::Flow::P 
+  body: Be very careful when using this with multiple *_to_many associations, as you
+    can create large cartesian products. If you must graph multiple *_to_many associations,
+    make sure your filters are specific if you have a large database.
+- !ruby/struct:SM::Flow::P 
+  body: 'Each association''s order, if definied, is respected. #eager_graph probably
+    won''t work correctly on a limited dataset, unless you are only graphing many_to_one
+    associations.'
+- !ruby/struct:SM::Flow::P 
+  body: Does not use the block defined for the association, since it does a single
+    query for all objects. You can use the :graph_join_type, :graph_conditions, and
+    :graph_join_table_conditions association options to modify the SQL query.
+full_name: Sequel::Model::Associations::EagerLoading#eager_graph
+params: (*associations)
+name: eager_graph
+is_singleton: false
+aliases: []
+

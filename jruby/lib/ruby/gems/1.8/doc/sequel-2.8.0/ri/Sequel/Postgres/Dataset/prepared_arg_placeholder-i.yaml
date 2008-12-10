@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: PostgreSQL uses $N for placeholders instead of ?, so use a $ as the placeholder.
+full_name: Sequel::Postgres::Dataset#prepared_arg_placeholder
+params: ()
+name: prepared_arg_placeholder
+is_singleton: false
+aliases: []
+

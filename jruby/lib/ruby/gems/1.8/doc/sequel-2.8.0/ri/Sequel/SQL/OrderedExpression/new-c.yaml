@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set the expression and descending attributes to the given values.
+full_name: Sequel::SQL::OrderedExpression::new
+params: (expression, descending = true)
+name: new
+is_singleton: true
+aliases: []
+

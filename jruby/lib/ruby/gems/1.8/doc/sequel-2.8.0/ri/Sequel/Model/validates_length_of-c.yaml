@@ -1,0 +1,61 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Validates the length of an attribute.
+- !ruby/struct:SM::Flow::P 
+  body: 'Possible Options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":allow_blank - Whether to skip the validation if the value is blank (default: \
+      false)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":allow_nil - Whether to skip the validation if the value is nil (default: \
+      false)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":if - A symbol (indicating an instance_method) or proc (which is instance_evaled) \
+      skipping this validation if it returns nil or false."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":is - The exact size required for the value to be valid (no default)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":maximum - The maximum size allowed for the value (no default)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":message - The message to use (no default, overrides :too_long, :too_short, \
+      and :wrong_length options if present)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":minimum - The minimum size allowed for the value (no default)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":tag - The tag to use for this validation (default: :length)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":too_long - The message to use use if it the value is too long (default: \
+      'is too long')"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":too_short - The message to use use if it the value is too short (default: \
+      'is too short')"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":with - The array/range that must include the size of the value for it \
+      to be valid (no default)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":wrong_length - The message to use use if it the value is not valid (default: \
+      'is the wrong length')"
+    label: '*'
+full_name: Sequel::Model::validates_length_of
+params: (*atts)
+name: validates_length_of
+is_singleton: true
+aliases: []
+

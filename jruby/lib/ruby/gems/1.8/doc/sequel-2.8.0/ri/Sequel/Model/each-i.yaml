@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Enumerates through all attributes.
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Ticket.find(7).each { |k, v| puts &quot;#{k} =&gt; #{v}&quot; }\n"
+full_name: Sequel::Model#each
+params: (&block)
+name: each
+is_singleton: false
+aliases: []
+

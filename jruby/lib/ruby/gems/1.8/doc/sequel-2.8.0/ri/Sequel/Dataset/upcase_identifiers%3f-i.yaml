@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Whether this dataset upcases identifiers.
+full_name: Sequel::Dataset#upcase_identifiers?
+params: ()
+name: upcase_identifiers?
+is_singleton: false
+aliases: []
+

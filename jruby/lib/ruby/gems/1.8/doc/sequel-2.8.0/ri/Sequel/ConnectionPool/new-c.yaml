@@ -1,0 +1,47 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Constructs a new pool with a maximum size. If a block is supplied, it is used
+    to create new connections as they are needed.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  pool = ConnectionPool.new(:max_connections=&gt;10) {MyConnection.new(opts)}\n"
+- !ruby/struct:SM::Flow::P 
+  body: The connection creation proc can be changed at any time by assigning a Proc
+    to pool#connection_proc.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  pool = ConnectionPool.new(:max_connections=&gt;10)\n  pool.connection_proc \
+    = proc {MyConnection.new(opts)}\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'The connection pool takes the following options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":max_connections - The maximum number of connections the connection pool \
+      will open (default 4)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":pool_convert_exceptions - Whether to convert non-StandardError based exceptions \
+      to RuntimeError exceptions (default true)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":pool_sleep_time - The amount of time to sleep before attempting to acquire \
+      a connection again (default 0.001)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":pool_timeout - The amount of seconds to wait to acquire a connection before \
+      raising a PoolTimeoutError (default 5)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":servers - A hash of servers to use. Keys should be symbols. If not present, \
+      will use a single :default server. The server name symbol will be passed to \
+      the connection_proc."
+    label: '*'
+full_name: Sequel::ConnectionPool::new
+params: (opts = {}, &block)
+name: new
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Name symbol for remove_ association method
+full_name: Sequel::Model::Associations::AssociationReflection#remove_method
+params: ()
+name: remove_method
+is_singleton: false
+aliases: []
+

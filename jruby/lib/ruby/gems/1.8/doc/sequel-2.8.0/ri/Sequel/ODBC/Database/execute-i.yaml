@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (r)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: ODBC returns native statement objects, which must be dropped if you call execute
+    manually, or you will get warnings. See the fetch_rows method source code for
+    an example of how to drop the statements.
+full_name: Sequel::ODBC::Database#execute
+params: (sql, opts={}) {|r| ...}
+name: execute
+is_singleton: false
+aliases: []
+

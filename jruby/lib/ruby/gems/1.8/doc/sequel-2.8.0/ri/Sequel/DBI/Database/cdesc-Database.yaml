@@ -1,0 +1,35 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  rw: W
+  name: lowercase
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: connect
+- !ruby/object:RI::MethodSummary 
+  name: dataset
+- !ruby/object:RI::MethodSummary 
+  name: do
+- !ruby/object:RI::MethodSummary 
+  name: execute
+- !ruby/object:RI::MethodSummary 
+  name: execute_dui
+- !ruby/object:RI::MethodSummary 
+  name: lowercase
+class_methods: []
+
+full_name: Sequel::DBI::Database
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{         :ado => "ADO",         :db2 => "DB2",         :frontbase => "FrontBase",         :interbase
+    => "InterBase",         :msql => "Msql",         :mysql => "Mysql",         :odbc
+    => "ODBC",         :oracle => "Oracle",         :pg => "pg",         :proxy =>
+    "Proxy",         :sqlite => "SQLite",         :sqlrelay => "SQLRelay"'
+  name: DBI_ADAPTERS
+superclass: Sequel::Database
+name: Database

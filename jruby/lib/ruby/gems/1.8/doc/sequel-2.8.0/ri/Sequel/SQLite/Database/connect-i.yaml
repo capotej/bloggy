@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Connect to the database. Since SQLite is a file based database, the only options
+    available are :database (to specify the database name), and :timeout, to specify
+    how long to wait for the database to be available if it is locked, given in milliseconds
+    (default is 5000).
+full_name: Sequel::SQLite::Database#connect
+params: (server)
+name: connect
+is_singleton: false
+aliases: []
+

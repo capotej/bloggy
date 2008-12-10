@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Execute the given type of statement with the hash of values.
+full_name: Sequel::Postgres::Dataset#call
+params: (type, hash, values=nil, &block)
+name: call
+is_singleton: false
+aliases: []
+

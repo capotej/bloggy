@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a copy of the dataset with the columns selected changed to the given
+    columns.
+full_name: Sequel::Dataset#select
+params: (*columns)
+name: select
+is_singleton: false
+aliases: []
+

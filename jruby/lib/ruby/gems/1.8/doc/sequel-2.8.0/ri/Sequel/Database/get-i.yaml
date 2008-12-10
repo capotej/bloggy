@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Returns a single value from the database, e.g.:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # SELECT 1\n  DB.get(1) #=&gt; 1\n\n  # SELECT version()\n  DB.get(:version[]) \
+    #=&gt; ...\n"
+full_name: Sequel::Database#get
+params: (expr)
+name: get
+is_singleton: false
+aliases: []
+

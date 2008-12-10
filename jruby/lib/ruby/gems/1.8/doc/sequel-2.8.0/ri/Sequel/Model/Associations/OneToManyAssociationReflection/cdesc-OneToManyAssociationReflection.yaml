@@ -1,0 +1,24 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: default_key
+- !ruby/object:RI::MethodSummary 
+  name: eager_loader_key
+- !ruby/object:RI::MethodSummary 
+  name: primary_key
+- !ruby/object:RI::MethodSummary 
+  name: reciprocal_array?
+- !ruby/object:RI::MethodSummary 
+  name: set_reciprocal_to_self?
+class_methods: []
+
+full_name: Sequel::Model::Associations::OneToManyAssociationReflection
+constants: []
+
+superclass: AssociationReflection
+name: OneToManyAssociationReflection

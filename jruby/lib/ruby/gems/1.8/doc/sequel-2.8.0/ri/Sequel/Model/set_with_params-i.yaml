@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Alias for #set'
+full_name: Sequel::Model#set_with_params
+params: (hash)
+name: set_with_params
+is_singleton: false
+aliases: []
+

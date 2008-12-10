@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds a named constraint (or unnamed if name is nil) to the DDL, with the given
+    block or args.
+full_name: Sequel::Schema::Generator#constraint
+params: (name, *args, &block)
+name: constraint
+is_singleton: false
+aliases: []
+

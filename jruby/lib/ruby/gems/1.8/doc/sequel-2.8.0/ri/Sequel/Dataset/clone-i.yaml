@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a new clone of the dataset with with the given options merged. If
+    the options changed include options in COLUMN_CHANGE_OPTS, the cached columns
+    are deleted.
+full_name: Sequel::Dataset#clone
+params: (opts = {})
+name: clone
+is_singleton: false
+aliases: []
+

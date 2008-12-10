@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: True if the array is not empty and all of its elements are arrays of size
+    2. This is used to determine if the array could be a specifier of conditions,
+    used similarly to a hash but allowing for duplicate keys.
+- !ruby/struct:SM::Flow::VERB 
+  body: "   hash.to_a.all_two_pairs? # =&gt; true unless hash is empty\n"
+full_name: Array#all_two_pairs?
+params: ()
+name: all_two_pairs?
+is_singleton: false
+aliases: []
+

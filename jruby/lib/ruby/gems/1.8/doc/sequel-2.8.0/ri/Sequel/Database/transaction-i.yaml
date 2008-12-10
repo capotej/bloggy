@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (conn)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'A simple implementation of SQL transactions. Nested transactions are not
+    supported - calling #transaction within a transaction will reuse the current transaction.
+    Should be overridden for databases that support nested transactions.'
+full_name: Sequel::Database#transaction
+params: (server=nil) {|conn| ...}
+name: transaction
+is_singleton: false
+aliases: []
+

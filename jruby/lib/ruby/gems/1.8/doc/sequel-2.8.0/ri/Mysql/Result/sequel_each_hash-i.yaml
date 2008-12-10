@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: h
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: yield a hash with symbol keys and type converted values.
+full_name: Mysql::Result#sequel_each_hash
+params: (with_table = nil) {|h| ...}
+name: sequel_each_hash
+is_singleton: false
+aliases: []
+

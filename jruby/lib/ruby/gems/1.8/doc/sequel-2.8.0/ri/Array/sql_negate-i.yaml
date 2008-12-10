@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return a Sequel::SQL::BooleanExpression created from this array, matching
+    none of the conditions.
+full_name: Array#sql_negate
+params: ()
+name: sql_negate
+is_singleton: false
+aliases: []
+

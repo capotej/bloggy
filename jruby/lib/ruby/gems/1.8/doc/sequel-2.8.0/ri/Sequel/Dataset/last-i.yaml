@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Reverses the order and then runs first. Note that this will not necessarily
+    give you the last record in the dataset, unless you have an unambiguous order.
+    If there is not currently an order for this dataset, raises an Error.
+full_name: Sequel::Dataset#last
+params: (*args, &block)
+name: last
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Add the subclass to the array of subclasses.
+full_name: Sequel::Dataset::inherited
+params: (c)
+name: inherited
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: Inflections if block_given?
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Yield the Inflections module if a block is given, and return the Inflections
+    module.
+full_name: String::inflections
+params: () {|Inflections if block_given?| ...}
+name: inflections
+is_singleton: true
+aliases: []
+

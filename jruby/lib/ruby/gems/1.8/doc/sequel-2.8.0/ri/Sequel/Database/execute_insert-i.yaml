@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Execute the given INSERT SQL, returning the last inserted row id.
+full_name: Sequel::Database#execute_insert
+params: (sql, opts={})
+name: execute_insert
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,95 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: SpecificExpressionMethods
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Represents a complex SQL expression, with a given operator and one or more
+    attributes (which may also be ComplexExpressions, forming a tree). This class
+    is the backbone of the blockless filter support in Sequel.
+- !ruby/struct:SM::Flow::P 
+  body: This is an abstract class that is not that useful by itself. The subclasses
+    BooleanExpression, NumericExpression, and StringExpression define the behavior
+    of the DSL via operators.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: An array of args for this object
+  rw: R
+  name: args
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The operator symbol for this object
+  rw: R
+  name: op
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ==
+- !ruby/object:RI::MethodSummary 
+  name: eql?
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Sequel::SQL::ComplexExpression
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A hash of the opposite for each operator symbol, used for inverting objects.
+  value: '{:AND => :OR, :OR => :AND, :< => :>=, :> => :<=,         :<= => :>, :>=
+    => :<, :''='' => :''!='' , :''!='' => :''='', :LIKE => :''NOT LIKE'',         :''NOT
+    LIKE'' => :LIKE, :~ => :''!~'', :''!~'' => :~, :IN => :''NOT IN'',         :''NOT
+    IN'' => :IN, :IS => :''IS NOT'', :''IS NOT'' => :IS, :''~*'' => :''!~*'',         :''!~*''
+    => :''~*'', :NOT => :NOOP, :NOOP => :NOT, :ILIKE => :''NOT ILIKE'',         :''NOT
+    ILIKE''=>:ILIKE}'
+  name: OPERTATOR_INVERSIONS
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Mathematical Operators used in NumericMethods
+  value: '[:+, :-, :/, :*]'
+  name: MATHEMATICAL_OPERATORS
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Mathematical Operators used in NumericMethods
+  value: '[:&, :|, :^, :<<, :>>]'
+  name: BITWISE_OPERATORS
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Inequality Operators used in InequalityMethods
+  value: '[:<, :>, :<=, :>=]'
+  name: INEQUALITY_OPERATORS
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hash of ruby operator symbols to SQL operators, used in BooleanMethods
+  value: '{:& => :AND, :| =>:OR}'
+  name: BOOLEAN_OPERATOR_METHODS
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Operator symbols that take exactly two arguments
+  value: '[:''='', :''!='', :IS, :''IS NOT'', :LIKE, :''NOT LIKE'', \         :~,
+    :''!~'', :''~*'', :''!~*'', :IN, :''NOT IN'', :ILIKE, :''NOT ILIKE''] + \         INEQUALITY_OPERATORS
+    + BITWISE_OPERATORS'
+  name: TWO_ARITY_OPERATORS
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Operator symbols that take one or more arguments
+  value: '[:AND, :OR, :''||''] + MATHEMATICAL_OPERATORS'
+  name: N_ARITY_OPERATORS
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Operator symbols that take one argument
+  value: '[:NOT, :NOOP, :''B~'']'
+  name: ONE_ARITY_OPERATORS
+superclass: Expression
+name: ComplexExpression

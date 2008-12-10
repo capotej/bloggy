@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Removes and returns the last member of the array if it is a hash. Otherwise,
+    an empty hash is returned This method is useful when writing methods that take
+    an options hash as the last parameter. For example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  def validate_each(*args, &amp;block)\n    opts = args.extract_options!\n\
+    \    ...\n  end\n"
+full_name: Array#extract_options!
+params: ()
+name: extract_options!
+is_singleton: false
+aliases: []
+

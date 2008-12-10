@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The dataset to use for proxying certain schema methods.
+full_name: Sequel::Schema::SQL#schema_utility_dataset
+params: ()
+name: schema_utility_dataset
+is_singleton: false
+aliases: []
+

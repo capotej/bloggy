@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates or updates the record, without attempting to validate it first. You
+    can provide an optional list of columns to update, in which case it only updates
+    those columns. If before_save, before_create (if new?), or before_update (if !new?)
+    return false, returns nil unless raise_on_save_failure is true (if it is true,
+    it raises an error). Otherwise, returns self.
+full_name: Sequel::Model#save!
+params: (*columns)
+name: save!
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,19 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Dataset::UnsupportedIntersectExcept
+comment: 
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: Sequel::Progress::DatasetMethods
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '%w''limit distinct columns from join where group order having union''.freeze'
+  name: SELECT_CLAUSE_ORDER
+superclass: 
+name: DatasetMethods

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Attempts to acquire a database connection. Returns true if successful. Will
+    probably raise an error if unsuccessful.
+full_name: Sequel::Database#test_connection
+params: (server=nil)
+name: test_connection
+is_singleton: false
+aliases: []
+

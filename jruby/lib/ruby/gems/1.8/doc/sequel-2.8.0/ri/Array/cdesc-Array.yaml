@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: all_two_pairs?
+- !ruby/object:RI::MethodSummary 
+  name: case
+- !ruby/object:RI::MethodSummary 
+  name: extract_options!
+- !ruby/object:RI::MethodSummary 
+  name: sql_array
+- !ruby/object:RI::MethodSummary 
+  name: sql_expr
+- !ruby/object:RI::MethodSummary 
+  name: sql_negate
+- !ruby/object:RI::MethodSummary 
+  name: sql_or
+- !ruby/object:RI::MethodSummary 
+  name: sql_string_join
+- !ruby/object:RI::MethodSummary 
+  name: to_sql
+- !ruby/object:RI::MethodSummary 
+  name: "~"
+class_methods: []
+
+full_name: Array
+constants: []
+
+superclass: Object
+name: Array

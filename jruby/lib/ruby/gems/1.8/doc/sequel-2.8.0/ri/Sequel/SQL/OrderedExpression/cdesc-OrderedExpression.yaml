@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Represents a column/expression to order the result set by.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Whether the expression should order the result set in a descending manner
+  rw: R
+  name: descending
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The expression to order the result set by.
+  rw: R
+  name: expression
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Sequel::SQL::OrderedExpression
+constants: []
+
+superclass: SpecificExpression
+name: OrderedExpression

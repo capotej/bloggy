@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: There was an error while waiting on a connection from the connection pool
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: Sequel::Error::PoolTimeoutError
+constants: []
+
+superclass: Error
+name: PoolTimeoutError

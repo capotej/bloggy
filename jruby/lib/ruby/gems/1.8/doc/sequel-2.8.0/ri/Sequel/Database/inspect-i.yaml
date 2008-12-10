@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a string representation of the database object including the class
+    name and the connection URI (or the opts if the URI cannot be constructed).
+full_name: Sequel::Database#inspect
+params: ()
+name: inspect
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an array of symbols specifying table names in the current database.
+full_name: Sequel::MySQL::DatabaseMethods#tables
+params: (server=nil)
+name: tables
+is_singleton: false
+aliases: []
+

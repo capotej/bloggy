@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Sequel::MSSQL::DatasetMethods#multi_insert_sql
+params: (columns, values)
+name: multi_insert_sql
+is_singleton: false
+aliases: []
+

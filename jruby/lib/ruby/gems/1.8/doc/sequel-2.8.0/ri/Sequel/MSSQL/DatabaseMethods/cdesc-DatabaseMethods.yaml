@@ -1,0 +1,33 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: auto_increment_sql
+- !ruby/object:RI::MethodSummary 
+  name: dataset
+class_methods: []
+
+full_name: Sequel::MSSQL::DatabaseMethods
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''IDENTITY(1,1)''.freeze'
+  name: AUTO_INCREMENT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"BEGIN TRANSACTION".freeze'
+  name: SQL_BEGIN
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"COMMIT TRANSACTION".freeze'
+  name: SQL_COMMIT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"ROLLBACK TRANSACTION".freeze'
+  name: SQL_ROLLBACK
+superclass: 
+name: DatabaseMethods

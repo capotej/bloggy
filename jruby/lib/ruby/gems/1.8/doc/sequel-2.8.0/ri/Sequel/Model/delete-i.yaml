@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Deletes and returns self. Does not run destroy hooks. Look into using destroy
+    instead.
+full_name: Sequel::Model#delete
+params: ()
+name: delete
+is_singleton: false
+aliases: []
+

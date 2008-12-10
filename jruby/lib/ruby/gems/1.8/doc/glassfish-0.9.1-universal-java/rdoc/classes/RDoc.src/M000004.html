@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>usage_no_exit (RDoc)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File modules/rdoc_usage.rb, line 43</span>
+<span class="ruby-keyword kw">def</span> <span class="ruby-constant">RDoc</span>.<span class="ruby-identifier">usage_no_exit</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">comment</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword kw">__FILE__</span>), <span class="ruby-node">%w(.. bin)</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">$0</span>))) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">find_comment</span>(<span class="ruby-identifier">file</span>)
+  <span class="ruby-keyword kw">end</span>
+
+  <span class="ruby-identifier">comment</span> = <span class="ruby-identifier">comment</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/^\s*#/</span>, <span class="ruby-value str">''</span>)
+
+  <span class="ruby-identifier">markup</span> = <span class="ruby-constant">SM</span><span class="ruby-operator">::</span><span class="ruby-constant">SimpleMarkup</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">flow_convertor</span> = <span class="ruby-constant">SM</span><span class="ruby-operator">::</span><span class="ruby-constant">ToFlow</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-identifier">flow</span> = <span class="ruby-identifier">markup</span>.<span class="ruby-identifier">convert</span>(<span class="ruby-identifier">comment</span>, <span class="ruby-identifier">flow_convertor</span>)
+
+  <span class="ruby-identifier">format</span> = <span class="ruby-value str">&quot;plain&quot;</span>
+
+  <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">flow</span> = <span class="ruby-identifier">extract_sections</span>(<span class="ruby-identifier">flow</span>, <span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword kw">end</span>
+
+  <span class="ruby-identifier">options</span> = <span class="ruby-constant">RI</span><span class="ruby-operator">::</span><span class="ruby-constant">Options</span>.<span class="ruby-identifier">instance</span>
+  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-value str">&quot;RI&quot;</span>]
+    <span class="ruby-identifier">options</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">args</span>.<span class="ruby-identifier">split</span>)
+  <span class="ruby-keyword kw">end</span>
+  <span class="ruby-identifier">formatter</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">formatter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value str">&quot;&quot;</span>)
+  <span class="ruby-identifier">formatter</span>.<span class="ruby-identifier">display_flow</span>(<span class="ruby-identifier">flow</span>)
+<span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,51 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Sequel::Dataset::UnnumberedArgumentMapper
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Use JDBC PreparedStatements instead of emulated ones. Statements created
+    using #prepare are cached at the connection level to allow reuse. This also supports
+    bind variables by using unnamed prepared statements created using #call.'
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The bind variable hash to use when substituting
+  rw: RW
+  name: prepared_args
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The argument to supply to insert and update, which may use placeholders
+      specified by prepared_args
+  rw: RW
+  name: prepared_modify_values
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The type of prepared statement, should be one of :select, :first, :insert,
+      :update, or :delete
+  rw: RW
+  name: prepared_type
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: inspect
+- !ruby/object:RI::MethodSummary 
+  name: literal
+- !ruby/object:RI::MethodSummary 
+  name: prepared_sql
+- !ruby/object:RI::MethodSummary 
+  name: run
+class_methods: []
+
+full_name: Sequel::Dataset::PreparedStatementMethods
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: /\A\$(.*)\z/
+  name: PLACEHOLDER_RE
+superclass: 
+name: PreparedStatementMethods

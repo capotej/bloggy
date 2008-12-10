@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: SQL fragment for the SQL array.
+full_name: Sequel::Dataset#array_sql
+params: (a)
+name: array_sql
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Programmer friendly string showing this is a prepared statement, with the
+    prepared SQL it represents (which in general won't have substituted variables).
+full_name: Sequel::Dataset::PreparedStatementMethods#inspect
+params: ()
+name: inspect
+is_singleton: false
+aliases: []
+

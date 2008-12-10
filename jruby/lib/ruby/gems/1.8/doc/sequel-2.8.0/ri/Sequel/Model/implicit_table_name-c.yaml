@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the implicit table name for the model class.
+full_name: Sequel::Model::implicit_table_name
+params: ()
+name: implicit_table_name
+is_singleton: true
+aliases: []
+

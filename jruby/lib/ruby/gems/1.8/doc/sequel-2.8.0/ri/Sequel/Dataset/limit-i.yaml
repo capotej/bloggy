@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: If given an integer, the dataset will contain only the first l results. If
+    given a range, it will contain only those at offsets within that range. If a second
+    argument is given, it is used as an offset.
+full_name: Sequel::Dataset#limit
+params: (l, o = nil)
+name: limit
+is_singleton: false
+aliases: []
+

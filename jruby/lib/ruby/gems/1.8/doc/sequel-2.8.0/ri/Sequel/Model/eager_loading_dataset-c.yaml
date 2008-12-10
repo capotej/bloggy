@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Modify and return eager loading dataset based on association options
+full_name: Sequel::Model::eager_loading_dataset
+params: (opts, ds, select, associations)
+name: eager_loading_dataset
+is_singleton: true
+aliases: []
+

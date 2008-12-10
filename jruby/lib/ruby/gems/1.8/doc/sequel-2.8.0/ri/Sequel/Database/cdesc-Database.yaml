@@ -1,0 +1,211 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Schema::SQL
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A Database object represents a virtual connection to a database. The Database
+    class is meant to be subclassed by database adapters in order to provide the functionality
+    needed for executing queries.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The type of database we are connecting to
+  rw: R
+  name: database_type
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The default schema to use
+  rw: RW
+  name: default_schema
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Array of SQL loggers to use for this database
+  rw: RW
+  name: loggers
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The options for this database
+  rw: R
+  name: opts
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The connection pool for this database
+  rw: R
+  name: pool
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The prepared statement objects for this database, keyed by name
+  rw: R
+  name: prepared_statements
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Whether to quote identifiers (columns and tables) for this database
+  rw: W
+  name: quote_identifiers
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Whether to upcase identifiers (columns and tables) for this database
+  rw: W
+  name: upcase_identifiers
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "<<"
+- !ruby/object:RI::MethodSummary 
+  name: '>>'
+- !ruby/object:RI::MethodSummary 
+  name: '[]'
+- !ruby/object:RI::MethodSummary 
+  name: add_column
+- !ruby/object:RI::MethodSummary 
+  name: add_index
+- !ruby/object:RI::MethodSummary 
+  name: alter_table
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: call_sproc
+- !ruby/object:RI::MethodSummary 
+  name: connect
+- !ruby/object:RI::MethodSummary 
+  name: connect
+- !ruby/object:RI::MethodSummary 
+  name: create_or_replace_view
+- !ruby/object:RI::MethodSummary 
+  name: create_table
+- !ruby/object:RI::MethodSummary 
+  name: create_table!
+- !ruby/object:RI::MethodSummary 
+  name: create_view
+- !ruby/object:RI::MethodSummary 
+  name: dataset
+- !ruby/object:RI::MethodSummary 
+  name: dataset
+- !ruby/object:RI::MethodSummary 
+  name: disconnect
+- !ruby/object:RI::MethodSummary 
+  name: drop_column
+- !ruby/object:RI::MethodSummary 
+  name: drop_index
+- !ruby/object:RI::MethodSummary 
+  name: drop_table
+- !ruby/object:RI::MethodSummary 
+  name: drop_view
+- !ruby/object:RI::MethodSummary 
+  name: execute
+- !ruby/object:RI::MethodSummary 
+  name: execute
+- !ruby/object:RI::MethodSummary 
+  name: execute_ddl
+- !ruby/object:RI::MethodSummary 
+  name: execute_ddl
+- !ruby/object:RI::MethodSummary 
+  name: execute_dui
+- !ruby/object:RI::MethodSummary 
+  name: execute_dui
+- !ruby/object:RI::MethodSummary 
+  name: execute_insert
+- !ruby/object:RI::MethodSummary 
+  name: fetch
+- !ruby/object:RI::MethodSummary 
+  name: from
+- !ruby/object:RI::MethodSummary 
+  name: get
+- !ruby/object:RI::MethodSummary 
+  name: inspect
+- !ruby/object:RI::MethodSummary 
+  name: log_info
+- !ruby/object:RI::MethodSummary 
+  name: logger
+- !ruby/object:RI::MethodSummary 
+  name: logger=
+- !ruby/object:RI::MethodSummary 
+  name: multi_threaded?
+- !ruby/object:RI::MethodSummary 
+  name: query
+- !ruby/object:RI::MethodSummary 
+  name: quote_identifiers?
+- !ruby/object:RI::MethodSummary 
+  name: rename_column
+- !ruby/object:RI::MethodSummary 
+  name: rename_table
+- !ruby/object:RI::MethodSummary 
+  name: select
+- !ruby/object:RI::MethodSummary 
+  name: serial_primary_key_options
+- !ruby/object:RI::MethodSummary 
+  name: set_column_default
+- !ruby/object:RI::MethodSummary 
+  name: set_column_type
+- !ruby/object:RI::MethodSummary 
+  name: single_threaded?
+- !ruby/object:RI::MethodSummary 
+  name: synchronize
+- !ruby/object:RI::MethodSummary 
+  name: table_exists?
+- !ruby/object:RI::MethodSummary 
+  name: test_connection
+- !ruby/object:RI::MethodSummary 
+  name: transaction
+- !ruby/object:RI::MethodSummary 
+  name: transaction
+- !ruby/object:RI::MethodSummary 
+  name: typecast_value
+- !ruby/object:RI::MethodSummary 
+  name: upcase_identifiers?
+- !ruby/object:RI::MethodSummary 
+  name: uri
+- !ruby/object:RI::MethodSummary 
+  name: uri
+- !ruby/object:RI::MethodSummary 
+  name: url
+- !ruby/object:RI::MethodSummary 
+  name: url
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: adapter_class
+- !ruby/object:RI::MethodSummary 
+  name: adapter_scheme
+- !ruby/object:RI::MethodSummary 
+  name: connect
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: quote_identifiers=
+- !ruby/object:RI::MethodSummary 
+  name: single_threaded=
+- !ruby/object:RI::MethodSummary 
+  name: upcase_identifiers=
+full_name: Sequel::Database
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Array of supported database adapters
+  value: '%w''ado db2 dbi informix jdbc mysql odbc openbase oracle postgres sqlite''.collect{|x|
+    x.to_sym}'
+  name: ADAPTERS
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''BEGIN''.freeze'
+  name: SQL_BEGIN
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''COMMIT''.freeze'
+  name: SQL_COMMIT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''ROLLBACK''.freeze'
+  name: SQL_ROLLBACK
+superclass: Object
+name: Database

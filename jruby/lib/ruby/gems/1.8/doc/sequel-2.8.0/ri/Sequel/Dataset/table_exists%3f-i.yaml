@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns true if the table exists. Will raise an error if the dataset has fixed
+    SQL or selects from another dataset or more than one table.
+full_name: Sequel::Dataset#table_exists?
+params: ()
+name: table_exists?
+is_singleton: false
+aliases: []
+

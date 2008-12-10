@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Default foreign key name symbol for key in associated table that points to
+    current table's primary key.
+full_name: Sequel::Model::Associations::OneToManyAssociationReflection#default_key
+params: ()
+name: default_key
+is_singleton: false
+aliases: []
+

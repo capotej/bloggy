@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: StringMethods
+- !ruby/object:RI::IncludedModule 
+  name: StringConcatenationMethods
+- !ruby/object:RI::IncludedModule 
+  name: InequalityMethods
+- !ruby/object:RI::IncludedModule 
+  name: NoBooleanInputMethods
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Subclass of ComplexExpression where the expression results in a text/string/varchar
+    value in SQL.
+attributes: []
+
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: like
+full_name: Sequel::SQL::StringExpression
+constants: []
+
+superclass: ComplexExpression
+name: StringExpression

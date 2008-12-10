@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This method quotes the given name with the SQL standard double quote. should
+    be overridden by subclasses to provide quoting not matching the SQL standard,
+    such as backtick (used by MySQL and SQLite).
+full_name: Sequel::Dataset#quoted_identifier
+params: (name)
+name: quoted_identifier
+is_singleton: false
+aliases: []
+

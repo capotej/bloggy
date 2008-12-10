@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: converted_rec
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Yield all rows returned by executing the given SQL and converting the types.
+full_name: Sequel::Postgres::Dataset#fetch_rows
+params: (sql) {|converted_rec| ...}
+name: fetch_rows
+is_singleton: false
+aliases: []
+

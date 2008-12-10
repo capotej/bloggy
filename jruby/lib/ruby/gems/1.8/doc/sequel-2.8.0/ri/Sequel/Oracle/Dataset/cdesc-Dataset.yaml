@@ -1,0 +1,19 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: DatasetMethods
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: fetch_rows
+- !ruby/object:RI::MethodSummary 
+  name: literal
+class_methods: []
+
+full_name: Sequel::Oracle::Dataset
+constants: []
+
+superclass: Sequel::Dataset
+name: Dataset

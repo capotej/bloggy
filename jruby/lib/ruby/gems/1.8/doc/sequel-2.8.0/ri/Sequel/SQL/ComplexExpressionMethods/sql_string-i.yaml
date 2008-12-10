@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return a StringExpression representation of self.
+full_name: Sequel::SQL::ComplexExpressionMethods#sql_string
+params: ()
+name: sql_string
+is_singleton: false
+aliases: []
+

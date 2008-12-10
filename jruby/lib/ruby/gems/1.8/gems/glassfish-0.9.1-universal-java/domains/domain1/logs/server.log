@@ -1,0 +1,212 @@
+[#|2008-12-09T02:32:53.251-0500|INFO|glassfish|org.jvnet.hk2.osgiadapter|_ThreadID=12;_ThreadName=Thread-2;org.glassfish.deployment.deployment-autodeploy [16];|Started bundle org.glassfish.deployment.deployment-autodeploy [16]|#]
+
+[#|2008-12-09T02:32:53.284-0500|INFO|glassfish|org.jvnet.hk2.osgiadapter|_ThreadID=12;_ThreadName=Thread-2;org.glassfish.deployment.deployment-common [17];|Started bundle org.glassfish.deployment.deployment-common [17]|#]
+
+[#|2008-12-09T02:32:53.327-0500|INFO|glassfish|org.jvnet.hk2.osgiadapter|_ThreadID=12;_ThreadName=Thread-2;org.glassfish.flashlight.flashlight-framework [18];|Started bundle org.glassfish.flashlight.flashlight-framework [18]|#]
+
+[#|2008-12-09T02:32:53.459-0500|INFO|glassfish|global|_ThreadID=12;_ThreadName=Thread-2;|Listening on port 3000|#]
+
+[#|2008-12-09T02:32:53.485-0500|INFO|glassfish|global|_ThreadID=12;_ThreadName=Thread-2;|The Admin Console Application is not yet installed.|#]
+
+[#|2008-12-09T02:32:53.500-0500|INFO|glassfish|global|_ThreadID=12;_ThreadName=Thread-2;|Admin Console Adapter: context root: /_____admingui|#]
+
+[#|2008-12-09T02:32:53.521-0500|INFO|glassfish|javax.enterprise.system.tools.admin|_ThreadID=12;_ThreadName=Thread-2;|Admin Console Adapter: context root: /_____admingui|#]
+
+[#|2008-12-09T02:32:54.447-0500|INFO|glassfish|org.jvnet.hk2.osgiadapter|_ThreadID=12;_ThreadName=Thread-2;org.glassfish.scripting.gf-jruby-connector [8];|Started bundle org.glassfish.scripting.gf-jruby-connector [8]|#]
+
+[#|2008-12-09T02:32:55.866-0500|INFO|glassfish|org.jvnet.hk2.osgiadapter|_ThreadID=12;_ThreadName=Thread-2;org.glassfish.scripting.grizzly-jruby-module [9];|Started bundle org.glassfish.scripting.grizzly-jruby-module [9]|#]
+
+[#|2008-12-09T02:32:56.629-0500|INFO|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|Jruby version is: 1.1.6RC1|#]
+
+[#|2008-12-09T02:32:56.965-0500|SEVERE|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|undefined method `sinatra' for main:Object
+	from file:/home/capotej/bloggy2/jruby/lib/ruby/gems/1.8/gems/glassfish-0.9.1-universal-java/modules/grizzly-jruby.jar!/jruby/rack/sinatra.rb:1:in `require'
+	from <script>:1
+
+com.sun.grizzly.jruby.rack.RackInitializationException: undefined method `sinatra' for main:Object
+	from file:/home/capotej/bloggy2/jruby/lib/ruby/gems/1.8/gems/glassfish-0.9.1-universal-java/modules/grizzly-jruby.jar!/jruby/rack/sinatra.rb:1:in `require'
+	from <script>:1
+
+	at com.sun.grizzly.jruby.rack.DefaultRackApplicationFactory.createApplication(DefaultRackApplicationFactory.java:169)
+	at com.sun.grizzly.jruby.rack.DefaultRackApplicationFactory.newApplication(DefaultRackApplicationFactory.java:69)
+	at com.sun.grizzly.jruby.rack.MultiThreadedRackAdapter.<init>(MultiThreadedRackAdapter.java:36)
+	at com.sun.grizzly.jruby.rack.RackApplicationChooser.getFactory(RackApplicationChooser.java:91)
+	at com.sun.grizzly.jruby.RailsAdapter.<init>(RailsAdapter.java:104)
+	at com.sun.grizzly.jruby.RubyRuntime.<init>(RubyRuntime.java:48)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+	at org.glassfish.scripting.rails.RailsApplication.<init>(RailsApplication.java:95)
+	at org.glassfish.scripting.rails.RailsDeployer.load(RailsDeployer.java:106)
+	at org.glassfish.scripting.rails.RailsDeployer.load(RailsDeployer.java:64)
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.load(ApplicationLifecycle.java:499)
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.deploy(ApplicationLifecycle.java:176)
+	at com.sun.enterprise.v3.server.ApplicationLoaderService.postConstruct(ApplicationLoaderService.java:180)
+	at com.sun.enterprise.v3.server.ApplicationLoaderInjector.postConstruct(ApplicationLoaderInjector.java:61)
+	at com.sun.hk2.component.AbstractWombImpl.inject(AbstractWombImpl.java:150)
+	at com.sun.hk2.component.ConstructorWomb$1.run(ConstructorWomb.java:90)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.hk2.component.ConstructorWomb.initialize(ConstructorWomb.java:87)
+	at com.sun.hk2.component.AbstractWombImpl.get(AbstractWombImpl.java:75)
+	at com.sun.hk2.component.SingletonInhabitant.get(SingletonInhabitant.java:58)
+	at com.sun.hk2.component.LazyInhabitant.get(LazyInhabitant.java:107)
+	at com.sun.hk2.component.AbstractInhabitantImpl.get(AbstractInhabitantImpl.java:60)
+	at com.sun.enterprise.v3.server.AppServerStartup.run(AppServerStartup.java:203)
+	at com.sun.enterprise.v3.server.AppServerStartup$1.run(AppServerStartup.java:116)
+Caused by: org.jruby.exceptions.RaiseException
+	at Kernel.method_missing(file:/home/capotej/bloggy2/jruby/lib/ruby/gems/1.8/gems/glassfish-0.9.1-universal-java/modules/grizzly-jruby.jar!/jruby/rack/sinatra.rb:2)
+	at (unknown).(unknown)(file:/home/capotej/bloggy2/jruby/lib/ruby/gems/1.8/gems/glassfish-0.9.1-universal-java/modules/grizzly-jruby.jar!/jruby/rack/sinatra.rb:1)
+	at Kernel.require(<script>:1)
+	at (unknown).(unknown)(:1)
+|#]
+
+[#|2008-12-09T02:32:56.969-0500|WARNING|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|Warning: error application could not be initialized.|#]
+
+[#|2008-12-09T02:32:56.973-0500|SEVERE|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|Error creating RailsAdapter: null|#]
+
+[#|2008-12-09T02:32:56.973-0500|SEVERE|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|Cannot load application in Rails container|#]
+
+[#|2008-12-09T02:32:56.974-0500|SEVERE|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|Exception while invoking class org.glassfish.scripting.rails.RailsDeployer prepare method
+java.lang.Exception: Cannot load application in Rails container
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.load(ApplicationLifecycle.java:503)
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.deploy(ApplicationLifecycle.java:176)
+	at com.sun.enterprise.v3.server.ApplicationLoaderService.postConstruct(ApplicationLoaderService.java:180)
+	at com.sun.enterprise.v3.server.ApplicationLoaderInjector.postConstruct(ApplicationLoaderInjector.java:61)
+	at com.sun.hk2.component.AbstractWombImpl.inject(AbstractWombImpl.java:150)
+	at com.sun.hk2.component.ConstructorWomb$1.run(ConstructorWomb.java:90)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.hk2.component.ConstructorWomb.initialize(ConstructorWomb.java:87)
+	at com.sun.hk2.component.AbstractWombImpl.get(AbstractWombImpl.java:75)
+	at com.sun.hk2.component.SingletonInhabitant.get(SingletonInhabitant.java:58)
+	at com.sun.hk2.component.LazyInhabitant.get(LazyInhabitant.java:107)
+	at com.sun.hk2.component.AbstractInhabitantImpl.get(AbstractInhabitantImpl.java:60)
+	at com.sun.enterprise.v3.server.AppServerStartup.run(AppServerStartup.java:203)
+	at com.sun.enterprise.v3.server.AppServerStartup$1.run(AppServerStartup.java:116)
+|#]
+
+[#|2008-12-09T02:32:56.974-0500|SEVERE|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|Exception while deploying the app
+java.lang.Exception: Cannot load application in Rails container
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.load(ApplicationLifecycle.java:503)
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.deploy(ApplicationLifecycle.java:176)
+	at com.sun.enterprise.v3.server.ApplicationLoaderService.postConstruct(ApplicationLoaderService.java:180)
+	at com.sun.enterprise.v3.server.ApplicationLoaderInjector.postConstruct(ApplicationLoaderInjector.java:61)
+	at com.sun.hk2.component.AbstractWombImpl.inject(AbstractWombImpl.java:150)
+	at com.sun.hk2.component.ConstructorWomb$1.run(ConstructorWomb.java:90)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.hk2.component.ConstructorWomb.initialize(ConstructorWomb.java:87)
+	at com.sun.hk2.component.AbstractWombImpl.get(AbstractWombImpl.java:75)
+	at com.sun.hk2.component.SingletonInhabitant.get(SingletonInhabitant.java:58)
+	at com.sun.hk2.component.LazyInhabitant.get(LazyInhabitant.java:107)
+	at com.sun.hk2.component.AbstractInhabitantImpl.get(AbstractInhabitantImpl.java:60)
+	at com.sun.enterprise.v3.server.AppServerStartup.run(AppServerStartup.java:203)
+	at com.sun.enterprise.v3.server.AppServerStartup$1.run(AppServerStartup.java:116)
+|#]
+
+[#|2008-12-09T02:32:56.990-0500|INFO|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|GlassFish v3 Prelude startup time : Felix(702ms) startup services(3884ms) total(4586ms)|#]
+
+[#|2008-12-09T02:39:45.698-0500|INFO|glassfish|org.jvnet.hk2.osgiadapter|_ThreadID=12;_ThreadName=Thread-2;org.glassfish.deployment.deployment-autodeploy [16];|Started bundle org.glassfish.deployment.deployment-autodeploy [16]|#]
+
+[#|2008-12-09T02:39:45.731-0500|INFO|glassfish|org.jvnet.hk2.osgiadapter|_ThreadID=12;_ThreadName=Thread-2;org.glassfish.deployment.deployment-common [17];|Started bundle org.glassfish.deployment.deployment-common [17]|#]
+
+[#|2008-12-09T02:39:45.767-0500|INFO|glassfish|org.jvnet.hk2.osgiadapter|_ThreadID=12;_ThreadName=Thread-2;org.glassfish.flashlight.flashlight-framework [18];|Started bundle org.glassfish.flashlight.flashlight-framework [18]|#]
+
+[#|2008-12-09T02:39:45.903-0500|INFO|glassfish|global|_ThreadID=12;_ThreadName=Thread-2;|Listening on port 3000|#]
+
+[#|2008-12-09T02:39:45.972-0500|INFO|glassfish|global|_ThreadID=12;_ThreadName=Thread-2;|The Admin Console Application is not yet installed.|#]
+
+[#|2008-12-09T02:39:45.974-0500|INFO|glassfish|global|_ThreadID=12;_ThreadName=Thread-2;|Admin Console Adapter: context root: /_____admingui|#]
+
+[#|2008-12-09T02:39:45.987-0500|INFO|glassfish|javax.enterprise.system.tools.admin|_ThreadID=12;_ThreadName=Thread-2;|Admin Console Adapter: context root: /_____admingui|#]
+
+[#|2008-12-09T02:39:46.894-0500|INFO|glassfish|org.jvnet.hk2.osgiadapter|_ThreadID=12;_ThreadName=Thread-2;org.glassfish.scripting.gf-jruby-connector [8];|Started bundle org.glassfish.scripting.gf-jruby-connector [8]|#]
+
+[#|2008-12-09T02:39:48.319-0500|INFO|glassfish|org.jvnet.hk2.osgiadapter|_ThreadID=12;_ThreadName=Thread-2;org.glassfish.scripting.grizzly-jruby-module [9];|Started bundle org.glassfish.scripting.grizzly-jruby-module [9]|#]
+
+[#|2008-12-09T02:39:49.097-0500|INFO|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|Jruby version is: 1.1.6RC1|#]
+
+[#|2008-12-09T02:39:49.581-0500|SEVERE|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|undefined method `sinatra' for main:Object
+	from file:/home/capotej/bloggy2/jruby/lib/ruby/gems/1.8/gems/glassfish-0.9.1-universal-java/modules/grizzly-jruby.jar!/jruby/rack/sinatra.rb:1:in `require'
+	from <script>:1
+
+com.sun.grizzly.jruby.rack.RackInitializationException: undefined method `sinatra' for main:Object
+	from file:/home/capotej/bloggy2/jruby/lib/ruby/gems/1.8/gems/glassfish-0.9.1-universal-java/modules/grizzly-jruby.jar!/jruby/rack/sinatra.rb:1:in `require'
+	from <script>:1
+
+	at com.sun.grizzly.jruby.rack.DefaultRackApplicationFactory.createApplication(DefaultRackApplicationFactory.java:169)
+	at com.sun.grizzly.jruby.rack.DefaultRackApplicationFactory.newApplication(DefaultRackApplicationFactory.java:69)
+	at com.sun.grizzly.jruby.rack.MultiThreadedRackAdapter.<init>(MultiThreadedRackAdapter.java:36)
+	at com.sun.grizzly.jruby.rack.RackApplicationChooser.getFactory(RackApplicationChooser.java:91)
+	at com.sun.grizzly.jruby.RailsAdapter.<init>(RailsAdapter.java:104)
+	at com.sun.grizzly.jruby.RubyRuntime.<init>(RubyRuntime.java:48)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+	at org.glassfish.scripting.rails.RailsApplication.<init>(RailsApplication.java:95)
+	at org.glassfish.scripting.rails.RailsDeployer.load(RailsDeployer.java:106)
+	at org.glassfish.scripting.rails.RailsDeployer.load(RailsDeployer.java:64)
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.load(ApplicationLifecycle.java:499)
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.deploy(ApplicationLifecycle.java:176)
+	at com.sun.enterprise.v3.server.ApplicationLoaderService.postConstruct(ApplicationLoaderService.java:180)
+	at com.sun.enterprise.v3.server.ApplicationLoaderInjector.postConstruct(ApplicationLoaderInjector.java:61)
+	at com.sun.hk2.component.AbstractWombImpl.inject(AbstractWombImpl.java:150)
+	at com.sun.hk2.component.ConstructorWomb$1.run(ConstructorWomb.java:90)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.hk2.component.ConstructorWomb.initialize(ConstructorWomb.java:87)
+	at com.sun.hk2.component.AbstractWombImpl.get(AbstractWombImpl.java:75)
+	at com.sun.hk2.component.SingletonInhabitant.get(SingletonInhabitant.java:58)
+	at com.sun.hk2.component.LazyInhabitant.get(LazyInhabitant.java:107)
+	at com.sun.hk2.component.AbstractInhabitantImpl.get(AbstractInhabitantImpl.java:60)
+	at com.sun.enterprise.v3.server.AppServerStartup.run(AppServerStartup.java:203)
+	at com.sun.enterprise.v3.server.AppServerStartup$1.run(AppServerStartup.java:116)
+Caused by: org.jruby.exceptions.RaiseException
+	at Kernel.method_missing(file:/home/capotej/bloggy2/jruby/lib/ruby/gems/1.8/gems/glassfish-0.9.1-universal-java/modules/grizzly-jruby.jar!/jruby/rack/sinatra.rb:2)
+	at (unknown).(unknown)(file:/home/capotej/bloggy2/jruby/lib/ruby/gems/1.8/gems/glassfish-0.9.1-universal-java/modules/grizzly-jruby.jar!/jruby/rack/sinatra.rb:1)
+	at Kernel.require(<script>:1)
+	at (unknown).(unknown)(:1)
+|#]
+
+[#|2008-12-09T02:39:49.584-0500|WARNING|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|Warning: error application could not be initialized.|#]
+
+[#|2008-12-09T02:39:49.589-0500|SEVERE|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|Error creating RailsAdapter: null|#]
+
+[#|2008-12-09T02:39:49.589-0500|SEVERE|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|Cannot load application in Rails container|#]
+
+[#|2008-12-09T02:39:49.589-0500|SEVERE|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|Exception while invoking class org.glassfish.scripting.rails.RailsDeployer prepare method
+java.lang.Exception: Cannot load application in Rails container
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.load(ApplicationLifecycle.java:503)
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.deploy(ApplicationLifecycle.java:176)
+	at com.sun.enterprise.v3.server.ApplicationLoaderService.postConstruct(ApplicationLoaderService.java:180)
+	at com.sun.enterprise.v3.server.ApplicationLoaderInjector.postConstruct(ApplicationLoaderInjector.java:61)
+	at com.sun.hk2.component.AbstractWombImpl.inject(AbstractWombImpl.java:150)
+	at com.sun.hk2.component.ConstructorWomb$1.run(ConstructorWomb.java:90)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.hk2.component.ConstructorWomb.initialize(ConstructorWomb.java:87)
+	at com.sun.hk2.component.AbstractWombImpl.get(AbstractWombImpl.java:75)
+	at com.sun.hk2.component.SingletonInhabitant.get(SingletonInhabitant.java:58)
+	at com.sun.hk2.component.LazyInhabitant.get(LazyInhabitant.java:107)
+	at com.sun.hk2.component.AbstractInhabitantImpl.get(AbstractInhabitantImpl.java:60)
+	at com.sun.enterprise.v3.server.AppServerStartup.run(AppServerStartup.java:203)
+	at com.sun.enterprise.v3.server.AppServerStartup$1.run(AppServerStartup.java:116)
+|#]
+
+[#|2008-12-09T02:39:49.590-0500|SEVERE|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|Exception while deploying the app
+java.lang.Exception: Cannot load application in Rails container
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.load(ApplicationLifecycle.java:503)
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.deploy(ApplicationLifecycle.java:176)
+	at com.sun.enterprise.v3.server.ApplicationLoaderService.postConstruct(ApplicationLoaderService.java:180)
+	at com.sun.enterprise.v3.server.ApplicationLoaderInjector.postConstruct(ApplicationLoaderInjector.java:61)
+	at com.sun.hk2.component.AbstractWombImpl.inject(AbstractWombImpl.java:150)
+	at com.sun.hk2.component.ConstructorWomb$1.run(ConstructorWomb.java:90)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.hk2.component.ConstructorWomb.initialize(ConstructorWomb.java:87)
+	at com.sun.hk2.component.AbstractWombImpl.get(AbstractWombImpl.java:75)
+	at com.sun.hk2.component.SingletonInhabitant.get(SingletonInhabitant.java:58)
+	at com.sun.hk2.component.LazyInhabitant.get(LazyInhabitant.java:107)
+	at com.sun.hk2.component.AbstractInhabitantImpl.get(AbstractInhabitantImpl.java:60)
+	at com.sun.enterprise.v3.server.AppServerStartup.run(AppServerStartup.java:203)
+	at com.sun.enterprise.v3.server.AppServerStartup$1.run(AppServerStartup.java:116)
+|#]
+
+[#|2008-12-09T02:39:49.601-0500|INFO|glassfish|javax.enterprise.system.core|_ThreadID=12;_ThreadName=Thread-2;|GlassFish v3 Prelude startup time : Felix(603ms) startup services(4030ms) total(4633ms)|#]
+

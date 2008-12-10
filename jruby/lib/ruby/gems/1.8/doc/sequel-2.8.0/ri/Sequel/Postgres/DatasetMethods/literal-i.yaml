@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Handle microseconds for Time and DateTime values, as well as PostgreSQL specific
+    boolean values and string escaping.
+full_name: Sequel::Postgres::DatasetMethods#literal
+params: (v)
+name: literal
+is_singleton: false
+aliases: []
+

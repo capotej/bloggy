@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Typecast the value to the given column_type. Can be overridden in adapters
+    to support database specific column types. This method should raise Sequel::Error::InvalidValue
+    if assigned value is invalid.
+full_name: Sequel::Database#typecast_value
+params: (column_type, value)
+name: typecast_value
+is_singleton: false
+aliases: []
+

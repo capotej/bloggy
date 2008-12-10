@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The total number of connections opened for the given server, should be equal
+    to available_connections.length + allocated.length
+full_name: Sequel::ConnectionPool#created_count
+params: (server=:default)
+name: created_count
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: size

@@ -1,0 +1,20 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This defines the bitwise methods &amp;, |, ^, ~, &lt;&lt;, and &gt;&gt;. Because
+    these methods overlap with the standard BooleanMethods methods, and they only
+    make sense for numbers, they are only included in NumericExpression.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "~"
+class_methods: []
+
+full_name: Sequel::SQL::BitwiseMethods
+constants: []
+
+superclass: 
+name: BitwiseMethods

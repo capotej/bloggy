@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: If a block is given, define a method on the dataset with the given argument
+    name using the given block as well as a method on the model that calls the dataset
+    method.
+- !ruby/struct:SM::Flow::P 
+  body: If a block is not given, define a method on the model for each argument that
+    calls the dataset method of the same argument name.
+full_name: Sequel::Model::def_dataset_method
+params: (*args, &block)
+name: def_dataset_method
+is_singleton: true
+aliases: []
+

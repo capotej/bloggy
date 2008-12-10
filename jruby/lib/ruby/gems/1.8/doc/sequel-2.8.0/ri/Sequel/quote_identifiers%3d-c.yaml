@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Set whether to quote identifiers for all databases by default. By default,
+    Sequel quotes identifiers in all SQL strings, so to turn that off:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Sequel.quote_identifiers = false\n"
+full_name: Sequel::quote_identifiers=
+params: (value)
+name: quote_identifiers=
+is_singleton: true
+aliases: []
+

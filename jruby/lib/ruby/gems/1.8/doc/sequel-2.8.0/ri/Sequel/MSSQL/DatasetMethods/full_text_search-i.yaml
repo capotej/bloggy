@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Sequel::MSSQL::DatasetMethods#full_text_search
+params: (cols, terms, opts = {})
+name: full_text_search
+is_singleton: false
+aliases: []
+

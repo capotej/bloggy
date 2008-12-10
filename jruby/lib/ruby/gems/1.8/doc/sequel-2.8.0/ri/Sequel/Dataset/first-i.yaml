@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the first record in the dataset. If a numeric argument is given, it
+    is interpreted as a limit, and then returns all matching records up to that limit.
+    If no argument is passed, it returns the first matching record. If any other type
+    of argument(s) is passed, it is given to filter and the first matching record
+    is returned. If a block is given, it is used to filter the dataset before returning
+    anything.
+- !ruby/struct:SM::Flow::P 
+  body: 'Examples:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ds.first =&gt; {:id=&gt;7}\n  ds.first(2) =&gt; [{:id=&gt;6}, {:id=&gt;4}]\n\
+    \  ds.order(:id).first(2) =&gt; [{:id=&gt;1}, {:id=&gt;2}]\n  ds.first(:id=&gt;2) \
+    =&gt; {:id=&gt;2}\n  ds.first(&quot;id = 3&quot;) =&gt; {:id=&gt;3}\n  ds.first(&quot;id \
+    = ?&quot;, 4) =&gt; {:id=&gt;4}\n  ds.first{:id &gt; 2} =&gt; {:id=&gt;5}\n  ds.order(:id).first{:id \
+    &gt; 2} =&gt; {:id=&gt;3}\n  ds.first{:id &gt; 2} =&gt; {:id=&gt;5}\n  ds.first(&quot;id \
+    &gt; ?&quot;, 4){:id &lt; 6) =&gt; {:id=&gt;5}\n  ds.order(:id).first(2){:id &lt; \
+    2} =&gt; [{:id=&gt;1}]\n"
+full_name: Sequel::Dataset#first
+params: (*args, &block)
+name: first
+is_singleton: false
+aliases: []
+

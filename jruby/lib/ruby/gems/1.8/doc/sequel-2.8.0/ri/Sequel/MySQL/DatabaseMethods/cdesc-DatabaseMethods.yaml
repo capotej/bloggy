@@ -1,0 +1,58 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Methods shared by Database instances that connect to MySQL, currently supported
+    by the native and JDBC adapters.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: alter_table_sql
+- !ruby/object:RI::MethodSummary 
+  name: auto_increment_sql
+- !ruby/object:RI::MethodSummary 
+  name: column_references_sql
+- !ruby/object:RI::MethodSummary 
+  name: index_definition_sql
+- !ruby/object:RI::MethodSummary 
+  name: server_version
+- !ruby/object:RI::MethodSummary 
+  name: tables
+- !ruby/object:RI::MethodSummary 
+  name: use
+class_methods: []
+
+full_name: Sequel::MySQL::DatabaseMethods
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''AUTO_INCREMENT''.freeze'
+  name: AUTO_INCREMENT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: Sequel::Schema::SQL::NOT_NULL
+  name: NOT_NULL
+- !ruby/object:RI::Constant 
+  comment: 
+  value: Sequel::Schema::SQL::NULL
+  name: "NULL"
+- !ruby/object:RI::Constant 
+  comment: 
+  value: Sequel::Schema::SQL::PRIMARY_KEY
+  name: PRIMARY_KEY
+- !ruby/object:RI::Constant 
+  comment: 
+  value: Sequel::Schema::SQL::TYPES
+  name: TYPES
+- !ruby/object:RI::Constant 
+  comment: 
+  value: Sequel::Schema::SQL::UNIQUE
+  name: UNIQUE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: Sequel::Schema::SQL::UNSIGNED
+  name: UNSIGNED
+superclass: 
+name: DatabaseMethods

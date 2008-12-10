@@ -1,0 +1,36 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Default implementation of the argument mapper to allow native database support
+    for bind variables and prepared statements (as opposed to the emulated ones used
+    by default).
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The bind arguments to use for running this prepared statement
+  rw: RW
+  name: bind_arguments
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The name of the prepared statement, if any.
+  rw: RW
+  name: prepared_statement_name
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: prepared_sql
+class_methods: []
+
+full_name: Sequel::Dataset::ArgumentMapper
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: Hash.new{|h,k| h[k] = k}
+  name: SQL_QUERY_TYPE
+superclass: 
+name: ArgumentMapper

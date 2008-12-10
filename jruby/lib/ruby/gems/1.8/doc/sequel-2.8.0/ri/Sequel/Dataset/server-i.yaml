@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set the server for this dataset to use. Used to pick a specific database shard
+    to run a query against, or to override the default SELECT uses :read_only database
+    and all other queries use the :default database.
+full_name: Sequel::Dataset#server
+params: (servr)
+name: server
+is_singleton: false
+aliases: []
+

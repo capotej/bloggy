@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set all values using the entries in the hash, ignoring any setting of allowed_columns
+    or restricted columns in the model.
+full_name: Sequel::Model#set_all
+params: (hash)
+name: set_all
+is_singleton: false
+aliases: []
+

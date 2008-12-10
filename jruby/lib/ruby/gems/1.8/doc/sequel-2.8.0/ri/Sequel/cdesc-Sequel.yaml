@@ -1,0 +1,68 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Top level module for Sequel
+- !ruby/struct:SM::Flow::P 
+  body: 'There are some class methods that are added via metaprogramming, one for
+    each supported adapter. For example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  DB = Sequel.sqlite # Memory database\n  DB = Sequel.sqlite('blog.db')\n\
+    \  DB = Sequel.postgres('database_name', :user=&gt;'user',\n         :password=&gt;'password', \
+    :host=&gt;'host', :port=&gt;5432,\n         :max_connections=&gt;10)\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'If a block is given to these methods, it is passed the opened Database object,
+    which is closed (disconnected) when the block exits. For example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Sequel.sqlite('blog.db'){|db| puts db.users.count}\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Sequel converts the column type tinyint to a boolean by default, you can
+    override the conversion to use tinyint as an integer:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Sequel.convert_tinyint_to_bool = false\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Sequel converts two digit years in Dates and DateTimes by default, so 01/02/03
+    is interpreted at January 2nd, 2003, and 12/13/99 is interpreted as December 13,
+    1999.. You can override this # to treat those dates as January 2nd, 0003 and December
+    13, 0099, respectively, by setting:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Sequel.convert_two_digit_years = false\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Sequel can use either Time or DateTime for times returned from the database.
+    It defaults to Time. To change it to DateTime, use:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Sequel.datetime_class = DateTime\n"
+attributes: []
+
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: Model
+- !ruby/object:RI::MethodSummary 
+  name: connect
+- !ruby/object:RI::MethodSummary 
+  name: load_gem
+- !ruby/object:RI::MethodSummary 
+  name: quote_identifiers=
+- !ruby/object:RI::MethodSummary 
+  name: single_threaded=
+- !ruby/object:RI::MethodSummary 
+  name: upcase_identifiers=
+- !ruby/object:RI::MethodSummary 
+  name: use_parse_tree
+- !ruby/object:RI::MethodSummary 
+  name: use_parse_tree=
+full_name: Sequel
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Array of all databases to which Sequel has connected. If you are developing
+      an application that can connect to an arbitrary number of databases, delete
+      the database objects from this or they will not get garbage collected.
+  value: '[]'
+  name: DATABASES
+superclass: 
+name: Sequel

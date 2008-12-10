@@ -1,0 +1,41 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: fetch_rows
+- !ruby/object:RI::MethodSummary 
+  name: literal
+class_methods: []
+
+full_name: Sequel::ODBC::Dataset
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''1''.freeze'
+  name: BOOL_TRUE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''0''.freeze'
+  name: BOOL_FALSE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"{ts ''%Y-%m-%d %H:%M:%S''}".freeze'
+  name: ODBC_TIMESTAMP_FORMAT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: ODBC_TIMESTAMP_FORMAT.index( '%S' ).succ - ODBC_TIMESTAMP_FORMAT.length
+  name: ODBC_TIMESTAMP_AFTER_SECONDS
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"{d ''%Y-%m-%d''}".freeze'
+  name: ODBC_DATE_FORMAT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''untitled_%d''.freeze'
+  name: UNTITLED_COLUMN
+superclass: Sequel::Dataset
+name: Dataset

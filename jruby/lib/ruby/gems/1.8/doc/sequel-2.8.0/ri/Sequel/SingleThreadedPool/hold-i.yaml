@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (c = (@conns[server] ||= @connection_proc.call(server)))
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Yields the connection to the supplied block for the given server. This method
+    simulates the ConnectionPool#hold API.
+full_name: Sequel::SingleThreadedPool#hold
+params: (server=:default) {|c = (@conns[server] ||= @connection_proc.call(server))|
+  ...}
+name: hold
+is_singleton: false
+aliases: []
+

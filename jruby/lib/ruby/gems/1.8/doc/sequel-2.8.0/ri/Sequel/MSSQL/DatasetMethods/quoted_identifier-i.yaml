@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+full_name: Sequel::MSSQL::DatasetMethods#quoted_identifier
+params: (name)
+name: quoted_identifier
+is_singleton: false
+aliases: []
+

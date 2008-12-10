@@ -1,0 +1,70 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a copy of the dataset with the given conditions imposed upon it. If
+    the query has been grouped, then the conditions are imposed in the HAVING clause.
+    If not, then they are imposed in the WHERE clause. Filter
+- !ruby/struct:SM::Flow::P 
+  body: 'filter accepts the following argument types:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: Hash - list of equality expressions
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: 'Array - depends:'
+    label: '*'
+  - !ruby/object:SM::Flow::LIST 
+    type: :BULLET
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      body: If first member is a string, assumes the rest of the arguments are parameters
+        and interpolates them into the string.
+      label: '*'
+    - !ruby/struct:SM::Flow::LI 
+      body: If all members are arrays of length two, treats the same way as a hash,
+        except it allows for duplicate keys to be specified.
+      label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: String - taken literally
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: Symbol - taken as a boolean column argument (e.g. WHERE active)
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: Sequel::SQL::BooleanExpression - an existing condition expression, probably
+      created using the Sequel blockless filter DSL.
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: filter also takes a block, which should return one of the above argument types,
+    and is treated the same way. If both a block and regular argument are provided,
+    they get ANDed together.
+- !ruby/struct:SM::Flow::P 
+  body: 'Examples:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  dataset.filter(:id =&gt; 3).sql #=&gt;\n    &quot;SELECT * FROM items WHERE \
+    (id = 3)&quot;\n  dataset.filter('price &lt; ?', 100).sql #=&gt;\n    &quot;SELECT \
+    * FROM items WHERE price &lt; 100&quot;\n  dataset.filter([[:id, (1,2,3)], [:id, \
+    0..10]]).sql #=&gt;\n    &quot;SELECT * FROM items WHERE ((id IN (1, 2, 3)) AND \
+    ((id &gt;= 0) AND (id &lt;= 10)))&quot;\n  dataset.filter('price &lt; 100').sql \
+    #=&gt;\n    &quot;SELECT * FROM items WHERE price &lt; 100&quot;\n  dataset.filter(:active).sql \
+    #=&gt;\n    &quot;SELECT * FROM items WHERE :active\n  dataset.filter(:price &lt; \
+    100).sql #=&gt;\n    &quot;SELECT * FROM items WHERE (price &lt; 100)&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Multiple filter calls can be chained for scoping:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  software = dataset.filter(:category =&gt; 'software')\n  software.filter(price \
+    &lt; 100).sql #=&gt;\n    &quot;SELECT * FROM items WHERE ((category = 'software') \
+    AND (price &lt; 100))&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: See doc/dataset_filters.rdoc for more examples and details.
+full_name: Sequel::Dataset#filter
+params: (*cond, &block)
+name: filter
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: where

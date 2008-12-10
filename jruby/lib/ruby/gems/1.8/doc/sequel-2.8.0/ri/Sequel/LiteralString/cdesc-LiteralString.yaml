@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: SQL::OrderMethods
+- !ruby/object:RI::IncludedModule 
+  name: SQL::ComplexExpressionMethods
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: LiteralString is used to represent literal SQL expressions. A LiteralString
+    is copied verbatim into an SQL statement. Instances of LiteralString can be created
+    by calling String#lit. LiteralStrings can also use all of the SQL::OrderMethods
+    and the SQL::ComplexExpressionMethods.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: Sequel::LiteralString
+constants: []
+
+superclass: "::String"
+name: LiteralString

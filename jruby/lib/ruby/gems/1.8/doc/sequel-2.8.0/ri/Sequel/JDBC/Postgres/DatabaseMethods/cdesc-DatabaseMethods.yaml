@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Sequel::Postgres::DatabaseMethods
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Methods to add to Database instances that access PostgreSQL via JDBC.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: dataset
+- !ruby/object:RI::MethodSummary 
+  name: execute_insert
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: extended
+full_name: Sequel::JDBC::Postgres::DatabaseMethods
+constants: []
+
+superclass: 
+name: DatabaseMethods

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return instance of Sequel::JDBC::Postgres::Dataset with the given opts.
+full_name: Sequel::JDBC::Postgres::DatabaseMethods#dataset
+params: (opts=nil)
+name: dataset
+is_singleton: false
+aliases: []
+

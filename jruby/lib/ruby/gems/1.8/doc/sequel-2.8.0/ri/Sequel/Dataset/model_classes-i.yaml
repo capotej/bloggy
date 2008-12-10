@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the the model classes associated with the dataset as a hash. If the
+    dataset is associated with a single model class, a key of nil is used. For datasets
+    with polymorphic models, the keys are values of the polymorphic column and the
+    values are the corresponding model classes to which they map.
+full_name: Sequel::Dataset#model_classes
+params: ()
+name: model_classes
+is_singleton: false
+aliases: []
+

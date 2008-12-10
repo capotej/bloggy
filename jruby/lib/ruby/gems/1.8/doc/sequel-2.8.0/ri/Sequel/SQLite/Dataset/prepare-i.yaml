@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Prepare the given type of query with the given name and store it in the database.
+    Note that a new native prepared statement is created on each call to this prepared
+    statement.
+full_name: Sequel::SQLite::Dataset#prepare
+params: (type, name=nil, values=nil)
+name: prepare
+is_singleton: false
+aliases: []
+

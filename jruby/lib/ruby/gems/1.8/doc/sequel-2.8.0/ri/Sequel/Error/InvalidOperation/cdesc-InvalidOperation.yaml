@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Raised on an invalid operation.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: Sequel::Error::InvalidOperation
+constants: []
+
+superclass: Error
+name: InvalidOperation

@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the columns in the result set in their true order. If the columns
+    are currently cached, returns the cached value. Otherwise, a SELECT query is performed
+    to get a single row. Adapters are expected to fill the columns cache with the
+    column information when a query is performed. If the dataset does not have any
+    rows, this will be an empty array. If you are looking for all columns for a single
+    table, see Schema::SQL#schema.
+full_name: Sequel::Dataset#columns
+params: ()
+name: columns
+is_singleton: false
+aliases: []
+

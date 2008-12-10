@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The SQL string specify the autoincrement property, generally used by primary
+    keys.
+full_name: Sequel::Schema::SQL#auto_increment_sql
+params: ()
+name: auto_increment_sql
+is_singleton: false
+aliases: []
+

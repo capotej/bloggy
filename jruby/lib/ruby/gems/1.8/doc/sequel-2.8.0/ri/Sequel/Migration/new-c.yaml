@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a new instance of the migration and sets the @db attribute.
+full_name: Sequel::Migration::new
+params: (db)
+name: new
+is_singleton: true
+aliases: []
+

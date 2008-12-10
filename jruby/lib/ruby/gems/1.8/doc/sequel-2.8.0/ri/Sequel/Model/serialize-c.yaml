@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Serializes column with YAML or through marshalling. Arguments should be column
+    symbols, with an optional trailing hash with a :format key set to :yaml or :marshal
+    (:yaml is the default). Setting this adds a transform to the model and dataset
+    so that columns values will be serialized when saved and deserialized when returned
+    from the database.
+full_name: Sequel::Model::serialize
+params: (*columns)
+name: serialize
+is_singleton: true
+aliases: []
+

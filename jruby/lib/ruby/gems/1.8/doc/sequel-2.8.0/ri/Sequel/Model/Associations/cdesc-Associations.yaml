@@ -1,0 +1,106 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Associations are used in order to specify relationships between model classes
+    that reflect relations between tables in the database using foreign keys.
+- !ruby/struct:SM::Flow::P 
+  body: 'Each kind of association adds a number of methods to the model class which
+    are specialized according to the association type and optional parameters given
+    in the definition. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Project &lt; Sequel::Model\n    many_to_one :portfolio\n    one_to_many \
+    :milestones\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'The project class now has the following instance methods:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: portfolio - Returns the associated portfolio.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: portfolio=(obj) - Sets the associated portfolio to the object, but the change
+      is not persisted until you save the record.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: portfolio_dataset - Returns a dataset that would return the associated portfolio,
+      only useful in fairly specific circumstances.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: milestones - Returns an array of associated milestones
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: add_milestone(obj) - Associates the passed milestone with this object.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: remove_milestone(obj) - Removes the association with the passed milestone.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: remove_all_milestones - Removes associations with all associated milestones.
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: milestones_dataset - Returns a dataset that would return the associated
+      milestones, allowing for further filtering/limiting/etc.
+    label: '*'
+- !ruby/struct:SM::Flow::P 
+  body: If you want to override the behavior of the add_/remove_/remove_all_ methods,
+    there are private instance methods created that a prepended with an underscore
+    (e.g. _add_milestone). The private instance methods can be easily overridden,
+    but you shouldn't override the public instance methods, as they deal with how
+    associations are cached.
+- !ruby/struct:SM::Flow::P 
+  body: By default the classes for the associations are inferred from the association
+    name, so for example the Project#portfolio will return an instance of Portfolio,
+    and Project#milestones will return an array of Milestone instances, in similar
+    fashion to how ActiveRecord infers class names.
+- !ruby/struct:SM::Flow::P 
+  body: 'Association definitions are also reflected by the class, e.g.:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Project.associations\n  =&gt; [:portfolio, :milestones]\n  Project.association_reflection(:portfolio)\n\
+    \  =&gt; {:type =&gt; :many_to_one, :name =&gt; :portfolio, :class_name =&gt; &quot;Portfolio&quot;}\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Associations can be defined by either using the associate method, or by calling
+    one of the three methods: many_to_one, one_to_many, many_to_many. Sequel::Model
+    also provides aliases for these methods that conform to ActiveRecord conventions:
+    belongs_to, has_many, has_and_belongs_to_many. For example, the following three
+    statements are equivalent:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  associate :one_to_many, :attributes\n  one_to_many :attributes\n  has_many \
+    :attributes\n"
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: all_association_reflections
+- !ruby/object:RI::MethodSummary 
+  name: associate
+- !ruby/object:RI::MethodSummary 
+  name: association_reflection
+- !ruby/object:RI::MethodSummary 
+  name: associations
+- !ruby/object:RI::MethodSummary 
+  name: belongs_to
+- !ruby/object:RI::MethodSummary 
+  name: has_and_belongs_to_many
+- !ruby/object:RI::MethodSummary 
+  name: has_many
+- !ruby/object:RI::MethodSummary 
+  name: many_to_many
+- !ruby/object:RI::MethodSummary 
+  name: many_to_one
+- !ruby/object:RI::MethodSummary 
+  name: one_to_many
+class_methods: []
+
+full_name: Sequel::Model::Associations
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Map of association type symbols to association reflection classes.
+  value: '{}'
+  name: ASSOCIATION_TYPES
+superclass: 
+name: Associations

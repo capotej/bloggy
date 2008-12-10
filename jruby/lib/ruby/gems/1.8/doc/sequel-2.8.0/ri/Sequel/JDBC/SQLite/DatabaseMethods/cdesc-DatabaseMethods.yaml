@@ -1,0 +1,19 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Sequel::SQLite::DatabaseMethods
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Instance methods for SQLite Database objects accessed via JDBC.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: dataset
+class_methods: []
+
+full_name: Sequel::JDBC::SQLite::DatabaseMethods
+constants: []
+
+superclass: 
+name: DatabaseMethods

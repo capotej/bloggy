@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: If possible, set the dataset for the model subclass as soon as it is created.
+    Also, inherit the INHERITED_INSTANCE_VARIABLES from the parent class.
+full_name: Sequel::Model::inherited
+params: (subclass)
+name: inherited
+is_singleton: true
+aliases: []
+

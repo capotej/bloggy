@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Apply connection settings for this connection. Currently, turns standard_conforming_strings
+    ON if Postgres.force_standard_strings is true.
+full_name: Sequel::Postgres::AdapterMethods#apply_connection_settings
+params: ()
+name: apply_connection_settings
+is_singleton: false
+aliases: []
+

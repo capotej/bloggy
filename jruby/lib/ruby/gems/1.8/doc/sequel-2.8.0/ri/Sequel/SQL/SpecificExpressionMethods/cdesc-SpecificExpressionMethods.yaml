@@ -1,0 +1,20 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: AliasMethods
+- !ruby/object:RI::IncludedModule 
+  name: CastMethods
+- !ruby/object:RI::IncludedModule 
+  name: OrderMethods
+comment: 
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: Sequel::SQL::SpecificExpressionMethods
+constants: []
+
+superclass: 
+name: SpecificExpressionMethods

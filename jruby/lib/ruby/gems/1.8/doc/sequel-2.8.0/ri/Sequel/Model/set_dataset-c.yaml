@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the dataset associated with the Model class. ds can be a Symbol (specifying
+    a table name in the current database), or a Dataset. If a dataset is used, the
+    model's database is changed to the given dataset. If a symbol is used, a dataset
+    is created from the current database with the table name given. Other arguments
+    raise an Error.
+- !ruby/struct:SM::Flow::P 
+  body: This sets the model of the the given/created dataset to the current model
+    and adds a destroy method to it. It also extends the dataset with the Associations::EagerLoading
+    methods, and assigns a transform to it if there is one associated with the model.
+    Finally, it attempts to determine the database schema based on the given/created
+    dataset.
+full_name: Sequel::Model::set_dataset
+params: (ds, opts={})
+name: set_dataset
+is_singleton: true
+aliases: []
+

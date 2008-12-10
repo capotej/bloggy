@@ -1,0 +1,76 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Methods shared by Database instances that connect to PostgreSQL.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: default_schema
+- !ruby/object:RI::MethodSummary 
+  name: drop_table
+- !ruby/object:RI::MethodSummary 
+  name: drop_table_sql
+- !ruby/object:RI::MethodSummary 
+  name: index_definition_sql
+- !ruby/object:RI::MethodSummary 
+  name: locks
+- !ruby/object:RI::MethodSummary 
+  name: primary_key
+- !ruby/object:RI::MethodSummary 
+  name: rename_table_sql
+- !ruby/object:RI::MethodSummary 
+  name: serial_primary_key_options
+- !ruby/object:RI::MethodSummary 
+  name: server_version
+- !ruby/object:RI::MethodSummary 
+  name: table_exists?
+- !ruby/object:RI::MethodSummary 
+  name: tables
+- !ruby/object:RI::MethodSummary 
+  name: transaction
+class_methods: []
+
+full_name: Sequel::Postgres::DatabaseMethods
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''$''.lit.freeze'
+  name: PREPARED_ARG_PLACEHOLDER
+- !ruby/object:RI::Constant 
+  comment: 
+  value: /currval of sequence "(.*)" is not yet defined in this session|relation "(.*)"
+    does not exist/.freeze
+  name: RE_CURRVAL_ERROR
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''BEGIN''.freeze'
+  name: SQL_BEGIN
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''SAVEPOINT autopoint_%d''.freeze'
+  name: SQL_SAVEPOINT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''COMMIT''.freeze'
+  name: SQL_COMMIT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''ROLLBACK TO SAVEPOINT autopoint_%d''.freeze'
+  name: SQL_ROLLBACK_TO_SAVEPOINT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''ROLLBACK''.freeze'
+  name: SQL_ROLLBACK
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''RELEASE SAVEPOINT autopoint_%d''.freeze'
+  name: SQL_RELEASE_SAVEPOINT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: /^pg|sql/.freeze
+  name: SYSTEM_TABLE_REGEXP
+superclass: 
+name: DatabaseMethods

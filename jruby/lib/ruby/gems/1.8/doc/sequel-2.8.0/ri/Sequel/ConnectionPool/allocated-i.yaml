@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A hash of connections currently being used for the given server, key is the
+    Thread, value is the connection.
+full_name: Sequel::ConnectionPool#allocated
+params: (server=:default)
+name: allocated
+is_singleton: false
+aliases: []
+

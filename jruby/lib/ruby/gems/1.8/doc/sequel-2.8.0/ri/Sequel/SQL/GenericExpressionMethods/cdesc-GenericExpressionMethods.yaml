@@ -1,0 +1,18 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: SpecificExpressionMethods
+- !ruby/object:RI::IncludedModule 
+  name: ComplexExpressionMethods
+comment: 
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: Sequel::SQL::GenericExpressionMethods
+constants: []
+
+superclass: 
+name: GenericExpressionMethods

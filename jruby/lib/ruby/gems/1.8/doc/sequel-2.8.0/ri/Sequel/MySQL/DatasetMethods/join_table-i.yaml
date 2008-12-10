@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Transforms an CROSS JOIN to an INNER JOIN if the expr is not nil. Raises an
+    error on use of :full_outer type, since MySQL doesn't support it.
+full_name: Sequel::MySQL::DatasetMethods#join_table
+params: (type, table, expr=nil, table_alias={})
+name: join_table
+is_singleton: false
+aliases: []
+

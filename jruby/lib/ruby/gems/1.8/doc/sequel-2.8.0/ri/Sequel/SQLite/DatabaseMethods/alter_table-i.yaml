@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Run all alter_table commands in a transaction. This is technically only needed
+    for drop column.
+full_name: Sequel::SQLite::DatabaseMethods#alter_table
+params: (name, generator=nil, &block)
+name: alter_table
+is_singleton: false
+aliases: []
+

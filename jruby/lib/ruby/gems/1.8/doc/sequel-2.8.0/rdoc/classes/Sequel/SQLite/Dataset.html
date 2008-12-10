@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Sequel::SQLite::Dataset</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Sequel::SQLite::Dataset</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/sequel_core/adapters/sqlite_rb.html">
+                lib/sequel_core/adapters/sqlite.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../Dataset.html">
+                Sequel::Dataset
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="Dataset.html">Dataset</a> class for <a
+href="../SQLite.html">SQLite</a> datasets that use the ruby-sqlite3 driver.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000288">call</a>&nbsp;&nbsp;
+      <a href="#M000289">explain</a>&nbsp;&nbsp;
+      <a href="#M000290">fetch_rows</a>&nbsp;&nbsp;
+      <a href="#M000291">literal</a>&nbsp;&nbsp;
+      <a href="#M000292">prepare</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="DatasetMethods.html">::Sequel::SQLite::DatasetMethods</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="Dataset/ArgumentMapper.html" class="link">Sequel::SQLite::Dataset::ArgumentMapper</a><br />
+Module <a href="Dataset/PreparedStatementMethods.html" class="link">Sequel::SQLite::Dataset::PreparedStatementMethods</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EXPLAIN</td>
+          <td>=</td>
+          <td class="context-item-value">'EXPLAIN %s'.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PREPARED_ARG_PLACEHOLDER</td>
+          <td>=</td>
+          <td class="context-item-value">':'.freeze</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000288" class="method-detail">
+        <a name="M000288"></a>
+
+        <div class="method-heading">
+          <a href="#M000288" class="method-signature">
+          <span class="method-name">call</span><span class="method-args">(type, hash, values=nil, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Prepare an unnamed statement of the given type and <a
+href="Dataset.html#M000288">call</a> it with the given values.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000288-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000288-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/adapters/sqlite.rb, line 171</span>
+171:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">values</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+172:         <span class="ruby-identifier">prepare</span>(<span class="ruby-identifier">type</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">values</span>).<span class="ruby-identifier">call</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+173:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000289" class="method-detail">
+        <a name="M000289"></a>
+
+        <div class="method-heading">
+          <a href="#M000289" class="method-signature">
+          <span class="method-name">explain</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return an array of strings specifying a query explanation for the current
+dataset.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000289-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000289-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/adapters/sqlite.rb, line 177</span>
+177:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">explain</span>
+178:         <span class="ruby-identifier">res</span> = []
+179:         <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">result_set</span>(<span class="ruby-constant">EXPLAIN</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">select_sql</span>(<span class="ruby-identifier">opts</span>), <span class="ruby-keyword kw">nil</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">res</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">r</span>}
+180:         <span class="ruby-identifier">res</span>
+181:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000290" class="method-detail">
+        <a name="M000290"></a>
+
+        <div class="method-heading">
+          <a href="#M000290" class="method-signature">
+          <span class="method-name">fetch_rows</span><span class="method-args">(sql) {|row| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Yield a hash for each row in the dataset.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000290-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000290-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/adapters/sqlite.rb, line 184</span>
+184:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fetch_rows</span>(<span class="ruby-identifier">sql</span>)
+185:         <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">sql</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">result</span><span class="ruby-operator">|</span>
+186:           <span class="ruby-ivar">@columns</span> = <span class="ruby-identifier">result</span>.<span class="ruby-identifier">columns</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">to_sym</span>}
+187:           <span class="ruby-identifier">column_count</span> = <span class="ruby-ivar">@columns</span>.<span class="ruby-identifier">size</span>
+188:           <span class="ruby-identifier">result</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">values</span><span class="ruby-operator">|</span>
+189:             <span class="ruby-identifier">row</span> = {}
+190:             <span class="ruby-identifier">column_count</span>.<span class="ruby-identifier">times</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">row</span>[<span class="ruby-ivar">@columns</span>[<span class="ruby-identifier">i</span>]] = <span class="ruby-identifier">values</span>[<span class="ruby-identifier">i</span>]}
+191:             <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">row</span>
+192:           <span class="ruby-keyword kw">end</span>
+193:         <span class="ruby-keyword kw">end</span>
+194:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000291" class="method-detail">
+        <a name="M000291"></a>
+
+        <div class="method-heading">
+          <a href="#M000291" class="method-signature">
+          <span class="method-name">literal</span><span class="method-args">(v)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Use the ISO format for dates and timestamps, and quote strings using the
+::SQLite3::Database.quote method.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000291-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000291-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/adapters/sqlite.rb, line 198</span>
+198:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">literal</span>(<span class="ruby-identifier">v</span>)
+199:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">v</span>
+200:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">LiteralString</span>
+201:           <span class="ruby-identifier">v</span>
+202:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>
+203:           <span class="ruby-node">&quot;'#{::SQLite3::Database.quote(v)}'&quot;</span>
+204:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Time</span>
+205:           <span class="ruby-identifier">literal</span>(<span class="ruby-identifier">v</span>.<span class="ruby-identifier">iso8601</span>)
+206:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Date</span>, <span class="ruby-constant">DateTime</span>
+207:           <span class="ruby-identifier">literal</span>(<span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_s</span>)
+208:         <span class="ruby-keyword kw">else</span>
+209:           <span class="ruby-keyword kw">super</span>
+210:         <span class="ruby-keyword kw">end</span>
+211:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000292" class="method-detail">
+        <a name="M000292"></a>
+
+        <div class="method-heading">
+          <a href="#M000292" class="method-signature">
+          <span class="method-name">prepare</span><span class="method-args">(type, name=nil, values=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Prepare the given type of query with the given name and store it in the
+database. Note that a new native prepared statement is created on each <a
+href="Dataset.html#M000288">call</a> to this prepared statement.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000292-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000292-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/adapters/sqlite.rb, line 216</span>
+216:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">prepare</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">name</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">values</span>=<span class="ruby-keyword kw">nil</span>)
+217:         <span class="ruby-identifier">ps</span> = <span class="ruby-identifier">to_prepared_statement</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">values</span>)
+218:         <span class="ruby-identifier">ps</span>.<span class="ruby-identifier">extend</span>(<span class="ruby-constant">PreparedStatementMethods</span>)
+219:         <span class="ruby-identifier">db</span>.<span class="ruby-identifier">prepared_statements</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">ps</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">name</span>
+220:         <span class="ruby-identifier">ps</span>
+221:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

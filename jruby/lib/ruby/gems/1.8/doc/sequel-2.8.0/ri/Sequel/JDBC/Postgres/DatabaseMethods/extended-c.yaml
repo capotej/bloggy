@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Add the primary_keys and primary_key_sequences instance variables, so we can
+    get the correct return values for inserted rows.
+full_name: Sequel::JDBC::Postgres::DatabaseMethods::extended
+params: (db)
+name: extended
+is_singleton: true
+aliases: []
+

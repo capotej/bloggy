@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Get the last inserted value for the given sequence.
+full_name: Sequel::Postgres::AdapterMethods#last_insert_id
+params: (sequence)
+name: last_insert_id
+is_singleton: false
+aliases: []
+

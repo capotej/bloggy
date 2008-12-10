@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Cast the reciever to the given SQL type (or integer if none given), and return
+    the result as a NumericExpression.
+full_name: Sequel::SQL::CastMethods#cast_numeric
+params: (sql_type = nil)
+name: cast_numeric
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Always returns false, since ParseTree support has been removed.
+full_name: Sequel::use_parse_tree
+params: ()
+name: use_parse_tree
+is_singleton: true
+aliases: []
+

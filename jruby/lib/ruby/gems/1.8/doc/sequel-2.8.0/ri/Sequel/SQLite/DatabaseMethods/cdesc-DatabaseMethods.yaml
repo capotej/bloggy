@@ -1,0 +1,51 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: alter_table
+- !ruby/object:RI::MethodSummary 
+  name: alter_table_sql
+- !ruby/object:RI::MethodSummary 
+  name: auto_vacuum
+- !ruby/object:RI::MethodSummary 
+  name: auto_vacuum=
+- !ruby/object:RI::MethodSummary 
+  name: pragma_get
+- !ruby/object:RI::MethodSummary 
+  name: pragma_set
+- !ruby/object:RI::MethodSummary 
+  name: synchronous
+- !ruby/object:RI::MethodSummary 
+  name: synchronous=
+- !ruby/object:RI::MethodSummary 
+  name: tables
+- !ruby/object:RI::MethodSummary 
+  name: temp_store
+- !ruby/object:RI::MethodSummary 
+  name: temp_store=
+class_methods: []
+
+full_name: Sequel::SQLite::DatabaseMethods
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{''0'' => :none, ''1'' => :full, ''2'' => :incremental}.freeze'
+  name: AUTO_VACUUM
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{''0'' => :off, ''1'' => :normal, ''2'' => :full}.freeze'
+  name: SYNCHRONOUS
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"type = ''table'' AND NOT name = ''sqlite_sequence''"'
+  name: TABLES_FILTER
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{''0'' => :default, ''1'' => :file, ''2'' => :memory}.freeze'
+  name: TEMP_STORE
+superclass: 
+name: DatabaseMethods

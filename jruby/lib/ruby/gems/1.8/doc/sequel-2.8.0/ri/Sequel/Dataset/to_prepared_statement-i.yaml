@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return a cloned copy of the current dataset extended with PreparedStatementMethods,
+    setting the type and modify values.
+full_name: Sequel::Dataset#to_prepared_statement
+params: (type, values=nil)
+name: to_prepared_statement
+is_singleton: false
+aliases: []
+

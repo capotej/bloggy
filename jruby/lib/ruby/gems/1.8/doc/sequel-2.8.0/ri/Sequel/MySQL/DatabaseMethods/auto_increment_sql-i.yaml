@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Use MySQL specific AUTO_INCREMENT text.
+full_name: Sequel::MySQL::DatabaseMethods#auto_increment_sql
+params: ()
+name: auto_increment_sql
+is_singleton: false
+aliases: []
+

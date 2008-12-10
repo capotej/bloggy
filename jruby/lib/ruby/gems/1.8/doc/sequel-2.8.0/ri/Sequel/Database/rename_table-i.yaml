@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Renames a table:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  DB.tables #=&gt; [:items]\n  DB.rename_table :items, :old_items\n  DB.tables \
+    #=&gt; [:old_items]\n"
+full_name: Sequel::Database#rename_table
+params: (*args)
+name: rename_table
+is_singleton: false
+aliases: []
+

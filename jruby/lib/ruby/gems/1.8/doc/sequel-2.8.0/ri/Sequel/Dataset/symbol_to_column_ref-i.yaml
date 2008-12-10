@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Converts a symbol into a column name. This method supports underscore notation
+    in order to express qualified (two underscores) and aliased (three underscores)
+    columns:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ds = DB[:items]\n  :abc.to_column_ref(ds) #=&gt; &quot;abc&quot;\n  :abc___a.to_column_ref(ds) \
+    #=&gt; &quot;abc AS a&quot;\n  :items__abc.to_column_ref(ds) #=&gt; &quot;items.abc&quot;\n\
+    \  :items__abc___a.to_column_ref(ds) #=&gt; &quot;items.abc AS a&quot;\n"
+full_name: Sequel::Dataset#symbol_to_column_ref
+params: (sym)
+name: symbol_to_column_ref
+is_singleton: false
+aliases: []
+

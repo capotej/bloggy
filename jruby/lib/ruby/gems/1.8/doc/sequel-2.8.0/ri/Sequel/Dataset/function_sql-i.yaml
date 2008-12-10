@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: SQL fragment specifying an SQL function call
+full_name: Sequel::Dataset#function_sql
+params: (f)
+name: function_sql
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Creates a table with the columns given in the provided block:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  DB.create_table :posts do\n    primary_key :id, :serial\n    column :title, \
+    :text\n    column :content, :text\n    index :title\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: See Schema::Generator.
+full_name: Sequel::Database#create_table
+params: (name, generator=nil, &block)
+name: create_table
+is_singleton: false
+aliases: []
+

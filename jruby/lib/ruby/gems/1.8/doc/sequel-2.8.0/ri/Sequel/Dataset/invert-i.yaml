@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Inverts the current filter
+- !ruby/struct:SM::Flow::VERB 
+  body: "  dataset.filter(:category =&gt; 'software').invert.sql #=&gt;\n    &quot;SELECT \
+    * FROM items WHERE (category != 'software')&quot;\n"
+full_name: Sequel::Dataset#invert
+params: ()
+name: invert
+is_singleton: false
+aliases: []
+

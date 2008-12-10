@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds a UNION clause using a second dataset object. If all is true the clause
+    used is UNION ALL, which may return duplicate rows.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  DB[:items].union(DB[:other_items]).sql\n  #=&gt; &quot;SELECT * FROM items \
+    UNION SELECT * FROM other_items&quot;\n"
+full_name: Sequel::Dataset#union
+params: (dataset, all = false)
+name: union
+is_singleton: false
+aliases: []
+

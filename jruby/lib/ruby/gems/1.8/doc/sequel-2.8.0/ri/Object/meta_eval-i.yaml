@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Evaluate the block in the context of the object's metaclass
+full_name: Object#meta_eval
+params: (&block)
+name: meta_eval
+is_singleton: false
+aliases: []
+

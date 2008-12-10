@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the current migration version stored in the database.
+full_name: Sequel::Migrator::set_current_migration_version
+params: (db, version)
+name: set_current_migration_version
+is_singleton: true
+aliases: []
+

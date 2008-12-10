@@ -1,0 +1,450 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: StoredProcedures
+- !ruby/object:RI::IncludedModule 
+  name: Enumerable
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A Dataset represents a view of a the data in a database, constrained by specific
+    parameters such as filtering conditions, order, etc. Datasets can be used to create,
+    retrieve, update and delete records.
+- !ruby/struct:SM::Flow::P 
+  body: 'Query results are always retrieved on demand, so a dataset can be kept around
+    and reused indefinitely:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_posts = DB[:posts].filter(:author =&gt; 'david') # no records are retrieved\n\
+    \  p my_posts.all # records are now retrieved\n  ...\n  p my_posts.all # records \
+    are retrieved again\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'In order to provide this functionality, dataset methods such as where, select,
+    order, etc. return modified copies of the dataset, so you can use different datasets
+    to access data:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  posts = DB[:posts]\n  davids_posts = posts.filter(:author =&gt; 'david')\n\
+    \  old_posts = posts.filter('stamp &lt; ?', Date.today - 7)\n"
+- !ruby/struct:SM::Flow::P 
+  body: Datasets are Enumerable objects, so they can be manipulated using any of the
+    Enumerable methods, such as map, inject, etc.
+- !ruby/struct:SM::Flow::H 
+  text: Methods added via metaprogramming
+  level: 3
+- !ruby/struct:SM::Flow::P 
+  body: 'Some methods are added via metaprogramming:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: '! methods - These methods are the same as their non-! counterparts, but
+      they modify the receiver instead of returning a modified copy of the dataset.'
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: inner_join, full_outer_join, right_outer_join, left_outer_join - This methods
+      are shortcuts to join_table with the join type already specified.
+    label: '*'
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The database that corresponds to this dataset
+  rw: RW
+  name: db
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The hash of options for this dataset, keys are symbols.
+  rw: RW
+  name: opts
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Whether to quote identifiers for this dataset
+  rw: W
+  name: quote_identifiers
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The row_proc for this database, should be a Proc that takes a single hash
+      argument and returns the object you want to fetch_rows to return.
+  rw: RW
+  name: row_proc
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Whether to upcase identifiers for this dataset
+  rw: W
+  name: upcase_identifiers
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "<<"
+- !ruby/object:RI::MethodSummary 
+  name: '[]'
+- !ruby/object:RI::MethodSummary 
+  name: '[]='
+- !ruby/object:RI::MethodSummary 
+  name: add_graph_aliases
+- !ruby/object:RI::MethodSummary 
+  name: aliased_expression_sql
+- !ruby/object:RI::MethodSummary 
+  name: all
+- !ruby/object:RI::MethodSummary 
+  name: and
+- !ruby/object:RI::MethodSummary 
+  name: array_sql
+- !ruby/object:RI::MethodSummary 
+  name: as
+- !ruby/object:RI::MethodSummary 
+  name: avg
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: case_expression_sql
+- !ruby/object:RI::MethodSummary 
+  name: clone
+- !ruby/object:RI::MethodSummary 
+  name: column_all_sql
+- !ruby/object:RI::MethodSummary 
+  name: columns
+- !ruby/object:RI::MethodSummary 
+  name: columns!
+- !ruby/object:RI::MethodSummary 
+  name: complex_expression_sql
+- !ruby/object:RI::MethodSummary 
+  name: count
+- !ruby/object:RI::MethodSummary 
+  name: create_or_replace_view
+- !ruby/object:RI::MethodSummary 
+  name: create_view
+- !ruby/object:RI::MethodSummary 
+  name: def_mutation_method
+- !ruby/object:RI::MethodSummary 
+  name: delete
+- !ruby/object:RI::MethodSummary 
+  name: delete_sql
+- !ruby/object:RI::MethodSummary 
+  name: distinct
+- !ruby/object:RI::MethodSummary 
+  name: each
+- !ruby/object:RI::MethodSummary 
+  name: each_page
+- !ruby/object:RI::MethodSummary 
+  name: empty?
+- !ruby/object:RI::MethodSummary 
+  name: except
+- !ruby/object:RI::MethodSummary 
+  name: exclude
+- !ruby/object:RI::MethodSummary 
+  name: exists
+- !ruby/object:RI::MethodSummary 
+  name: fetch_rows
+- !ruby/object:RI::MethodSummary 
+  name: fetch_rows
+- !ruby/object:RI::MethodSummary 
+  name: filter
+- !ruby/object:RI::MethodSummary 
+  name: first
+- !ruby/object:RI::MethodSummary 
+  name: first_source
+- !ruby/object:RI::MethodSummary 
+  name: from
+- !ruby/object:RI::MethodSummary 
+  name: from_self
+- !ruby/object:RI::MethodSummary 
+  name: function_sql
+- !ruby/object:RI::MethodSummary 
+  name: get
+- !ruby/object:RI::MethodSummary 
+  name: graph
+- !ruby/object:RI::MethodSummary 
+  name: grep
+- !ruby/object:RI::MethodSummary 
+  name: group
+- !ruby/object:RI::MethodSummary 
+  name: group_and_count
+- !ruby/object:RI::MethodSummary 
+  name: group_by
+- !ruby/object:RI::MethodSummary 
+  name: having
+- !ruby/object:RI::MethodSummary 
+  name: import
+- !ruby/object:RI::MethodSummary 
+  name: insert
+- !ruby/object:RI::MethodSummary 
+  name: insert_multiple
+- !ruby/object:RI::MethodSummary 
+  name: insert_sql
+- !ruby/object:RI::MethodSummary 
+  name: inspect
+- !ruby/object:RI::MethodSummary 
+  name: intersect
+- !ruby/object:RI::MethodSummary 
+  name: interval
+- !ruby/object:RI::MethodSummary 
+  name: invert
+- !ruby/object:RI::MethodSummary 
+  name: irregular_function_sql
+- !ruby/object:RI::MethodSummary 
+  name: join_clause_sql
+- !ruby/object:RI::MethodSummary 
+  name: join_on_clause_sql
+- !ruby/object:RI::MethodSummary 
+  name: join_table
+- !ruby/object:RI::MethodSummary 
+  name: join_using_clause_sql
+- !ruby/object:RI::MethodSummary 
+  name: last
+- !ruby/object:RI::MethodSummary 
+  name: limit
+- !ruby/object:RI::MethodSummary 
+  name: literal
+- !ruby/object:RI::MethodSummary 
+  name: literal
+- !ruby/object:RI::MethodSummary 
+  name: map
+- !ruby/object:RI::MethodSummary 
+  name: max
+- !ruby/object:RI::MethodSummary 
+  name: min
+- !ruby/object:RI::MethodSummary 
+  name: model_classes
+- !ruby/object:RI::MethodSummary 
+  name: multi_insert
+- !ruby/object:RI::MethodSummary 
+  name: multi_insert_sql
+- !ruby/object:RI::MethodSummary 
+  name: naked
+- !ruby/object:RI::MethodSummary 
+  name: options_overlap
+- !ruby/object:RI::MethodSummary 
+  name: or
+- !ruby/object:RI::MethodSummary 
+  name: order
+- !ruby/object:RI::MethodSummary 
+  name: order_by
+- !ruby/object:RI::MethodSummary 
+  name: order_more
+- !ruby/object:RI::MethodSummary 
+  name: ordered_expression_sql
+- !ruby/object:RI::MethodSummary 
+  name: paginate
+- !ruby/object:RI::MethodSummary 
+  name: placeholder_literal_string_sql
+- !ruby/object:RI::MethodSummary 
+  name: polymorphic_key
+- !ruby/object:RI::MethodSummary 
+  name: prepare
+- !ruby/object:RI::MethodSummary 
+  name: prepare
+- !ruby/object:RI::MethodSummary 
+  name: print
+- !ruby/object:RI::MethodSummary 
+  name: qualified_identifier_sql
+- !ruby/object:RI::MethodSummary 
+  name: query
+- !ruby/object:RI::MethodSummary 
+  name: quote_column_ref
+- !ruby/object:RI::MethodSummary 
+  name: quote_identifier
+- !ruby/object:RI::MethodSummary 
+  name: quote_identifiers?
+- !ruby/object:RI::MethodSummary 
+  name: quote_schema_table
+- !ruby/object:RI::MethodSummary 
+  name: quoted_identifier
+- !ruby/object:RI::MethodSummary 
+  name: range
+- !ruby/object:RI::MethodSummary 
+  name: reverse
+- !ruby/object:RI::MethodSummary 
+  name: reverse_order
+- !ruby/object:RI::MethodSummary 
+  name: schema_and_table
+- !ruby/object:RI::MethodSummary 
+  name: select
+- !ruby/object:RI::MethodSummary 
+  name: select_all
+- !ruby/object:RI::MethodSummary 
+  name: select_more
+- !ruby/object:RI::MethodSummary 
+  name: select_sql
+- !ruby/object:RI::MethodSummary 
+  name: server
+- !ruby/object:RI::MethodSummary 
+  name: set
+- !ruby/object:RI::MethodSummary 
+  name: set_defaults
+- !ruby/object:RI::MethodSummary 
+  name: set_graph_aliases
+- !ruby/object:RI::MethodSummary 
+  name: set_model
+- !ruby/object:RI::MethodSummary 
+  name: set_overrides
+- !ruby/object:RI::MethodSummary 
+  name: single_record
+- !ruby/object:RI::MethodSummary 
+  name: single_value
+- !ruby/object:RI::MethodSummary 
+  name: size
+- !ruby/object:RI::MethodSummary 
+  name: sql
+- !ruby/object:RI::MethodSummary 
+  name: subscript_sql
+- !ruby/object:RI::MethodSummary 
+  name: sum
+- !ruby/object:RI::MethodSummary 
+  name: symbol_to_column_ref
+- !ruby/object:RI::MethodSummary 
+  name: table_exists?
+- !ruby/object:RI::MethodSummary 
+  name: to_csv
+- !ruby/object:RI::MethodSummary 
+  name: to_hash
+- !ruby/object:RI::MethodSummary 
+  name: to_prepared_statement
+- !ruby/object:RI::MethodSummary 
+  name: to_table_reference
+- !ruby/object:RI::MethodSummary 
+  name: transform
+- !ruby/object:RI::MethodSummary 
+  name: transform_load
+- !ruby/object:RI::MethodSummary 
+  name: transform_save
+- !ruby/object:RI::MethodSummary 
+  name: unfiltered
+- !ruby/object:RI::MethodSummary 
+  name: union
+- !ruby/object:RI::MethodSummary 
+  name: uniq
+- !ruby/object:RI::MethodSummary 
+  name: unordered
+- !ruby/object:RI::MethodSummary 
+  name: upcase_identifiers?
+- !ruby/object:RI::MethodSummary 
+  name: update
+- !ruby/object:RI::MethodSummary 
+  name: update_sql
+- !ruby/object:RI::MethodSummary 
+  name: where
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: dataset_classes
+- !ruby/object:RI::MethodSummary 
+  name: def_mutation_method
+- !ruby/object:RI::MethodSummary 
+  name: inherited
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Sequel::Dataset
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: ''', ''.freeze'
+  name: COMMA_SEPARATOR
+- !ruby/object:RI::Constant 
+  comment: 
+  value: ":count['*'.lit].as(:count)"
+  name: COUNT_OF_ALL_AS_COUNT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '" AND ".freeze'
+  name: AND_SEPARATOR
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"''f''".freeze'
+  name: BOOL_FALSE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"''t''".freeze'
+  name: BOOL_TRUE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: /\A([\w ]+)__([\w ]+)___([\w ]+)\z/.freeze
+  name: COLUMN_REF_RE1
+- !ruby/object:RI::Constant 
+  comment: 
+  value: /\A([\w ]+)___([\w ]+)\z/.freeze
+  name: COLUMN_REF_RE2
+- !ruby/object:RI::Constant 
+  comment: 
+  value: /\A([\w ]+)__([\w ]+)\z/.freeze
+  name: COLUMN_REF_RE3
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '[:distinct, :group, :sql, :limit]'
+  name: COUNT_FROM_SELF_OPTS
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"DATE ''%Y-%m-%d''".freeze'
+  name: DATE_FORMAT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: "::Sequel::SQL::ComplexExpression::N_ARITY_OPERATORS"
+  name: N_ARITY_OPERATORS
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"NULL".freeze'
+  name: "NULL"
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''?''.freeze'
+  name: QUESTION_MARK
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{:select => ["COUNT(*)".lit], :order => nil}.freeze'
+  name: STOCK_COUNT_OPTS
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '%w''distinct columns from join where group having intersect union except
+    order limit''.freeze'
+  name: SELECT_CLAUSE_ORDER
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"TIMESTAMP ''%Y-%m-%d %H:%M:%S''".freeze'
+  name: TIMESTAMP_FORMAT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: "::Sequel::SQL::ComplexExpression::TWO_ARITY_OPERATORS"
+  name: TWO_ARITY_OPERATORS
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''*''.freeze'
+  name: WILDCARD
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''?''.lit.freeze'
+  name: PREPARED_ARG_PLACEHOLDER
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The dataset options that require the removal of cached columns if changed.
+  value: '[:select, :sql, :from, :join].freeze'
+  name: COLUMN_CHANGE_OPTS
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Array of all subclasses of Dataset
+  value: '[]'
+  name: DATASET_CLASSES
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: All methods that should have a ! method added that modifies the receiver.
+  value: '%w''add_graph_aliases and distinct exclude exists     filter from from_self
+    full_outer_join graph     group group_and_count group_by having inner_join intersect
+    invert join     left_outer_join limit naked or order order_by order_more paginate
+    query reject     reverse reverse_order right_outer_join select select_all select_more     set_defaults
+    set_graph_aliases set_model set_overrides sort sort_by     unfiltered union unordered
+    where''.collect{|x| x.to_sym}'
+  name: MUTATION_METHODS
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"This method must be overridden in Sequel adapters".freeze'
+  name: NOTIMPL_MSG
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '{       :marshal => [         # for backwards-compatibility we support also
+    non-base64-encoded values.         proc {|v| Marshal.load(v.unpack(''m'')[0])
+    rescue Marshal.load(v)},          proc {|v| [Marshal.dump(v)].pack(''m'')}'
+  name: STOCK_TRANSFORMS
+superclass: Object
+name: Dataset

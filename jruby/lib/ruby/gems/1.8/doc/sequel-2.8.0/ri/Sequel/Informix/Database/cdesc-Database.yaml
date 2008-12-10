@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: connect
+- !ruby/object:RI::MethodSummary 
+  name: dataset
+- !ruby/object:RI::MethodSummary 
+  name: do
+- !ruby/object:RI::MethodSummary 
+  name: execute
+- !ruby/object:RI::MethodSummary 
+  name: execute_dui
+- !ruby/object:RI::MethodSummary 
+  name: query
+class_methods: []
+
+full_name: Sequel::Informix::Database
+constants: []
+
+superclass: Sequel::Database
+name: Database

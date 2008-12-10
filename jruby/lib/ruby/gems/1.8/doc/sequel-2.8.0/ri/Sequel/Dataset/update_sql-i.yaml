@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Formats an UPDATE statement using the given values.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  dataset.update_sql(:price =&gt; 100, :category =&gt; 'software') #=&gt;\n\
+    \    &quot;UPDATE items SET price = 100, category = 'software'&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: Accepts a block, but such usage is discouraged.
+- !ruby/struct:SM::Flow::P 
+  body: Raises an error if the dataset is grouped or includes more than one table.
+full_name: Sequel::Dataset#update_sql
+params: (values = {}, opts = nil)
+name: update_sql
+is_singleton: false
+aliases: []
+

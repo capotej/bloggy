@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Transforms :natural_inner to NATURAL LEFT JOIN and straight to STRAIGHT_JOIN.
+full_name: Sequel::MySQL::DatasetMethods#join_type_sql
+params: (join_type)
+name: join_type_sql
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Whether to eagerly graph a lazy dataset, true for many_to_one associations
+    only if the key is nil.
+full_name: Sequel::Model::Associations::ManyToOneAssociationReflection#eager_graph_lazy_dataset?
+params: ()
+name: eager_graph_lazy_dataset?
+is_singleton: false
+aliases: []
+

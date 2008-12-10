@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Whether this association returns an array of objects instead of a single object,
+    true by default.
+full_name: Sequel::Model::Associations::AssociationReflection#returns_array?
+params: ()
+name: returns_array?
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return a Sequel::SQL::CaseExpression with this hash as the conditions and
+    the given default value. Note that the order of the conditions will be arbitrary,
+    so all conditions should be orthogonal.
+full_name: Hash#case
+params: (default, expression = nil)
+name: case
+is_singleton: false
+aliases: []
+

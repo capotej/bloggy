@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Setup mutation (e.g. filter!) methods. These operate the same as the non-!
+    methods, but replace the options of the current dataset with the options of the
+    resulting dataset.
+full_name: Sequel::Dataset::def_mutation_method
+params: (*meths)
+name: def_mutation_method
+is_singleton: true
+aliases: []
+

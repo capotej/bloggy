@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set the default values for insert and update statements. The values passed
+    to insert or update are merged into this hash.
+full_name: Sequel::Dataset#set_defaults
+params: (hash)
+name: set_defaults
+is_singleton: false
+aliases: []
+

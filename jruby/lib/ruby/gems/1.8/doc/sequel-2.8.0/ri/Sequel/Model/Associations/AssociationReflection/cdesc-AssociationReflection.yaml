@@ -1,0 +1,60 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: AssociationReflection is a Hash subclass that keeps information on Sequel::Model
+    associations. It provides methods to reduce internal code duplication. It should
+    not be instantiated by the user.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: _add_method
+- !ruby/object:RI::MethodSummary 
+  name: _dataset_method
+- !ruby/object:RI::MethodSummary 
+  name: _remove_all_method
+- !ruby/object:RI::MethodSummary 
+  name: _remove_method
+- !ruby/object:RI::MethodSummary 
+  name: _setter_method
+- !ruby/object:RI::MethodSummary 
+  name: add_method
+- !ruby/object:RI::MethodSummary 
+  name: associated_class
+- !ruby/object:RI::MethodSummary 
+  name: association_method
+- !ruby/object:RI::MethodSummary 
+  name: dataset_helper_method
+- !ruby/object:RI::MethodSummary 
+  name: dataset_method
+- !ruby/object:RI::MethodSummary 
+  name: dataset_need_primary_key?
+- !ruby/object:RI::MethodSummary 
+  name: eager_graph_lazy_dataset?
+- !ruby/object:RI::MethodSummary 
+  name: need_associated_primary_key?
+- !ruby/object:RI::MethodSummary 
+  name: reciprocal
+- !ruby/object:RI::MethodSummary 
+  name: reciprocal_array?
+- !ruby/object:RI::MethodSummary 
+  name: remove_all_method
+- !ruby/object:RI::MethodSummary 
+  name: remove_method
+- !ruby/object:RI::MethodSummary 
+  name: returns_array?
+- !ruby/object:RI::MethodSummary 
+  name: select
+- !ruby/object:RI::MethodSummary 
+  name: set_reciprocal_to_self?
+- !ruby/object:RI::MethodSummary 
+  name: setter_method
+class_methods: []
+
+full_name: Sequel::Model::Associations::AssociationReflection
+constants: []
+
+superclass: Hash
+name: AssociationReflection

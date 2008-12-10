@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return the first logger or nil if no loggers are being used. Should only be
+    used for backwards compatibility.
+full_name: Sequel::Database#logger
+params: ()
+name: logger
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Raise an Error if EXCEPT is used
+full_name: Sequel::Dataset::UnsupportedIntersectExcept#except
+params: (ds, all=false)
+name: except
+is_singleton: false
+aliases: []
+

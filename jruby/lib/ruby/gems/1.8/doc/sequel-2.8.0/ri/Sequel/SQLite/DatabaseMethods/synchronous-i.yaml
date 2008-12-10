@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A symbol signifying the value of the synchronous PRAGMA.
+full_name: Sequel::SQLite::DatabaseMethods#synchronous
+params: ()
+name: synchronous
+is_singleton: false
+aliases: []
+

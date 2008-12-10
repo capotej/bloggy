@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Run the method based on the type of prepared statement, with :select running
+    #all to get all of the rows, and the other types running the method with the same
+    name as the type.'
+full_name: Sequel::Dataset::PreparedStatementMethods#run
+params: (&block)
+name: run
+is_singleton: false
+aliases: []
+

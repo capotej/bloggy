@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Method that should be used when submitting any DDL (Data Definition Language)
+    SQL. By default, calls execute_dui.
+full_name: Sequel::Database#execute_ddl
+params: (sql, opts={}, &block)
+name: execute_ddl
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,111 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: alter_table_sql
+- !ruby/object:RI::MethodSummary 
+  name: alter_table_sql_list
+- !ruby/object:RI::MethodSummary 
+  name: auto_increment_sql
+- !ruby/object:RI::MethodSummary 
+  name: column_definition_sql
+- !ruby/object:RI::MethodSummary 
+  name: column_list_sql
+- !ruby/object:RI::MethodSummary 
+  name: column_references_sql
+- !ruby/object:RI::MethodSummary 
+  name: constraint_definition_sql
+- !ruby/object:RI::MethodSummary 
+  name: create_table_sql_list
+- !ruby/object:RI::MethodSummary 
+  name: default_index_name
+- !ruby/object:RI::MethodSummary 
+  name: drop_index_sql
+- !ruby/object:RI::MethodSummary 
+  name: drop_table_sql
+- !ruby/object:RI::MethodSummary 
+  name: filter_expr
+- !ruby/object:RI::MethodSummary 
+  name: index_definition_sql
+- !ruby/object:RI::MethodSummary 
+  name: index_list_sql_list
+- !ruby/object:RI::MethodSummary 
+  name: literal
+- !ruby/object:RI::MethodSummary 
+  name: on_delete_clause
+- !ruby/object:RI::MethodSummary 
+  name: quote_identifier
+- !ruby/object:RI::MethodSummary 
+  name: quote_schema_table
+- !ruby/object:RI::MethodSummary 
+  name: rename_table_sql
+- !ruby/object:RI::MethodSummary 
+  name: schema
+- !ruby/object:RI::MethodSummary 
+  name: schema_utility_dataset
+class_methods: []
+
+full_name: Sequel::Schema::SQL
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''AUTOINCREMENT''.freeze'
+  name: AUTOINCREMENT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''CASCADE''.freeze'
+  name: CASCADE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: ''', ''.freeze'
+  name: COMMA_SEPARATOR
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''NO ACTION''.freeze'
+  name: NO_ACTION
+- !ruby/object:RI::Constant 
+  comment: 
+  value: ''' NOT NULL''.freeze'
+  name: NOT_NULL
+- !ruby/object:RI::Constant 
+  comment: 
+  value: ''' NULL''.freeze'
+  name: "NULL"
+- !ruby/object:RI::Constant 
+  comment: 
+  value: ''' PRIMARY KEY''.freeze'
+  name: PRIMARY_KEY
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''RESTRICT''.freeze'
+  name: RESTRICT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''SET DEFAULT''.freeze'
+  name: SET_DEFAULT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''SET NULL''.freeze'
+  name: SET_NULL
+- !ruby/object:RI::Constant 
+  comment: 
+  value: Hash.new {|h, k| k}
+  name: TYPES
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''_''.freeze'
+  name: UNDERSCORE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: ''' UNIQUE''.freeze'
+  name: UNIQUE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: ''' UNSIGNED''.freeze'
+  name: UNSIGNED
+superclass: 
+name: SQL

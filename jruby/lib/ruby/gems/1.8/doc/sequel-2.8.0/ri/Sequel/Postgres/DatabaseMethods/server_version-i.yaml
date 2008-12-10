@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The version of the PostgreSQL server, used for determining capability.
+full_name: Sequel::Postgres::DatabaseMethods#server_version
+params: (server=nil)
+name: server_version
+is_singleton: false
+aliases: []
+

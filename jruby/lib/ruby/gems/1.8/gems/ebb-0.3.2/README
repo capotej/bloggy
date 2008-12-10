@@ -1,0 +1,72 @@
+(this is only for HEAD - old docs are found in the git repo)
+
+# A Web Server Called *Ebb*
+
+Ebb aims to be a small and fast web server specifically for hosting 
+dynamic Ruby language web applications. 
+
+It is a binding to [libebb](http://tinyclouds.org/libebb)
+
+## Install
+
+The Ruby binding is available as a Ruby Gem. It can be install by executing
+
+    gem install ebb
+
+If you want SSL support you must install GnuTLS.
+Ebb has no other dependencies.
+
+## Running
+
+Use Ebb.start_server()
+
+## Speed
+
+(these stats are out of date)
+
+Because Ebb handles most of the processing in C, it is able to do work
+often times more efficiently than other Ruby language web servers.
+
+![Benchmark](http://s3.amazonaws.com/four.livejournal/20080311/ebb.png)
+
+Ebb-Ruby can handle threaded processing better than the other 'evented' 
+servers. This won't be of any benefit to Rails applications because Rails
+places a lock around each request that wouldn't allow concurrent processing
+anyway. In Merb, for example, Ebb's thread handling will allow Ebb instances
+to handle larger loads. [More](http://four.livejournal.com/848525.html)
+
+## Contributions
+
+Contributions (patches, criticism, advice) are very welcome! 
+Please send all to to 
+[the mailing list](http://groups.google.com/group/ebbebb).
+
+The source code is hosted [github](http://github.com/ry/ebb/tree/master). It
+can be retrieved by executing
+
+    git clone git://github.com/ry/ebb.git
+
+## (The MIT) License
+
+Copyright (c) 2008 [Ryah Dahl](http://tinyclouds.org) (ry at tiny clouds dot org)
+
+<div id="license">
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
+</div>

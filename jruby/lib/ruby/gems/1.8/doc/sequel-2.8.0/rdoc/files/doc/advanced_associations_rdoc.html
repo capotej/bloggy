@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: advanced_associations.rdoc</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>advanced_associations.rdoc</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>doc/advanced_associations.rdoc
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Tue Dec 09 22:52:50 UTC 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Advanced Associations</h1>
+<p>
+<a href="../../classes/Sequel/Model.html">Sequel::Model</a> has the most
+powerful and flexible associations of any ruby ORM.
+</p>
+<pre>
+  &quot;Extraordinary claims require extraordinary proof&quot; - Carl Sagan
+</pre>
+<h2>Background: <a href="../../classes/Sequel/Model.html">Sequel::Model</a> association options</h2>
+<p>
+There are a bunch of advanced association options that are available to
+handle the other-than-bog-standard cases. First we&#8216;ll go over some of
+the simpler ones:
+</p>
+<p>
+All associations take a block that can be used to further filter/modify the
+default dataset. There&#8216;s also an :eager_block option if you want to
+use a different block when eager loading via Dataset#eager. Association
+blocks are useful for things like:
+</p>
+<pre>
+  Artist.one_to_many :gold_albums, :class=&gt;:Album do |ds|
+    ds.filter(:copies_sold &gt; 500000)
+  end
+</pre>
+<p>
+There are a whole bunch of options for changing how the association is
+eagerly loaded via Dataset#eager_graph: :graph_block, :graph_conditions,
+:graph_only_conditions, :graph_join_type (and :graph_join_table_* ones for
+JOINing to the join table in a many_to_many association).
+</p>
+<ul>
+<li>:graph_join_type - The type of join to do
+
+</li>
+<li>:graph_conditions - Additional conditions to put on join (needs to be a
+hash or array of all two pairs). Automatically assumes unqualified symbols
+as first element of the pair to be columns of the associated model, and
+unqualified symbols of the second element of the pair to be columns of the
+current model.
+
+</li>
+<li>:graph_block - A block passed to join_table, allowing you to specify
+conditions other than equality, or to use OR, or set up any arbitrary
+condition. The block is passed the associated table alias, current model
+alias, and array of previous joins.
+
+</li>
+<li>:graph_only_conditions - Use these conditions instead of the standard
+association conditions. This is necessary when the standard keys it uses
+are not correct for the association (such as an association that
+doesn&#8216;t use primary keys). You can also use this to have a JOIN USING
+(array of symbols), or a NATURAL or CROSS JOIN (nil, with the appropriate
+:graph_join_type).
+
+</li>
+</ul>
+<p>
+These can be used like this:
+</p>
+<pre>
+  # Makes Artist.eager_graph(:required_albums).all not return artists that
+  # don't have any albums
+  Artist.one_to_many :required_albums, :class=&gt;:Album, :graph_join_type=&gt;:inner
+
+  # Makes sure all returned albums have the active flag set
+  Artist.one_to_many :active_albums, :class=&gt;:Album, \
+    :graph_conditions=&gt;{:active=&gt;true}
+
+  # Only returns albums that have sold more than 500,000 copies
+  Artist.one_to_many :gold_albums, :class=&gt;:Album, \
+    :graph_block=&gt;proc{|j,lj,js| :copies_sold.qualify(j) &gt; 500000}
+
+  # Handles the case where the artist is associated to the album by an
+  # artist_name column in the albums table, when name is not the primary key
+  # of the artists table
+  Artist.one_to_many :albums, :key=&gt;:artist_name, \
+    :graph_only_conditions=&gt;{:artist_name=&gt;:name}
+
+  # Handles the above case, but where :artist_name is used in both tables,
+  # via a JOIN USING
+  Artist.one_to_many :albums, :key=&gt;:artist_name, :graph_only_conditions=&gt;[:artist_name]
+
+  # Handles the case where all columns in both tables are uniquely named, except
+  # for the ones that handle associations
+  Artist.one_to_many :albums, :key=&gt;:artist_name, :graph_only_conditions=&gt;nil, \
+    :graph_join_type=&gt;:natural
+</pre>
+<p>
+Remember, using eager_graph is generally only necessary when you need to
+filter/order based on columns in an associated table, it is recommended to
+use eager for eager loading if possible.
+</p>
+<p>
+For lazy loading (e.g. Model[1].association), the :dataset option can be
+used to specify an arbitrary dataset (one that uses different keys,
+multiple keys, joins to other tables, etc.).
+</p>
+<p>
+For eager loading via eager, the :eager_loader option can be used to
+specify how to eagerly load a complex association. This is an extremely
+powerful option. Though it can often be verbose (compared to other things
+in <a href="../../classes/Sequel.html">Sequel</a>), it allows you complete
+control over how to eagerly load associations for a group of objects.
+</p>
+<p>
+:eager_loader should be a proc that takes 3 arguments, a key_hash, an array
+of records, and a hash of dependent associations. Since you are given all
+of the records, you can do things like filter on associations that are
+specified by multiple keys, or do multiple queries depending on the content
+of the records (which would be necessary for polymorphic associations).
+Inside the :eager_loader proc, you should get the related objects and
+populate the associations for all objects in the array of records. The hash
+of dependent associations is available for you to cascade the eager loading
+down multiple levels, but it is up to you to use it. The key_hash is a
+performance enhancement that is used by the default code and is also
+available to you. It is a hash with keys being foreign/primary key symbols
+in the current table, and the values being hashes where the key is
+foreign/primary key values and values being arrays of current model objects
+having the foreign/primary key value associated with the key. This is hard
+to visualize, so I&#8216;ll give an example:
+</p>
+<pre>
+  album1 = Album.load(:id=&gt;1, :artist_id=&gt;2)
+  album2 = Album.load(:id=&gt;3, :artist_id=&gt;2)
+  Album.many_to_one :artist
+  Album.one_to_many :tracks
+  Album.eager(:band, :tracks).all
+  # The key_hash provided to the :eager_loader proc would be:
+  {:id=&gt;{1=&gt;[album1], 3=&gt;[album2]}, :artist_id=&gt;{2=&gt;[album1, album2]}}
+</pre>
+<p>
+Using these options, you can build associations <a
+href="../../classes/Sequel.html">Sequel</a> doesn&#8216;t natively support,
+and still be able to use the same eager loading features that you are used
+to.
+</p>
+<h2>ActiveRecord associations</h2>
+<p>
+<a href="../../classes/Sequel.html">Sequel</a> supports all of associations
+that ActiveRecord supports, one way or another. Sometimes this requires
+more code, as <a href="../../classes/Sequel.html">Sequel</a> is a toolkit
+and not a swiss army chainsaw.
+</p>
+<h3>Association callbacks</h3>
+<p>
+<a href="../../classes/Sequel.html">Sequel</a> supports the same callbacks
+that ActiveRecord does: :before_add, :before_remove, :after_add, and
+:after_remove. It also supports a callback that ActiveRecord does not,
+:after_load, which is called after the association has been loaded (when
+lazy loading).
+</p>
+<p>
+Each of these options can be a <a
+href="../../classes/Symbol.html">Symbol</a> specifying an instance method
+that takes one argument (the associated object), or a Proc that takes two
+arguments (the current object and the associated object), or an array of
+Symbols and Procs. For :after_load with a *_to_many association, the
+associated object argument is an array of associated objects.
+</p>
+<p>
+If any of the before callbacks return false, the adding/removing does not
+happen and it either raises an error (the default), or returns nil (if
+raise_on_save_failure is false).
+</p>
+<p>
+All callbacks are also run on many_to_one associations. If there was
+already an existing object for the association, it calls the remove
+callbacks on the existing object and the add callbacks on the new object.
+The remove callback calls are placed around the add callback calls.
+</p>
+<h3>Association extensions</h3>
+<p>
+All associations come with a _dataset method that can be further filtered
+or otherwise modified:
+</p>
+<pre>
+  class Author &lt; Sequel::Model
+    one_to_many :authorships
+  end
+  Author.first.authorships_dataset.filter(:number &lt; 10).first
+</pre>
+<p>
+You can extend a dataset with a module easily with :extend:
+</p>
+<pre>
+  module FindOrCreate
+    def find_or_create(vals)
+      first(vals) || @opts[:models][nil].create(vals)
+    end
+  end
+  class Author &lt; Sequel::Model
+    one_to_many :authorships, :extend=&gt;FindOrCreate
+  end
+  Author.first.authorships_dataset.find_or_create(:name=&gt;'Blah', :number=&gt;10)
+</pre>
+<p>
+However, note that the dataset doesn&#8216;t have any knowledge of the
+model object that created it via the association, so if you want to use
+attributes of the model object, you&#8216;ll have to use a closure:
+</p>
+<pre>
+  class Author &lt; Sequel::Model
+    one_to_many :authorships, :dataset=&gt;(proc do
+      key = pk
+      ds = Authorship.filter(:author_id=&gt;key)
+      ds.meta_def(:find_or_create_by_name) do |name|
+        first(:name=&gt;name) || Authorship.create(:name=&gt;name, :author_id=&gt;key)
+      end
+      ds
+    end)
+  end
+  Author.first.authorships_dataset.find_or_create_by_name('Bob')
+</pre>
+<p>
+You can cheat if you want to:
+</p>
+<pre>
+  module FindOrCreate
+    def find_or_create(vals)
+      # Exploits the fact that Sequel filters are ruby objects that
+      # can be introspected.
+      author_id = @opts[:where].args[1]
+      first(vals) || \
+        @opts[:models][nil].create(vals.merge(:author_id=&gt;author_id))
+    end
+  end
+</pre>
+<h3>has_many :through associations</h3>
+<p>
+many_to_many handles the usual case of a has_many :through with a
+belongs_to in the associated model. It doesn&#8216;t break on the case
+where the join table is a model table, unlike ActiveRecord&#8216;s
+has_and_belongs_to_many.
+</p>
+<p>
+ActiveRecord:
+</p>
+<pre>
+  class Author &lt; ActiveRecord::Base
+    has_many :authorships
+    has_many :books, :through =&gt; :authorships
+  end
+
+  class Authorship &lt; ActiveRecord::Base
+    belongs_to :author
+    belongs_to :book
+  end
+
+  @author = Author.find :first
+  @author.books
+</pre>
+<p>
+<a href="../../classes/Sequel/Model.html">Sequel::Model</a>:
+</p>
+<pre>
+  class Author &lt; Sequel::Model
+    one_to_many :authorships
+    many_to_many :books, :join_table=&gt;:authorships
+  end
+
+  class Authorship &lt; Sequel::Model
+    many_to_one :author
+    many_to_one :book
+  end
+
+  @author = Author.first
+  @author.books
+</pre>
+<p>
+If you use an association other than belongs_to in the associated model,
+things are a bit more involved:
+</p>
+<p>
+ActiveRecord:
+</p>
+<pre>
+  class Firm &lt; ActiveRecord::Base
+    has_many :clients
+    has_many :invoices, :through =&gt; :clients
+  end
+
+  class Client &lt; ActiveRecord::Base
+    belongs_to :firm
+    has_many :invoices
+  end
+
+  class Invoice &lt; ActiveRecord::Base
+    belongs_to :client
+    has_one :firm, :through =&gt; :client
+  end
+
+  Firm.find(:first).invoices
+</pre>
+<p>
+<a href="../../classes/Sequel/Model.html">Sequel::Model</a>:
+</p>
+<pre>
+  class Firm &lt; Sequel::Model
+    one_to_many :clients
+    one_to_many :invoices, :read_only=&gt;true, \
+      :dataset=&gt;proc{Invoice.eager_graph(:client).filter(:client__firm_id=&gt;pk)}, \
+      :after_load=&gt;(proc do |firm, invs|
+        invs.each do |inv|
+          inv.client.associations[:firm] = inv.associations[:firm] = firm
+        end
+      end), \
+      :eager_loader=&gt;(proc do |key_hash, firms, associations|
+        id_map = key_hash[Firm.primary_key]
+        firms.each{|firm| firm.associations[:invoices] = []}
+        Invoice.eager_graph(:client).filter(:client__firm_id=&gt;id_map.keys).all do |inv|
+          id_map[inv.client.firm_id].each do |firm|
+            inv.client.associations[:firm] = inv.associations[:firm] = firm
+            firm.associations[:invoices] &lt;&lt; inv
+          end
+        end
+      end)
+  end
+
+  class Client &lt; Sequel::Model
+    many_to_one :firm
+    one_to_many :invoices
+  end
+
+  class Invoice &lt; Sequel::Model
+    many_to_one :client
+    many_to_one :firm, :key=&gt;nil, :read_only=&gt;true, \
+      :dataset=&gt;proc{Firm.eager_graph(:clients).filter(:clients__id=&gt;client_id)}, \
+      :after_load=&gt;(proc do |inv, firm|
+        # Delete the cached associations from firm, because it only has the
+        # client with this invoice, instead of all clients of the firm
+        inv.associations[:client] = firm.associations.delete(:clients).first
+      end), \
+      :eager_loader=&gt;(proc do |key_hash, invoices, associations|
+        id_map = {}
+        invoices.each do |inv|
+          inv.associations[:firm] = nil
+          inv.associations[:client] = nil
+          (id_map[inv.client_id] ||= []) &lt;&lt; inv
+        end
+        Firm.eager_graph(:clients).filter(:clients__id=&gt;id_map.keys).all do |firm|
+          # Delete the cached associations from firm, because it only has the
+          # clients related the invoices being eagerly loaded, instead of all
+          # clients of the firm.
+          firm.associations.delete(:clients).each do |client|
+            id_map[client.pk].each do |inv|
+              inv.associations[:firm] = firm
+              inv.associations[:client] = client
+            end
+          end
+        end
+      end)
+  end
+  Firm.find(:first).invoices
+</pre>
+<p>
+It is significantly more code in <a
+href="../../classes/Sequel.html">Sequel</a> Model, but quite a bit of it is
+setting the intermediate associate record (the client) and the reciprocal
+association in the associations cache for each object, which ActiveRecord
+won&#8216;t do for you. The reason you would want to do this is that then
+firm.invoices.first.firm or firm.invoices.first.client doesn&#8216;t do
+another query to get the firm/client.
+</p>
+<h3>Polymorphic Associations</h3>
+<p>
+Polymorphic associations are really a design flaw, but if you are stuck
+with them, <a href="../../classes/Sequel.html">Sequel</a> can handle it.
+</p>
+<p>
+ActiveRecord:
+</p>
+<pre>
+  class Asset &lt; ActiveRecord::Base
+    belongs_to :attachable, :polymorphic =&gt; true
+  end
+
+  class Post &lt; ActiveRecord::Base
+    has_many :assets, :as =&gt; :attachable
+  end
+
+  class Note &lt; ActiveRecord::Base
+    has_many :assets, :as =&gt; :attachable
+  end
+
+  @asset.attachable = @post
+  @asset.attachable = @note
+</pre>
+<p>
+<a href="../../classes/Sequel/Model.html">Sequel::Model</a>:
+</p>
+<pre>
+  class Asset &lt; Sequel::Model
+    many_to_one :attachable, :reciprocal=&gt;:assets, \
+      :dataset=&gt;(proc do
+        klass = attachable_type.constantize
+        klass.filter(klass.primary_key=&gt;attachable_id)
+      end), \
+      :eager_loader=&gt;(proc do |key_hash, assets, associations|
+        id_map = {}
+        assets.each do |asset|
+          asset.associations[:attachable] = nil
+          ((id_map[asset.attachable_type] ||= {})[asset.attachable_id] ||= []) &lt;&lt; asset
+        end
+        id_map.each do |klass_name, id_map|
+          klass = klass_name.constantize
+          klass.filter(klass.primary_key=&gt;id_map.keys).all do |attach|
+            id_map[attach.pk].each do |asset|
+              asset.associations[:attachable] = attach
+            end
+          end
+        end
+      end)
+
+    private
+
+    def _attachable=(attachable)
+      self[:attachable_id] = (attachable.pk if attachable)
+      self[:attachable_type] = (attachable.class.name if attachable)
+    end
+  end
+
+  class Post &lt; Sequel::Model
+    one_to_many :assets, :key=&gt;:attachable_id do |ds|
+      ds.filter(:attachable_type=&gt;'Post')
+    end
+
+    private
+
+    def _add_asset(asset)
+      asset.attachable_id = pk
+      asset.attachable_type = 'Post'
+      asset.save
+    end
+    def _remove_asset(asset)
+      asset.attachable_id = nil
+      asset.attachable_type = nil
+      asset.save
+    end
+    def _remove_all_assets
+      Asset.filter(:attachable_id=&gt;pk, :attachable_type=&gt;'Post')\
+        .update(:attachable_id=&gt;nil, :attachable_type=&gt;nil)
+    end
+  end
+
+  class Note &lt; Sequel::Model
+    one_to_many :assets, :key=&gt;:attachable_id do |ds|
+      ds.filter(:attachable_type=&gt;'Note')
+    end
+
+    private
+
+    def _add_asset(asset)
+      asset.attachable_id = pk
+      asset.attachable_type = 'Note'
+      asset.save
+    end
+    def _remove_asset(asset)
+      asset.attachable_id = nil
+      asset.attachable_type = nil
+      asset.save
+    end
+    def _remove_all_assets
+      Asset.filter(:attachable_id=&gt;pk, :attachable_type=&gt;'Note')\
+        .update(:attachable_id=&gt;nil, :attachable_type=&gt;nil)
+    end
+  end
+
+  @asset.attachable = @post
+  @asset.attachable = @note
+</pre>
+<h2>More advanced associations</h2>
+<p>
+So far, we&#8216;ve only shown that <a
+href="../../classes/Sequel/Model.html">Sequel::Model</a> has associations
+as powerful as ActiveRecord&#8216;s. Now we will show how <a
+href="../../classes/Sequel/Model.html">Sequel::Model</a>&#8216;s
+associations are more powerful.
+</p>
+<h3>many_to_one/one_to_many not referencing primary key</h3>
+<p>
+Let&#8216;s say you have two tables, invoices and clients, where each
+client is associated with many invoices. However, instead of using the
+client&#8216;s primary key, the invoice is associated to the client by name
+(this is bad database design, but sometimes you have to play with the cards
+you are dealt).
+</p>
+<pre>
+  class Client &lt; Sequel::Model
+    one_to_many :invoices, :reciprocal=&gt;:client, \
+      :dataset=&gt;proc{Invoice.filter(:client_name=&gt;name)}, \
+      :eager_loader=&gt;(proc do |key_hash, clients, associations|
+        id_map = {}
+        clients.each do |client|
+          id_map[client.name] = client
+          client.associations[:invoices] = []
+        end
+        Invoice.filter(:client_name=&gt;id_map.keys.sort).all do |inv|
+          inv.associations[:client] = client = id_map[inv.client_name]
+          client.associations[:invoices] &lt;&lt; inv
+        end
+      end)
+
+    private
+
+    def _add_invoice(invoice)
+      invoice.client_name = name
+      invoice.save
+    end
+    def _remove_invoice(invoice)
+      invoice.client_name = nil
+      invoice.save
+    end
+    def _remove_all_invoices
+      Invoice.filter(:client_name=&gt;name).update(:client_name=&gt;nil)
+    end
+  end
+
+  class Invoice &lt; Sequel::Model
+    many_to_one :client, :key=&gt;:client_name, \
+      :dataset=&gt;proc{Client.filter(:name=&gt;client_name)}, \
+      :eager_loader=&gt;(proc do |key_hash, invoices, associations|
+        id_map = key_hash[:client_name]
+        invoices.each{|inv| inv.associations[:client] = nil}
+        Client.filter(:name=&gt;id_map.keys).all do |client|
+          id_map[client.name].each{|inv| inv.associations[:client] = client}
+        end
+      end)
+
+    private
+
+    def _client=(client)
+      self.client_name = (client.name if client)
+    end
+  end
+</pre>
+<h3>Joining on multiple keys</h3>
+<p>
+Let&#8216;s say you have two tables that are associated with each other
+with multiple keys. For example:
+</p>
+<pre>
+  # Both of these models have an album_id, number, and disc_number fields.
+  # All FavoriteTracks have an associated track, but not all tracks have an
+  # associated favorite track
+
+  class Track &lt; Sequel::Model
+    many_to_one :favorite_track, \
+      :dataset=&gt;(proc do
+        FavoriteTrack.filter(:disc_number=&gt;disc_number, :number=&gt;number, :album_id=&gt;album_id)
+      end), \
+      :eager_loader=&gt;(proc do |key_hash, tracks, associations|
+        id_map = {}
+        tracks.each do |t|
+          t.associations[:favorite_track] = nil
+          id_map[[t[:album_id], t[:disc_number], t[:number]]] = t
+        end
+        FavoriteTrack.filter([:album_id, :disc_number, :number]=&gt;id_map.keys).all do |ft|
+          if t = id_map[[ft[:album_id], ft[:disc_number], ft[:number]]]
+            t.associations[:favorite_track] = ft
+          end
+        end
+      end)
+  end
+
+  class FavoriteTrack &lt; Sequel::Model
+    many_to_one :track, \
+      :dataset=&gt;(proc do
+        Track.filter(:disc_number=&gt;disc_number, :number=&gt;number, :album_id=&gt;album_id)
+      end), \
+      :eager_loader=&gt;(proc do |key_hash, ftracks, associations|
+        id_map = {}
+        ftracks.each{|ft| id_map[[ft[:album_id], ft[:disc_number], ft[:number]]] = ft}
+        Track.filter([:album_id, :disc_number, :number]=&gt;id_map.keys).all do |t|
+          id_map[[t[:album_id], t[:disc_number], t[:number]]].associations[:track] = t
+        end
+      end)
+  end
+</pre>
+<h3>Tree - All Ancestors and Descendents</h3>
+<p>
+Let&#8216;s say you want to store a tree relationship in your database,
+it&#8216;s pretty simple:
+</p>
+<pre>
+  class Node &lt; Sequel::Model
+    many_to_one :parent
+    one_to_many :children, :key=&gt;:parent_id
+  end
+</pre>
+<p>
+You can easily get a node&#8216;s parent with node.parent, and a
+node&#8216;s children with node.children. You can even eager load the
+relationship up to a certain depth:
+</p>
+<pre>
+  # Eager load three generations of generations of children for a given node
+  Node.filter(:id=&gt;1).eager(:children=&gt;{:children=&gt;:children}).all.first
+  # Load parents and grandparents for a group of nodes
+  Node.filter(:id &lt; 10).eager(:parent=&gt;:parent).all
+</pre>
+<p>
+What if you want to get all ancestors up to the root node, or all
+descendents, without knowing the depth of the tree?
+</p>
+<pre>
+  class Node &lt; Sequel::Model
+    many_to_one :ancestors, :eager_loader=&gt;(proc do |key_hash, nodes, associations|
+      # Handle cases where the root node has the same parent_id as primary_key
+      # and also when it is NULL
+      non_root_nodes = nodes.reject do |n|
+        if [nil, n.pk].include?(n.parent_id)
+          # Make sure root nodes have their parent association set to nil
+          n.associations[:parent] = nil
+          true
+        else
+          false
+        end
+      end
+      unless non_root_nodes.empty?
+        id_map = {}
+        # Create an map of parent_ids to nodes that have that parent id
+        non_root_nodes.each{|n| (id_map[n.parent_id] ||= []) &lt;&lt; n}
+        # Doesn't cause an infinte loop, because when only the root node
+        # is left, this is not called.
+        Node.filter(Node.primary_key=&gt;id_map.keys).eager(:ancestors).all do |node|
+          # Populate the parent association for each node
+          id_map[node.pk].each{|n| n.associations[:parent] = node}
+        end
+      end
+    end)
+    many_to_one :descendants, :eager_loader=&gt;(proc do |key_hash, nodes, associations|
+      id_map = {}
+      nodes.each do |n|
+        # Initialize an empty array of child associations for each parent node
+        n.associations[:children] = []
+        # Populate identity map of nodes
+        id_map[n.pk] = n
+      end
+      # Doesn't cause an infinite loop, because the :eager_loader is not called
+      # if no records are returned.  Exclude id = parent_id to avoid infinite loop
+      # if the root note is one of the returned records and it has parent_id = id
+      # instead of parent_id = NULL.
+      Node.filter(:parent_id=&gt;id_map.keys).exclude(:id=&gt;:parent_id).eager(:descendants).all do |node|
+        # Get the parent from the identity map
+        parent = id_map[node.parent_id]
+        # Set the child's parent association to the parent
+        node.associations[:parent] = parent
+        # Add the child association to the array of children in the parent
+        parent.associations[:children] &lt;&lt; node
+      end
+    end)
+  end
+</pre>
+<h3>Joining multiple keys to a single key, through a third table</h3>
+<p>
+Let&#8216;s say you have a database, of songs, lyrics, and artists. Each
+song may or may not have a lyric (most songs are instrumental). The lyric
+can be associated to an artist in each of four ways: composer, arranger,
+vocalist, or lyricist. These may all be the same, or they could all be
+different, and none of them are required. The songs table has a lyric_id
+field to associate it to the lyric, and the lyric table has four fields to
+associate it to the artist (composer_id, arranger_id, vocalist_id, and
+lyricist_id).
+</p>
+<p>
+What you want to do is get all songs for a given artist, ordered by the
+song&#8216;s name, with no duplicates?
+</p>
+<pre>
+  class Artist &lt; Sequel::Model
+    one_to_many :songs, :order=&gt;:songs__name, \
+      :dataset=&gt;proc{Song.select(:songs.*).join(Lyric, :id=&gt;:lyric_id, id=&gt;[:composer_id, :arranger_id, :vocalist_id, :lyricist_id])}, \
+      :eager_loader=&gt;(proc do |key_hash, records, associations|
+        h = key_hash[:id]
+        ids = h.keys
+        records.each{|r| r.associations[:songs] = []}
+        Song.select(:songs.*, :lyrics__composer_id, :lyrics__arranger_id, :lyrics__vocalist_id, :lyrics__lyricist_id)\
+         .join(Lyric, :id=&gt;:lyric_id){{:composer_id=&gt;ids, :arranger_id=&gt;ids, :vocalist_id=&gt;ids, :lyricist_id=&gt;ids}.sql_or}\
+         .order(:songs__name).all do |song|
+          [:composer_id, :arranger_id, :vocalist_id, :lyricist_id].each do |x|
+            recs = h[song.values.delete(x)]
+            recs.each{|r| r.associations[:songs] &lt;&lt; song} if recs
+          end
+        end
+        records.each{|r| r.associations[:songs].uniq!}
+      end)
+  end
+</pre>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

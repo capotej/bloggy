@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Prints nice-looking plain-text tables via puts
+- !ruby/struct:SM::Flow::VERB 
+  body: "  +--+-------+\n  |id|name   |\n  |--+-------|\n  |1 |fasdfas|\n  |2 |test \
+    \  |\n  +--+-------+\n"
+full_name: Sequel::PrettyTable::print
+params: (records, columns = nil)
+name: print
+is_singleton: true
+aliases: []
+

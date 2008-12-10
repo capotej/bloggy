@@ -1,0 +1,28 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Parse the schema from the database. If the table_name is not given, returns
+    the schema for all tables as a hash. If the table_name is given, returns the schema
+    for a single table as an array with all members being arrays of length 2. Available
+    options are:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":reload - Get fresh information from the database, instead of using cached \
+      information. If table_name is blank, :reload should be used unless you are sure \
+      that schema has not been called before with a table_name, otherwise you may \
+      only getting the schemas for tables that have been requested explicitly."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":schema - An explicit schema to use. It may also be implicitly provided \
+      via the table name."
+    label: '*'
+full_name: Sequel::Schema::SQL#schema
+params: (table = nil, opts={})
+name: schema
+is_singleton: false
+aliases: []
+

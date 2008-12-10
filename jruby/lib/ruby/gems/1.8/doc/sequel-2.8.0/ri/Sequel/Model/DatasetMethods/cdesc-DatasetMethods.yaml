@@ -1,0 +1,21 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Dataset methods are methods that the model class extends its dataset with
+    in the call to set_dataset.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: destroy
+- !ruby/object:RI::MethodSummary 
+  name: to_hash
+class_methods: []
+
+full_name: Sequel::Model::DatasetMethods
+constants: []
+
+superclass: 
+name: DatasetMethods

@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Returns a dataset from the database. If the first argument is a string, the
+    method acts as an alias for Database#fetch, returning a dataset for arbitrary
+    SQL:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  DB['SELECT * FROM items WHERE name = ?', my_name].print\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Otherwise, acts as an alias for Database#from, setting the primary table
+    for the dataset:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  DB[:items].sql #=&gt; &quot;SELECT * FROM items&quot;\n"
+full_name: Sequel::Database#[]
+params: (*args, &block)
+name: '[]'
+is_singleton: false
+aliases: []
+

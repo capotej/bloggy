@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>parse (CommandLineParser)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File modules/command_line_parser.rb, line 56</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse</span>
+    <span class="ruby-identifier">config</span> = <span class="ruby-identifier">init_opts</span>
+    <span class="ruby-identifier">opts</span> = <span class="ruby-constant">GetoptLong</span>.<span class="ruby-identifier">new</span>(
+            [ <span class="ruby-value str">'--port'</span>, <span class="ruby-value str">'-p'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span> ],
+            [ <span class="ruby-value str">'--environment'</span>, <span class="ruby-value str">'-e'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span> ],
+            [ <span class="ruby-value str">'--contextroot'</span>, <span class="ruby-value str">'-c'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span> ],
+            [ <span class="ruby-value str">'--runtimes'</span>, <span class="ruby-value str">'-n'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span> ],
+            [ <span class="ruby-value str">'--runtimes-min'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span> ],
+            [ <span class="ruby-value str">'--runtimes-max'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span> ],
+            [ <span class="ruby-value str">'--version'</span>, <span class="ruby-value str">'-v'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span> ],
+            [ <span class="ruby-value str">'--help'</span>, <span class="ruby-value str">'-h'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span> ]
+    )
+
+    <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">opt</span>, <span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opt</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--version'</span>
+        <span class="ruby-identifier">require</span> <span class="ruby-value str">'version'</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;GlassFish gem version: #{GlassFish::VERSION::STRING}\nhttp://glassfishgem.rubyforge.org&quot;</span>
+        <span class="ruby-identifier">exit</span>(<span class="ruby-value">0</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--help'</span>
+        <span class="ruby-constant">RDoc</span><span class="ruby-operator">::</span><span class="ruby-identifier">usage</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--contextroot'</span>
+        <span class="ruby-identifier">config</span>[<span class="ruby-identifier">:contextroot</span>] = <span class="ruby-identifier">arg</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--port'</span>
+        <span class="ruby-identifier">config</span>[<span class="ruby-identifier">:port</span>] = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">to_i</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--environment'</span>
+        <span class="ruby-identifier">config</span>[<span class="ruby-identifier">:environment</span>] = <span class="ruby-identifier">arg</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--runtimes'</span>
+        <span class="ruby-identifier">config</span>[<span class="ruby-identifier">:runtimes</span>] = <span class="ruby-identifier">arg</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--runtimes-min'</span>
+        <span class="ruby-identifier">config</span>[<span class="ruby-identifier">:runtimes_min</span>] = <span class="ruby-identifier">arg</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--runtimes-max'</span>
+        <span class="ruby-identifier">config</span>[<span class="ruby-identifier">:runtimes_max</span>] = <span class="ruby-identifier">arg</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>    
+    <span class="ruby-identifier">config</span>[<span class="ruby-identifier">:app_dir</span>] = <span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">shift</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">config</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

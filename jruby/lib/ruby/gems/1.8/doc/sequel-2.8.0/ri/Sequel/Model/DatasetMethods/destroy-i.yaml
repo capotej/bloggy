@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Destroy each row in the dataset by instantiating it and then calling destroy
+    on the resulting model object. This isn't as fast as deleting the object, which
+    does a single SQL call, but this runs any destroy hooks.
+full_name: Sequel::Model::DatasetMethods#destroy
+params: ()
+name: destroy
+is_singleton: false
+aliases: []
+

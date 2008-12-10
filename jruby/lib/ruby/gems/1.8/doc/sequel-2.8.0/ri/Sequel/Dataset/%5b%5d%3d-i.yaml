@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Update all records matching the conditions with the values specified.
+full_name: Sequel::Dataset#[]=
+params: (conditions, values)
+name: '[]='
+is_singleton: false
+aliases: []
+

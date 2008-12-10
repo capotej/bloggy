@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (q)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Execute the given SQL with this connection. If a block is given, yield the
+    results, otherwise, return the number of changed rows.
+full_name: Sequel::Postgres::Adapter#execute
+params: (sql, args=nil) {|q| ...}
+name: execute
+is_singleton: false
+aliases: []
+

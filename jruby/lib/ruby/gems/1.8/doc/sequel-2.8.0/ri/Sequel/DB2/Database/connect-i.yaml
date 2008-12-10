@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: check_error(rc, &quot;Could not allocate DB2 environment&quot;)
+full_name: Sequel::DB2::Database#connect
+params: (server)
+name: connect
+is_singleton: false
+aliases: []
+

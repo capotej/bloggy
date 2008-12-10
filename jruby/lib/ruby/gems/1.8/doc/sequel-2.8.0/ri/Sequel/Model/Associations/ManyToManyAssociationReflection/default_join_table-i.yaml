@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Default name symbol for the join table.
+full_name: Sequel::Model::Associations::ManyToManyAssociationReflection#default_join_table
+params: ()
+name: default_join_table
+is_singleton: false
+aliases: []
+

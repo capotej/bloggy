@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Adds a column to the specified table. This method expects a column name,
+    a datatype and optionally a hash with additional constraints and options:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  DB.add_column :items, :name, :text, :unique =&gt; true, :null =&gt; false\n\
+    \  DB.add_column :items, :category, :text, :default =&gt; 'ruby'\n"
+- !ruby/struct:SM::Flow::P 
+  body: See alter_table.
+full_name: Sequel::Database#add_column
+params: (table, *args)
+name: add_column
+is_singleton: false
+aliases: []
+

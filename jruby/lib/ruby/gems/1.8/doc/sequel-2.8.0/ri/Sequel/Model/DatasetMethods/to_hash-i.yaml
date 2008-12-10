@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This allows you to call to_hash without any arguments, which will result in
+    a hash with the primary key value being the key and the model object being the
+    value.
+full_name: Sequel::Model::DatasetMethods#to_hash
+params: (key_column=nil, value_column=nil)
+name: to_hash
+is_singleton: false
+aliases: []
+

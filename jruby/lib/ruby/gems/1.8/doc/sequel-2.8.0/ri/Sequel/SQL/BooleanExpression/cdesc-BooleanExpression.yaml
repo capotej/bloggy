@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: BooleanMethods
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Subclass of ComplexExpression where the expression results in a boolean value
+    in SQL.
+attributes: []
+
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: from_value_pairs
+- !ruby/object:RI::MethodSummary 
+  name: invert
+full_name: Sequel::SQL::BooleanExpression
+constants: []
+
+superclass: ComplexExpression
+name: BooleanExpression

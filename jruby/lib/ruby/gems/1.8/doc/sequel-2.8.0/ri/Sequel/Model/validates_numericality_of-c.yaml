@@ -1,0 +1,38 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Validates whether an attribute is a number.
+- !ruby/struct:SM::Flow::P 
+  body: 'Possible Options:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ":allow_blank - Whether to skip the validation if the value is blank (default: \
+      false)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":allow_nil - Whether to skip the validation if the value is nil (default: \
+      false)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":if - A symbol (indicating an instance_method) or proc (which is instance_evaled) \
+      skipping this validation if it returns nil or false."
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":message - The message to use (default: 'is not a number')"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":tag - The tag to use for this validation (default: :numericality)"
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ":only_integer - Whether only integers are valid values (default: false)"
+    label: '*'
+full_name: Sequel::Model::validates_numericality_of
+params: (*atts)
+name: validates_numericality_of
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,44 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: BooleanMethods
+- !ruby/object:RI::IncludedModule 
+  name: NumericMethods
+- !ruby/object:RI::IncludedModule 
+  name: StringMethods
+- !ruby/object:RI::IncludedModule 
+  name: InequalityMethods
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This module includes other Sequel::SQL::*Methods modules and is included in
+    other classes that are could be either booleans, strings, or numbers. It also
+    adds three methods so that can specify behavior in case one of the operator methods
+    has been overridden (such as Symbol#/).
+- !ruby/struct:SM::Flow::P 
+  body: 'For example, if Symbol#/ is overridden to produce a string (for example,
+    to make file system path creation easier), the following code will not do what
+    you want:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  :price/10 &gt; 100\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'In that case, you need to do the following:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  :price.sql_number/10 &gt; 100\n"
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: extract
+- !ruby/object:RI::MethodSummary 
+  name: sql_boolean
+- !ruby/object:RI::MethodSummary 
+  name: sql_number
+- !ruby/object:RI::MethodSummary 
+  name: sql_string
+class_methods: []
+
+full_name: Sequel::SQL::ComplexExpressionMethods
+constants: []
+
+superclass: 
+name: ComplexExpressionMethods

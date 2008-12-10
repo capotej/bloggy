@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the prepared_args to the given hash and runs the prepared statement.
+full_name: Sequel::Dataset::PreparedStatementMethods#call
+params: (hash, &block)
+name: call
+is_singleton: false
+aliases: []
+

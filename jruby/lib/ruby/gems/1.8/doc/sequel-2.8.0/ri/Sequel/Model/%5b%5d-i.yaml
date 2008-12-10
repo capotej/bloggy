@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns value of the column's attribute.
+full_name: Sequel::Model#[]
+params: (column)
+name: '[]'
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set whether to upcase identifiers for all databases by default. By default,
+    Sequel upcases identifiers unless the database folds unquoted identifiers to lower
+    case (MySQL, PostgreSQL, and SQLite).
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Sequel.upcase_identifiers = false\n"
+full_name: Sequel::upcase_identifiers=
+params: (value)
+name: upcase_identifiers=
+is_singleton: true
+aliases: []
+

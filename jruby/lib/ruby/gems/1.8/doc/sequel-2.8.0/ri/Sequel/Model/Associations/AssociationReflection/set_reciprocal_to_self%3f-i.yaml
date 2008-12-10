@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: By default, associations shouldn't set the reciprocal association to self.
+full_name: Sequel::Model::Associations::AssociationReflection#set_reciprocal_to_self?
+params: ()
+name: set_reciprocal_to_self?
+is_singleton: false
+aliases: []
+

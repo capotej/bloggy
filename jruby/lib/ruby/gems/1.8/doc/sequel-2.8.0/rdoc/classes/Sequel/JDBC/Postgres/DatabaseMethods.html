@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Sequel::JDBC::Postgres::DatabaseMethods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Sequel::JDBC::Postgres::DatabaseMethods</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/sequel_core/adapters/jdbc/postgresql_rb.html">
+                lib/sequel_core/adapters/jdbc/postgresql.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Methods to add to <a href="../../Database.html">Database</a> instances that
+access PostgreSQL via <a href="../../JDBC.html">JDBC</a>.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000179">dataset</a>&nbsp;&nbsp;
+      <a href="#M000180">execute_insert</a>&nbsp;&nbsp;
+      <a href="#M000178">extended</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="../../Postgres/DatabaseMethods.html">Sequel::Postgres::DatabaseMethods</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000178" class="method-detail">
+        <a name="M000178"></a>
+
+        <div class="method-heading">
+          <a href="#M000178" class="method-signature">
+          <span class="method-name">extended</span><span class="method-args">(db)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add the primary_keys and primary_key_sequences instance variables, so we
+can get the correct return values for inserted rows.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000178-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000178-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core/adapters/jdbc/postgresql.rb, line 48</span>
+48:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">extended</span>(<span class="ruby-identifier">db</span>)
+49:           <span class="ruby-identifier">db</span>.<span class="ruby-identifier">instance_eval</span> <span class="ruby-keyword kw">do</span>
+50:             <span class="ruby-ivar">@primary_keys</span> = {}
+51:             <span class="ruby-ivar">@primary_key_sequences</span> = {}
+52:           <span class="ruby-keyword kw">end</span>
+53:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000179" class="method-detail">
+        <a name="M000179"></a>
+
+        <div class="method-heading">
+          <a href="#M000179" class="method-signature">
+          <span class="method-name">dataset</span><span class="method-args">(opts=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return instance of <a
+href="Dataset.html">Sequel::JDBC::Postgres::Dataset</a> with the given
+opts.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000179-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000179-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core/adapters/jdbc/postgresql.rb, line 56</span>
+56:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dataset</span>(<span class="ruby-identifier">opts</span>=<span class="ruby-keyword kw">nil</span>)
+57:           <span class="ruby-constant">Sequel</span><span class="ruby-operator">::</span><span class="ruby-constant">JDBC</span><span class="ruby-operator">::</span><span class="ruby-constant">Postgres</span><span class="ruby-operator">::</span><span class="ruby-constant">Dataset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">opts</span>)
+58:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000180" class="method-detail">
+        <a name="M000180"></a>
+
+        <div class="method-heading">
+          <a href="#M000180" class="method-signature">
+          <span class="method-name">execute_insert</span><span class="method-args">(sql, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Run the INSERT sql on the database and return the primary key for the
+record.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000180-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000180-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core/adapters/jdbc/postgresql.rb, line 62</span>
+62:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute_insert</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">opts</span>={})
+63:           <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">sql</span>, {<span class="ruby-identifier">:type=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">:insert</span>}.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">opts</span>))
+64:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

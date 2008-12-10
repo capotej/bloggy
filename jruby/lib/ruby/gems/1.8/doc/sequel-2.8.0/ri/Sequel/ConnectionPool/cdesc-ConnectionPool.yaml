@@ -1,0 +1,54 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A ConnectionPool manages access to database connections by keeping multiple
+    connections and giving threads exclusive access to each connection.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The proc used to create a new database connection.
+  rw: RW
+  name: connection_proc
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The proc used to disconnect a database connection.
+  rw: RW
+  name: disconnection_proc
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The maximum number of connections.
+  rw: R
+  name: max_size
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The mutex that protects access to the other internal vairables. You must
+      use this if you want to manipulate the variables safely.
+  rw: R
+  name: mutex
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: allocated
+- !ruby/object:RI::MethodSummary 
+  name: available_connections
+- !ruby/object:RI::MethodSummary 
+  name: created_count
+- !ruby/object:RI::MethodSummary 
+  name: disconnect
+- !ruby/object:RI::MethodSummary 
+  name: hold
+- !ruby/object:RI::MethodSummary 
+  name: size
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Sequel::ConnectionPool
+constants: []
+
+superclass: Object
+name: ConnectionPool

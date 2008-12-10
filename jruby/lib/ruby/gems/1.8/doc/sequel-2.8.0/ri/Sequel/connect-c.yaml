@@ -1,0 +1,25 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Creates a new database object based on the supplied connection string and
+    optional arguments. The specified scheme determines the database class used, and
+    the rest of the string specifies the connection options. For example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  DB = Sequel.connect('sqlite:/') # Memory database\n  DB = Sequel.connect('sqlite://blog.db') \
+    # ./blog.db\n  DB = Sequel.connect('sqlite:///blog.db') # /blog.db\n  DB = Sequel.connect('postgres://user:password@host:port/database_name')\n\
+    \  DB = Sequel.connect('sqlite:///blog.db', :max_connections=&gt;10)\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'If a block is given, it is passed the opened Database object, which is closed
+    when the block exits. For example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Sequel.connect('sqlite://blog.db'){|db| puts db.users.count}\n"
+- !ruby/struct:SM::Flow::P 
+  body: This is also aliased as Sequel.open.
+full_name: Sequel::connect
+params: (*args, &block)
+name: connect
+is_singleton: true
+aliases: []
+

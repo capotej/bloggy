@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Gets the current migration version stored in the database. If no version number
+    is stored, 0 is returned.
+full_name: Sequel::Migrator::get_current_migration_version
+params: (db)
+name: get_current_migration_version
+is_singleton: true
+aliases: []
+

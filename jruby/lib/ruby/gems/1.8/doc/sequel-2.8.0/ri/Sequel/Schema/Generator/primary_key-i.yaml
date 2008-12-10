@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Add primary key information to the DDL. Takes between one and three arguments.
+    The last one is an options hash as for Generator#column. The first one distinguishes
+    two modes: an array of existing column names adds a composite primary key constraint.
+    A single symbol adds a new column of that name and makes it the primary key. In
+    that case the optional middle argument denotes the type.'
+- !ruby/struct:SM::Flow::P 
+  body: 'Examples:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  primary_key(:id)\n  primary_key(:zip_code, :null =&gt; false)\n  primary_key([:street_number, \
+    :house_number])\n  primary_key(:id, :string, :auto_increment =&gt; false)\n"
+full_name: Sequel::Schema::Generator#primary_key
+params: (name, *args)
+name: primary_key
+is_singleton: false
+aliases: []
+

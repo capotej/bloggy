@@ -1,0 +1,1 @@
+/home/capotej/bloggy2/jruby/bin/jruby extconf.rb install thin

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A symbol signifying the value of the temp_store PRAGMA.
+full_name: Sequel::SQLite::DatabaseMethods#temp_store
+params: ()
+name: temp_store
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: ColumnAll expressions are considered equivalent if they have the same class
+    and string representation
+full_name: Sequel::SQL::ColumnAll#==
+params: (x)
+name: ==
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Validates the object and returns true if no errors are reported.
+full_name: Sequel::Model#valid?
+params: ()
+name: valid?
+is_singleton: false
+aliases: []
+

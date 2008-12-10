@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Pattern match any of the columns to any of the terms. The terms can be strings
+    (which use LIKE) or regular expressions (which are only supported in some databases).
+    See Sequel::SQL::StringExpression.like. Note that the total number of pattern
+    matches will be cols.length * terms.length, which could cause performance issues.
+full_name: Sequel::Dataset#grep
+params: (cols, terms)
+name: grep
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Convert Java::JavaSql::Timestamps correctly, and handle SQL::Blobs correctly.
+full_name: Sequel::JDBC::Postgres::Dataset#literal
+params: (v)
+name: literal
+is_singleton: false
+aliases: []
+

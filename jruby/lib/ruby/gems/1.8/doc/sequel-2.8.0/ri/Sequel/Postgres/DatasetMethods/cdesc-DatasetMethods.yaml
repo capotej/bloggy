@@ -1,0 +1,114 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Instance methods for datasets that connect to a PostgreSQL database.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: analyze
+- !ruby/object:RI::MethodSummary 
+  name: explain
+- !ruby/object:RI::MethodSummary 
+  name: for_share
+- !ruby/object:RI::MethodSummary 
+  name: for_update
+- !ruby/object:RI::MethodSummary 
+  name: full_text_search
+- !ruby/object:RI::MethodSummary 
+  name: insert
+- !ruby/object:RI::MethodSummary 
+  name: insert_returning_sql
+- !ruby/object:RI::MethodSummary 
+  name: insert_select
+- !ruby/object:RI::MethodSummary 
+  name: literal
+- !ruby/object:RI::MethodSummary 
+  name: lock
+- !ruby/object:RI::MethodSummary 
+  name: multi_insert_sql
+class_methods: []
+
+full_name: Sequel::Postgres::DatasetMethods
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''ACCESS SHARE''.freeze'
+  name: ACCESS_SHARE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''ACCESS EXCLUSIVE''.freeze'
+  name: ACCESS_EXCLUSIVE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''false''.freeze'
+  name: BOOL_FALSE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''true''.freeze'
+  name: BOOL_TRUE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: ''', ''.freeze'
+  name: COMMA_SEPARATOR
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''EXCLUSIVE''.freeze'
+  name: EXCLUSIVE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''EXPLAIN ''.freeze'
+  name: EXPLAIN
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''EXPLAIN ANALYZE ''.freeze'
+  name: EXPLAIN_ANALYZE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: ''' FOR SHARE''.freeze'
+  name: FOR_SHARE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: ''' FOR UPDATE''.freeze'
+  name: FOR_UPDATE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''LOCK TABLE %s IN %s MODE''.freeze'
+  name: LOCK
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '"TIMESTAMP ''%Y-%m-%d %H:%M:%S".freeze'
+  name: PG_TIMESTAMP_FORMAT
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''QUERY PLAN''.to_sym'
+  name: QUERY_PLAN
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''ROW EXCLUSIVE''.freeze'
+  name: ROW_EXCLUSIVE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''ROW SHARE''.freeze'
+  name: ROW_SHARE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '%w''distinct columns from join where group having intersect union except
+    order limit lock''.freeze'
+  name: SELECT_CLAUSE_ORDER
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''SHARE''.freeze'
+  name: SHARE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''SHARE ROW EXCLUSIVE''.freeze'
+  name: SHARE_ROW_EXCLUSIVE
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''SHARE UPDATE EXCLUSIVE''.freeze'
+  name: SHARE_UPDATE_EXCLUSIVE
+superclass: 
+name: DatasetMethods

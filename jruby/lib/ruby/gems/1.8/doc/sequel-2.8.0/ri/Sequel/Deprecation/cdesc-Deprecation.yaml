@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This module makes it easy to add deprecation functionality to other classes.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: Sequel::Deprecation
+constants: []
+
+superclass: 
+name: Deprecation

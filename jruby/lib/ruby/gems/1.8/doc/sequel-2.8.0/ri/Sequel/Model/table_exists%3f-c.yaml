@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns true if table exists, false otherwise.
+full_name: Sequel::Model::table_exists?
+params: ()
+name: table_exists?
+is_singleton: true
+aliases: []
+

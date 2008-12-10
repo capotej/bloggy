@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Add methods to the object's metaclass
+full_name: Object#meta_def
+params: (name, &block)
+name: meta_def
+is_singleton: false
+aliases: []
+

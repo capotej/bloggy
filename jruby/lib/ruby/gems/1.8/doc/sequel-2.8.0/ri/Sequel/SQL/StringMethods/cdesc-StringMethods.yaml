@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This module includes the methods that are defined on objects that can be used
+    in a numeric context in SQL (Symbol, LiteralString, SQL::Function, and SQL::StringExpression).
+- !ruby/struct:SM::Flow::P 
+  body: This defines the like (LIKE) method, used for pattern matching.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ilike
+- !ruby/object:RI::MethodSummary 
+  name: like
+class_methods: []
+
+full_name: Sequel::SQL::StringMethods
+constants: []
+
+superclass: 
+name: StringMethods

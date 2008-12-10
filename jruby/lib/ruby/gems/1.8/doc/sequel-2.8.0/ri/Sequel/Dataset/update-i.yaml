@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Updates values for the dataset. The returned value is generally the number
+    of rows updated, but that is adapter dependent.
+full_name: Sequel::Dataset#update
+params: (*args)
+name: update
+is_singleton: false
+aliases: []
+

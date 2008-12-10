@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a single output array mapping the values of the input hash. Keys in
+    the input hash that are used more than once in the query have multiple entries
+    in the output array.
+full_name: Sequel::Dataset::UnnumberedArgumentMapper#map_to_prepared_args
+params: (hash)
+name: map_to_prepared_args
+is_singleton: false
+aliases: []
+

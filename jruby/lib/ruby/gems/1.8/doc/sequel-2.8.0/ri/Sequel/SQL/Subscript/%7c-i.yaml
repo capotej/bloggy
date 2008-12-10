@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create a new subscript appending the given subscript(s) the the current array
+    of subscripts.
+full_name: Sequel::SQL::Subscript#|
+params: (sub)
+name: '|'
+is_singleton: false
+aliases: []
+

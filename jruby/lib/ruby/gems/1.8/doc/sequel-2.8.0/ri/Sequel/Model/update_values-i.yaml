@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the values attributes with set_values and then updates the record in
+    the database using those values. This is a low level method that does not run
+    the usual save callbacks. It should probably be avoided. Look into using update_with_params
+    instead.
+full_name: Sequel::Model#update_values
+params: (values)
+name: update_values
+is_singleton: false
+aliases: []
+

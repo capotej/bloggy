@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Loads a plugin for use with the model class, passing optional arguments to
+    the plugin. If the plugin has a DatasetMethods module and the model doesn't have
+    a dataset, raise an Error.
+full_name: Sequel::Model::is
+params: (plugin, *args)
+name: is
+is_singleton: true
+aliases: []
+

@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (conn)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Chooses the first available connection to the given server, or if none are
+    available, creates a new connection. Passes the connection to the supplied block:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  pool.hold {|conn| conn.execute('DROP TABLE posts')}\n"
+- !ruby/struct:SM::Flow::P 
+  body: Pool#hold is re-entrant, meaning it can be called recursively in the same
+    thread without blocking.
+- !ruby/struct:SM::Flow::P 
+  body: If no connection is immediately available and the pool is already using the
+    maximum number of connections, Pool#hold will block until a connection is available
+    or the timeout expires. If the timeout expires before a connection can be acquired,
+    a Sequel::Error::PoolTimeoutError is raised.
+full_name: Sequel::ConnectionPool#hold
+params: (server=:default) {|conn| ...}
+name: hold
+is_singleton: false
+aliases: []
+

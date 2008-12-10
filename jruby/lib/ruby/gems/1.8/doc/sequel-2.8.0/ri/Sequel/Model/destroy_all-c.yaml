@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Like delete_all, but invokes before_destroy and after_destroy hooks if used.
+full_name: Sequel::Model::destroy_all
+params: ()
+name: destroy_all
+is_singleton: true
+aliases: []
+

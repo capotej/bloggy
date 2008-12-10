@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Sequel::Postgres::AdapterMethods
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: PGconn subclass for connection specific methods used with the pg, postgres,
+    or postgres-pr driver.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: apply_connection_settings
+- !ruby/object:RI::MethodSummary 
+  name: execute
+- !ruby/object:RI::MethodSummary 
+  name: prepared_statements
+- !ruby/object:RI::MethodSummary 
+  name: reset
+class_methods: []
+
+full_name: Sequel::Postgres::Adapter
+constants: []
+
+superclass: "::PGconn"
+name: Adapter

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the SQL for the prepared statement, depending on the type of the statement
+    and the prepared_modify_values.
+full_name: Sequel::Dataset::PreparedStatementMethods#prepared_sql
+params: ()
+name: prepared_sql
+is_singleton: false
+aliases: []
+

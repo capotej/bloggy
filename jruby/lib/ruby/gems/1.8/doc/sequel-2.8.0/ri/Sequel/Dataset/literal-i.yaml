@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a literal representation of a value to be used as part of an SQL expression.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  dataset.literal(&quot;abc'def\\&quot;) #=&gt; &quot;'abc''def\\\\'&quot;\n\
+    \  dataset.literal(:items__id) #=&gt; &quot;items.id&quot;\n  dataset.literal([1, \
+    2, 3]) =&gt; &quot;(1, 2, 3)&quot;\n  dataset.literal(DB[:items]) =&gt; &quot;(SELECT \
+    * FROM items)&quot;\n  dataset.literal(:x + 1 &gt; :y) =&gt; &quot;((x + 1) &gt; \
+    y)&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: If an unsupported object is given, an exception is raised.
+full_name: Sequel::Dataset#literal
+params: (v)
+name: literal
+is_singleton: false
+aliases: []
+

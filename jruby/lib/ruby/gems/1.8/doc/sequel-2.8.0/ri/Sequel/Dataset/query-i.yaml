@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Translates a query block into a dataset. Query blocks can be useful when
+    expressing complex SELECT statements, e.g.:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  dataset = DB[:items].query do\n    select :x, :y, :z\n    filter((:x &gt; \
+    1) &amp; (:y &gt; 2))\n    order :z.desc\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Which is the same as:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " dataset = DB[:items].select(:x, :y, :z).filter((:x &gt; 1) &amp; (:y &gt; \
+    2)).order(:z.desc)\n"
+- !ruby/struct:SM::Flow::P 
+  body: Note that inside a call to query, you cannot call each, insert, update, or
+    delete (or any method that calls those), or Sequel will raise an error.
+full_name: Sequel::Dataset#query
+params: (&block)
+name: query
+is_singleton: false
+aliases: []
+

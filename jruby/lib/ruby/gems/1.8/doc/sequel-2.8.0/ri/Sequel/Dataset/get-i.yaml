@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return the column value for the first matching record in the dataset.
+full_name: Sequel::Dataset#get
+params: (column)
+name: get
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,36 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The preferred eager loading method. Loads all associated records using one
+    query for each association.
+- !ruby/struct:SM::Flow::P 
+  body: The basic idea for how it works is that the dataset is first loaded normally.
+    Then it goes through all associations that have been specified via eager. It loads
+    each of those associations separately, then associates them back to the original
+    dataset via primary/foreign keys. Due to the necessity of all objects being present,
+    you need to use .all to use eager loading, as it can't work with .each.
+- !ruby/struct:SM::Flow::P 
+  body: This implementation avoids the complexity of extracting an object graph out
+    of a single dataset, by building the object graph out of multiple datasets, one
+    for each association. By using a separate dataset for each association, it avoids
+    problems such as aliasing conflicts and creating cartesian product result sets
+    if multiple *_to_many eager associations are requested.
+- !ruby/struct:SM::Flow::P 
+  body: 'One limitation of using this method is that you cannot filter the dataset
+    based on values of columns in an associated table, since the associations are
+    loaded in separate queries. To do that you need to load all associations in the
+    same query, and extract an object graph from the results of that query. If you
+    need to filter based on columns in associated tables, look at #eager_graph or
+    join the tables you need to filter on manually.'
+- !ruby/struct:SM::Flow::P 
+  body: Each association's order, if definied, is respected. Eager also works on a
+    limited dataset, but does not use any :limit options for associations. If the
+    association uses a block or has an :eager_block argument, it is used.
+full_name: Sequel::Model::Associations::EagerLoading#eager
+params: (*associations)
+name: eager
+is_singleton: false
+aliases: []
+

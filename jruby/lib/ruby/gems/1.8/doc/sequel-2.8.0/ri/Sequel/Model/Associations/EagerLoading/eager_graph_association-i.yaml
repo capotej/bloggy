@@ -1,0 +1,37 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Call graph on the association with the correct arguments, update the eager_graph
+    data structure, and recurse into eager_graph_associations if there are any passed
+    in associations (which would be dependencies of the current association)
+- !ruby/struct:SM::Flow::P 
+  body: 'Arguments:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: ds - Current dataset
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: model - Current Model
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: ta - table_alias used for the parent association
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: requirements - an array, used as a stack for requirements
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: r - association reflection for the current association
+    label: '*'
+  - !ruby/struct:SM::Flow::LI 
+    body: '*associations - any associations dependent on this one'
+    label: '*'
+full_name: Sequel::Model::Associations::EagerLoading#eager_graph_association
+params: (ds, model, ta, requirements, r, *associations)
+name: eager_graph_association
+is_singleton: false
+aliases: []
+

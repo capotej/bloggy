@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'The default schema to use if none is specified (default: public)'
+full_name: Sequel::Postgres::DatabaseMethods#default_schema
+params: ()
+name: default_schema
+is_singleton: false
+aliases: []
+

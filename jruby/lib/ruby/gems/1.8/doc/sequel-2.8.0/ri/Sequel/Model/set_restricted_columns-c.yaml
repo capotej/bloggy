@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set the columns to restrict in new/set/update. Using this means that any columns
+    listed here will not be modified. If you have any virtual setter methods (methods
+    that end in =) that you want not to be used in new/set/update, they need to be
+    listed here as well (without the =).
+- !ruby/struct:SM::Flow::P 
+  body: It may be better to use (set|update)_except instead of this in places where
+    only certain columns may be allowed.
+full_name: Sequel::Model::set_restricted_columns
+params: (*cols)
+name: set_restricted_columns
+is_singleton: true
+aliases: []
+

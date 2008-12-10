@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Strings are blank if they are empty or include only whitespace
+full_name: String#blank?
+params: ()
+name: blank?
+is_singleton: false
+aliases: []
+

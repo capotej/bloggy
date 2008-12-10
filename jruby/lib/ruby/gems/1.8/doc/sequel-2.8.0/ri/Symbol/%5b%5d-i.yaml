@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a Sequel::SQL::Function with this as the function name, and the given
+    arguments.
+full_name: Symbol#[]
+params: (*args)
+name: '[]'
+is_singleton: false
+aliases: []
+

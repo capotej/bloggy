@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the default quote_identifiers mode for new databases. See Sequel.quote_identifiers=.
+full_name: Sequel::Database::upcase_identifiers=
+params: (value)
+name: upcase_identifiers=
+is_singleton: true
+aliases: []
+

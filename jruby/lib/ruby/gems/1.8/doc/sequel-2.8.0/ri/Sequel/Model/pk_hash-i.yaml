@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Returns a hash identifying the model instance. It should be true that:'
+- !ruby/struct:SM::Flow::VERB 
+  body: " Model[model_instance.pk_hash] === model_instance\n"
+full_name: Sequel::Model#pk_hash
+params: ()
+name: pk_hash
+is_singleton: false
+aliases: []
+

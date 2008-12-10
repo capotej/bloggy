@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Numerics are never blank (not even 0)
+full_name: Numeric#blank?
+params: ()
+name: blank?
+is_singleton: false
+aliases: []
+

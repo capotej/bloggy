@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the latest version available in the specified directory.
+full_name: Sequel::Migrator::latest_migration_version
+params: (directory)
+name: latest_migration_version
+is_singleton: true
+aliases: []
+

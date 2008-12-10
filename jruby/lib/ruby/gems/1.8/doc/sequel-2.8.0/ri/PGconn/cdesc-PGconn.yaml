@@ -1,0 +1,33 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Attempt to get uniform behavior for the PGconn object no matter if pg, postgres,
+    or postgres-pr is used.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: block
+- !ruby/object:RI::MethodSummary 
+  name: escape_bytea
+- !ruby/object:RI::MethodSummary 
+  name: escape_bytea
+- !ruby/object:RI::MethodSummary 
+  name: escape_bytea
+- !ruby/object:RI::MethodSummary 
+  name: escape_string
+- !ruby/object:RI::MethodSummary 
+  name: escape_string
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: unescape_bytea
+full_name: PGconn
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: "-1"
+  name: CONNECTION_OK
+superclass: Object
+name: PGconn

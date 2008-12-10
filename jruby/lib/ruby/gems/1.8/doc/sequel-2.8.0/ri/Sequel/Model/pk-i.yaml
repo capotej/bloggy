@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the primary key value identifying the model instance. Raises an error
+    if this model does not have a primary key. If the model has a composite primary
+    key, returns an array of values.
+full_name: Sequel::Model#pk
+params: ()
+name: pk
+is_singleton: false
+aliases: []
+

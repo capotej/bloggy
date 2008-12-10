@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the default single_threaded mode for new databases. See Sequel.single_threaded=.
+full_name: Sequel::Database::single_threaded=
+params: (value)
+name: single_threaded=
+is_singleton: true
+aliases: []
+

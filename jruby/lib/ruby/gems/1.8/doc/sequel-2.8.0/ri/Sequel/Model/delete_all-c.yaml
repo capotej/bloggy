@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Deletes all records in the model's table.
+full_name: Sequel::Model::delete_all
+params: ()
+name: delete_all
+is_singleton: true
+aliases: []
+

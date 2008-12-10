@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Defines a table schema (see Schema::Generator for more information).
+- !ruby/struct:SM::Flow::P 
+  body: This is only needed if you want to use the create_table/create_table! methods.
+    Will also set the dataset if you provide a name, as well as setting the primary
+    key if you defined one in the passed block.
+- !ruby/struct:SM::Flow::P 
+  body: In general, it is a better idea to use migrations for production code, as
+    migrations allow changes to existing schema. set_schema is mostly useful for test
+    code or simple examples.
+full_name: Sequel::Model::set_schema
+params: (name = nil, &block)
+name: set_schema
+is_singleton: true
+aliases: []
+

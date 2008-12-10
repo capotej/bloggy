@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a copy of the dataset with no filters (HAVING or WHERE clause) applied.
+full_name: Sequel::Dataset#unfiltered
+params: ()
+name: unfiltered
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Defines validations by converting a longhand block into a series of shorthand
+    definitions. For example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class MyClass\n    include Validation\n    validates do\n      length_of \
+    :name, :minimum =&gt; 6\n      length_of :password, :minimum =&gt; 8\n    end\n\
+    \  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'is equivalent to:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class MyClass\n    include Validation\n    validates_length_of :name, :minimum \
+    =&gt; 6\n    validates_length_of :password, :minimum =&gt; 8\n  end\n"
+full_name: Sequel::Model::validates
+params: (&block)
+name: validates
+is_singleton: true
+aliases: []
+

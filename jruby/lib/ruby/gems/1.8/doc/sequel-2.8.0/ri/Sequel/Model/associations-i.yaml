@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The current cached associations. A hash with the keys being the association
+    name symbols and the values being the associated object or nil (many_to_one),
+    or the array of associated objects (*_to_many).
+full_name: Sequel::Model#associations
+params: ()
+name: associations
+is_singleton: false
+aliases: []
+

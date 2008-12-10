@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: paginate(page_no, page_size, record_count)}
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Yields a paginated dataset for each page and returns the receiver. Does a
+    count to find the total number of records for this dataset.
+full_name: Sequel::Dataset#each_page
+params: (page_size, &block) {|paginate(page_no, page_size, record_count)}| ...}
+name: each_page
+is_singleton: false
+aliases: []
+

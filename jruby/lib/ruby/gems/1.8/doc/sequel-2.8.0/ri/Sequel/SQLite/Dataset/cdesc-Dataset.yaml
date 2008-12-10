@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: "::Sequel::SQLite::DatasetMethods"
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Dataset class for SQLite datasets that use the ruby-sqlite3 driver.
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: explain
+- !ruby/object:RI::MethodSummary 
+  name: fetch_rows
+- !ruby/object:RI::MethodSummary 
+  name: literal
+- !ruby/object:RI::MethodSummary 
+  name: prepare
+class_methods: []
+
+full_name: Sequel::SQLite::Dataset
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '''EXPLAIN %s''.freeze'
+  name: EXPLAIN
+- !ruby/object:RI::Constant 
+  comment: 
+  value: ''':''.freeze'
+  name: PREPARED_ARG_PLACEHOLDER
+superclass: Sequel::Dataset
+name: Dataset

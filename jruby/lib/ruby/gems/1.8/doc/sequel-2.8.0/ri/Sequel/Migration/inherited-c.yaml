@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds the new migration class to the list of Migration descendants.
+full_name: Sequel::Migration::inherited
+params: (base)
+name: inherited
+is_singleton: true
+aliases: []
+

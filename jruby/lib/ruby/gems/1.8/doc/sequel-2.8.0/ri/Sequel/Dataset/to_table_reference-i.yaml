@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a table reference for use in the FROM clause. Returns an SQL subquery
+    frgament with an optional table alias.
+full_name: Sequel::Dataset#to_table_reference
+params: (table_alias=nil)
+name: to_table_reference
+is_singleton: false
+aliases: []
+

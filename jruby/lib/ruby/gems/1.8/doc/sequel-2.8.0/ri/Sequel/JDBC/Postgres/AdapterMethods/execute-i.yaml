@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (rows)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Give the JDBC adapter a direct execute method, which creates a statement with
+    the given sql and executes it.
+full_name: Sequel::JDBC::Postgres::AdapterMethods#execute
+params: (sql, args=nil) {|rows| ...}
+name: execute
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,46 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: IrregularFunction is used for the SQL EXTRACT and CAST functions, which don't
+    use regular function calling syntax. The IrregularFunction replaces the commas
+    the regular function uses with a custom join string.
+- !ruby/struct:SM::Flow::P 
+  body: This shouldn't be used directly, see CastMethods#cast and ComplexExpressionMethods#extract.
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The arguments to pass to the function (may be blank)
+  rw: R
+  name: arg1
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The arguments to pass to the function (may be blank)
+  rw: R
+  name: arg2
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The SQL function to call
+  rw: R
+  name: f
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The literal string to use in place of a comma to join arguments
+  rw: R
+  name: joiner
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+full_name: Sequel::SQL::IrregularFunction
+constants: []
+
+superclass: Function
+name: IrregularFunction

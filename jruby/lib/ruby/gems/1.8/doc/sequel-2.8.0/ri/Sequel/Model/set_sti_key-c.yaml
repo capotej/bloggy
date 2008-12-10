@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Makes this model a polymorphic model with the given key being a string field
+    in the database holding the name of the class to use. If the key given has a NULL
+    value or there are any problems looking up the class, uses the current class.
+- !ruby/struct:SM::Flow::P 
+  body: This should be used to set up single table inheritance for the model, and
+    it only makes sense to use this in the parent class.
+- !ruby/struct:SM::Flow::P 
+  body: You should call sti_key after any calls to set_dataset in the model, otherwise
+    subclasses might not have the filters set up correctly.
+- !ruby/struct:SM::Flow::P 
+  body: The filters that sti_key sets up in subclasses will not work if those subclasses
+    have further subclasses. For those middle subclasses, you will need to call set_dataset
+    manually with the correct filter set.
+full_name: Sequel::Model::set_sti_key
+params: (key)
+name: set_sti_key
+is_singleton: true
+aliases: []
+

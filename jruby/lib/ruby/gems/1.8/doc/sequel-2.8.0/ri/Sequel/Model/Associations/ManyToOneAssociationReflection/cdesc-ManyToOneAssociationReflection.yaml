@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: dataset_need_primary_key?
+- !ruby/object:RI::MethodSummary 
+  name: default_key
+- !ruby/object:RI::MethodSummary 
+  name: eager_graph_lazy_dataset?
+- !ruby/object:RI::MethodSummary 
+  name: eager_loader_key
+- !ruby/object:RI::MethodSummary 
+  name: primary_key
+- !ruby/object:RI::MethodSummary 
+  name: returns_array?
+class_methods: []
+
+full_name: Sequel::Model::Associations::ManyToOneAssociationReflection
+constants: []
+
+superclass: AssociationReflection
+name: ManyToOneAssociationReflection

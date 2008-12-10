@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Add a foreign key in the table that references another table to the DDL. See
+    column for available options.
+full_name: Sequel::Schema::Generator#foreign_key
+params: (name, table=nil, opts = {})
+name: foreign_key
+is_singleton: false
+aliases: []
+

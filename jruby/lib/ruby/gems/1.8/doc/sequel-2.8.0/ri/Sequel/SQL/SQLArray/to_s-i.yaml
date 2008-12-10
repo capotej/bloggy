@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Delegate the creation of the resulting SQL to the given dataset, since it
+    may be database dependent.
+full_name: Sequel::SQL::SQLArray#to_s
+params: (ds)
+name: to_s
+is_singleton: false
+aliases: []
+

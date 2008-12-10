@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: v
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Yield every block related to the given hook.
+full_name: Sequel::Model::hook_blocks
+params: (hook) {|v| ...}
+name: hook_blocks
+is_singleton: true
+aliases: []
+

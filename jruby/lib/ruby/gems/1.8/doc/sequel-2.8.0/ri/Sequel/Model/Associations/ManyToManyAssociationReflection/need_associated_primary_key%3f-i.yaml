@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Whether the associated object needs a primary key to be added/removed, true
+    for many_to_many associations.
+full_name: Sequel::Model::Associations::ManyToManyAssociationReflection#need_associated_primary_key?
+params: ()
+name: need_associated_primary_key?
+is_singleton: false
+aliases: []
+

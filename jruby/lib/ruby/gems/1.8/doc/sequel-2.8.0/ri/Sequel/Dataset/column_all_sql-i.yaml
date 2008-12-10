@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: SQL fragment for specifying all columns in a given table.
+full_name: Sequel::Dataset#column_all_sql
+params: (ca)
+name: column_all_sql
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return true if the dataset has a non-nil value for any key in opts.
+full_name: Sequel::Dataset#options_overlap
+params: (opts)
+name: options_overlap
+is_singleton: false
+aliases: []
+

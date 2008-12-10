@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Dataset::UnsupportedIntersectExcept
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: complex_expression_sql
+- !ruby/object:RI::MethodSummary 
+  name: full_text_search
+- !ruby/object:RI::MethodSummary 
+  name: literal
+- !ruby/object:RI::MethodSummary 
+  name: multi_insert_sql
+- !ruby/object:RI::MethodSummary 
+  name: nolock
+- !ruby/object:RI::MethodSummary 
+  name: quoted_identifier
+class_methods: []
+
+full_name: Sequel::MSSQL::DatasetMethods
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: '%w''limit distinct columns from with join where group order having union''.freeze'
+  name: SELECT_CLAUSE_ORDER
+superclass: 
+name: DatasetMethods

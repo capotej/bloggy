@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns primary key attribute hash. If using a composite primary key value
+    such be an array with values for each primary key in the correct order. For a
+    standard primary key, value should be an object with a compatible type for the
+    key. If the model does not have a primary key, raises an Error.
+full_name: Sequel::Model::primary_key_hash
+params: (value)
+name: primary_key_hash
+is_singleton: true
+aliases: []
+

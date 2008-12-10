@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: default_join_table
+- !ruby/object:RI::MethodSummary 
+  name: default_left_key
+- !ruby/object:RI::MethodSummary 
+  name: default_right_key
+- !ruby/object:RI::MethodSummary 
+  name: eager_loader_key
+- !ruby/object:RI::MethodSummary 
+  name: need_associated_primary_key?
+- !ruby/object:RI::MethodSummary 
+  name: reciprocal
+- !ruby/object:RI::MethodSummary 
+  name: right_primary_key
+- !ruby/object:RI::MethodSummary 
+  name: select
+class_methods: []
+
+full_name: Sequel::Model::Associations::ManyToManyAssociationReflection
+constants: []
+
+superclass: AssociationReflection
+name: ManyToManyAssociationReflection

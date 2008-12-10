@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: MySQL specific syntax for REPLACE (aka UPSERT, or update if exists, insert
+    if it doesn't).
+full_name: Sequel::MySQL::DatasetMethods#replace_sql
+params: (*values)
+name: replace_sql
+is_singleton: false
+aliases: []
+

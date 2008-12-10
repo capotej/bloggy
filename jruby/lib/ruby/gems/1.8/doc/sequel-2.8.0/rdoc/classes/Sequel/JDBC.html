@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Sequel::JDBC</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Sequel::JDBC</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/sequel_core/adapters/jdbc/mysql_rb.html">
+                lib/sequel_core/adapters/jdbc/mysql.rb
+                </a>
+        <br />
+                <a href="../../files/lib/sequel_core/adapters/jdbc/oracle_rb.html">
+                lib/sequel_core/adapters/jdbc/oracle.rb
+                </a>
+        <br />
+                <a href="../../files/lib/sequel_core/adapters/jdbc/sqlite_rb.html">
+                lib/sequel_core/adapters/jdbc/sqlite.rb
+                </a>
+        <br />
+                <a href="../../files/lib/sequel_core/adapters/jdbc/postgresql_rb.html">
+                lib/sequel_core/adapters/jdbc/postgresql.rb
+                </a>
+        <br />
+                <a href="../../files/lib/sequel_core/adapters/jdbc_rb.html">
+                lib/sequel_core/adapters/jdbc.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Houses <a href="../Sequel.html">Sequel</a>&#8216;s <a
+href="JDBC.html">JDBC</a> support when running on JRuby. Support for
+individual database types is done using sub adapters. PostgreSQL, <a
+href="JDBC/MySQL.html">MySQL</a>, <a href="JDBC/SQLite.html">SQLite</a>, <a
+href="JDBC/Oracle.html">Oracle</a>, and <a href="MSSQL.html">MSSQL</a> all
+have relatively good support, close the the level supported by the native
+adapter. PostgreSQL, <a href="JDBC/MySQL.html">MySQL</a>, <a
+href="JDBC/SQLite.html">SQLite</a> can load necessary support using the
+jdbc-* gem, if it is installed, though they will work if you have the
+correct .jar in your CLASSPATH. <a href="JDBC/Oracle.html">Oracle</a> and
+<a href="MSSQL.html">MSSQL</a> should load the necessary support if you
+have the .jar in your CLASSPATH. For all other databases, the Java class
+should be loaded manually before calling <a
+href="../Sequel.html#M000072">Sequel.connect</a>.
+</p>
+<p>
+Note that when using a <a href="JDBC.html">JDBC</a> adapter, the best way
+to use <a href="../Sequel.html">Sequel</a> is via <a
+href="../Sequel.html#M000072">Sequel.connect</a>, NOT Sequel.jdbc. Use the
+<a href="JDBC.html">JDBC</a> connection string when connecting, which will
+be in a different format than the native connection string. The connection
+string should start with &#8216;jdbc:&#8217;. For PostgreSQL, use
+&#8216;jdbc:postgresql:&#8217;, and for <a
+href="JDBC/SQLite.html">SQLite</a> you do not need 2 preceding slashes for
+the database name (use no preceding slashes for a relative path, and one
+preceding slash for an absolute path).
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="JDBC/JavaLang.html" class="link">Sequel::JDBC::JavaLang</a><br />
+Module <a href="JDBC/JavaSQL.html" class="link">Sequel::JDBC::JavaSQL</a><br />
+Module <a href="JDBC/MySQL.html" class="link">Sequel::JDBC::MySQL</a><br />
+Module <a href="JDBC/Oracle.html" class="link">Sequel::JDBC::Oracle</a><br />
+Module <a href="JDBC/Postgres.html" class="link">Sequel::JDBC::Postgres</a><br />
+Module <a href="JDBC/SQLite.html" class="link">Sequel::JDBC::SQLite</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DATABASE_SETUP</td>
+          <td>=</td>
+          <td class="context-item-value">{:postgresql=&gt;proc do |db|         require 'sequel_core/adapters/jdbc/postgresql'</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Contains procs keyed on sub adapter type that extend the given database
+object so it supports the correct database type.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

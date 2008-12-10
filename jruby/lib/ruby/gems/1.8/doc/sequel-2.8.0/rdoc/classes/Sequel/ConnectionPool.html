@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Sequel::ConnectionPool</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Sequel::ConnectionPool</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/sequel_core/connection_pool_rb.html">
+                lib/sequel_core/connection_pool.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../Object.html">
+                Object
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+A <a href="ConnectionPool.html">ConnectionPool</a> manages access to
+database connections by keeping multiple connections and giving threads
+exclusive access to each connection.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000758">allocated</a>&nbsp;&nbsp;
+      <a href="#M000759">available_connections</a>&nbsp;&nbsp;
+      <a href="#M000760">created_count</a>&nbsp;&nbsp;
+      <a href="#M000763">disconnect</a>&nbsp;&nbsp;
+      <a href="#M000762">hold</a>&nbsp;&nbsp;
+      <a href="#M000757">new</a>&nbsp;&nbsp;
+      <a href="#M000761">size</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">connection_proc</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+The proc used to create a <a href="ConnectionPool.html#M000757">new</a>
+database connection.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">disconnection_proc</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+The proc used to <a href="ConnectionPool.html#M000763">disconnect</a> a
+database connection.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">max_size</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The maximum number of connections.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">mutex</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The mutex that protects access to the other internal vairables. You must
+use this if you want to manipulate the variables safely.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000757" class="method-detail">
+        <a name="M000757"></a>
+
+        <div class="method-heading">
+          <a href="#M000757" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(opts = {}, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Constructs a <a href="ConnectionPool.html#M000757">new</a> pool with a
+maximum <a href="ConnectionPool.html#M000761">size</a>. If a block is
+supplied, it is used to create <a
+href="ConnectionPool.html#M000757">new</a> connections as they are needed.
+</p>
+<pre>
+  pool = ConnectionPool.new(:max_connections=&gt;10) {MyConnection.new(opts)}
+</pre>
+<p>
+The connection creation proc can be changed at any time by assigning a Proc
+to pool#connection_proc.
+</p>
+<pre>
+  pool = ConnectionPool.new(:max_connections=&gt;10)
+  pool.connection_proc = proc {MyConnection.new(opts)}
+</pre>
+<p>
+The connection pool takes the following options:
+</p>
+<ul>
+<li>:max_connections - The maximum number of connections the connection pool
+will open (default 4)
+
+</li>
+<li>:pool_convert_exceptions - Whether to convert non-StandardError based
+exceptions to RuntimeError exceptions (default true)
+
+</li>
+<li>:pool_sleep_time - The amount of time to sleep before attempting to acquire
+a connection again (default 0.001)
+
+</li>
+<li>:pool_timeout - The amount of seconds to wait to acquire a connection
+before raising a PoolTimeoutError (default 5)
+
+</li>
+<li>:servers - A hash of servers to use. Keys should be symbols. If not
+present, will use a single :default server. The server name symbol will be
+passed to the connection_proc.
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000757-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000757-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core/connection_pool.rb, line 42</span>
+42:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">opts</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+43:     <span class="ruby-ivar">@max_size</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:max_connections</span>] <span class="ruby-operator">||</span> <span class="ruby-value">4</span>
+44:     <span class="ruby-ivar">@mutex</span> = <span class="ruby-constant">Mutex</span>.<span class="ruby-identifier">new</span>
+45:     <span class="ruby-ivar">@connection_proc</span> = <span class="ruby-identifier">block</span>
+46:     <span class="ruby-ivar">@disconnection_proc</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:disconnection_proc</span>]
+47:     <span class="ruby-ivar">@servers</span> = [<span class="ruby-identifier">:default</span>]
+48:     <span class="ruby-ivar">@servers</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:servers</span>].<span class="ruby-identifier">keys</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@servers</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:servers</span>] 
+49:     <span class="ruby-ivar">@available_connections</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">h</span>,<span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">:default</span>]}
+50:     <span class="ruby-ivar">@allocated</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">h</span>,<span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">:default</span>]}
+51:     <span class="ruby-ivar">@created_count</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">h</span>,<span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">:default</span>]}
+52:     <span class="ruby-ivar">@servers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+53:       <span class="ruby-ivar">@available_connections</span>[<span class="ruby-identifier">s</span>] = []
+54:       <span class="ruby-ivar">@allocated</span>[<span class="ruby-identifier">s</span>] = {}
+55:       <span class="ruby-ivar">@created_count</span>[<span class="ruby-identifier">s</span>] = <span class="ruby-value">0</span>
+56:     <span class="ruby-keyword kw">end</span>
+57:     <span class="ruby-ivar">@timeout</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:pool_timeout</span>] <span class="ruby-operator">||</span> <span class="ruby-value">5</span>
+58:     <span class="ruby-ivar">@sleep_time</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:pool_sleep_time</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span><span class="ruby-value">.001</span>
+59:     <span class="ruby-ivar">@convert_exceptions</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">:pool_convert_exceptions</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:pool_convert_exceptions</span>] <span class="ruby-operator">:</span> <span class="ruby-keyword kw">true</span>
+60:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000758" class="method-detail">
+        <a name="M000758"></a>
+
+        <div class="method-heading">
+          <a href="#M000758" class="method-signature">
+          <span class="method-name">allocated</span><span class="method-args">(server=:default)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A hash of connections currently being used for the given server, key is the
+Thread, value is the connection.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000758-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000758-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core/connection_pool.rb, line 64</span>
+64:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">allocated</span>(<span class="ruby-identifier">server</span>=<span class="ruby-identifier">:default</span>)
+65:     <span class="ruby-ivar">@allocated</span>[<span class="ruby-identifier">server</span>]
+66:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000759" class="method-detail">
+        <a name="M000759"></a>
+
+        <div class="method-heading">
+          <a href="#M000759" class="method-signature">
+          <span class="method-name">available_connections</span><span class="method-args">(server=:default)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+An array of connections opened but not currently used, for the given
+server.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000759-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000759-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core/connection_pool.rb, line 70</span>
+70:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">available_connections</span>(<span class="ruby-identifier">server</span>=<span class="ruby-identifier">:default</span>)
+71:     <span class="ruby-ivar">@available_connections</span>[<span class="ruby-identifier">server</span>]
+72:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000760" class="method-detail">
+        <a name="M000760"></a>
+
+        <div class="method-heading">
+          <a href="#M000760" class="method-signature">
+          <span class="method-name">created_count</span><span class="method-args">(server=:default)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The total number of connections opened for the given server, should be
+equal to available_connections.length + allocated.length
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000760-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000760-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/sequel_core/connection_pool.rb, line 76</span>
+76:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">created_count</span>(<span class="ruby-identifier">server</span>=<span class="ruby-identifier">:default</span>)
+77:     <span class="ruby-ivar">@created_count</span>[<span class="ruby-identifier">server</span>]
+78:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000763" class="method-detail">
+        <a name="M000763"></a>
+
+        <div class="method-heading">
+          <a href="#M000763" class="method-signature">
+          <span class="method-name">disconnect</span><span class="method-args">(&amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Removes all connection currently available on all servers, optionally
+yielding each connection to the given block. This method has the effect of
+disconnecting from the database, assuming that no connections are currently
+being used. Once a connection is requested using <a
+href="ConnectionPool.html#M000762">hold</a>, the connection pool creates <a
+href="ConnectionPool.html#M000757">new</a> connections to the database.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000763-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000763-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/connection_pool.rb, line 126</span>
+126:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">disconnect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+127:     <span class="ruby-identifier">block</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@disconnection_proc</span>
+128:     <span class="ruby-ivar">@mutex</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword kw">do</span>
+129:       <span class="ruby-ivar">@available_connections</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">server</span>, <span class="ruby-identifier">conns</span><span class="ruby-operator">|</span>
+130:         <span class="ruby-identifier">conns</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">c</span>)} <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block</span>
+131:         <span class="ruby-identifier">conns</span>.<span class="ruby-identifier">clear</span>
+132:         <span class="ruby-identifier">set_created_count</span>(<span class="ruby-identifier">server</span>, <span class="ruby-identifier">allocated</span>(<span class="ruby-identifier">server</span>).<span class="ruby-identifier">length</span>)
+133:       <span class="ruby-keyword kw">end</span>
+134:     <span class="ruby-keyword kw">end</span>
+135:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000762" class="method-detail">
+        <a name="M000762"></a>
+
+        <div class="method-heading">
+          <a href="#M000762" class="method-signature">
+          <span class="method-name">hold</span><span class="method-args">(server=:default) {|conn| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Chooses the first available connection to the given server, or if none are
+available, creates a <a href="ConnectionPool.html#M000757">new</a>
+connection. Passes the connection to the supplied block:
+</p>
+<pre>
+  pool.hold {|conn| conn.execute('DROP TABLE posts')}
+</pre>
+<p>
+Pool#hold is re-entrant, meaning it can be called recursively in the same
+thread without blocking.
+</p>
+<p>
+If no connection is immediately available and the pool is already using the
+maximum number of connections, Pool#hold will block until a connection is
+available or the timeout expires. If the timeout expires before a
+connection can be acquired, a <a
+href="Error/PoolTimeoutError.html">Sequel::Error::PoolTimeoutError</a> is
+raised.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000762-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000762-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/connection_pool.rb, line 95</span>
+ 95:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hold</span>(<span class="ruby-identifier">server</span>=<span class="ruby-identifier">:default</span>)
+ 96:     <span class="ruby-keyword kw">begin</span>
+ 97:       <span class="ruby-identifier">t</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>
+ 98:       <span class="ruby-identifier">time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>
+ 99:       <span class="ruby-identifier">timeout</span> = <span class="ruby-identifier">time</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@timeout</span>
+100:       <span class="ruby-identifier">sleep_time</span> = <span class="ruby-ivar">@sleep_time</span>
+101:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">conn</span> = <span class="ruby-identifier">owned_connection</span>(<span class="ruby-identifier">t</span>, <span class="ruby-identifier">server</span>)
+102:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">conn</span>)
+103:       <span class="ruby-keyword kw">end</span>
+104:       <span class="ruby-keyword kw">until</span> <span class="ruby-identifier">conn</span> = <span class="ruby-identifier">acquire</span>(<span class="ruby-identifier">t</span>, <span class="ruby-identifier">server</span>)
+105:         <span class="ruby-identifier">raise</span>(<span class="ruby-operator">::</span><span class="ruby-constant">Sequel</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span><span class="ruby-operator">::</span><span class="ruby-constant">PoolTimeoutError</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">timeout</span>
+106:         <span class="ruby-identifier">sleep</span> <span class="ruby-identifier">sleep_time</span>
+107:       <span class="ruby-keyword kw">end</span>
+108:       <span class="ruby-keyword kw">begin</span>
+109:         <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">conn</span>
+110:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Sequel</span><span class="ruby-operator">::</span><span class="ruby-constant">DatabaseDisconnectError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">dde</span>
+111:         <span class="ruby-identifier">remove</span>(<span class="ruby-identifier">t</span>, <span class="ruby-identifier">conn</span>, <span class="ruby-identifier">server</span>)
+112:         <span class="ruby-identifier">raise</span>
+113:       <span class="ruby-keyword kw">ensure</span>
+114:         <span class="ruby-identifier">release</span>(<span class="ruby-identifier">t</span>, <span class="ruby-identifier">conn</span>, <span class="ruby-identifier">server</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">dde</span>
+115:       <span class="ruby-keyword kw">end</span>
+116:     <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+117:       <span class="ruby-identifier">raise</span>(<span class="ruby-ivar">@convert_exceptions</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">e</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">StandardError</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">RuntimeError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">e</span>)
+118:     <span class="ruby-keyword kw">end</span>
+119:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000761" class="method-detail">
+        <a name="M000761"></a>
+
+        <div class="method-heading">
+          <span class="method-name">size</span><span class="method-args">(server=:default)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="ConnectionPool.html#M000760">created_count</a>
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

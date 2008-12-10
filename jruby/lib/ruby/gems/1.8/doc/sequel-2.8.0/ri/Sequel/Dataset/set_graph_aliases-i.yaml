@@ -1,0 +1,29 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'This allows you to manually specify the graph aliases to use when using graph.
+    You can use it to only select certain columns, and have those columns mapped to
+    specific aliases in the result set. This is the equivalent of .select for a graphed
+    dataset, and must be used instead of .select whenever graphing is used. Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  DB[:artists].graph(:albums, :artist_id=&gt;:id).set_graph_aliases(:artist_name=&gt;[:artists, \
+    :name], :album_name=&gt;[:albums, :name]).first\n  =&gt; {:artists=&gt;{:name=&gt;artists.name}, \
+    :albums=&gt;{:name=&gt;albums.name}}\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Arguments:'
+- !ruby/object:SM::Flow::LIST 
+  type: :BULLET
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    body: graph_aliases - Should be a hash with keys being symbols of column aliases,
+      and values being arrays with two symbol elements. The first element of the array
+      should be the table alias, and the second should be the actual column name.
+    label: '*'
+full_name: Sequel::Dataset#set_graph_aliases
+params: (graph_aliases)
+name: set_graph_aliases
+is_singleton: false
+aliases: []
+

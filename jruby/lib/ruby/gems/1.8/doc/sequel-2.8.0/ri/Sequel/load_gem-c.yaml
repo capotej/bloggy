@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Allowing loading the necessary JDBC support via a gem, which works for PostgreSQL,
+    MySQL, and SQLite.
+full_name: Sequel::load_gem
+params: (name)
+name: load_gem
+is_singleton: true
+aliases: []
+

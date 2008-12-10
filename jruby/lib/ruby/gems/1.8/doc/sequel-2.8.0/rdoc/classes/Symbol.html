@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Symbol</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Symbol</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/sequel_core/core_sql_rb.html">
+                lib/sequel_core/core_sql.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Object.html">
+                Object
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000055">*</a>&nbsp;&nbsp;
+      <a href="#M000056">[]</a>&nbsp;&nbsp;
+      <a href="#M000058">to_column_ref</a>&nbsp;&nbsp;
+      <a href="#M000057">|</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="Sequel/SQL/QualifyingMethods.html">Sequel::SQL::QualifyingMethods</a></span>
+        <span class="include-name"><a href="Sequel/SQL/IdentifierMethods.html">Sequel::SQL::IdentifierMethods</a></span>
+        <span class="include-name"><a href="Sequel/SQL/GenericExpressionMethods.html">Sequel::SQL::GenericExpressionMethods</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000055" class="method-detail">
+        <a name="M000055"></a>
+
+        <div class="method-heading">
+          <a href="#M000055" class="method-signature">
+          <span class="method-name">*</span><span class="method-args">(ce=(arg=false;</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+If no argument is given, returns a <a
+href="Sequel/SQL/ColumnAll.html">Sequel::SQL::ColumnAll</a> object
+specifying all columns for this table. If an argument is given, returns a
+<a
+href="Sequel/SQL/NumericExpression.html">Sequel::SQL::NumericExpression</a>
+using the * (multiplication) operator with this and the given argument.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000055-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000055-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/core_sql.rb, line 166</span>
+166:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">*</span>(<span class="ruby-identifier">ce</span>=(<span class="ruby-identifier">arg</span>=<span class="ruby-keyword kw">false</span>;<span class="ruby-keyword kw">nil</span>))
+167:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">ce</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">arg</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">false</span>
+168:     <span class="ruby-constant">Sequel</span><span class="ruby-operator">::</span><span class="ruby-constant">SQL</span><span class="ruby-operator">::</span><span class="ruby-constant">ColumnAll</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>);
+169:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
+
+        <div class="method-heading">
+          <a href="#M000056" class="method-signature">
+          <span class="method-name">[]</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a <a href="Sequel/SQL/Function.html">Sequel::SQL::Function</a> with
+this as the function name, and the given arguments.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000056-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000056-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/core_sql.rb, line 173</span>
+173:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+174:     <span class="ruby-constant">Sequel</span><span class="ruby-operator">::</span><span class="ruby-constant">SQL</span><span class="ruby-operator">::</span><span class="ruby-constant">Function</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+175:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000058" class="method-detail">
+        <a name="M000058"></a>
+
+        <div class="method-heading">
+          <a href="#M000058" class="method-signature">
+          <span class="method-name">to_column_ref</span><span class="method-args">(ds)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegate the creation of the resulting SQL to the given dataset, since it
+may be database dependent.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000058-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000058-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/core_sql.rb, line 188</span>
+188:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_column_ref</span>(<span class="ruby-identifier">ds</span>)
+189:     <span class="ruby-identifier">ds</span>.<span class="ruby-identifier">symbol_to_column_ref</span>(<span class="ruby-keyword kw">self</span>)
+190:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
+
+        <div class="method-heading">
+          <a href="#M000057" class="method-signature">
+          <span class="method-name">|</span><span class="method-args">(sub)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+If the given argument is an Integer or an array containing an Integer,
+returns a <a href="Sequel/SQL/Subscript.html">Sequel::SQL::Subscript</a>
+with this column and the given arg. Otherwise returns a <a
+href="Sequel/SQL/BooleanExpression.html">Sequel::SQL::BooleanExpression</a>
+where this column (which should be boolean) or the given argument is true.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000057-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000057-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/sequel_core/core_sql.rb, line 181</span>
+181:   <span class="ruby-keyword kw">def</span> <span class="ruby-operator">|</span>(<span class="ruby-identifier">sub</span>)
+182:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">super</span> <span class="ruby-keyword kw">unless</span> (<span class="ruby-constant">Integer</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">sub</span>) <span class="ruby-operator">||</span> ((<span class="ruby-constant">Array</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">sub</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">sub</span>.<span class="ruby-identifier">any?</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-constant">Integer</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">x</span>})
+183:     <span class="ruby-constant">Sequel</span><span class="ruby-operator">::</span><span class="ruby-constant">SQL</span><span class="ruby-operator">::</span><span class="ruby-constant">Subscript</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-constant">Array</span>(<span class="ruby-identifier">sub</span>))
+184:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

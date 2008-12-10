@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: protected
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Build associations out of the array of returned object graphs.
+full_name: Sequel::Model::Associations::EagerLoading#eager_graph_build_associations
+params: (record_graphs)
+name: eager_graph_build_associations
+is_singleton: false
+aliases: []
+

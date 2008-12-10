@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Modify a column's type in the DDL for the table.
+full_name: Sequel::Schema::AlterTableGenerator#set_column_type
+params: (name, type, opts={})
+name: set_column_type
+is_singleton: false
+aliases: []
+

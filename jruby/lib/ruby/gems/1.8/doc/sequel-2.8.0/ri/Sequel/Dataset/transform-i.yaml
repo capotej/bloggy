@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Sets a value transform which is used to convert values loaded and saved to/from
+    the database. The transform should be supplied as a hash. Each value in the hash
+    should be an array containing two proc objects - one for transforming loaded values,
+    and one for transforming saved values. The following example demonstrates how
+    to store Ruby objects in a dataset using Marshal serialization:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  dataset.transform(:obj =&gt; [\n    proc {|v| Marshal.load(v)},\n    proc \
+    {|v| Marshal.dump(v)}\n  ])\n\n  dataset.insert_sql(:obj =&gt; 1234) #=&gt;\n\
+    \  &quot;INSERT INTO items (obj) VALUES ('\\004\\bi\\002\\322\\004')&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'Another form of using transform is by specifying stock transforms:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  dataset.transform(:obj =&gt; :marshal)\n"
+- !ruby/struct:SM::Flow::P 
+  body: The currently supported stock transforms are :marshal and :yaml.
+full_name: Sequel::Dataset#transform
+params: (t)
+name: transform
+is_singleton: false
+aliases: []
+

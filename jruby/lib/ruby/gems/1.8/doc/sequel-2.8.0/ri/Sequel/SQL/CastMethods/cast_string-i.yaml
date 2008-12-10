@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Cast the reciever to the given SQL type (or text if none given), and return
+    the result as a StringExpression, so you can use + directly on the result for
+    SQL string concatenation.
+full_name: Sequel::SQL::CastMethods#cast_string
+params: (sql_type = nil)
+name: cast_string
+is_singleton: false
+aliases: []
+

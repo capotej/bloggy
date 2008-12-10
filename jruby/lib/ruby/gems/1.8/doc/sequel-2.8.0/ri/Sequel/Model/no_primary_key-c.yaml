@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Mark the model as not having a primary key. Not having a primary key can cause
+    issues, among which is that you won't be able to update records.
+full_name: Sequel::Model::no_primary_key
+params: ()
+name: no_primary_key
+is_singleton: true
+aliases: []
+

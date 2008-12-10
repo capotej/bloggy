@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the value attributes without saving the record. Returns the values changed.
+    Raises an error if the keys are not symbols or strings or a string key was passed
+    that was not a valid column. This is a low level method that does not respect
+    virtual attributes. It should probably be avoided. Look into using set instead.
+full_name: Sequel::Model#set_values
+params: (values)
+name: set_values
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Run the INSERT sql on the database and return the primary key for the record.
+full_name: Sequel::JDBC::Postgres::DatabaseMethods#execute_insert
+params: (sql, opts={})
+name: execute_insert
+is_singleton: false
+aliases: []
+

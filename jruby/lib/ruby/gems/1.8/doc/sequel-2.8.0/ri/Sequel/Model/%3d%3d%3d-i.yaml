@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: If pk is not nil, true only if the objects have the same class and pk. If
+    pk is nil, false.
+full_name: Sequel::Model#===
+params: (obj)
+name: ===
+is_singleton: false
+aliases: []
+

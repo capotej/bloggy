@@ -1,0 +1,34 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Inserts multiple records into the associated table. This method can be to
+    efficiently insert a large amounts of records into a table. Inserts are automatically
+    wrapped in a transaction.
+- !ruby/struct:SM::Flow::P 
+  body: 'This method should be called with a columns array and an array of value arrays:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  dataset.multi_insert([:x, :y], [[1, 2], [3, 4]])\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'This method can also be called with an array of hashes:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  dataset.multi_insert({:x =&gt; 1}, {:x =&gt; 2})\n"
+- !ruby/struct:SM::Flow::P 
+  body: Be aware that all hashes should have the same keys if you use this calling
+    method, otherwise some columns could be missed or set to null instead of to default
+    values.
+- !ruby/struct:SM::Flow::P 
+  body: 'The method also accepts a :slice or :commit_every option that specifies the
+    number of records to insert per transaction. This is useful especially when inserting
+    a large number of records, e.g.:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # this will commit every 50 records\n  dataset.multi_insert(lots_of_records, \
+    :slice =&gt; 50)\n"
+full_name: Sequel::Dataset#multi_insert
+params: (*args)
+name: multi_insert
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: import

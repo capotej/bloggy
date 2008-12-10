@@ -1,0 +1,27 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Sequel::SQL::QualifyingMethods
+- !ruby/object:RI::IncludedModule 
+  name: Sequel::SQL::IdentifierMethods
+- !ruby/object:RI::IncludedModule 
+  name: Sequel::SQL::GenericExpressionMethods
+comment: 
+attributes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: '*'
+- !ruby/object:RI::MethodSummary 
+  name: '[]'
+- !ruby/object:RI::MethodSummary 
+  name: to_column_ref
+- !ruby/object:RI::MethodSummary 
+  name: '|'
+class_methods: []
+
+full_name: Symbol
+constants: []
+
+superclass: Object
+name: Symbol

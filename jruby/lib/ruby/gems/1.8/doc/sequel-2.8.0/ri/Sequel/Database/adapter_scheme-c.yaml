@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the scheme for the Database class.
+full_name: Sequel::Database::adapter_scheme
+params: ()
+name: adapter_scheme
+is_singleton: true
+aliases: []
+

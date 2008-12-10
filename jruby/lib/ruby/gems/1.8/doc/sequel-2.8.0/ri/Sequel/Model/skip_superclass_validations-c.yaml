@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Instructs the model to skip validations defined in superclasses
+full_name: Sequel::Model::skip_superclass_validations
+params: ()
+name: skip_superclass_validations
+is_singleton: true
+aliases: []
+

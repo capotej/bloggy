@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Iterates over the records in the dataset and returns set. If opts have been
+    passed that modify the columns, reset the column information.
+full_name: Sequel::Dataset#each
+params: (opts = nil, &block)
+name: each
+is_singleton: false
+aliases: []
+

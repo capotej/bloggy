@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Default foreign key name symbol for key in join table that points to current
+    table's primary key (or :left_primary_key column).
+full_name: Sequel::Model::Associations::ManyToManyAssociationReflection#default_left_key
+params: ()
+name: default_left_key
+is_singleton: false
+aliases: []
+

@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Performs the inverse of Dataset#filter.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  dataset.exclude(:category =&gt; 'software').sql #=&gt;\n    &quot;SELECT \
+    * FROM items WHERE (category != 'software')&quot;\n"
+full_name: Sequel::Dataset#exclude
+params: (*cond, &block)
+name: exclude
+is_singleton: false
+aliases: []
+

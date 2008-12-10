@@ -1,0 +1,66 @@
+--- !ruby/object:RI::ClassDescription 
+includes: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'The Migrator module performs migrations based on migration files in a specified
+    directory. The migration files should be named using the following pattern (in
+    similar fashion to ActiveRecord migrations):'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;version&gt;_&lt;title&gt;.rb\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'For example, the following files are considered migration files:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  001_create_sessions.rb\n  002_add_data_column.rb\n  ...\n"
+- !ruby/struct:SM::Flow::P 
+  body: The migration files should contain one or more migration classes based on
+    Sequel::Migration.
+- !ruby/struct:SM::Flow::P 
+  body: Migrations are generally run via the sequel command line tool, using the -m
+    and -M switches. The -m switch specifies the migration directory, and the -M switch
+    specifies the version to which to migrate.
+- !ruby/struct:SM::Flow::P 
+  body: 'You can apply migrations using the Migrator API, as well (this is necessary
+    if you want to specify the version from which to migrate in addition to the version
+    to which to migrate). To apply a migration, the #apply method must be invoked
+    with the database instance, the directory of migration files and the target version.
+    If no current version is supplied, it is read from the database. The migrator
+    automatically creates a schema_info table in the database to keep track of the
+    current migration version. If no migration version is stored in the database,
+    the version is considered to be 0. If no target version is specified, the database
+    is migrated to the latest version available in the migration directory.'
+- !ruby/struct:SM::Flow::P 
+  body: 'For example, to migrate the database to the latest version:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Sequel::Migrator.apply(DB, '.')\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'To migrate the database from version 1 to version 5:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Sequel::Migrator.apply(DB, '.', 5, 1)\n"
+attributes: []
+
+instance_methods: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: apply
+- !ruby/object:RI::MethodSummary 
+  name: get_current_migration_version
+- !ruby/object:RI::MethodSummary 
+  name: latest_migration_version
+- !ruby/object:RI::MethodSummary 
+  name: migration_classes
+- !ruby/object:RI::MethodSummary 
+  name: migration_files
+- !ruby/object:RI::MethodSummary 
+  name: schema_info_dataset
+- !ruby/object:RI::MethodSummary 
+  name: set_current_migration_version
+full_name: Sequel::Migrator
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  value: /\A\d+_.+\.rb\z/.freeze
+  name: MIGRATION_FILE_PATTERN
+superclass: 
+name: Migrator

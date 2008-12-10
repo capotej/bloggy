@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Shortcut for adding a many_to_one association, see associate
+full_name: Sequel::Model::Associations#many_to_one
+params: (*args, &block)
+name: many_to_one
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: belongs_to

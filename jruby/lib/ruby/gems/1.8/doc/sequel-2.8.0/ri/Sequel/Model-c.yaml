@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Lets you create a Model subclass with its dataset already set. source can
+    be an existing dataset or a symbol (in which case it will create a dataset using
+    the default database with source as the table name).
+- !ruby/struct:SM::Flow::P 
+  body: 'Example:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Comment &lt; Sequel::Model(:something)\n    table_name # =&gt; :something\n\
+    \  end\n"
+full_name: Sequel::Model
+params: (source)
+name: Model
+is_singleton: true
+aliases: []
+

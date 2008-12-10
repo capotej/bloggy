@@ -1,0 +1,42 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: 'Associates or disassociates the dataset with a model(s). If nil is specified,
+    the dataset is turned into a naked dataset and returns records as hashes. If a
+    model class specified, the dataset is modified to return records as instances
+    of the model class, e.g:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class MyModel\n    def initialize(values)\n      @values = values\n    \
+    \  ...\n    end\n  end\n\n  dataset.set_model(MyModel)\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'You can also provide additional arguments to be passed to the model''s initialize
+    method:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class MyModel\n    def initialize(values, options)\n      @values = values\n\
+    \      ...\n    end\n  end\n\n  dataset.set_model(MyModel, :allow_delete =&gt; \
+    false)\n"
+- !ruby/struct:SM::Flow::P 
+  body: The dataset can be made polymorphic by specifying a column name as the polymorphic
+    key and a hash mapping column values to model classes.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  dataset.set_model(:kind, {1 =&gt; Person, 2 =&gt; Business})\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'You can also set a default model class to fall back on by specifying a class
+    corresponding to nil:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  dataset.set_model(:kind, {nil =&gt; DefaultClass, 1 =&gt; Person, 2 =&gt; \
+    Business})\n"
+- !ruby/struct:SM::Flow::P 
+  body: 'To make sure that there is always a default model class, the hash provided
+    should have a default value. To make the dataset map string values to model classes,
+    and keep a good default, try:'
+- !ruby/struct:SM::Flow::VERB 
+  body: "  dataset.set_model(:kind, Hash.new{|h,k| h[k] = (k.constantize rescue DefaultClass)})\n"
+full_name: Sequel::Dataset#set_model
+params: (key, *args)
+name: set_model
+is_singleton: false
+aliases: []
+

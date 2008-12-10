@@ -1,0 +1,10 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: (conn)
+comment: 
+full_name: Sequel::Oracle::Database#transaction
+params: (server=nil) {|conn| ...}
+name: transaction
+is_singleton: false
+aliases: []
+

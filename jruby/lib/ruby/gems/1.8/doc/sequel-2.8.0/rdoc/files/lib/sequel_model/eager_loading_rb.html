@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: eager_loading.rb</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>eager_loading.rb</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>lib/sequel_model/eager_loading.rb
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Tue Dec 09 22:52:50 UTC 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Eager loading makes it so that you can load all associated records for a
+set of objects in a single query, instead of a separate query for each
+object.
+</p>
+<p>
+Two separate implementations are provided. eager should be used most of the
+time, as it loads associated records using one query per association.
+However, it does not allow you the ability to filter based on columns in
+associated tables. eager_graph loads all records in one query. Using
+eager_graph you can filter based on columns in associated tables. However,
+eager_graph can be much slower than eager, especially if multiple *_to_many
+associations are joined.
+</p>
+<p>
+You can cascade the eager loading (loading associations&#8217;
+associations) with no limit to the depth of the cascades. You do this by
+passing a hash to eager or eager_graph with the keys being associations of
+the current model and values being associations of the model associated
+with the current model via the key.
+</p>
+<p>
+The arguments can be symbols or hashes with symbol keys (for cascaded eager
+loading). Examples:
+</p>
+<pre>
+  Album.eager(:artist).all
+  Album.eager_graph(:artist).all
+  Album.eager(:artist, :genre).all
+  Album.eager_graph(:artist, :genre).all
+  Album.eager(:artist).eager(:genre).all
+  Album.eager_graph(:artist).eager(:genre).all
+  Artist.eager(:albums=&gt;:tracks).all
+  Artist.eager_graph(:albums=&gt;:tracks).all
+  Artist.eager(:albums=&gt;{:tracks=&gt;:genre}).all
+  Artist.eager_graph(:albums=&gt;{:tracks=&gt;:genre}).all
+</pre>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

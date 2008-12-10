@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Whether the reciprocal of this association returns an array of objects instead
+    of a single object, false for a one_to_many association.
+full_name: Sequel::Model::Associations::OneToManyAssociationReflection#reciprocal_array?
+params: ()
+name: reciprocal_array?
+is_singleton: false
+aliases: []
+

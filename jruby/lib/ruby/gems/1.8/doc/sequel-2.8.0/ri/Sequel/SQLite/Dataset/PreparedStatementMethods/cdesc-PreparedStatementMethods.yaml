@@ -1,0 +1,19 @@
+--- !ruby/object:RI::ClassDescription 
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: ArgumentMapper
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: SQLite prepared statement uses a new prepared statement each time it is called,
+    but it does use the bind arguments.
+attributes: []
+
+instance_methods: []
+
+class_methods: []
+
+full_name: Sequel::SQLite::Dataset::PreparedStatementMethods
+constants: []
+
+superclass: 
+name: PreparedStatementMethods

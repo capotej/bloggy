@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+visibility: public
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a copy of the dataset with the order changed. If a nil is given the
+    returned dataset has no order. This can accept multiple arguments of varying kinds,
+    and even SQL functions.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ds.order(:name).sql #=&gt; 'SELECT * FROM items ORDER BY name'\n  ds.order(:a, \
+    :b).sql #=&gt; 'SELECT * FROM items ORDER BY a, b'\n  ds.order('a + b'.lit).sql \
+    #=&gt; 'SELECT * FROM items ORDER BY a + b'\n  ds.order(:a + :b).sql #=&gt; 'SELECT \
+    * FROM items ORDER BY (a + b)'\n  ds.order(:name.desc).sql #=&gt; 'SELECT * FROM \
+    items ORDER BY name DESC'\n  ds.order(:name.asc).sql #=&gt; 'SELECT * FROM items \
+    ORDER BY name ASC'\n  ds.order(:arr|1).sql #=&gt; 'SELECT * FROM items ORDER BY \
+    arr[1]'\n  ds.order(nil).sql #=&gt; 'SELECT * FROM items'\n"
+full_name: Sequel::Dataset#order
+params: (*order)
+name: order
+is_singleton: false
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: order_by
