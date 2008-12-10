@@ -3,7 +3,6 @@ require 'sinatra'
 require 'jdbc_adapter'
 require 'sequel'
 require 'json'
-require 'logger'
 
 DB = Sequel.connect('jdbc:sqlite:posts.db')
 
