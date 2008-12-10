@@ -38,13 +38,22 @@ class Post < Sequel::Model
     post.body = data["body"]
     
     if post.save
-      { :status => 'OK', :title => post.title }.to_json
+      { :status => 'OK', :title => post.title }
     else
-      { :status => 'FAIL' }.to_json
+      { :status => 'FAIL' }
     end
         
   end
 
+end
+
+#JSONP support, any request can carry a &callback= and it will be fed back to you
+def jsonp(params, response)
+  if params[:callback]
+    params[:callback] + "(#{response.to_json});"
+  else
+    response.to_json
+  end
 end
 
 #Set all content_type's to json
@@ -59,29 +68,29 @@ end
 
 #GET /posts returns all posts as json
 get '/posts' do
-  DB[:posts].all.to_json
+  jsonp(params, DB[:posts].all)
 end
 
 #GET /post/1 returns that post as json
 get '/post/:id' do
-  Post.find(params[:id]).values.to_json
+  jsonp(params, Post.find(params[:id]).values)
 end
 
 #PUT /post/1 update that post with json
 put '/post/:id' do
-  Post.respond(params)
+  jsonp(params, Post.respond(params))
 end
 
 #POST /post body with data field set to JSON: { "title": "test", "body": "body test" }
 post '/post' do
-  Post.respond(params)
+  jsonp(params, Post.respond(params))
 end
 
 #DELETE /post/1 deletes post
 delete '/post/:id' do
   post = Post.find(params[:id])
   if post.destroy
-    { :status => 'OK', :title => post.title }.to_json
+    jsonp(params,{ :status => 'OK', :title => post.title })
   end
 end
 
